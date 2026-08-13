@@ -54,7 +54,7 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = ({ onCurrencyChange, c
     <div className={`flex items-center gap-2 relative ${className}`}>
       <Globe className="h-4 w-4 text-white/80" />
       <Select value={currency.code} onValueChange={handleCurrencyChange}>
-        <SelectTrigger className={`w-28 h-8 text-xs bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-sm focus:ring-2 focus:ring-primary/50 focus:border-primary/50 hover:border-white/40 hover:bg-white/15 transition-all ${
+        <SelectTrigger className={`w-28 h-8 text-xs bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-xs focus:ring-2 focus:ring-primary/50 focus:border-primary/50 hover:border-white/40 hover:bg-white/15 transition-all ${
           showCurrencyPrompt ? 'ring-2 ring-primary animate-pulse' : ''
         } ${className.includes('w-full') ? 'w-full h-10' : ''}`}>
           <SelectValue className="text-white" />
@@ -75,7 +75,7 @@ const CurrencySelector: React.FC<CurrencySelectorProps> = ({ onCurrencyChange, c
         </SelectContent>
       </Select>
       {showCurrencyPrompt && (
-        <div className="absolute top-full left-0 mt-1 p-2 bg-primary/90 backdrop-blur-sm text-white text-xs rounded shadow-lg z-50">
+        <div className="absolute top-full left-0 mt-1 p-2 bg-primary/90 backdrop-blur-xs text-white text-xs rounded shadow-lg z-50">
           Select your preferred currency
         </div>
       )}

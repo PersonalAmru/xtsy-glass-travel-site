@@ -1,0 +1,829 @@
+/* XTSY — Tailwind v4 entry (migrated from src/styles/tailwind.css + tailwind.config.ts) */
+/* Fonts loaded via document head preload (non-blocking) — DO NOT use @import url() for fonts here */
+
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@import "./styles/responsive.css";
+@import "./styles/ios-optimizations.css";
+@import "./styles/typography.css";
+
+@custom-variant dark (&:is(.dark *));
+/* v3 `fold` screen was a max-width breakpoint: { max: '320px' } */
+@custom-variant fold (@media (max-width: 320px));
+
+@theme inline {
+  /* ── Fonts (from tailwind.config.ts) ── */
+  --font-playfair: "Playfair Display", serif;
+  --font-cormorant: "Cormorant Garamond", serif;
+  --font-josefin: "Josefin Sans", sans-serif;
+  --font-cardo: "Cardo", serif;
+  --font-sans: "Glacial Indifference", "Josefin Sans", system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+
+  /* ── Semantic colors (HSL triplet vars defined in :root below) ── */
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  /* ── Brand extended palette ── */
+  --color-brand: hsl(var(--primary));
+  --color-brand-secondary: hsl(var(--brand-secondary));
+  --color-brand-accent: hsl(var(--brand-accent));
+  --color-brand-gold: hsl(var(--brand-gold));
+  --color-brand-ember: hsl(var(--brand-ember));
+  --color-brand-copper: hsl(var(--brand-copper));
+  --color-brand-verified: hsl(var(--brand-verified));
+
+  /* ── Premium surface tokens ── */
+  --color-surface-elevated: hsl(var(--surface-elevated));
+  --color-surface-overlay: hsl(var(--surface-overlay));
+  --color-surface-highlight: hsl(var(--surface-highlight));
+
+  --color-whatsapp: hsl(var(--whatsapp));
+
+  /* ── Sidebar (shadcn) ── */
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  /* ── Radius (v3 borderRadius mapping) ── */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* ── Animations (v3 theme.extend.animation) ── */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-marquee-left: marquee-left var(--marquee-duration, 60s) linear infinite;
+  --animate-marquee-right: marquee-right var(--marquee-duration, 60s) linear infinite;
+}
+
+/* v3 container config: centered, 1rem padding, max-width per breakpoint (2xl → 1400px) */
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (min-width: 640px) { max-width: 640px; }
+  @media (min-width: 768px) { max-width: 768px; }
+  @media (min-width: 1024px) { max-width: 1024px; }
+  @media (min-width: 1280px) { max-width: 1280px; }
+  @media (min-width: 1536px) { max-width: 1400px; }
+}
+
+/* ── Global keyframes (kept global to survive tree-shaking — project rule) ── */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Marquee keyframes — defined here so inline style references work */
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-33.333%); }
+}
+@keyframes marquee-right {
+  0% { transform: translateX(-33.333%); }
+  100% { transform: translateX(0%); }
+}
+
+/* Wiggle keyframe for admin notification bell — global to survive tree-shaking */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(-12deg); }
+  30% { transform: rotate(10deg); }
+  45% { transform: rotate(-8deg); }
+  60% { transform: rotate(6deg); }
+  75% { transform: rotate(-4deg); }
+}
+
+/* Slow connection optimizations */
+.slow-connection * {
+  animation: none !important;
+  transition: none !important;
+}
+
+.slow-connection .floating-element,
+.slow-connection .animate-pulse,
+.slow-connection .animate-bounce {
+  animation: none !important;
+}
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerate {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Prevent layout shifts */
+.layout-stable {
+  contain: layout style;
+}
+
+/* Mobile performance: disable heavy effects */
+@media (max-width: 768px) {
+  .backdrop-blur,
+  .backdrop-blur-xs,
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-3xl {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Disable pulse animations on mobile for performance */
+  .animate-pulse,
+  .animate-bounce,
+  .animate-spin {
+    animation: none !important;
+  }
+
+  /* Reduce shadow complexity on mobile */
+  .shadow-lg,
+  .shadow-xl,
+  .shadow-2xl {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Prevent layout thrashing on mobile */
+  * {
+    scroll-behavior: auto !important;
+  }
+
+  /* GPU layer promotion for smoother scrolling */
+  .glass-card,
+  .glass-header,
+  .glass-card-enhanced {
+    transform: translateZ(0);
+  }
+}
+
+/* Tablet performance optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-3xl {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer base {
+  :root {
+    /* ═══════════════════════════════════════════════
+       XTSY Premium Brand Color System
+       Deep charcoal base + warm amber-gold primary
+       ═══════════════════════════════════════════════ */
+
+    /* Surface hierarchy — deep charcoal with blue undertone */
+    --background: 225 40% 3%;
+    --foreground: 40 10% 94%;
+    --card: 225 28% 7%;
+    --card-foreground: 40 10% 94%;
+    --popover: 225 28% 7%;
+    --popover-foreground: 40 10% 94%;
+
+    /* Primary — warm amber-gold (signature XTSY orange refined) */
+    --primary: 28 92% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary — muted warm slate */
+    --secondary: 225 18% 13%;
+    --secondary-foreground: 40 10% 90%;
+
+    /* Muted — subtle warm gray */
+    --muted: 225 14% 12%;
+    --muted-foreground: 220 10% 52%;
+
+    /* Accent — warm bronze undertone */
+    --accent: 25 20% 11%;
+    --accent-foreground: 40 10% 94%;
+
+    /* Semantic states */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 152 69% 31%;
+    --success-foreground: 0 0% 98%;
+    --warning: 40 96% 50%;
+    --warning-foreground: 0 0% 8%;
+
+    /* Edges & inputs */
+    --border: 225 12% 16%;
+    --input: 225 15% 14%;
+    --ring: 28 92% 52%;
+    --radius: 0.75rem;
+
+    /* ── Brand extended palette ── */
+    --brand-secondary: 0 72% 51%;
+    --brand-accent: 36 100% 55%;
+    --brand-gold: 38 90% 56%;
+    --brand-ember: 12 85% 48%;
+    --brand-copper: 22 70% 42%;
+    --brand-verified: 215 80% 58%;
+    --whatsapp: 142 70% 45%;
+
+    /* ── Premium surface tokens ── */
+    --surface-elevated: 225 24% 9%;
+    --surface-overlay: 225 20% 6%;
+    --surface-highlight: 28 92% 52% / 0.08;
+
+    /* ── Glassmorphism (progressive enhancement) ── */
+    --glass-bg-solid: 225 28% 9%;
+    --glass-bg-tablet: 225 28% 7% / 0.88;
+    --glass-bg-desktop: 0 0% 0% / 0.25;
+    --glass-border-light: 0 0% 100% / 0.08;
+    --glass-border-solid: 225 12% 20%;
+    --glass-shadow-light: 0 8px 32px hsl(0 0% 0% / 0.4);
+    --glass-shadow-solid: 0 4px 16px hsl(0 0% 0% / 0.25);
+    --glass-bg: rgba(0, 0, 0, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --glass-blur: blur(16px);
+
+    /* ── Premium gradients ── */
+    --gradient-primary: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
+    --gradient-gold: linear-gradient(135deg, hsl(38 90% 56%), hsl(28 92% 52%));
+    --gradient-ember: linear-gradient(135deg, hsl(28 92% 52%), hsl(12 85% 48%));
+    --gradient-glass: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+    --shadow-elegant: 0 4px 24px -4px hsl(28 92% 52% / 0.2);
+    --shadow-premium: 0 8px 40px -8px hsl(0 0% 0% / 0.5);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glass: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Travel page tokens */
+    --travel-gradient-warm: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
+    --travel-gradient-cool: linear-gradient(135deg, hsl(215 80% 58%), hsl(262 75% 52%));
+    --travel-gradient-nature: linear-gradient(135deg, hsl(152 69% 31%), hsl(172 60% 42%));
+    --travel-glow-warm: 0 0 40px hsl(28 92% 52% / 0.25);
+    --travel-glow-cool: 0 0 40px hsl(215 80% 58% / 0.25);
+  }
+
+  /* .dark class mirrors :root — unified dark system */
+  .dark {
+    --background: 225 40% 3%;
+    --foreground: 40 10% 94%;
+    --card: 225 28% 7%;
+    --card-foreground: 40 10% 94%;
+    --popover: 225 28% 7%;
+    --popover-foreground: 40 10% 94%;
+    --primary: 28 92% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 225 18% 13%;
+    --secondary-foreground: 40 10% 90%;
+    --muted: 225 14% 12%;
+    --muted-foreground: 220 10% 52%;
+    --accent: 25 20% 11%;
+    --accent-foreground: 40 10% 94%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 152 69% 31%;
+    --success-foreground: 0 0% 98%;
+    --warning: 40 96% 50%;
+    --warning-foreground: 0 0% 8%;
+    --border: 225 12% 16%;
+    --input: 225 15% 14%;
+    --ring: 28 92% 52%;
+
+    --brand-secondary: 0 72% 51%;
+    --brand-accent: 36 100% 55%;
+    --brand-gold: 38 90% 56%;
+    --brand-ember: 12 85% 48%;
+    --brand-copper: 22 70% 42%;
+    --brand-verified: 215 80% 58%;
+    --whatsapp: 142 70% 45%;
+
+    --surface-elevated: 225 24% 9%;
+    --surface-overlay: 225 20% 6%;
+    --surface-highlight: 28 92% 52% / 0.08;
+
+    --glass-bg-solid: 225 28% 9%;
+    --glass-bg-tablet: 225 28% 7% / 0.88;
+    --glass-bg-desktop: 0 0% 0% / 0.25;
+    --glass-border-light: 0 0% 100% / 0.08;
+    --glass-border-solid: 225 12% 20%;
+    --glass-shadow-light: 0 8px 32px hsl(0 0% 0% / 0.4);
+    --glass-shadow-solid: 0 4px 16px hsl(0 0% 0% / 0.25);
+    --glass-bg: rgba(0, 0, 0, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --gradient-primary: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
+    --gradient-gold: linear-gradient(135deg, hsl(38 90% 56%), hsl(28 92% 52%));
+    --gradient-ember: linear-gradient(135deg, hsl(28 92% 52%), hsl(12 85% 48%));
+    --gradient-glass: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+    --shadow-elegant: 0 4px 24px -4px hsl(28 92% 52% / 0.2);
+    --shadow-premium: 0 8px 40px -8px hsl(0 0% 0% / 0.5);
+  }
+
+  /* Tailwind v4 defaults border-color to currentColor — restore v3 behavior */
+  *,
+  ::before,
+  ::after {
+    border-color: hsl(var(--border));
+  }
+
+  /* Sign-in page animations */
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes slideRightIn {
+    to {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes testimonialIn {
+    to {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0px) scale(1);
+    }
+  }
+
+  body {
+    @apply font-josefin antialiased bg-background text-foreground;
+    /* Keep body scrollbar hidden for aesthetic, but allow main content scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Only hide scrollbars on horizontal-scroll containers and decorative elements */
+  /* DO NOT hide scrollbars globally — accessibility requirement for keyboard/mouse users */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  /* Main content area: show thin styled scrollbar for accessibility */
+  #root {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.2) transparent;
+  }
+  #root::-webkit-scrollbar {
+    width: 6px;
+  }
+  #root::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #root::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.2);
+    border-radius: 4px;
+  }
+  #root::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.4);
+  }
+
+  /* Allow scrollbar in dialog/modal content for accessibility */
+  [role="dialog"] *::-webkit-scrollbar {
+    display: block;
+    width: 4px;
+  }
+  [role="dialog"] *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  [role="dialog"] *::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 4px;
+  }
+  [role="dialog"] * {
+    scrollbar-width: thin;
+  }
+
+  /* Flag emoji support for cross-platform rendering */
+  .flag-emoji {
+    font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Sans Symbols", sans-serif;
+    font-size: 2.5rem;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  @media (max-width: 640px) {
+    .flag-emoji {
+      font-size: 2rem;
+    }
+  }
+}
+
+/* ============================================
+   GLASSMORPHISM UTILITIES - GPU Optimized
+   ============================================ */
+
+/* GPU optimization base - prevents flickering */
+.glass-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  perspective: 1000px;
+}
+
+/* Legacy glass header - enhanced */
+.glass-header {
+  background: hsl(var(--glass-bg-desktop));
+  backdrop-filter: var(--glass-blur-desktop);
+  -webkit-backdrop-filter: var(--glass-blur-desktop);
+  border: 1px solid hsl(var(--glass-border-light));
+  box-shadow: var(--glass-shadow-light);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Legacy glass card - enhanced */
+.glass-card {
+  background: hsl(var(--glass-bg-desktop));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid hsl(var(--glass-border-light));
+  box-shadow: var(--glass-shadow-light);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Enhanced glassmorphism - Progressive enhancement */
+.glass-card-enhanced {
+  background: hsl(var(--glass-bg-desktop));
+  backdrop-filter: var(--glass-blur-desktop);
+  -webkit-backdrop-filter: var(--glass-blur-desktop);
+  border: 1px solid hsl(var(--glass-border-light));
+  box-shadow: var(--glass-shadow-light);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: backdrop-filter, background;
+  transition: var(--transition-glass);
+}
+
+.glass-card-enhanced:hover {
+  background: hsl(0 0% 100% / 0.15);
+  border-color: hsl(0 0% 100% / 0.3);
+  box-shadow: 0 12px 40px hsl(220 15% 15% / 0.15);
+}
+
+/* Tablet - reduced blur for performance */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .glass-card-enhanced {
+    background: hsl(var(--glass-bg-tablet));
+    backdrop-filter: var(--glass-blur-tablet);
+    -webkit-backdrop-filter: var(--glass-blur-tablet);
+  }
+
+  .glass-header {
+    background: hsl(var(--glass-bg-tablet));
+    backdrop-filter: var(--glass-blur-tablet);
+    -webkit-backdrop-filter: var(--glass-blur-tablet);
+  }
+}
+
+/* Mobile - solid elegant fallback (no blur) */
+@media (max-width: 767px) {
+  .glass-card-enhanced {
+    background: hsl(var(--glass-bg-solid));
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: 1px solid hsl(var(--glass-border-solid));
+    box-shadow: var(--glass-shadow-solid);
+  }
+
+  .glass-card-enhanced:hover {
+    background: hsl(var(--glass-bg-solid));
+    box-shadow: 0 8px 24px hsl(220 15% 15% / 0.12);
+  }
+
+  .glass-header {
+    background: hsl(var(--glass-bg-solid));
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .glass-card {
+    background: hsl(var(--glass-bg-solid));
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Glass dropdown/popover - consistent styling */
+.glass-dropdown {
+  background: hsl(var(--popover));
+  backdrop-filter: var(--glass-blur-desktop);
+  -webkit-backdrop-filter: var(--glass-blur-desktop);
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 10px 40px hsl(220 15% 15% / 0.15);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+@media (max-width: 767px) {
+  .glass-dropdown {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: 0 4px 20px hsl(220 15% 15% / 0.1);
+  }
+}
+
+/* Glass transition utility */
+.glass-transition {
+  transition: var(--transition-glass);
+}
+
+/* Glass element stability - GPU promotion only on desktop where blur is active */
+@media (min-width: 768px) {
+  .glass-header,
+  .glass-card,
+  .glass-card-enhanced,
+  .glass-dropdown {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
+/* Performance optimizations - only for below-fold images */
+img.lazy-below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 200px;
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  transition: var(--transition-smooth);
+}
+
+/* Section layout utilities */
+.section-header {
+  @apply text-center mb-8 sm:mb-12;
+}
+
+.section-title-card {
+  @apply inline-block px-6 py-4 rounded-2xl bg-card/80 backdrop-blur-xs shadow-lg border border-border;
+}
+
+.grid-3-fixed {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 max-w-7xl;
+}
+
+/* Responsive utilities */
+.responsive-container {
+  @apply container mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.mobile-compact {
+  @apply sm:px-4 md:px-6 lg:px-8;
+}
+
+.touch-target {
+  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+}
+
+.safe-area-padding {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-left {
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Enhanced responsive breakpoint utilities */
+.mobile-only {
+  @apply block sm:hidden;
+}
+
+.tablet-only {
+  @apply hidden sm:block lg:hidden;
+}
+
+.desktop-only {
+  @apply hidden lg:block;
+}
+
+.mobile-tablet {
+  @apply block lg:hidden;
+}
+
+.tablet-desktop {
+  @apply hidden sm:block;
+}
+
+/* Responsive text scaling */
+.text-responsive-xs {
+  @apply text-xs sm:text-sm md:text-base;
+}
+
+.text-responsive-sm {
+  @apply text-sm sm:text-base md:text-lg;
+}
+
+.text-responsive-base {
+  @apply text-base sm:text-lg md:text-xl;
+}
+
+.text-responsive-lg {
+  @apply text-lg sm:text-xl md:text-2xl;
+}
+
+.text-responsive-xl {
+  @apply text-xl sm:text-2xl md:text-3xl;
+}
+
+/* Responsive spacing */
+.spacing-responsive {
+  @apply p-3 sm:p-4 md:p-6 lg:p-8;
+}
+
+.gap-responsive {
+  @apply gap-3 sm:gap-4 md:gap-6 lg:gap-8;
+}
+
+/* Responsive grid systems */
+.grid-responsive-2 {
+  @apply grid grid-cols-1 sm:grid-cols-2;
+}
+
+.grid-responsive-3 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.grid-responsive-4 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+/* Enhanced interaction utilities */
+.hover-lift {
+  @apply transition-all duration-200 hover:scale-105 hover:shadow-lg;
+}
+
+.touch-feedback {
+  @apply active:scale-95 transition-transform duration-100;
+}
+
+/* Travel page specific styles */
+.travel-hero-bg {
+  background: linear-gradient(135deg,
+    hsl(225 40% 3%) 0%,
+    hsl(225 28% 7%) 50%,
+    hsl(225 40% 3%) 100%);
+  position: relative;
+}
+
+.travel-hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, hsl(28 92% 52% / 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, hsl(215 80% 58% / 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, hsl(152 69% 31% / 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.travel-tab-active {
+  @apply relative overflow-hidden;
+  background: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
+  box-shadow: 0 4px 15px -3px hsl(28 92% 52% / 0.35);
+}
+
+.travel-tab-active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.travel-section-divider {
+  @apply relative;
+}
+
+.travel-section-divider::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, hsl(28 92% 52%), hsl(0 72% 51%));
+  border-radius: 9999px;
+}
+
+.travel-card-hover {
+  @apply transition-all duration-500;
+}
+
+.travel-card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.travel-badge {
+  @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold;
+  background: linear-gradient(135deg, hsl(28 92% 52%), hsl(0 72% 51%));
+  color: white;
+  box-shadow: 0 2px 8px hsl(28 92% 52% / 0.25);
+}
+
+.travel-badge-outline {
+  @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid hsl(28 92% 52%);
+  color: hsl(28 92% 40%);
+}
+
+/* Floating animation for decorative elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse glow effect */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(28 92% 52% / 0.25); }
+  50% { box-shadow: 0 0 40px hsl(28 92% 52% / 0.4); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Tours marketplace nature theme */
+.tours-section-bg {
+  background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(150 20% 5%) 50%, hsl(var(--background)) 100%);
+}

@@ -267,7 +267,7 @@ export default function UserProfile() {
               className={cn(
                 "flex-1 min-w-[80px] py-2.5 px-4 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2",
                 activeTab === tab.id 
-                  ? "bg-background shadow-sm text-foreground" 
+                  ? "bg-background shadow-xs text-foreground" 
                   : "text-muted-foreground hover:text-foreground"
               )}
             >

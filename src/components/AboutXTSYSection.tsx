@@ -52,7 +52,7 @@ const AboutXTSYSection: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="text-center p-4 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-colors"
+                  className="text-center p-4 rounded-xl bg-card/50 backdrop-blur-xs border border-border/50 hover:border-primary/30 transition-colors"
                 >
                   <stat.icon className={`w-6 h-6 ${stat.color} mx-auto mb-2`} />
                   <p className="text-xl md:text-2xl font-bold text-foreground">{stat.value}</p>

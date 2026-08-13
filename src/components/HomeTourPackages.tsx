@@ -109,7 +109,7 @@ const HomeTourPackages: React.FC<HomeTourPackagesProps> = ({ className }) => {
 
         {/* Tab Switcher */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex flex-wrap justify-center bg-muted/50 backdrop-blur-sm rounded-full p-1.5 border border-border/50 gap-1">
+          <div className="inline-flex flex-wrap justify-center bg-muted/50 backdrop-blur-xs rounded-full p-1.5 border border-border/50 gap-1">
             {TAB_CONFIG.map(({ key, label, icon: Icon }) => (
               <button
                 key={key}

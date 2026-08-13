@@ -89,7 +89,7 @@ const InstagramPreviewModal: React.FC<InstagramPreviewModalProps> = ({
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/90 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/90 backdrop-blur-xs"
         style={{ zIndex: 0 }}
       />
 

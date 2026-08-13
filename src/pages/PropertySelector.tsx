@@ -146,7 +146,7 @@ const PropertySelector = memo(() => {
                     className={cn(
                       "group text-left",
                       "bg-card border border-border rounded-2xl overflow-hidden",
-                      "shadow-sm hover:shadow-xl",
+                      "shadow-xs hover:shadow-xl",
                       "transition-all duration-300"
                     )}
                   >
@@ -158,17 +158,17 @@ const PropertySelector = memo(() => {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                       {property.category === "luxury" && (
-                        <div className="absolute top-3 left-3 inline-flex items-center gap-1 bg-primary/95 text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold backdrop-blur">
+                        <div className="absolute top-3 left-3 inline-flex items-center gap-1 bg-primary/95 text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
                           <Sparkles className="w-3 h-3" />
                           Premium
                         </div>
                       )}
                       {property.category === "budget" && (
-                        <div className="absolute top-3 left-3 inline-flex items-center gap-1 bg-emerald-600 text-white px-3 py-1 rounded-full text-xs font-semibold backdrop-blur">
+                        <div className="absolute top-3 left-3 inline-flex items-center gap-1 bg-emerald-600 text-white px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
                           Adventure
                         </div>
                       )}
-                      <div className="absolute top-3 right-3 inline-flex items-center gap-1 bg-background/90 backdrop-blur px-2.5 py-1 rounded-full text-xs font-semibold">
+                      <div className="absolute top-3 right-3 inline-flex items-center gap-1 bg-background/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-semibold">
                         <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
                         {property.rating}
                       </div>

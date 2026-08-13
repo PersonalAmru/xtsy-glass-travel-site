@@ -42,7 +42,7 @@ export function TravellerSegmentsPanel({ segments, distribution, spendDistributi
     <div className="space-y-6">
       {/* Segment Distribution Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-card/50 backdrop-blur border-border/50">
+        <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-lg flex items-center gap-2">
               <Users className="h-5 w-5 text-primary" />
@@ -80,7 +80,7 @@ export function TravellerSegmentsPanel({ segments, distribution, spendDistributi
           </CardContent>
         </Card>
 
-        <Card className="bg-card/50 backdrop-blur border-border/50">
+        <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-lg flex items-center gap-2">
               <IndianRupee className="h-5 w-5 text-primary" />
@@ -129,7 +129,7 @@ export function TravellerSegmentsPanel({ segments, distribution, spendDistributi
           return (
             <Card 
               key={segment.id} 
-              className="bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-colors"
+              className="bg-card/50 backdrop-blur-sm border-border/50 hover:border-primary/50 transition-colors"
             >
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">

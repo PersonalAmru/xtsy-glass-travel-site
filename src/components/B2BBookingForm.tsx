@@ -250,7 +250,7 @@ ${formData.specialRequests ? `📝 *Special Requests:*\n${formData.specialReques
             <DialogDescription>{customDescription}</DialogDescription>
           </VisuallyHidden>
         </DialogHeader>
-        <Card className="bg-card/95 backdrop-blur-sm border-border shadow-2xl border">
+        <Card className="bg-card/95 backdrop-blur-xs border-border shadow-2xl border">
           <CardHeader className="text-center pb-6">
             <CardTitle className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               <CustomIcon className="h-8 w-8 mx-auto mb-2 text-primary" />

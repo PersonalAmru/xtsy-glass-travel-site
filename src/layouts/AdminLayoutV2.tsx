@@ -106,7 +106,7 @@ export function AdminLayoutV2({ children }: AdminLayoutV2Props) {
   return (
     <div className="min-h-screen bg-zinc-950">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-sm border-b border-zinc-800">
+      <header className="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-xs border-b border-zinc-800">
         <div className="px-4 py-3 flex items-center justify-between">
           <Button
             variant="ghost"
@@ -130,7 +130,7 @@ export function AdminLayoutV2({ children }: AdminLayoutV2Props) {
         <>
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs"
             onClick={() => setMenuOpen(false)}
           />
           

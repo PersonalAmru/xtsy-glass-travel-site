@@ -75,7 +75,7 @@ export function DemandForecastPanel({ forecasts }: DemandForecastPanelProps) {
     <div className="space-y-6">
       {/* Forecast Summary */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-card/50 backdrop-blur border-border/50">
+        <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardContent className="pt-6">
             <div className="text-center">
               <Calendar className="h-8 w-8 mx-auto mb-2 text-primary" />
@@ -87,7 +87,7 @@ export function DemandForecastPanel({ forecasts }: DemandForecastPanelProps) {
           </CardContent>
         </Card>
 
-        <Card className="bg-card/50 backdrop-blur border-border/50">
+        <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardContent className="pt-6">
             <div className="text-center">
               <TrendingUp className="h-8 w-8 mx-auto mb-2 text-green-500" />
@@ -99,7 +99,7 @@ export function DemandForecastPanel({ forecasts }: DemandForecastPanelProps) {
           </CardContent>
         </Card>
 
-        <Card className="bg-card/50 backdrop-blur border-border/50">
+        <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardContent className="pt-6">
             <div className="text-center">
               <AlertTriangle className="h-8 w-8 mx-auto mb-2 text-amber-500" />
@@ -109,7 +109,7 @@ export function DemandForecastPanel({ forecasts }: DemandForecastPanelProps) {
           </CardContent>
         </Card>
 
-        <Card className="bg-card/50 backdrop-blur border-border/50">
+        <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardContent className="pt-6">
             <div className="text-center">
               <CheckCircle className="h-8 w-8 mx-auto mb-2 text-blue-500" />
@@ -125,7 +125,7 @@ export function DemandForecastPanel({ forecasts }: DemandForecastPanelProps) {
       </div>
 
       {/* Demand Chart */}
-      <Card className="bg-card/50 backdrop-blur border-border/50">
+      <Card className="bg-card/50 backdrop-blur-sm border-border/50">
         <CardHeader>
           <CardTitle className="text-lg">14-Day Demand Forecast</CardTitle>
         </CardHeader>
@@ -164,7 +164,7 @@ export function DemandForecastPanel({ forecasts }: DemandForecastPanelProps) {
       </Card>
 
       {/* Room-wise Breakdown */}
-      <Card className="bg-card/50 backdrop-blur border-border/50">
+      <Card className="bg-card/50 backdrop-blur-sm border-border/50">
         <CardHeader>
           <CardTitle className="text-lg">Room Type Breakdown</CardTitle>
         </CardHeader>
@@ -204,7 +204,7 @@ export function DemandForecastPanel({ forecasts }: DemandForecastPanelProps) {
 
       {/* High Demand Alerts */}
       {highDemandDates.length > 0 && (
-        <Card className="bg-card/50 backdrop-blur border-amber-500/30 border-2">
+        <Card className="bg-card/50 backdrop-blur-sm border-amber-500/30 border-2">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <AlertTriangle className="h-5 w-5 text-amber-500" />

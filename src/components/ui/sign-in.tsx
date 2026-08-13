@@ -129,7 +129,7 @@ export const OrDivider = () => (
 // --- GLASS INPUT WRAPPER ---
 
 export const GlassInputWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="rounded-xl border border-border/30 bg-card/30 backdrop-blur-sm p-0.5 transition-all focus-within:border-primary/40 focus-within:ring-1 focus-within:ring-primary/20">
+  <div className="rounded-xl border border-border/30 bg-card/30 backdrop-blur-xs p-0.5 transition-all focus-within:border-primary/40 focus-within:ring-1 focus-within:ring-primary/20">
     {children}
   </div>
 );

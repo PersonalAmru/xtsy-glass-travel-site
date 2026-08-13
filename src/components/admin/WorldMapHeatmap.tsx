@@ -38,7 +38,7 @@ const WorldMapHeatmap: React.FC<WorldMapHeatmapProps> = memo(({ data }) => {
 
   if (!data?.countries?.length) {
     return (
-      <Card className="bg-card/50 backdrop-blur-sm">
+      <Card className="bg-card/50 backdrop-blur-xs">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <MapPin className="w-5 h-5 text-primary" />
@@ -56,7 +56,7 @@ const WorldMapHeatmap: React.FC<WorldMapHeatmapProps> = memo(({ data }) => {
   }
 
   return (
-    <Card className="bg-card/50 backdrop-blur-sm overflow-hidden">
+    <Card className="bg-card/50 backdrop-blur-xs overflow-hidden">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>

@@ -37,7 +37,7 @@ const PetFriendly = () => {
           
           {/* Content */}
           <div className="relative z-10 responsive-container text-center space-y-6 max-w-4xl mx-auto px-4">
-            <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30 text-lg px-6 py-2 shadow-lg">
+            <Badge className="bg-white/20 backdrop-blur-xs text-white border-white/30 text-lg px-6 py-2 shadow-lg">
               <PawPrint className="w-5 h-5 mr-2 inline" />
               India's 1st Pet Friendly Travellers Hostel
             </Badge>
@@ -60,7 +60,7 @@ const PetFriendly = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-lg px-8 bg-white/10 backdrop-blur-sm text-white border-white/30 hover:bg-white/20 shadow-xl"
+                className="text-lg px-8 bg-white/10 backdrop-blur-xs text-white border-white/30 hover:bg-white/20 shadow-xl"
                 onClick={() => window.open('tel:+918837317070', '_self')}
               >
                 <Phone className="w-5 h-5 mr-2" />

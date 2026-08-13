@@ -495,7 +495,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
             <DialogDescription>Fill in your details to book through WhatsApp</DialogDescription>
           </VisuallyHidden>
         </DialogHeader>
-        <Card className="bg-card/95 backdrop-blur-sm border-border shadow-2xl border">
+        <Card className="bg-card/95 backdrop-blur-xs border-border shadow-2xl border">
           <CardHeader className="text-center pb-6">
             <CardTitle className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
               <MessageCircle className="h-8 w-8 mx-auto mb-2 text-primary" />
@@ -752,7 +752,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
                                      selectedRoomIds.has(roomType.id)
                                        ? 'border-primary bg-primary/5'
                                        : canAccommodateRemaining(roomType.name)
-                                       ? 'border-accent bg-accent/10 hover:border-accent shadow-sm'
+                                       ? 'border-accent bg-accent/10 hover:border-accent shadow-xs'
                                        : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:border-primary'
                                    }`}
                                  >

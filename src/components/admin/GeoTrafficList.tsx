@@ -111,7 +111,7 @@ const GeoTrafficList: React.FC<GeoTrafficListProps> = memo(({ data }) => {
 
   if (!processedData.countries.length) {
     return (
-      <Card className="bg-card/50 backdrop-blur-sm">
+      <Card className="bg-card/50 backdrop-blur-xs">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Globe className="w-5 h-5 text-primary" />
@@ -135,7 +135,7 @@ const GeoTrafficList: React.FC<GeoTrafficListProps> = memo(({ data }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Countries List */}
-      <Card className="bg-card/50 backdrop-blur-sm">
+      <Card className="bg-card/50 backdrop-blur-xs">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <div>
@@ -224,7 +224,7 @@ const GeoTrafficList: React.FC<GeoTrafficListProps> = memo(({ data }) => {
       </Card>
 
       {/* States/Regions List - Only shows when country is selected */}
-      <Card className="bg-card/50 backdrop-blur-sm">
+      <Card className="bg-card/50 backdrop-blur-xs">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <div>

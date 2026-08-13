@@ -263,7 +263,7 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
   return (
     <div
       onClick={() => setExpanded(!expanded)}
-      className="group cursor-pointer border border-border/50 rounded-xl p-5 hover:border-primary/30 transition-all duration-300 hover:shadow-md bg-card/50 backdrop-blur-sm"
+      className="group cursor-pointer border border-border/50 rounded-xl p-5 hover:border-primary/30 transition-all duration-300 hover:shadow-md bg-card/50 backdrop-blur-xs"
     >
       {/* Header Row */}
       <div className="flex items-start justify-between gap-3">

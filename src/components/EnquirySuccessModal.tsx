@@ -246,7 +246,7 @@ const EnquirySuccessModal = ({
             {/* Close button */}
             <button
               onClick={handleGoHome}
-              className="absolute top-3 right-3 p-2.5 rounded-full bg-black/40 hover:bg-black/60 transition-colors z-10 backdrop-blur-sm"
+              className="absolute top-3 right-3 p-2.5 rounded-full bg-black/40 hover:bg-black/60 transition-colors z-10 backdrop-blur-xs"
             >
               <X className="w-4 h-4 text-white" />
             </button>

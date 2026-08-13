@@ -101,7 +101,7 @@ export function RealtimeTravellerActivity({ highIntentTravellers, activeVisitors
     <div className="space-y-6">
       {/* Live Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="bg-card/50 backdrop-blur border-green-500/30 border-2">
+        <Card className="bg-card/50 backdrop-blur-sm border-green-500/30 border-2">
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
               <div className="relative">
@@ -116,7 +116,7 @@ export function RealtimeTravellerActivity({ highIntentTravellers, activeVisitors
           </CardContent>
         </Card>
 
-        <Card className="bg-card/50 backdrop-blur border-amber-500/30 border-2">
+        <Card className="bg-card/50 backdrop-blur-sm border-amber-500/30 border-2">
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
               <div className="relative">
@@ -130,7 +130,7 @@ export function RealtimeTravellerActivity({ highIntentTravellers, activeVisitors
           </CardContent>
         </Card>
 
-        <Card className="bg-card/50 backdrop-blur border-border/50">
+        <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
               <Activity className="h-10 w-10 text-primary" />
@@ -145,7 +145,7 @@ export function RealtimeTravellerActivity({ highIntentTravellers, activeVisitors
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* High Intent Travellers */}
-        <Card className="bg-card/50 backdrop-blur border-border/50">
+        <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-lg flex items-center gap-2">
               <Zap className="h-5 w-5 text-amber-500" />
@@ -211,7 +211,7 @@ export function RealtimeTravellerActivity({ highIntentTravellers, activeVisitors
         </Card>
 
         {/* Live Event Stream */}
-        <Card className="bg-card/50 backdrop-blur border-border/50">
+        <Card className="bg-card/50 backdrop-blur-sm border-border/50">
           <CardHeader className="pb-2">
             <CardTitle className="text-lg flex items-center gap-2">
               <Activity className="h-5 w-5 text-primary" />

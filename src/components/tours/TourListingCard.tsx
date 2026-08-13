@@ -32,7 +32,7 @@ const TourListingCard = ({ tour, onSelect }: TourListingCardProps) => {
 
   return (
     <div
-      className="group cursor-pointer bg-card/50 backdrop-blur-sm border border-border/30 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-300 flex flex-col h-full"
+      className="group cursor-pointer bg-card/50 backdrop-blur-xs border border-border/30 rounded-2xl overflow-hidden hover:border-emerald-500/40 hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-300 flex flex-col h-full"
       onClick={() => onSelect(tour)}
     >
       {/* Image */}
@@ -60,11 +60,11 @@ const TourListingCard = ({ tour, onSelect }: TourListingCardProps) => {
 
         {/* Bottom info */}
         <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
-          <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-lg">
+          <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-xs px-2.5 py-1 rounded-lg">
             <Clock className="h-3 w-3 text-white/70" />
             <span className="text-white text-xs font-medium">{tour.duration}</span>
           </div>
-          <div className="flex items-center gap-1 bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded-lg">
+          <div className="flex items-center gap-1 bg-black/60 backdrop-blur-xs px-2.5 py-1 rounded-lg">
             <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
             <span className="text-white text-xs font-semibold">{tour.rating}</span>
           </div>

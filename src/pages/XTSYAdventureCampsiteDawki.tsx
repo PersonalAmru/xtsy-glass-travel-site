@@ -140,7 +140,7 @@ const XTSYAdventureCampsiteDawki = memo(() => {
             transition={{ duration: 0.6 }}
             className="text-white"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur border border-white/20 text-xs uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-xs uppercase tracking-widest mb-4">
               <Sparkles className="w-3.5 h-3.5" /> Now Open in Dawki
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-3">

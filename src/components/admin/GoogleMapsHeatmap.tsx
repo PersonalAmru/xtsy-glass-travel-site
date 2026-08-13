@@ -415,7 +415,7 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
     const errorHelp = getErrorHelp(error);
     
     return (
-      <Card className="bg-card/50 backdrop-blur-sm border-destructive/30">
+      <Card className="bg-card/50 backdrop-blur-xs border-destructive/30">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-destructive">
             <AlertCircle className="w-5 h-5" />
@@ -465,7 +465,7 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
   // Loading state
   if (loading) {
     return (
-      <Card className="bg-card/50 backdrop-blur-sm">
+      <Card className="bg-card/50 backdrop-blur-xs">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <MapPin className="w-5 h-5 text-primary animate-pulse" />
@@ -487,7 +487,7 @@ const GoogleMapsHeatmap: React.FC<GoogleMapsHeatmapProps> = memo(({ data }) => {
   }
 
   return (
-    <Card className="bg-card/50 backdrop-blur-sm overflow-hidden">
+    <Card className="bg-card/50 backdrop-blur-xs overflow-hidden">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>

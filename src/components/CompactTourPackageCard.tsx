@@ -86,7 +86,7 @@ const CompactTourPackageCard: React.FC<CompactTourPackageCardProps> = ({
         {/* Top Badges */}
         <div className="absolute top-3 left-3 right-3 flex justify-between items-start">
           <Badge 
-            className={`text-xs px-2.5 py-1 font-medium backdrop-blur-sm border-0 ${
+            className={`text-xs px-2.5 py-1 font-medium backdrop-blur-xs border-0 ${
               tourPackage.category === 'adventure' 
                 ? 'bg-red-500/90 text-white' 
                 : tourPackage.category === 'cultural' 
@@ -105,13 +105,13 @@ const CompactTourPackageCard: React.FC<CompactTourPackageCardProps> = ({
         </div>
         
         {/* Rating Badge */}
-        <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-card/95 backdrop-blur-sm text-foreground px-2.5 py-1 rounded-full text-sm font-semibold shadow-lg">
+        <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-card/95 backdrop-blur-xs text-foreground px-2.5 py-1 rounded-full text-sm font-semibold shadow-lg">
           <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
           <span>{tourPackage.rating}</span>
         </div>
         
         {/* Duration Badge */}
-        <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-card/95 backdrop-blur-sm text-muted-foreground px-2.5 py-1 rounded-full text-xs font-medium shadow-lg">
+        <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-card/95 backdrop-blur-xs text-muted-foreground px-2.5 py-1 rounded-full text-xs font-medium shadow-lg">
           <Clock className="h-3 w-3" />
           <span>{tourPackage.duration}</span>
         </div>

@@ -41,7 +41,7 @@ const StickyBookingBar = memo(() => {
       isVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 pointer-events-none'
     )}>
       {/* Mobile: simple CTA bar */}
-      <div className="md:hidden bg-card/95 backdrop-blur-sm border-t border-border/60 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
+      <div className="md:hidden bg-card/95 backdrop-blur-xs border-t border-border/60 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
         <div className="flex items-center gap-3">
           <div className="flex-1">
             <p className="text-xs text-muted-foreground">Tonight in Shillong</p>
@@ -58,7 +58,7 @@ const StickyBookingBar = memo(() => {
       </div>
 
       {/* Desktop: inline search bar */}
-      <div className="hidden md:flex bg-card/95 backdrop-blur-sm border border-border/60 rounded-2xl px-4 py-3 items-center gap-3 shadow-xl">
+      <div className="hidden md:flex bg-card/95 backdrop-blur-xs border border-border/60 rounded-2xl px-4 py-3 items-center gap-3 shadow-xl">
         <div className="flex items-center gap-2 text-sm text-muted-foreground border-r border-border/40 pr-3">
           <MapPin className="w-4 h-4 text-primary" />
           <span>Shillong</span>
@@ -73,7 +73,7 @@ const StickyBookingBar = memo(() => {
             value={guests}
             onChange={(e) => setGuests(Number(e.target.value))}
             aria-label="Number of guests"
-            className="bg-transparent border-none text-sm text-foreground focus:outline-none cursor-pointer min-h-[44px]"
+            className="bg-transparent border-none text-sm text-foreground focus:outline-hidden cursor-pointer min-h-[44px]"
           >
             {[1,2,3,4,5,6].map(n => (
               <option key={n} value={n}>{n} Guest{n > 1 ? 's' : ''}</option>

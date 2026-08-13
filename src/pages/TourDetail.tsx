@@ -179,7 +179,7 @@ const TourDetail = () => {
 
           <button
             onClick={() => navigate("/tours")}
-            className="absolute top-4 left-4 bg-black/40 backdrop-blur-sm text-white p-2 rounded-full hover:bg-black/60"
+            className="absolute top-4 left-4 bg-black/40 backdrop-blur-xs text-white p-2 rounded-full hover:bg-black/60"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -368,7 +368,7 @@ const TourDetail = () => {
 
             {/* Sticky booking widget */}
             <aside className="lg:w-80 flex-shrink-0">
-              <div className="sticky top-20 bg-card/50 backdrop-blur-sm border border-border/30 rounded-2xl p-5">
+              <div className="sticky top-20 bg-card/50 backdrop-blur-xs border border-border/30 rounded-2xl p-5">
                 <div className="mb-4">
                   <p className="text-xs text-muted-foreground mb-1">Starting from</p>
                   <div className="flex items-baseline gap-1">
