@@ -25,7 +25,7 @@ const paddingClasses = {
 const variantClasses = {
   default: 'bg-card/60 backdrop-blur-xl border border-border/50',
   elevated: 'bg-card/80 backdrop-blur-2xl border border-border/30 shadow-lg shadow-black/5',
-  inset: 'bg-background/50 backdrop-blur-sm border border-border/20',
+  inset: 'bg-background/50 backdrop-blur-xs border border-border/20',
 };
 
 export function AppleCard({

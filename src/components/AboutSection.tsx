@@ -167,7 +167,7 @@ const AboutSection = () => {
       <div className="container mx-auto max-w-7xl relative z-10">
         
         {/* Hero Section */}
-        <section className="text-center mb-16 bg-white/80 backdrop-blur-sm rounded-3xl p-8 sm:p-12 shadow-xl border border-white/50">
+        <section className="text-center mb-16 bg-white/80 backdrop-blur-xs rounded-3xl p-8 sm:p-12 shadow-xl border border-white/50">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-lg">
             <TrendingUp className="w-5 h-5" />
             <span>India's Fastest-Growing Travel & Hospitality Brand</span>
@@ -201,15 +201,15 @@ const AboutSection = () => {
               Our flagship creation — the <strong className="text-amber-400">XTSY 270° Luxury Glass Suite</strong> — is India's first panoramic stargazing accommodation.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
+              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-xs">
                 <div className="text-3xl font-bold text-amber-400 mb-2">270°</div>
                 <div className="text-sm opacity-90">Uninterrupted Views</div>
               </div>
-              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
+              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-xs">
                 <div className="text-3xl font-bold text-amber-400 mb-2">Only 1</div>
                 <div className="text-sm opacity-90">In All of India</div>
               </div>
-              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
+              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-xs">
                 <div className="text-3xl font-bold text-amber-400 mb-2">Luxury</div>
                 <div className="text-sm opacity-90">Stargazing Experience</div>
               </div>
@@ -236,19 +236,19 @@ const AboutSection = () => {
               <strong>XTSY Travellers Hostel</strong> is the largest and most highly reviewed group hostel in Northeast India, with capacity for <strong>50+ guests</strong>. A trusted choice for backpackers, digital nomads, student groups, and international communities traveling through Shillong, Meghalaya.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-xs">
                 <Star className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-sm font-medium">Highest-Rated</div>
               </div>
-              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-xs">
                 <Shield className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-sm font-medium">24/7 Security</div>
               </div>
-              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-xs">
                 <Users className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-sm font-medium">Group-Friendly</div>
               </div>
-              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+              <div className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-xs">
                 <CheckCircle2 className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-sm font-medium">Clean & Modern</div>
               </div>
@@ -258,7 +258,7 @@ const AboutSection = () => {
 
         {/* Award-Nominated */}
         <section className="mb-16">
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-12 shadow-xl border border-white/50">
+          <div className="bg-white/90 backdrop-blur-xs rounded-3xl p-8 sm:p-12 shadow-xl border border-white/50">
             <div className="text-center mb-8">
               <Award className="w-16 h-16 text-amber-500 mx-auto mb-4" />
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">
@@ -287,32 +287,32 @@ const AboutSection = () => {
         <section className="mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-800 text-center mb-8 leading-tight">Who We Serve</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+            <div className="bg-white/90 backdrop-blur-xs p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
               <Heart className="w-10 h-10 text-rose-500 mx-auto mb-3" />
               <h3 className="font-bold text-slate-800 mb-2 text-sm sm:text-base">Couples & Honeymooners</h3>
               <p className="text-xs sm:text-sm text-slate-600">India's most unique romantic stay</p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+            <div className="bg-white/90 backdrop-blur-xs p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
               <Users className="w-10 h-10 text-blue-600 mx-auto mb-3" />
               <h3 className="font-bold text-slate-800 mb-2 text-sm sm:text-base">Backpackers & Solo Travelers</h3>
               <p className="text-xs sm:text-sm text-slate-600">Northeast's favorite hub</p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+            <div className="bg-white/90 backdrop-blur-xs p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
               <Globe className="w-10 h-10 text-green-600 mx-auto mb-3" />
               <h3 className="font-bold text-slate-800 mb-2 text-sm">Group Organizers</h3>
               <p className="text-xs text-slate-600">Reliable large-capacity hostel</p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+            <div className="bg-white/90 backdrop-blur-xs p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
               <Camera className="w-10 h-10 text-purple-600 mx-auto mb-3" />
               <h3 className="font-bold text-slate-800 mb-2 text-sm">Photographers & Creators</h3>
               <p className="text-xs text-slate-600">Highly visual spaces</p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+            <div className="bg-white/90 backdrop-blur-xs p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
               <Star className="w-10 h-10 text-amber-500 mx-auto mb-3" />
               <h3 className="font-bold text-slate-800 mb-2 text-sm">Stargazers & Nature Lovers</h3>
               <p className="text-xs text-slate-600">270° night-sky experience</p>
             </div>
-            <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
+            <div className="bg-white/90 backdrop-blur-xs p-6 rounded-2xl shadow-lg border border-white/50 text-center hover:shadow-xl transition-shadow">
               <Building2 className="w-10 h-10 text-slate-700 mx-auto mb-3" />
               <h3 className="font-bold text-slate-800 mb-2 text-sm">Architecture Enthusiasts</h3>
               <p className="text-xs text-slate-600">One-of-a-kind concept</p>
@@ -332,9 +332,9 @@ const AboutSection = () => {
               XTSY started in the green hills of Meghalaya with a vision to transform hospitality in the Northeast. Today, we operate across <strong>seven states</strong> and continue building a pan-India ecosystem of stays, experiences, and curated travel services.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <span className="px-5 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">Proudly Local</span>
-              <span className="px-5 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">Globally Ambitious</span>
-              <span className="px-5 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">Meaningful Journeys</span>
+              <span className="px-5 py-2 bg-white/20 backdrop-blur-xs rounded-full text-sm font-medium">Proudly Local</span>
+              <span className="px-5 py-2 bg-white/20 backdrop-blur-xs rounded-full text-sm font-medium">Globally Ambitious</span>
+              <span className="px-5 py-2 bg-white/20 backdrop-blur-xs rounded-full text-sm font-medium">Meaningful Journeys</span>
             </div>
           </div>
         </section>
@@ -368,7 +368,7 @@ const AboutSection = () => {
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-amber-200/50">
                   <div className="flex items-start gap-3">
                     <Camera className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
                     <div>
@@ -377,7 +377,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-amber-200/50">
                   <div className="flex items-start gap-3">
                     <Star className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
@@ -386,7 +386,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-amber-200/50">
                   <div className="flex items-start gap-3">
                     <Users className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
                     <div>
@@ -395,7 +395,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-amber-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-amber-200/50">
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-slate-600 mt-1 flex-shrink-0" />
                     <div>
@@ -419,7 +419,7 @@ const AboutSection = () => {
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-blue-200/50">
                   <div className="flex items-start gap-3">
                     <MapPin className="w-5 h-5 text-emerald-600 mt-1 flex-shrink-0" />
                     <div>
@@ -428,7 +428,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-blue-200/50">
                   <div className="flex items-start gap-3">
                     <Camera className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
                     <div>
@@ -437,7 +437,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-blue-200/50">
                   <div className="flex items-start gap-3">
                     <Globe className="w-5 h-5 text-orange-600 mt-1 flex-shrink-0" />
                     <div>
@@ -446,7 +446,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-blue-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-blue-200/50">
                   <div className="flex items-start gap-3">
                     <Star className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
                     <div>
@@ -470,7 +470,7 @@ const AboutSection = () => {
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-purple-200/50">
                   <div className="flex items-start gap-3">
                     <Target className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
                     <div>
@@ -479,7 +479,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-purple-200/50">
                   <div className="flex items-start gap-3">
                     <Heart className="w-5 h-5 text-red-600 mt-1 flex-shrink-0" />
                     <div>
@@ -488,7 +488,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-purple-200/50">
                   <div className="flex items-start gap-3">
                     <Camera className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
@@ -497,7 +497,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-purple-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-purple-200/50">
                   <div className="flex items-start gap-3">
                     <Globe className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
                     <div>
@@ -521,7 +521,7 @@ const AboutSection = () => {
                 </div>
               </div>
               <div className="space-y-4">
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-green-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-green-200/50">
                   <div className="flex items-start gap-3">
                     <Shield className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
@@ -530,7 +530,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-green-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-green-200/50">
                   <div className="flex items-start gap-3">
                     <Wifi className="w-5 h-5 text-purple-600 mt-1 flex-shrink-0" />
                     <div>
@@ -539,7 +539,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-green-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-green-200/50">
                   <div className="flex items-start gap-3">
                     <Heart className="w-5 h-5 text-pink-600 mt-1 flex-shrink-0" />
                     <div>
@@ -548,7 +548,7 @@ const AboutSection = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 border border-green-200/50">
+                <div className="bg-white/80 backdrop-blur-xs rounded-xl p-4 border border-green-200/50">
                   <div className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
                     <div>
@@ -587,7 +587,7 @@ const AboutSection = () => {
 
         {/* Story and Contact Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-xl">
+          <Card className="bg-white/90 backdrop-blur-xs border border-white/50 shadow-xl">
             <div className="h-1 bg-gradient-to-r from-orange-500 to-red-600"></div>
             <CardContent className="p-8">
               <div className="flex items-center gap-3 mb-6">
@@ -605,7 +605,7 @@ const AboutSection = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/90 backdrop-blur-sm border border-white/50 shadow-xl">
+          <Card className="bg-white/90 backdrop-blur-xs border border-white/50 shadow-xl">
             <div className="h-1 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
             <CardContent className="p-8">
               <div className="flex items-center gap-3 mb-6">

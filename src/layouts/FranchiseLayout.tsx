@@ -100,7 +100,7 @@ export function FranchiseLayout({ children }: FranchiseLayoutProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-sm border-b border-border">
+      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-xs border-b border-border">
         <div className="px-4 py-3 flex items-center justify-between">
           <div>
             <h1 className="text-lg font-semibold text-foreground">{propertyName}</h1>
@@ -127,7 +127,7 @@ export function FranchiseLayout({ children }: FranchiseLayoutProps) {
       </main>
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-t border-border safe-area-bottom">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xs border-t border-border safe-area-bottom">
         <div className="flex items-center justify-around py-2">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path || 

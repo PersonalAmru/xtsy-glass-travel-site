@@ -45,7 +45,7 @@ const DawkiCampsiteCard = memo(() => {
                 
               />
               <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/60 via-black/10 to-transparent" />
-              <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur text-white text-xs">
+              <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-sm text-white text-xs">
                 <MapPin className="w-3.5 h-3.5" /> Dawki · Umngot Riverside
               </div>
             </div>

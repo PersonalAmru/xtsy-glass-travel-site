@@ -280,7 +280,7 @@ What specific information would you like about our Meghalaya adventures? I'm her
 
   return (
     <div className={`fixed ${isMinimized ? 'bottom-6 right-6' : 'bottom-6 right-6'} z-50 ${isMinimized ? 'w-80' : 'w-96'} transition-all duration-300`}>
-      <Card className={`${isMinimized ? 'h-16' : 'h-[500px]'} shadow-2xl border-0 bg-white/95 backdrop-blur-sm overflow-hidden transition-all duration-300`}>
+      <Card className={`${isMinimized ? 'h-16' : 'h-[500px]'} shadow-2xl border-0 bg-white/95 backdrop-blur-xs overflow-hidden transition-all duration-300`}>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 bg-gradient-to-r from-orange-500 to-red-600 text-white">
           <CardTitle className="text-sm font-semibold flex items-center gap-2 font-josefin">
             <Bot className="h-4 w-4" />

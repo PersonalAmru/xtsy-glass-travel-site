@@ -53,7 +53,7 @@ const UniqueExperiences = () => (
         {EXPERIENCES.map(exp => (
           <div
             key={exp.title}
-            className="group bg-card/30 backdrop-blur-sm border border-border/30 rounded-2xl p-5 hover:border-amber-500/30 transition-all"
+            className="group bg-card/30 backdrop-blur-xs border border-border/30 rounded-2xl p-5 hover:border-amber-500/30 transition-all"
           >
             <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${exp.gradient} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}>
               <exp.icon className="h-5 w-5 text-white" />

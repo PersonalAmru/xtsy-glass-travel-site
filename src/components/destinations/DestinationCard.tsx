@@ -60,7 +60,7 @@ const DestinationCard = ({ destination, className = '' }: DestinationCardProps) 
         )}
         {imgState === 'loaded' && (
           <div className="absolute top-3 left-3">
-            <span className="px-2.5 py-1 text-xs font-medium bg-black/60 backdrop-blur-sm text-white rounded-full capitalize">
+            <span className="px-2.5 py-1 text-xs font-medium bg-black/60 backdrop-blur-xs text-white rounded-full capitalize">
               {destination.category}
             </span>
           </div>

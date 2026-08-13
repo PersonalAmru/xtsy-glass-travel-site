@@ -43,7 +43,7 @@ const TravelTourCard = ({ tour, onSelect }: TravelTourCardProps) => {
 
         {/* Badges */}
         <div className="absolute top-3 left-3 right-3 flex justify-between items-start">
-          <Badge className={`text-xs px-2.5 py-1 font-medium backdrop-blur-sm border-0 ${categoryColors[tour.category] || "bg-muted text-muted-foreground"}`}>
+          <Badge className={`text-xs px-2.5 py-1 font-medium backdrop-blur-xs border-0 ${categoryColors[tour.category] || "bg-muted text-muted-foreground"}`}>
             {tour.category}
           </Badge>
           <div className="flex gap-1.5">
@@ -62,13 +62,13 @@ const TravelTourCard = ({ tour, onSelect }: TravelTourCardProps) => {
         </div>
 
         {/* Rating */}
-        <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-card/95 backdrop-blur-sm text-foreground px-2.5 py-1 rounded-full text-sm font-semibold shadow-lg">
+        <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-card/95 backdrop-blur-xs text-foreground px-2.5 py-1 rounded-full text-sm font-semibold shadow-lg">
           <Star className="h-3.5 w-3.5 fill-brand-gold text-brand-gold" />
           <span>{tour.rating}</span>
         </div>
 
         {/* Duration */}
-        <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-card/95 backdrop-blur-sm text-muted-foreground px-2.5 py-1 rounded-full text-xs font-medium shadow-lg">
+        <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-card/95 backdrop-blur-xs text-muted-foreground px-2.5 py-1 rounded-full text-xs font-medium shadow-lg">
           <Clock className="h-3 w-3" />
           <span>{tour.duration}</span>
         </div>

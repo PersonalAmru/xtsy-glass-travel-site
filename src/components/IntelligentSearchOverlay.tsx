@@ -159,7 +159,7 @@ export default function IntelligentSearchOverlay({ isOpen, onClose }: Intelligen
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Search stays, experiences, tours, locations..."
-              className="flex-1 bg-transparent text-lg sm:text-xl text-foreground placeholder:text-muted-foreground/60 outline-none caret-primary"
+              className="flex-1 bg-transparent text-lg sm:text-xl text-foreground placeholder:text-muted-foreground/60 outline-hidden caret-primary"
               autoComplete="off"
               autoCorrect="off"
               spellCheck={false}

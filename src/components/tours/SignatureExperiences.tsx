@@ -77,7 +77,7 @@ const SignatureExperiences = () => (
               </div>
 
               {/* Duration */}
-              <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-card/95 backdrop-blur-sm text-muted-foreground px-2.5 py-1 rounded-full text-xs font-medium shadow-lg">
+              <div className="absolute bottom-3 left-3 flex items-center gap-1 bg-card/95 backdrop-blur-xs text-muted-foreground px-2.5 py-1 rounded-full text-xs font-medium shadow-lg">
                 <Clock className="h-3 w-3" />
                 <span>{exp.duration}</span>
               </div>

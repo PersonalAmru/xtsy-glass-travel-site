@@ -357,13 +357,13 @@ const TravelItinerariesSection = () => {
       <div className="relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <div className="inline-block p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl mb-6">
+          <div className="inline-block p-4 bg-white/80 backdrop-blur-xs rounded-2xl shadow-xl mb-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-4 font-playfair">
               Curated Travel Itineraries
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full" />
           </div>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 bg-white/60 backdrop-blur-xs rounded-xl p-6 shadow-lg">
             Discover Meghalaya's hidden treasures with our expertly crafted travel packages. 
             From thrilling adventures to cultural immersions, find your perfect journey and create memories that last forever!
           </p>

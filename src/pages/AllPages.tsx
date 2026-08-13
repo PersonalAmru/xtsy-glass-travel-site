@@ -119,7 +119,7 @@ const DirectoryCategoryCard = memo(({ catKey, label, pages }: { catKey: string; 
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <div className="flex items-center gap-2">
             <h3 className="text-lg font-bold text-white">{label}</h3>
-            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/20 text-white backdrop-blur-sm">{pages.length}</span>
+            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/20 text-white backdrop-blur-xs">{pages.length}</span>
           </div>
           {meta?.tagline && <p className="mt-0.5 text-xs text-white/85">{meta.tagline}</p>}
         </div>
@@ -230,7 +230,7 @@ const ClusterCard = memo(({ cat, isOpen, onToggle }: {
             </div>
             <p className="mt-1 text-xs text-white/80">{desc}</p>
             <div className="mt-2 flex items-center gap-2">
-              <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/20 text-white backdrop-blur-sm">
+              <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/20 text-white backdrop-blur-xs">
                 {cat.destinations.length} destinations
               </span>
               <ChevronRight className={`h-3.5 w-3.5 text-white/80 transition-transform duration-300 ${isOpen ? 'rotate-90' : ''}`} />
@@ -343,7 +343,7 @@ const AllPages = () => {
                 placeholder="Search destinations, guides, stays..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-border bg-card text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/40 transition-all shadow-sm"
+                className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-border bg-card text-foreground text-sm placeholder:text-muted-foreground focus:outline-hidden focus:ring-2 focus:ring-primary/30 focus:border-primary/40 transition-all shadow-xs"
               />
             </div>
 

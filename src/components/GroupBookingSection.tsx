@@ -49,7 +49,7 @@ const GroupBookingSection = () => {
               ✅ 100% Fulfillment
             </Badge>
           </div>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg">
+          <p className="text-xl text-gray-700 max-w-2xl mx-auto bg-white/70 backdrop-blur-xs rounded-xl p-6 shadow-lg">
             Perfect for corporate events, family gatherings, and group adventures! Book your entire space today!
           </p>
         </div>

@@ -16,7 +16,7 @@ type ServiceCard = {
 // Simplified glassmorphism with GPU optimization - dark theme
 function cardBg(tone: ServiceCard["tone"]) {
   // Base dark glass classes with GPU optimization
-  const baseClasses = "relative overflow-hidden bg-white/5 backdrop-blur-sm border border-white/10 shadow-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 ";
+  const baseClasses = "relative overflow-hidden bg-white/5 backdrop-blur-xs border border-white/10 shadow-xl hover:bg-white/10 hover:border-white/20 transition-all duration-300 ";
   
   // Tone-specific accent rings
   const toneOverlays: Record<ServiceCard["tone"], string> = {
@@ -142,7 +142,7 @@ const services: ServiceCard[] = [
 
       <div className="responsive-container relative z-10 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
         <div className="text-center mb-12 sm:mb-16">
-          <div className="inline-block p-6 rounded-2xl shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+          <div className="inline-block p-6 rounded-2xl shadow-2xl bg-white/10 backdrop-blur-xs border border-white/20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 font-playfair drop-shadow-lg">
               Amenities &amp; Services
             </h2>

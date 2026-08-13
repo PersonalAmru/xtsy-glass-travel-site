@@ -258,7 +258,7 @@ const HeroSection = () => {
           </div>
 
           {/* Stats - no transforms */}
-          {/* Stats - no backdrop-blur for performance */}
+          {/* Stats - no backdrop-blur-sm for performance */}
           <div className="mt-10 sm:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-3xl mx-auto">
             {stats.map((stat) => (
               <div 

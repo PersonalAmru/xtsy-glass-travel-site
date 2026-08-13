@@ -42,7 +42,7 @@ export const UrgencyBadge = memo(({ totalUnits, roomId, roomName, className, var
   return (
     <div className={cn(
       'flex flex-wrap items-center gap-2 text-[11px]',
-      variant === 'floating' && 'absolute bottom-2 left-2 right-2 bg-background/90 backdrop-blur-sm rounded-lg px-2 py-1.5',
+      variant === 'floating' && 'absolute bottom-2 left-2 right-2 bg-background/90 backdrop-blur-xs rounded-lg px-2 py-1.5',
       className
     )}>
       <span className="flex items-center gap-1 text-muted-foreground">

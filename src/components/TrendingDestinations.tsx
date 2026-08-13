@@ -93,7 +93,7 @@ const DestinationCard = memo(({ dest }: { dest: TrendingDestination }) => (
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
       
       <div className="absolute top-3 left-3">
-        {/* Wave 2F — removed backdrop-blur (compositor killer on scroll); solid bg + text-shadow */}
+        {/* Wave 2F — removed backdrop-blur-sm (compositor killer on scroll); solid bg + text-shadow */}
         <span
           className="px-2.5 py-1 rounded-full bg-black/50 text-white text-xs font-medium border border-white/10"
           style={{ textShadow: '0 1px 2px rgba(0,0,0,0.6)' }}

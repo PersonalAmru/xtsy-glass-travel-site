@@ -287,7 +287,7 @@ const XTSYvsZostel = () => {
               <MessageCircle className="mr-2 h-5 w-5" />
               Book with XTSY
             </Button>
-            <Button size="lg" variant="outline" onClick={() => document.getElementById('business-model')?.scrollIntoView({ behavior: 'smooth' })} className="bg-white/10 hover:bg-white/20 border-white text-white shadow-xl backdrop-blur-sm">
+            <Button size="lg" variant="outline" onClick={() => document.getElementById('business-model')?.scrollIntoView({ behavior: 'smooth' })} className="bg-white/10 hover:bg-white/20 border-white text-white shadow-xl backdrop-blur-xs">
               See the Real Difference
             </Button>
           </div>
@@ -853,7 +853,7 @@ const XTSYvsZostel = () => {
           <div className="max-w-4xl mx-auto">
             <Accordion type="single" collapsible className="space-y-3">
               {faqs.map((faq, index) => (
-                <AccordionItem key={index} value={`item-${index}`} className="bg-card rounded-xl px-6 border border-border hover:border-primary/30 shadow-sm">
+                <AccordionItem key={index} value={`item-${index}`} className="bg-card rounded-xl px-6 border border-border hover:border-primary/30 shadow-xs">
                   <AccordionTrigger className="text-left hover:text-primary transition-colors">
                     <span className="font-semibold text-foreground text-sm sm:text-base">{faq.question}</span>
                   </AccordionTrigger>
@@ -888,11 +888,11 @@ const XTSYvsZostel = () => {
               <MessageCircle className="mr-2 h-5 w-5" />
               Book Your Experience by XTSY
             </Button>
-            <Button size="lg" variant="outline" onClick={handleCall} className="bg-primary-foreground/10 hover:bg-primary-foreground/20 border-primary-foreground text-primary-foreground shadow-xl backdrop-blur-sm">
+            <Button size="lg" variant="outline" onClick={handleCall} className="bg-primary-foreground/10 hover:bg-primary-foreground/20 border-primary-foreground text-primary-foreground shadow-xl backdrop-blur-xs">
               <Phone className="mr-2 h-5 w-5" />
               Call +91 88373 17070
             </Button>
-            <Button size="lg" variant="outline" asChild className="bg-primary-foreground/10 hover:bg-primary-foreground/20 border-primary-foreground text-primary-foreground shadow-xl backdrop-blur-sm">
+            <Button size="lg" variant="outline" asChild className="bg-primary-foreground/10 hover:bg-primary-foreground/20 border-primary-foreground text-primary-foreground shadow-xl backdrop-blur-xs">
               <a href="/xtsy-270">Explore 270° Suite</a>
             </Button>
           </div>

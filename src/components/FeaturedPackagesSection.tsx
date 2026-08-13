@@ -128,7 +128,7 @@ const PackageCard = ({ pkg, onSelect }: PackageCardProps) => {
   
   return (
     <Card 
-      className="group cursor-pointer overflow-hidden border-0 bg-card/80 backdrop-blur-sm hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 h-full"
+      className="group cursor-pointer overflow-hidden border-0 bg-card/80 backdrop-blur-xs hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 h-full"
       onClick={handleClick}
     >
       <div className="relative aspect-[4/3] overflow-hidden">
@@ -142,13 +142,13 @@ const PackageCard = ({ pkg, onSelect }: PackageCardProps) => {
         
         {/* Category Badge */}
         <Badge 
-          className="absolute top-3 left-3 bg-background/90 text-foreground backdrop-blur-sm border-border"
+          className="absolute top-3 left-3 bg-background/90 text-foreground backdrop-blur-xs border-border"
         >
           {pkg.category}
         </Badge>
         
         {/* Rating */}
-        <div className="absolute top-3 right-3 flex items-center gap-1 bg-background/90 backdrop-blur-sm px-2 py-1 rounded-full">
+        <div className="absolute top-3 right-3 flex items-center gap-1 bg-background/90 backdrop-blur-xs px-2 py-1 rounded-full">
           <Star className="h-3 w-3 fill-yellow-500 text-yellow-500" />
           <span className="text-xs font-medium">{pkg.rating}</span>
         </div>

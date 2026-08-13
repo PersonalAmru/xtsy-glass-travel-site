@@ -84,7 +84,7 @@ const WhyXTSYSection = () => {
         {/* Stats Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {stats.map((stat, idx) => (
-            <Card key={idx} className="border-0 bg-card/50 backdrop-blur-sm text-center">
+            <Card key={idx} className="border-0 bg-card/50 backdrop-blur-xs text-center">
               <CardContent className="p-6">
                 <stat.icon className="h-6 w-6 mx-auto mb-2 text-primary" />
                 <div className="text-2xl md:text-3xl font-bold text-foreground mb-1">
@@ -101,7 +101,7 @@ const WhyXTSYSection = () => {
           {features.map((feature, idx) => (
             <Card 
               key={idx} 
-              className="group border-0 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-300"
+              className="group border-0 bg-card/50 backdrop-blur-xs hover:bg-card/80 transition-all duration-300"
             >
               <CardContent className="p-6">
                 <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${feature.gradient} mb-4`}>

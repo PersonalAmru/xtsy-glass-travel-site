@@ -214,7 +214,7 @@ const XTSYRentals = () => {
           transition={{ duration: 0.7 }}
           className="relative z-10 text-center px-4 max-w-4xl mx-auto"
         >
-          <Badge variant="outline" className="mb-6 border-primary/40 text-primary bg-primary/10 backdrop-blur-sm px-4 py-1.5">
+          <Badge variant="outline" className="mb-6 border-primary/40 text-primary bg-primary/10 backdrop-blur-xs px-4 py-1.5">
             <Car className="w-3.5 h-3.5 mr-1.5" />
             XTSY Prime
           </Badge>
@@ -236,7 +236,7 @@ const XTSYRentals = () => {
       </section>
 
       {/* Features Strip */}
-      <section className="py-6 border-y border-border bg-card/50 backdrop-blur-sm">
+      <section className="py-6 border-y border-border bg-card/50 backdrop-blur-xs">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {features.map((feature, index) => (
@@ -306,7 +306,7 @@ const XTSYRentals = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                       
                       <div className="absolute top-2 left-2">
-                        <Badge variant="outline" className="bg-background/60 backdrop-blur-sm border-border/50 text-foreground/90 text-[10px] px-1.5 py-0.5">
+                        <Badge variant="outline" className="bg-background/60 backdrop-blur-xs border-border/50 text-foreground/90 text-[10px] px-1.5 py-0.5">
                           {car.category}
                         </Badge>
                       </div>
@@ -383,7 +383,7 @@ const XTSYRentals = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
                       
                       <div className="absolute top-2 left-2">
-                        <Badge variant="outline" className="bg-background/60 backdrop-blur-sm border-border/50 text-foreground/90 text-[10px] px-1.5 py-0.5">
+                        <Badge variant="outline" className="bg-background/60 backdrop-blur-xs border-border/50 text-foreground/90 text-[10px] px-1.5 py-0.5">
                           {bike.type}
                         </Badge>
                       </div>

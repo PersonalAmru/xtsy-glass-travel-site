@@ -57,7 +57,7 @@ import { MapPin, Compass, Mountain, Camera, Shield, Plane } from "lucide-react";
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-4 hover:bg-card/80 hover:border-emerald-500/30 transition-all group"
+              className="bg-card/50 backdrop-blur-xs border border-border/50 rounded-xl p-4 hover:bg-card/80 hover:border-emerald-500/30 transition-all group"
             >
               <div className="flex items-start gap-3">
                 <div className="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-500/20 transition-colors">
@@ -78,7 +78,7 @@ import { MapPin, Compass, Mountain, Camera, Shield, Plane } from "lucide-react";
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3 }}
           viewport={{ once: true }}
-          className="bg-card/60 backdrop-blur-sm border border-border/50 rounded-xl p-4 max-w-2xl mx-auto"
+          className="bg-card/60 backdrop-blur-xs border border-border/50 rounded-xl p-4 max-w-2xl mx-auto"
         >
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-xs md:text-sm">
             <div className="flex items-center gap-2 text-muted-foreground">

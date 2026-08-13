@@ -164,7 +164,7 @@ export function FocusRail({
   return (
     <div
       className={cn(
-        "relative w-full h-[580px] md:h-[680px] flex items-center justify-center overflow-hidden select-none outline-none",
+        "relative w-full h-[580px] md:h-[680px] flex items-center justify-center overflow-hidden select-none outline-hidden",
         className
       )}
       style={{ perspective: "1200px" }}
@@ -273,7 +273,7 @@ export function FocusRail({
 
                 {/* Rating Badge */}
                 {item.rating && (
-                  <div className="absolute top-4 right-4 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-full">
+                  <div className="absolute top-4 right-4 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-xs px-2 py-1 rounded-full">
                     <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
                     <span className="text-white text-xs font-semibold">{item.rating}</span>
                   </div>
@@ -317,7 +317,7 @@ export function FocusRail({
                       {item.highlights.slice(0, 2).map((highlight, idx) => (
                         <span
                           key={idx}
-                          className="bg-white/10 backdrop-blur-sm text-white/90 text-[10px] md:text-xs px-2 py-0.5 rounded-full border border-white/20"
+                          className="bg-white/10 backdrop-blur-xs text-white/90 text-[10px] md:text-xs px-2 py-0.5 rounded-full border border-white/20"
                         >
                           {highlight}
                         </span>
@@ -362,7 +362,7 @@ export function FocusRail({
             <div className="flex items-center gap-3">
               <button
                 onClick={handlePrev}
-                className="p-3 bg-muted/80 hover:bg-muted backdrop-blur-sm text-foreground rounded-full transition-colors border border-border"
+                className="p-3 bg-muted/80 hover:bg-muted backdrop-blur-xs text-foreground rounded-full transition-colors border border-border"
                 aria-label="Previous"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -372,7 +372,7 @@ export function FocusRail({
               </span>
               <button
                 onClick={handleNext}
-                className="p-3 bg-muted/80 hover:bg-muted backdrop-blur-sm text-foreground rounded-full transition-colors border border-border"
+                className="p-3 bg-muted/80 hover:bg-muted backdrop-blur-xs text-foreground rounded-full transition-colors border border-border"
                 aria-label="Next"
               >
                 <ChevronRight className="w-5 h-5" />

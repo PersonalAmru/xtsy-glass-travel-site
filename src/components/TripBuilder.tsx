@@ -323,7 +323,7 @@ const TripBuilder = memo(() => {
           </div>
 
           {/* Step content */}
-          <div className="rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm p-5 sm:p-8">
+          <div className="rounded-2xl border border-border/50 bg-card/50 backdrop-blur-xs p-5 sm:p-8">
             <h3 className="text-lg font-semibold text-foreground mb-1">
               {step === 0 && 'How long is your trip?'}
               {step === 1 && 'What\'s your travel style?'}

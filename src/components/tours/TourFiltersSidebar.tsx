@@ -65,7 +65,7 @@ const TourFiltersSidebar = memo(({ filters, onChange, tourCount }: Props) => {
   ).length;
 
   return (
-    <div className="bg-card/30 backdrop-blur-sm border border-border/30 rounded-2xl p-4 sm:p-5 sticky top-20">
+    <div className="bg-card/30 backdrop-blur-xs border border-border/30 rounded-2xl p-4 sm:p-5 sticky top-20">
       {/* Header */}
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-2">

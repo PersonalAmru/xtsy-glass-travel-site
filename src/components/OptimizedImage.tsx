@@ -103,7 +103,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     <img
       src={variants.thumb}
       alt={alt ? `Loading ${alt}` : 'Loading image'}
-      className={cn("w-full h-full object-cover blur-sm transition-opacity duration-300", className)}
+      className={cn("w-full h-full object-cover blur-xs transition-opacity duration-300", className)}
       loading="eager"
     />
   ) : (

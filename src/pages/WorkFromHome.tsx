@@ -178,7 +178,7 @@ const WorkFromHome = () => {
                   <Phone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   Book Your Workation
                 </Button>
-                <Button size="lg" variant="outline" className="bg-white/5 backdrop-blur-sm border-2 border-white/40 text-white hover:bg-white/20 hover:border-white/60 transition-all duration-300 rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg font-medium" onClick={() => document.getElementById('packages')?.scrollIntoView({
+                <Button size="lg" variant="outline" className="bg-white/5 backdrop-blur-xs border-2 border-white/40 text-white hover:bg-white/20 hover:border-white/60 transition-all duration-300 rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg font-medium" onClick={() => document.getElementById('packages')?.scrollIntoView({
                 behavior: 'smooth'
               })}>
                   View Packages
@@ -231,7 +231,7 @@ const WorkFromHome = () => {
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {features.map((feature, index) => <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-fade-in bg-card/50 backdrop-blur-sm border border-primary/10 hover:border-primary/30 rounded-2xl md:rounded-3xl overflow-hidden" style={{
+            {features.map((feature, index) => <Card key={index} className="group hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] animate-fade-in bg-card/50 backdrop-blur-xs border border-primary/10 hover:border-primary/30 rounded-2xl md:rounded-3xl overflow-hidden" style={{
             animationDelay: `${index * 0.1}s`
           }}>
                 <CardContent className="p-5 sm:p-6 md:p-8">
@@ -260,7 +260,7 @@ const WorkFromHome = () => {
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
-            {packages.map(pkg => <Card key={pkg.duration} className={`group relative hover:shadow-2xl transition-all duration-500 cursor-pointer bg-card/50 backdrop-blur-sm rounded-2xl md:rounded-3xl overflow-hidden ${selectedDuration === pkg.duration ? 'ring-2 ring-primary scale-[1.02] sm:scale-[1.05] border-primary shadow-xl shadow-primary/20' : 'border border-primary/10 hover:border-primary/30 hover:scale-[1.02]'}`} onClick={() => setSelectedDuration(pkg.duration as any)}>
+            {packages.map(pkg => <Card key={pkg.duration} className={`group relative hover:shadow-2xl transition-all duration-500 cursor-pointer bg-card/50 backdrop-blur-xs rounded-2xl md:rounded-3xl overflow-hidden ${selectedDuration === pkg.duration ? 'ring-2 ring-primary scale-[1.02] sm:scale-[1.05] border-primary shadow-xl shadow-primary/20' : 'border border-primary/10 hover:border-primary/30 hover:scale-[1.02]'}`} onClick={() => setSelectedDuration(pkg.duration as any)}>
                 {pkg.duration === 'month' && <div className="absolute -top-2 sm:-top-3 left-1/2 -translate-x-1/2 z-10">
                     <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg shadow-primary/50 whitespace-nowrap">
                       Most Popular
@@ -306,7 +306,7 @@ const WorkFromHome = () => {
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-5xl mx-auto">
-            {amenities.map((amenity, index) => <div key={index} className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 md:p-5 bg-card/50 backdrop-blur-sm border border-primary/10 rounded-xl md:rounded-2xl hover:bg-accent/10 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg animate-fade-in" style={{
+            {amenities.map((amenity, index) => <div key={index} className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 md:p-5 bg-card/50 backdrop-blur-xs border border-primary/10 rounded-xl md:rounded-2xl hover:bg-accent/10 hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg animate-fade-in" style={{
             animationDelay: `${index * 0.03}s`
           }}>
                 <div className="h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-gradient-to-br from-primary to-primary/70 flex-shrink-0 shadow-lg shadow-primary/30 group-hover:scale-125 transition-transform duration-300" />
@@ -325,7 +325,7 @@ const WorkFromHome = () => {
         
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="text-center mb-12 sm:mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-white/10 text-white/80 border border-white/10 backdrop-blur-sm mb-4">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-white/10 text-white/80 border border-white/10 backdrop-blur-xs mb-4">
               Verified Reviews
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white" style={{
@@ -404,7 +404,7 @@ const WorkFromHome = () => {
       <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-background to-accent/10">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="text-center backdrop-blur-sm bg-card/30 rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-12 border border-primary/10">
+            <div className="text-center backdrop-blur-xs bg-card/30 rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-12 border border-primary/10">
               <div className="inline-block p-3 sm:p-4 rounded-xl md:rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 mb-4 sm:mb-6">
                 <MapPin className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 text-primary" />
               </div>
@@ -445,7 +445,7 @@ const WorkFromHome = () => {
             </p>
           </div>
           <Accordion type="single" collapsible className="max-w-4xl mx-auto space-y-3 sm:space-y-4">
-            {faqs.map((faq, index) => <AccordionItem key={index} value={`item-${index}`} className="bg-card/50 backdrop-blur-sm border border-primary/10 rounded-xl md:rounded-2xl px-4 sm:px-6 data-[state=open]:border-primary/30 transition-all duration-300">
+            {faqs.map((faq, index) => <AccordionItem key={index} value={`item-${index}`} className="bg-card/50 backdrop-blur-xs border border-primary/10 rounded-xl md:rounded-2xl px-4 sm:px-6 data-[state=open]:border-primary/30 transition-all duration-300">
                 <AccordionTrigger className="text-left text-base sm:text-lg md:text-xl font-semibold hover:no-underline py-4 sm:py-5 md:py-6 text-foreground">
                   {faq.question}
                 </AccordionTrigger>

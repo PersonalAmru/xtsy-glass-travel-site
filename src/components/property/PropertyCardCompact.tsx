@@ -67,7 +67,7 @@ export const PropertyCardCompact = ({ property, onViewDetails, dynamicRating, dy
           {/* Category Badge */}
           <div className="absolute top-3 left-3">
             <span className={cn(
-              "px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm",
+              "px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider backdrop-blur-xs",
               property.category === 'luxury' 
                 ? "bg-amber-500/90 text-white" 
                 : "bg-emerald-500/90 text-white"
@@ -79,7 +79,7 @@ export const PropertyCardCompact = ({ property, onViewDetails, dynamicRating, dy
           {/* Rating Badge — only show if there are reviews */}
           {displayReviewCount > 0 && (
             <div className="absolute top-3 right-3">
-              <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm">
+              <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-black/60 backdrop-blur-xs">
                 <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
                 <span className="text-xs font-semibold text-white">{displayRating}</span>
               </div>

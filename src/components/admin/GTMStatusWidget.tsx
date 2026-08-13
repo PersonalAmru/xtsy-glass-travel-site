@@ -70,7 +70,7 @@ export function GTMStatusWidget({ className }: { className?: string }) {
 
   return (
     <div className={cn(
-      'rounded-2xl border border-border bg-card/50 backdrop-blur-sm overflow-hidden',
+      'rounded-2xl border border-border bg-card/50 backdrop-blur-xs overflow-hidden',
       className
     )}>
       {/* Header */}

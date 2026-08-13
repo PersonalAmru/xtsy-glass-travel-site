@@ -68,7 +68,7 @@ const RoomCard = ({ room, onBook }: RoomCardProps) => {
   
   return (
     <Card 
-      className="group cursor-pointer overflow-hidden border-0 bg-card/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300"
+      className="group cursor-pointer overflow-hidden border-0 bg-card/80 backdrop-blur-xs hover:shadow-xl transition-all duration-300"
       onClick={handleClick}
     >
       <div className="flex flex-col sm:flex-row">
