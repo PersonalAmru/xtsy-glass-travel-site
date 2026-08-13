@@ -231,3 +231,64 @@ function json(body: unknown, status = 200) {
     headers: { ...corsHeaders, 'Content-Type': 'application/json' },
   });
 }
+
+/**
+ * Caps weekly-rank-tracker runs at 5 per hour per caller (cron or admin).
+ * Uses the shared `rate_limits` table; fails open only on infra errors.
+ */
+async function enforceRateLimit(
+  supabase: ReturnType<typeof createClient>,
+  callerId: string,
+): Promise<Response | null> {
+  const MAX = 5;
+  const WINDOW_MS = 60 * 60 * 1000;
+  const endpoint = 'weekly-rank-tracker';
+  const windowStart = new Date(Date.now() - WINDOW_MS);
+
+  try {
+    const { data: existing } = await supabase
+      .from('rate_limits')
+      .select('request_count, window_start')
+      .eq('ip_address', callerId)
+      .eq('endpoint', endpoint)
+      .gte('window_start', windowStart.toISOString())
+      .maybeSingle();
+
+    if (!existing) {
+      await supabase.from('rate_limits').insert({
+        ip_address: callerId,
+        endpoint,
+        request_count: 1,
+        window_start: new Date().toISOString(),
+        expires_at: new Date(Date.now() + WINDOW_MS).toISOString(),
+      });
+      return null;
+    }
+
+    if ((existing.request_count as number) >= MAX) {
+      const resetAt = new Date(new Date(existing.window_start as string).getTime() + WINDOW_MS);
+      return new Response(
+        JSON.stringify({ error: 'Rate limit exceeded', resetAt: resetAt.toISOString() }),
+        {
+          status: 429,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+            'Retry-After': Math.max(1, Math.ceil((resetAt.getTime() - Date.now()) / 1000)).toString(),
+          },
+        },
+      );
+    }
+
+    await supabase
+      .from('rate_limits')
+      .update({ request_count: (existing.request_count as number) + 1 })
+      .eq('ip_address', callerId)
+      .eq('endpoint', endpoint)
+      .eq('window_start', existing.window_start as string);
+    return null;
+  } catch (e) {
+    console.error('[weekly-rank-tracker] rate limit check failed', e);
+    return null;
+  }
+}
