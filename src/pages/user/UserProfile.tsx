@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/lib/router-compat';
 import { useUserAuth } from '@/contexts/UserAuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -119,7 +119,7 @@ export default function UserProfile() {
       const bookingsData: Booking[] = (bookingsResult.data || []).map(b => ({
         ...b,
         source: 'booking' as const
-      }));
+      })) as unknown as Booking[];
 
       const enquiriesAsBookings: Booking[] = (enquiriesResult.data || []).map(e => ({
         id: e.id,
@@ -139,7 +139,7 @@ export default function UserProfile() {
         email: e.email,
         whatsapp_number: e.phone,
         source: 'enquiry' as const
-      }));
+      })) as unknown as Booking[];
 
       // Combine and sort by date
       const combined = [...bookingsData, ...enquiriesAsBookings].sort(

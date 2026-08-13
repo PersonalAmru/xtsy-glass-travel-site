@@ -491,10 +491,10 @@ const LiveTrafficCommandCenter: React.FC = () => {
         if (consentData) {
           consentData.forEach(c => {
             consentMap[c.visitor_id] = {
-              analytics: c.analytics_storage,
-              marketing: c.ad_storage,
-              method: c.consent_method,
-              granted_at: c.granted_at,
+              analytics: c.analytics_storage ?? false,
+              marketing: c.ad_storage ?? false,
+              method: c.consent_method ?? 'unknown',
+              granted_at: c.granted_at ?? '',
             };
           });
         }

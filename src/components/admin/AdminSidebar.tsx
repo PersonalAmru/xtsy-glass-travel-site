@@ -3,7 +3,7 @@
  * Modern collapsible sidebar with smooth animations
  */
 
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from '@/lib/router-compat';
 import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,

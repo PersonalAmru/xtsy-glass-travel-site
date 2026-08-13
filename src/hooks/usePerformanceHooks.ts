@@ -99,7 +99,7 @@ export function useStableCallback<T extends (...args: any[]) => any>(callback: T
  * Previous value hook - tracks the previous value of a state
  */
 export function usePrevious<T>(value: T): T | undefined {
-  const ref = useRef<T>();
+  const ref = useRef<T | undefined>(undefined);
   
   useEffect(() => {
     ref.current = value;
@@ -161,8 +161,8 @@ export function useIdleCallback(callback: () => void, timeout = 1000): void {
  * RAF-based animation hook for smooth updates
  */
 export function useAnimationFrame(callback: (deltaTime: number) => void, isActive = true): void {
-  const requestRef = useRef<number>();
-  const previousTimeRef = useRef<number>();
+  const requestRef = useRef<number | undefined>(undefined);
+  const previousTimeRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     if (!isActive) return;

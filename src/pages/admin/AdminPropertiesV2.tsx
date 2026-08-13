@@ -48,7 +48,7 @@ export default function AdminProperties() {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setProperties(data || []);
+      setProperties((data || []) as unknown as Property[]);
     } catch (error) {
       console.error('Error fetching properties:', error);
       toast.error('Failed to load properties');

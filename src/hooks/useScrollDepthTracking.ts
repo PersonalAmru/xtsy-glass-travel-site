@@ -21,10 +21,10 @@ interface ScrollDepthOptions {
 }
 
 export const useScrollDepthTracking = (options: ScrollDepthOptions = {}) => {
-  const { debounceMs = 100, enabled = true, pageId = window.location.pathname } = options;
+  const { debounceMs = 100, enabled = true, pageId = typeof window !== 'undefined' ? window.location.pathname : '/' } = options;
   
   const firedMilestones = useRef<Set<ScrollMilestone>>(new Set());
-  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const startTimeRef = useRef<number>(Date.now());
   const maxDepthRef = useRef<number>(0);
 

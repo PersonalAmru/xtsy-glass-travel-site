@@ -113,9 +113,9 @@ export function InventoryCalendarView() {
       // Pricing rules might not exist yet - don't throw
       
       setBlockedDates(blockedRes.data || []);
-      setInventory(inventoryRes.data || []);
-      setBookings(bookingsRes.data || []);
-      setPricingRules(pricingRes.data || []);
+      setInventory((inventoryRes.data || []) as unknown as InventoryEntry[]);
+      setBookings((bookingsRes.data || []) as unknown as BookingEntry[]);
+      setPricingRules((pricingRes.data || []) as unknown as PricingRule[]);
     } catch (error) {
       console.error('Failed to fetch calendar data:', error);
       toast.error('Failed to load calendar data');

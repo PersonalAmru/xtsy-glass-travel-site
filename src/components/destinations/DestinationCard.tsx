@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import { MapPin, ArrowRight } from 'lucide-react';
 import { getDestinationImageUrl, getFirstValidImageIndex, knownImageIndices, type MeghalayaDestination } from '@/data/meghalayaDestinations';
 import { Skeleton } from '@/components/ui/skeleton';

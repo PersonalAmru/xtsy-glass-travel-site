@@ -3,7 +3,7 @@
  * Links to all major pillar pages, destination clusters, and guides
  */
 import { memo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import { Compass } from 'lucide-react';
 
 interface LinkGroup {

@@ -72,7 +72,7 @@ export default function AdminGST() {
 
       const allInvoices = data || [];
       const monthlyInvoices = allInvoices.filter(inv => {
-        const date = new Date(inv.created_at);
+        const date = new Date(inv.created_at ?? 0);
         return date >= monthStart && date <= monthEnd;
       });
 
@@ -83,7 +83,7 @@ export default function AdminGST() {
         pendingInvoices: allInvoices.filter(inv => inv.status === 'pending').length,
       });
 
-      setInvoices(allInvoices);
+      setInvoices((allInvoices) as unknown as Invoice[]);
     } catch (error) {
       console.error('Error fetching GST data:', error);
       toast.error('Failed to load GST data');

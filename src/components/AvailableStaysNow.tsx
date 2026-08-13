@@ -4,7 +4,7 @@
  */
 import { memo, useMemo } from 'react';
 import { Users, Clock, ChevronRight, Flame, TrendingUp } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import { getBookableRooms, TAG_LABELS, type RoomType, getSimulatedAvailability, getPriceHikeMessage } from '@/data/roomInventory';
 import { formatLocalDateString } from '@/lib/date-utils';
 import { cn } from '@/lib/utils';

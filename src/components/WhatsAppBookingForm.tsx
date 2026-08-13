@@ -190,7 +190,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
           if (tableError) {
             console.error('Fallback also failed:', tableError);
           } else if (roomTypesData) {
-            setRoomTypes(roomTypesData);
+            setRoomTypes((roomTypesData) as unknown as RoomType[]);
             setRoomsError("");
             console.log('Loaded room types from fallback:', roomTypesData.length);
           }
@@ -210,7 +210,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
             .eq('is_active', true);
           
           if (!tableError && roomTypesData) {
-            setRoomTypes(roomTypesData);
+            setRoomTypes((roomTypesData) as unknown as RoomType[]);
             setRoomsError("");
             console.log('Loaded room types from fallback after exception:', roomTypesData.length);
           }

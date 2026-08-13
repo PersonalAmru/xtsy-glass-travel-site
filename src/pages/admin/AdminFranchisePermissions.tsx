@@ -174,7 +174,7 @@ export default function AdminFranchisePermissions() {
         };
       });
       
-      setAssignments(transformed);
+      setAssignments((transformed) as unknown as FranchiseAssignment[]);
     } catch (error) {
       console.error('Error fetching assignments:', error);
       toast.error('Failed to load franchise data');

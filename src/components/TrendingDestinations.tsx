@@ -3,7 +3,7 @@
  * Meghalaya + Northeast + International + XTSY 270 Romantic Escape
  */
 import { memo, useRef, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import { ChevronLeft, ChevronRight, TrendingUp, MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { getDestinationImageUrl, knownImageIndices } from '@/data/meghalayaDestinations';

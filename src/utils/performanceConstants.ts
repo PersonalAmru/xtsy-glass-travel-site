@@ -135,7 +135,7 @@ export function createLRUCache<K, V>(maxSize: number) {
       } else if (cache.size >= maxSize) {
         // Delete oldest (first) entry
         const firstKey = cache.keys().next().value;
-        cache.delete(firstKey);
+        if (firstKey !== undefined) cache.delete(firstKey);
       }
       cache.set(key, value);
     },
