@@ -58,14 +58,9 @@ export const prefetchRouteChunks = () => {
   }, { timeout: 5000 }); // Only run when truly idle, with 5s timeout
 };
 
-// Service Worker for caching
+// Service worker registration removed in the TanStack Start migration.
+// /sw.js is now a kill-switch that unregisters the old SW for returning users;
+// the browser's automatic SW update polling delivers it — no register call needed.
 export const registerServiceWorker = async () => {
-  if ('serviceWorker' in navigator) {
-    try {
-      const registration = await navigator.serviceWorker.register('/sw.js');
-      console.log('SW registered: ', registration);
-    } catch (registrationError) {
-      console.log('SW registration failed: ', registrationError);
-    }
-  }
+  /* intentionally a no-op */
 };
