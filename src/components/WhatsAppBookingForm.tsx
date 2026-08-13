@@ -200,8 +200,8 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
             console.log('Loaded room types from fallback:', roomTypesData.length);
           }
         } else if (data) {
-          setRoomTypes(data);
-          console.log('Loaded room types from edge function:', data.length);
+          setRoomTypes(data as unknown as RoomType[]);
+          console.log('Loaded room types:', data.length);
         }
       } catch (err) {
         console.error('Exception fetching room types:', err);
