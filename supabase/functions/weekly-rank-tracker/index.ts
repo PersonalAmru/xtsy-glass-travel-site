@@ -50,22 +50,51 @@ Deno.serve(async (req) => {
   const SUPABASE_URL = Deno.env.get('SUPABASE_URL');
   const SERVICE_ROLE = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
 
-  if (!LOVABLE_API_KEY || !SEMRUSH_API_KEY) {
-    return json({ error: 'Semrush connector is not configured' }, 500);
-  }
   if (!SUPABASE_URL || !SERVICE_ROLE) {
     return json({ error: 'Backend credentials missing' }, 500);
   }
 
+  const supabase = createClient(SUPABASE_URL, SERVICE_ROLE);
+
   let dryRun = false;
+  let bodySecret = '';
   if (req.method === 'POST') {
     try {
       const body = await req.json();
       dryRun = body?.dryRun === true;
+      bodySecret = typeof body?.secret === 'string' ? body.secret : '';
     } catch { /* no body */ }
   }
 
-  const supabase = createClient(SUPABASE_URL, SERVICE_ROLE);
+  // ---- AUTH: cron shared secret OR an admin JWT. Never anonymous. -------
+  const cronSecret = Deno.env.get('CRON_SECRET');
+  const incomingSecret = req.headers.get('x-cron-secret') ?? bodySecret;
+  const authHeader = req.headers.get('Authorization');
+  let authorized = !!(cronSecret && incomingSecret && incomingSecret === cronSecret);
+  let callerId = 'cron';
+  if (!authorized && authHeader?.startsWith('Bearer ')) {
+    const userClient = createClient(SUPABASE_URL, Deno.env.get('SUPABASE_ANON_KEY')!, {
+      global: { headers: { Authorization: authHeader } },
+    });
+    const { data: userData } = await userClient.auth.getUser();
+    if (userData?.user) {
+      const { data: role } = await userClient.rpc('get_user_role');
+      authorized = role === 'admin';
+      callerId = userData.user.id;
+    }
+  }
+  if (!authorized) {
+    return json({ error: 'Unauthorized' }, 401);
+  }
+
+  // ---- RATE LIMIT: Semrush quota is finite; cap runs per caller. -------
+  const limited = await enforceRateLimit(supabase, callerId);
+  if (limited) return limited;
+
+  if (!LOVABLE_API_KEY || !SEMRUSH_API_KEY) {
+    return json({ error: 'Semrush connector is not configured' }, 500);
+  }
+
 
   // 1. Fetch the domain's organic keyword table from Semrush.
   const params = new URLSearchParams({
