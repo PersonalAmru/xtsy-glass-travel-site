@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { supabase } from '@/integrations/supabase/client';
+import { recordConsent } from '@/lib/consent.functions';
 import { cn } from '@/lib/utils';
 import { Cookie, Shield, ChevronDown, X } from 'lucide-react';
 
@@ -77,11 +78,14 @@ export function DPDPConsentBanner() {
         .filter(([_, value]) => typeof value === 'boolean')
         .map(([type, granted]) => ({ consent_type: type, granted: granted as boolean }));
 
-      await supabase.functions.invoke('record-consent', {
-        body: {
+      await recordConsent({
+        data: {
           visitor_id: visitorId,
           consent_version: CONSENT_VERSION,
-          consents,
+          consents: consents as {
+            consent_type: 'essential' | 'analytics' | 'marketing' | 'personalization';
+            granted: boolean;
+          }[],
         },
       });
     } catch (error) {

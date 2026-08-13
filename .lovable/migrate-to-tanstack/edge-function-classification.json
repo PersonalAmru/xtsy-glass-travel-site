@@ -1,45 +1,250 @@
 {
   "functions": [
-    { "name": "analytics-dashboard", "classification": "internal-only", "signal": "called from src/hooks/useAdminAnalytics.tsx", "outcome": "left" },
-    { "name": "analytics-loader-summary", "classification": "cron target", "signal": "scheduled via pg_cron in migration", "outcome": "left" },
-    { "name": "auto-settle-bookings", "classification": "cron target", "signal": "checks CRON_SECRET header, daily settlement", "outcome": "left" },
-    { "name": "compute-demand-signals", "classification": "cron target", "signal": "checks CRON_SECRET header, daily computation", "outcome": "left" },
-    { "name": "cs-proxy", "classification": "custom response", "signal": "returns proxied JS/CSS/image assets; called from src/utils/csProxyPath.ts", "outcome": "left" },
-    { "name": "csp-report", "classification": "webhook receiver", "signal": "external browser CSP report endpoint", "outcome": "left" },
-    { "name": "destination-funnel-report", "classification": "internal-only", "signal": "called from src/pages/admin/AdminDestinationFunnel.tsx", "outcome": "left" },
-    { "name": "fetch-exchange-rates", "classification": "internal-only", "signal": "called from 2 src/ files", "outcome": "left" },
-    { "name": "generate-invoice", "classification": "custom response", "signal": "returns HTML invoice responses; called from src/services/invoiceService.ts", "outcome": "left" },
-    { "name": "generate-seo-hero", "classification": "internal-only", "signal": "called from src/pages/admin/AdminSEOHeroManager.tsx", "outcome": "left" },
-    { "name": "get-room-availability", "classification": "internal-only", "signal": "called from 3 src/ files", "outcome": "left" },
-    { "name": "get-room-types", "classification": "internal-only", "signal": "called from 2 src/ files", "outcome": "left" },
-    { "name": "google-hotel-feed", "classification": "unknown", "signal": "external XML feed with no internal call sites — URL treated as load-bearing", "outcome": "left" },
-    { "name": "handle-email-suppression", "classification": "webhook receiver", "signal": "verifies HMAC signature for callbacks", "outcome": "left" },
-    { "name": "handle-email-unsubscribe", "classification": "internal-only", "signal": "called from src/pages/Unsubscribe.tsx", "outcome": "left" },
-    { "name": "mcp", "classification": "MCP server", "signal": "imports @lovable.dev/mcp-js", "outcome": "left" },
-    { "name": "mobile-ui-debug", "classification": "internal-only", "signal": "called from src/hooks/useMobileUIDebug.tsx", "outcome": "left" },
-    { "name": "ota-webhook-handler", "classification": "webhook receiver", "signal": "receives external OTA webhooks with secret verification", "outcome": "left" },
-    { "name": "password-reset-otp", "classification": "internal-only", "signal": "called from src/pages/user/UserAuth.tsx", "outcome": "left" },
-    { "name": "payment-webhook", "classification": "webhook receiver", "signal": "verifies Razorpay HMAC signatures", "outcome": "left" },
-    { "name": "preview-transactional-email", "classification": "unknown", "signal": "zero internal call sites — default to external", "outcome": "left" },
-    { "name": "process-email-queue", "classification": "cron target", "signal": "scheduled via pg_cron in migration", "outcome": "left" },
-    { "name": "realtime-intelligence", "classification": "internal-only", "signal": "called from src/hooks/useTravellerIntelligence.tsx", "outcome": "left" },
-    { "name": "record-consent", "classification": "internal-only", "signal": "called from src/components/consent/DPDPConsentBanner.tsx", "outcome": "left" },
-    { "name": "secure-blocking", "classification": "unknown", "signal": "zero internal call sites — default to external", "outcome": "left" },
-    { "name": "security-monitoring", "classification": "unknown", "signal": "zero internal call sites — default to external", "outcome": "left" },
-    { "name": "semrush-seo-intel", "classification": "internal-only", "signal": "called from 2 admin src/ files", "outcome": "left" },
-    { "name": "send-transactional-email", "classification": "internal-only", "signal": "called from src/services/bookingService.ts", "outcome": "left" },
-    { "name": "send-whatsapp", "classification": "internal-only", "signal": "called from 2 src/ files", "outcome": "left" },
-    { "name": "seo-crawl-request", "classification": "internal-only", "signal": "called from src/pages/admin/AdminSEORecovery.tsx", "outcome": "left" },
-    { "name": "seo-hero-health", "classification": "internal-only", "signal": "called from src/pages/admin/AdminSEOHeroManager.tsx", "outcome": "left" },
-    { "name": "seo-monitor-alert", "classification": "cron target", "signal": "checks CRON_SECRET header for CI/scheduled alerts", "outcome": "left" },
-    { "name": "seo-position-cron", "classification": "cron target", "signal": "triggered by pg_cron with SEO_CRON_SECRET", "outcome": "left" },
-    { "name": "seo-redirect-resolver", "classification": "unknown", "signal": "zero internal call sites — default to external", "outcome": "left" },
-    { "name": "seo-url-verifier", "classification": "internal-only", "signal": "called from src/pages/admin/AdminSEOPriority.tsx", "outcome": "left" },
-    { "name": "sitemap-validator", "classification": "internal-only", "signal": "called from src/components/admin/analytics/WebVitalsDashboard.tsx", "outcome": "left" },
-    { "name": "track-analytics", "classification": "internal-only", "signal": "called from 4 src/ files", "outcome": "left" },
-    { "name": "traveller-intelligence", "classification": "cron target", "signal": "checks CRON_SECRET header for daily bulk processing", "outcome": "left" },
-    { "name": "update-channel-health", "classification": "cron target", "signal": "checks CRON_SECRET header for daily health computation", "outcome": "left" },
-    { "name": "validate-booking", "classification": "unknown", "signal": "zero internal call sites — default to external", "outcome": "left" },
-    { "name": "weekly-rank-tracker", "classification": "cron target", "signal": "scheduled weekly via pg_cron", "outcome": "left" }
+    {
+      "name": "analytics-dashboard",
+      "classification": "internal-only",
+      "signal": "called from src/hooks/useAdminAnalytics.tsx",
+      "outcome": "left"
+    },
+    {
+      "name": "analytics-loader-summary",
+      "classification": "cron target",
+      "signal": "scheduled via pg_cron in migration",
+      "outcome": "left"
+    },
+    {
+      "name": "auto-settle-bookings",
+      "classification": "cron target",
+      "signal": "checks CRON_SECRET header, daily settlement",
+      "outcome": "left"
+    },
+    {
+      "name": "compute-demand-signals",
+      "classification": "cron target",
+      "signal": "checks CRON_SECRET header, daily computation",
+      "outcome": "left"
+    },
+    {
+      "name": "cs-proxy",
+      "classification": "custom response",
+      "signal": "returns proxied JS/CSS/image assets; called from src/utils/csProxyPath.ts",
+      "outcome": "left"
+    },
+    {
+      "name": "csp-report",
+      "classification": "webhook receiver",
+      "signal": "external browser CSP report endpoint",
+      "outcome": "left"
+    },
+    {
+      "name": "destination-funnel-report",
+      "classification": "internal-only",
+      "signal": "called from src/pages/admin/AdminDestinationFunnel.tsx",
+      "outcome": "left"
+    },
+    {
+      "name": "fetch-exchange-rates",
+      "classification": "internal-only",
+      "signal": "called from 2 src/ files",
+      "outcome": "left"
+    },
+    {
+      "name": "generate-invoice",
+      "classification": "custom response",
+      "signal": "returns HTML invoice responses; called from src/services/invoiceService.ts",
+      "outcome": "left"
+    },
+    {
+      "name": "generate-seo-hero",
+      "classification": "internal-only",
+      "signal": "called from src/pages/admin/AdminSEOHeroManager.tsx",
+      "outcome": "left"
+    },
+    {
+      "name": "get-room-availability",
+      "classification": "internal-only",
+      "signal": "called from 3 src/ files",
+      "outcome": "left"
+    },
+    {
+      "name": "get-room-types",
+      "classification": "internal-only",
+      "signal": "called from 2 src/ files",
+      "outcome": "migrated to TanStack server function (src/lib/*.functions.ts)"
+    },
+    {
+      "name": "google-hotel-feed",
+      "classification": "unknown",
+      "signal": "external XML feed with no internal call sites \u2014 URL treated as load-bearing",
+      "outcome": "left"
+    },
+    {
+      "name": "handle-email-suppression",
+      "classification": "webhook receiver",
+      "signal": "verifies HMAC signature for callbacks",
+      "outcome": "left"
+    },
+    {
+      "name": "handle-email-unsubscribe",
+      "classification": "internal-only",
+      "signal": "called from src/pages/Unsubscribe.tsx",
+      "outcome": "left"
+    },
+    {
+      "name": "mcp",
+      "classification": "MCP server",
+      "signal": "imports @lovable.dev/mcp-js",
+      "outcome": "left"
+    },
+    {
+      "name": "mobile-ui-debug",
+      "classification": "internal-only",
+      "signal": "called from src/hooks/useMobileUIDebug.tsx",
+      "outcome": "left"
+    },
+    {
+      "name": "ota-webhook-handler",
+      "classification": "webhook receiver",
+      "signal": "receives external OTA webhooks with secret verification",
+      "outcome": "left"
+    },
+    {
+      "name": "password-reset-otp",
+      "classification": "internal-only",
+      "signal": "called from src/pages/user/UserAuth.tsx",
+      "outcome": "left"
+    },
+    {
+      "name": "payment-webhook",
+      "classification": "webhook receiver",
+      "signal": "verifies Razorpay HMAC signatures",
+      "outcome": "left"
+    },
+    {
+      "name": "preview-transactional-email",
+      "classification": "unknown",
+      "signal": "zero internal call sites \u2014 default to external",
+      "outcome": "left"
+    },
+    {
+      "name": "process-email-queue",
+      "classification": "cron target",
+      "signal": "scheduled via pg_cron in migration",
+      "outcome": "left"
+    },
+    {
+      "name": "realtime-intelligence",
+      "classification": "internal-only",
+      "signal": "called from src/hooks/useTravellerIntelligence.tsx",
+      "outcome": "left"
+    },
+    {
+      "name": "record-consent",
+      "classification": "internal-only",
+      "signal": "called from src/components/consent/DPDPConsentBanner.tsx",
+      "outcome": "migrated to TanStack server function (src/lib/*.functions.ts)"
+    },
+    {
+      "name": "secure-blocking",
+      "classification": "unknown",
+      "signal": "zero internal call sites \u2014 default to external",
+      "outcome": "left"
+    },
+    {
+      "name": "security-monitoring",
+      "classification": "unknown",
+      "signal": "zero internal call sites \u2014 default to external",
+      "outcome": "left"
+    },
+    {
+      "name": "semrush-seo-intel",
+      "classification": "internal-only",
+      "signal": "called from 2 admin src/ files",
+      "outcome": "left"
+    },
+    {
+      "name": "send-transactional-email",
+      "classification": "internal-only",
+      "signal": "called from src/services/bookingService.ts",
+      "outcome": "left"
+    },
+    {
+      "name": "send-whatsapp",
+      "classification": "internal-only",
+      "signal": "called from 2 src/ files",
+      "outcome": "left"
+    },
+    {
+      "name": "seo-crawl-request",
+      "classification": "internal-only",
+      "signal": "called from src/pages/admin/AdminSEORecovery.tsx",
+      "outcome": "left"
+    },
+    {
+      "name": "seo-hero-health",
+      "classification": "internal-only",
+      "signal": "called from src/pages/admin/AdminSEOHeroManager.tsx",
+      "outcome": "left"
+    },
+    {
+      "name": "seo-monitor-alert",
+      "classification": "cron target",
+      "signal": "checks CRON_SECRET header for CI/scheduled alerts",
+      "outcome": "left"
+    },
+    {
+      "name": "seo-position-cron",
+      "classification": "cron target",
+      "signal": "triggered by pg_cron with SEO_CRON_SECRET",
+      "outcome": "left"
+    },
+    {
+      "name": "seo-redirect-resolver",
+      "classification": "unknown",
+      "signal": "zero internal call sites \u2014 default to external",
+      "outcome": "left"
+    },
+    {
+      "name": "seo-url-verifier",
+      "classification": "internal-only",
+      "signal": "called from src/pages/admin/AdminSEOPriority.tsx",
+      "outcome": "left"
+    },
+    {
+      "name": "sitemap-validator",
+      "classification": "internal-only",
+      "signal": "called from src/components/admin/analytics/WebVitalsDashboard.tsx",
+      "outcome": "left"
+    },
+    {
+      "name": "track-analytics",
+      "classification": "internal-only",
+      "signal": "called from 4 src/ files",
+      "outcome": "left"
+    },
+    {
+      "name": "traveller-intelligence",
+      "classification": "cron target",
+      "signal": "checks CRON_SECRET header for daily bulk processing",
+      "outcome": "left"
+    },
+    {
+      "name": "update-channel-health",
+      "classification": "cron target",
+      "signal": "checks CRON_SECRET header for daily health computation",
+      "outcome": "left"
+    },
+    {
+      "name": "validate-booking",
+      "classification": "unknown",
+      "signal": "zero internal call sites \u2014 default to external",
+      "outcome": "left"
+    },
+    {
+      "name": "weekly-rank-tracker",
+      "classification": "cron target",
+      "signal": "scheduled weekly via pg_cron",
+      "outcome": "left"
+    }
   ]
 }

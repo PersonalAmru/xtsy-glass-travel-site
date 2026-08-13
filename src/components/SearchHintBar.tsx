@@ -52,7 +52,7 @@ const SEARCH_INDEX: SearchResult[] = [
 ];
 
 const PLACEHOLDER_HINTS = [
-  { text: 'Book dorm from ₹329/night', icon: '🛏️' },
+  { text: 'Book dorm from ₹369/night', icon: '🛏️' },
   { text: 'Explore Meghalaya', icon: '🏔️' },
   { text: 'Search North East India', icon: '🌿' },
   { text: 'XTSY 270° Glass Ensuite', icon: '✨' },
@@ -64,6 +64,8 @@ const PLACEHOLDER_HINTS = [
  * Detect visitor intent from UTM params, referrer, and current page
  */
 function detectVisitorIntent(): string[] {
+  // SSR-safe: no browser APIs during server rendering.
+  if (typeof window === 'undefined') return ['explore'];
   const params = new URLSearchParams(window.location.search);
   const utmSource = (params.get('utm_source') || '').toLowerCase();
   const utmMedium = (params.get('utm_medium') || '').toLowerCase();
@@ -71,6 +73,7 @@ function detectVisitorIntent(): string[] {
   const utmContent = (params.get('utm_content') || '').toLowerCase();
   const referrer = document.referrer.toLowerCase();
   const path = window.location.pathname.toLowerCase();
+
 
   const tags = new Set<string>();
 
