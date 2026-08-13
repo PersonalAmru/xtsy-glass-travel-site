@@ -9,7 +9,6 @@
     "sitemaps:audit": "tsx scripts/sitemapHealthAudit.ts",
     "prebuild": "tsx scripts/generateWorkerSlimMap.ts && npm run sitemaps:rebuild",
     "build": "vite build",
-    
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -18,7 +17,9 @@
     "seo:postdeploy": "tsx scripts/postDeploySchemaCheck.ts",
     "seo:postdeploy:live": "tsx scripts/postDeploySchemaCheck.ts --base https://xtsy.one --routes top",
     "verify:cdn-images": "tsx scripts/verify-cdn-images.ts",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "smoke": "tsx scripts/smoke-routes.ts",
+    "smoke:full": "tsx scripts/smoke-routes.ts --hydrate --sample 25"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

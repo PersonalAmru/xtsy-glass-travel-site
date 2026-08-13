@@ -50,22 +50,51 @@ Deno.serve(async (req) => {
   const SUPABASE_URL = Deno.env.get('SUPABASE_URL');
   const SERVICE_ROLE = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
 
-  if (!LOVABLE_API_KEY || !SEMRUSH_API_KEY) {
-    return json({ error: 'Semrush connector is not configured' }, 500);
-  }
   if (!SUPABASE_URL || !SERVICE_ROLE) {
     return json({ error: 'Backend credentials missing' }, 500);
   }
 
+  const supabase = createClient(SUPABASE_URL, SERVICE_ROLE);
+
   let dryRun = false;
+  let bodySecret = '';
   if (req.method === 'POST') {
     try {
       const body = await req.json();
       dryRun = body?.dryRun === true;
+      bodySecret = typeof body?.secret === 'string' ? body.secret : '';
     } catch { /* no body */ }
   }
 
-  const supabase = createClient(SUPABASE_URL, SERVICE_ROLE);
+  // ---- AUTH: cron shared secret OR an admin JWT. Never anonymous. -------
+  const cronSecret = Deno.env.get('CRON_SECRET');
+  const incomingSecret = req.headers.get('x-cron-secret') ?? bodySecret;
+  const authHeader = req.headers.get('Authorization');
+  let authorized = !!(cronSecret && incomingSecret && incomingSecret === cronSecret);
+  let callerId = 'cron';
+  if (!authorized && authHeader?.startsWith('Bearer ')) {
+    const userClient = createClient(SUPABASE_URL, Deno.env.get('SUPABASE_ANON_KEY')!, {
+      global: { headers: { Authorization: authHeader } },
+    });
+    const { data: userData } = await userClient.auth.getUser();
+    if (userData?.user) {
+      const { data: role } = await userClient.rpc('get_user_role');
+      authorized = role === 'admin';
+      callerId = userData.user.id;
+    }
+  }
+  if (!authorized) {
+    return json({ error: 'Unauthorized' }, 401);
+  }
+
+  // ---- RATE LIMIT: Semrush quota is finite; cap runs per caller. -------
+  const limited = await enforceRateLimit(supabase, callerId);
+  if (limited) return limited;
+
+  if (!LOVABLE_API_KEY || !SEMRUSH_API_KEY) {
+    return json({ error: 'Semrush connector is not configured' }, 500);
+  }
+
 
   // 1. Fetch the domain's organic keyword table from Semrush.
   const params = new URLSearchParams({
@@ -201,4 +230,65 @@ function json(body: unknown, status = 200) {
     status,
     headers: { ...corsHeaders, 'Content-Type': 'application/json' },
   });
+}
+
+/**
+ * Caps weekly-rank-tracker runs at 5 per hour per caller (cron or admin).
+ * Uses the shared `rate_limits` table; fails open only on infra errors.
+ */
+async function enforceRateLimit(
+  supabase: ReturnType<typeof createClient>,
+  callerId: string,
+): Promise<Response | null> {
+  const MAX = 5;
+  const WINDOW_MS = 60 * 60 * 1000;
+  const endpoint = 'weekly-rank-tracker';
+  const windowStart = new Date(Date.now() - WINDOW_MS);
+
+  try {
+    const { data: existing } = await supabase
+      .from('rate_limits')
+      .select('request_count, window_start')
+      .eq('ip_address', callerId)
+      .eq('endpoint', endpoint)
+      .gte('window_start', windowStart.toISOString())
+      .maybeSingle();
+
+    if (!existing) {
+      await supabase.from('rate_limits').insert({
+        ip_address: callerId,
+        endpoint,
+        request_count: 1,
+        window_start: new Date().toISOString(),
+        expires_at: new Date(Date.now() + WINDOW_MS).toISOString(),
+      });
+      return null;
+    }
+
+    if ((existing.request_count as number) >= MAX) {
+      const resetAt = new Date(new Date(existing.window_start as string).getTime() + WINDOW_MS);
+      return new Response(
+        JSON.stringify({ error: 'Rate limit exceeded', resetAt: resetAt.toISOString() }),
+        {
+          status: 429,
+          headers: {
+            ...corsHeaders,
+            'Content-Type': 'application/json',
+            'Retry-After': Math.max(1, Math.ceil((resetAt.getTime() - Date.now()) / 1000)).toString(),
+          },
+        },
+      );
+    }
+
+    await supabase
+      .from('rate_limits')
+      .update({ request_count: (existing.request_count as number) + 1 })
+      .eq('ip_address', callerId)
+      .eq('endpoint', endpoint)
+      .eq('window_start', existing.window_start as string);
+    return null;
+  } catch (e) {
+    console.error('[weekly-rank-tracker] rate limit check failed', e);
+    return null;
+  }
 }
