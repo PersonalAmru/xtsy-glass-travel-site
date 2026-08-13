@@ -20,7 +20,10 @@ interface TrackingLocation {
 }
 
 export const useComponentTracking = (location: TrackingLocation) => {
-  const { section, page = window.location.pathname } = location;
+  const {
+    section,
+    page = typeof window !== 'undefined' ? window.location.pathname : '',
+  } = location;
   const interactionCount = useRef(0);
   const startTime = useRef(Date.now());
 
