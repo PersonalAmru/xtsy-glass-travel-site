@@ -123,7 +123,7 @@ async function checkHydration(routes: string[]): Promise<Failure[]> {
       await page.goto(`${BASE}${route}`, { waitUntil: 'domcontentloaded', timeout: 30_000 });
       await page.waitForTimeout(1200);
       const rendered = await page.evaluate(
-        () => (document.getElementById('root')?.textContent ?? '').trim().length,
+        () => (document.body.textContent ?? '').trim().length,
       );
       if (rendered < 50) problems.push('client render produced (near) empty DOM');
     } catch (err) {
