@@ -37,7 +37,8 @@ const HeroSection = () => {
   
   const locationOptions = getLocationOptions();
 
-  const languages = ["Hello", "नमस्ते", "হ্যালো", "Hola", "Bonjour", "Hallo", "Ciao", "こんにちは", "안녕하세요", "Olá", "Привет", "مرحبا"];
+  // English-only greeting: rotating multilingual greetings caused non-English text on load
+  const languages = ["Hello"];
 
   // Language rotation
   useEffect(() => {
