@@ -123,6 +123,7 @@ export const useAggregateAvailability = (
               bookingsMap[dateStr] = {};
             }
             const roomType = booking.room_type;
+            if (!roomType) continue;
             bookingsMap[dateStr][roomType] = (bookingsMap[dateStr][roomType] || 0) + (booking.quantity || 1);
           }
         });
@@ -140,7 +141,7 @@ export const useAggregateAvailability = (
         const roomTypesTotal = roomTypes.length;
 
         roomTypes.forEach(roomType => {
-          const units = roomType.total_units;
+          const units = roomType.total_units ?? 0;
           totalUnits += units;
 
           // Get available from inventory or default to total units

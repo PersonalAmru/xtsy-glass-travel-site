@@ -72,7 +72,7 @@ export default function AdminGST() {
 
       const allInvoices = data || [];
       const monthlyInvoices = allInvoices.filter(inv => {
-        const date = new Date(inv.created_at);
+        const date = new Date(inv.created_at ?? 0);
         return date >= monthStart && date <= monthEnd;
       });
 

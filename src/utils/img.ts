@@ -96,7 +96,7 @@ export function buildHeroVariants(fullUrl: string): ImageVariants {
  * Check if image URL is a Supabase Storage URL
  */
 export function isSupabaseStorageUrl(url: string): boolean {
-  return url && url.includes('supabase.co/storage');
+  return !!url && url.includes('supabase.co/storage');
 }
 
 /**

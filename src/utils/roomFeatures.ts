@@ -29,7 +29,7 @@ export const generateStandardizedFeatures = (propertyType: string, roomName: str
     return [genderTag, "Only Bed", "Wi-Fi", "Hot water", "Mountain Views", "Attached washroom"].slice(0, 6);
   } else if (propertyType === 'hostel') {
     // XTSY Travellers Hostel: max 7 tags with conditional Female/Mixed
-    let features = [];
+    let features: string[] = [];
     
     // For private rooms (King Double/Triple), use specific features as per user specification
     if (roomType === 'private') {
