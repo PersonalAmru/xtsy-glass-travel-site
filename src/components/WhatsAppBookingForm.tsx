@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MessageCircle, Calendar, Users, Phone, Trash2, Home, AlertCircle, MapPin, Info, ChevronDown, ChevronUp, Sparkles, X, ArrowLeft, Gift } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { getRoomTypes } from "@/lib/rooms.functions";
 import { toast } from "@/hooks/use-toast";
 import { saveWhatsAppBooking } from "@/services/formBookingService";
 import FoodAddonsSection from "@/components/FoodAddonsSection";
@@ -174,7 +175,11 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
       
       try {
         console.log('Fetching room types...');
-        const { data, error } = await supabase.functions.invoke('get-room-types');
+        const data = await getRoomTypes().catch((e: unknown) => {
+          console.error('Error fetching room types:', e);
+          return null;
+        });
+        const error = data ? null : new Error('Failed to load room types');
 
         if (error) {
           console.error('Error fetching room types:', error);
