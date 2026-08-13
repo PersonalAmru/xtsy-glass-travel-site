@@ -120,6 +120,12 @@
   "version": "0.0.0",
   "overrides": {
     "d3-color": "^3.1.0",
-    "@babel/runtime": "^7.26.10"
+    "@babel/runtime": "^7.26.10",
+    "@tanstack/router-core": "1.171.15",
+    "@tanstack/react-router": "1.170.18"
+  },
+  "resolutions": {
+    "@tanstack/router-core": "1.171.15",
+    "@tanstack/react-router": "1.170.18"
   }
 }
