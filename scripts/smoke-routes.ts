@@ -152,13 +152,21 @@ async function main() {
     if (done % 25 === 0) console.log(`  … ${done}/${routes.length} checked`);
   });
 
-  console.log(`\nSSR: ${routes.length - ssrFailures.length}/${routes.length} passed`);
+  console.log(
+    `\nSSR: ${routes.length - ssrFailures.length}/${routes.length} passed ` +
+      `(${clientOnlyRoutes.size} client-only routes deferred to the hydration pass)`,
+  );
 
   let hydrationFailures: Failure[] = [];
   if (DO_HYDRATE) {
-    const step = Math.max(1, Math.floor(routes.length / SAMPLE));
-    const sample = routes.filter((_, i) => i % step === 0).slice(0, SAMPLE);
+    const ssrRoutes = routes.filter((r) => !clientOnlyRoutes.has(r));
+    const step = Math.max(1, Math.floor(ssrRoutes.length / Math.max(1, SAMPLE - 5)));
+    const sample = [
+      ...ssrRoutes.filter((_, i) => i % step === 0),
+      ...[...clientOnlyRoutes].slice(0, 5),
+    ].slice(0, SAMPLE);
     console.log(`\nHydration: checking ${sample.length} sampled routes…`);
+
     hydrationFailures = await checkHydration(sample);
     for (const f of hydrationFailures) console.log(`  ✗ ${f.route} — ${f.reason}`);
     console.log(`Hydration: ${sample.length - hydrationFailures.length}/${sample.length} passed`);
