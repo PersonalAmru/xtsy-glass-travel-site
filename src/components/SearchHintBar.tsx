@@ -52,7 +52,7 @@ const SEARCH_INDEX: SearchResult[] = [
 ];
 
 const PLACEHOLDER_HINTS = [
-  { text: 'Book dorm from ₹329/night', icon: '🛏️' },
+  { text: 'Book dorm from ₹369/night', icon: '🛏️' },
   { text: 'Explore Meghalaya', icon: '🏔️' },
   { text: 'Search North East India', icon: '🌿' },
   { text: 'XTSY 270° Glass Ensuite', icon: '✨' },
