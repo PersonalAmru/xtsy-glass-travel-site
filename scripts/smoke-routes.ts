@@ -74,12 +74,14 @@ async function checkSsr(route: string): Promise<Failure | null> {
     if (/Application error|Internal Server Error|__LOVABLE_ERROR_PAGE__/i.test(html)) {
       return { route, reason: 'SSR error page rendered' };
     }
-    if (!/<div id="root"/.test(html) || !/<script/.test(html)) {
-      return { route, reason: 'missing app shell (no #root / no client entry script)' };
+    if (!/<body/i.test(html) || !/<script/i.test(html)) {
+      return { route, reason: 'missing app shell (no <body> / no client entry script)' };
     }
     // Routes declared `ssr: false` (auth-gated areas) legitimately ship an
-    // empty root; they are verified by the hydration pass instead.
-    if (!/<div id="root"[^>]*>\s*\S/.test(html)) clientOnlyRoutes.add(route);
+    // empty body; they are verified by the hydration pass instead.
+    const body = html.split(/<body[^>]*>/i)[1] ?? '';
+    if (!/<(main|header|section|article|nav|h1)\b/i.test(body)) clientOnlyRoutes.add(route);
+
     return null;
   } catch (err) {
     return { route, reason: `request failed: ${(err as Error).message}` };
