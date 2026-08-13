@@ -139,7 +139,7 @@ export default function UserProfile() {
         email: e.email,
         whatsapp_number: e.phone,
         source: 'enquiry' as const
-      }));
+      })) as unknown as Booking[];
 
       // Combine and sort by date
       const combined = [...bookingsData, ...enquiriesAsBookings].sort(
