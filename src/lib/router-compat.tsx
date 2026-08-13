@@ -13,7 +13,7 @@ import {
   Navigate as TSNavigate,
   Outlet as TSOutlet,
 } from "@tanstack/react-router";
-import { useMemo, useCallback, forwardRef, type ComponentProps, type ReactNode } from "react";
+import { useMemo, useCallback, useEffect, useState, forwardRef, type ComponentProps, type ReactNode } from "react";
 
 // ---------- shared URL parsing ----------
 
@@ -156,3 +156,24 @@ export const Outlet = TSOutlet;
 // ---------- NavLink (minimal) ----------
 
 export const NavLink = Link;
+
+// ---------- useNavigationType (react-router-dom compat) ----------
+
+export type NavigationType = "POP" | "PUSH" | "REPLACE";
+
+let __lastNavAction: NavigationType = "POP";
+
+export function useNavigationType(): NavigationType {
+  const router = useRouter();
+  const [type, setType] = useState<NavigationType>(__lastNavAction);
+  useEffect(() => {
+    return router.history.subscribe(({ action }: { action?: { type?: string } }) => {
+      const t = action?.type;
+      const mapped: NavigationType =
+        t === "PUSH" ? "PUSH" : t === "REPLACE" ? "REPLACE" : "POP";
+      __lastNavAction = mapped;
+      setType(mapped);
+    });
+  }, [router]);
+  return type;
+}
