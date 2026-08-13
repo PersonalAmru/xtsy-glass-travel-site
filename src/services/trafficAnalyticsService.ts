@@ -1021,11 +1021,25 @@ class TrafficAnalyticsService {
   getClickQualityScore = () => this.computeClickQualityScore();
 }
 
-// Export singleton instance
-export const trafficAnalytics = new TrafficAnalyticsService();
+// Export singleton instance — lazily constructed so SSR never touches
+// localStorage/navigator at module evaluation. On the server every method
+// access resolves to a safe no-op.
+let _trafficAnalytics: TrafficAnalyticsService | undefined;
+
+const ssrNoop = () => undefined;
+
+export const trafficAnalytics = new Proxy({} as TrafficAnalyticsService, {
+  get(_, prop, receiver) {
+    if (typeof window === 'undefined') return ssrNoop;
+    if (!_trafficAnalytics) _trafficAnalytics = new TrafficAnalyticsService();
+    const value = Reflect.get(_trafficAnalytics, prop, receiver);
+    return typeof value === 'function' ? value.bind(_trafficAnalytics) : value;
+  },
+});
 
 // Export initialization function
 export const initTrafficAnalytics = async () => {
+  if (typeof window === 'undefined') return;
   await trafficAnalytics.initSession();
   trafficAnalytics.trackPageView();
 };

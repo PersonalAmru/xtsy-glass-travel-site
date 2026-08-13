@@ -357,8 +357,18 @@ class ConsentManagementService {
   }
 }
 
-// Export singleton instance
-export const consentManager = ConsentManagementService.getInstance();
+// Export singleton instance — lazily constructed so SSR never touches
+// localStorage at module evaluation. On the server every access is a no-op.
+const consentSsrNoop = () => undefined;
+
+export const consentManager = new Proxy({} as ConsentManagementService, {
+  get(_, prop, receiver) {
+    if (typeof window === 'undefined') return consentSsrNoop;
+    const instance = ConsentManagementService.getInstance();
+    const value = Reflect.get(instance, prop, receiver);
+    return typeof value === 'function' ? value.bind(instance) : value;
+  },
+});
 
 // Export convenience functions
 export const initConsent = () => consentManager.initialize();
