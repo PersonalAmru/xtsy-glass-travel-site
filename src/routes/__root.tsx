@@ -246,7 +246,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   }),
   shellComponent: RootShell,
   component: RootComponent,
-  notFoundComponent: NotFound,
+  notFoundComponent: () => <NotFound statusCode={404} />,
   errorComponent: RootErrorComponent,
 });
 

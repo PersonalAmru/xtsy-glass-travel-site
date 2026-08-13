@@ -119,7 +119,7 @@ export default function UserProfile() {
       const bookingsData: Booking[] = (bookingsResult.data || []).map(b => ({
         ...b,
         source: 'booking' as const
-      }));
+      })) as unknown as Booking[];
 
       const enquiriesAsBookings: Booking[] = (enquiriesResult.data || []).map(e => ({
         id: e.id,

@@ -153,9 +153,40 @@ export function Navigate({ to, replace, state }: { to: string; replace?: boolean
 
 export const Outlet = TSOutlet;
 
-// ---------- NavLink (minimal) ----------
+// ---------- NavLink (react-router-dom compat: function className/style/children) ----------
 
-export const NavLink = Link;
+type NavLinkRenderProps = { isActive: boolean };
+
+type NavLinkProps = Omit<ComponentProps<typeof Link>, "className" | "style" | "children" | "to"> & {
+  to: string;
+  end?: boolean;
+  className?: string | ((p: NavLinkRenderProps) => string);
+  style?: React.CSSProperties | ((p: NavLinkRenderProps) => React.CSSProperties);
+  children?: ReactNode | ((p: NavLinkRenderProps) => ReactNode);
+};
+
+export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(function NavLink(
+  { to, end, className, style, children, ...rest },
+  ref,
+) {
+  const location = useLocation();
+  const pathname = location.pathname;
+  const target = to.split("?")[0] ?? to;
+  const isActive = end
+    ? pathname === target
+    : pathname === target || pathname.startsWith(target.endsWith("/") ? target : `${target}/`);
+  return (
+    <Link
+      ref={ref}
+      to={to as never}
+      className={typeof className === "function" ? className({ isActive }) : className}
+      style={typeof style === "function" ? style({ isActive }) : style}
+      {...(rest as Record<string, unknown>)}
+    >
+      {typeof children === "function" ? children({ isActive }) : children}
+    </Link>
+  );
+});
 
 // ---------- useNavigationType (react-router-dom compat) ----------
 
