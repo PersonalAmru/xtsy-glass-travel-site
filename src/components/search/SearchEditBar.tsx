@@ -5,7 +5,7 @@
  */
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from '@/lib/router-compat';
 import { MapPin, Calendar, Users, Minus, Plus, ChevronDown, Check } from 'lucide-react';
 import { format, addDays } from 'date-fns';
 import { cn } from '@/lib/utils';

@@ -9,7 +9,7 @@
  *   - <NotFound> page already uses Header/Footer directly; this is the
  *     emergency net for cases where even NotFound fails to mount.
  */
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';

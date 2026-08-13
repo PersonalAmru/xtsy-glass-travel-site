@@ -1,5 +1,5 @@
 import { memo, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import { ChevronRight, MapPin, Compass, Droplets, Mountain, Trees, Waves, Footprints, ExternalLink } from 'lucide-react';
 import { EXPLORER_CATEGORIES, type ExplorerCategory } from '@/data/seoLinkingWheel';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';

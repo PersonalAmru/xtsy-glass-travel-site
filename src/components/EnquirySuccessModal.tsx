@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { format, parseISO, differenceInDays } from 'date-fns';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/lib/router-compat';
 import { numberToWordsINR } from '@/utils/numberToWords';
 
 interface RoomSelectionDetail {

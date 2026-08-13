@@ -6,7 +6,7 @@
  */
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from '@/lib/router-compat';
 import { Search, X, ArrowRight, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { logSearchQuery, logSearchClick } from '@/lib/searchAnalytics';

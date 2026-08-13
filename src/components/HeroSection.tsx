@@ -5,7 +5,7 @@
  */
 
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@/lib/router-compat";
 import { ChevronDown } from "lucide-react";
 import { SearchHintBar } from "@/components/SearchHintBar";
 import { supabase } from "@/integrations/supabase/client";

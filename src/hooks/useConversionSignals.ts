@@ -15,7 +15,7 @@
  */
 
 import { useEffect, useRef, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from '@/lib/router-compat';
 import { routeGTMEvent } from '@/utils/gtmEventRouter';
 
 interface SessionSignals {

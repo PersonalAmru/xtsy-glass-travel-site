@@ -4,7 +4,7 @@
  * Renders as a structured internal link block for SEO crawlers.
  */
 import { memo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 
 interface LinkGroup {
   title: string;

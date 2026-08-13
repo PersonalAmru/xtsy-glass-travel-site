@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import { X, Sparkles, ArrowRight, Star, Clock } from 'lucide-react';
 import { getDestinationImageUrl } from '@/data/meghalayaDestinations';
 

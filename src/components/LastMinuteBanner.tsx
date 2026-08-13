@@ -4,7 +4,7 @@
  */
 import { memo } from 'react';
 import { Flame, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import { getBookableRooms, getSimulatedAvailability, isMayPricingActive } from '@/data/roomInventory';
 import { formatLocalDateString } from '@/lib/date-utils';
 import { cn } from '@/lib/utils';

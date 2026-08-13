@@ -6,7 +6,7 @@
 
 import { memo, useState, useMemo, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "@/lib/router-compat";
 import { motion } from "framer-motion";
 import { differenceInDays, format, parseISO } from "date-fns";
 import {
