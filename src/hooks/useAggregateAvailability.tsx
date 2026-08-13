@@ -102,6 +102,7 @@ export const useAggregateAvailability = (
       const inventoryMap: Record<string, Record<string, number>> = {};
       if (inventory) {
         inventory.forEach(item => {
+          if (!item.room_type_id) return;
           if (!inventoryMap[item.date]) {
             inventoryMap[item.date] = {};
           }

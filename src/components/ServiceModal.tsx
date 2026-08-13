@@ -44,7 +44,7 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       'Flexible Check-in': ['XTSY Travellers Hostel ✅', 'XTSY Economy ❗ Strictly NOT allowed', 'Experience by XTSY ✅']
     };
 
-    return amenityMatrix[serviceTitle] || ['XTSY Travellers Hostel ✅', 'Experience by XTSY ✅'];
+    return (amenityMatrix as Record<string, string[]>)[serviceTitle] || ['XTSY Travellers Hostel ✅', 'Experience by XTSY ✅'];
   };
 
   // Enhanced special notes with property-specific access rules
@@ -128,7 +128,7 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       ]
     };
 
-    return accessRules[serviceTitle] || [];
+    return (accessRules as Record<string, { property: string; note: string; type: string }[]>)[serviceTitle] || [];
   };
 
   const propertyTags = getPropertyTags(service.title);

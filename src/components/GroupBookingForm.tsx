@@ -137,8 +137,8 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
         p_guest_name: formData.groupName || 'Guest',
         p_email: formData.email || 'inquiry@xtsy.one',
         p_whatsapp_number: formData.phone || '+910000000000',
-        p_city: formData.city || null,
-        p_pincode: formData.pincode || null,
+        p_city: formData.city || undefined,
+        p_pincode: formData.pincode || undefined,
         p_check_in: formData.checkIn || new Date().toISOString().split('T')[0],
         p_check_out: formData.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
         p_guests: formData.guests || 20,
@@ -148,7 +148,7 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
         p_subtotal: totalPrice,
         p_taxes: gst,
         p_total_amount: finalTotal,
-        p_special_requests: formData.specialRequests || null
+        p_special_requests: formData.specialRequests || undefined
       });
 
       // Log error but don't block WhatsApp redirect
