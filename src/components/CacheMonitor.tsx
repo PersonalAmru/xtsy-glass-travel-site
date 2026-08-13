@@ -21,7 +21,7 @@ export function CacheMonitor() {
     setLoading(true);
     const endpoints = [
       { name: 'get-room-availability', fn: 'get-room-availability', body: { room_type_name: 'Deluxe Room', start_date: new Date().toISOString().split('T')[0], end_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] } },
-      { name: 'get-room-types', fn: 'get-room-types', body: {} },
+      
       { name: 'fetch-exchange-rates', fn: 'fetch-exchange-rates', body: {} },
     ];
 
