@@ -132,15 +132,42 @@ const TourDetail = () => {
     ],
   };
 
+  // FAQPage schema — powers FAQ rich results and gives AI answer engines
+  // clean question/answer pairs to cite.
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+
+  // Answer-first summary (~45 words) for GEO / AI citation.
+  const answerBlock = `${tour.title} is a ${tour.duration} ${tour.category} tour in ${tour.location} priced from ${displayPrice} per person. It is rated ${tour.difficulty} difficulty, runs best in ${tour.bestSeason}${tour.groupSize ? `, with group sizes of ${tour.groupSize}` : ''}. Booking direct with XTSY includes transport, permits and a local expert guide.`;
+
+  const quickFacts: Array<{ label: string; value: string }> = [
+    { label: 'Price (per person)', value: displayPrice },
+    { label: 'Duration', value: tour.duration },
+    { label: 'Location', value: tour.location },
+    { label: 'Difficulty', value: tour.difficulty },
+    { label: 'Best season', value: tour.bestSeason },
+    ...(tour.groupSize ? [{ label: 'Group size', value: tour.groupSize }] : []),
+    { label: 'Category', value: String(tour.category) },
+    { label: 'Booking', value: 'Direct with XTSY — no OTA commission' },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <SEOHead
-        title={`${tour.title} — XTSY Travel | ${tour.location}`}
-        description={tour.description}
-        keywords={`${tour.title}, ${tour.location} tour, ${tour.category} tour, XTSY Travel`}
+        title={`${tour.title} — ${tour.duration} from ${displayPrice} | XTSY Travel`}
+        description={`${tour.description}`.slice(0, 155)}
+        keywords={`${tour.title}, ${tour.location} tour, ${tour.category} tour, ${tour.duration} Meghalaya package, XTSY Travel`}
         canonicalUrl={tourUrl}
-        structuredData={[tourSchema, tourBreadcrumb]}
+        structuredData={[tourSchema, tourBreadcrumb, faqSchema]}
       />
+
       <Header />
 
       <main className="flex-1">
