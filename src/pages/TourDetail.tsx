@@ -262,6 +262,43 @@ const TourDetail = () => {
                 </div>
               </div>
 
+              {/* Answer-first summary — optimised for AI answer engines & featured snippets */}
+              <section
+                aria-label="Quick answer"
+                className="mb-6 rounded-2xl border border-emerald-500/25 bg-emerald-500/5 p-4 sm:p-5"
+              >
+                <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-emerald-400">
+                  In short
+                </h2>
+                <p className="text-sm leading-relaxed text-white/85">{answerBlock}</p>
+              </section>
+
+              {/* Scannable comparison / quick-facts table */}
+              <section aria-labelledby="tour-facts-heading" className="mb-8">
+                <h2 id="tour-facts-heading" className="mb-3 font-playfair text-xl font-bold text-white">
+                  {tour.title} at a glance
+                </h2>
+                <div className="overflow-hidden rounded-xl border border-border/30">
+                  <table className="w-full text-sm">
+                    <tbody>
+                      {quickFacts.map((f, i) => (
+                        <tr
+                          key={f.label}
+                          className={i % 2 === 0 ? 'bg-card/40' : 'bg-card/20'}
+                        >
+                          <th scope="row" className="w-1/2 px-4 py-2.5 text-left font-medium text-white/70">
+                            {f.label}
+                          </th>
+                          <td className="px-4 py-2.5 text-white">{f.value}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+
+
               {/* Tabs */}
               <Tabs defaultValue="overview" className="mb-10">
                 <TabsList className="bg-card/50 border border-border/30 w-full justify-start overflow-x-auto">
