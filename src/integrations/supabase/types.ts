@@ -4360,6 +4360,60 @@ export type Database = {
         }
         Relationships: []
       }
+      tour_pricing: {
+        Row: {
+          compare_at_price: number | null
+          competitor_name: string | null
+          competitor_price: number | null
+          created_at: string
+          duration: string | null
+          id: string
+          is_active: boolean
+          min_group: number | null
+          notes: string | null
+          price_per_person: number
+          region: string | null
+          slug: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          compare_at_price?: number | null
+          competitor_name?: string | null
+          competitor_price?: number | null
+          created_at?: string
+          duration?: string | null
+          id?: string
+          is_active?: boolean
+          min_group?: number | null
+          notes?: string | null
+          price_per_person: number
+          region?: string | null
+          slug: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          compare_at_price?: number | null
+          competitor_name?: string | null
+          competitor_price?: number | null
+          created_at?: string
+          duration?: string | null
+          id?: string
+          is_active?: boolean
+          min_group?: number | null
+          notes?: string | null
+          price_per_person?: number
+          region?: string | null
+          slug?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       tours: {
         Row: {
           best_season: string | null
