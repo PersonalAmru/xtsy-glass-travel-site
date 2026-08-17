@@ -42,6 +42,7 @@ import {
   Inbox,
   Target,
   LineChart,
+  Tag,
 } from 'lucide-react';
 
 interface UnifiedAdminLayoutProps {
