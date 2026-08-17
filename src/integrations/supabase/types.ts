@@ -6237,6 +6237,7 @@ export type Database = {
         Args: { _property_id: string; _user_id: string }
         Returns: boolean
       }
+      location_prefs_insert_allowed: { Args: never; Returns: boolean }
       log_booking_access_attempt: {
         Args: {
           p_access_type: string
