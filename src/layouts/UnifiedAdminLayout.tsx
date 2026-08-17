@@ -42,6 +42,7 @@ import {
   Inbox,
   Target,
   LineChart,
+  Tag,
 } from 'lucide-react';
 
 interface UnifiedAdminLayoutProps {
@@ -60,6 +61,7 @@ const menuItems = [
   { id: 'seo-workflow', label: 'SEO Workflow', icon: Sparkles, path: '/admin/seo/workflow' },
   { id: 'seo-competitors', label: 'Competitor Analysis', icon: Target, path: '/admin/seo/competitors' },
   { id: 'seo-tracking', label: 'Position Tracking', icon: LineChart, path: '/admin/seo/tracking' },
+  { id: 'tour-pricing', label: 'Tour Pricing', icon: Tag, path: '/admin/tour-pricing' },
   { id: 'security', label: 'Security', icon: Shield, path: '/admin/security' },
 ];
 

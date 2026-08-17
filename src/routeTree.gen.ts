@@ -82,6 +82,7 @@ import { Route as AdminPropertiesRouteImport } from './routes/admin/properties'
 import { Route as AdminReviewsRouteImport } from './routes/admin/reviews'
 import { Route as AdminSearchRouteImport } from './routes/admin/search'
 import { Route as AdminSecurityRouteImport } from './routes/admin/security'
+import { Route as AdminTourPricingRouteImport } from './routes/admin/tour-pricing'
 import { Route as AdminToursRouteImport } from './routes/admin/tours'
 import { Route as AdminTrafficRouteImport } from './routes/admin/traffic'
 import { Route as AdminWhatsappRouteImport } from './routes/admin/whatsapp'
@@ -486,6 +487,11 @@ const AdminSecurityRoute = AdminSecurityRouteImport.update({
   path: '/admin/security',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminTourPricingRoute = AdminTourPricingRouteImport.update({
+  id: '/admin/tour-pricing',
+  path: '/admin/tour-pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminToursRoute = AdminToursRouteImport.update({
   id: '/admin/tours',
   path: '/admin/tours',
@@ -713,6 +719,7 @@ export interface FileRoutesByFullPath {
   '/admin/reviews': typeof AdminReviewsRoute
   '/admin/search': typeof AdminSearchRoute
   '/admin/security': typeof AdminSecurityRoute
+  '/admin/tour-pricing': typeof AdminTourPricingRoute
   '/admin/tours': typeof AdminToursRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/whatsapp': typeof AdminWhatsappRoute
@@ -818,6 +825,7 @@ export interface FileRoutesByTo {
   '/admin/reviews': typeof AdminReviewsRoute
   '/admin/search': typeof AdminSearchRoute
   '/admin/security': typeof AdminSecurityRoute
+  '/admin/tour-pricing': typeof AdminTourPricingRoute
   '/admin/tours': typeof AdminToursRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/whatsapp': typeof AdminWhatsappRoute
@@ -924,6 +932,7 @@ export interface FileRoutesById {
   '/admin/reviews': typeof AdminReviewsRoute
   '/admin/search': typeof AdminSearchRoute
   '/admin/security': typeof AdminSecurityRoute
+  '/admin/tour-pricing': typeof AdminTourPricingRoute
   '/admin/tours': typeof AdminToursRoute
   '/admin/traffic': typeof AdminTrafficRoute
   '/admin/whatsapp': typeof AdminWhatsappRoute
@@ -1031,6 +1040,7 @@ export interface FileRouteTypes {
     | '/admin/reviews'
     | '/admin/search'
     | '/admin/security'
+    | '/admin/tour-pricing'
     | '/admin/tours'
     | '/admin/traffic'
     | '/admin/whatsapp'
@@ -1136,6 +1146,7 @@ export interface FileRouteTypes {
     | '/admin/reviews'
     | '/admin/search'
     | '/admin/security'
+    | '/admin/tour-pricing'
     | '/admin/tours'
     | '/admin/traffic'
     | '/admin/whatsapp'
@@ -1241,6 +1252,7 @@ export interface FileRouteTypes {
     | '/admin/reviews'
     | '/admin/search'
     | '/admin/security'
+    | '/admin/tour-pricing'
     | '/admin/tours'
     | '/admin/traffic'
     | '/admin/whatsapp'
@@ -1347,6 +1359,7 @@ export interface RootRouteChildren {
   AdminReviewsRoute: typeof AdminReviewsRoute
   AdminSearchRoute: typeof AdminSearchRoute
   AdminSecurityRoute: typeof AdminSecurityRoute
+  AdminTourPricingRoute: typeof AdminTourPricingRoute
   AdminToursRoute: typeof AdminToursRoute
   AdminTrafficRoute: typeof AdminTrafficRoute
   AdminWhatsappRoute: typeof AdminWhatsappRoute
@@ -1893,6 +1906,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSecurityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/tour-pricing': {
+      id: '/admin/tour-pricing'
+      path: '/admin/tour-pricing'
+      fullPath: '/admin/tour-pricing'
+      preLoaderRoute: typeof AdminTourPricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/tours': {
       id: '/admin/tours'
       path: '/admin/tours'
@@ -2179,6 +2199,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminReviewsRoute: AdminReviewsRoute,
   AdminSearchRoute: AdminSearchRoute,
   AdminSecurityRoute: AdminSecurityRoute,
+  AdminTourPricingRoute: AdminTourPricingRoute,
   AdminToursRoute: AdminToursRoute,
   AdminTrafficRoute: AdminTrafficRoute,
   AdminWhatsappRoute: AdminWhatsappRoute,
