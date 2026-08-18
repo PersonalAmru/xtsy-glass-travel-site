@@ -13,6 +13,7 @@ import {
   useRouter,
 } from "@tanstack/react-router";
 import { lazy, memo, Suspense, useEffect, type ReactNode } from "react";
+import { trackAIReferral } from "@/utils/aiReferralTracking";
 import { HelmetProvider } from "react-helmet-async";
 
 import appCss from "../styles.css?url";
@@ -206,13 +207,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
-        rel: "preload",
-        as: "image",
-        href: "/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif",
-        fetchPriority: "high",
-        type: "image/avif",
-      },
-      {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
       },
@@ -371,6 +365,12 @@ const RouteBoundary = memo(({ children }: { children: ReactNode }) => (
 RouteBoundary.displayName = "RouteBoundary";
 
 function RootComponent() {
+  // Label AI-assistant referrals (ChatGPT / Perplexity / Gemini …) for the
+  // GA4 "AI assistant traffic" segment. Diagnostic only — never a conversion.
+  useEffect(() => {
+    trackAIReferral();
+  }, []);
+
   useEffect(() => {
     if (nonCriticalInitDone) return;
     nonCriticalInitDone = true;

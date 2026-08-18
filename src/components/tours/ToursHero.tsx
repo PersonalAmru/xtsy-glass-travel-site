@@ -4,6 +4,8 @@ import { Search, MapPin, Clock, Calendar, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import heroImg from "@/assets/tours-hero-mountains.jpg";
+import hero900 from "@/assets/tours-hero-mountains-900.webp";
+import hero1600 from "@/assets/tours-hero-mountains-1600.webp";
 
 const DESTINATIONS = [
   { value: "all", label: "All Destinations" },
@@ -71,6 +73,8 @@ const ToursHero = ({ onSearch }: ToursHeroProps) => {
       {/* Background */}
       <img
         src={heroImg}
+        srcSet={`${hero900} 900w, ${hero1600} 1600w, ${heroImg} 1920w`}
+        sizes="100vw"
         alt="Mountains and pine forests of Northeast India under starry skies"
         className="absolute inset-0 w-full h-full object-cover"
         fetchPriority="high"

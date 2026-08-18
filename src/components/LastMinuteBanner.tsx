@@ -22,8 +22,10 @@ const LastMinuteBanner = memo(({ className }: LastMinuteBannerProps) => {
   // getSimulatedAvailability is time-of-day based, so the SSR (UTC) and client
   // (local) values can differ. Render the capped value first and refine after
   // mount to avoid a hydration mismatch.
+  const [mounted, setMounted] = useState(false);
   const [totalAvailable, setTotalAvailable] = useState(5);
   useEffect(() => {
+    setMounted(true);
     setTotalAvailable(
       Math.min(5, rooms.reduce((sum, r) => sum + getSimulatedAvailability(r.id), 0))
     );
@@ -55,7 +57,7 @@ const LastMinuteBanner = memo(({ className }: LastMinuteBannerProps) => {
           )}
           <div className="flex flex-wrap gap-3 mt-3">
             {rooms.slice(0, 3).map(room => {
-              const avail = getSimulatedAvailability(room.id);
+              const avail = mounted ? getSimulatedAvailability(room.id) : 1;
               return (
                 <span key={room.id} className="text-xs bg-white/80 border border-orange-200 rounded-full px-3 py-1 text-slate-700">
                   {room.shortName} · ₹{room.discountedPrice} · {avail} left

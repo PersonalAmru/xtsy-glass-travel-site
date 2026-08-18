@@ -20,9 +20,18 @@ export interface RouteHeadInput {
   image?: string;
   ogType?: "website" | "article" | "product";
   noIndex?: boolean;
+  /**
+   * Above-the-fold hero image URL. Emitted as <link rel="preload" as="image">
+   * so mobile browsers start the LCP fetch during HTML parse.
+   */
+  preloadImage?: string;
+  /** Optional responsive srcset/sizes for the preloaded hero image. */
+  preloadImageSrcSet?: string;
+  preloadImageSizes?: string;
   /** JSON-LD objects rendered as <script type="application/ld+json"> */
   jsonLd?: Array<Record<string, unknown>>;
 }
+
 
 export function canonicalFor(path: string): string {
   if (!path || path === "/") return `${SITE_URL}/`;
@@ -55,7 +64,26 @@ export function buildRouteHead(input: RouteHeadInput) {
       { name: "twitter:description", content: input.description },
       { name: "twitter:image", content: image },
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: [
+      { rel: "canonical", href: url },
+      ...(input.preloadImage
+        ? [
+            {
+              rel: "preload",
+              as: "image",
+              href: input.preloadImage,
+              ...(input.preloadImageSrcSet
+                ? {
+                    imageSrcSet: input.preloadImageSrcSet,
+                    imageSizes: input.preloadImageSizes || "100vw",
+                  }
+                : {}),
+              fetchPriority: "high" as const,
+            },
+          ]
+        : []),
+    ],
+
     ...(input.jsonLd?.length
       ? {
           scripts: input.jsonLd.map((schema) => ({
