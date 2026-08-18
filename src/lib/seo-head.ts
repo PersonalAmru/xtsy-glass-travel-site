@@ -61,7 +61,20 @@ export function buildRouteHead(input: RouteHeadInput) {
       { name: "twitter:description", content: input.description },
       { name: "twitter:image", content: image },
     ],
-    links: [{ rel: "canonical", href: url }],
+    links: [
+      { rel: "canonical", href: url },
+      ...(input.preloadImage
+        ? [
+            {
+              rel: "preload",
+              as: "image",
+              href: input.preloadImage,
+              fetchPriority: "high",
+            },
+          ]
+        : []),
+    ],
+
     ...(input.jsonLd?.length
       ? {
           scripts: input.jsonLd.map((schema) => ({
