@@ -20,7 +20,7 @@ import nagalandHornbillImg from '@/assets/nagaland-hornbill-premium.jpg';
 
 interface TrendingDestination {
   name: string;
-  /** Full route path the card links to (e.g. "/places-to-visit/dawki-umngot-river"). */
+  /** Full route path the card links to (e.g. "/destinations/meghalaya/dawki/dawki-umngot-river"). */
   href: string;
   /** Image key in knownImageIndices (Meghalaya destinations). Optional when imageOverride is set. */
   imageKey?: string;
@@ -35,21 +35,21 @@ interface TrendingDestination {
 // cards route to /travel. XTSY 270 keeps its dedicated route.
 const TRENDING: TrendingDestination[] = [
   // Meghalaya — DestinationDetail route
-  { name: 'Dawki – Umngot River', href: '/places-to-visit/dawki-umngot-river', imageKey: 'dawki-umngot-river', tagline: 'Crystal-clear waters & glass-bottom boating', category: 'River', location: 'Meghalaya' },
-  { name: 'Nohkalikai Falls', href: '/places-to-visit/nohkalikai-falls', imageKey: 'nohkalikai-falls', tagline: "India's tallest plunge waterfall at 340m", category: 'Waterfall', location: 'Meghalaya' },
-  { name: 'Mawlynnong Village', href: '/places-to-visit/mawlynnong-village', imageKey: 'mawlynnong-village', tagline: "Asia's cleanest village experience", category: 'Village', location: 'Meghalaya' },
-  { name: 'Laitlum Canyons', href: '/places-to-visit/laitlum-canyons', imageKey: 'laitlum-canyons', tagline: 'Dramatic canyon views above the clouds', category: 'Viewpoint', location: 'Meghalaya' },
-  { name: 'Nongriat Root Bridge', href: '/places-to-visit/double-decker-living-root-bridge', imageKey: 'double-decker-living-root-bridge', tagline: 'Trek to the iconic double-decker bridge', category: 'Trek', location: 'Meghalaya' },
+  { name: 'Dawki – Umngot River', href: '/destinations/meghalaya/dawki/dawki-umngot-river', imageKey: 'dawki-umngot-river', tagline: 'Crystal-clear waters & glass-bottom boating', category: 'River', location: 'Meghalaya' },
+  { name: 'Nohkalikai Falls', href: '/destinations/meghalaya/cherrapunji/nohkalikai-falls', imageKey: 'nohkalikai-falls', tagline: "India's tallest plunge waterfall at 340m", category: 'Waterfall', location: 'Meghalaya' },
+  { name: 'Mawlynnong Village', href: '/destinations/meghalaya/mawlynnong/mawlynnong-village', imageKey: 'mawlynnong-village', tagline: "Asia's cleanest village experience", category: 'Village', location: 'Meghalaya' },
+  { name: 'Laitlum Canyons', href: '/destinations/meghalaya/shillong/laitlum-canyons', imageKey: 'laitlum-canyons', tagline: 'Dramatic canyon views above the clouds', category: 'Viewpoint', location: 'Meghalaya' },
+  { name: 'Nongriat Root Bridge', href: '/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge', imageKey: 'double-decker-living-root-bridge', tagline: 'Trek to the iconic double-decker bridge', category: 'Trek', location: 'Meghalaya' },
 
   // XTSY 270 Romantic Escape
   { name: 'Romantic Meghalaya Escape', href: '/xtsy-270', tagline: '270° glasshouse glamping under the stars', category: 'Romantic', location: 'Shillong', imageOverride: xtsy270Stargazing },
 
   // More Meghalaya — DestinationDetail route
-  { name: 'Umiam Lake', href: '/places-to-visit/umiam-lake', imageKey: 'umiam-lake', tagline: 'Scenic lake surrounded by pine hills', category: 'Lake', location: 'Meghalaya' },
-  { name: 'Elephant Falls', href: '/places-to-visit/elephant-falls', imageKey: 'elephant-falls', tagline: 'Three-tiered waterfall near Shillong', category: 'Waterfall', location: 'Meghalaya' },
-  { name: 'Krang Suri Falls', href: '/places-to-visit/krang-suri-falls', imageKey: 'krang-suri-falls', tagline: 'Turquoise pool hidden in Jaintia Hills', category: 'Waterfall', location: 'Meghalaya' },
-  { name: 'Mawsmai Cave', href: '/places-to-visit/mawsmai-cave', imageKey: 'mawsmai-cave', tagline: 'Walk through ancient limestone formations', category: 'Cave', location: 'Meghalaya' },
-  { name: 'Seven Sisters Falls', href: '/places-to-visit/seven-sisters-falls', imageKey: 'seven-sisters-falls', tagline: 'Multiple cascades down dramatic cliffs', category: 'Waterfall', location: 'Meghalaya' },
+  { name: 'Umiam Lake', href: '/destinations/meghalaya/shillong/umiam-lake', imageKey: 'umiam-lake', tagline: 'Scenic lake surrounded by pine hills', category: 'Lake', location: 'Meghalaya' },
+  { name: 'Elephant Falls', href: '/destinations/meghalaya/shillong/elephant-falls', imageKey: 'elephant-falls', tagline: 'Three-tiered waterfall near Shillong', category: 'Waterfall', location: 'Meghalaya' },
+  { name: 'Krang Suri Falls', href: '/destinations/meghalaya/jowai/krang-suri-falls', imageKey: 'krang-suri-falls', tagline: 'Turquoise pool hidden in Jaintia Hills', category: 'Waterfall', location: 'Meghalaya' },
+  { name: 'Mawsmai Cave', href: '/destinations/meghalaya/cherrapunji/mawsmai-cave', imageKey: 'mawsmai-cave', tagline: 'Walk through ancient limestone formations', category: 'Cave', location: 'Meghalaya' },
+  { name: 'Seven Sisters Falls', href: '/destinations/meghalaya/cherrapunji/seven-sisters-falls', imageKey: 'seven-sisters-falls', tagline: 'Multiple cascades down dramatic cliffs', category: 'Waterfall', location: 'Meghalaya' },
 
   // Northeast India
   { name: 'Tawang Monastery', href: '/travel', tagline: "India's largest Buddhist monastery at 10,000 ft", category: 'Spiritual', location: 'Arunachal Pradesh', imageOverride: tawangMonasteryImg },

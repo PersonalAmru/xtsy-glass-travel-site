@@ -1,3 +1,4 @@
+import { destinationPath } from '@/data/neTaxonomy';
 import { Link, useLocation, useNavigate } from "@/lib/router-compat";
 import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
@@ -91,7 +92,7 @@ const NotFound = ({ statusCode }: NotFoundProps) => {
     ).map((l) => ({ label: l.label, to: l.to }));
     const fromDest = meghalayaDestinations
       .filter((d) => d.name.toLowerCase().includes(q))
-      .map((d) => ({ label: d.name, to: `/places-to-visit/${d.slug}` }));
+      .map((d) => ({ label: d.name, to: destinationPath(d.slug) }));
     return [...fromLinks, ...fromDest].slice(0, 8);
   }, [query]);
 
@@ -199,7 +200,7 @@ const NotFound = ({ statusCode }: NotFoundProps) => {
               {popular.map((d) => (
                 <Link
                   key={d.slug}
-                  to={`/places-to-visit/${d.slug}`}
+                  to={destinationPath(d.slug)}
                   className="group relative overflow-hidden rounded-xl border border-border bg-card aspect-[4/3] focus:outline-hidden focus:ring-2 focus:ring-primary"
                   aria-label={`Visit ${d.name} guide`}
                 >

@@ -1,3 +1,4 @@
+import { destinationPath } from '@/data/neTaxonomy';
 import { Link } from '@/lib/router-compat';
 import { MapPin, BedDouble, CalendarCheck } from 'lucide-react';
 import { getDestinationBySlug } from '@/data/meghalayaDestinations';
@@ -62,7 +63,7 @@ const PlanTripLinks = ({ slugs, bookingAnchor, heading, source }: PlanTripLinksP
             {destinations.map((d) => (
               <li key={d.slug}>
                 <Link
-                  to={`/places-to-visit/${d.slug}`}
+                  to={destinationPath(d.slug)}
                   className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                 >
                   <MapPin className="h-4 w-4 flex-shrink-0" />

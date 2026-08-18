@@ -1,3 +1,4 @@
+import { destinationPath } from '@/data/neTaxonomy';
 import { Link } from '@/lib/router-compat';
 import { Helmet } from 'react-helmet-async';
 import { MapPin, Waves, Mountain, Home, Droplets, Eye, Trees } from 'lucide-react';
@@ -59,7 +60,7 @@ const PlacesToVisitMeghalaya = () => {
             '@type': 'ListItem',
             position: i + 1,
             name: d.name,
-            url: `https://xtsy.one/places-to-visit/${d.slug}`,
+            url: `https://xtsy.one${destinationPath(d.slug)}`,
           })),
       },
     ],
@@ -116,7 +117,7 @@ const PlacesToVisitMeghalaya = () => {
                     {items.map((d) => (
                       <Link
                         key={d.slug}
-                        to={`/places-to-visit/${d.slug}`}
+                        to={destinationPath(d.slug)}
                         className="group rounded-xl border border-border p-4 transition-colors hover:border-primary/40 hover:bg-muted/50"
                       >
                         <span className="flex items-center gap-2 font-semibold text-foreground group-hover:text-primary">

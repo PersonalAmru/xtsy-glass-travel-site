@@ -1,3 +1,4 @@
+import { destinationPath } from '@/data/neTaxonomy';
 import { useState, useCallback, useMemo } from 'react';
 import { Link } from '@/lib/router-compat';
 import { MapPin, ArrowRight } from 'lucide-react';
@@ -34,7 +35,7 @@ const DestinationCard = ({ destination, className = '' }: DestinationCardProps) 
 
   return (
     <Link
-      to={`/places-to-visit/${destination.slug}`}
+      to={destinationPath(destination.slug)}
       className={`group block rounded-xl overflow-hidden bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg ${className}`}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-muted">
