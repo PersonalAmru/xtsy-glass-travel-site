@@ -22,7 +22,7 @@ import {
   meghalayaDestinations,
   type MeghalayaDestination,
 } from '@/data/meghalayaDestinations';
-import { destinationPath, getCitySlugForDestination, getStateBySlug, getCityBySlug } from '@/data/neTaxonomy';
+import { destinationPath, getCitySlugForDestination, getCityBySlug } from '@/data/neTaxonomy';
 
 const DestinationDetail = () => {
   const params = useParams<{ slug?: string; attraction?: string }>();
