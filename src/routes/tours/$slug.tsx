@@ -85,6 +85,7 @@ export const Route = createFileRoute("/tours/$slug")({
       description: String(tour.description).slice(0, 155),
       keywords: `${tour.title}, ${tour.location} tour, ${tour.category} tour, ${tour.duration} Meghalaya package, XTSY Travel`,
       image: tour.image,
+      preloadImage: tour.image,
       ogType: "product",
       jsonLd: [tourSchema, breadcrumb],
     });
