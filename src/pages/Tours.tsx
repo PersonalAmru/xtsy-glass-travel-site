@@ -160,7 +160,6 @@ const Tours = () => {
       />
       {/* LCP hero preload — mobile-first money page */}
       <Helmet>
-        <link rel="preload" as="image" href={toursHeroImg} {...({ fetchpriority: 'high' } as any)} />
         <script type="application/ld+json">{JSON.stringify(itemListSchema)}</script>
       </Helmet>
       <Header />
