@@ -48,7 +48,7 @@ const LastMinuteBanner = memo(({ className }: LastMinuteBannerProps) => {
             🔥 Available Today in Shillong
           </h3>
           <p className="text-sm text-slate-700 mt-1">
-            {totalAvailable} beds available tonight · Starting from <span className="text-orange-600 font-semibold">₹{lowestPrice}/night</span>
+            <span suppressHydrationWarning>{totalAvailable}</span> beds available tonight · Starting from <span className="text-orange-600 font-semibold">₹{lowestPrice}/night</span>
           </p>
           {showPriceHike && (
             <p className="text-xs text-red-600 font-medium mt-1.5 flex items-center gap-1">
@@ -59,7 +59,7 @@ const LastMinuteBanner = memo(({ className }: LastMinuteBannerProps) => {
             {rooms.slice(0, 3).map(room => {
               const avail = mounted ? getSimulatedAvailability(room.id) : 1;
               return (
-                <span key={room.id} className="text-xs bg-white/80 border border-orange-200 rounded-full px-3 py-1 text-slate-700">
+                <span key={room.id} suppressHydrationWarning className="text-xs bg-white/80 border border-orange-200 rounded-full px-3 py-1 text-slate-700">
                   {room.shortName} · ₹{room.discountedPrice} · {avail} left
                 </span>
               );
