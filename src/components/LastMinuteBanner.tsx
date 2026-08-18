@@ -2,7 +2,7 @@
  * Last-Minute Mode Banner — Triggered when user searches for today/tonight
  * Shows urgency-driven availability with real-time room counts
  */
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Flame, ChevronRight } from 'lucide-react';
 import { Link } from '@/lib/router-compat';
 import { getBookableRooms, getSimulatedAvailability, isMayPricingActive } from '@/data/roomInventory';
@@ -18,8 +18,17 @@ const LastMinuteBanner = memo(({ className }: LastMinuteBannerProps) => {
   const today = formatLocalDateString(new Date());
   const lowestPrice = Math.min(...rooms.map(r => r.discountedPrice));
 
-  // Show per-room scarcity total — capped realistically
-  const totalAvailable = Math.min(5, rooms.reduce((sum, r) => sum + getSimulatedAvailability(r.id), 0));
+  // Show per-room scarcity total — capped realistically.
+  // getSimulatedAvailability is time-of-day based, so the SSR (UTC) and client
+  // (local) values can differ. Render the capped value first and refine after
+  // mount to avoid a hydration mismatch.
+  const [totalAvailable, setTotalAvailable] = useState(5);
+  useEffect(() => {
+    setTotalAvailable(
+      Math.min(5, rooms.reduce((sum, r) => sum + getSimulatedAvailability(r.id), 0))
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const showPriceHike = !isMayPricingActive();
 
