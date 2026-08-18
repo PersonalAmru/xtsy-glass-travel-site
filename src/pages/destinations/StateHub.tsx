@@ -2,7 +2,7 @@ import { Link, useParams } from '@/lib/router-compat';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import NotFound from '@/pages/NotFound';
-import { getStateBySlug, getDestinationsForState } from '@/data/neTaxonomy';
+import { getStateBySlug, getDestinationsForState, destinationPath } from '@/data/neTaxonomy';
 import { Plane, MapPin } from 'lucide-react';
 
 const StateHub = () => {
@@ -58,19 +58,11 @@ const StateHub = () => {
                 {attractions.map(d => (
                   <li key={d.slug}>
                     <Link
-                      to={`/destinations/${state.slug}/${
-                        // city resolved by the taxonomy helper at build of the link
-                        d.region === 'Cherrapunji & Sohra' ? 'cherrapunji' : ''
-                      }`}
-                      className="hidden"
-                      aria-hidden="true"
-                    />
-                    <Link
-                      to={`/destinations/${state.slug}`}
-                      className="hidden"
-                      aria-hidden="true"
-                    />
-                    <span className="sr-only" />
+                      to={destinationPath(d.slug)}
+                      className="block rounded-lg border border-border px-4 py-3 text-sm hover:bg-muted"
+                    >
+                      {d.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
