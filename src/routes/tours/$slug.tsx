@@ -61,10 +61,12 @@ export const Route = createFileRoute("/tours/$slug")({
               "@type": "Offer",
               price: numericPrice,
               priceCurrency: "INR",
+              availability: "https://schema.org/InStock",
               url: absolute,
+              validFrom: new Date().toISOString().slice(0, 10),
             },
-
           }
+
         : {}),
     };
 
