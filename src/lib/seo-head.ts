@@ -20,9 +20,15 @@ export interface RouteHeadInput {
   image?: string;
   ogType?: "website" | "article" | "product";
   noIndex?: boolean;
+  /**
+   * Above-the-fold hero image URL. Emitted as <link rel="preload" as="image">
+   * so mobile browsers start the LCP fetch during HTML parse.
+   */
+  preloadImage?: string;
   /** JSON-LD objects rendered as <script type="application/ld+json"> */
   jsonLd?: Array<Record<string, unknown>>;
 }
+
 
 export function canonicalFor(path: string): string {
   if (!path || path === "/") return `${SITE_URL}/`;
