@@ -40,10 +40,6 @@ const MeghalayaTourPackages = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Meghalaya Tour Packages 2026 — Starting ₹7,999 | XTSY</title>
-        <meta name="description" content="Book curated Meghalaya tour packages starting ₹7,999. Shillong, Cherrapunji, Dawki, living root bridges. Stays + meals + tours included. Best price guaranteed." />
-        <meta name="keywords" content="Meghalaya tour package, Meghalaya trip, Shillong tour, Cherrapunji tour, Dawki trip, Northeast India tour" />
-        <link rel="canonical" href="https://xtsy.one/meghalaya-tour-packages" />
       </Helmet>
       <Header />
       <main className="pt-20">

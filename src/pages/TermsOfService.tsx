@@ -14,8 +14,6 @@ export const TermsOfService: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
-        <title>Terms of Service - XTSY</title>
-        <meta name="description" content="XTSY Terms of Service - Read our terms and conditions for using our accommodation and travel services." />
       </Helmet>
       
       <Header />

@@ -13,8 +13,6 @@ export const PrivacyPolicy: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
-        <title>Privacy Policy - XTSY</title>
-        <meta name="description" content="XTSY Privacy Policy - Learn how we collect, use, and protect your personal information." />
       </Helmet>
       
       <Header />

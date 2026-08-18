@@ -76,7 +76,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead
+      <SEOHead structuredDataOnly
         title={seo.title}
         description={seo.description}
         keywords={seo.keywords}

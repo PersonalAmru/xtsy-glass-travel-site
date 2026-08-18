@@ -119,17 +119,10 @@ const HostelBookingShillong = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Hostel Booking in Shillong — Direct Online Booking from ₹369 | XTSY</title>
         <meta
           name="description"
           content="Online hostel booking in Shillong, Meghalaya. Instant confirmation, free cancellation, dorm beds from ₹369. Book direct — cheaper than Hostelworld & Booking.com. 4.8★ from 320+ guests."
         />
-        <meta name="keywords" content="hostel booking, online hostel booking, hostel booking shillong, book hostel meghalaya, cheap hostel booking, backpacker hostel booking" />
-        <link rel="canonical" href="https://xtsy.one/hostel-booking" />
-        <meta property="og:title" content="Hostel Booking in Shillong — Direct Online Booking from ₹369" />
-        <meta property="og:description" content="Instant confirmation, free cancellation, no OTA commission. Book XTSY Travellers Hostel direct." />
-        <meta property="og:url" content="https://xtsy.one/hostel-booking" />
-        <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(hostelSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
