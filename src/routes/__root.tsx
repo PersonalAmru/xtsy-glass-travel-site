@@ -14,6 +14,8 @@ import {
 } from "@tanstack/react-router";
 import { lazy, memo, Suspense, useEffect, type ReactNode } from "react";
 import { trackAIReferral } from "@/utils/aiReferralTracking";
+import { installChunkRecovery } from "@/utils/chunkRecovery";
+
 import { HelmetProvider } from "react-helmet-async";
 
 import appCss from "../styles.css?url";
