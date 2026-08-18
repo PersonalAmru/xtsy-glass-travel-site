@@ -14,6 +14,8 @@ import {
 } from "@tanstack/react-router";
 import { lazy, memo, Suspense, useEffect, type ReactNode } from "react";
 import { trackAIReferral } from "@/utils/aiReferralTracking";
+import { installChunkRecovery } from "@/utils/chunkRecovery";
+
 import { HelmetProvider } from "react-helmet-async";
 
 import appCss from "../styles.css?url";
@@ -365,11 +367,16 @@ const RouteBoundary = memo(({ children }: { children: ReactNode }) => (
 RouteBoundary.displayName = "RouteBoundary";
 
 function RootComponent() {
+  // Recover from stale hashed chunks after a deploy (blank screen +
+  // "Importing a module script failed"). Must run before anything lazy-loads.
+  installChunkRecovery();
+
   // Label AI-assistant referrals (ChatGPT / Perplexity / Gemini …) for the
   // GA4 "AI assistant traffic" segment. Diagnostic only — never a conversion.
   useEffect(() => {
     trackAIReferral();
   }, []);
+
 
   useEffect(() => {
     if (nonCriticalInitDone) return;
