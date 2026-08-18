@@ -814,7 +814,7 @@ const foodPages: SEOPageData[] = [
   ),
 
   mkPage('cafes-in-shillong', 'restaurants', 'Restaurant',
-    'Best Cafés in Shillong 2026 — Coffee & Music Guide', 'Discover the best cafés in Shillong. Live music, artisan coffee, cozy vibes. Complete café guide by XTSY.',
+    'Best Cafés in Shillong 2026 — Coffee & Music Guide', 'The best cafés in Shillong for 2026: ML 05 Café for specialty coffee, Dylan\'s Café for weekend live music, plus Café Shillong, Cloud 9 and TAB Bistro by XTSY. Prices, timings and WiFi tips.',
     'Best Cafés in Shillong', 'Shillong is India\'s rock capital and its café culture reflects that — live music, artisan coffee, and cozy interiors. Here are the best cafés to visit.',
     [
       { heading: 'Top Cafés', content: 'Must-visit cafés:', listItems: ['ML 05 Café — best specialty coffee', 'Dylan\'s Café — live music weekends', 'Café Shillong — institution, great vibes', 'Heritage Club — colonial charm', 'Cloud 9 — mountain views', 'TAB Bistro (XTSY) — traveler favorite'] },
