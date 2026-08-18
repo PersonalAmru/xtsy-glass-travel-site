@@ -89,6 +89,8 @@ import { Route as AdminWhatsappRouteImport } from './routes/admin/whatsapp'
 import { Route as BookIndexRouteImport } from './routes/book/index'
 import { Route as BookCampsiteRouteImport } from './routes/book/campsite'
 import { Route as BookSelectRouteImport } from './routes/book/select'
+import { Route as DestinationsIndexRouteImport } from './routes/destinations/index'
+import { Route as ExpeditionsIndexRouteImport } from './routes/expeditions/index'
 import { Route as FranchiseIndexRouteImport } from './routes/franchise/index'
 import { Route as FranchiseInstallRouteImport } from './routes/franchise/install'
 import { Route as FranchiseLoginRouteImport } from './routes/franchise/login'
@@ -113,6 +115,10 @@ import { Route as AdminSeoRecoveryRouteImport } from './routes/admin/seo/recover
 import { Route as AdminSeoSchemaResultsRouteImport } from './routes/admin/seo/schema-results'
 import { Route as AdminSeoTrackingRouteImport } from './routes/admin/seo/tracking'
 import { Route as AdminSeoWorkflowRouteImport } from './routes/admin/seo/workflow'
+import { Route as DestinationsStateIndexRouteImport } from './routes/destinations/$state/index'
+import { Route as ExpeditionsTypeRouteRouteImport } from './routes/expeditions/$type/$route'
+import { Route as DestinationsStateCityIndexRouteImport } from './routes/destinations/$state/$city/index'
+import { Route as DestinationsStateCityAttractionRouteImport } from './routes/destinations/$state/$city/$attraction'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -522,6 +528,16 @@ const BookSelectRoute = BookSelectRouteImport.update({
   path: '/book/select',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DestinationsIndexRoute = DestinationsIndexRouteImport.update({
+  id: '/destinations/',
+  path: '/destinations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpeditionsIndexRoute = ExpeditionsIndexRouteImport.update({
+  id: '/expeditions/',
+  path: '/expeditions/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FranchiseIndexRoute = FranchiseIndexRouteImport.update({
   id: '/franchise/',
   path: '/franchise/',
@@ -645,6 +661,28 @@ const AdminSeoWorkflowRoute = AdminSeoWorkflowRouteImport.update({
   path: '/admin/seo/workflow',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DestinationsStateIndexRoute = DestinationsStateIndexRouteImport.update({
+  id: '/destinations/$state/',
+  path: '/destinations/$state/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpeditionsTypeRouteRoute = ExpeditionsTypeRouteRouteImport.update({
+  id: '/expeditions/$type/$route',
+  path: '/expeditions/$type/$route',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestinationsStateCityIndexRoute =
+  DestinationsStateCityIndexRouteImport.update({
+    id: '/destinations/$state/$city/',
+    path: '/destinations/$state/$city/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const DestinationsStateCityAttractionRoute =
+  DestinationsStateCityAttractionRouteImport.update({
+    id: '/destinations/$state/$city/$attraction',
+    path: '/destinations/$state/$city/$attraction',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -733,6 +771,8 @@ export interface FileRoutesByFullPath {
   '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
   '/admin/': typeof AdminIndexRoute
   '/book/': typeof BookIndexRoute
+  '/destinations/': typeof DestinationsIndexRoute
+  '/expeditions/': typeof ExpeditionsIndexRoute
   '/franchise/': typeof FranchiseIndexRoute
   '/tab-bistro/': typeof TabBistroIndexRoute
   '/tours/': typeof ToursIndexRoute
@@ -749,8 +789,12 @@ export interface FileRoutesByFullPath {
   '/admin/seo/schema-results': typeof AdminSeoSchemaResultsRoute
   '/admin/seo/tracking': typeof AdminSeoTrackingRoute
   '/admin/seo/workflow': typeof AdminSeoWorkflowRoute
+  '/expeditions/$type/$route': typeof ExpeditionsTypeRouteRoute
   '/admin/analytics/': typeof AdminAnalyticsIndexRoute
   '/admin/seo/': typeof AdminSeoIndexRoute
+  '/destinations/$state/': typeof DestinationsStateIndexRoute
+  '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
+  '/destinations/$state/$city/': typeof DestinationsStateCityIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -839,6 +883,8 @@ export interface FileRoutesByTo {
   '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
   '/admin': typeof AdminIndexRoute
   '/book': typeof BookIndexRoute
+  '/destinations': typeof DestinationsIndexRoute
+  '/expeditions': typeof ExpeditionsIndexRoute
   '/franchise': typeof FranchiseIndexRoute
   '/tab-bistro': typeof TabBistroIndexRoute
   '/tours': typeof ToursIndexRoute
@@ -855,8 +901,12 @@ export interface FileRoutesByTo {
   '/admin/seo/schema-results': typeof AdminSeoSchemaResultsRoute
   '/admin/seo/tracking': typeof AdminSeoTrackingRoute
   '/admin/seo/workflow': typeof AdminSeoWorkflowRoute
+  '/expeditions/$type/$route': typeof ExpeditionsTypeRouteRoute
   '/admin/analytics': typeof AdminAnalyticsIndexRoute
   '/admin/seo': typeof AdminSeoIndexRoute
+  '/destinations/$state': typeof DestinationsStateIndexRoute
+  '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
+  '/destinations/$state/$city': typeof DestinationsStateCityIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -946,6 +996,8 @@ export interface FileRoutesById {
   '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
   '/admin/': typeof AdminIndexRoute
   '/book/': typeof BookIndexRoute
+  '/destinations/': typeof DestinationsIndexRoute
+  '/expeditions/': typeof ExpeditionsIndexRoute
   '/franchise/': typeof FranchiseIndexRoute
   '/tab-bistro/': typeof TabBistroIndexRoute
   '/tours/': typeof ToursIndexRoute
@@ -962,8 +1014,12 @@ export interface FileRoutesById {
   '/admin/seo/schema-results': typeof AdminSeoSchemaResultsRoute
   '/admin/seo/tracking': typeof AdminSeoTrackingRoute
   '/admin/seo/workflow': typeof AdminSeoWorkflowRoute
+  '/expeditions/$type/$route': typeof ExpeditionsTypeRouteRoute
   '/admin/analytics/': typeof AdminAnalyticsIndexRoute
   '/admin/seo/': typeof AdminSeoIndexRoute
+  '/destinations/$state/': typeof DestinationsStateIndexRoute
+  '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
+  '/destinations/$state/$city/': typeof DestinationsStateCityIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -1054,6 +1110,8 @@ export interface FileRouteTypes {
     | '/travel-guide/guwahati-to-shillong-transport'
     | '/admin/'
     | '/book/'
+    | '/destinations/'
+    | '/expeditions/'
     | '/franchise/'
     | '/tab-bistro/'
     | '/tours/'
@@ -1070,8 +1128,12 @@ export interface FileRouteTypes {
     | '/admin/seo/schema-results'
     | '/admin/seo/tracking'
     | '/admin/seo/workflow'
+    | '/expeditions/$type/$route'
     | '/admin/analytics/'
     | '/admin/seo/'
+    | '/destinations/$state/'
+    | '/destinations/$state/$city/$attraction'
+    | '/destinations/$state/$city/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -1160,6 +1222,8 @@ export interface FileRouteTypes {
     | '/travel-guide/guwahati-to-shillong-transport'
     | '/admin'
     | '/book'
+    | '/destinations'
+    | '/expeditions'
     | '/franchise'
     | '/tab-bistro'
     | '/tours'
@@ -1176,8 +1240,12 @@ export interface FileRouteTypes {
     | '/admin/seo/schema-results'
     | '/admin/seo/tracking'
     | '/admin/seo/workflow'
+    | '/expeditions/$type/$route'
     | '/admin/analytics'
     | '/admin/seo'
+    | '/destinations/$state'
+    | '/destinations/$state/$city/$attraction'
+    | '/destinations/$state/$city'
   id:
     | '__root__'
     | '/'
@@ -1266,6 +1334,8 @@ export interface FileRouteTypes {
     | '/travel-guide/guwahati-to-shillong-transport'
     | '/admin/'
     | '/book/'
+    | '/destinations/'
+    | '/expeditions/'
     | '/franchise/'
     | '/tab-bistro/'
     | '/tours/'
@@ -1282,8 +1352,12 @@ export interface FileRouteTypes {
     | '/admin/seo/schema-results'
     | '/admin/seo/tracking'
     | '/admin/seo/workflow'
+    | '/expeditions/$type/$route'
     | '/admin/analytics/'
     | '/admin/seo/'
+    | '/destinations/$state/'
+    | '/destinations/$state/$city/$attraction'
+    | '/destinations/$state/$city/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1373,6 +1447,8 @@ export interface RootRouteChildren {
   TravelGuideGuwahatiToShillongTransportRoute: typeof TravelGuideGuwahatiToShillongTransportRoute
   AdminIndexRoute: typeof AdminIndexRoute
   BookIndexRoute: typeof BookIndexRoute
+  DestinationsIndexRoute: typeof DestinationsIndexRoute
+  ExpeditionsIndexRoute: typeof ExpeditionsIndexRoute
   FranchiseIndexRoute: typeof FranchiseIndexRoute
   TabBistroIndexRoute: typeof TabBistroIndexRoute
   ToursIndexRoute: typeof ToursIndexRoute
@@ -1389,8 +1465,12 @@ export interface RootRouteChildren {
   AdminSeoSchemaResultsRoute: typeof AdminSeoSchemaResultsRoute
   AdminSeoTrackingRoute: typeof AdminSeoTrackingRoute
   AdminSeoWorkflowRoute: typeof AdminSeoWorkflowRoute
+  ExpeditionsTypeRouteRoute: typeof ExpeditionsTypeRouteRoute
   AdminAnalyticsIndexRoute: typeof AdminAnalyticsIndexRoute
   AdminSeoIndexRoute: typeof AdminSeoIndexRoute
+  DestinationsStateIndexRoute: typeof DestinationsStateIndexRoute
+  DestinationsStateCityAttractionRoute: typeof DestinationsStateCityAttractionRoute
+  DestinationsStateCityIndexRoute: typeof DestinationsStateCityIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1955,6 +2035,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BookSelectRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/destinations/': {
+      id: '/destinations/'
+      path: '/destinations'
+      fullPath: '/destinations/'
+      preLoaderRoute: typeof DestinationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/expeditions/': {
+      id: '/expeditions/'
+      path: '/expeditions'
+      fullPath: '/expeditions/'
+      preLoaderRoute: typeof ExpeditionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/franchise/': {
       id: '/franchise/'
       path: '/franchise'
@@ -2123,6 +2217,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSeoWorkflowRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/destinations/$state/': {
+      id: '/destinations/$state/'
+      path: '/destinations/$state'
+      fullPath: '/destinations/$state/'
+      preLoaderRoute: typeof DestinationsStateIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/expeditions/$type/$route': {
+      id: '/expeditions/$type/$route'
+      path: '/expeditions/$type/$route'
+      fullPath: '/expeditions/$type/$route'
+      preLoaderRoute: typeof ExpeditionsTypeRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destinations/$state/$city/': {
+      id: '/destinations/$state/$city/'
+      path: '/destinations/$state/$city'
+      fullPath: '/destinations/$state/$city/'
+      preLoaderRoute: typeof DestinationsStateCityIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destinations/$state/$city/$attraction': {
+      id: '/destinations/$state/$city/$attraction'
+      path: '/destinations/$state/$city/$attraction'
+      fullPath: '/destinations/$state/$city/$attraction'
+      preLoaderRoute: typeof DestinationsStateCityAttractionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -2214,6 +2336,8 @@ const rootRouteChildren: RootRouteChildren = {
     TravelGuideGuwahatiToShillongTransportRoute,
   AdminIndexRoute: AdminIndexRoute,
   BookIndexRoute: BookIndexRoute,
+  DestinationsIndexRoute: DestinationsIndexRoute,
+  ExpeditionsIndexRoute: ExpeditionsIndexRoute,
   FranchiseIndexRoute: FranchiseIndexRoute,
   TabBistroIndexRoute: TabBistroIndexRoute,
   ToursIndexRoute: ToursIndexRoute,
@@ -2230,8 +2354,12 @@ const rootRouteChildren: RootRouteChildren = {
   AdminSeoSchemaResultsRoute: AdminSeoSchemaResultsRoute,
   AdminSeoTrackingRoute: AdminSeoTrackingRoute,
   AdminSeoWorkflowRoute: AdminSeoWorkflowRoute,
+  ExpeditionsTypeRouteRoute: ExpeditionsTypeRouteRoute,
   AdminAnalyticsIndexRoute: AdminAnalyticsIndexRoute,
   AdminSeoIndexRoute: AdminSeoIndexRoute,
+  DestinationsStateIndexRoute: DestinationsStateIndexRoute,
+  DestinationsStateCityAttractionRoute: DestinationsStateCityAttractionRoute,
+  DestinationsStateCityIndexRoute: DestinationsStateCityIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

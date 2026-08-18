@@ -1,3 +1,4 @@
+import { destinationPath } from '@/data/neTaxonomy';
 import { useState } from 'react';
 import heroImage from '@/assets/northeast-ecological-education-authentic.jpg';
 import { Link, useNavigate } from '@/lib/router-compat';
@@ -139,7 +140,7 @@ const ThingsToDoInMeghalaya = () => {
           }))}
           onPhotoClick={(index) => {
             const dest = featured[index];
-            if (dest) navigate(`/places-to-visit/${dest.slug}`);
+            if (dest) navigate(destinationPath(dest.slug));
           }}
           title={
             <h2 className="text-2xl md:text-4xl font-bold text-foreground">

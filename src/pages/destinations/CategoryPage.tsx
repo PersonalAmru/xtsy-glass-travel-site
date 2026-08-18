@@ -1,3 +1,4 @@
+import { destinationPath } from '@/data/neTaxonomy';
 import { Link, useLocation } from '@/lib/router-compat';
 import NotFound from '@/pages/NotFound';
 import { Helmet } from 'react-helmet-async';
@@ -69,7 +70,7 @@ const CategoryPage = () => {
       '@type': 'ListItem',
       position: i + 1,
       name: d.name,
-      url: `https://xtsy.one/places-to-visit/${d.slug}`,
+      url: `https://xtsy.one${destinationPath(d.slug)}`,
     })),
   };
 

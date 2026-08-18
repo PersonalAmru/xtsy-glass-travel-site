@@ -22,9 +22,11 @@ import {
   meghalayaDestinations,
   type MeghalayaDestination,
 } from '@/data/meghalayaDestinations';
+import { destinationPath, getCitySlugForDestination, getCityBySlug } from '@/data/neTaxonomy';
 
 const DestinationDetail = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const params = useParams<{ slug?: string; attraction?: string }>();
+  const slug = params.attraction ?? params.slug;
   const destination = slug ? getDestinationBySlug(slug) : null;
 
   // Runtime 410 escalation: an admin can flag /places-to-visit/<slug> as Gone
@@ -103,14 +105,16 @@ const DestinationDetail = () => {
       : { to: '/things-to-do-in-meghalaya', label: 'Things to Do in Meghalaya' };
 
 
+  const destinationCitySlug = getCitySlugForDestination(destination);
+  const destinationCity = getCityBySlug('meghalaya', destinationCitySlug);
   const geo = getDestinationGeo(destination.slug);
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'TouristAttraction',
-    '@id': `https://xtsy.one/places-to-visit/${destination.slug}#attraction`,
+    '@id': `https://xtsy.one${destinationPath(destination.slug)}#attraction`,
     name: destination.name,
     description: destination.shortDescription,
-    url: `https://xtsy.one/places-to-visit/${destination.slug}`,
+    url: `https://xtsy.one${destinationPath(destination.slug)}`,
     touristType: [destination.category],
     isAccessibleForFree: true,
     publicAccess: true,
@@ -144,8 +148,10 @@ const DestinationDetail = () => {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xtsy.one/' },
-      { '@type': 'ListItem', position: 2, name: 'Things to Do in Meghalaya', item: 'https://xtsy.one/things-to-do-in-meghalaya' },
-      { '@type': 'ListItem', position: 3, name: destination.name, item: `https://xtsy.one/places-to-visit/${destination.slug}` },
+      { '@type': 'ListItem', position: 2, name: 'Destinations', item: 'https://xtsy.one/destinations' },
+      { '@type': 'ListItem', position: 3, name: 'Meghalaya', item: 'https://xtsy.one/destinations/meghalaya' },
+      { '@type': 'ListItem', position: 4, name: destinationCity?.name ?? 'Meghalaya', item: `https://xtsy.one/destinations/meghalaya/${destinationCitySlug}` },
+      { '@type': 'ListItem', position: 5, name: destination.name, item: `https://xtsy.one${destinationPath(destination.slug)}` },
     ],
   };
 
@@ -183,11 +189,11 @@ const DestinationDetail = () => {
         <meta name="description" content={pageDescription} />
         <meta name="keywords" content={pageKeywords} />
 
-        <link rel="canonical" href={`https://xtsy.one/places-to-visit/${destination.slug}`} />
+        <link rel="canonical" href={`https://xtsy.one${destinationPath(destination.slug)}`} />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://xtsy.one/places-to-visit/${destination.slug}`} />
+        <meta property="og:url" content={`https://xtsy.one${destinationPath(destination.slug)}`} />
         <meta property="og:image" content={images[0]?.src} />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>

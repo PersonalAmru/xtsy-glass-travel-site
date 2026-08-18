@@ -63,8 +63,8 @@ const Header = () => {
   const topGuides = [
     { to: "/best-time-to-visit-meghalaya", label: "Best Time to Visit Meghalaya", icon: Mountain },
     { to: "/meghalaya-waterfalls", label: "Meghalaya Waterfalls", icon: Mountain },
-    { to: "/places-to-visit/seven-sisters-falls", label: "Seven Sisters Falls", icon: Camera },
-    { to: "/places-to-visit/umiam-lake", label: "Umiam Lake", icon: Camera },
+    { to: "/destinations/meghalaya/cherrapunji/seven-sisters-falls", label: "Seven Sisters Falls", icon: Camera },
+    { to: "/destinations/meghalaya/shillong/umiam-lake", label: "Umiam Lake", icon: Camera },
     { to: "/things-to-do-in-meghalaya", label: "Things to Do in Meghalaya", icon: Mountain },
   ];
 

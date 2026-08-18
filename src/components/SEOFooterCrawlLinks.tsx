@@ -28,12 +28,12 @@ const LINK_GROUPS: LinkGroup[] = [
   {
     title: 'Top Destinations',
     links: [
-      { label: 'Nohkalikai Falls', href: '/places-to-visit/nohkalikai-falls' },
-      { label: 'Krang Suri Falls', href: '/places-to-visit/krang-suri-falls' },
-      { label: 'Dawki Umngot River', href: '/places-to-visit/dawki-umngot-river' },
-      { label: 'Mawlynnong Village', href: '/places-to-visit/mawlynnong-village' },
-      { label: 'Living Root Bridges', href: '/places-to-visit/double-decker-living-root-bridge' },
-      { label: 'Laitlum Canyons', href: '/places-to-visit/laitlum-canyons' },
+      { label: 'Nohkalikai Falls', href: '/destinations/meghalaya/cherrapunji/nohkalikai-falls' },
+      { label: 'Krang Suri Falls', href: '/destinations/meghalaya/jowai/krang-suri-falls' },
+      { label: 'Dawki Umngot River', href: '/destinations/meghalaya/dawki/dawki-umngot-river' },
+      { label: 'Mawlynnong Village', href: '/destinations/meghalaya/mawlynnong/mawlynnong-village' },
+      { label: 'Living Root Bridges', href: '/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge' },
+      { label: 'Laitlum Canyons', href: '/destinations/meghalaya/shillong/laitlum-canyons' },
       { label: 'Meghalaya Waterfalls', href: '/meghalaya-waterfalls' },
       { label: 'Meghalaya Caves', href: '/meghalaya-caves' },
     ],
