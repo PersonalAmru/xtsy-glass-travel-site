@@ -25,6 +25,9 @@ export interface RouteHeadInput {
    * so mobile browsers start the LCP fetch during HTML parse.
    */
   preloadImage?: string;
+  /** Optional responsive srcset/sizes for the preloaded hero image. */
+  preloadImageSrcSet?: string;
+  preloadImageSizes?: string;
   /** JSON-LD objects rendered as <script type="application/ld+json"> */
   jsonLd?: Array<Record<string, unknown>>;
 }
@@ -69,6 +72,12 @@ export function buildRouteHead(input: RouteHeadInput) {
               rel: "preload",
               as: "image",
               href: input.preloadImage,
+              ...(input.preloadImageSrcSet
+                ? {
+                    imageSrcSet: input.preloadImageSrcSet,
+                    imageSizes: input.preloadImageSizes || "100vw",
+                  }
+                : {}),
               fetchPriority: "high" as const,
             },
           ]
