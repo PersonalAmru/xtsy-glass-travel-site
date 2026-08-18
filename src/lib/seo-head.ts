@@ -69,7 +69,7 @@ export function buildRouteHead(input: RouteHeadInput) {
               rel: "preload",
               as: "image",
               href: input.preloadImage,
-              fetchPriority: "high",
+              fetchPriority: "high" as const,
             },
           ]
         : []),
