@@ -313,22 +313,6 @@ const ProgrammaticSEOPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>{page.title}</title>
-        <meta name="description" content={page.metaDescription} />
-        <meta name="keywords" content={page.keywords.join(', ')} />
-        <link rel="canonical" href={`https://xtsy.one/${page.slug}`} />
-        <meta property="og:title" content={page.title} />
-        <meta property="og:description" content={page.metaDescription} />
-        <meta property="og:url" content={`https://xtsy.one/${page.slug}`} />
-        <meta property="og:type" content="article" />
-        <meta property="og:image" content={heroImage || DEFAULT_OG_IMAGE} />
-        <meta property="og:site_name" content="XTSY Travel" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={page.title} />
-        <meta name="twitter:description" content={page.metaDescription} />
-        <meta name="twitter:image" content={heroImage || DEFAULT_OG_IMAGE} />
-        <meta name="author" content="XTSY Travel Team" />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
         <script type="application/ld+json">{JSON.stringify(buildSchema(page))}</script>
         <script type="application/ld+json">{JSON.stringify(buildBreadcrumbSchema(page, categoryLabel))}</script>
         <script type="application/ld+json">{JSON.stringify(ORG_SCHEMA)}</script>

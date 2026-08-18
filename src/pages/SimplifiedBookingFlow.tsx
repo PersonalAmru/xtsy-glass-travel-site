@@ -1189,14 +1189,6 @@ export default function SimplifiedBookingFlow() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[hsl(220,20%,12%)] to-[hsl(220,25%,6%)]">
       <Helmet>
-        <title>Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY</title>
-        <meta name="description" content="Online hostel booking made easy. Book a dorm bed or private room at XTSY Travellers Hostel, Shillong — from ₹329/night. Instant confirmation, best-price direct, no OTA fees." />
-        <meta name="keywords" content="hostel booking, online hostel booking, book hostel shillong, dorm booking shillong, hostel booking meghalaya" />
-        <link rel="canonical" href="https://xtsy.one/book" />
-        <meta property="og:title" content="Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY" />
-        <meta property="og:description" content="Book your hostel bed or room online in seconds. Direct-booking best price from ₹329/night with instant confirmation." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://xtsy.one/book" />
       </Helmet>
       {/* Header */}
       {currentStep !== 'confirmation' && (

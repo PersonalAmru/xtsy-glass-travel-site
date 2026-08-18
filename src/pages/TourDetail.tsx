@@ -160,7 +160,7 @@ const TourDetail = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <SEOHead
+      <SEOHead structuredDataOnly
         title={`${tour.title} — ${tour.duration} from ${displayPrice} | XTSY Travel`}
         description={`${tour.description}`.slice(0, 155)}
         keywords={`${tour.title}, ${tour.location} tour, ${tour.category} tour, ${tour.duration} Meghalaya package, XTSY Travel`}

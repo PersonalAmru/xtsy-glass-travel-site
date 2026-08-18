@@ -4,6 +4,7 @@
  */
 
 import { Helmet } from 'react-helmet-async';
+import { useRouterState } from '@tanstack/react-router';
 
 interface ArticleMeta {
   publishedTime?: string;
@@ -22,6 +23,8 @@ interface SEOHeadProps {
   ogType?: 'website' | 'article' | 'product';
   noIndex?: boolean;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  /** Route already owns title/description/canonical/og via TanStack head(); emit only JSON-LD. */
+  structuredDataOnly?: boolean;
   article?: ArticleMeta;
 }
 
@@ -137,6 +140,7 @@ export const SEOHead = ({
   ogType = 'website',
   noIndex = false,
   structuredData,
+  structuredDataOnly = false,
   article,
 }: SEOHeadProps) => {
   const finalTitle = title || DEFAULT_TITLE;
@@ -145,20 +149,28 @@ export const SEOHead = ({
   // page to the homepage (which previously caused massive duplicate-canonical
   // signals across programmatic SEO pages). Strip query/hash, drop trailing
   // slash (except root), and only fall back to SITE_URL on the SSR/server pass.
+  const routerPathname = useRouterState({ select: (st) => st.location.pathname });
   const deriveCanonicalFromLocation = (): string => {
-    if (typeof window === 'undefined') return SITE_URL;
-    try {
-      const path = window.location.pathname || '/';
-      const cleaned = path === '/' ? '/' : path.replace(/\/+$/, '');
-      return `${SITE_URL}${cleaned}`;
-    } catch {
-      return SITE_URL;
-    }
+    const path = routerPathname || '/';
+    const cleaned = path === '/' ? '/' : path.replace(/\/+$/, '');
+    return `${SITE_URL}${cleaned}`;
   };
   const finalCanonical = canonicalUrl || deriveCanonicalFromLocation();
   const schemas = structuredData
     ? (Array.isArray(structuredData) ? structuredData : [structuredData])
     : [];
+
+  if (structuredDataOnly) {
+    return (
+      <Helmet>
+        {schemas.map((schema, i) => (
+          <script key={i} type="application/ld+json">
+            {JSON.stringify(schema)}
+          </script>
+        ))}
+      </Helmet>
+    );
+  }
 
   return (
     <Helmet>

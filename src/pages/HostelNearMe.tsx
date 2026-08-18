@@ -143,7 +143,6 @@ const HostelNearMe = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Hostel Near Me in Shillong — Closest Backpacker Hostel to Police Bazar | XTSY</title>
         <meta
           name="description"
           content="Looking for a hostel near you in Shillong? XTSY is 1.2 km from Police Bazar — the closest verified backpacker hostel with dorm beds from ₹369, 4.8★ from 320+ guests. Get directions, distances & instant booking."
@@ -152,15 +151,6 @@ const HostelNearMe = memo(() => {
           name="keywords"
           content="hostel near me, hostel near me shillong, hostel near police bazar, backpacker hostel near me, closest hostel shillong, hostel near guwahati airport"
         />
-        <link rel="canonical" href="https://xtsy.one/hostel-near-me" />
-        <meta property="og:title" content="Hostel Near Me in Shillong — Closest Hostel to Police Bazar" />
-        <meta property="og:description" content="XTSY Travellers Hostel — 1.2 km from Police Bazar. Dorm beds from ₹369, 4.8★ from 320+ guests." />
-        <meta property="og:url" content="https://xtsy.one/hostel-near-me" />
-        <meta property="og:type" content="website" />
-        <meta name="geo.region" content="IN-ML" />
-        <meta name="geo.placename" content="Shillong" />
-        <meta name="geo.position" content="25.5788;91.8933" />
-        <meta name="ICBM" content="25.5788, 91.8933" />
         <script type="application/ld+json">{JSON.stringify(localBusiness)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>

@@ -158,14 +158,6 @@ const BestHostelShillong = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Hostels in Shillong — Cheap Dorm Beds from ₹329 | XTSY</title>
-        <meta name="description" content="Looking for cheap hostels in Shillong? XTSY has backpacker dorm beds from ₹329, female-only dorms, private rooms & a 270° glass suite. Central, safe, 4.8★. Book online direct." />
-        <meta name="keywords" content="hostels in shillong, cheap hostels shillong, backpacker hostel shillong, dorm bed shillong, budget hostel meghalaya, female dorm shillong, hostel booking shillong, best hostel in shillong" />
-        <link rel="canonical" href="https://xtsy.one/best-hostel-in-shillong" />
-        <meta property="og:title" content="Hostels in Shillong — Cheap Dorm Beds from ₹329 | XTSY" />
-        <meta property="og:description" content="Cheap backpacker hostel in Shillong. Mixed & female dorms from ₹329, private rooms & 270° glass suite. 4.8★ rated by 320+ guests. Book direct online." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://xtsy.one/best-hostel-in-shillong" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqData)}</script>

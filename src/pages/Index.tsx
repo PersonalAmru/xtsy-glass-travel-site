@@ -166,7 +166,7 @@ const Index = memo(() => {
 
   return (
     <div className="min-h-screen">
-      <SEOHead 
+      <SEOHead structuredDataOnly 
         title={seoConfig.title}
         description={seoConfig.description}
         keywords={seoConfig.keywords}
