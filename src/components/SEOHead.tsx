@@ -23,6 +23,8 @@ interface SEOHeadProps {
   ogType?: 'website' | 'article' | 'product';
   noIndex?: boolean;
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  /** Route already owns title/description/canonical/og via TanStack head(); emit only JSON-LD. */
+  structuredDataOnly?: boolean;
   article?: ArticleMeta;
 }
 
@@ -138,6 +140,7 @@ export const SEOHead = ({
   ogType = 'website',
   noIndex = false,
   structuredData,
+  structuredDataOnly = false,
   article,
 }: SEOHeadProps) => {
   const finalTitle = title || DEFAULT_TITLE;
@@ -156,6 +159,18 @@ export const SEOHead = ({
   const schemas = structuredData
     ? (Array.isArray(structuredData) ? structuredData : [structuredData])
     : [];
+
+  if (structuredDataOnly) {
+    return (
+      <Helmet>
+        {schemas.map((schema, i) => (
+          <script key={i} type="application/ld+json">
+            {JSON.stringify(schema)}
+          </script>
+        ))}
+      </Helmet>
+    );
+  }
 
   return (
     <Helmet>
