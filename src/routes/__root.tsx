@@ -365,11 +365,16 @@ const RouteBoundary = memo(({ children }: { children: ReactNode }) => (
 RouteBoundary.displayName = "RouteBoundary";
 
 function RootComponent() {
+  // Recover from stale hashed chunks after a deploy (blank screen +
+  // "Importing a module script failed"). Must run before anything lazy-loads.
+  installChunkRecovery();
+
   // Label AI-assistant referrals (ChatGPT / Perplexity / Gemini …) for the
   // GA4 "AI assistant traffic" segment. Diagnostic only — never a conversion.
   useEffect(() => {
     trackAIReferral();
   }, []);
+
 
   useEffect(() => {
     if (nonCriticalInitDone) return;
