@@ -4,6 +4,7 @@
  */
 
 import { Helmet } from 'react-helmet-async';
+import { useRouterState } from '@tanstack/react-router';
 
 interface ArticleMeta {
   publishedTime?: string;
@@ -145,15 +146,11 @@ export const SEOHead = ({
   // page to the homepage (which previously caused massive duplicate-canonical
   // signals across programmatic SEO pages). Strip query/hash, drop trailing
   // slash (except root), and only fall back to SITE_URL on the SSR/server pass.
+  const routerPathname = useRouterState({ select: (st) => st.location.pathname });
   const deriveCanonicalFromLocation = (): string => {
-    if (typeof window === 'undefined') return SITE_URL;
-    try {
-      const path = window.location.pathname || '/';
-      const cleaned = path === '/' ? '/' : path.replace(/\/+$/, '');
-      return `${SITE_URL}${cleaned}`;
-    } catch {
-      return SITE_URL;
-    }
+    const path = routerPathname || '/';
+    const cleaned = path === '/' ? '/' : path.replace(/\/+$/, '');
+    return `${SITE_URL}${cleaned}`;
   };
   const finalCanonical = canonicalUrl || deriveCanonicalFromLocation();
   const schemas = structuredData
