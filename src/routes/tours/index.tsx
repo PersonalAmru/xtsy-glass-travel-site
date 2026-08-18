@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Tours from "@/pages/Tours";
 import { buildRouteHead } from "@/lib/seo-head";
-import toursHeroImg from "@/assets/tours-hero-mountains.jpg";
+import toursHeroImg from "@/assets/tours-hero-mountains-900.webp";
 
 export const Route = createFileRoute("/tours/")({
   head: () =>
