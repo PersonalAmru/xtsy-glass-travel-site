@@ -16,7 +16,7 @@ export const Route = createFileRoute("/$slug")({
     }
     return buildRouteHead({
       path: `/${page.slug}`,
-      title: page.metaTitle,
+      title: page.title,
       description: page.metaDescription,
       keywords: page.keywords?.join(", "),
     });
