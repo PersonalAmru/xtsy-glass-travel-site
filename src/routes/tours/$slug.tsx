@@ -63,7 +63,6 @@ export const Route = createFileRoute("/tours/$slug")({
               priceCurrency: "INR",
               availability: "https://schema.org/InStock",
               url: absolute,
-              validFrom: new Date().toISOString().slice(0, 10),
             },
           }
 
