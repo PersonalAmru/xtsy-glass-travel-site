@@ -94,6 +94,7 @@ async function main() {
   // Dynamic import of SEO data (ESM modules with TypeScript)
   const { ALL_SEO_PAGES } = await import('../src/data/seoPages');
   const { buildDestinationSitemapPaths, destinationPath } = await import('../src/data/neTaxonomy');
+  const { getDestinationBySlug } = await import('../src/data/meghalayaDestinations');
 
   // Group SEO pages by sitemap category
   const sitemapGroups: Record<string, typeof ALL_SEO_PAGES> = {
@@ -140,15 +141,22 @@ async function main() {
     const filename = `sitemap-${group}.xml`;
     sitemapFiles.push(filename);
 
-    const urls = pages.map(page => {
+    const urls: string[] = [];
+    for (const page of pages) {
       const cfg = CATEGORY_CONFIG[page.category] || { priority: '0.6', changefreq: 'monthly' };
       // Determine URL path — programmatic pages use /:slug, destination pages use /places-to-visit/:slug
       // Destination/attraction pages live in the hierarchical taxonomy:
       // /destinations/:state/:city/:attraction (legacy /places-to-visit/* now 301s).
       const isDestination = page.category === 'destinations' || page.category === 'attractions';
-      const urlPath = isDestination ? destinationPath(page.slug) : `/${page.slug}`;
-      return xmlUrl(`${BASE_URL}${urlPath}`, TODAY, cfg.changefreq, cfg.priority);
-    });
+      let urlPath = `/${page.slug}`;
+      if (isDestination) {
+        // Resolve aliases to their canonical attraction, then to the hierarchy.
+        const dest = getDestinationBySlug(page.slug);
+        if (!dest) continue; // no canonical attraction → covered by the hub pages
+        urlPath = destinationPath(dest.slug);
+      }
+      urls.push(xmlUrl(`${BASE_URL}${urlPath}`, TODAY, cfg.changefreq, cfg.priority));
+    }
 
     if (group === 'destinations') {
       // Hierarchy hubs: /destinations, /destinations/:state, /destinations/:state/:city
