@@ -26,6 +26,9 @@
 
 import { ALL_SEO_PAGES } from '../src/data/seoPages';
 import { RECOVERY_REDIRECTS } from '../src/data/seoAffectedSlugs';
+import { destinationPath } from '../src/data/neTaxonomy';
+import { getDestinationBySlug } from '../src/data/meghalayaDestinations';
+import { GONE_SLUGS } from '../src/data/seoGoneSlugs';
 
 interface SlimEntry {
   t: string; // title
@@ -150,6 +153,13 @@ export function generateSEOMap(): Record<string, RichEntry> {
   }
   for (const [path, meta] of Object.entries(DESTINATION_SLUGS_META)) {
     map[path] = meta;
+    // Mirror legacy places-to-visit/* metadata onto the hierarchical taxonomy
+    // key so the head script still resolves after the 301.
+    const slug = path.replace(/^places-to-visit\//, '');
+    if (slug !== path && !GONE_SLUGS.has(slug)) {
+      const dest = getDestinationBySlug(slug);
+      if (dest) map[destinationPath(dest.slug).replace(/^\//, '')] = meta;
+    }
   }
   return map;
 }
@@ -171,6 +181,14 @@ export function generateRedirectMap(): Record<string, string> {
   for (const [from, to] of Object.entries(RECOVERY_REDIRECTS)) {
     const target = to.startsWith('/') ? to.slice(1) : to;
     out[from] = target;
+  }
+  // Phase 1 taxonomy migration: every legacy /places-to-visit/:slug now points
+  // at /destinations/:state/:city/:attraction (mirrors the server-side 301).
+  for (const key of Object.keys(DESTINATION_SLUGS_META)) {
+    const slug = key.replace(/^places-to-visit\//, '');
+    if (slug === key || GONE_SLUGS.has(slug)) continue;
+    const dest = getDestinationBySlug(slug);
+    if (dest) out[key] = destinationPath(dest.slug).replace(/^\//, '');
   }
   return out;
 }
