@@ -93,6 +93,7 @@ function sitemapIndex(sitemaps: string[]): string {
 async function main() {
   // Dynamic import of SEO data (ESM modules with TypeScript)
   const { ALL_SEO_PAGES } = await import('../src/data/seoPages');
+  const { buildDestinationSitemapPaths, destinationPath } = await import('../src/data/neTaxonomy');
 
   // Group SEO pages by sitemap category
   const sitemapGroups: Record<string, typeof ALL_SEO_PAGES> = {
@@ -142,12 +143,32 @@ async function main() {
     const urls = pages.map(page => {
       const cfg = CATEGORY_CONFIG[page.category] || { priority: '0.6', changefreq: 'monthly' };
       // Determine URL path — programmatic pages use /:slug, destination pages use /places-to-visit/:slug
+      // Destination/attraction pages live in the hierarchical taxonomy:
+      // /destinations/:state/:city/:attraction (legacy /places-to-visit/* now 301s).
       const isDestination = page.category === 'destinations' || page.category === 'attractions';
-      const urlPath = isDestination ? `/places-to-visit/${page.slug}` : `/${page.slug}`;
+      const urlPath = isDestination ? destinationPath(page.slug) : `/${page.slug}`;
       return xmlUrl(`${BASE_URL}${urlPath}`, TODAY, cfg.changefreq, cfg.priority);
     });
 
-    fs.writeFileSync(path.join(outDir, filename), wrapUrlset(urls));
+    if (group === 'destinations') {
+      // Hierarchy hubs: /destinations, /destinations/:state, /destinations/:state/:city
+      for (const hubPath of buildDestinationSitemapPaths()) {
+        const depth = hubPath.split('/').filter(Boolean).length;
+        const priority = depth === 1 ? '0.9' : depth === 2 ? '0.8' : depth === 3 ? '0.7' : '0.7';
+        urls.push(xmlUrl(`${BASE_URL}${hubPath}`, TODAY, 'weekly', priority));
+      }
+    }
+
+    // De-duplicate by <loc> — a URL must appear exactly once per sitemap.
+    const seen = new Set<string>();
+    const deduped = urls.filter(u => {
+      const loc = /<loc>([^<]+)<\/loc>/.exec(u)?.[1] ?? u;
+      if (seen.has(loc)) return false;
+      seen.add(loc);
+      return true;
+    });
+
+    fs.writeFileSync(path.join(outDir, filename), wrapUrlset(deduped));
   }
 
   // 3. Sitemap index
