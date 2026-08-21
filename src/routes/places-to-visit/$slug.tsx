@@ -9,6 +9,16 @@ import DestinationDetail from "@/pages/destinations/DestinationDetail";
  * (/destinations/:state/:city/:attraction). 301 keeps indexed equity.
  */
 export const Route = createFileRoute("/places-to-visit/$slug")({
+  head: ({ params }) => {
+    const place = params.slug.replace(/-/g, " ");
+    return buildRouteHead({
+      path: `/places-to-visit/${params.slug}`,
+      title: `${place} — Page Moved | XTSY Meghalaya Guide`.slice(0, 70),
+      description:
+        "This guide has moved into the XTSY destinations directory. Browse Meghalaya attractions, timings and travel routes there instead.",
+      noIndex: true,
+    });
+  },
   beforeLoad: ({ params }) => {
     if (GONE_SLUGS.has(params.slug)) return;
     const dest = getDestinationBySlug(params.slug);
@@ -18,3 +28,4 @@ export const Route = createFileRoute("/places-to-visit/$slug")({
   },
   component: DestinationDetail,
 });
+
