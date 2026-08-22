@@ -20,7 +20,7 @@ export const Route = createFileRoute("/places-to-visit/$slug")({
       noIndex: true,
     });
   },
-  beforeLoad: ({ params }) => {
+  loader: ({ params }) => {
     if (!GONE_SLUGS.has(params.slug)) {
       const dest = getDestinationBySlug(params.slug);
       if (dest) {
