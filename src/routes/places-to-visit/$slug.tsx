@@ -2,6 +2,7 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { destinationPath } from "@/data/neTaxonomy";
 import { getDestinationBySlug } from "@/data/meghalayaDestinations";
 import { GONE_SLUGS } from "@/data/seoGoneSlugs";
+import { buildRouteHead } from "@/lib/seo-head";
 import DestinationDetail from "@/pages/destinations/DestinationDetail";
 
 /**
@@ -19,11 +20,12 @@ export const Route = createFileRoute("/places-to-visit/$slug")({
       noIndex: true,
     });
   },
-  beforeLoad: ({ params }) => {
-    if (GONE_SLUGS.has(params.slug)) return;
-    const dest = getDestinationBySlug(params.slug);
-    if (dest) {
-      throw redirect({ to: destinationPath(dest.slug), statusCode: 301 });
+  loader: ({ params }) => {
+    if (!GONE_SLUGS.has(params.slug)) {
+      const dest = getDestinationBySlug(params.slug);
+      if (dest) {
+        throw redirect({ to: destinationPath(dest.slug), statusCode: 301 });
+      }
     }
   },
   component: DestinationDetail,
