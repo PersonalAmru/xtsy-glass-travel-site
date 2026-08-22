@@ -22,8 +22,8 @@ export default function UserInstall() {
   const [isInstalling, setIsInstalling] = useState(false);
   const [showIOSInstructions, setShowIOSInstructions] = useState(false);
   
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+  const isIOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isStandalone = typeof window !== 'undefined' && window.matchMedia('(display-mode: standalone)').matches;
   
   useEffect(() => {
     if (isStandalone) {
