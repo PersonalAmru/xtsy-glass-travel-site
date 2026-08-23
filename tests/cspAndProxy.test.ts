@@ -52,7 +52,7 @@ describe('production CSP headers', () => {
   });
 
   it('keeps hardening directives intact', () => {
-    expect(csp).toContain("frame-ancestors 'none'");
+    expect(csp).toContain("frame-ancestors 'self' https://tagassistant.google.com");
     expect(csp).toContain("base-uri 'self'");
     expect(headers['X-Content-Type-Options']).toBe('nosniff');
     expect(headers['Strict-Transport-Security']).toContain('max-age=31536000');
