@@ -49,7 +49,7 @@ const routeDir = 'src/routes';
 const staticUrls: string[] = [];
 const walk = (dir: string, prefix: string) => {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (e.name.startsWith('__') || e.name.startsWith('[.]')) continue;
+    if (e.name.startsWith('__') || e.name.startsWith('[.]') || e.name.startsWith('$')) continue;
     const full = path.join(dir, e.name);
     if (e.isDirectory()) { walk(full, `${prefix}/${e.name}`); continue; }
     if (!e.name.endsWith('.tsx')) continue;
