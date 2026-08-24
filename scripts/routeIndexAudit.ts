@@ -5,7 +5,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { ALL_SEO_PAGES, findSEOPage } from '../src/data/seoPages';
-import { getDestinationBySlug, MEGHALAYA_DESTINATIONS } from '../src/data/meghalayaDestinations';
+import { getDestinationBySlug, meghalayaDestinations } from '../src/data/meghalayaDestinations';
 import {
   NE_STATES,
   EXPEDITION_ROUTES,
@@ -104,7 +104,7 @@ for (const p of buildDestinationSitemapPaths()) {
 }
 
 // legacy places-to-visit (301 → destinations)
-for (const d of MEGHALAYA_DESTINATIONS) {
+for (const d of meghalayaDestinations) {
   const target = destinationPath(d.slug);
   add({
     url: `/places-to-visit/${d.slug}`,
@@ -116,8 +116,8 @@ for (const d of MEGHALAYA_DESTINATIONS) {
 }
 
 // expeditions
-for (const r of EXPEDITION_ROUTES as any[]) {
-  add({ url: `/expeditions/${r.type}/${r.slug ?? r.route}`, type: 'expedition guide', resolves: true, note: '', tier: 2 });
+for (const r of EXPEDITION_ROUTES) {
+  for (const t of r.types) add({ url: `/expeditions/${t}/${r.slug}`, type: 'expedition guide', resolves: true, note: '', tier: 2 });
 }
 
 // tours
