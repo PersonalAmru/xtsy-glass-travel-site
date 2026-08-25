@@ -62,7 +62,7 @@ export function useReviews() {
     try {
       const { data, error: fetchError } = await supabase
         .from('reviews')
-        .select('*')
+        .select('id, guest_name, rating, review_text, photos, verified, created_at, property_id')
         .order('created_at', { ascending: false });
 
       if (fetchError) throw fetchError;
