@@ -79,21 +79,32 @@ function pushUnique(url: string, priority: number) {
   priorityUrls.push(xmlUrl(url, priority));
 }
 
+// Legacy `/places-to-visit/*` paths are permanent 301s to their
+// `/destinations/<state>/<city>/<attraction>` successors, which are already
+// listed in sitemap-destinations.xml. Redirecting URLs must never be emitted
+// into a sitemap, so destination/attraction pages are skipped here.
+let skippedLegacyPlaces = 0;
 for (const page of ALL_SEO_PAGES) {
   const isDest = page.category === 'destinations' || page.category === 'attractions';
-  const url = isDest ? `/places-to-visit/${page.slug}` : `/${page.slug}`;
-  pushUnique(url, 1.0);
   includedSlugs.add(page.slug);
+  if (isDest) { skippedLegacyPlaces++; continue; }
+  pushUnique(`/${page.slug}`, 1.0);
 }
 
-// Force-include recovery places-to-visit/* paths (still de-duped)
-for (const placePath of RECOVERY_PLACES_PATHS) {
-  pushUnique('/' + placePath, 0.9);
-}
+// RECOVERY_PLACES_PATHS are also legacy `/places-to-visit/*` redirects and are
+// intentionally NOT force-included any more.
+skippedLegacyPlaces += RECOVERY_PLACES_PATHS.length;
 
-fs.writeFileSync(path.join(PUBLIC, 'sitemap-priority.xml'), wrap(priorityUrls));
+const priorityPath = path.join(PUBLIC, 'sitemap-priority.xml');
+if (priorityUrls.length > 0) {
+  fs.writeFileSync(priorityPath, wrap(priorityUrls));
+} else if (fs.existsSync(priorityPath)) {
+  // Nothing left to advertise here — don't ship an empty <urlset>.
+  fs.unlinkSync(priorityPath);
+}
 console.log(` ↳ Skipped (owned by other branch) : ${skippedOwned}`);
 console.log(` ↳ Skipped (in-branch duplicate)   : ${skippedDupe}`);
+console.log(` ↳ Skipped (legacy places redirect): ${skippedLegacyPlaces}`);
 
 // ── Coverage cross-check ──
 const coverageSlugs = [...RECOVERY_LIVE_PAGES, ...RECOVERY_FILTERED_OUT];

@@ -36,7 +36,8 @@ function uniqueImages(entries: ImageEntry[]): ImageEntry[] {
   return entries.filter((e) => (seen.has(e.loc) ? false : (seen.add(e.loc), true)));
 }
 
-// 1) Room + panorama images — rendered on the homepage rooms section & /rooms.
+// 1) Room + panorama images — rendered on the homepage rooms section.
+// NOTE: there is no `/rooms` route in the app, so it must not be listed here.
 const roomImages: ImageEntry[] = Object.entries(ROOM_IMAGES).flatMap(([roomId, urls]) =>
   urls
     .filter((u) => u && u !== '/placeholder.svg')
@@ -50,7 +51,6 @@ const dawkiImages: ImageEntry[] = Object.entries(CDN_IMAGE_MAP)
 
 const PAGES: PageEntry[] = [
   { path: '/', images: uniqueImages(roomImages) },
-  { path: '/rooms', images: uniqueImages(roomImages) },
   { path: '/xtsy-adventure-campsite-dawki', images: uniqueImages(dawkiImages) },
 ];
 
