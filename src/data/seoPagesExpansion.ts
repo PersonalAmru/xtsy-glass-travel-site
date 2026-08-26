@@ -814,18 +814,23 @@ const foodPages: SEOPageData[] = [
   ),
 
   mkPage('cafes-in-shillong', 'restaurants', 'Restaurant',
-    'Best Cafés in Shillong 2026 — Coffee & Music Guide', 'The best cafés in Shillong for 2026: ML 05 Café for specialty coffee, Dylan\'s Café for weekend live music, plus Café Shillong, Cloud 9 and TAB Bistro by XTSY. Prices, timings and WiFi tips.',
-    'Best Cafés in Shillong', 'Shillong is India\'s rock capital and its café culture reflects that — live music, artisan coffee, and cozy interiors. Here are the best cafés to visit.',
+    '12 Best Cafés in Shillong (2026): Prices & Picks', 'Our 2026 shortlist of 12 Shillong cafés — ML 05, Dylan\'s, Café Shillong, TAB Bistro. Coffee ₹100–220, timings, WiFi and the best spots for live music.',
+    'Best Cafés in Shillong', 'Twelve cafés worth your morning in Shillong, checked for 2026 — what a flat white actually costs, which ones have plug points and WiFi that holds, and where live music happens on weekends. Most sit in Laitumkhrah, Police Bazar or Laban; TAB Bistro by XTSY is the forest-side option in New Shillong Township.',
     [
-      { heading: 'Top Cafés', content: 'Must-visit cafés:', listItems: ['ML 05 Café — best specialty coffee', 'Dylan\'s Café — live music weekends', 'Café Shillong — institution, great vibes', 'Heritage Club — colonial charm', 'Cloud 9 — mountain views', 'TAB Bistro (XTSY) — traveler favorite'] },
-      { heading: 'Café Culture Tips', content: 'Shillong\'s café scene:', listItems: ['Most cafés open 10 AM - 9 PM', 'Live music common on weekends', 'Average coffee: ₹100-200', 'Many cafés have WiFi for remote work', 'October-November: café festival season'] },
+      { heading: '12 Best Cafés in Shillong (2026)', content: 'Names, neighbourhood and what to order:', listItems: ['ML 05 Café, Laitumkhrah — specialty pour-over & espresso, ₹150–220', 'Dylan\'s Café, Laitumkhrah — Dylan memorabilia, live music Fri–Sun, ₹120–200', 'Café Shillong, Laitumkhrah — the original live-music room, book a table after 7 PM', 'Café Shillong Heritage, Laban — colonial bungalow setting, all-day breakfast', 'Cloud 9, Upper Shillong — valley views, best in clear October weather', 'TAB Bistro by XTSY, New Shillong Township — forest-side café, coffee ₹100–180, 9 AM–10:30 PM', 'Kavya Café, Police Bazar — cheap filter coffee and quick breakfasts under ₹150', 'Dejavu Café, Police Bazar — late-evening desserts and shakes', 'Lamplight Café, Laitumkhrah — quiet, plug points, good for laptop work', 'The Evening Club, Laban — sundowner coffee and Khasi snacks', 'Trattoria-adjacent bakeries, Police Bazar — jadoh-and-coffee style local breakfasts', 'Cafés along Ward\'s Lake Road — walk-in stops between sightseeing'] },
+      { heading: 'What It Costs & When to Go (2026)', content: 'Practical numbers before you set out:', listItems: ['Cappuccino/latte: ₹120–180; specialty pour-over: ₹180–220', 'Breakfast plate with coffee: ₹250–400 for two', 'Most cafés open 9–10 AM and close 8–9 PM; TAB Bistro runs to 10:30 PM', 'Live music: Friday to Sunday evenings, mainly in Laitumkhrah', 'WiFi is reliable in Laitumkhrah cafés; carry a hotspot for Upper Shillong', 'Sunday mornings are slow — many Police Bazar spots open after 11 AM'] },
+      { heading: 'Café-Hopping From Your Stay', content: 'Backpackers usually base themselves near the café belt. XTSY Travellers Hostel puts dorm beds from ₹369 per night within an easy ride of Laitumkhrah and Police Bazar, with TAB Bistro on site for late coffee — use the booking link above to check tonight\'s availability.', listItems: ['Laitumkhrah: 4–5 cafés walkable in one evening', 'Police Bazar: cheapest breakfasts, busiest after 11 AM', 'Upper Shillong: pair Cloud 9 with Elephant Falls', 'New Shillong Township: TAB Bistro, quietest and latest-closing'] },
     ],
     [
-      { question: 'Does XTSY have a café?', answer: 'Yes! TAB Bistro is our in-house restaurant and café serving coffee, meals, and snacks. Popular with both guests and locals.' },
+      { question: 'Which is the best café in Shillong for coffee?', answer: 'For specialty coffee, ML 05 Café in Laitumkhrah is the strongest pick (pour-over and espresso, ₹150–220). For a café with live music, Café Shillong and Dylan\'s Café — both in Laitumkhrah — are the long-running favourites.' },
+      { question: 'How much does coffee cost in Shillong cafés?', answer: 'Expect ₹120–180 for a cappuccino or latte and ₹180–220 for specialty pour-over. A breakfast plate with coffee for two runs about ₹250–400.' },
+      { question: 'Which Shillong cafés are good for working on a laptop?', answer: 'Laitumkhrah cafés such as ML 05 and Lamplight have the most reliable WiFi and plug points. TAB Bistro by XTSY in New Shillong Township is quieter and stays open until 10:30 PM.' },
+      { question: 'Does XTSY have a café?', answer: 'Yes — TAB Bistro by XTSY is our in-house café and restaurant serving coffee from ₹100, all-day breakfast and desserts, open 9 AM to 10:30 PM to guests and locals alike.' },
     ],
-    ['best-restaurants-shillong', 'shillong-vacation-planner'],
+    ['best-restaurants-shillong', 'restaurant-in-shillong', 'shillong-vacation-planner'],
     ['cafes in shillong', 'best cafe shillong', 'coffee shillong', 'shillong cafe culture']
   ),
+
 ];
 
 // ============================================================================
