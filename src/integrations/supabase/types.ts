@@ -6215,6 +6215,10 @@ export type Database = {
       }
       get_user_properties: { Args: { _user_id: string }; Returns: string[] }
       get_user_role: { Args: never; Returns: string }
+      get_visitor_session_count: {
+        Args: { _visitor_id: string }
+        Returns: number
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
