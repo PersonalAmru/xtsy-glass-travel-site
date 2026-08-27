@@ -137,12 +137,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "viewport",
         content: "width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover",
       },
-      { title: "XTSY — Best Hostel in Shillong, Meghalaya" },
-      {
-        name: "description",
-        content:
-          "India's biggest hostel in Shillong, Meghalaya. Budget dorms from ₹369, luxury 270° glass suite & curated Northeast India tours. Book direct.",
-      },
       { name: "google-site-verification", content: "JLU2b52K22fmRO8ee75E59cZS03qghtetQtjo8h0oD8" },
       {
         name: "robots",
@@ -152,34 +146,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "googlebot",
         content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
       },
+      // NOTE: title/description/og:title/og:description/og:image/twitter:* are
+      // intentionally NOT set here — each route owns its own via buildRouteHead.
       { property: "og:type", content: "website" },
-      { property: "og:title", content: "XTSY — Best Hostel in Shillong, Meghalaya" },
-      {
-        property: "og:description",
-        content:
-          "India's biggest hostel in Shillong, Meghalaya. Budget dorms from ₹369, luxury 270° glass suite & curated Northeast India tours. Book direct.",
-      },
-      {
-        property: "og:image",
-        content:
-          "https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png",
-      },
       { property: "og:site_name", content: "XTSY Travel" },
       { property: "og:locale", content: "en_IN" },
       { property: "og:locale:alternate", content: "en_US" },
       { property: "og:locale:alternate", content: "en_GB" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "XTSY — Best Hostel in Shillong, Meghalaya" },
-      {
-        name: "twitter:description",
-        content:
-          "India's biggest hostel in Shillong, Meghalaya. Budget dorms from ₹369, luxury 270° glass suite, curated Northeast India tours. Book direct.",
-      },
-      {
-        name: "twitter:image",
-        content:
-          "https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png",
-      },
+
       { name: "geo.region", content: "IN-ML" },
       { name: "geo.placename", content: "Shillong, Meghalaya, India" },
       { name: "geo.position", content: "25.5788;91.8933" },
