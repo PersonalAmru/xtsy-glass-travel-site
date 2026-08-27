@@ -103,14 +103,13 @@ export const useTrafficAnalytics = () => {
         .eq('session_id', sessionId);
       
       // Check if return visitor
-      const { data: visitorHistory } = await supabase
-        .from('traffic_visitor_history')
-        .select('total_sessions')
-        .eq('visitor_id', visitorId)
-        .single();
+      const { data: sessionCount } = await supabase.rpc('get_visitor_session_count', {
+        _visitor_id: visitorId,
+      } as any);
       
-      const isReturn = (visitorHistory?.total_sessions || 0) > 1;
-      const visitCount = visitorHistory?.total_sessions || 1;
+      const totalSessions = Number(sessionCount) || 0;
+      const isReturn = totalSessions > 1;
+      const visitCount = totalSessions || 1;
       
       // Set GA4 user properties
       setUserProperties({
