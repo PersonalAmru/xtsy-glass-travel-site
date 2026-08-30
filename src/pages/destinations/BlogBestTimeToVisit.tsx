@@ -63,6 +63,8 @@ const BlogBestTimeToVisit = () => (
             <Link to="/budget-trip-to-meghalaya" className="text-sm text-primary hover:underline">Budget Trip Guide</Link>
             <Link to="/3-day-meghalaya-itinerary" className="text-sm text-primary hover:underline">3-Day Itinerary</Link>
             <Link to="/5-day-meghalaya-itinerary" className="text-sm text-primary hover:underline">5-Day Itinerary</Link>
+            <Link to="/travel-guide/how-to-reach-meghalaya" className="text-sm text-primary hover:underline">How to Reach Meghalaya</Link>
+            <Link to="/travel-guide/meghalaya-for-international-tourists" className="text-sm text-primary hover:underline">Guide for International Tourists</Link>
           </div>
         </nav>
       </div>
