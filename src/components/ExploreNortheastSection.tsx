@@ -94,6 +94,14 @@ import { MapPin, Compass, Mountain, Camera, Shield, Plane } from "lucide-react";
               <span>English widely spoken</span>
             </div>
            </div>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-4 text-xs md:text-sm">
+            <Link to="/travel-guide/meghalaya-for-international-tourists" className="text-primary underline underline-offset-4">
+              Visa, permits &amp; safety guide for international visitors
+            </Link>
+            <Link to="/travel-guide/how-to-reach-meghalaya" className="text-primary underline underline-offset-4">
+              How to reach Meghalaya &amp; Shillong
+            </Link>
+          </div>
         </motion.div>
        </div>
      </section>
