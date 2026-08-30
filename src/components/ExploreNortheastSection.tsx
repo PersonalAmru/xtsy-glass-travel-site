@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "@/lib/router-compat";
 import { MapPin, Compass, Mountain, Camera, Shield, Plane } from "lucide-react";
  
  const highlights = [
