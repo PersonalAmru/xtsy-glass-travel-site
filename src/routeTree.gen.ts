@@ -100,6 +100,8 @@ import { Route as TabBistroCateringRouteImport } from './routes/tab-bistro/cater
 import { Route as ToursIndexRouteImport } from './routes/tours/index'
 import { Route as ToursSlugRouteImport } from './routes/tours/$slug'
 import { Route as TravelGuideGuwahatiToShillongTransportRouteImport } from './routes/travel-guide/guwahati-to-shillong-transport'
+import { Route as TravelGuideHowToReachMeghalayaRouteImport } from './routes/travel-guide/how-to-reach-meghalaya'
+import { Route as TravelGuideMeghalayaForInternationalTouristsRouteImport } from './routes/travel-guide/meghalaya-for-international-tourists'
 import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
 import { Route as AdminAnalyticsIndexRouteImport } from './routes/admin/analytics/index'
 import { Route as AdminAnalyticsLoaderEventsRouteImport } from './routes/admin/analytics/loader-events'
@@ -584,6 +586,18 @@ const TravelGuideGuwahatiToShillongTransportRoute =
     path: '/travel-guide/guwahati-to-shillong-transport',
     getParentRoute: () => rootRouteImport,
   } as any)
+const TravelGuideHowToReachMeghalayaRoute =
+  TravelGuideHowToReachMeghalayaRouteImport.update({
+    id: '/travel-guide/how-to-reach-meghalaya',
+    path: '/travel-guide/how-to-reach-meghalaya',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const TravelGuideMeghalayaForInternationalTouristsRoute =
+  TravelGuideMeghalayaForInternationalTouristsRouteImport.update({
+    id: '/travel-guide/meghalaya-for-international-tourists',
+    path: '/travel-guide/meghalaya-for-international-tourists',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DotlovableOauthConsentRoute = DotlovableOauthConsentRouteImport.update({
   id: '/.lovable/oauth/consent',
   path: '/.lovable/oauth/consent',
@@ -769,6 +783,8 @@ export interface FileRoutesByFullPath {
   '/tab-bistro/catering': typeof TabBistroCateringRoute
   '/tours/$slug': typeof ToursSlugRoute
   '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
+  '/travel-guide/how-to-reach-meghalaya': typeof TravelGuideHowToReachMeghalayaRoute
+  '/travel-guide/meghalaya-for-international-tourists': typeof TravelGuideMeghalayaForInternationalTouristsRoute
   '/admin/': typeof AdminIndexRoute
   '/book/': typeof BookIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
@@ -881,6 +897,8 @@ export interface FileRoutesByTo {
   '/tab-bistro/catering': typeof TabBistroCateringRoute
   '/tours/$slug': typeof ToursSlugRoute
   '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
+  '/travel-guide/how-to-reach-meghalaya': typeof TravelGuideHowToReachMeghalayaRoute
+  '/travel-guide/meghalaya-for-international-tourists': typeof TravelGuideMeghalayaForInternationalTouristsRoute
   '/admin': typeof AdminIndexRoute
   '/book': typeof BookIndexRoute
   '/destinations': typeof DestinationsIndexRoute
@@ -994,6 +1012,8 @@ export interface FileRoutesById {
   '/tab-bistro/catering': typeof TabBistroCateringRoute
   '/tours/$slug': typeof ToursSlugRoute
   '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
+  '/travel-guide/how-to-reach-meghalaya': typeof TravelGuideHowToReachMeghalayaRoute
+  '/travel-guide/meghalaya-for-international-tourists': typeof TravelGuideMeghalayaForInternationalTouristsRoute
   '/admin/': typeof AdminIndexRoute
   '/book/': typeof BookIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
@@ -1108,6 +1128,8 @@ export interface FileRouteTypes {
     | '/tab-bistro/catering'
     | '/tours/$slug'
     | '/travel-guide/guwahati-to-shillong-transport'
+    | '/travel-guide/how-to-reach-meghalaya'
+    | '/travel-guide/meghalaya-for-international-tourists'
     | '/admin/'
     | '/book/'
     | '/destinations/'
@@ -1220,6 +1242,8 @@ export interface FileRouteTypes {
     | '/tab-bistro/catering'
     | '/tours/$slug'
     | '/travel-guide/guwahati-to-shillong-transport'
+    | '/travel-guide/how-to-reach-meghalaya'
+    | '/travel-guide/meghalaya-for-international-tourists'
     | '/admin'
     | '/book'
     | '/destinations'
@@ -1332,6 +1356,8 @@ export interface FileRouteTypes {
     | '/tab-bistro/catering'
     | '/tours/$slug'
     | '/travel-guide/guwahati-to-shillong-transport'
+    | '/travel-guide/how-to-reach-meghalaya'
+    | '/travel-guide/meghalaya-for-international-tourists'
     | '/admin/'
     | '/book/'
     | '/destinations/'
@@ -1445,6 +1471,8 @@ export interface RootRouteChildren {
   TabBistroCateringRoute: typeof TabBistroCateringRoute
   ToursSlugRoute: typeof ToursSlugRoute
   TravelGuideGuwahatiToShillongTransportRoute: typeof TravelGuideGuwahatiToShillongTransportRoute
+  TravelGuideHowToReachMeghalayaRoute: typeof TravelGuideHowToReachMeghalayaRoute
+  TravelGuideMeghalayaForInternationalTouristsRoute: typeof TravelGuideMeghalayaForInternationalTouristsRoute
   AdminIndexRoute: typeof AdminIndexRoute
   BookIndexRoute: typeof BookIndexRoute
   DestinationsIndexRoute: typeof DestinationsIndexRoute
@@ -2112,6 +2140,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TravelGuideGuwahatiToShillongTransportRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/travel-guide/how-to-reach-meghalaya': {
+      id: '/travel-guide/how-to-reach-meghalaya'
+      path: '/travel-guide/how-to-reach-meghalaya'
+      fullPath: '/travel-guide/how-to-reach-meghalaya'
+      preLoaderRoute: typeof TravelGuideHowToReachMeghalayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/travel-guide/meghalaya-for-international-tourists': {
+      id: '/travel-guide/meghalaya-for-international-tourists'
+      path: '/travel-guide/meghalaya-for-international-tourists'
+      fullPath: '/travel-guide/meghalaya-for-international-tourists'
+      preLoaderRoute: typeof TravelGuideMeghalayaForInternationalTouristsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/.lovable/oauth/consent': {
       id: '/.lovable/oauth/consent'
       path: '/.lovable/oauth/consent'
@@ -2334,6 +2376,9 @@ const rootRouteChildren: RootRouteChildren = {
   ToursSlugRoute: ToursSlugRoute,
   TravelGuideGuwahatiToShillongTransportRoute:
     TravelGuideGuwahatiToShillongTransportRoute,
+  TravelGuideHowToReachMeghalayaRoute: TravelGuideHowToReachMeghalayaRoute,
+  TravelGuideMeghalayaForInternationalTouristsRoute:
+    TravelGuideMeghalayaForInternationalTouristsRoute,
   AdminIndexRoute: AdminIndexRoute,
   BookIndexRoute: BookIndexRoute,
   DestinationsIndexRoute: DestinationsIndexRoute,
