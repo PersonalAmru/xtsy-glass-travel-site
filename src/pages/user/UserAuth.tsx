@@ -440,7 +440,7 @@ export default function UserAuth() {
       <div className="mt-8 pt-6 border-t border-border/30 text-center">
         <p className="text-xs text-muted-foreground">
           By continuing, you agree to our{' '}
-          <Link to="/terms" className="underline hover:text-foreground transition-colors">
+          <Link to="/terms-of-service" className="underline hover:text-foreground transition-colors">
             Terms of Service
           </Link>{' '}
           and{' '}
