@@ -8,5 +8,9 @@
  * Maintained via the Admin → SEO → Recovery panel.
  */
 export const GONE_SLUGS: ReadonlySet<string> = new Set<string>([
-  // Add slugs here as content is permanently retired.
+  // Legacy redirect stubs removed 2026-09 — permanently gone (410).
+  'contact-us',
+  'refund-cancellation-policy',
+  'privacy',
+  'travel',
 ]);
