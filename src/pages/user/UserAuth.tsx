@@ -444,7 +444,7 @@ export default function UserAuth() {
             Terms of Service
           </Link>{' '}
           and{' '}
-          <Link to="/privacy" className="underline hover:text-foreground transition-colors">
+          <Link to="/privacy-policy" className="underline hover:text-foreground transition-colors">
             Privacy Policy
           </Link>
         </p>

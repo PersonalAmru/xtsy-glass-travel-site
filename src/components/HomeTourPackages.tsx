@@ -166,7 +166,7 @@ const HomeTourPackages: React.FC<HomeTourPackagesProps> = ({ className }) => {
         </div>
 
         <div className="mt-8 text-center">
-          <Link to="/travel" onClick={() => trackCTA("view_all_packages", { tab: activeTab, package_count: currentPackages.length })}>
+          <Link to="/tours" onClick={() => trackCTA("view_all_packages", { tab: activeTab, package_count: currentPackages.length })}>
             <Button
               variant="outline"
               size="lg"
