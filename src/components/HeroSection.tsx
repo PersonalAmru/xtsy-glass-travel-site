@@ -19,7 +19,7 @@ import { useComponentTracking } from "@/hooks/useComponentTracking";
 import { useConversionSignalsContext } from "@/providers/ConversionSignalsProvider";
 const HeroSection = () => {
   const navigate = useNavigate();
-  const [checkIn, setCheckIn] = useState<Date | undefined>(new Date());
+  const [checkIn, setCheckIn] = useState<Date | undefined>(undefined);
   const [checkOut, setCheckOut] = useState<Date | undefined>(undefined);
   const [guests, setGuests] = useState(4);
   const [location, setLocation] = useState("shillong");
