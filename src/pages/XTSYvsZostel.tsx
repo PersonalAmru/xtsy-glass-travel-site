@@ -538,23 +538,21 @@ const XTSYvsZostel = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 {[
-                  { name: "Mesmerising Meghalaya | Group Tour", duration: "6D/5N", price: "₹19,348/person", rating: "4.8 (862 reviews)", model: "Group tour, outsourced logistics" },
-                  { name: "Best of Meghalaya | Group Tour", duration: "7D/6N", price: "₹25,377/person", rating: "4.6 (625 reviews)", model: "Group tour, outsourced logistics" },
-                  { name: "Holidays in Meghalaya | Private Tour", duration: "6D/5N", price: "₹25,132/person", rating: "4.5 (695 reviews)", model: "Private but vendor-operated" },
-                  { name: "Northeastern Nirvana (Assam+Meghalaya+AP)", duration: "10D/9N", price: "₹42,266/person", rating: "4.7 (448 reviews)", model: "Multi-state, outsourced vendors" },
+                  { name: "Meghalaya group departures", duration: "6D/5N–7D/6N", model: "Fixed-date group tours, logistics outsourced to local vendors" },
+                  { name: "Meghalaya private tours", duration: "6D/5N", model: "Sold as private, still vendor-operated on the ground" },
+                  { name: "Multi-state Northeast circuits", duration: "10D/9N", model: "Assam + Meghalaya + Arunachal, multiple vendor handoffs" },
                 ].map((trip, i) => (
                   <div key={i} className="p-3 rounded-xl bg-muted/30 border border-border/50">
                     <div className="flex items-start justify-between gap-2 mb-1">
                       <h4 className="text-sm font-semibold text-foreground leading-tight">{trip.name}</h4>
                       <Badge variant="outline" className="text-xs whitespace-nowrap shrink-0">{trip.duration}</Badge>
                     </div>
-                    <p className="text-lg font-bold text-foreground">{trip.price}</p>
                     <div className="flex flex-wrap gap-2 mt-1.5">
-                      <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">⭐ {trip.rating}</span>
                       <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">{trip.model}</span>
                     </div>
                   </div>
                 ))}
+
                 <div className="pt-2 border-t border-border">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <AlertTriangle className="h-3.5 w-3.5 text-destructive" />
