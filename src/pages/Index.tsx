@@ -40,7 +40,7 @@ const Index = memo(() => {
 
   // Individual Review schema items built from real Google Business Profile
   // reviews so the homepage Hostel entity is eligible for review rich results
-  // (the aggregateRating below already summarises all 320 reviews).
+  // (the aggregateRating below already summarises all 161 verified reviews).
   const reviewSchemaItems = googleReviews
     .filter((r) => r.comment && r.comment.length > 40)
     .slice(0, 6)
@@ -74,9 +74,9 @@ const Index = memo(() => {
       addressCountry: 'IN',
     },
     geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
-    priceRange: '₹329 - ₹4,999',
+    priceRange: '₹369 - ₹4,999',
     starRating: { '@type': 'Rating', ratingValue: '4.8' },
-    aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '161', bestRating: '5' },
     review: reviewSchemaItems,
     checkinTime: '13:00',
     checkoutTime: '11:00',
@@ -142,7 +142,7 @@ const Index = memo(() => {
         name: 'How much does a hostel in Shillong cost per night?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'At XTSY Travellers Hostel, dormitory beds start from ₹329/night, private rooms from ₹2,500/night, and the exclusive 270° Glass Stargazing Suite from ₹4,999/night. Prices vary by season.',
+          text: 'At XTSY Travellers Hostel, dormitory beds start from ₹369/night, private rooms from ₹2,500/night, and the exclusive 270° Glass Stargazing Suite from ₹4,999/night. Prices vary by season.',
         },
       },
       {

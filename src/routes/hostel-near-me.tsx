@@ -8,7 +8,7 @@ export const Route = createFileRoute("/hostel-near-me")({
       path: "/hostel-near-me",
       title: "Hostel Near Me in Shillong — Closest Backpacker Hostel to Police Bazar | XTSY",
       description:
-        "Looking for a hostel near you in Shillong? XTSY is 1.2 km from Police Bazar — dorm beds from ₹369, 4.8★ from 320+ guests. Directions, distances and instant booking.",
+        "Looking for a hostel near you in Shillong? XTSY is 1.2 km from Police Bazar — dorm beds from ₹369, 4.8★ from 161 verified guests. Directions, distances and instant booking.",
       keywords:
         "hostel near me, hostel near me shillong, hostel near police bazar, closest hostel shillong",
     }),

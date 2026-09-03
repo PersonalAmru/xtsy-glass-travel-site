@@ -62,7 +62,7 @@ const XTSYvsZostel = () => {
       tagline: "Company-Owned Hostel Chain + Workations",
       model: "Company-owned hostels (not franchise). Expanding into workation & coliving. Bus service between hostels.",
       nePresence: "Limited NE presence. Focused on Himachal, Rajasthan, Uttarakhand, Goa, Kashmir.",
-      pricing: "Dorms from ₹499/night. Private rooms available. Workation packages.",
+      pricing: "Dorm and private room inventory; workation packages. Rates vary by city and season — check their site.",
       segments: "Solo travelers, digital nomads, workation seekers. Limited family/group support.",
       strengths: ["Company-owned (consistent quality)", "65+ hostels", "Workation & coliving model", "Inter-hostel bus network"],
       weaknesses: ["Minimal NE India coverage", "No luxury suites", "No large group hosting", "No curated tour packages", "No pet-friendly option"],
@@ -74,7 +74,7 @@ const XTSYvsZostel = () => {
       tagline: "Hostel + Select + Luxuria Tiers",
       model: "Multi-tier: Hostel (budget), Select (mid-range), Luxuria (premium). Partner/managed properties.",
       nePresence: "No significant NE presence. Focused on Rajasthan, Goa, Himachal, Kerala.",
-      pricing: "Dorms from ₹399. Luxuria premium tier available. Packaged experiences.",
+      pricing: "Tiered dorm and premium inventory (Luxuria); packaged experiences. Rates vary by property.",
       segments: "Budget travelers, couples (Luxuria tier). No group/corporate specialization.",
       strengths: ["Three clear tiers", "Luxuria premium option", "Destination diversity (Rajasthan, Goa, Kerala)"],
       weaknesses: ["No NE India footprint", "No groups >10", "No educational/corporate tours", "Partner-managed properties", "No govt. collaborations"],
@@ -86,7 +86,7 @@ const XTSYvsZostel = () => {
       tagline: "Franchise Hostel + Workation + Coliving",
       model: "Franchise model. Expanding via hostel franchises across India. Offsite & coliving products.",
       nePresence: "No NE presence. Focused on Himachal, Uttarakhand, Goa, Rajasthan, Karnataka.",
-      pricing: "Dorms from ₹449. Franchise investment: ₹20-50 lakhs. Offsite packages for corporates.",
+      pricing: "Franchised dorm inventory and corporate offsite packages. Rates vary by franchisee.",
       segments: "Solo backpackers, franchise investors, digital nomads. No family/elder support.",
       strengths: ["Franchise expansion model", "20+ locations", "Workation & coliving", "Corporate offsite packages"],
       weaknesses: ["Franchise quality varies", "Zero NE coverage", "No luxury option", "No curated private tours", "No pet-friendly stays", "No large group hosting"],
@@ -538,23 +538,21 @@ const XTSYvsZostel = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 {[
-                  { name: "Mesmerising Meghalaya | Group Tour", duration: "6D/5N", price: "₹19,348/person", rating: "4.8 (862 reviews)", model: "Group tour, outsourced logistics" },
-                  { name: "Best of Meghalaya | Group Tour", duration: "7D/6N", price: "₹25,377/person", rating: "4.6 (625 reviews)", model: "Group tour, outsourced logistics" },
-                  { name: "Holidays in Meghalaya | Private Tour", duration: "6D/5N", price: "₹25,132/person", rating: "4.5 (695 reviews)", model: "Private but vendor-operated" },
-                  { name: "Northeastern Nirvana (Assam+Meghalaya+AP)", duration: "10D/9N", price: "₹42,266/person", rating: "4.7 (448 reviews)", model: "Multi-state, outsourced vendors" },
+                  { name: "Meghalaya group departures", duration: "6D/5N–7D/6N", model: "Fixed-date group tours, logistics outsourced to local vendors" },
+                  { name: "Meghalaya private tours", duration: "6D/5N", model: "Sold as private, still vendor-operated on the ground" },
+                  { name: "Multi-state Northeast circuits", duration: "10D/9N", model: "Assam + Meghalaya + Arunachal, multiple vendor handoffs" },
                 ].map((trip, i) => (
                   <div key={i} className="p-3 rounded-xl bg-muted/30 border border-border/50">
                     <div className="flex items-start justify-between gap-2 mb-1">
                       <h4 className="text-sm font-semibold text-foreground leading-tight">{trip.name}</h4>
                       <Badge variant="outline" className="text-xs whitespace-nowrap shrink-0">{trip.duration}</Badge>
                     </div>
-                    <p className="text-lg font-bold text-foreground">{trip.price}</p>
                     <div className="flex flex-wrap gap-2 mt-1.5">
-                      <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">⭐ {trip.rating}</span>
                       <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">{trip.model}</span>
                     </div>
                   </div>
                 ))}
+
                 <div className="pt-2 border-t border-border">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <AlertTriangle className="h-3.5 w-3.5 text-destructive" />

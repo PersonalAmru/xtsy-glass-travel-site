@@ -468,7 +468,7 @@ const AllPages = () => {
                   <Star className="h-4 w-4 text-primary fill-primary" />
                   <span className="text-sm font-semibold text-foreground">4.8 ★ Google Rating</span>
                   <span className="text-muted-foreground text-sm">•</span>
-                  <span className="text-sm text-muted-foreground">320+ Reviews</span>
+                  <span className="text-sm text-muted-foreground">161 verified reviews</span>
                 </div>
                 <p className="text-sm text-muted-foreground max-w-lg mx-auto">
                   Every guide is curated by the XTSY travel team — based in Shillong, exploring Meghalaya since 2021.

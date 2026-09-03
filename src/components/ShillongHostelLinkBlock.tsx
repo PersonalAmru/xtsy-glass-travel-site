@@ -29,7 +29,7 @@ const ShillongHostelLinkBlock = ({
           </h2>
           <p className="mt-2 max-w-2xl text-muted-foreground">
             XTSY Travellers Hostel is the best-rated, cheapest backpacker base for exploring {nearName}
-            {' '}— dorm beds from ₹329, female-only dorms and private rooms in central Shillong.
+            {' '}— dorm beds from ₹369, female-only dorms and private rooms in central Shillong.
           </p>
         </div>
         <Link

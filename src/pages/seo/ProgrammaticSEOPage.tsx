@@ -52,7 +52,7 @@ const buildSchema = (page: SEOPageData) => {
     Object.assign(base, {
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
       telephone: '+91-8837317070',
-      priceRange: '₹329 - ₹4,999',
+      priceRange: '₹369 - ₹4,999',
       geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
       amenityFeature: [
         { '@type': 'LocationFeatureSpecification', name: 'Free WiFi', value: true },
@@ -65,14 +65,14 @@ const buildSchema = (page: SEOPageData) => {
           '@type': 'Offer',
           name: 'Dorm Bed (8-Bed Mixed)',
           priceCurrency: 'INR',
-          price: '329',
+          price: '369',
           priceValidUntil: '2026-12-31',
           availability: 'https://schema.org/InStock',
           validFrom: todayISO,
           url: 'https://xtsy.one/book',
           priceSpecification: {
             '@type': 'UnitPriceSpecification',
-            price: '329',
+            price: '369',
             priceCurrency: 'INR',
             unitText: 'night',
           },
@@ -97,7 +97,7 @@ const buildSchema = (page: SEOPageData) => {
     });
 
     if (isRealProperty) {
-      base.aggregateRating = { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5', worstRating: '1' };
+      base.aggregateRating = { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '161', bestRating: '5', worstRating: '1' };
     }
   }
 

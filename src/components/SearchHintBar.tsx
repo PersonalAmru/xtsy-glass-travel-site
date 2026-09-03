@@ -23,7 +23,7 @@ interface SearchResult {
 
 const SEARCH_INDEX: SearchResult[] = [
   // Rooms & Booking
-  { title: '8-Bed Mixed Dorm', description: 'Bestseller · From ₹329/night', icon: '🛏️', path: '/book', keywords: ['dorm', 'dormitory', 'bed', 'mixed', 'cheap', 'budget', '269', 'hostel', 'backpacker', 'bestseller', '8 bed'], tags: ['budget', 'explore'] },
+  { title: '8-Bed Mixed Dorm', description: 'Bestseller · From ₹369/night', icon: '🛏️', path: '/book', keywords: ['dorm', 'dormitory', 'bed', 'mixed', 'cheap', 'budget', '269', 'hostel', 'backpacker', 'bestseller', '8 bed'], tags: ['budget', 'explore'] },
   { title: '6-Bed Mixed Dorm', description: 'Recommended · From ₹419/night', icon: '🛏️', path: '/book', keywords: ['dorm', '6 bed', 'mixed', 'recommended', '419'], tags: ['budget', 'explore'] },
   { title: '6-Bed Female Dorm', description: 'Women only · From ₹369/night', icon: '👩', path: '/book', keywords: ['female', 'women', 'girls', 'dorm', '6 bed', '369', 'ladies'], tags: ['female', 'budget'] },
   { title: '4-Bed Mixed Dorm', description: 'Solo traveller pick · From ₹529/night', icon: '🎒', path: '/book', keywords: ['dorm', '4 bed', 'solo', '529', 'mixed'], tags: ['budget', 'explore'] },

@@ -24,8 +24,8 @@ export const HOSTEL_SCHEMA: Record<string, unknown> = {
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.8",
-    ratingCount: "320",
-    reviewCount: "189",
+    ratingCount: "161",
+    reviewCount: "161",
     bestRating: "5",
   },
 };

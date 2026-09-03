@@ -279,7 +279,7 @@ const BackpackingIndia = memo(() => {
             <div className="mt-8 grid sm:grid-cols-2 gap-4">
               {[
                 { name: '8-Bed Mixed Dorm', price: '₹369', note: 'Cheapest bed, best for long stays' },
-                { name: '6-Bed Mixed Dorm', price: '₹499', note: 'More space, most popular with backpackers' },
+                { name: '6-Bed Mixed Dorm', price: '₹469', note: 'More space, most popular with backpackers' },
                 { name: 'Female-only Dorm', price: '₹550', note: 'Privacy curtains, keycard access' },
                 { name: 'Private Double Room', price: '₹2,500', note: 'For couples and rest days' },
               ].map((r) => (

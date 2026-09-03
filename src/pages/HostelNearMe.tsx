@@ -26,7 +26,7 @@ const HostelNearMe = memo(() => {
     name: 'XTSY Travellers Hostel — Nearest Backpacker Hostel in Shillong',
     alternateName: ['XTSY Hostel Shillong', 'Hostel near Police Bazar Shillong'],
     description:
-      'The closest verified backpacker hostel to Police Bazar, Ward\'s Lake and Shillong city centre. Walkable to cafés, transport hubs and viewpoints — dorm beds from ₹369, 4.8★ from 320+ guests.',
+      'The closest verified backpacker hostel to Police Bazar, Ward\'s Lake and Shillong city centre. Walkable to cafés, transport hubs and viewpoints — dorm beds from ₹369, 4.8★ from 161 verified guests.',
     url: 'https://xtsy.one/hostel-near-me',
     telephone: '+918837317070',
     email: 'stay@xtsy.one',
@@ -64,7 +64,7 @@ const HostelNearMe = memo(() => {
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
-      reviewCount: '320',
+      reviewCount: '161',
       bestRating: '5',
     },
     amenityFeature: [
@@ -121,7 +121,7 @@ const HostelNearMe = memo(() => {
     },
     {
       q: 'Are there other hostels near me in Shillong worth comparing?',
-      a: 'Shillong has ~6 verified hostels. XTSY is the largest (India\'s biggest hostel in the northeast), highest rated (4.8★, 320+ reviews) and closest to Police Bazar. Compare on /xtsy-vs-zostel or /best-hostel-in-shillong.',
+      a: 'Shillong has ~6 verified hostels. XTSY is the largest (India\'s biggest hostel in the northeast), highest rated (4.8★, 161 verified reviews) and closest to Police Bazar. Compare on /xtsy-vs-zostel or /best-hostel-in-shillong.',
     },
     {
       q: 'Can I walk-in without booking online?',
@@ -145,7 +145,7 @@ const HostelNearMe = memo(() => {
       <Helmet>
         <meta
           name="description"
-          content="Looking for a hostel near you in Shillong? XTSY is 1.2 km from Police Bazar — the closest verified backpacker hostel with dorm beds from ₹369, 4.8★ from 320+ guests. Get directions, distances & instant booking."
+          content="Looking for a hostel near you in Shillong? XTSY is 1.2 km from Police Bazar — the closest verified backpacker hostel with dorm beds from ₹369, 4.8★ from 161 verified guests. Get directions, distances & instant booking."
         />
         <meta
           name="keywords"
@@ -171,7 +171,7 @@ const HostelNearMe = memo(() => {
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
               XTSY Travellers Hostel is the <strong>closest verified backpacker hostel</strong> to
               Shillong city centre — walkable to Police Bazar, Ward's Lake and the Sumo stand for
-              Cherrapunji & Dawki. Dorm beds from <strong>₹369</strong>, 4.8★ from 320+ guests.
+              Cherrapunji & Dawki. Dorm beds from <strong>₹369</strong>, 4.8★ from 161 verified guests.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Button size="lg" asChild>
@@ -194,7 +194,7 @@ const HostelNearMe = memo(() => {
             </div>
             <div className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
               <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
-              <span>4.8 / 5 · 320+ verified guest reviews</span>
+              <span>4.8 / 5 · 161 verified guest reviews</span>
             </div>
           </div>
         </section>

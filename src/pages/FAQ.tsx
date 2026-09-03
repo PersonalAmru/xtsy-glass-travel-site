@@ -128,7 +128,7 @@ const FAQ = () => {
       faqs: [
         {
           question: "What dorm and room types can I choose?",
-          answer: "4, 6 and 8-bed mixed dormitories, female-only dorms (4 and 6-bed), private double rooms with mountain views, and the flagship 270° Panorama Glass En-suite at Experience by XTSY. Every bed has a locker, reading light and charging point. Dorms from ₹499.",
+          answer: "4, 6 and 8-bed mixed dormitories, female-only dorms (4 and 6-bed), private double rooms with mountain views, and the flagship 270° Panorama Glass En-suite at Experience by XTSY. Every bed has a locker, reading light and charging point. Dorms from ₹369.",
           hasQuote: true,
           quote: "One of the best dormitories — clean, comfortable and full of good vibes.",
           quoteName: "Kandarp"
