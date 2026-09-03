@@ -194,7 +194,7 @@ const HostelNearMe = memo(() => {
             </div>
             <div className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
               <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
-              <span>4.8 / 5 · 320+ verified guest reviews</span>
+              <span>4.8 / 5 · 161 verified guest reviews</span>
             </div>
           </div>
         </section>

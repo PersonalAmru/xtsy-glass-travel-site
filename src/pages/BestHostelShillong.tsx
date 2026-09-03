@@ -15,7 +15,7 @@ const BestHostelShillong = memo(() => {
     '@type': 'Hostel',
     '@id': 'https://xtsy.one/best-hostel-in-shillong#hostel',
     name: 'XTSY Travellers Hostel',
-    description: 'One of the best cheap hostels in Shillong, Meghalaya — budget dorm beds from ₹329, private rooms, and India\'s first 270° glass suite. Central location, 24/7 security, 4.8★ rated.',
+    description: 'One of the best cheap hostels in Shillong, Meghalaya — budget dorm beds from ₹369, private rooms, and India\'s first 270° glass suite. Central location, 24/7 security, 4.8★ rated.',
     url: 'https://xtsy.one/best-hostel-in-shillong',
     telephone: '+918837317070',
     email: 'xtsytravellershostel@gmail.com',
@@ -32,7 +32,7 @@ const BestHostelShillong = memo(() => {
       latitude: 25.5788,
       longitude: 91.8933,
     },
-    priceRange: '₹329 - ₹4,999',
+    priceRange: '₹369 - ₹4,999',
     currenciesAccepted: 'INR',
     starRating: { '@type': 'Rating', ratingValue: '4.8' },
     aggregateRating: {
@@ -78,7 +78,7 @@ const BestHostelShillong = memo(() => {
         name: 'Which are the best cheap hostels in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'XTSY Travellers Hostel is among the best cheap hostels in Shillong, with a 4.8★ rating from 161 verified guests. Budget dorm beds start at ₹329/night, making it one of the most affordable backpacker hostels in Meghalaya without cutting corners on safety or location.',
+          text: 'XTSY Travellers Hostel is among the best cheap hostels in Shillong, with a 4.8★ rating from 161 verified guests. Budget dorm beds start at ₹369/night, making it one of the most affordable backpacker hostels in Meghalaya without cutting corners on safety or location.',
         },
       },
       {
@@ -86,7 +86,7 @@ const BestHostelShillong = memo(() => {
         name: 'How much does a dorm bed in a Shillong hostel cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'A dorm bed in a Shillong hostel at XTSY starts from ₹329/night in the 6-bed mixed dorm. Female-only dorms are ₹550/night, private double rooms from ₹2,500/night, and the premium 270° Glass Suite is ₹4,999/night.',
+          text: 'A dorm bed in a Shillong hostel at XTSY starts from ₹369/night in the 6-bed mixed dorm. Female-only dorms are ₹550/night, private double rooms from ₹2,500/night, and the premium 270° Glass Suite is ₹4,999/night.',
         },
       },
       {
@@ -134,7 +134,7 @@ const BestHostelShillong = memo(() => {
   };
 
   const dormRooms = [
-    { name: '6-Bed Mixed Dormitory', price: '₹329', desc: 'Backpacker favourite — personal locker, reading light, charging port & privacy curtain per bunk.', icon: Bed },
+    { name: '6-Bed Mixed Dormitory', price: '₹369', desc: 'Backpacker favourite — personal locker, reading light, charging port & privacy curtain per bunk.', icon: Bed },
     { name: '8-Bed Mixed Dormitory', price: '₹369', desc: 'Best value social dorm for backpackers — same in-bed amenities, biggest community vibe.', icon: Users },
     { name: '4-Bed Female-Only Dorm', price: '₹550', desc: 'Women-only, extra privacy curtains, secure keycard access — safest cheap hostel option.', icon: Shield },
   ];
@@ -174,10 +174,10 @@ const BestHostelShillong = memo(() => {
               <span>NEITA 2025 Nominated · India's Biggest Hostel in Northeast</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
-              Hostels in Shillong — Cheap Dorm Beds from ₹329
+              Hostels in Shillong — Cheap Dorm Beds from ₹369
             </h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
-              Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 161 verified guests, with budget mixed dorms from ₹329/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Central Mawkhar location, minutes from Police Bazaar.
+              Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 161 verified guests, with budget mixed dorms from ₹369/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Central Mawkhar location, minutes from Police Bazaar.
             </p>
             <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> Mawkhar, Shillong</span>
@@ -245,7 +245,7 @@ const BestHostelShillong = memo(() => {
               </div>
               <ul className="space-y-3">
                 {[
-                  'Dorm beds from ₹329 — one of the cheapest hostels in Shillong',
+                  'Dorm beds from ₹369 — one of the cheapest hostels in Shillong',
                   'Free high-speed WiFi & co-working corners for digital nomads',
                   'Self-catering common kitchen to keep costs down',
                   'Lockers, curtains & 24/7 staff for safe solo travel',
@@ -304,7 +304,7 @@ const BestHostelShillong = memo(() => {
             <h2 className="text-2xl font-bold text-foreground">Why XTSY is the Best Cheap Hostel in Shillong</h2>
             <div className="mt-4 space-y-3">
               {[
-                'Dorm beds from ₹329 — among the cheapest hostels in Shillong',
+                'Dorm beds from ₹369 — among the cheapest hostels in Shillong',
                 'India\'s biggest hostel in Northeast India with 20+ rooms',
                 'Only hostel in Shillong with a 270° panoramic glass suite',
                 'Pet-friendly — India\'s first pet-friendly travellers hostel',
@@ -336,7 +336,7 @@ const BestHostelShillong = memo(() => {
                 </thead>
                 <tbody className="text-muted-foreground">
                   {[
-                    ['Starting Price', '₹329/night', '₹500-800/night'],
+                    ['Starting Price', '₹369/night', '₹500-800/night'],
                     ['Glass Suite', '✅ 270° Panoramic', '❌'],
                     ['Pet Friendly', '✅', '❌'],
                     ['Female Dorms', '✅ Dedicated', 'Limited'],

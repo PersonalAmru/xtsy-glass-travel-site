@@ -40,7 +40,7 @@ const HostelBookingShillong = memo(() => {
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
-      reviewCount: '320',
+      reviewCount: '161',
       bestRating: '5',
     },
     makesOffer: [

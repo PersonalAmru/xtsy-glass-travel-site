@@ -52,7 +52,7 @@ const buildSchema = (page: SEOPageData) => {
     Object.assign(base, {
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
       telephone: '+91-8837317070',
-      priceRange: '₹329 - ₹4,999',
+      priceRange: '₹369 - ₹4,999',
       geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
       amenityFeature: [
         { '@type': 'LocationFeatureSpecification', name: 'Free WiFi', value: true },
