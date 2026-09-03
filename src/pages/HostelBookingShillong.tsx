@@ -110,7 +110,7 @@ const HostelBookingShillong = memo(() => {
 
   const rooms = [
     { name: '8-Bed Mixed Dorm', price: '₹369', per: 'per bed / night', tag: 'Cheapest' },
-    { name: '6-Bed Mixed Dorm', price: '₹499', per: 'per bed / night', tag: 'Popular' },
+    { name: '6-Bed Mixed Dorm', price: '₹469', per: 'per bed / night', tag: 'Popular' },
     { name: 'Female-only Dorm', price: '₹550', per: 'per bed / night', tag: 'Solo-safe' },
     { name: 'Private Double Room', price: '₹2,500', per: 'per room / night', tag: 'Couples' },
     { name: '270° Glass Suite', price: '₹7,999', per: 'per night', tag: 'Signature' },
