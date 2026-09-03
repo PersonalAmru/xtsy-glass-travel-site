@@ -31,11 +31,11 @@ const competitorPages: SEOPageData[] = [
     [
       { heading: 'Price Comparison', content: 'XTSY offers competitive pricing with dorms starting at ₹369/night — among the lowest in Shillong. Our rates include free WiFi, hot water, kitchen access, and locker usage with zero hidden fees.', listItems: ['8-Bed Mixed Dorm: ₹369/night', '6-Bed Mixed Dorm: ₹699/night', 'Private Double Room: ₹1,499/night', 'XTSY 270° Glasshouse: ₹4,999/night'] },
       { heading: 'Location & Accessibility', content: 'XTSY is located in New Shillong Township, 10 minutes from Police Bazaar. Our location offers easy access to all major day trips — Cherrapunji (2hr), Dawki (3hr), Mawlynnong (2.5hr).' },
-      { heading: 'Guest Reviews Speak', content: 'XTSY maintains a 4.8★ rating on Google with 320+ reviews. Guests consistently praise the hospitality, cleanliness, food at TAB Bistro, and the vibrant travel community.' },
+      { heading: 'Guest Reviews Speak', content: 'XTSY maintains a 4.8★ rating on Google with 161 verified reviews. Guests consistently praise the hospitality, cleanliness, food at TAB Bistro, and the vibrant travel community.' },
       { heading: 'Unique to XTSY', content: 'What sets XTSY apart:', listItems: ['In-house restaurant — TAB Bistro', '270° panoramic glasshouse room', 'Curated Meghalaya tour packages', 'Car & bike rental desk', 'Bonfire & community events'] },
     ],
     [
-      { question: 'Is XTSY better than Zostel in Shillong?', answer: 'XTSY is independently rated 4.8★ on Google with 320+ reviews. We offer comparable dorm pricing, an in-house restaurant, and unique experiences like the 270° glasshouse stay.' },
+      { question: 'Is XTSY better than Zostel in Shillong?', answer: 'XTSY is independently rated 4.8★ on Google with 161 verified reviews. We offer comparable dorm pricing, an in-house restaurant, and unique experiences like the 270° glasshouse stay.' },
       { question: 'Does XTSY have a female-only dorm?', answer: 'Yes, we have a dedicated 4-bed female-only dormitory with enhanced security, personal lockers, and attached bathroom.' },
     ],
     ['backpacker-hostel-shillong', 'cheap-hostel-shillong', 'hostels-in-meghalaya'],
@@ -46,7 +46,7 @@ const competitorPages: SEOPageData[] = [
     'Isabella Hostel vs XTSY Shillong — Compare 2026', 'Isabella Hostel vs XTSY Travellers Hostel Shillong. Compare price, location, amenities & reviews. Book the best backpacker hostel.',
     'Isabella Hostel vs XTSY — Which Is Better?', 'Deciding between Isabella Hostel and XTSY in Shillong? Here\'s an honest comparison to help you pick the right stay for your Meghalaya trip.',
     [
-      { heading: 'Why Choose XTSY', content: 'XTSY offers a complete travel ecosystem:', listItems: ['Dorms from ₹369 with privacy curtains', 'In-house TAB Bistro restaurant', 'Tour packages & rental desk', '270° glasshouse luxury option', '4.8★ Google rating, 320+ reviews'] },
+      { heading: 'Why Choose XTSY', content: 'XTSY offers a complete travel ecosystem:', listItems: ['Dorms from ₹369 with privacy curtains', 'In-house TAB Bistro restaurant', 'Tour packages & rental desk', '270° glasshouse luxury option', '4.8★ Google rating, 161 verified reviews'] },
       { heading: 'Amenities Comparison', content: 'XTSY provides free WiFi, hot showers, common kitchen, luggage storage, and a social lounge — all included in the base price. Our in-house restaurant means you never need to go far for meals.' },
     ],
     [
@@ -60,7 +60,7 @@ const competitorPages: SEOPageData[] = [
     'Stargaze Hostel vs XTSY Shillong — Compare', 'Stargaze Hostel vs XTSY Shillong. Compare prices, reviews, amenities. Find the best hostel for your Meghalaya trip.',
     'Stargaze Hostel vs XTSY Shillong', 'Comparing Stargaze Hostel with XTSY Travellers Hostel in Shillong? Both offer unique experiences — here\'s what makes XTSY stand out.',
     [
-      { heading: 'XTSY Advantages', content: 'XTSY combines affordable stays with a complete travel platform:', listItems: ['Dorms from ₹369, private rooms from ₹1,499', 'TAB Bistro — in-house restaurant', 'Integrated tour & rental booking', 'Social events, bonfires & treks', '4.8★ on Google with 320+ reviews'] },
+      { heading: 'XTSY Advantages', content: 'XTSY combines affordable stays with a complete travel platform:', listItems: ['Dorms from ₹369, private rooms from ₹1,499', 'TAB Bistro — in-house restaurant', 'Integrated tour & rental booking', 'Social events, bonfires & treks', '4.8★ on Google with 161 verified reviews'] },
     ],
     [
       { question: 'Which is better — Stargaze or XTSY?', answer: 'XTSY is rated 4.8★ on Google and offers a more complete travel experience with in-house dining, tour packages, and rental services alongside great accommodation.' },
@@ -73,7 +73,7 @@ const competitorPages: SEOPageData[] = [
     'Zion Backpackers vs XTSY Shillong — Compare', 'Zion Backpackers vs XTSY Travellers Hostel. Honest comparison of prices, amenities, and reviews for Shillong hostels.',
     'Zion Backpackers vs XTSY Shillong', 'Deciding between Zion Backpackers and XTSY? Compare the two most popular hostels in Shillong and make the right choice for your Meghalaya adventure.',
     [
-      { heading: 'Why Travelers Choose XTSY', content: 'XTSY is Shillong\'s top-rated backpacker hub:', listItems: ['4.8★ Google rating, 320+ reviews', 'Dorms from ₹369/night', 'In-house restaurant & common kitchen', '270° panoramic glasshouse room', 'Integrated travel services'] },
+      { heading: 'Why Travelers Choose XTSY', content: 'XTSY is Shillong\'s top-rated backpacker hub:', listItems: ['4.8★ Google rating, 161 verified reviews', 'Dorms from ₹369/night', 'In-house restaurant & common kitchen', '270° panoramic glasshouse room', 'Integrated travel services'] },
     ],
     [
       { question: 'Is XTSY better than Zion Backpackers?', answer: 'XTSY is rated 4.8★ on Google and offers additional services like an in-house restaurant, tour packages, and car rentals alongside great hostel accommodation.' },
@@ -230,7 +230,7 @@ const travelAgencyPages: SEOPageData[] = [
     'Best Travel Agency in Shillong', 'XTSY is Shillong\'s most trusted travel agency, offering end-to-end trip planning — from accommodation and transport to guided tours and curated experiences across Meghalaya.',
     [
       { heading: 'Our Services', content: 'Complete travel solutions:', listItems: ['Customized Meghalaya tour packages', 'Hotel & hostel bookings', 'Car & bike rentals', 'Airport/station transfers', 'Guided treks & adventure activities', 'Group & corporate travel planning'] },
-      { heading: 'Why Choose XTSY', content: '4.8★ rated on Google with 320+ reviews. We\'re not just a travel agency — we\'re a travel ecosystem with our own hostel, restaurant, and transport fleet. Local expertise you can trust.' },
+      { heading: 'Why Choose XTSY', content: '4.8★ rated on Google with 161 verified reviews. We\'re not just a travel agency — we\'re a travel ecosystem with our own hostel, restaurant, and transport fleet. Local expertise you can trust.' },
       { heading: 'Popular Packages', content: 'Our bestselling packages:', listItems: ['3-Day Shillong Explorer — ₹8,999/person', '5-Day Meghalaya Circuit — ₹14,999/person', '7-Day Complete Meghalaya — ₹19,999/person', 'Custom packages available on request'] },
     ],
     [
@@ -262,7 +262,7 @@ const travelAgencyPages: SEOPageData[] = [
     'Tour Operators in Shillong 2026 — Best Rated | XTSY', 'Find the best tour operators in Shillong. Customized packages, local expertise, 4.8★ rated. Book your Meghalaya tour with XTSY.',
     'Tour Operators in Shillong', 'XTSY is among Shillong\'s highest-rated tour operators, offering customized Meghalaya experiences. From budget backpacker tours to luxury getaways, we plan it all.',
     [
-      { heading: 'Our Expertise', content: 'What makes us Shillong\'s preferred tour operator:', listItems: ['4.8★ Google rating with 320+ reviews', 'Own hostel & restaurant in Shillong', 'Fleet of well-maintained vehicles', 'Deep local knowledge & connections', 'Competitive, transparent pricing'] },
+      { heading: 'Our Expertise', content: 'What makes us Shillong\'s preferred tour operator:', listItems: ['4.8★ Google rating with 161 verified reviews', 'Own hostel & restaurant in Shillong', 'Fleet of well-maintained vehicles', 'Deep local knowledge & connections', 'Competitive, transparent pricing'] },
       { heading: 'Day Trips from Shillong', content: 'Popular day tours we organize:', listItems: ['Cherrapunji Day Trip — ₹2,500/person', 'Dawki & Mawlynnong — ₹2,800/person', 'Laitlum Canyon Trek — ₹1,500/person', 'Shillong City Tour — ₹1,200/person', 'Nongjrong Sunrise Trip — ₹3,000/person'] },
     ],
     [
@@ -410,7 +410,7 @@ const experiencePages: SEOPageData[] = [
 const accommodationExpansionPages: SEOPageData[] = [
   mkPage('stays-in-shillong', 'accommodation', 'LodgingBusiness',
     'Best Stays in Shillong 2026 — Budget to Luxury | XTSY', 'Find the best stays in Shillong. Hostels from ₹369, private rooms from ₹1,499, luxury glasshouse ₹4,999. All at XTSY Travellers Hostel.',
-    'Best Stays in Shillong', 'From budget dorms to luxury glasshouse — find your perfect stay in Shillong at XTSY. Rated 4.8★ on Google with 320+ reviews, centrally located with in-house dining.',
+    'Best Stays in Shillong', 'From budget dorms to luxury glasshouse — find your perfect stay in Shillong at XTSY. Rated 4.8★ on Google with 161 verified reviews, centrally located with in-house dining.',
     [
       { heading: 'Stay Options at XTSY', content: 'Something for every traveler:', listItems: ['8-Bed Mixed Dorm — ₹369/night', '6-Bed Mixed Dorm — ₹699/night', '4-Bed Female-Only Dorm — ₹799/night', 'Private Double Room — ₹1,499/night', 'Deluxe Room — ₹1,999/night', 'XTSY 270° Glasshouse — ₹4,999/night'] },
       { heading: 'What\'s Included', content: 'Every stay includes free WiFi, hot water, common kitchen, lounge access, luggage storage, and 24/7 reception. In-house TAB Bistro restaurant for meals.' },

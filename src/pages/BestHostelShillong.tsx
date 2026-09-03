@@ -38,7 +38,7 @@ const BestHostelShillong = memo(() => {
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
-      reviewCount: '320',
+      reviewCount: '161',
       bestRating: '5',
     },
     amenityFeature: [
@@ -181,7 +181,7 @@ const BestHostelShillong = memo(() => {
             </p>
             <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> Mawkhar, Shillong</span>
-              <span className="flex items-center gap-1"><Star className="h-4 w-4 text-yellow-500 fill-yellow-500" /> 4.8 (320+ reviews)</span>
+              <span className="flex items-center gap-1"><Star className="h-4 w-4 text-yellow-500 fill-yellow-500" /> 4.8 (161 verified reviews)</span>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/book">

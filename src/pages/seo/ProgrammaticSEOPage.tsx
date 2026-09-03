@@ -97,7 +97,7 @@ const buildSchema = (page: SEOPageData) => {
     });
 
     if (isRealProperty) {
-      base.aggregateRating = { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '320', bestRating: '5', worstRating: '1' };
+      base.aggregateRating = { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '161', bestRating: '5', worstRating: '1' };
     }
   }
 

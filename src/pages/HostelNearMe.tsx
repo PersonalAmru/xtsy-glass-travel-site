@@ -64,7 +64,7 @@ const HostelNearMe = memo(() => {
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
-      reviewCount: '320',
+      reviewCount: '161',
       bestRating: '5',
     },
     amenityFeature: [
@@ -121,7 +121,7 @@ const HostelNearMe = memo(() => {
     },
     {
       q: 'Are there other hostels near me in Shillong worth comparing?',
-      a: 'Shillong has ~6 verified hostels. XTSY is the largest (India\'s biggest hostel in the northeast), highest rated (4.8★, 320+ reviews) and closest to Police Bazar. Compare on /xtsy-vs-zostel or /best-hostel-in-shillong.',
+      a: 'Shillong has ~6 verified hostels. XTSY is the largest (India\'s biggest hostel in the northeast), highest rated (4.8★, 161 verified reviews) and closest to Police Bazar. Compare on /xtsy-vs-zostel or /best-hostel-in-shillong.',
     },
     {
       q: 'Can I walk-in without booking online?',
