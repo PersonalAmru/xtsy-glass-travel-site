@@ -78,7 +78,7 @@ const BestHostelShillong = memo(() => {
         name: 'Which are the best cheap hostels in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'XTSY Travellers Hostel is among the best cheap hostels in Shillong, with a 4.8★ rating from 320+ guests. Budget dorm beds start at ₹329/night, making it one of the most affordable backpacker hostels in Meghalaya without cutting corners on safety or location.',
+          text: 'XTSY Travellers Hostel is among the best cheap hostels in Shillong, with a 4.8★ rating from 161 verified guests. Budget dorm beds start at ₹329/night, making it one of the most affordable backpacker hostels in Meghalaya without cutting corners on safety or location.',
         },
       },
       {
@@ -177,7 +177,7 @@ const BestHostelShillong = memo(() => {
               Hostels in Shillong — Cheap Dorm Beds from ₹329
             </h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
-              Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 320+ guests, with budget mixed dorms from ₹329/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Central Mawkhar location, minutes from Police Bazaar.
+              Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 161 verified guests, with budget mixed dorms from ₹329/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Central Mawkhar location, minutes from Police Bazaar.
             </p>
             <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> Mawkhar, Shillong</span>

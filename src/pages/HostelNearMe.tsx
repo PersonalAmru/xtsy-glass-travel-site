@@ -26,7 +26,7 @@ const HostelNearMe = memo(() => {
     name: 'XTSY Travellers Hostel — Nearest Backpacker Hostel in Shillong',
     alternateName: ['XTSY Hostel Shillong', 'Hostel near Police Bazar Shillong'],
     description:
-      'The closest verified backpacker hostel to Police Bazar, Ward\'s Lake and Shillong city centre. Walkable to cafés, transport hubs and viewpoints — dorm beds from ₹369, 4.8★ from 320+ guests.',
+      'The closest verified backpacker hostel to Police Bazar, Ward\'s Lake and Shillong city centre. Walkable to cafés, transport hubs and viewpoints — dorm beds from ₹369, 4.8★ from 161 verified guests.',
     url: 'https://xtsy.one/hostel-near-me',
     telephone: '+918837317070',
     email: 'stay@xtsy.one',
@@ -145,7 +145,7 @@ const HostelNearMe = memo(() => {
       <Helmet>
         <meta
           name="description"
-          content="Looking for a hostel near you in Shillong? XTSY is 1.2 km from Police Bazar — the closest verified backpacker hostel with dorm beds from ₹369, 4.8★ from 320+ guests. Get directions, distances & instant booking."
+          content="Looking for a hostel near you in Shillong? XTSY is 1.2 km from Police Bazar — the closest verified backpacker hostel with dorm beds from ₹369, 4.8★ from 161 verified guests. Get directions, distances & instant booking."
         />
         <meta
           name="keywords"
@@ -171,7 +171,7 @@ const HostelNearMe = memo(() => {
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
               XTSY Travellers Hostel is the <strong>closest verified backpacker hostel</strong> to
               Shillong city centre — walkable to Police Bazar, Ward's Lake and the Sumo stand for
-              Cherrapunji & Dawki. Dorm beds from <strong>₹369</strong>, 4.8★ from 320+ guests.
+              Cherrapunji & Dawki. Dorm beds from <strong>₹369</strong>, 4.8★ from 161 verified guests.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Button size="lg" asChild>
