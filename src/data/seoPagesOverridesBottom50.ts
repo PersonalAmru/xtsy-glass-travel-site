@@ -565,7 +565,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   },
   {
     "slug": "budget-stay-shillong",
-    "metaDescription": "Discover the best budget stay in Shillong with XTSY. Low-cost hostels, dorms, and private rooms from ₹499. Central locations with Wi-Fi and hot water for travellers.",
+    "metaDescription": "Discover the best budget stay in Shillong with XTSY. Low-cost hostels, dorms, and private rooms from ₹369. Central locations with Wi-Fi and hot water for travellers.",
     "faqs": [
       {
         "question": "What is the cheapest way to stay in Shillong?",
@@ -610,7 +610,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "affordable lodging shillong"
     ],
     "h1": "Budget Stay in Shillong: Best Hostels & Low-Cost Rooms",
-    "quickAnswer": "A budget stay in Shillong typically costs between ₹499 for a dorm bed and ₹1,999 for a private room. Central locations like Laitumkhrah offer the best value for solo travellers and groups.",
+    "quickAnswer": "A budget stay in Shillong typically costs between ₹369 for a dorm bed and ₹1,999 for a private room. Central locations like Laitumkhrah offer the best value for solo travellers and groups.",
     "sections": [
       {
         "content": "Hostels are the preferred choice for budget-conscious travellers in Shillong, offering a blend of affordability and social interaction.",
