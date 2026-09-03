@@ -1,3 +1,4 @@
+import { VERIFIED_REVIEW_COUNT } from '@/data/reviewStats';
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { Star, X, Loader2, BadgeCheck, Quote, Sparkles, MessageSquare } from "lucide-react";
@@ -697,7 +698,7 @@ const ReviewsSection = () => {
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: "4.8",
-        reviewCount: String(Math.max(320, allReviewsCombined.length)),
+        reviewCount: String(VERIFIED_REVIEW_COUNT),
         bestRating: "5",
         worstRating: "1",
       },
