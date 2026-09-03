@@ -50,7 +50,7 @@ const BestHostelShillong = memo(() => {
       { '@type': 'LocationFeatureSpecification', name: 'Female-only Dorm', value: true },
     ],
     makesOffer: [
-      { '@type': 'Offer', name: '6-Bed Mixed Dorm Bed', price: '329', priceCurrency: 'INR' },
+      { '@type': 'Offer', name: '6-Bed Mixed Dorm Bed', price: '369', priceCurrency: 'INR' },
       { '@type': 'Offer', name: '4-Bed Female Dorm Bed', price: '550', priceCurrency: 'INR' },
       { '@type': 'Offer', name: 'Private Double Room', price: '2500', priceCurrency: 'INR' },
     ],
