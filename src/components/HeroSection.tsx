@@ -40,6 +40,11 @@ const HeroSection = () => {
   // English-only greeting: rotating multilingual greetings caused non-English text on load
   const languages = ["Hello"];
 
+  // Pre-fill check-in with today's local date after hydration (avoids SSR date drift)
+  useEffect(() => {
+    setCheckIn((prev) => prev ?? new Date());
+  }, []);
+
   // Language rotation
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
