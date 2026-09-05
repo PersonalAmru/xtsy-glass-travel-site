@@ -1,19 +1,64 @@
 import { createFileRoute } from "@tanstack/react-router";
 import ExpeditionRoutePage from "@/pages/expeditions/ExpeditionRoutePage";
 import { buildRouteHead } from "@/lib/seo-head";
-import { getExpeditionRoute } from "@/data/neTaxonomy";
+import { getExpeditionRoute, type ExpeditionType } from "@/data/neTaxonomy";
 
 export const Route = createFileRoute("/expeditions/$type/$route")({
   head: ({ params }) => {
     const expedition = getExpeditionRoute(params.type, params.route);
+    const path = `/expeditions/${params.type}/${params.route}`;
+    const label = params.type === "4x4" ? "4x4" : "Motorbike";
+
+    if (!expedition) {
+      return buildRouteHead({
+        path,
+        title: "Expedition Route Not Found | XTSY",
+        description: "This expedition route is not available. Browse XTSY motorbike and 4x4 routes across Northeast India.",
+        noIndex: true,
+      });
+    }
+
+    const detail = expedition.byType[params.type as ExpeditionType];
+    const url = `https://xtsy.one${path}`;
+
     return buildRouteHead({
-      path: `/expeditions/${params.type}/${params.route}`,
-      title: expedition
-        ? `${expedition.name} — ${params.type === "4x4" ? "4x4" : "Motorbike"} Route | XTSY`.slice(0, 65)
-        : "Expedition Route | XTSY",
+      path,
+      title: `${expedition.name} ${label} Route: Permits, Season, Cost`.slice(0, 65),
       description:
-        "Route structure for Northeast India expeditions. Full distance, permit and season details are published in the expeditions content phase.",
-      noIndex: true,
+        `${expedition.distanceKm} km ${label.toLowerCase()} expedition${detail ? ` in ${detail.duration}` : ""}. Permits, best season, altitude, road conditions and costs from Rs ${detail?.priceFrom.toLocaleString("en-IN") ?? "—"} per person.`.slice(0, 158),
+      keywords: `${expedition.name} ${label.toLowerCase()} route, northeast india ${label.toLowerCase()} expedition, ${expedition.slug.replace(/-/g, " ")} permits`,
+      ogType: "article",
+      jsonLd: [
+        {
+          "@context": "https://schema.org",
+          "@type": "TouristTrip",
+          name: `${expedition.name} — ${label} Expedition`,
+          description: expedition.summary,
+          url,
+          touristType: `${label} expedition travellers`,
+          provider: { "@type": "Organization", name: "XTSY Travel", url: "https://xtsy.one" },
+          ...(detail
+            ? {
+                offers: {
+                  "@type": "Offer",
+                  price: detail.priceFrom,
+                  priceCurrency: "INR",
+                  url,
+                  availability: "https://schema.org/InStock",
+                },
+              }
+            : {}),
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://xtsy.one/" },
+            { "@type": "ListItem", position: 2, name: "Expeditions", item: "https://xtsy.one/expeditions" },
+            { "@type": "ListItem", position: 3, name: `${expedition.name} (${label})`, item: url },
+          ],
+        },
+      ],
     });
   },
   component: ExpeditionRoutePage,
