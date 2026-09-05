@@ -176,18 +176,152 @@ export const getDestinationsForState = (stateSlug: string): MeghalayaDestination
 export const EXPEDITION_TYPES = ['motorbike', '4x4'] as const;
 export type ExpeditionType = (typeof EXPEDITION_TYPES)[number];
 
+export interface ExpeditionTypeDetail {
+  /** Realistic riding/driving days for this vehicle type. */
+  duration: string;
+  /** Indicative XTSY-supported cost per person, INR. */
+  priceFrom: number;
+  vehicle: string;
+  notes: string;
+}
+
 export interface ExpeditionRouteStub {
   slug: string;
   name: string;
   types: ExpeditionType[];
+  /** One-line answer-first summary. */
+  summary: string;
+  distanceKm: number;
+  difficulty: 'Easy' | 'Moderate' | 'Challenging';
+  bestSeason: string;
+  avoidSeason: string;
+  maxAltitude: string;
+  permits: string[];
+  highlights: string[];
+  roadNotes: string;
+  byType: Partial<Record<ExpeditionType, ExpeditionTypeDetail>>;
 }
 
 export const EXPEDITION_ROUTES: ExpeditionRouteStub[] = [
-  { slug: 'guwahati-to-shillong', name: 'Guwahati to Shillong', types: ['motorbike', '4x4'] },
-  { slug: 'guwahati-to-tawang', name: 'Guwahati to Tawang via Assam', types: ['motorbike', '4x4'] },
-  { slug: 'guwahati-to-kohima', name: 'Guwahati to Kohima via Assam', types: ['motorbike', '4x4'] },
-  { slug: 'meghalaya-loop', name: 'Meghalaya Loop — Shillong · Dawki · Mawlynnong · Cherrapunji', types: ['motorbike', '4x4'] },
+  {
+    slug: 'guwahati-to-shillong',
+    name: 'Guwahati to Shillong',
+    types: ['motorbike', '4x4'],
+    summary:
+      'The classic 100 km NH6 run from Guwahati airport up into the Khasi hills, past Umiam Lake, finishing in Shillong. No permits, ridable year round, doable in half a day.',
+    distanceKm: 100,
+    difficulty: 'Easy',
+    bestSeason: 'October to April (clear skies, dry tarmac)',
+    avoidSeason: 'Peak monsoon downpours in June and July reduce visibility on the Barapani climb',
+    maxAltitude: 'approx. 1,525 m (5,000 ft) at Shillong',
+    permits: ['No Inner Line Permit required for Assam or Meghalaya', 'Indian driving licence or valid International Driving Permit', 'Vehicle registration and third-party insurance'],
+    highlights: [
+      'Umiam Lake (Barapani) viewpoint at the 80 km mark',
+      'Nongpoh food halt roughly halfway',
+      'Four-lane NH6 with fuel every 20-30 km',
+      'Arrival base at XTSY Travellers Hostel, Shillong',
+    ],
+    roadNotes:
+      'NH6 is fully surfaced four-lane for most of the route with a two-lane hill section after Nongpoh. Expect heavy truck traffic and avoid riding after dark on the final ghat climb.',
+    byType: {
+      motorbike: { duration: '3-4 hours one way', priceFrom: 3500, vehicle: 'Royal Enfield Himalayan / Classic 350', notes: 'Carry a rain shell year round — hill showers arrive without warning above Nongpoh.' },
+      '4x4': { duration: '2.5-3.5 hours one way', priceFrom: 6500, vehicle: 'Mahindra Thar / Bolero Neo with driver', notes: '2WD is enough on this route; 4x4 matters only if you continue to Nongriat or Shnongpdeng trailheads.' },
+    },
+  },
+  {
+    slug: 'guwahati-to-tawang',
+    name: 'Guwahati to Tawang via Assam',
+    types: ['motorbike', '4x4'],
+    summary:
+      'A 520 km high-Himalaya run from the Brahmaputra plains over Sela Pass to Tawang at 3,048 m (10,000 ft). Arunachal Pradesh Inner Line Permit is mandatory and Bumla Pass needs a separate army permit.',
+    distanceKm: 520,
+    difficulty: 'Challenging',
+    bestSeason: 'April to June and mid-September to October',
+    avoidSeason: 'December to March — Sela Pass closes without notice in heavy snow; July to August landslides on the Bhalukpong-Bomdila stretch',
+    maxAltitude: 'Sela Pass 4,170 m (13,700 ft); Bumla Pass 4,633 m (15,200 ft)',
+    permits: [
+      'Inner Line Permit (ILP) for Arunachal Pradesh — Indian nationals, applied online or at Guwahati/Tezpur',
+      'Protected Area Permit (PAP) for foreign nationals, minimum group and prior clearance required',
+      'Separate Bumla Pass permit issued by the Indian Army at Tawang, subject to weather and security',
+    ],
+    highlights: [
+      'Bhalukpong forest gate and the Kameng river gorge',
+      'Dirang valley hot springs and apple orchards',
+      'Sela Pass and Paradise Lake at 13,700 ft',
+      'Jaswant Garh war memorial',
+      'Tawang Monastery, India\u2019s largest',
+      'Bumla Pass on the Indo-China border at 15,200 ft',
+    ],
+    roadNotes:
+      'Mixed tarmac, gravel and construction cuttings past Bomdila. Fuel is scarce beyond Dirang — top up at Bomdila. Altitude sickness is a genuine risk above Sela; split the climb over two nights at Dirang or Bomdila.',
+    byType: {
+      motorbike: { duration: '5-6 days round trip', priceFrom: 32000, vehicle: 'Royal Enfield Himalayan (recommended) with luggage rack', notes: 'Sub-zero mornings at Sela even in May. Thermal layers, waterproof gloves and a spare tube are non-negotiable.' },
+      '4x4': { duration: '5-6 days round trip', priceFrom: 58000, vehicle: 'Mahindra Scorpio 4x4 / Thar with hill-experienced driver', notes: 'High-clearance 4x4 strongly advised for the Bumla Pass day — the track is loose rock and snowmelt.' },
+    },
+  },
+  {
+    slug: 'guwahati-to-kohima',
+    name: 'Guwahati to Kohima via Assam',
+    types: ['motorbike', '4x4'],
+    summary:
+      'A 340 km run down NH27 to Dimapur and up into the Naga hills to Kohima at 1,444 m. Nagaland requires an Inner Line Permit for Indian nationals and foreign nationals must register with the local FRO on arrival.',
+    distanceKm: 340,
+    difficulty: 'Moderate',
+    bestSeason: 'October to April, peaking with the Hornbill Festival in the first week of December',
+    avoidSeason: 'June to August — the Dimapur-Kohima hill road slips badly in monsoon',
+    maxAltitude: 'approx. 2,450 m (8,000 ft) at the Dzukou Valley trailhead',
+    permits: [
+      'Inner Line Permit (ILP) for Nagaland — Indian nationals, issued online or at Dimapur',
+      'Foreign nationals do not need a PAP but must register with the Foreigners Registration Officer within 24 hours of arrival',
+      'Carry photo ID at all times; checkposts are frequent',
+    ],
+    highlights: [
+      'Kaziranga National Park detour on NH27',
+      'Kohima War Cemetery',
+      'Naga Heritage Village, Kisama — Hornbill Festival ground',
+      'Dzukou Valley trek from Viswema',
+      'Khonoma, Asia\u2019s first green village',
+    ],
+    roadNotes:
+      'NH27 is fast four-lane to Dimapur, then 74 km of steep, broken and often congested hill road to Kohima that takes three hours alone. Ride the hill section in daylight.',
+    byType: {
+      motorbike: { duration: '3-4 days round trip', priceFrom: 18000, vehicle: 'Royal Enfield Himalayan / Classic 350', notes: 'The Dimapur-Kohima climb is the hardest hour of the trip — plan fuel and brakes accordingly.' },
+      '4x4': { duration: '3-4 days round trip', priceFrom: 34000, vehicle: 'Mahindra Thar / Scorpio with driver', notes: 'A high-clearance vehicle earns its keep on the Dzukou and Khonoma approach roads.' },
+    },
+  },
+  {
+    slug: 'meghalaya-loop',
+    name: 'Meghalaya Loop — Shillong · Dawki · Mawlynnong · Cherrapunji',
+    types: ['motorbike', '4x4'],
+    summary:
+      'A 350 km permit-free circuit from Shillong through Dawki\u2019s clear Umngot river, Mawlynnong village and the Cherrapunji waterfall belt. The best introduction to Northeast riding.',
+    distanceKm: 350,
+    difficulty: 'Moderate',
+    bestSeason: 'October to April for clear water at Dawki; September for full-flow waterfalls',
+    avoidSeason: 'June to August turns the Umngot muddy and makes the Nongriat descent slippery',
+    maxAltitude: 'approx. 1,525 m (5,000 ft) at Shillong; sea-level heat at Dawki',
+    permits: [
+      'No Inner Line Permit needed anywhere in Meghalaya',
+      'Foreign nationals must carry passport copies for the Dawki border zone',
+      'Local entry fees apply at Mawlynnong, Wei Sawdong and the root bridges',
+    ],
+    highlights: [
+      'Umngot river boating at Shnongpdeng and Dawki',
+      'Mawlynnong, Asia\u2019s cleanest village, and the Riwai root bridge',
+      'Nohkalikai Falls and Seven Sisters Falls',
+      'Wei Sawdong three-tier falls',
+      'Double-decker living root bridge at Nongriat (3,500-step descent)',
+      'Laitlum Canyons on the way back to Shillong',
+    ],
+    roadNotes:
+      'Good tarmac Shillong-Dawki-Cherrapunji with narrow single-lane village stretches near Mawlynnong. The Dawki descent is steep with blind hairpins; the plains around Dawki get very hot even in winter.',
+    byType: {
+      motorbike: { duration: '3-4 days', priceFrom: 14000, vehicle: 'Royal Enfield Classic 350 / Himalayan', notes: 'The most popular first Northeast ride — light traffic, short daily distances, huge scenery.' },
+      '4x4': { duration: '3-4 days', priceFrom: 28000, vehicle: 'Mahindra Thar / Bolero with driver', notes: 'Comfortable for families; only the Wei Sawdong and Nongriat approach tracks need clearance.' },
+    },
+  },
 ];
+
 
 export const getExpeditionRoute = (type?: string, route?: string) =>
   EXPEDITION_ROUTES.find(r => r.slug === route && r.types.includes(type as ExpeditionType));
