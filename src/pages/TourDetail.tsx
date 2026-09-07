@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import TourBookingModal from "@/components/TourBookingModal";
 import { getAllTours, mergeItinerary } from "@/data/travelData";
+import TourPermitAdvisory from "@/components/TourPermitAdvisory";
 import type { TourPackage } from "@/data/travelData";
 import { getSignaturePackageBySlug, signaturePackageToTourPackage } from "@/data/signaturePackages";
 import { useApp } from "@/contexts/AppContext";
@@ -296,6 +297,10 @@ const TourDetail = () => {
                   </table>
                 </div>
               </section>
+
+              <TourPermitAdvisory location={tour.location} title={tour.title} />
+
+
 
 
 

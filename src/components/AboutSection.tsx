@@ -668,7 +668,7 @@ const AboutSection = () => {
                 Book Your Stay
               </a>
               <a 
-                href="/travel" 
+                href="/tours" 
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-slate-900 rounded-xl font-bold hover:bg-slate-100 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Explore Tours

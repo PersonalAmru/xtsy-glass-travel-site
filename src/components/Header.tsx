@@ -50,7 +50,7 @@ const Header = () => {
   ];
 
   const navLinks = [
-    { to: "/travel", label: "Travel", icon: Plane },
+    { to: "/tours", label: "Travel", icon: Plane },
     { to: "/about", label: "About Us", icon: HelpCircle },
     { to: "/faq", label: "FAQs", icon: HelpCircle },
   ];
