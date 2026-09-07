@@ -298,6 +298,10 @@ const TourDetail = () => {
                 </div>
               </section>
 
+              <TourPermitAdvisory location={tour.location} title={tour.title} />
+
+
+
 
 
               {/* Tabs */}
