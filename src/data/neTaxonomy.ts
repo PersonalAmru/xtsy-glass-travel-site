@@ -200,6 +200,18 @@ export interface ExpeditionRouteStub {
   highlights: string[];
   roadNotes: string;
   byType: Partial<Record<ExpeditionType, ExpeditionTypeDetail>>;
+  /**
+   * Semrush-validated head phrasing (India DB). `headQuery` is the highest-
+   * volume query for the route; `motorbikeQuery` overrides it on the
+   * motorbike variant when riders search differently (e.g. "tawang bike trip").
+   */
+  seo: {
+    headQuery: string;
+    motorbikeQuery?: string;
+    keywords: string[];
+    /** Direct-answer lead line worked into the "In short" block. */
+    answerLead: string;
+  };
 }
 
 export const EXPEDITION_ROUTES: ExpeditionRouteStub[] = [
