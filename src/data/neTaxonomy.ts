@@ -239,6 +239,11 @@ export const EXPEDITION_ROUTES: ExpeditionRouteStub[] = [
       motorbike: { duration: '3-4 hours one way', priceFrom: 3500, vehicle: 'Royal Enfield Himalayan / Classic 350', notes: 'Carry a rain shell year round — hill showers arrive without warning above Nongpoh.' },
       '4x4': { duration: '2.5-3.5 hours one way', priceFrom: 6500, vehicle: 'Mahindra Thar / Bolero Neo with driver', notes: '2WD is enough on this route; 4x4 matters only if you continue to Nongriat or Shnongpdeng trailheads.' },
     },
+    seo: {
+      headQuery: 'Guwahati to Shillong Distance',
+      keywords: ['guwahati to shillong distance', 'guwahati to shillong', 'guwahati to shillong taxi', 'guwahati to shillong road trip'],
+      answerLead: 'Guwahati to Shillong is 100 km on NH6 and takes about 3 hours by road.',
+    },
   },
   {
     slug: 'guwahati-to-tawang',
@@ -270,6 +275,12 @@ export const EXPEDITION_ROUTES: ExpeditionRouteStub[] = [
       motorbike: { duration: '5-6 days round trip', priceFrom: 32000, vehicle: 'Royal Enfield Himalayan (recommended) with luggage rack', notes: 'Sub-zero mornings at Sela even in May. Thermal layers, waterproof gloves and a spare tube are non-negotiable.' },
       '4x4': { duration: '5-6 days round trip', priceFrom: 58000, vehicle: 'Mahindra Scorpio 4x4 / Thar with hill-experienced driver', notes: 'High-clearance 4x4 strongly advised for the Bumla Pass day — the track is loose rock and snowmelt.' },
     },
+    seo: {
+      headQuery: 'Guwahati to Tawang Distance',
+      motorbikeQuery: 'Tawang Bike Trip',
+      keywords: ['guwahati to tawang distance', 'guwahati to tawang', 'tawang bike trip', 'tawang road trip'],
+      answerLead: 'Guwahati to Tawang is 520 km over Sela Pass and takes two days of driving each way.',
+    },
   },
   {
     slug: 'guwahati-to-kohima',
@@ -299,6 +310,11 @@ export const EXPEDITION_ROUTES: ExpeditionRouteStub[] = [
     byType: {
       motorbike: { duration: '3-4 days round trip', priceFrom: 18000, vehicle: 'Royal Enfield Himalayan / Classic 350', notes: 'The Dimapur-Kohima climb is the hardest hour of the trip — plan fuel and brakes accordingly.' },
       '4x4': { duration: '3-4 days round trip', priceFrom: 34000, vehicle: 'Mahindra Thar / Scorpio with driver', notes: 'A high-clearance vehicle earns its keep on the Dzukou and Khonoma approach roads.' },
+    },
+    seo: {
+      headQuery: 'Guwahati to Kohima Distance',
+      keywords: ['guwahati to kohima distance', 'guwahati to kohima', 'kohima road trip', 'hornbill festival road trip'],
+      answerLead: 'Guwahati to Kohima is 340 km via Dimapur and takes about 8 hours by road.',
     },
   },
   {
@@ -330,6 +346,11 @@ export const EXPEDITION_ROUTES: ExpeditionRouteStub[] = [
     byType: {
       motorbike: { duration: '3-4 days', priceFrom: 14000, vehicle: 'Royal Enfield Classic 350 / Himalayan', notes: 'The most popular first Northeast ride — light traffic, short daily distances, huge scenery.' },
       '4x4': { duration: '3-4 days', priceFrom: 28000, vehicle: 'Mahindra Thar / Bolero with driver', notes: 'Comfortable for families; only the Wei Sawdong and Nongriat approach tracks need clearance.' },
+    },
+    seo: {
+      headQuery: 'Meghalaya Road Trip Itinerary',
+      keywords: ['meghalaya road trip itinerary', 'shillong to cherrapunji distance', 'shillong to dawki', 'meghalaya bike trip'],
+      answerLead: 'The Meghalaya loop covers 350 km from Shillong through Dawki, Mawlynnong and Cherrapunji in 3-4 days.',
     },
   },
 ];
