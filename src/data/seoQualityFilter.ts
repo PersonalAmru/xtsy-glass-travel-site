@@ -84,7 +84,8 @@ export const ALWAYS_KEEP_SLUGS: ReadonlySet<string> = new Set([
  * in `RECOVERY_REDIRECTS`. Never re-add these as live pages.
  */
 export const MERGED_REDIRECT_SLUGS: ReadonlySet<string> = new Set<string>([
-  'cheap-hostel-in-shillong',     // → /cheap-hostel-shillong (keep better-ranking variant)
+  'cheap-hostel-shillong',        // → /cheap-hostels-shillong (validated plural keyword owner)
+  'cheap-hostel-in-shillong',     // → /cheap-hostels-shillong
   'backpacker-hostel-shillong',   // → /best-hostel-in-shillong
   'youth-hostel-shillong',        // → /best-hostel-in-shillong
   'hostels-in-shillong',          // → /best-hostel-in-shillong

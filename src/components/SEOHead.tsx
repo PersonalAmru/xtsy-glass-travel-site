@@ -4,7 +4,6 @@
  */
 
 import { Helmet } from 'react-helmet-async';
-import { useRouterState } from '@tanstack/react-router';
 
 interface ArticleMeta {
   publishedTime?: string;
@@ -31,8 +30,6 @@ interface SEOHeadProps {
 const DEFAULT_TITLE = "XTSY — Best Hostel in Shillong, Meghalaya";
 const DEFAULT_DESCRIPTION = "India's biggest hostel in Shillong, Meghalaya. Budget dorms, luxury 270° glass suite, tours & experiences. Book direct for best rates.";
 const DEFAULT_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png";
-const SITE_URL = "https://xtsy.one";
-
 const SEO_CONFIG: Record<string, { title: string; description: string; keywords?: string }> = {
   home: {
     title: "Best Hostel in Shillong from ₹369/night | XTSY",
@@ -135,7 +132,6 @@ export const SEOHead = ({
   title,
   description,
   keywords,
-  canonicalUrl,
   ogImage = DEFAULT_OG_IMAGE,
   ogType = 'website',
   noIndex = false,
@@ -145,17 +141,6 @@ export const SEOHead = ({
 }: SEOHeadProps) => {
   const finalTitle = title || DEFAULT_TITLE;
   const finalDescription = description || DEFAULT_DESCRIPTION;
-  // Canonical fallback: derive from current pathname instead of defaulting every
-  // page to the homepage (which previously caused massive duplicate-canonical
-  // signals across programmatic SEO pages). Strip query/hash, drop trailing
-  // slash (except root), and only fall back to SITE_URL on the SSR/server pass.
-  const routerPathname = useRouterState({ select: (st) => st.location.pathname });
-  const deriveCanonicalFromLocation = (): string => {
-    const path = routerPathname || '/';
-    const cleaned = path === '/' ? '/' : path.replace(/\/+$/, '');
-    return `${SITE_URL}${cleaned}`;
-  };
-  const finalCanonical = canonicalUrl || deriveCanonicalFromLocation();
   const schemas = structuredData
     ? (Array.isArray(structuredData) ? structuredData : [structuredData])
     : [];
