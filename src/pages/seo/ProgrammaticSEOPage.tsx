@@ -14,6 +14,7 @@ import { RECOVERY_REDIRECTS } from '@/data/seoAffectedSlugs';
 import { getDestinationGeo } from '@/data/destinationGeo';
 import { getWheelLinks } from '@/data/seoLinkingWheel';
 import { getHeroImageForPage, getAIHeroURL, getSectionImage } from '@/utils/seoHeroImages';
+import { SEO_UPDATED_DATE, SEO_YEAR } from '@/utils/seoDate';
 import { Check, ChevronDown, ChevronUp, MessageCircle, Sparkles } from 'lucide-react';
 import { useState, memo, useEffect } from 'react';
 
@@ -37,7 +38,7 @@ const buildSchema = (page: SEOPageData) => {
   };
 
   if (['Hostel', 'Hotel', 'LodgingBusiness'].includes(page.schemaType)) {
-    const todayISO = new Date().toISOString().split('T')[0];
+    const todayISO = SEO_UPDATED_DATE;
     // Only attach reviews/ratings to TRUE property routes (avoid review-spam penalty
     // on programmatic informational pages like /from-delhi-to-shillong-hostel)
     const PROPERTY_ROUTES = new Set([
@@ -142,7 +143,7 @@ const buildSchema = (page: SEOPageData) => {
   }
 
   // Add dateModified to ALL schema types for freshness signals
-  const dateModified = new Date().toISOString().split('T')[0];
+  const dateModified = SEO_UPDATED_DATE;
 
   if (['TravelGuide', 'Article'].includes(page.schemaType)) {
     Object.assign(base, {
@@ -355,7 +356,7 @@ const ProgrammaticSEOPage = () => {
             {page.h1}
           </h1>
           <div className="mt-2 flex items-center gap-3 text-xs text-muted-foreground">
-            <span>Updated: April 2026</span>
+            <span>Updated: April {SEO_YEAR}</span>
             <span>•</span>
             <span>By XTSY Travel Team</span>
             <span>•</span>

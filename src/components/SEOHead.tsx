@@ -177,7 +177,7 @@ export const SEOHead = ({
       <title>{finalTitle}</title>
       <meta name="description" content={finalDescription} />
       {keywords && <meta name="keywords" content={keywords} />}
-      <link rel="canonical" href={finalCanonical} />
+      {/* Canonicals are owned exclusively by TanStack route head(). */}
       {/* Global audience signals */}
       <meta name="target" content="all" />
       <meta name="audience" content="all" />
@@ -189,7 +189,7 @@ export const SEOHead = ({
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:url" content={finalCanonical} />
+      {/* og:url is owned exclusively by TanStack route head(). */}
       <meta property="og:site_name" content="XTSY Travel" />
       <meta property="og:locale" content="en_IN" />
       <meta name="twitter:card" content="summary_large_image" />
