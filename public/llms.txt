@@ -1,9 +1,10 @@
 # XTSY Travel
 
-> XTSY is the biggest travellers' hostel in Shillong, Meghalaya (Northeast India) — budget dorms from ₹329/night, a luxury 270° panoramic glass suite, and curated Meghalaya & Northeast India tour packages. All XTSY stays are in Shillong; tours and experiences extend across Meghalaya, Northeast India, and Sikkim via a trusted partner network. Book direct for the best rates. Phone/WhatsApp: +91 8837317070.
+> XTSY is a travellers' hostel in Shillong, Meghalaya (Northeast India) — budget dorms from ₹369/night, a luxury 270° panoramic glass suite, and curated Meghalaya & Northeast India tour packages. All XTSY stays are in Shillong; tours and experiences extend across Meghalaya, Northeast India, and Sikkim via a trusted partner network. Book direct for the best rates. Phone/WhatsApp: +91 8837317070.
 
 ## Stays & Property
 - [Best Hostel in Shillong](/best-hostel-in-shillong): India's biggest hostel — dorms, private rooms, amenities, location.
+- [Cheap Hostels in Shillong](/cheap-hostels-shillong): Direct-booking dorm rates, inclusions and booking guidance.
 - [270° Glass Suite (XTSY 270)](/xtsy-270): India's first 270° panoramic stargazing glass suite for couples.
 - [Hotels in Shillong](/hotels-in-shillong): Stay options and comparison for Shillong visitors.
 - [Homestays in Shillong](/homestays-in-shillong): Homestay-style stays in and around Shillong.
@@ -24,10 +25,10 @@
 - [Waterfalls in Meghalaya](/meghalaya-waterfalls): Guide to the state's best waterfalls.
 - [Viewpoints in Meghalaya](/meghalaya-viewpoints): Best scenic viewpoints and canyons.
 - [Best Time to Visit Meghalaya](/best-time-to-visit-meghalaya): Season-by-season guide.
-- [Elephant Falls](/places-to-visit/elephant-falls): Three-tier waterfall near Shillong.
-- [Krang Suri Falls](/places-to-visit/krang-suri-falls): Turquoise-blue waterfall in Jaintia Hills.
-- [Laitlum Canyons](/places-to-visit/laitlum-canyons): Dramatic canyon viewpoint.
-- [Umiam Lake](/places-to-visit/umiam-lake): Reservoir and water-sports spot near Shillong.
+- [Elephant Falls](/destinations/meghalaya/shillong/elephant-falls): Three-tier waterfall near Shillong.
+- [Krang Suri Falls](/destinations/meghalaya/jowai/krang-suri-falls): Turquoise-blue waterfall in Jaintia Hills.
+- [Laitlum Canyons](/destinations/meghalaya/shillong/laitlum-canyons): Dramatic canyon viewpoint.
+- [Umiam Lake](/destinations/meghalaya/shillong/umiam-lake): Reservoir and water-sports spot near Shillong.
 
 ## Dining
 - [TAB Bistro](/tab-bistro): XTSY's in-house bistro, dining and event catering.
@@ -39,7 +40,7 @@
 
 ## Company
 - [About XTSY](/about): Story, awards, and what makes XTSY different.
-- [Contact](/contact): Phone, WhatsApp, address and directions.
+- Contact XTSY by phone or WhatsApp at +91 8837317070.
 
 ## Optional
 - [Gallery](/gallery): Photos of the hostel, glass suite and Meghalaya.
