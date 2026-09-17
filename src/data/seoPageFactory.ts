@@ -8,6 +8,7 @@
 
 import type { SEOPageData, SEOPageCategory, SchemaType, SEOSection, SEOFaq } from './seoPages';
 import { BRAND_OPENER, whyXTSYSection } from './brandFacts';
+import { SEO_YEAR } from '@/utils/seoDate';
 
 // =============================================================
 // Display label helpers
@@ -37,7 +38,7 @@ export const slugToLabel = (slug: string): string => {
     .join(' ');
 };
 
-const YEAR = new Date().getFullYear();
+const YEAR = SEO_YEAR;
 
 /**
  * Build a SERP-safe <title> (≤60 chars so it never truncates in search).

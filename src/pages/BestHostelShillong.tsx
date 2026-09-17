@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Link } from '@/lib/router-compat';
+import { useRouterState } from '@tanstack/react-router';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,13 +11,18 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 const BestHostelShillong = memo(() => {
+  const isCheapHostelsPage = useRouterState({
+    select: (state) => state.location.pathname === '/cheap-hostels-shillong',
+  });
+  const canonicalPath = isCheapHostelsPage ? '/cheap-hostels-shillong' : '/best-hostel-in-shillong';
+  const pageUrl = `https://xtsy.one${canonicalPath}`;
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Hostel',
-    '@id': 'https://xtsy.one/best-hostel-in-shillong#hostel',
+    '@id': `${pageUrl}#hostel`,
     name: 'XTSY Travellers Hostel',
     description: 'One of the best cheap hostels in Shillong, Meghalaya — budget dorm beds from ₹369, private rooms, and India\'s first 270° glass suite. Central location, 24/7 security, 4.8★ rated.',
-    url: 'https://xtsy.one/best-hostel-in-shillong',
+    url: pageUrl,
     telephone: '+918837317070',
     email: 'xtsytravellershostel@gmail.com',
     address: {
@@ -65,7 +71,7 @@ const BestHostelShillong = memo(() => {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://xtsy.one/' },
-      { '@type': 'ListItem', position: 2, name: 'Hostels in Shillong', item: 'https://xtsy.one/best-hostel-in-shillong' },
+      { '@type': 'ListItem', position: 2, name: isCheapHostelsPage ? 'Cheap Hostels in Shillong' : 'Hostels in Shillong', item: pageUrl },
     ],
   };
 
@@ -174,7 +180,9 @@ const BestHostelShillong = memo(() => {
               <span>NEITA 2025 Nominated · India's Biggest Hostel in Northeast</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
-              Hostels in Shillong — Cheap Dorm Beds from ₹369
+              {isCheapHostelsPage
+                ? 'Cheap Hostels in Shillong — Dorm Beds from ₹369'
+                : 'Hostels in Shillong — Cheap Dorm Beds from ₹369'}
             </h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
               Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 161 verified guests, with budget mixed dorms from ₹369/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Central Mawkhar location, minutes from Police Bazaar.

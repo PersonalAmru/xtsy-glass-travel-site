@@ -66,7 +66,7 @@ for (const f of branchFiles) {
 }
 
 const priorityUrls: string[] = [];
-const includedSlugs = new Set<string>();
+const includedSlugs = new Set<string>(STATIC_ROUTES.map((route) => route.replace(/^\//, '')));
 const seenUrls = new Set<string>();
 let skippedOwned = 0;
 let skippedDupe = 0;

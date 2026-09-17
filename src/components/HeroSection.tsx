@@ -236,8 +236,11 @@ const HeroSection = () => {
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-orange-400 to-rose-400 bg-clip-text text-transparent mb-4">
-              Live the XTSY Vibe
+              XTSY Travellers Hostel in Shillong
             </h1>
+            <p className="mx-auto mb-4 max-w-2xl text-sm sm:text-base text-white/80">
+              Live the XTSY vibe with affordable dorms, private stays and local Meghalaya experiences.
+            </p>
           </div>
 
           {/* Modern Booking Form */}

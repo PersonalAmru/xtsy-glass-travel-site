@@ -29,6 +29,7 @@ interface RouteResult {
   hasTitle: boolean;
   hasDescription: boolean;
   hasCanonical: boolean;
+  canonicalCount: number;
   hasH1: boolean;
   errors: string[];
   warnings: string[];
@@ -123,7 +124,7 @@ function validateRoute(route: string, status: number, html: string): RouteResult
     route, status,
     hasJsonLd: false, jsonLdCount: 0,
     hasFAQ: false, faqQuestions: 0,
-    hasTitle: false, hasDescription: false, hasCanonical: false, hasH1: false,
+    hasTitle: false, hasDescription: false, hasCanonical: false, canonicalCount: 0, hasH1: false,
     errors: [], warnings: [],
   };
 
@@ -131,12 +132,15 @@ function validateRoute(route: string, status: number, html: string): RouteResult
 
   r.hasTitle = !!extract(html, /<title>([^<]+)<\/title>/i);
   r.hasDescription = /<meta\s+name=["']description["']\s+content=["'][^"']{10,}["']/i.test(html);
-  r.hasCanonical = /<link\s+rel=["']canonical["']\s+href=["']https?:\/\//i.test(html);
+  r.canonicalCount = (html.match(/<link\s+rel=["']canonical["']/gi) || []).length;
+  r.hasCanonical = r.canonicalCount > 0;
   r.hasH1 = /<h1[^>]*>[\s\S]*?\S[\s\S]*?<\/h1>/i.test(html);
 
   if (!r.hasTitle) r.errors.push('Missing <title>');
   if (!r.hasDescription) r.errors.push('Missing meta description');
   if (!r.hasCanonical) r.errors.push('Missing canonical link');
+  if (r.canonicalCount !== 1) r.errors.push(`Expected exactly one canonical; found ${r.canonicalCount}`);
+  if (/\(1970\)|1970-01-01/i.test(html)) r.errors.push('Epoch year 1970 found in public HTML');
   if (!r.hasH1) r.warnings.push('No <h1> in static HTML (may be injected by SEO body script)');
 
   const ldRe = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
@@ -196,7 +200,7 @@ async function main() {
         results.push({
           route, status: 0,
           hasJsonLd: false, jsonLdCount: 0, hasFAQ: false, faqQuestions: 0,
-          hasTitle: false, hasDescription: false, hasCanonical: false, hasH1: false,
+          hasTitle: false, hasDescription: false, hasCanonical: false, canonicalCount: 0, hasH1: false,
           errors: [`Fetch failed: ${(e as Error).message}`], warnings: [],
         });
         process.stdout.write('!');

@@ -49,6 +49,7 @@ const STATIC_ROUTES: { path: string; priority: string; changefreq: string; lastm
   { path: '/xtsy-vs-zostel', priority: '0.7', changefreq: 'monthly', lastmod: TODAY },
   { path: '/book', priority: '0.9', changefreq: 'daily', lastmod: TODAY },
   { path: '/best-hostel-in-shillong', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
+  { path: '/cheap-hostels-shillong', priority: '0.9', changefreq: 'weekly', lastmod: TODAY },
   { path: '/hotels-in-shillong', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
   { path: '/homestays-in-shillong', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
   { path: '/luxury-glamping-shillong', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
