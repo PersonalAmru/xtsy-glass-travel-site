@@ -79,7 +79,7 @@ export const RECOVERY_LIVE_PAGES: ReadonlyArray<string> = [
   '4-day-meghalaya-itinerary',
   '6-day-meghalaya-itinerary',
   '8-day-meghalaya-itinerary',
-  'cheap-hostel-shillong',
+  'cheap-hostels-shillong',
   'cherrapunji-tour-package',
   'couples-hostel-shillong',
   'dawki-tour-package',
