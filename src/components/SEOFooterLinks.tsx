@@ -17,7 +17,7 @@ const LINK_GROUPS: LinkGroup[] = [
     links: [
       { label: 'Meghalaya Travel Guide', to: '/meghalaya-travel-guide' },
       { label: 'Places to Visit in Meghalaya', to: '/places-to-visit-meghalaya' },
-      { label: 'Things to Do in Meghalaya', to: '/things-to-do-meghalaya' },
+      { label: 'Things to Do in Meghalaya', to: '/things-to-do-in-meghalaya' },
       { label: 'Shillong Travel Guide', to: '/shillong-travel-guide' },
       { label: 'Cherrapunjee Travel Guide', to: '/cherrapunji-travel-guide' },
     ],
@@ -25,7 +25,7 @@ const LINK_GROUPS: LinkGroup[] = [
   {
     title: 'Top Destinations',
     links: [
-      { label: 'Waterfalls in Meghalaya', to: '/waterfalls-in-meghalaya' },
+      { label: 'Waterfalls in Meghalaya', to: '/meghalaya-waterfalls' },
       { label: 'Caves in Meghalaya', to: '/meghalaya-caves-guide' },
       { label: 'Trekking in Meghalaya', to: '/trekking-in-meghalaya' },
       { label: 'Dawki & Umngot River', to: '/dawki-umngot-river-guide' },

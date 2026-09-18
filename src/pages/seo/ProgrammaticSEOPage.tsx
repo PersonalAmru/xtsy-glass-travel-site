@@ -456,6 +456,21 @@ const ProgrammaticSEOPage = () => {
             })}
           </div>
 
+          {page.slug === 'cafes-in-shillong' && (
+            <aside className="mt-10 border border-primary/30 bg-primary/5 rounded-lg p-6">
+              <h2 className="text-xl font-bold text-foreground">Stay Near Shillong’s Café Scene</h2>
+              <p className="mt-2 text-muted-foreground">
+                Check live dorm and private-room availability at XTSY Travellers Hostel, with TAB Bistro on site and easy access to Laitumkhrah and Police Bazar.
+              </p>
+              <Link
+                to="/book"
+                className="mt-4 inline-flex min-h-12 items-center rounded-lg bg-primary px-5 py-3 font-medium text-primary-foreground hover:bg-primary/90"
+              >
+                Check Hostel Availability
+              </Link>
+            </aside>
+          )}
+
           {/* Topical Cluster Navigation */}
           <TopicalClusterNav category={page.category} currentSlug={page.slug} />
 
