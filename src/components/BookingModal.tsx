@@ -21,10 +21,6 @@ import CelebrationInterstitial from './CelebrationInterstitial';
 import { CurrencySelector } from './CurrencySelector';
 import { useApp } from '@/contexts/AppContext';
 
-// Winter discount configuration
-const WINTER_DISCOUNT = 0.10; // 10% off
-const applyDiscount = (price: number): number => Math.round(price * (1 - WINTER_DISCOUNT));
-
 interface BookingRoom {
   id: string;
   name: string;
@@ -367,8 +363,8 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
         id: room.id,
         name: room.name,
         type: room.unitType === 'bed' ? 'dorm' : 'private',
-        price: applyDiscount(room.basePrice),        // 10% winter discount applied
-        originalPrice: room.basePrice,                // Original price for display
+        price: room.basePrice,
+        originalPrice: room.basePrice,
         capacity: room.capacity,
         totalUnits: room.totalUnits,
         image: primaryImage,

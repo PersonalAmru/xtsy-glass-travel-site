@@ -11,13 +11,12 @@ import { ROOM_INVENTORY } from '@/data/roomInventory';
 
 // Canonical published rates for Shillong (incl. GST where applicable)
 export const SHILLONG_CANONICAL_RATES: Record<string, number> = {
-  'xtsy-270': 4999,
-  'king-double-room': 2399,
-  '4-bed-female-only-dorm': 419,
-  '4-bed-mixed-female-dorm': 569,
+  'xtsy-270': 5399,
+  'king-double-room': 2200,
+  '4-bed-female-only-dorm': 599,
   '6-bed-mixed-female-dorm': 389,
-  '6-bed-mixed-dorm': 469,
-  '8-bed-mixed-dorm': 369,
+  '6-bed-mixed-dorm': 499,
+  '8-bed-mixed-dorm': 399,
 };
 
 /**
@@ -54,9 +53,7 @@ export function verifyRate(roomId: string, displayedPrice: number): number {
  * Rooms that include complimentary breakfast in the published rate.
  * Used by room cards and booking summary to surface the inclusion.
  */
-export const ROOMS_WITH_COMPLIMENTARY_BREAKFAST: Record<string, string> = {
-  'xtsy-270': 'Complimentary breakfast for 2',
-};
+export const ROOMS_WITH_COMPLIMENTARY_BREAKFAST: Record<string, string> = {};
 
 export function getBreakfastInclusion(roomId: string): string | null {
   return ROOMS_WITH_COMPLIMENTARY_BREAKFAST[roomId] ?? null;

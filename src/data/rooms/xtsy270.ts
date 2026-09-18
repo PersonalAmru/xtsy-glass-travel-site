@@ -74,9 +74,9 @@ export const XTSY270_DATA = {
     }
   ],
   priceCurrency: 'INR',
-  weekendPrice: 4999,
-  weekdayPrice: 4999,
-  price: 4999, // Panorama by XTSY — ₹4999/night incl. GST, complimentary breakfast for 2
+  weekendPrice: 5399,
+  weekdayPrice: 5399,
+  price: 5399, // Stay-only rate; stay + breakfast for 2 is ₹5,799/night
   maxGuests: 2,
   maxRooms: 1,
   image: xtsyStargazing,
