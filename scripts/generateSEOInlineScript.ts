@@ -92,7 +92,7 @@ const STATIC_ROUTE_META: Record<string, RichEntry> = {
   'meghalaya-viewpoints': { t: 'Best Viewpoints in Meghalaya — Sunrise & Valley Views | XTSY', d: 'Top viewpoints across Meghalaya: Laitlum, Shillong Peak, Nongjrong, Mawkdok canyon.', h: 'Best Viewpoints in Meghalaya', s: 'TouristAttraction' },
   'meghalaya-villages': { t: 'Most Beautiful Villages in Meghalaya 2026 | XTSY Guide', d: 'Mawlynnong, Kongthong, Nongriat, Shnongpdeng — Meghalaya\'s most beautiful villages.', h: 'Most Beautiful Villages in Meghalaya', s: 'TouristAttraction' },
   'meghalaya-waterfalls': { t: 'Waterfalls in Meghalaya — Top 15 to Visit 2026 | XTSY', d: 'Nohkalikai, Krang Suri, Seven Sisters, Wei Sawdong & more. Top 15 Meghalaya waterfalls.', h: 'Waterfalls in Meghalaya', s: 'TouristAttraction' },
-  'xtsy-adventure-campsite-dawki': { t: 'XTSY Adventure Campsite Dawki — Riverside Camping ₹699', d: 'Riverside camping at Dawki on the Umngot. ₹699 camping, ₹899 with breakfast. Book direct on WhatsApp.', h: 'XTSY Adventure Campsite Dawki', i: 'XTSY Adventure Campsite sits on the bank of the Umngot River in Dawki — Asia\'s clearest river. Riverside tents from ₹699, breakfast-inclusive from ₹899, with boating and India–Bangladesh border viewpoint nearby.', s: 'Campground' },
+  'xtsy-adventure-campsite-dawki': { t: 'XTSY Adventure Campsite Dawki — Riverside Camping ₹800', d: 'Riverside camping at Dawki on the Umngot. ₹800 camping, ₹1000 with breakfast. Book direct on WhatsApp.', h: 'XTSY Adventure Campsite Dawki', i: 'XTSY Adventure Campsite sits on the bank of the Umngot River in Dawki — Asia\'s clearest river. Riverside tents from ₹800, breakfast-inclusive from ₹1000, with boating and India–Bangladesh border viewpoint nearby.', s: 'Campground' },
 };
 
 

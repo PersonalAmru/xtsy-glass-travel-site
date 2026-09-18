@@ -30,7 +30,7 @@ const PACKAGES = [
   {
     id: "camping-breakfast",
     title: "Camping + Breakfast",
-    price: 899,
+    price: 1000,
     icon: Coffee,
     highlight: true,
     perks: ["Riverside tent pitch", "Hot Indian breakfast", "Welcome chai", "Bonfire access (1 hr)"],
@@ -38,7 +38,7 @@ const PACKAGES = [
   {
     id: "camping-only",
     title: "Only Camping",
-    price: 699,
+    price: 800,
     icon: Tent,
     highlight: false,
     perks: ["Riverside tent pitch", "Welcome chai", "Shared washrooms"],
@@ -124,7 +124,7 @@ const CampsiteBookingFlow = memo(() => {
   };
 
   const seoTitle = "Book XTSY Adventure Campsite, Dawki | Riverside Camping";
-  const seoDesc = `Book your Umngot riverside camping experience in Dawki, Meghalaya. Packages from ₹699/person. Bonfire, kayaking & starlit nights.`;
+  const seoDesc = `Book your Umngot riverside camping experience in Dawki, Meghalaya. Packages from ₹800/person. Bonfire, kayaking & starlit nights.`;
 
   return (
     <div className="min-h-screen bg-background">

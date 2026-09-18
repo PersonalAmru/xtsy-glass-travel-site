@@ -140,7 +140,7 @@ export const PROPERTIES: Record<string, Property> = {
     heroImage: cdn('xtsy-adventure-campsite/Dawki Campsite 4.jpeg'),
     images: DAWKI_CAMPING_IMAGES.slice(0, 8),
     amenities: ['Riverside Pitches', 'Shared Washrooms', 'Bonfire (chargeable)', 'Water Activities (chargeable)', 'Dinner On Request'],
-    priceRange: { min: 699, max: 899 },
+    priceRange: { min: 800, max: 1000 },
     rating: 4.8,
     reviewCount: 24,
     category: 'budget',
