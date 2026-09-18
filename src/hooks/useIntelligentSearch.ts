@@ -34,7 +34,7 @@ const INTENT_ROUTES: Array<{ match: RegExp; entry: Omit<SearchEntry, 'id'> }> = 
     match: /\b(camp|camping|tent)\b.*\bdawki\b|\bdawki\b.*\b(camp|camping|tent)\b/i,
     entry: {
       title: 'Camping in Dawki — XTSY Adventure Campsite',
-      description: 'Riverside tents on Umngot · ₹699 only camping · ₹1000 with breakfast',
+      description: 'Riverside tents on Umngot · ₹800 only camping · ₹1000 with breakfast',
       category: 'stays',
       icon: '⛺',
       url: '/xtsy-adventure-campsite-dawki',

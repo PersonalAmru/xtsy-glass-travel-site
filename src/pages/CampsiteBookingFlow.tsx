@@ -1,7 +1,7 @@
 /**
  * CampsiteBookingFlow — /book/campsite
  * Lightweight enquiry-driven booking flow for XTSY Adventure Campsite (Dawki).
- * NOT a room-based flow — it's package-based: ₹699 (camping) or ₹899 (camping + breakfast).
+ * NOT a room-based flow — it's package-based: ₹800 (camping) or ₹1000 (camping + breakfast).
  */
 
 import { memo, useState, useMemo, useEffect } from "react";
