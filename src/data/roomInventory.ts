@@ -30,13 +30,12 @@ interface SeasonalPrice {
 }
 
 const SEASONAL_PRICES: Record<string, SeasonalPrice> = {
-  'xtsy-270':              { april: 4999, may: 4999, originalApril: 11999, originalMay: 11999 },
-  'king-double-room':      { april: 2399, may: 2399, originalApril: 3499,  originalMay: 3499 },
-  '4-bed-female-only-dorm':{ april: 419,  may: 419,  originalApril: 679,   originalMay: 679 },
-  '4-bed-mixed-female-dorm':{ april: 569, may: 569,  originalApril: 799,   originalMay: 799 },
+  'xtsy-270':              { april: 5399, may: 5399, originalApril: 11999, originalMay: 11999 },
+  'king-double-room':      { april: 2200, may: 2200, originalApril: 3499,  originalMay: 3499 },
+  '4-bed-female-only-dorm':{ april: 599,  may: 599,  originalApril: 679,   originalMay: 679 },
   '6-bed-mixed-female-dorm':{ april: 389, may: 389,  originalApril: 599,   originalMay: 599 },
-  '6-bed-mixed-dorm':      { april: 469, may: 469,  originalApril: 699,   originalMay: 699 },
-  '8-bed-mixed-dorm':      { april: 369, may: 369,  originalApril: 550,   originalMay: 550 },
+  '6-bed-mixed-dorm':      { april: 499, may: 499,  originalApril: 699,   originalMay: 699 },
+  '8-bed-mixed-dorm':      { april: 399, may: 399,  originalApril: 550,   originalMay: 550 },
 };
 
 function getSeasonalPrice(roomId: string): { discounted: number; original: number } {
@@ -144,7 +143,7 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     totalUnits: 1,
     description: "India's pioneering 270° panoramic glass house offering unparalleled luxury and breathtaking mountain vistas.",
     features: [
-      'Premium Breakfast',
+      'Stay Only',
       '270° Panoramic Glass Walls',
       'Luxury Ensuite Washroom',
       'Premium Mountain Views',
@@ -210,30 +209,6 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     propertyType: 'XTSY Travellers Hostel',
     displayOrder: 20,
     tags: ['preferred_by_female'],
-  },
-
-  // 4-Bed Mixed Dorm (Solo Traveller)
-  '4-bed-mixed-female-dorm': {
-    id: '4-bed-mixed-female-dorm',
-    name: 'Bed in 4-Bed Mixed Dormitory',
-    shortName: '4-Bed Mixed Dorm',
-    category: 'hostel',
-    kind: 'dorm',
-    basePrice: getSeasonalPrice('4-bed-mixed-female-dorm').discounted,
-    weekdayPrice: getSeasonalPrice('4-bed-mixed-female-dorm').discounted,
-    weekendPrice: getSeasonalPrice('4-bed-mixed-female-dorm').discounted,
-    discountedPrice: getSeasonalPrice('4-bed-mixed-female-dorm').discounted,
-    originalPrice: getSeasonalPrice('4-bed-mixed-female-dorm').original,
-    capacity: 4,
-    totalUnits: 4,
-    description: 'Mixed dormitory with shared facilities and social atmosphere',
-    features: generateStandardizedFeatures('hostel', 'Bed in 4-Bed Mixed Dormitory', 'dorm'),
-    image: ROOM_IMAGES['4-bed-mixed-female-dorm'][0],
-    images: ROOM_IMAGES['4-bed-mixed-female-dorm'],
-    isBookable: true,
-    propertyType: 'XTSY Travellers Hostel',
-    displayOrder: 30,
-    tags: ['solo_traveller'],
   },
 
   // 6-Bed Female Dorm (SOLD OUT - Closed)

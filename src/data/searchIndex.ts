@@ -181,11 +181,11 @@ function buildSearchIndex(): SearchEntry[] {
   entries.push({
     id: 'exp-dawki-campsite',
     title: 'XTSY Adventure Campsite — Dawki',
-    description: 'Riverside camping on Umngot · ₹699 only camping · ₹899 with breakfast',
+    description: 'Riverside camping on Umngot · ₹800 only camping · ₹1000 with breakfast',
     category: 'experiences',
     icon: '⛺',
     url: '/xtsy-adventure-campsite-dawki',
-    price: '₹699',
+    price: '₹800',
     location: 'Dawki, Meghalaya',
     keywords: [
       'dawki camping', 'camping in dawki', 'umngot river camping', 'dawki tent stay',

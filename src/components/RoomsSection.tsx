@@ -25,7 +25,7 @@ const RoomsSection = () => {
     {
       id: "signature-270-glass-suite",
       name: XTSY270_DATA.name,
-      price: Math.round(XTSY270_DATA.price * 0.9), // 10% winter discount
+      price: XTSY270_DATA.price,
       originalPrice: XTSY270_DATA.price,
       description: XTSY270_DATA.description,
       features: XTSY270_DATA.features,
@@ -43,8 +43,8 @@ const RoomsSection = () => {
     {
       id: "king-double-room",
       name: "King Double Room",
-      price: 1620, // 10% winter discount (1800 * 0.9)
-      originalPrice: 1800,
+      price: 2200,
+      originalPrice: 2200,
       description: "Spacious private room with king bed for two guests",
       features: generateFeatures('hostel', 'King Double Room', 'private'),
       maxGuests: 2,
@@ -55,26 +55,14 @@ const RoomsSection = () => {
     {
       id: "4-bed-female-only-dorm",
       name: "Bed in 4-Bed Female Dormitory",
-      price: 360, // 10% winter discount (400 * 0.9)
-      originalPrice: 400,
+      price: 599,
+      originalPrice: 599,
       description: "Female-only dormitory with modern amenities and comfortable beds",
       features: generateFeatures('hostel', 'Bed in 4-Bed Female Dormitory', 'dorm'),
       maxGuests: 4,
       maxRooms: 4,
       image: ROOM_IMAGES['4-bed-female-only-dorm'][0],
       images: ROOM_IMAGES['4-bed-female-only-dorm']
-    },
-    {
-      id: "4-bed-mixed-female-dorm",
-      name: "Bed in 4-Bed Mixed Dormitory", 
-      price: 450, // 10% winter discount (500 * 0.9)
-      originalPrice: 500,
-      description: "Mixed dormitory with shared facilities and social atmosphere",
-      features: generateFeatures('hostel', 'Bed in 4-Bed Mixed Dormitory', 'dorm'),
-      maxGuests: 4,
-      maxRooms: 4,
-      image: ROOM_IMAGES['4-bed-mixed-female-dorm'][0],
-      images: ROOM_IMAGES['4-bed-mixed-female-dorm']
     },
     {
       id: "6-bed-mixed-female-dorm",
@@ -91,8 +79,8 @@ const RoomsSection = () => {
     {
       id: "6-bed-mixed-dorm",
       name: "Bed in 6-Bed Mixed Dormitory",
-      price: 360, // 10% winter discount (400 * 0.9)
-      originalPrice: 400,
+      price: 499,
+      originalPrice: 499,
       description: "Budget-friendly mixed dormitory with essential amenities",
       features: generateFeatures('hostel', 'Bed in 6-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 6,
@@ -103,8 +91,8 @@ const RoomsSection = () => {
     {
       id: "8-bed-mixed-dorm",
       name: "Bed in 8-Bed Mixed Dormitory",
-      price: 270, // 10% winter discount (300 * 0.9)
-      originalPrice: 300,
+      price: 399,
+      originalPrice: 399,
       description: "Best value mixed dormitory for budget-conscious backpackers",
       features: generateFeatures('hostel', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 8,
