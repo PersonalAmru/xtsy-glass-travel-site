@@ -74,7 +74,7 @@ const DawkiCampsiteCard = memo(() => {
                   <span className="text-3xl font-bold text-foreground">₹800</span>
                   <span className="text-sm text-muted-foreground">/ person · only camping</span>
                 </div>
-                <p className="text-xs text-muted-foreground mb-1">Camping + Breakfast: <span className="font-semibold text-foreground">₹1000</span> / person</p>
+                 <p className="text-xs text-muted-foreground mb-1">Camping + Breakfast: <span className="font-semibold text-foreground">₹1,000</span> / person / night</p>
               </div>
               <Button asChild className="w-full mt-4">
                 <Link to="/xtsy-adventure-campsite-dawki">

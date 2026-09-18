@@ -107,7 +107,7 @@ const PROPERTIES = [
     latitude: '25.6025257',
     longitude: '91.9448919',
     category: 'hostel',
-    roomTypes: ['king-double-room', '4-bed-mixed-female-dorm', '4-bed-female-only-dorm', '6-bed-mixed-dorm', '6-bed-mixed-female-dorm', '8-bed-mixed-dorm'],
+    roomTypes: ['king-double-room', '4-bed-female-only-dorm', '6-bed-mixed-dorm', '6-bed-mixed-female-dorm', '8-bed-mixed-dorm'],
   },
   {
     id: 'xtsy-luxury',

@@ -21,7 +21,7 @@ const xtsyPrimeOfferings = [
     description: "India's first panoramic glass house with 270° mountain views. Wake up to sunrises over the Himalayas in this architectural masterpiece.",
     image: imgUrl("xtsy-270-stargazing.jpeg"),
     icon: Mountain,
-    price: "₹4,999",
+    price: "₹5,399",
     originalPrice: "₹11,999",
     priceNote: "per night (incl. taxes)",
     features: [

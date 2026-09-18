@@ -150,10 +150,11 @@ Can't wait to sleep under the stars! 🌌✨`;
                       {formatPrice(11999)}
                     </span>
                     <span className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-                      {formatPrice(4999)}
+                      {formatPrice(5399)}
                     </span>
                   </div>
-                  <span className="text-sm text-muted-foreground font-medium">per night · inclusive of taxes</span>
+                   <span className="text-sm text-muted-foreground font-medium">per night · stay only</span>
+                   <p className="mt-2 text-sm text-foreground">Stay + breakfast for 2: {formatPrice(5799)} · Decoration package: {formatPrice(2500)}</p>
                   <div className="mt-2">
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">Limited time Offer</span>
                   </div>

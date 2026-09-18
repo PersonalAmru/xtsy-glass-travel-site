@@ -345,7 +345,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                       <div className="space-y-0.5">
                         <div className="text-right">
                           <div className="text-gray-400 text-xs line-through">{formatPrice(room.originalPrice || 11999)}</div>
-                          <div className="text-primary font-bold text-base leading-tight">{formatPrice(room.price || 4999)}</div>
+                           <div className="text-primary font-bold text-base leading-tight">{formatPrice(room.price || 5399)}</div>
                           <div className="text-gray-400 text-xs">per night</div>
                         </div>
                       </div>
@@ -417,11 +417,11 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   }
                 </p>
 
-                {/* Complimentary breakfast badge for Panorama by XTSY */}
+                {/* Optional breakfast package for Panorama by XTSY */}
                 {isXTSY270 && (
                   <div className="flex justify-center mb-2">
                     <Badge className="bg-amber-500/15 text-amber-300 border border-amber-500/40 text-[11px] px-2 py-0.5">
-                      ✨ Complimentary breakfast for 2
+                       Stay + breakfast for 2: ₹5,799
                     </Badge>
                   </div>
                 )}

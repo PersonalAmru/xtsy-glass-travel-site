@@ -1,7 +1,7 @@
 /**
  * CampsiteBookingFlow — /book/campsite
  * Lightweight enquiry-driven booking flow for XTSY Adventure Campsite (Dawki).
- * NOT a room-based flow — it's package-based: ₹800 (camping) or ₹1000 (camping + breakfast).
+ * NOT a room-based flow — it's package-based: ₹800 (camping) or ₹1,000 (camping + breakfast).
  */
 
 import { memo, useState, useMemo, useEffect } from "react";
@@ -124,7 +124,7 @@ const CampsiteBookingFlow = memo(() => {
   };
 
   const seoTitle = "Book XTSY Adventure Campsite, Dawki | Riverside Camping";
-  const seoDesc = `Book your Umngot riverside camping experience in Dawki, Meghalaya. Packages from ₹800/person. Bonfire, kayaking & starlit nights.`;
+  const seoDesc = `Book your Umngot riverside camping experience in Dawki, Meghalaya. Packages from ₹800/person/night. Bonfire, kayaking & starlit nights.`;
 
   return (
     <div className="min-h-screen bg-background">

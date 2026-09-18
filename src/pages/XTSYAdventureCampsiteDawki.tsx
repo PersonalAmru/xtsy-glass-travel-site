@@ -56,7 +56,7 @@ const FAQS = [
     a: "On the banks of the Umngot River in Dawki, Meghalaya — Asia's clearest river. ~85 km from Shillong (3 hrs by road).",
   },
   {
-    q: "What's included in the ₹1000 Camping + Breakfast plan?",
+    q: "What's included in the ₹1,000 Camping + Breakfast plan?",
     a: "A pre-pitched tent, sleeping mat, hot breakfast, welcome chai and access to the bonfire (1 hr). Washrooms are shared and located just outside the campsite.",
   },
   {
@@ -81,7 +81,7 @@ const CampsiteSEO = {
   "@context": "https://schema.org",
   "@type": "Campground",
   name: "XTSY Adventure Campsite — Dawki",
-  description: "Riverside camping on the Umngot River in Dawki, Meghalaya. Camping + Breakfast from ₹1000 per person.",
+  description: "Riverside camping on the Umngot River in Dawki, Meghalaya. Camping + Breakfast from ₹1,000 per person per night.",
   url: "https://xtsy.one/xtsy-adventure-campsite-dawki",
   telephone: "+918837317070",
   image: DAWKI_CAMPING_IMAGES.slice(0, 5),
@@ -93,7 +93,7 @@ const CampsiteSEO = {
     addressCountry: "IN",
   },
   geo: { "@type": "GeoCoordinates", latitude: 25.1858, longitude: 92.0223 },
-  priceRange: "₹800 - ₹1000",
+  priceRange: "₹800 - ₹1,000",
   amenityFeature: [
     { "@type": "LocationFeatureSpecification", name: "Bonfire", value: true },
     { "@type": "LocationFeatureSpecification", name: "Water Activities", value: true },
@@ -113,7 +113,7 @@ const XTSYAdventureCampsiteDawki = memo(() => {
     <div className="min-h-screen bg-background text-foreground">
       <SEOHead
         title="XTSY Adventure Campsite Dawki — Riverside Camping from ₹800"
-        description="Camp on the crystal-clear Umngot river in Dawki, Meghalaya. Camping + breakfast ₹1000, only camping ₹800. Bonfire, kayaking, dinner on request. Book on WhatsApp."
+         description="Camp on the crystal-clear Umngot river in Dawki, Meghalaya. Camping + breakfast ₹1,000, only camping ₹800 per person per night. Bonfire, kayaking and dinner on request."
         keywords="xtsy adventure campsite, camping in dawki, dawki camping, umngot river camping, dawki tent stay, riverside camping meghalaya"
         canonicalUrl="https://xtsy.one/xtsy-adventure-campsite-dawki"
       />
@@ -147,7 +147,7 @@ const XTSYAdventureCampsiteDawki = memo(() => {
               XTSY Adventure Campsite
             </h1>
             <p className="text-lg sm:text-xl text-white/90 max-w-2xl mb-6">
-              Pitch your tent beside Asia's clearest river. Bonfires, kayaks and starlit skies — from ₹800 per person.
+               Pitch your tent beside Asia's clearest river. Bonfires, kayaks and starlit skies — from ₹800 per person per night.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
