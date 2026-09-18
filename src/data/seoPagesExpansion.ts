@@ -827,7 +827,7 @@ const foodPages: SEOPageData[] = [
       { question: 'Which Shillong cafés are good for working on a laptop?', answer: 'Laitumkhrah cafés such as ML 05 and Lamplight have the most reliable WiFi and plug points. TAB Bistro by XTSY in New Shillong Township is quieter and stays open until 10:30 PM.' },
       { question: 'Does XTSY have a café?', answer: 'Yes — TAB Bistro by XTSY is our in-house café and restaurant serving coffee from ₹100, all-day breakfast and desserts, open 9 AM to 10:30 PM to guests and locals alike.' },
     ],
-    ['best-restaurants-shillong', 'restaurant-in-shillong', 'shillong-vacation-planner'],
+    ['best-restaurants-shillong', 'restaurant-in-shillong', 'best-hostel-in-shillong'],
     ['cafes in shillong', 'best cafe shillong', 'coffee shillong', 'shillong cafe culture']
   ),
 
