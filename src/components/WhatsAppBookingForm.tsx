@@ -20,6 +20,7 @@ import { validateField, validateWhatsAppBooking } from "@/utils/whatsappBookingV
 import { useLocationConsent } from "@/hooks/useLocationConsent";
 import { useFormEngagement } from "@/hooks/useFormEngagement";
 import { useEnhancedAnalytics } from "@/hooks/useEnhancedAnalytics";
+import { XTSY270_DATA } from "@/data/rooms/xtsy270";
 
 // All Indian states and union territories
 const INDIAN_STATES = [
@@ -68,17 +69,6 @@ interface FormErrors {
   guests?: string;
   specialRequests?: string;
 }
-
-// Helper function to determine if current day is a weekend (Fri, Sat, Sun)
-const isWeekendDay = (): boolean => {
-  const day = new Date().getDay();
-  return day === 5 || day === 6 || day === 0; // Friday = 5, Saturday = 6, Sunday = 0
-};
-
-// Get XTSY 270 price based on current day
-const getXtsy270DynamicPrice = (): number => {
-  return 4999;
-};
 
 // Helper to check if room is XTSY 270
 const isXtsy270Room = (roomName: string): boolean => {
@@ -282,17 +272,14 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
         setSelectedRooms(prevRooms => prevRooms.filter(r => r.roomTypeId !== roomTypeId));
       } else {
         newSet.add(roomTypeId);
-        // Add to selectedRooms with 10% winter discount
-        // Use dynamic pricing for XTSY 270
-        const basePrice = isXtsy270Room(roomType.name) ? getXtsy270DynamicPrice() : roomType.base_price;
-        const discountedPrice = Math.round(basePrice * 0.9);
+        const basePrice = isXtsy270Room(roomType.name) ? XTSY270_DATA.price : roomType.base_price;
         const isDormitory = roomType.name.toLowerCase().includes('dormitory');
         const newRoom: SelectedRoom = {
           roomTypeId: roomType.id,
           roomTypeName: `${roomType.category} - ${roomType.name}`,
           // Dormitory: start with 1 bed, Private rooms: start with 1 room
           quantity: 1,
-          price: discountedPrice // Store in INR for internal calculations
+          price: basePrice // Store in INR for internal calculations
         };
         setSelectedRooms(prevRooms => {
           const updatedRooms = [...prevRooms, newRoom];
@@ -683,17 +670,6 @@ Looking forward to hearing from you. Thank you! 🌟`;
 
               {/* Room/Dorm Type Selection */}
               <div className="space-y-4 p-4 bg-slate-50 dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
-                {/* Winter Offer Badge */}
-                <div className="mb-4 p-3 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 rounded-lg border-2 border-blue-200 dark:border-blue-800">
-                  <div className="flex items-center justify-center gap-2">
-                    <span className="text-2xl">❄️</span>
-                    <p className="text-sm font-bold text-blue-900 dark:text-blue-100">
-                      Winter Offer: 10% Flat Off on All Rooms!
-                    </p>
-                    <span className="text-2xl">❄️</span>
-                  </div>
-                </div>
-                
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <Home className="h-5 w-5 text-primary" />
@@ -776,20 +752,13 @@ Looking forward to hearing from you. Thank you! 🌟`;
                                      </Label>
                                       <div className="flex items-center gap-2 mt-1">
                                         {(() => {
-                                          const displayPrice = isXtsy270Room(roomType.name) ? getXtsy270DynamicPrice() : roomType.base_price;
-                                          const discountedPrice = Math.round(displayPrice * 0.9);
+                                          const displayPrice = isXtsy270Room(roomType.name) ? XTSY270_DATA.price : roomType.base_price;
                                           return (
-                                            <>
-                                              <p className="text-xs text-muted-foreground line-through">
-                                                {formatPrice(displayPrice)}
-                                              </p>
-                                              <p className="text-xs font-semibold text-green-600">
-                                                {formatPrice(discountedPrice)}/night
-                                              </p>
-                                            </>
+                                            <p className="text-xs font-semibold text-green-600">
+                                              {formatPrice(displayPrice)}/night
+                                            </p>
                                           );
                                         })()}
-                                        <span className="text-[10px] bg-blue-500 text-white px-1.5 py-0.5 rounded">10% OFF</span>
                                         <p className="text-xs text-muted-foreground">• {roomType.capacity} guests</p>
                                       </div>
                                      {canAccommodateRemaining(roomType.name) && !selectedRoomIds.has(roomType.id) && (
