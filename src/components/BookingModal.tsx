@@ -271,14 +271,12 @@ function PremiumRoomCard({
       {/* Card Footer */}
       <div className="p-4 bg-background">
         <div className="flex items-center justify-between">
-          {/* Price with discount */}
+          {/* Current nightly price */}
           <div>
-            <div className="flex items-baseline gap-2">
+            <div className="flex items-baseline">
               <span className="text-2xl font-bold text-foreground">₹{room.price.toLocaleString()}</span>
-              <span className="text-sm text-muted-foreground line-through">₹{room.originalPrice.toLocaleString()}</span>
-              <span className="text-xs font-medium text-green-500 bg-green-500/10 px-1.5 py-0.5 rounded">10% OFF</span>
             </div>
-            <span className="text-xs text-muted-foreground">{priceLabel}/night • Winter Special</span>
+            <span className="text-xs text-muted-foreground">{priceLabel}/night</span>
             {isSelected && (
               <motion.p 
                 initial={{ opacity: 0, y: -5 }}
