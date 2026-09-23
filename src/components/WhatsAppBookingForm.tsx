@@ -714,7 +714,6 @@ Looking forward to hearing from you. Thank you! 🌟`;
                                   'King Double Room',
                                   'King Triple Room', 
                                   'Bed in 4-Bed Female Dormitory',
-                                  'Bed in 4-Bed Mixed Dormitory',
                                   'Bed in 6-Bed Female Dormitory',
                                   'Bed in 6-Bed Mixed Dormitory'
                                 ];
