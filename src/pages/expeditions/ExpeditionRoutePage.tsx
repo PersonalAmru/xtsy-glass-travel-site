@@ -162,7 +162,7 @@ const ExpeditionRoutePage = () => {
           <section>
             <h2 className="text-xl font-bold mb-3">Other expedition routes</h2>
             <ul className="grid gap-2 sm:grid-cols-2">
-              {others.map((r) => (
+              {others.filter(r => r.types.includes(type as ExpeditionType)).map((r) => (
                 <li key={r.slug}>
                   <Link
                     to={`/expeditions/${type}/${r.slug}`}

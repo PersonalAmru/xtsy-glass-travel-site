@@ -1,0 +1,3 @@
+- [ ] Align existing adventure tour, activity, expedition, and local city pages with approved search terms.
+- [ ] Improve on-site search discovery and relevant internal links without creating doorway pages.
+- [ ] Keep sitemap coverage accurate and validate metadata, links, desktop/mobile views, and type safety.

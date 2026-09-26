@@ -55,6 +55,12 @@ const MeghalayaTourPackages = () => {
           <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
             Curated tour packages combining stays at XTSY Hostel Shillong, guided tours to Meghalaya's best destinations, and dining at TAB Bistro. Everything included — just pack your bags.
           </p>
+          <p className="mt-4 text-muted-foreground max-w-3xl">
+            Planning a Meghalaya adventure tour? Compare root bridge treks, Dawki river outings
+            and Cherrapunji routes below. For longer adventure tours in Northeast India, browse{' '}
+            <Link to="/tours" className="text-primary underline">Northeast tours</Link> or{' '}
+            <Link to="/expeditions" className="text-primary underline">motorbike and 4x4 expeditions</Link>.
+          </p>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
             {packages.map((pkg) => (
@@ -97,6 +103,7 @@ const MeghalayaTourPackages = () => {
               <Link to="/shillong-tour-package" className="text-sm text-primary hover:underline">Shillong Tour Package</Link>
               <Link to="/best-time-to-visit-meghalaya" className="text-sm text-primary hover:underline">Best Time to Visit</Link>
               <Link to="/budget-trip-to-meghalaya" className="text-sm text-primary hover:underline">Budget Trip Guide</Link>
+              <Link to="/expeditions/4x4/meghalaya-loop" className="text-sm text-primary hover:underline">Meghalaya 4x4 Expedition</Link>
             </div>
           </nav>
         </div>
