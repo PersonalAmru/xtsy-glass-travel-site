@@ -188,6 +188,21 @@ const StateHub = () => {
             </section>
           )}
 
+          {(state.slug === 'assam' || state.slug === 'meghalaya') && (
+            <section className="mb-12">
+              <h2 className="text-2xl font-semibold mb-3">Adventure trips from {state.name}</h2>
+              <p className="text-muted-foreground max-w-3xl mb-4">
+                Explore nearby activities from the towns above, or plan a longer road journey from Guwahati or Shillong.
+                Check seasons, road access and permits before departure.
+              </p>
+              <div className="flex flex-wrap gap-5 text-sm">
+                <Link to="/things-to-do-in-meghalaya" className="text-primary underline">Meghalaya activities</Link>
+                <Link to="/meghalaya-tour-packages" className="text-primary underline">Meghalaya adventure tours</Link>
+                <Link to="/expeditions" className="text-primary underline">Northeast motorbike and 4x4 routes</Link>
+              </div>
+            </section>
+          )}
+
           {content && (
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4">Where to stay & book with XTSY</h2>

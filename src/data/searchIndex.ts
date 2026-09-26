@@ -230,6 +230,43 @@ function buildSearchIndex(): SearchEntry[] {
     synonyms: ['northeast'],
   });
 
+  entries.push(
+    {
+      id: 'adventure-meghalaya-tours', title: 'Meghalaya Adventure Tours',
+      description: 'Compare guided trips, treks and river outings in Meghalaya', category: 'tours', icon: '🥾',
+      url: '/meghalaya-tour-packages', location: 'Meghalaya',
+      keywords: ['meghalaya adventure tour', 'adventure tours in northeast india', 'meghalaya trekking tour'],
+    },
+    {
+      id: 'adventure-meghalaya-activities', title: 'Adventure Activities in Meghalaya',
+      description: 'Treks, caves, rivers and outdoor trips from Shillong', category: 'experiences', icon: '🏞️',
+      url: '/things-to-do-in-meghalaya', location: 'Meghalaya',
+      keywords: ['adventure activities in meghalaya', 'adventure activities in shillong', 'things to do near shillong'],
+    },
+    {
+      id: 'adventure-northeast-expeditions', title: 'Northeast Motorbike & 4x4 Expeditions',
+      description: 'Routes from Guwahati and Shillong, with permits and seasons', category: 'tours', icon: '🏍️',
+      url: '/expeditions', location: 'Northeast India',
+      keywords: ['motorbike expedition northeast india', '4x4 expedition meghalaya', 'northeast road trip'],
+    },
+  );
+
+  for (const [state, cities] of [
+    ['meghalaya', ['shillong', 'cherrapunji', 'dawki', 'mawlynnong', 'jowai', 'mawsynram', 'nongstoin', 'tura']],
+    ['assam', ['guwahati', 'kaziranga', 'majuli', 'jorhat']],
+  ] as const) {
+    for (const city of cities) {
+      entries.push({
+        id: `nearby-adventure-${city}`,
+        title: `Adventure activities near ${city[0].toUpperCase()}${city.slice(1)}`,
+        description: `Nearby places and onward trips around ${city}, ${state}`,
+        category: 'locations', icon: '📍',
+        url: `/destinations/${state}/${city}`, location: `${city}, ${state}`,
+        keywords: [`adventure near me ${city}`, `adventure activities near ${city}`, `adventure activities in ${city}`],
+      });
+    }
+  }
+
   // 5. Tour Packages → TOURS (static subset to keep index lean)
   const tourEntries: Omit<SearchEntry, 'id'>[] = [
     {
