@@ -10,7 +10,7 @@ export const Route = createFileRoute("/meghalaya-tour-packages")({
       description:
         "Book curated Meghalaya tour packages starting ₹7,999. Shillong, Cherrapunji, Dawki and living root bridges. Stays, meals and transport included. Best price guaranteed.",
       keywords:
-        "Meghalaya tour package, Meghalaya trip, Shillong tour, Cherrapunji tour, Dawki trip, Northeast India tour",
+        "Meghalaya tour package, Meghalaya adventure tour, adventure tours in Northeast India, Shillong tour, Cherrapunji tour, Dawki trip",
     }),
   component: MeghalayaTourPackages,
 });

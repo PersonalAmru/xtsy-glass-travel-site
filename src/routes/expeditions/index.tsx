@@ -6,10 +6,10 @@ export const Route = createFileRoute("/expeditions/")({
   head: () =>
     buildRouteHead({
       path: "/expeditions",
-      title: "Northeast India Motorbike & 4x4 Expeditions | XTSY",
+      title: "Motorbike & 4x4 Expeditions in Northeast India | XTSY",
       description:
-        "Motorbike and 4x4 expedition routes across Northeast India — Guwahati to Shillong, Tawang, Kohima and the Meghalaya loop. Routes, seasons and logistics.",
-      noIndex: true,
+        "Plan motorbike expeditions across Northeast India and 4x4 expeditions in Meghalaya. Compare Guwahati, Tawang, Kohima and Shillong loops, permits and seasons.",
+      keywords: "motorbike expedition Northeast India, 4x4 expedition Meghalaya, adventure tours in Northeast India",
     }),
   component: ExpeditionsIndex,
 });

@@ -23,10 +23,12 @@ export const Route = createFileRoute("/expeditions/$type/$route")({
 
     return buildRouteHead({
       path,
-      title: `${expedition.name} ${label} Route: Permits, Season, Cost`.slice(0, 65),
+      title: expedition.slug === "meghalaya-loop" && params.type === "4x4"
+        ? "4x4 Expedition Meghalaya: Loop, Season & Cost | XTSY"
+        : `${expedition.name} ${label} Route: Permits, Season, Cost`.slice(0, 65),
       description:
         `${expedition.distanceKm} km ${label.toLowerCase()} expedition${detail ? ` in ${detail.duration}` : ""}. Permits, best season, altitude, road conditions and costs from Rs ${detail?.priceFrom.toLocaleString("en-IN") ?? "—"} per person.`.slice(0, 158),
-      keywords: `${expedition.name} ${label.toLowerCase()} route, northeast india ${label.toLowerCase()} expedition, ${expedition.slug.replace(/-/g, " ")} permits`,
+      keywords: `${expedition.name} ${label.toLowerCase()} route, northeast india ${label.toLowerCase()} expedition, ${expedition.slug.replace(/-/g, " ")} permits${expedition.slug === "meghalaya-loop" && params.type === "4x4" ? ", 4x4 expedition Meghalaya" : ""}`,
       ogType: "article",
       jsonLd: [
         {

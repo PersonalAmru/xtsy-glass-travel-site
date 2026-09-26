@@ -222,10 +222,10 @@ const ThingsToDoInMeghalaya = () => {
           <section>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground flex items-center gap-2">
               <Mountain className="h-6 w-6 text-primary" />
-              Best Adventure Experiences
+              Adventure Activities in Meghalaya
             </h2>
             <p className="mt-3 text-muted-foreground leading-relaxed">
-              From trekking through rainforests to cliff jumping into crystal-clear rivers, Meghalaya offers some of the most unique adventure experiences in India. These destinations are perfect for adrenaline seekers and outdoor enthusiasts.
+              For adventure activities in Shillong, start with Laitlum Canyons or a Mawphlang forest walk. From Shillong, travel onward to the Nongriat root bridge trek near Cherrapunji or riverside experiences at Dawki and Shnongpdeng. Check local conditions and use a guide where trails require one.
             </p>
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {adventures.map((dest) => (
