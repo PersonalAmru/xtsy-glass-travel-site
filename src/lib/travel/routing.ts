@@ -80,8 +80,10 @@ const round = (h: number) => Math.round(h * 4) / 4;
 
 /** Local hop on hill roads: winding factor 1.5, ~28 km/h average. */
 function localHop(a: { lat: number; lng: number }, b: { lat: number; lng: number }): Leg {
-  const km = haversineKm(a, b) * 1.5;
-  const hours = round(km / 28);
+  const straight = haversineKm(a, b);
+  // Short hops wind more (town roads, switchbacks); add a little time to park and set off.
+  const km = straight * (straight < 15 ? 2 : 1.5);
+  const hours = round(km / 28 + (straight > 0.5 ? 0.15 : 0));
   return { km: Math.round(km), hours, via: [], flight: false, segs: [{ from: '', to: '', km: Math.round(km), hours, flight: false }] };
 }
 

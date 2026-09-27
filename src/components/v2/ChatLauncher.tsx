@@ -34,12 +34,13 @@ export default function ChatLauncher() {
         <button
           type="button"
           onClick={() => { setPrompt(undefined); setOpen(true); }}
-          className="xt-btn fixed bottom-[148px] right-4 z-50 flex h-14 items-center gap-2.5 rounded-full bg-xt-ink pl-3 pr-5 text-[15px] font-extrabold text-white shadow-[0_18px_40px_-14px_rgba(31,34,48,0.8)] ring-2 ring-xt-crimson md:bottom-[92px]"
+          aria-label="Plan a trip with AI"
+          className="xt-btn fixed bottom-[148px] right-4 z-50 flex h-14 w-14 items-center justify-center gap-2.5 rounded-full bg-xt-ink text-[15px] font-extrabold text-white shadow-[0_18px_40px_-14px_rgba(31,34,48,0.8)] ring-2 ring-xt-crimson md:bottom-[92px] md:w-auto md:justify-start md:pl-3 md:pr-5"
         >
           <span className="flex h-9 w-9 items-center justify-center rounded-full bg-xt-crimson" aria-hidden="true">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5 13.8 11.3 12 16l-1.8-4.7L5.5 9.5l4.7-1.8z" /><path d="M19 15l.8 2.2 2.2.8-2.2.8L19 21l-.8-2.2-2.2-.8 2.2-.8z" /></svg>
           </span>
-          Plan a trip with AI
+          <span className="hidden md:inline">Plan a trip with AI</span>
         </button>
       )}
       {open && (

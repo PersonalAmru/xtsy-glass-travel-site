@@ -81,7 +81,7 @@ export default function HomeHero() {
 
   return (
     <>
-      <section className="relative isolate flex min-h-[65vh] flex-col justify-end overflow-hidden bg-xt-ink px-5 py-12 text-xt-paper sm:px-8 lg:min-h-[68vh] lg:px-14">
+      <section className="relative isolate flex h-[640px] flex-col justify-end overflow-hidden bg-xt-ink px-5 py-12 text-xt-paper sm:h-[max(600px,68vh)] sm:px-8 lg:px-14">
         <img src={hero?.src ?? HERO_IMAGE.src} srcSet={hero?.srcSet} sizes="100vw" width={hero?.w} height={hero?.h} alt={HERO_IMAGE.alt} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: HERO_IMAGE.position }} fetchPriority="high" decoding="async" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-xt-ink via-xt-ink/60 to-xt-ink/20" />
         <div className="max-w-5xl">

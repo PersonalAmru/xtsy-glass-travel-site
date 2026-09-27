@@ -14,7 +14,7 @@ const PAD = 'px-4 sm:px-8 lg:px-14';
 
 export function LastMinuteBar() {
   return (
-    <Link to="/book" className="flex min-h-12 items-center justify-center gap-3 bg-xt-blush px-4 py-2 text-center text-[14px] font-bold text-xt-crimson-dark hover:text-xt-crimson sm:text-[15px]">
+    <Link to="/book" className="flex h-[60px] items-center justify-center gap-3 overflow-hidden bg-xt-blush px-4 text-center text-[13px] font-bold leading-snug text-xt-crimson-dark hover:text-xt-crimson sm:h-12 sm:text-[15px]">
       <LiveDot />
       Last-minute stay tonight? See live availability for dorms, private rooms and Experience by XTSY →
     </Link>
