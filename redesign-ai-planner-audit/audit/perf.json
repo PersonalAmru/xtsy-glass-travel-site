@@ -2,11 +2,11 @@
  {
   "route": "/",
   "status": 200,
-  "wallMs": 19367,
+  "wallMs": 19641,
   "ttfb": 89,
-  "fcp": 1852,
+  "fcp": 1928,
   "lcp": {
-   "t": 5712,
+   "t": 5732,
    "size": 249600,
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.webp",
    "tag": "IMG",
@@ -15,15 +15,15 @@
   },
   "lcpCandidates": [
    {
-    "t": 1852,
+    "t": 1928,
     "size": 38540,
     "url": "",
     "tag": "H1",
-    "cls": "xt-display m-0 text-6xl leading-none sm:text-8xl lg:text-9xl",
+    "cls": "xt-display m-0 h-[2em] text-6xl leading-none sm:text-8xl lg:text-9xl",
     "text": "XTSY Travellers Hostel"
    },
    {
-    "t": 5712,
+    "t": 5732,
     "size": 249600,
     "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.webp",
     "tag": "IMG",
@@ -31,25 +31,18 @@
     "text": ""
    }
   ],
-  "cls": 0.119,
+  "cls": 0.087,
   "shifts": [
    {
     "v": 0.0007,
-    "t": 2741,
+    "t": 2792,
     "nodes": [
      "#text."
     ]
    },
    {
-    "v": 0.0321,
-    "t": 3415,
-    "nodes": [
-     "DIV.max-w-5xl"
-    ]
-   },
-   {
     "v": 0.0864,
-    "t": 3869,
+    "t": 3898,
     "nodes": [
      "DIV.max-w-5xl",
      "DIV.flex items-center gap-2",
@@ -98,7 +91,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-XCjFPAcK.js",
+    "url": "http://localhost:4174/assets/index-CiOcM9WZ.js",
     "type": "script",
     "bytes": 1686579,
     "kb": 1647
@@ -116,9 +109,9 @@
     "kb": 464
    },
    {
-    "url": "http://localhost:4174/assets/styles-8nAZXk6A.css",
+    "url": "http://localhost:4174/assets/styles-D5b829V-.css",
     "type": "stylesheet",
-    "bytes": 424296,
+    "bytes": 424318,
     "kb": 414
    },
    {
@@ -136,7 +129,7 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
     "type": "script",
-    "bytes": 197745,
+    "bytes": 197744,
     "kb": 193
    },
    {
@@ -148,13 +141,13 @@
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163174,
+    "bytes": 163180,
     "kb": 159
    },
    {
     "url": "http://localhost:4174/",
     "type": "document",
-    "bytes": 143070,
+    "bytes": 143078,
     "kb": 140
    },
    {
@@ -174,11 +167,11 @@
  {
   "route": "/xtsy-270",
   "status": 200,
-  "wallMs": 17877,
+  "wallMs": 17906,
   "ttfb": 36,
-  "fcp": 1672,
+  "fcp": 1696,
   "lcp": {
-   "t": 2524,
+   "t": 2544,
    "size": 61766,
    "url": "",
    "tag": "H1",
@@ -187,7 +180,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1672,
+    "t": 1696,
     "size": 2646,
     "url": "",
     "tag": "A",
@@ -195,7 +188,7 @@
     "text": "Dorm beds from ₹399/night"
    },
    {
-    "t": 2524,
+    "t": 2544,
     "size": 61766,
     "url": "",
     "tag": "H1",
@@ -207,7 +200,7 @@
   "shifts": [
    {
     "v": 0.0016,
-    "t": 2566,
+    "t": 2537,
     "nodes": [
      "#text.",
      "#text."
@@ -215,14 +208,14 @@
    },
    {
     "v": 0.001,
-    "t": 3609,
+    "t": 3599,
     "nodes": [
      "SPAN.flex flex-col pb-1.5 text-[15px] text-[#A3ABC2]"
     ]
    },
    {
     "v": 0.012,
-    "t": 4012,
+    "t": 3999,
     "nodes": [
      "DIV.xt-in xt-d3 flex flex-wrap gap-3",
      "DIV.mt-6 flex items-end gap-4",
@@ -232,7 +225,7 @@
     ]
    }
   ],
-  "requests": 93,
+  "requests": 94,
   "byType": {
    "document": {
     "n": 1,
@@ -263,7 +256,7 @@
     "kb": 15
    },
    "ping": {
-    "n": 1,
+    "n": 2,
     "kb": 0
    },
    "other": {
@@ -273,7 +266,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-XCjFPAcK.js",
+    "url": "http://localhost:4174/assets/index-CiOcM9WZ.js",
     "type": "script",
     "bytes": 1686579,
     "kb": 1647
@@ -291,9 +284,9 @@
     "kb": 464
    },
    {
-    "url": "http://localhost:4174/assets/styles-8nAZXk6A.css",
+    "url": "http://localhost:4174/assets/styles-D5b829V-.css",
     "type": "stylesheet",
-    "bytes": 424296,
+    "bytes": 424318,
     "kb": 414
    },
    {
@@ -305,13 +298,13 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
     "type": "script",
-    "bytes": 197746,
+    "bytes": 197744,
     "kb": 193
    },
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163181,
+    "bytes": 163172,
     "kb": 159
    },
    {
@@ -349,12 +342,12 @@
  {
   "route": "/tours",
   "status": 200,
-  "wallMs": 17151,
-  "ttfb": 79,
-  "fcp": 1588,
+  "wallMs": 17241,
+  "ttfb": 73,
+  "fcp": 1640,
   "lcp": {
-   "t": 2200,
-   "size": 77253,
+   "t": 2224,
+   "size": 77254,
    "url": "",
    "tag": "P",
    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[20px]",
@@ -362,7 +355,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1588,
+    "t": 1640,
     "size": 18928,
     "url": "",
     "tag": "H2",
@@ -370,8 +363,8 @@
     "text": "Northeast signatures"
    },
    {
-    "t": 2200,
-    "size": 77253,
+    "t": 2224,
+    "size": 77254,
     "url": "",
     "tag": "P",
     "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[20px]",
@@ -382,14 +375,14 @@
   "shifts": [
    {
     "v": 0.0004,
-    "t": 2157,
+    "t": 2161,
     "nodes": [
      "#text."
     ]
    },
    {
     "v": 0.0006,
-    "t": 2644,
+    "t": 2704,
     "nodes": [
      "DIV.flex items-center gap-2",
      "A.text-xt-paper underline-offset-2 hover:underline"
@@ -402,13 +395,13 @@
     "n": 1,
     "kb": 203
    },
-   "image": {
-    "n": 6,
-    "kb": 473
-   },
    "stylesheet": {
     "n": 3,
     "kb": 426
+   },
+   "image": {
+    "n": 6,
+    "kb": 473
    },
    "script": {
     "n": 31,
@@ -437,7 +430,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-XCjFPAcK.js",
+    "url": "http://localhost:4174/assets/index-CiOcM9WZ.js",
     "type": "script",
     "bytes": 1686579,
     "kb": 1647
@@ -455,9 +448,9 @@
     "kb": 464
    },
    {
-    "url": "http://localhost:4174/assets/styles-8nAZXk6A.css",
+    "url": "http://localhost:4174/assets/styles-D5b829V-.css",
     "type": "stylesheet",
-    "bytes": 424296,
+    "bytes": 424318,
     "kb": 414
    },
    {
@@ -479,15 +472,15 @@
     "kb": 203
    },
    {
-    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1h1",
     "type": "script",
-    "bytes": 197745,
+    "bytes": 197739,
     "kb": 193
    },
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163182,
+    "bytes": 163164,
     "kb": 159
    },
    {
@@ -513,11 +506,11 @@
  {
   "route": "/pet-friendly",
   "status": 200,
-  "wallMs": 19430,
-  "ttfb": 55,
-  "fcp": 1648,
+  "wallMs": 19593,
+  "ttfb": 53,
+  "fcp": 1652,
   "lcp": {
-   "t": 2544,
+   "t": 2556,
    "size": 56672,
    "url": "",
    "tag": "DIV",
@@ -526,7 +519,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1648,
+    "t": 1652,
     "size": 2646,
     "url": "",
     "tag": "A",
@@ -534,7 +527,7 @@
     "text": "Dorm beds from ₹399/night"
    },
    {
-    "t": 2544,
+    "t": 2556,
     "size": 56672,
     "url": "",
     "tag": "DIV",
@@ -546,14 +539,14 @@
   "shifts": [
    {
     "v": 0.0013,
-    "t": 4068,
+    "t": 4078,
     "nodes": [
      "#text."
     ]
    },
    {
     "v": 0.0099,
-    "t": 4348,
+    "t": 4377,
     "nodes": [
      "DIV.xt-in xt-d2 relative",
      "DIV.xt-in xt-d3 flex flex-wrap gap-3",
@@ -563,7 +556,7 @@
     ]
    }
   ],
-  "requests": 101,
+  "requests": 98,
   "byType": {
    "document": {
     "n": 1,
@@ -589,13 +582,13 @@
     "n": 15,
     "kb": 2
    },
-   "ping": {
-    "n": 4,
-    "kb": 0
-   },
    "xhr": {
     "n": 7,
     "kb": 15
+   },
+   "ping": {
+    "n": 1,
+    "kb": 0
    },
    "other": {
     "n": 3,
@@ -604,7 +597,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-XCjFPAcK.js",
+    "url": "http://localhost:4174/assets/index-CiOcM9WZ.js",
     "type": "script",
     "bytes": 1686579,
     "kb": 1647
@@ -622,9 +615,9 @@
     "kb": 464
    },
    {
-    "url": "http://localhost:4174/assets/styles-8nAZXk6A.css",
+    "url": "http://localhost:4174/assets/styles-D5b829V-.css",
     "type": "stylesheet",
-    "bytes": 424296,
+    "bytes": 424318,
     "kb": 414
    },
    {
@@ -666,11 +659,11 @@
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163174,
+    "bytes": 163180,
     "kb": 159
    },
    {
-    "url": "http://localhost:4174/assets/pet-friendly-D6Ly814q.js",
+    "url": "http://localhost:4174/assets/pet-friendly-DzlptHo6.js",
     "type": "script",
     "bytes": 101556,
     "kb": 99
@@ -680,9 +673,9 @@
  {
   "route": "/places-to-visit/nohkalikai-falls",
   "status": 200,
-  "wallMs": 15330,
-  "ttfb": 192,
-  "fcp": 1712,
+  "wallMs": 15532,
+  "ttfb": 197,
+  "fcp": 1740,
   "lcp": {
    "t": 2764,
    "size": 105704,
@@ -693,7 +686,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1712,
+    "t": 1740,
     "size": 4050,
     "url": "",
     "tag": "SPAN",
@@ -701,7 +694,7 @@
     "text": "Cherrapunji"
    },
    {
-    "t": 2612,
+    "t": 2632,
     "size": 33677,
     "url": "",
     "tag": "H1",
@@ -721,14 +714,14 @@
   "shifts": [
    {
     "v": 0.0007,
-    "t": 2948,
+    "t": 2970,
     "nodes": [
      "#text."
     ]
    },
    {
     "v": 0.0009,
-    "t": 3265,
+    "t": 3290,
     "nodes": [
      "DIV.flex items-center gap-2",
      "A.text-xt-paper underline-offset-2 hover:underline",
@@ -744,13 +737,13 @@
     "n": 2,
     "kb": 74
    },
-   "image": {
-    "n": 4,
-    "kb": 300
-   },
    "stylesheet": {
     "n": 3,
     "kb": 426
+   },
+   "image": {
+    "n": 4,
+    "kb": 300
    },
    "script": {
     "n": 40,
@@ -779,7 +772,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-XCjFPAcK.js",
+    "url": "http://localhost:4174/assets/index-CiOcM9WZ.js",
     "type": "script",
     "bytes": 1686579,
     "kb": 1647
@@ -797,9 +790,9 @@
     "kb": 464
    },
    {
-    "url": "http://localhost:4174/assets/styles-8nAZXk6A.css",
+    "url": "http://localhost:4174/assets/styles-D5b829V-.css",
     "type": "stylesheet",
-    "bytes": 424296,
+    "bytes": 424318,
     "kb": 414
    },
    {
@@ -811,7 +804,7 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
     "type": "script",
-    "bytes": 197745,
+    "bytes": 197744,
     "kb": 193
    },
    {
@@ -823,7 +816,7 @@
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163174,
+    "bytes": 163172,
     "kb": 159
    },
    {
@@ -855,11 +848,11 @@
  {
   "route": "/book",
   "status": 200,
-  "wallMs": 20160,
-  "ttfb": 38,
-  "fcp": 1280,
+  "wallMs": 15031,
+  "ttfb": 32,
+  "fcp": 1296,
   "lcp": {
-   "t": 1280,
+   "t": 1296,
    "size": 2880,
    "url": "",
    "tag": "DIV",
@@ -868,7 +861,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1280,
+    "t": 1296,
     "size": 2880,
     "url": "",
     "tag": "DIV",
@@ -880,13 +873,13 @@
   "shifts": [
    {
     "v": 0.0001,
-    "t": 2894,
+    "t": 2888,
     "nodes": [
      "DIV.text-white/80"
     ]
    }
   ],
-  "requests": 109,
+  "requests": 108,
   "byType": {
    "document": {
     "n": 1,
@@ -905,7 +898,7 @@
     "kb": 92
    },
    "fetch": {
-    "n": 22,
+    "n": 21,
     "kb": 2
    },
    "xhr": {
@@ -927,7 +920,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-XCjFPAcK.js",
+    "url": "http://localhost:4174/assets/index-CiOcM9WZ.js",
     "type": "script",
     "bytes": 1686579,
     "kb": 1647
@@ -945,9 +938,9 @@
     "kb": 464
    },
    {
-    "url": "http://localhost:4174/assets/styles-8nAZXk6A.css",
+    "url": "http://localhost:4174/assets/styles-D5b829V-.css",
     "type": "stylesheet",
-    "bytes": 424296,
+    "bytes": 424318,
     "kb": 414
    },
    {
@@ -963,9 +956,9 @@
     "kb": 204
    },
    {
-    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1h1",
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
     "type": "script",
-    "bytes": 197740,
+    "bytes": 197744,
     "kb": 193
    },
    {
@@ -977,7 +970,7 @@
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163165,
+    "bytes": 163172,
     "kb": 159
    },
    {
@@ -1003,11 +996,11 @@
  {
   "route": "https://xtsy.one/",
   "status": 200,
-  "wallMs": 18764,
-  "ttfb": 2514,
-  "fcp": 4856,
+  "wallMs": 18737,
+  "ttfb": 2382,
+  "fcp": 4756,
   "lcp": {
-   "t": 4856,
+   "t": 4756,
    "size": 12036,
    "url": "",
    "tag": "P",
@@ -1016,7 +1009,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 4856,
+    "t": 4756,
     "size": 12036,
     "url": "",
     "tag": "P",
@@ -1028,7 +1021,7 @@
   "shifts": [
    {
     "v": 0.0008,
-    "t": 5547,
+    "t": 5448,
     "nodes": [
      "#text.",
      "#text.",
@@ -1037,7 +1030,7 @@
    },
    {
     "v": 0.0163,
-    "t": 13342,
+    "t": 13398,
     "nodes": [
      "MAIN.",
      "DIV.flex items-center gap-2 sm:gap-3 mr-4 sm:mr-6",
@@ -1046,7 +1039,7 @@
    },
    {
     "v": 0,
-    "t": 13417,
+    "t": 13491,
     "nodes": [
      "#text.",
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
@@ -1054,260 +1047,197 @@
    },
    {
     "v": 0,
-    "t": 13476,
+    "t": 13564,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 13536,
+    "t": 13632,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 13651,
+    "t": 13713,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 13830,
+    "t": 13917,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 13910,
+    "t": 14053,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 13990,
+    "t": 14132,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 14086,
+    "t": 14242,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 14352,
+    "t": 14418,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 14391,
+    "t": 14520,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 14440,
+    "t": 14584,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 14526,
+    "t": 14950,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 14780,
+    "t": 15096,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 14825,
+    "t": 15164,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 14897,
+    "t": 15231,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 14948,
+    "t": 15297,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 15017,
+    "t": 15362,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 15064,
+    "t": 15430,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 15117,
+    "t": 15498,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 15163,
+    "t": 15565,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 15219,
+    "t": 15631,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 15266,
+    "t": 15694,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 17987,
+    "t": 18415,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 18036,
+    "t": 18498,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 18103,
+    "t": 18597,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    },
    {
     "v": 0,
-    "t": 18164,
-    "nodes": [
-     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
-    ]
-   },
-   {
-    "v": 0,
-    "t": 18220,
-    "nodes": [
-     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
-    ]
-   },
-   {
-    "v": 0,
-    "t": 18264,
-    "nodes": [
-     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
-    ]
-   },
-   {
-    "v": 0,
-    "t": 18314,
-    "nodes": [
-     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
-    ]
-   },
-   {
-    "v": 0,
-    "t": 18369,
-    "nodes": [
-     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
-    ]
-   },
-   {
-    "v": 0,
-    "t": 18469,
-    "nodes": [
-     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
-    ]
-   },
-   {
-    "v": 0,
-    "t": 18520,
-    "nodes": [
-     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
-    ]
-   },
-   {
-    "v": 0,
-    "t": 18580,
-    "nodes": [
-     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
-    ]
-   },
-   {
-    "v": 0,
-    "t": 18637,
-    "nodes": [
-     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
-    ]
-   },
-   {
-    "v": 0,
-    "t": 18687,
+    "t": 18651,
     "nodes": [
      "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
     ]
    }
   ],
-  "requests": 126,
+  "requests": 129,
   "byType": {
    "document": {
     "n": 1,
     "kb": 57
-   },
-   "script": {
-    "n": 75,
-    "kb": 3355
    },
    "stylesheet": {
     "n": 3,
     "kb": 409
    },
    "image": {
-    "n": 15,
+    "n": 16,
     "kb": 1833
+   },
+   "script": {
+    "n": 76,
+    "kb": 3820
    },
    "font": {
     "n": 2,
@@ -1322,7 +1252,7 @@
     "kb": 15
    },
    "ping": {
-    "n": 1,
+    "n": 2,
     "kb": 0
    },
    "other": {
@@ -1342,6 +1272,12 @@
     "type": "script",
     "bytes": 559936,
     "kb": 547
+   },
+   {
+    "url": "https://xtsy.one/assets/esm-YspT_man.js",
+    "type": "script",
+    "bytes": 475465,
+    "kb": 464
    },
    {
     "url": "https://xtsy.one/assets/styles-DXvjcykF.css",
@@ -1380,15 +1316,15 @@
     "kb": 195
    },
    {
-    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1h1",
     "type": "script",
-    "bytes": 197745,
+    "bytes": 197739,
     "kb": 193
    },
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163174,
+    "bytes": 163164,
     "kb": 159
    },
    {
@@ -1396,12 +1332,6 @@
     "type": "image",
     "bytes": 159386,
     "kb": 156
-   },
-   {
-    "url": "https://xtsy.one/__l5e/assets-v1/150a6c68-33c3-4f67-a9da-759bfc9b2ea4/xtsyvoyage-mawlynnong.jpeg",
-    "type": "image",
-    "bytes": 157837,
-    "kb": 154
    }
   ]
  }
