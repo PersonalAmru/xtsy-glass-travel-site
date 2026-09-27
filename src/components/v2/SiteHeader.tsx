@@ -19,6 +19,7 @@ export const MAIN_NAV = [
   { to: '/tab-bistro', label: 'TAB Bistro' },
   { to: '/work-from-home', label: 'Workation' },
   { to: '/things-to-do-in-meghalaya', label: 'Guides' },
+  { to: '/merch', label: 'Merch' },
 ];
 
 const MENU_GROUPS = [
@@ -58,6 +59,7 @@ const MENU_GROUPS = [
       { to: '/tab-bistro', label: 'TAB Bistro' },
       { to: '/tab-bistro/catering', label: 'Catering' },
       { to: '/destination-wedding-shillong', label: 'Destination weddings' },
+      { to: '/merch', label: 'XTSY merch' },
       { to: '/about', label: 'About us' },
       { to: '/faq', label: 'FAQs' },
       { to: '/contact', label: 'Contact' },

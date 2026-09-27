@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import DestinationDetail from "@/pages/destinations/DestinationDetail";
+import DestinationDetail from "@/pages/v2/DestinationV2";
 import { buildRouteHead } from "@/lib/seo-head";
 import { getDestinationBySlug } from "@/data/meghalayaDestinations";
 import { getStateBySlug, getCityBySlug } from "@/data/neTaxonomy";

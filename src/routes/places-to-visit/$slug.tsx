@@ -3,7 +3,7 @@ import { destinationPath } from "@/data/neTaxonomy";
 import { getDestinationBySlug } from "@/data/meghalayaDestinations";
 import { GONE_SLUGS } from "@/data/seoGoneSlugs";
 import { buildRouteHead } from "@/lib/seo-head";
-import DestinationDetail from "@/pages/destinations/DestinationDetail";
+import DestinationDetail from "@/pages/v2/DestinationV2";
 
 /**
  * LEGACY URL — permanently moved into the hierarchical taxonomy
