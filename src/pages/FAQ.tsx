@@ -32,7 +32,7 @@ const FAQ = () => {
         },
         {
           question: "How do I book?",
-          answer: "WhatsApp +91 88373 17070 or book on our website. It's ₹9,999/night (weekends) and ₹7,999/night (weekdays). Book 2-3 weeks ahead during peak season—it sells out fast.",
+          answer: "WhatsApp +91 88373 17070 or book on our website. It's ₹5,399/night stay-only or ₹5,799 with breakfast for two. Book 2-3 weeks ahead during peak season—it sells out fast.",
         }
       ]
     },
@@ -128,7 +128,7 @@ const FAQ = () => {
       faqs: [
         {
           question: "What dorm and room types can I choose?",
-          answer: "4, 6 and 8-bed mixed dormitories, female-only dorms (4 and 6-bed), private double rooms with mountain views, and Experience by XTSY, India's first stargaze glamp. Every bed has a locker, reading light and charging point. Dorms from ₹369.",
+          answer: "4, 6 and 8-bed mixed dormitories, female-only dorms (4 and 6-bed), private double rooms with mountain views, and Experience by XTSY, India's first stargaze glamp. Every bed has a locker, reading light and charging point. Dorms from ₹399.",
           hasQuote: true,
           quote: "One of the best dormitories — clean, comfortable and full of good vibes.",
           quoteName: "Kandarp"

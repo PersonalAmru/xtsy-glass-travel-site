@@ -22,7 +22,7 @@ const HomestaysInShillong = memo(() => {
           '@type': 'LodgingBusiness',
           name: 'XTSY Travellers Hostel',
           description: 'Hostel with homestay vibes — community kitchen, local food, and cultural experiences',
-          priceRange: '₹369 - ₹4,999',
+          priceRange: '₹399 - ₹4,999',
           starRating: { '@type': 'Rating', ratingValue: '4.8' },
         },
       },
@@ -84,7 +84,7 @@ const HomestaysInShillong = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Homestays in Shillong from ₹369/night | XTSY</title>
+        <title>Homestays in Shillong from ₹399/night | XTSY</title>
         <meta name="description" content="Find the best homestays and guest houses in Shillong. Authentic Khasi experiences, home-cooked meals, from ₹800/night. Compare options for your Meghalaya trip." />
         <meta name="keywords" content="homestay in Shillong, guest house Shillong, Shillong homestay, best homestay Meghalaya, Khasi homestay, cheap homestay Shillong, family homestay Shillong, local stay Shillong" />
         <link rel="canonical" href="https://xtsy.one/homestays-in-shillong" />

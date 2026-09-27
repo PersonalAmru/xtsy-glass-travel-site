@@ -42,7 +42,7 @@ const BlogHiddenPlaces = () => (
         <PlanTripLinks
           source="hidden-places-in-meghalaya"
           heading="Explore the hidden gems — book your base"
-          bookingAnchor="Stay in Shillong and reach these offbeat spots easily — dorm beds from ₹369, private rooms & glamping"
+          bookingAnchor="Stay in Shillong and reach these offbeat spots easily — dorm beds from ₹399, private rooms & glamping"
           slugs={['laitlum-canyons', 'wei-sawdong-falls', 'mawphlang-sacred-forest', 'phe-phe-falls']}
         />
       </div>

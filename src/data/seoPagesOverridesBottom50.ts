@@ -117,7 +117,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   },
   {
     "slug": "hostel-near-police-bazar-shillong",
-    "quickAnswer": "XTSY is not in Police Bazar — it is on Mawdiangdiang Road, New Shillong Township (793018), a cab ride from the city centre, near NIFT Shillong and IIM Shillong. Dorm beds start at ₹369; WhatsApp +91 88373 17070.",
+    "quickAnswer": "XTSY is not in Police Bazar — it is on Mawdiangdiang Road, New Shillong Township (793018), a cab ride from the city centre, near NIFT Shillong and IIM Shillong. Dorm beds start at ₹399; WhatsApp +91 88373 17070.",
     "title": "Hostel near Police Bazar Shillong? Where XTSY Is | XTSY",
     "intro": "Searching for a hostel near Police Bazar? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. To be clear about the location: XTSY is not in Police Bazar or central Shillong. It sits in the quieter New Shillong Township area, and Police Bazar is a cab ride away when you want the markets and street food. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed in Shillong, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "sections": [
@@ -129,7 +129,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "What you can book",
         "content": "All rooms are on one property, with TAB Bistro on site.",
         "listItems": [
-          "Mixed dorm beds from ₹369 a night",
+          "Mixed dorm beds from ₹399 a night",
           "Female-only dorm",
           "King Double private rooms",
           "Experience by XTSY — India's first stargaze glamp (270° panoramic glass suite)",
@@ -138,7 +138,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Good to know",
-        "content": "Standard check-in is 2 PM and check-out 11 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
+        "content": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
         "listItems": [
           "Book direct at xtsy.one/book or on WhatsApp +91 88373 17070",
           "Travel desk for Cherrapunji, Dawki and Mawlynnong day trips",
@@ -162,14 +162,14 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "What are the check-in and check-out times?",
-        "answer": "Check-in is from 2 PM and check-out is by 11 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
+        "answer": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
       },
       {
         "question": "Does XTSY have hostels in other towns?",
         "answer": "No. XTSY's own property is only in New Shillong Township. In other places, XTSY arranges stays, transport and travel help through trusted travel partners."
       }
     ],
-    "metaDescription": "Searching for a hostel near Police Bazar? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹369, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
+    "metaDescription": "Searching for a hostel near Police Bazar? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
     "keywords": [
       "hostel near police bazar shillong",
       "backpackers hostel shillong",
@@ -517,7 +517,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   },
   {
     "slug": "budget-stay-shillong",
-    "metaDescription": "Discover the best budget stay in Shillong with XTSY. Low-cost hostels, dorms, and private rooms from ₹369. New Shillong Township location with Wi-Fi and hot water.",
+    "metaDescription": "Discover the best budget stay in Shillong with XTSY. Low-cost hostels, dorms, and private rooms from ₹399. New Shillong Township location with Wi-Fi and hot water.",
     "faqs": [
       {
         "question": "What is the cheapest way to stay in Shillong?",
@@ -562,7 +562,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "affordable lodging shillong"
     ],
     "h1": "Budget Stay in Shillong: Best Hostels & Low-Cost Rooms",
-    "quickAnswer": "A budget stay in Shillong typically costs between ₹369 for a dorm bed and ₹1,999 for a private room. XTSY is in New Shillong Township, on Mawdiangdiang Road.",
+    "quickAnswer": "A budget stay in Shillong typically costs between ₹399 for a dorm bed and ₹1,999 for a private room. XTSY is in New Shillong Township, on Mawdiangdiang Road.",
     "sections": [
       {
         "content": "Hostels are the preferred choice for budget-conscious travellers in Shillong, offering a blend of affordability and social interaction.",
@@ -1106,7 +1106,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "question": "Can you arrange bulk meal plans for our group?"
       },
       {
-        "answer": "Standard check-in is at 12:00 PM and check-out is at 11:00 AM. Early check-ins for groups are handled on a case-by-case basis depending on previous night occupancy.",
+        "answer": "Standard check-in is at 11:00 AM and check-out is strictly at 10:00 AM. Early check-ins for groups are handled on a case-by-case basis depending on previous night occupancy.",
         "question": "What are the check-in and check-out times for groups?"
       },
       {
@@ -1208,7 +1208,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "What are the check-in and check-out times?",
-        "answer": "Check-in is from 2 PM and check-out is by 11 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
+        "answer": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
       },
       {
         "question": "Does XTSY have hostels in other towns?",
@@ -1226,7 +1226,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "What you can book",
         "content": "All rooms are on one property, with TAB Bistro on site.",
         "listItems": [
-          "Mixed dorm beds from ₹369 a night",
+          "Mixed dorm beds from ₹399 a night",
           "Female-only dorm",
           "King Double private rooms",
           "Experience by XTSY — India's first stargaze glamp (270° panoramic glass suite)",
@@ -1235,7 +1235,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Good to know",
-        "content": "Standard check-in is 2 PM and check-out 11 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
+        "content": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
         "listItems": [
           "Book direct at xtsy.one/book or on WhatsApp +91 88373 17070",
           "Travel desk for Cherrapunji, Dawki and Mawlynnong day trips",
@@ -1243,7 +1243,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         ]
       }
     ],
-    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for today at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹369.",
+    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for today at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
     "title": "Hostel in Shillong Today — XTSY, New Shillong Township",
     "keywords": [
       "hostel in shillong",
@@ -1254,13 +1254,13 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "meghalaya budget travel",
       "solo travel shillong"
     ],
-    "metaDescription": "Need a bed in Shillong today? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹369, female-only dorm, private rooms. WhatsApp +91 88373 17070."
+    "metaDescription": "Need a bed in Shillong today? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070."
   },
   {
     "slug": "hostels-in-shillong-today",
     "intro": "Need a bed in Shillong today? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for today, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
-    "metaDescription": "Need a bed in Shillong today? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹369, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
-    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for today at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹369.",
+    "metaDescription": "Need a bed in Shillong today? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
+    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for today at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
     "sections": [
       {
         "heading": "Where XTSY is",
@@ -1270,7 +1270,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "What you can book",
         "content": "All rooms are on one property, with TAB Bistro on site.",
         "listItems": [
-          "Mixed dorm beds from ₹369 a night",
+          "Mixed dorm beds from ₹399 a night",
           "Female-only dorm",
           "King Double private rooms",
           "Experience by XTSY — India's first stargaze glamp (270° panoramic glass suite)",
@@ -1279,7 +1279,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Good to know",
-        "content": "Standard check-in is 2 PM and check-out 11 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
+        "content": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
         "listItems": [
           "Book direct at xtsy.one/book or on WhatsApp +91 88373 17070",
           "Travel desk for Cherrapunji, Dawki and Mawlynnong day trips",
@@ -1304,7 +1304,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "What are the check-in and check-out times?",
-        "answer": "Check-in is from 2 PM and check-out is by 11 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
+        "answer": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
       },
       {
         "question": "Does XTSY have hostels in other towns?",
@@ -1324,7 +1324,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   {
     "slug": "hostel-in-shillong-tonight",
     "title": "Hostel in Shillong Tonight — XTSY, New Shillong Township",
-    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for tonight at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹369.",
+    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for tonight at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
@@ -1340,7 +1340,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "What are the check-in and check-out times?",
-        "answer": "Check-in is from 2 PM and check-out is by 11 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
+        "answer": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
       },
       {
         "question": "Does XTSY have hostels in other towns?",
@@ -1349,7 +1349,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     ],
     "intro": "Need a bed in Shillong tonight? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for tonight, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "h1": "Hostel in Shillong Tonight",
-    "metaDescription": "Need a bed in Shillong tonight? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹369, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
+    "metaDescription": "Need a bed in Shillong tonight? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
     "sections": [
       {
         "heading": "Where XTSY is",
@@ -1359,7 +1359,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "What you can book",
         "content": "All rooms are on one property, with TAB Bistro on site.",
         "listItems": [
-          "Mixed dorm beds from ₹369 a night",
+          "Mixed dorm beds from ₹399 a night",
           "Female-only dorm",
           "King Double private rooms",
           "Experience by XTSY — India's first stargaze glamp (270° panoramic glass suite)",
@@ -1368,7 +1368,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Good to know",
-        "content": "Standard check-in is 2 PM and check-out 11 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
+        "content": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
         "listItems": [
           "Book direct at xtsy.one/book or on WhatsApp +91 88373 17070",
           "Travel desk for Cherrapunji, Dawki and Mawlynnong day trips",
@@ -1399,8 +1399,8 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "budget shillong travel",
       "xtsy shillong"
     ],
-    "metaDescription": "Need a bed in Shillong this weekend? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹369, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
-    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for this weekend at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹369.",
+    "metaDescription": "Need a bed in Shillong this weekend? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
+    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for this weekend at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
     "title": "Hostel in Shillong This Weekend — XTSY, New Shillong Township",
     "sections": [
       {
@@ -1411,7 +1411,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "What you can book",
         "content": "All rooms are on one property, with TAB Bistro on site.",
         "listItems": [
-          "Mixed dorm beds from ₹369 a night",
+          "Mixed dorm beds from ₹399 a night",
           "Female-only dorm",
           "King Double private rooms",
           "Experience by XTSY — India's first stargaze glamp (270° panoramic glass suite)",
@@ -1420,7 +1420,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Good to know",
-        "content": "Standard check-in is 2 PM and check-out 11 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
+        "content": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
         "listItems": [
           "Book direct at xtsy.one/book or on WhatsApp +91 88373 17070",
           "Travel desk for Cherrapunji, Dawki and Mawlynnong day trips",
@@ -1444,7 +1444,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "What are the check-in and check-out times?",
-        "answer": "Check-in is from 2 PM and check-out is by 11 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
+        "answer": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
       },
       {
         "question": "Does XTSY have hostels in other towns?",
@@ -1462,7 +1462,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "shillong dormitory booking",
       "cheap stays shillong"
     ],
-    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed at short notice at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹369.",
+    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed at short notice at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
     "h1": "Hostel in Shillong Last Minute",
     "intro": "Need a bed in Shillong at the last minute? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed at short notice, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "sections": [
@@ -1474,7 +1474,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "What you can book",
         "content": "All rooms are on one property, with TAB Bistro on site.",
         "listItems": [
-          "Mixed dorm beds from ₹369 a night",
+          "Mixed dorm beds from ₹399 a night",
           "Female-only dorm",
           "King Double private rooms",
           "Experience by XTSY — India's first stargaze glamp (270° panoramic glass suite)",
@@ -1483,7 +1483,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Good to know",
-        "content": "Standard check-in is 2 PM and check-out 11 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
+        "content": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
         "listItems": [
           "Book direct at xtsy.one/book or on WhatsApp +91 88373 17070",
           "Travel desk for Cherrapunji, Dawki and Mawlynnong day trips",
@@ -1491,7 +1491,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         ]
       }
     ],
-    "metaDescription": "Need a bed in Shillong at the last minute? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹369, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
+    "metaDescription": "Need a bed in Shillong at the last minute? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
@@ -1507,7 +1507,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "What are the check-in and check-out times?",
-        "answer": "Check-in is from 2 PM and check-out is by 11 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
+        "answer": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
       },
       {
         "question": "Does XTSY have hostels in other towns?",
@@ -1533,7 +1533,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "What are the check-in and check-out times?",
-        "answer": "Check-in is from 2 PM and check-out is by 11 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
+        "answer": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
       },
       {
         "question": "Does XTSY have hostels in other towns?",
@@ -1541,8 +1541,8 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       }
     ],
     "title": "Hostel in Shillong Tomorrow — XTSY, New Shillong Township",
-    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for tomorrow at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹369.",
-    "metaDescription": "Need a bed in Shillong tomorrow? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹369, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
+    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for tomorrow at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
+    "metaDescription": "Need a bed in Shillong tomorrow? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
     "keywords": [
       "hostel in shillong",
       "last minute stay shillong",
@@ -1563,7 +1563,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "What you can book",
         "content": "All rooms are on one property, with TAB Bistro on site.",
         "listItems": [
-          "Mixed dorm beds from ₹369 a night",
+          "Mixed dorm beds from ₹399 a night",
           "Female-only dorm",
           "King Double private rooms",
           "Experience by XTSY — India's first stargaze glamp (270° panoramic glass suite)",
@@ -1572,7 +1572,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Good to know",
-        "content": "Standard check-in is 2 PM and check-out 11 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
+        "content": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
         "listItems": [
           "Book direct at xtsy.one/book or on WhatsApp +91 88373 17070",
           "Travel desk for Cherrapunji, Dawki and Mawlynnong day trips",
@@ -1609,14 +1609,14 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "What are the check-in and check-out times?",
-        "answer": "Check-in is from 2 PM and check-out is by 11 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
+        "answer": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
       },
       {
         "question": "Does XTSY have hostels in other towns?",
         "answer": "No. XTSY's own property is only in New Shillong Township. In other places, XTSY arranges stays, transport and travel help through trusted travel partners."
       }
     ],
-    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for right now at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹369.",
+    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for right now at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
     "sections": [
       {
         "heading": "Where XTSY is",
@@ -1626,7 +1626,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "What you can book",
         "content": "All rooms are on one property, with TAB Bistro on site.",
         "listItems": [
-          "Mixed dorm beds from ₹369 a night",
+          "Mixed dorm beds from ₹399 a night",
           "Female-only dorm",
           "King Double private rooms",
           "Experience by XTSY — India's first stargaze glamp (270° panoramic glass suite)",
@@ -1635,7 +1635,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Good to know",
-        "content": "Standard check-in is 2 PM and check-out 11 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
+        "content": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
         "listItems": [
           "Book direct at xtsy.one/book or on WhatsApp +91 88373 17070",
           "Travel desk for Cherrapunji, Dawki and Mawlynnong day trips",
@@ -1643,7 +1643,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         ]
       }
     ],
-    "metaDescription": "Need a bed in Shillong right now? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹369, female-only dorm, private rooms. WhatsApp +91 88373 17070."
+    "metaDescription": "Need a bed in Shillong right now? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070."
   },
   {
     "slug": "cheap-hostel-in-shillong",
@@ -1656,7 +1656,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "What you can book",
         "content": "All rooms are on one property, with TAB Bistro on site.",
         "listItems": [
-          "Mixed dorm beds from ₹369 a night",
+          "Mixed dorm beds from ₹399 a night",
           "Female-only dorm",
           "King Double private rooms",
           "Experience by XTSY — India's first stargaze glamp (270° panoramic glass suite)",
@@ -1665,7 +1665,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Good to know",
-        "content": "Standard check-in is 2 PM and check-out 11 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
+        "content": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
         "listItems": [
           "Book direct at xtsy.one/book or on WhatsApp +91 88373 17070",
           "Travel desk for Cherrapunji, Dawki and Mawlynnong day trips",
@@ -1673,11 +1673,11 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         ]
       }
     ],
-    "metaDescription": "Looking for a cheap hostel in Shillong? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹369, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
-    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed on a budget at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹369.",
+    "metaDescription": "Looking for a cheap hostel in Shillong? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
+    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed on a budget at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
     "intro": "Looking for a cheap hostel in Shillong? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed on a budget, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "h1": "Cheap Hostel in Shillong",
-    "title": "Cheap Hostel in Shillong — Dorm Beds from ₹369 | XTSY",
+    "title": "Cheap Hostel in Shillong — Dorm Beds from ₹399 | XTSY",
     "keywords": [
       "shillong hostels",
       "budget accommodation shillong",
@@ -1701,7 +1701,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "What are the check-in and check-out times?",
-        "answer": "Check-in is from 2 PM and check-out is by 11 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
+        "answer": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
       },
       {
         "question": "Does XTSY have hostels in other towns?",
@@ -1713,7 +1713,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "slug": "hostel-near-shillong-airport",
     "title": "Hostel near Shillong Airport — XTSY, New Shillong Township",
     "intro": "Flying into Shillong Airport at Umroi? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Shillong Airport is at Umroi, outside the city; XTSY can arrange the cab from the airport, or from Guwahati if you fly in there. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed after your flight, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
-    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed after your flight at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹369.",
+    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed after your flight at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
     "keywords": [
       "shillong airport hostel",
       "umroi airport stay",
@@ -1737,7 +1737,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "What are the check-in and check-out times?",
-        "answer": "Check-in is from 2 PM and check-out is by 11 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
+        "answer": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
       },
       {
         "question": "Does XTSY have hostels in other towns?",
@@ -1753,7 +1753,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "What you can book",
         "content": "All rooms are on one property, with TAB Bistro on site.",
         "listItems": [
-          "Mixed dorm beds from ₹369 a night",
+          "Mixed dorm beds from ₹399 a night",
           "Female-only dorm",
           "King Double private rooms",
           "Experience by XTSY — India's first stargaze glamp (270° panoramic glass suite)",
@@ -1762,7 +1762,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Good to know",
-        "content": "Standard check-in is 2 PM and check-out 11 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
+        "content": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
         "listItems": [
           "Book direct at xtsy.one/book or on WhatsApp +91 88373 17070",
           "Travel desk for Cherrapunji, Dawki and Mawlynnong day trips",
@@ -1771,7 +1771,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       }
     ],
     "h1": "Hostel near Shillong Airport (Umroi)",
-    "metaDescription": "Flying into Shillong Airport at Umroi? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹369, female-only dorm, private rooms. WhatsApp +91 88373 17070."
+    "metaDescription": "Flying into Shillong Airport at Umroi? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070."
   },
   {
     "slug": "hostel-in-cherrapunji-today",
@@ -1915,7 +1915,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "Where should I stay if I want a hostel near Cherrapunji tonight?",
-        "answer": "Base yourself at XTSY Travellers Hostel in Shillong. It offers 24/7 check-in, dorms from ₹369 and private rooms, instant WhatsApp confirmation, and a travel desk that runs daily Cherrapunji sightseeing trips. You get a safe, social, verified stay tonight and still see all of Sohra's waterfalls and caves."
+        "answer": "Base yourself at XTSY Travellers Hostel in Shillong. It offers 24/7 check-in, dorms from ₹399 and private rooms, instant WhatsApp confirmation, and a travel desk that runs daily Cherrapunji sightseeing trips. You get a safe, social, verified stay tonight and still see all of Sohra's waterfalls and caves."
       },
       {
         "question": "Can I book a same-day stay in Cherrapunji itself?",
@@ -1958,7 +1958,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "Why XTSY Travellers Hostel in Shillong Is the Smarter Base",
         "content": "Instead of gambling on a walk-in tonight in Sohra, base yourself at XTSY Travellers Hostel in Shillong — only 1.5–2 hours from Cherrapunji. You get a reliable, verified bed tonight plus everything you'd want from a backpacker hostel, and you can still cover every Sohra highlight on a day trip.",
         "listItems": [
-          "Dorms from ₹369 and private rooms from ₹1,499 (taxes incl.)",
+          "Dorms from ₹399 and private rooms from ₹2,200 (taxes incl.)",
           "24/7 check-in for late-night and red-eye arrivals",
           "Instant WhatsApp confirmation — no walk-in uncertainty",
           "Free Wi-Fi, secure lockers, hot showers, female-only dorms",
@@ -1999,8 +1999,8 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         ]
       }
     ],
-    "intro": "Looking for a hostel in Cherrapunji tonight? Here's the honest answer most listings won't give you: Cherrapunji (Sohra) does not have reliable backpacker hostels. Accommodation there is limited to a handful of basic homestays and guesthouses, often without same-day availability, dependable hot water, or stable mobile network for confirming a booking after dark. The smarter, safer move for a last-minute stay is to base yourself at XTSY Travellers Hostel in Shillong — just 1.5–2 hours from Sohra — with 24/7 check-in, dorms from ₹369, instant WhatsApp confirmation, and a travel desk that runs daily Cherrapunji day trips. You get a verified, social, comfortable bed tonight and still see every waterfall, cave and root bridge Sohra is famous for. For real-time availability, message us on WhatsApp +91 8837317070.",
-    "quickAnswer": "Cherrapunji (Sohra) has no reliable backpacker hostels — only a few basic homestays with limited same-day availability. For a safe last-minute stay tonight, book XTSY Travellers Hostel in Shillong (1.5–2 hrs away) with 24/7 check-in and dorms from ₹369, then day-trip to Cherrapunji. WhatsApp +91 8837317070.",
+    "intro": "Looking for a hostel in Cherrapunji tonight? Here's the honest answer most listings won't give you: Cherrapunji (Sohra) does not have reliable backpacker hostels. Accommodation there is limited to a handful of basic homestays and guesthouses, often without same-day availability, dependable hot water, or stable mobile network for confirming a booking after dark. The smarter, safer move for a last-minute stay is to base yourself at XTSY Travellers Hostel in Shillong — just 1.5–2 hours from Sohra — with 24/7 check-in, dorms from ₹399, instant WhatsApp confirmation, and a travel desk that runs daily Cherrapunji day trips. You get a verified, social, comfortable bed tonight and still see every waterfall, cave and root bridge Sohra is famous for. For real-time availability, message us on WhatsApp +91 8837317070.",
+    "quickAnswer": "Cherrapunji (Sohra) has no reliable backpacker hostels — only a few basic homestays with limited same-day availability. For a safe last-minute stay tonight, book XTSY Travellers Hostel in Shillong (1.5–2 hrs away) with 24/7 check-in and dorms from ₹399, then day-trip to Cherrapunji. WhatsApp +91 8837317070.",
     "keywords": [
       "hostel in cherrapunji tonight",
       "stay near cherrapunji",
@@ -2015,9 +2015,9 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "slug": "cheap-homestay-in-cherrapunji",
     "title": "Cheap Homestay in Cherrapunji? Read This Before You Book",
     "h1": "Cheap Homestay in Cherrapunji: An Honest Guide",
-    "metaDescription": "Cherrapunji homestays are basic and limited. For a cheaper, more reliable stay, book XTSY Travellers Hostel in Shillong (dorms from ₹369, 24/7 check-in) and day-trip to Sohra. WhatsApp +91 8837317070.",
-    "intro": "Hunting for a cheap homestay in Cherrapunji? Be prepared: Sohra's budget stays are a small set of basic, family-run homestays and guesthouses with limited rooms, variable hot water and Wi-Fi, and unreliable mobile network. There are no dedicated, vetted travellers' hostels in Cherrapunji itself. For most budget travellers the better value is XTSY Travellers Hostel in Shillong — dorms from ₹369, private rooms from ₹1,499, 24/7 check-in and instant WhatsApp confirmation — only 1.5–2 hours from Sohra. You sleep cheaper and more reliably, and a single day trip still covers Nohkalikai Falls, the caves and the living root bridges. Message us on WhatsApp +91 8837317070 for live rates.",
-    "quickAnswer": "Cherrapunji (Sohra) only has a few basic homestays — no vetted budget hostels — and same-day availability is unreliable. The cheapest dependable option is XTSY Travellers Hostel in Shillong (dorms from ₹369, 24/7 check-in), 1.5–2 hrs away, with day trips into Cherrapunji. WhatsApp +91 8837317070.",
+    "metaDescription": "Cherrapunji homestays are basic and limited. For a cheaper, more reliable stay, book XTSY Travellers Hostel in Shillong (dorms from ₹399, 24/7 check-in) and day-trip to Sohra. WhatsApp +91 8837317070.",
+    "intro": "Hunting for a cheap homestay in Cherrapunji? Be prepared: Sohra's budget stays are a small set of basic, family-run homestays and guesthouses with limited rooms, variable hot water and Wi-Fi, and unreliable mobile network. There are no dedicated, vetted travellers' hostels in Cherrapunji itself. For most budget travellers the better value is XTSY Travellers Hostel in Shillong — dorms from ₹399, private rooms from ₹2,200, 24/7 check-in and instant WhatsApp confirmation — only 1.5–2 hours from Sohra. You sleep cheaper and more reliably, and a single day trip still covers Nohkalikai Falls, the caves and the living root bridges. Message us on WhatsApp +91 8837317070 for live rates.",
+    "quickAnswer": "Cherrapunji (Sohra) only has a few basic homestays — no vetted budget hostels — and same-day availability is unreliable. The cheapest dependable option is XTSY Travellers Hostel in Shillong (dorms from ₹399, 24/7 check-in), 1.5–2 hrs away, with day trips into Cherrapunji. WhatsApp +91 8837317070.",
     "sections": [
       {
         "heading": "What a Cheap Cherrapunji Homestay Really Looks Like",
@@ -2034,8 +2034,8 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "heading": "The Cheaper, More Reliable Alternative: XTSY in Shillong",
         "content": "For value-focused travellers, XTSY Travellers Hostel in Shillong beats most Sohra homestays on both price and reliability — and keeps Cherrapunji well within reach.",
         "listItems": [
-          "Dorms from ₹369 — genuinely budget, with consistent quality",
-          "Private rooms from ₹1,499 for couples and small groups",
+          "Dorms from ₹399 — genuinely budget, with consistent quality",
+          "Private rooms from ₹2,200 for couples and small groups",
           "24/7 check-in, secure lockers, hot showers, female-only dorms",
           "Free Wi-Fi and a social common area to meet other travellers",
           "Travel desk runs affordable daily Cherrapunji day trips"
@@ -2078,11 +2078,11 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Are there cheap homestays in Cherrapunji?",
-        "answer": "There are a few basic, family-run homestays in Cherrapunji (Sohra), but inventory is small, quality varies, and same-day availability is unreliable. There are no vetted budget travellers' hostels in Cherrapunji itself. For dependable budget value, XTSY Travellers Hostel in Shillong offers dorms from ₹369, 1.5–2 hours from Sohra."
+        "answer": "There are a few basic, family-run homestays in Cherrapunji (Sohra), but inventory is small, quality varies, and same-day availability is unreliable. There are no vetted budget travellers' hostels in Cherrapunji itself. For dependable budget value, XTSY Travellers Hostel in Shillong offers dorms from ₹399, 1.5–2 hours from Sohra."
       },
       {
         "question": "What is the cheapest reliable stay near Cherrapunji?",
-        "answer": "XTSY Travellers Hostel in Shillong, with dorms from ₹369 and 24/7 check-in. It is more consistent than most Sohra homestays — clean dorms, hot showers, Wi-Fi and a travel desk — and lets you day-trip to Cherrapunji's waterfalls and root bridges."
+        "answer": "XTSY Travellers Hostel in Shillong, with dorms from ₹399 and 24/7 check-in. It is more consistent than most Sohra homestays — clean dorms, hot showers, Wi-Fi and a travel desk — and lets you day-trip to Cherrapunji's waterfalls and root bridges."
       },
       {
         "question": "Why not just stay cheap in Cherrapunji itself?",

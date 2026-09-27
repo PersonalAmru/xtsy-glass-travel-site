@@ -42,7 +42,7 @@ const CategoryPage = () => {
     },
     {
       q: `Where should I stay to explore Meghalaya's ${lcName}?`,
-      a: `Shillong is the ideal base — most ${lcName} are within a day trip. XTSY Travellers Hostel offers dorms from ₹369/night, Experience by XTSY, and curated Meghalaya tours that cover the region's top ${lcName} and viewpoints.`,
+      a: `Shillong is the ideal base — most ${lcName} are within a day trip. XTSY Travellers Hostel offers dorms from ₹399/night, Experience by XTSY, and curated Meghalaya tours that cover the region's top ${lcName} and viewpoints.`,
     },
     {
       q: `Can I cover Meghalaya's top ${lcName} on a tour package?`,

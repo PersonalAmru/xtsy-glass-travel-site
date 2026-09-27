@@ -1,0 +1,48 @@
+name: Search indexing (IndexNow + Google Search Console)
+
+# Run after publishing the site (Lovable → Publish), or weekly.
+# No third-party actions (org policy).
+#  - IndexNow: submits every sitemap URL (Bing, Yandex, Seznam, Naver, Yep).
+#  - Google Search Console API: resubmits sitemaps and checks index status of
+#    priority pages. Needs the GSC_SERVICE_ACCOUNT_JSON secret; skipped without it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      paths:
+        description: "Optional space-separated paths to submit (default: every sitemap URL)"
+        required: false
+  schedule:
+    - cron: "17 3 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${GITHUB_REF_NAME}"
+          git checkout -q FETCH_HEAD
+
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+
+      - name: IndexNow
+        run: bun scripts/indexing/indexnow-submit.ts ${{ github.event.inputs.paths }}
+
+      - name: Google Search Console (sitemaps + URL inspection)
+        env:
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+        run: bun scripts/indexing/gsc-submit.ts

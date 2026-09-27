@@ -20,6 +20,8 @@ export interface RouteHeadInput {
   image?: string;
   ogType?: "website" | "article" | "product";
   noIndex?: boolean;
+  /** With noIndex: keep following links ("noindex, follow") so link equity still flows. */
+  noIndexFollow?: boolean;
   /**
    * Above-the-fold hero image URL. Emitted as <link rel="preload" as="image">
    * so mobile browsers start the LCP fetch during HTML parse.
@@ -51,7 +53,7 @@ export function buildRouteHead(input: RouteHeadInput) {
       {
         name: "robots",
         content: input.noIndex
-          ? "noindex, nofollow"
+          ? input.noIndexFollow ? "noindex, follow" : "noindex, nofollow"
           : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
       },
       { property: "og:type", content: input.ogType || "website" },

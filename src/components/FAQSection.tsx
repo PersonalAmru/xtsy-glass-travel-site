@@ -12,14 +12,14 @@ const FAQSection = () => {
   const faqData = [
     {
       question: "What's Experience by XTSY all about?",
-      answer: "Picture this: floor-to-ceiling glass walls, 270° mountain views, and you waking up to sunrises over the Himalayas. It's India's first panoramic glass house—perfect for couples, proposals, or just that main-character moment. Weekend: ₹9,999/night, Weekday: ₹7,999/night. Trust us, the reels will go crazy.",
+      answer: "Picture this: floor-to-ceiling glass walls, 270° mountain views, and you waking up to sunrises over the Himalayas. It's India's first panoramic glass house—perfect for couples, proposals, or just that main-character moment. Stay only: ₹5,399/night, with breakfast for two: ₹5,799/night. Trust us, the reels will go crazy.",
       hasQuote: true,
       quote: "Absolutely beautiful view from their glass house. It was an unforgettable experience!",
       quoteName: "Aayush"
     },
     {
       question: "What kind of stays do you have?",
-      answer: "We've got options for every budget. Luxury: Experience by XTSY (₹7,999-9,999). Hostel vibes: Private rooms (₹3,500) or 6-bed dorms (₹700/bed). Economy: Female dorm (₹325/bed) or mixed dorm (₹399/bed). All in Shillong with 24/7 security—no sketchy vibes here.",
+      answer: "We've got options for every budget. Luxury: Experience by XTSY (₹5,399–5,799). Hostel vibes: Private rooms (₹3,500) or 6-bed dorms (₹700/bed). Economy: Female dorm (₹325/bed) or mixed dorm (₹399/bed). All in Shillong with 24/7 security—no sketchy vibes here.",
       hasQuote: true,
       quote: "The hostel has a very welcoming atmosphere... cleanliness is always maintained.",
       quoteName: "Ritika"

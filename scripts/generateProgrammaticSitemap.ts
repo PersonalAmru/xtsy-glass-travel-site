@@ -30,8 +30,10 @@ async function main() {
   const seen = new Set<string>();
   const unique: any[] = [];
   let skippedOwned = 0;
+  const { isIndexableSEOSlug } = await import('../src/data/seoIndexPolicy');
   for (const p of ALL_SEO_PAGES as any[]) {
     if (seen.has(p.slug)) continue;
+    if (!isIndexableSEOSlug(p.slug)) continue;
     const full = `${SITE}/${p.slug}`;
     if (owned.has(full)) { skippedOwned++; continue; }
     seen.add(p.slug);

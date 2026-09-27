@@ -21,7 +21,7 @@ const BestHostelShillong = memo(() => {
     '@type': 'Hostel',
     '@id': `${pageUrl}#hostel`,
     name: 'XTSY Travellers Hostel',
-    description: 'One of the best cheap hostels in Shillong, Meghalaya — budget dorm beds from ₹369, private rooms, and Experience by XTSY, India\'s first stargaze glamp. New Shillong Township location, 24/7 security, 4.8★ rated.',
+    description: 'One of the best cheap hostels in Shillong, Meghalaya — budget dorm beds from ₹399, private rooms, and Experience by XTSY, India\'s first stargaze glamp. New Shillong Township location, 24/7 security, 4.8★ rated.',
     url: pageUrl,
     telephone: '+918837317070',
     email: 'xtsytravellershostel@gmail.com',
@@ -35,10 +35,10 @@ const BestHostelShillong = memo(() => {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 25.5788,
-      longitude: 91.8933,
+      latitude: 25.535,
+      longitude: 91.965,
     },
-    priceRange: '₹369 - ₹4,999',
+    priceRange: '₹399 - ₹4,999',
     currenciesAccepted: 'INR',
     starRating: { '@type': 'Rating', ratingValue: '4.8' },
     aggregateRating: {
@@ -60,8 +60,8 @@ const BestHostelShillong = memo(() => {
       { '@type': 'Offer', name: '4-Bed Female Dorm Bed', price: '550', priceCurrency: 'INR' },
       { '@type': 'Offer', name: 'Private Double Room', price: '2500', priceCurrency: 'INR' },
     ],
-    checkinTime: '13:00',
-    checkoutTime: '11:00',
+    checkinTime: '11:00',
+    checkoutTime: '10:00',
     numberOfRooms: 20,
     petsAllowed: true,
   };
@@ -84,7 +84,7 @@ const BestHostelShillong = memo(() => {
         name: 'Which are the best cheap hostels in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'XTSY Travellers Hostel is among the best cheap hostels in Shillong, with a 4.8★ rating from 161 verified guests. Budget dorm beds start at ₹369/night, making it one of the most affordable backpacker hostels in Meghalaya without cutting corners on safety or location.',
+          text: 'XTSY Travellers Hostel is among the best cheap hostels in Shillong, with a 4.8★ rating from 161 verified guests. Budget dorm beds start at ₹399/night, making it one of the most affordable backpacker hostels in Meghalaya without cutting corners on safety or location.',
         },
       },
       {
@@ -92,7 +92,7 @@ const BestHostelShillong = memo(() => {
         name: 'How much does a dorm bed in a Shillong hostel cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'A dorm bed in a Shillong hostel at XTSY starts from ₹369/night in the 6-bed mixed dorm. Female-only dorms are ₹550/night, private double rooms from ₹2,500/night, and Experience by XTSY is ₹4,999/night.',
+          text: 'A dorm bed in a Shillong hostel at XTSY starts from ₹399/night in the 6-bed mixed dorm. Female-only dorms are ₹550/night, private double rooms from ₹2,500/night, and Experience by XTSY is ₹5,399/night.',
         },
       },
       {
@@ -140,14 +140,14 @@ const BestHostelShillong = memo(() => {
   };
 
   const dormRooms = [
-    { name: '6-Bed Mixed Dormitory', price: '₹369', desc: 'Backpacker favourite — personal locker, reading light, charging port & privacy curtain per bunk.', icon: Bed },
-    { name: '8-Bed Mixed Dormitory', price: '₹369', desc: 'Best value social dorm for backpackers — same in-bed amenities, biggest community vibe.', icon: Users },
+    { name: '6-Bed Mixed Dormitory', price: '₹399', desc: 'Backpacker favourite — personal locker, reading light, charging port & privacy curtain per bunk.', icon: Bed },
+    { name: '8-Bed Mixed Dormitory', price: '₹399', desc: 'Best value social dorm for backpackers — same in-bed amenities, biggest community vibe.', icon: Users },
     { name: '4-Bed Female-Only Dorm', price: '₹550', desc: 'Women-only, extra privacy curtains, secure keycard access — safest cheap hostel option.', icon: Shield },
   ];
 
   const privateRooms = [
     { name: 'Private Double Room', price: '₹2,500', desc: 'Ensuite bathroom, mountain views, queen bed — hostel social vibe with private comfort.', icon: Mountain },
-    { name: 'Experience by XTSY', price: '₹4,999', desc: 'India\'s first 270° panoramic glass suite — stargazing from bed.', icon: Star },
+    { name: 'Experience by XTSY', price: '₹5,399', desc: 'India\'s first 270° panoramic glass suite — stargazing from bed.', icon: Star },
   ];
 
   const amenities = [
@@ -181,11 +181,11 @@ const BestHostelShillong = memo(() => {
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
               {isCheapHostelsPage
-                ? 'Cheap Hostels in Shillong — Dorm Beds from ₹369'
-                : 'Hostels in Shillong — Cheap Dorm Beds from ₹369'}
+                ? 'Cheap Hostels in Shillong — Dorm Beds from ₹399'
+                : 'Hostels in Shillong — Cheap Dorm Beds from ₹399'}
             </h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
-              Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 161 verified guests, with budget mixed dorms from ₹369/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Mawdiangdiang Road, New Shillong Township — near NIFT, IIM Shillong and NEIGRIMS.
+              Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 161 verified guests, with budget mixed dorms from ₹399/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Mawdiangdiang Road, New Shillong Township — near NIFT, IIM Shillong and NEIGRIMS.
             </p>
             <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> New Shillong Township, Shillong</span>
@@ -253,7 +253,7 @@ const BestHostelShillong = memo(() => {
               </div>
               <ul className="space-y-3">
                 {[
-                  'Dorm beds from ₹369 — one of the cheapest hostels in Shillong',
+                  'Dorm beds from ₹399 — one of the cheapest hostels in Shillong',
                   'Free high-speed WiFi & co-working corners for digital nomads',
                   'Self-catering common kitchen to keep costs down',
                   'Lockers, curtains & 24/7 staff for safe solo travel',
@@ -312,7 +312,7 @@ const BestHostelShillong = memo(() => {
             <h2 className="text-2xl font-bold text-foreground">Why XTSY is the Best Cheap Hostel in Shillong</h2>
             <div className="mt-4 space-y-3">
               {[
-                'Dorm beds from ₹369 — among the cheapest hostels in Shillong',
+                'Dorm beds from ₹399 — among the cheapest hostels in Shillong',
                 'India\'s biggest hostel in Northeast India with 20+ rooms',
                 'Only hostel in Shillong with a 270° panoramic glass suite',
                 'Pet-friendly — India\'s first pet-friendly travellers hostel',
@@ -344,7 +344,7 @@ const BestHostelShillong = memo(() => {
                 </thead>
                 <tbody className="text-muted-foreground">
                   {[
-                    ['Starting Price', '₹369/night', '₹500-800/night'],
+                    ['Starting Price', '₹399/night', '₹500-800/night'],
                     ['Experience by XTSY (stargaze glamp)', '✅ 270° Panoramic', '❌'],
                     ['Pet Friendly', '✅', '❌'],
                     ['Female Dorms', '✅ Dedicated', 'Limited'],

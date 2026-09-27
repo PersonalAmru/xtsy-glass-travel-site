@@ -1,16 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
-import BestHostelShillong from "@/pages/BestHostelShillong";
+import StayHubV2 from "@/pages/v2/StayHubV2";
 import { buildRouteHead } from "@/lib/seo-head";
+import { stayHubCopy, stayHubSchema } from "@/data/stayHub";
+import { COVERS } from "@/data/v2Images";
+import { responsive } from "@/components/v2/primitives";
+
+const copy = stayHubCopy("hostels");
+const hero = responsive(COVERS.home);
 
 export const Route = createFileRoute("/best-hostel-in-shillong")({
   head: () =>
     buildRouteHead({
-      path: "/best-hostel-in-shillong",
-      title: "Hostels in Shillong — Cheap Dorm Beds from ₹369 | XTSY",
-      description:
-        "Looking for cheap hostels in Shillong? XTSY has backpacker dorm beds from ₹369, female-only dorms, private rooms and Experience by XTSY. New Shillong Township, safe, 4.8★. Book direct.",
-      keywords:
-        "hostels in shillong, cheap hostels shillong, backpacker hostel shillong, dorm beds shillong, female dorm shillong",
+      path: copy.path,
+      title: copy.title,
+      description: copy.description,
+      keywords: copy.keywords,
+      image: `https://xtsy.one${hero?.src ?? COVERS.home}`,
+      preloadImage: hero?.src ?? COVERS.home,
+      preloadImageSrcSet: hero?.srcSet,
+      preloadImageSizes: "(max-width: 1024px) 100vw, 40vw",
+      jsonLd: stayHubSchema("hostels"),
     }),
-  component: BestHostelShillong,
+  component: BestHostelHub,
 });
+
+function BestHostelHub() {
+  return <StayHubV2 variant="hostels" />;
+}

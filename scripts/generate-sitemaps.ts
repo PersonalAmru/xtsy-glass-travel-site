@@ -114,7 +114,9 @@ async function main() {
     misc: [],
   };
 
+  const { isIndexableSEOSlug } = await import('../src/data/seoIndexPolicy');
   for (const page of ALL_SEO_PAGES) {
+    if (!isIndexableSEOSlug(page.slug)) continue;
     const cat = page.category;
     if (['destinations', 'attractions'].includes(cat)) {
       sitemapGroups.destinations.push(page);

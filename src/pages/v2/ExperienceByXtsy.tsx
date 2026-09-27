@@ -3,7 +3,6 @@
  */
 import { useState } from 'react';
 import SEOHead from '@/components/SEOHead';
-import { Helmet } from 'react-helmet-async';
 import { XTSY270_DATA } from '@/data/rooms/xtsy270';
 import { SIGNATURE_PACKAGES, formatPackagePrice } from '@/data/signaturePackages';
 import { Link } from '@/lib/router-compat';
@@ -12,7 +11,7 @@ import { IMG } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FeatureCards, PriceCards, FaqList, PAD } from '@/components/v2/blocks';
 import { Photo, waLink } from '@/components/v2/primitives';
 import { inr, roomPrice } from '@/components/v2/pricing';
-import { PANORAMA_WITH_BREAKFAST, PANORAMA_DECORATION } from '@/data/panoramaPricing';
+import { PANORAMA_WITH_BREAKFAST, PANORAMA_DECORATION, PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
 
 const STARS = [
   [80, 60, 1.6, 0], [210, 140, 1.2, 1], [330, 40, 2, 2], [470, 110, 1.4, 1], [560, 30, 1.1, 0], [640, 170, 1.7, 2],
@@ -39,16 +38,18 @@ const FAQS = [
   { q: 'How do I book?', a: 'Experience by XTSY is booked direct only. Reserve on WhatsApp or through the XTSY booking page; the team confirms availability for your date.' },
 ];
 
-export default function ExperienceByXtsy() {
-  const [b2bOpen, setB2bOpen] = useState(false);
-  const suite = roomPrice('xtsy-270');
-  const now = suite.now || XTSY270_DATA.price;
-  const wa = waLink(`Hi XTSY! I'd like to book Experience by XTSY, India's first stargaze glamp. My dates are: `);
-  const couples = SIGNATURE_PACKAGES.filter((p) => /honeymoon/i.test(p.slug));
-
-  const ld = {
+/** JSON-LD for the suite — rendered server-side by the /xtsy-270 route head. */
+export function experienceSchema() {
+  const now = roomPrice('xtsy-270').now || XTSY270_DATA.price;
+  return {
     '@context': 'https://schema.org',
-    '@type': 'LodgingBusiness',
+    '@type': ['LodgingBusiness', 'Accommodation'],
+    '@id': 'https://xtsy.one/xtsy-270#suite',
+    containedInPlace: { '@id': 'https://xtsy.one/#hostel' },
+    geo: { '@type': 'GeoCoordinates', latitude: 25.535, longitude: 91.965 },
+    telephone: '+918837317070',
+    checkinTime: '11:00',
+    checkoutTime: '10:00',
     name: "Experience by XTSY – India's First Stargaze Glamp",
     description: 'A 270° panoramic glass suite for couples at XTSY Travellers Hostel, New Shillong Township, Meghalaya.',
     url: XTSY270_DATA.canonicalUrl,
@@ -62,13 +63,25 @@ export default function ExperienceByXtsy() {
       addressCountry: 'IN',
     },
     amenityFeature: XTSY270_DATA.features.map((f) => ({ '@type': 'LocationFeatureSpecification', name: f, value: true })),
-    offers: { '@type': 'Offer', priceCurrency: 'INR', price: now, availability: 'https://schema.org/LimitedAvailability' },
+    offers: { '@type': 'Offer', priceCurrency: 'INR', price: String(now), availability: 'https://schema.org/LimitedAvailability', url: 'https://xtsy.one/xtsy-270' },
+    makesOffer: [
+      { '@type': 'Offer', name: 'Stay only', price: String(PANORAMA_STAY_ONLY), priceCurrency: 'INR' },
+      { '@type': 'Offer', name: 'Stay with breakfast for two', price: String(PANORAMA_WITH_BREAKFAST), priceCurrency: 'INR' },
+    ],
   };
+}
+
+export default function ExperienceByXtsy() {
+  const [b2bOpen, setB2bOpen] = useState(false);
+  const suite = roomPrice('xtsy-270');
+  const now = suite.now || XTSY270_DATA.price;
+  const wa = waLink(`Hi XTSY! I'd like to book Experience by XTSY, India's first stargaze glamp. My dates are: `);
+  const couples = SIGNATURE_PACKAGES.filter((p) => /honeymoon/i.test(p.slug));
+
 
   return (
     <>
       <SEOHead title={XTSY270_DATA.seoTitle} description={XTSY270_DATA.seoDescription} keywords={(XTSY270_DATA as { seoKeywords?: string }).seoKeywords} canonicalUrl={XTSY270_DATA.canonicalUrl} ogType="product" />
-      <Helmet><script type="application/ld+json">{JSON.stringify(ld)}</script></Helmet>
       <PageShell cta={{ title: 'One suite. One night. Yours?', sub: 'Reserve on WhatsApp. Book 48 hours ahead for decoration and concierge.' }}>
         <PageHero
           bg="#1F2438"

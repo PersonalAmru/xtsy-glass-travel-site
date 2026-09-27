@@ -150,7 +150,7 @@ export default function GuwahatiToShillongTransport() {
             <Plane className="w-6 h-6 text-primary shrink-0 mt-1" />
             <div>
               <h2 className="text-2xl font-bold mb-1">Book your Shillong stay with airport transfer</h2>
-              <p className="text-muted-foreground">Dorms from ₹369/night. Add a pre-booked GAU pickup at checkout — fixed price, no haggling.</p>
+              <p className="text-muted-foreground">Dorms from ₹399/night. Add a pre-booked GAU pickup at checkout — fixed price, no haggling.</p>
             </div>
           </div>
           <Link to="/book" className="inline-flex items-center gap-2 mt-2 bg-primary text-primary-foreground px-5 py-3 rounded-lg font-semibold hover:opacity-90">

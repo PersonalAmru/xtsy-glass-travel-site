@@ -54,7 +54,7 @@ const Index = memo(() => {
       postalCode: '793018',
       addressCountry: 'IN',
     },
-    geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
+    geo: { '@type': 'GeoCoordinates', latitude: 25.535, longitude: 91.965 },
     priceRange: '₹399 - ₹5,799',
     starRating: { '@type': 'Rating', ratingValue: '4.8' },
     aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '161', bestRating: '5' },

@@ -178,7 +178,7 @@ export default function MeghalayaForInternationalTourists() {
           <h2 className="text-2xl font-bold mb-2">Where international travellers stay in Shillong</h2>
           <p className="text-foreground/90 mb-4">
             XTSY Travellers Hostel handles Form C registration for foreign guests, has mixed dorm beds from{" "}
-            <strong>Rs 369 per person per night</strong>, private rooms, TAB Bistro on site, and a front desk that
+            <strong>Rs 399 per person per night</strong>, private rooms, TAB Bistro on site, and a front desk that
             arranges Dawki and Cherrapunji transport.
           </p>
           <div className="flex flex-wrap gap-3">

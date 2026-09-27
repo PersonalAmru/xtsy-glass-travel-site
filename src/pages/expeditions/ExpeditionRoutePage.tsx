@@ -140,7 +140,7 @@ const ExpeditionRoutePage = () => {
             </h2>
             <p className="text-sm text-foreground/85 mb-4">
               XTSY arranges the vehicle, permits, fuel planning, backup contacts and Shillong stay for this
-              route. Beds at XTSY Travellers Hostel start at Rs 369 per person per night between legs.
+              route. Beds at XTSY Travellers Hostel start at Rs 399 per person per night between legs.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button asChild><Link to="/book">Check availability</Link></Button>

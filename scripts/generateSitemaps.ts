@@ -11,6 +11,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { ALL_SEO_PAGES } from '../src/data/seoPages';
+import { isIndexableSEOSlug } from '../src/data/seoIndexPolicy';
 import { STATIC_ROUTES } from '../src/utils/seoSlugRegistry';
 import {
   RECOVERY_FILTERED_OUT,
@@ -85,6 +86,7 @@ function pushUnique(url: string, priority: number) {
 // into a sitemap, so destination/attraction pages are skipped here.
 let skippedLegacyPlaces = 0;
 for (const page of ALL_SEO_PAGES) {
+  if (!isIndexableSEOSlug(page.slug)) continue;
   const isDest = page.category === 'destinations' || page.category === 'attractions';
   includedSlugs.add(page.slug);
   if (isDest) { skippedLegacyPlaces++; continue; }
