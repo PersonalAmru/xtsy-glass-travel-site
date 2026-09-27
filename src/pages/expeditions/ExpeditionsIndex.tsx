@@ -20,6 +20,12 @@ const ExpeditionsIndex = () => (
           <Link to="/meghalaya-tour-packages" className="text-primary underline">Meghalaya guided trips</Link>{' '}
           or compare <Link to="/things-to-do-in-meghalaya" className="text-primary underline">treks, caves and river activities</Link>.
         </p>
+        <nav aria-label="Adventure planning guides" className="mb-10 grid gap-3 sm:grid-cols-2">
+          <Link to="/adventure-tours-northeast-india" className="border border-border p-4 text-primary underline">Adventure tours in Northeast India</Link>
+          <Link to="/meghalaya-adventure-tour" className="border border-border p-4 text-primary underline">Meghalaya adventure tour</Link>
+          <Link to="/motorbike-expedition-northeast-india" className="border border-border p-4 text-primary underline">Motorbike expedition planning</Link>
+          <Link to="/4x4-expedition-meghalaya" className="border border-border p-4 text-primary underline">Meghalaya 4x4 expedition</Link>
+        </nav>
         {EXPEDITION_TYPES.map(type => (
           <section key={type} className="mb-10">
             <h2 className="text-2xl font-semibold mb-4">{type === '4x4' ? '4x4 expedition routes' : 'Motorbike expedition routes'}</h2>

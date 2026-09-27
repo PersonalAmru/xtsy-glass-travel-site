@@ -1,0 +1,77 @@
+import { Link } from '@/lib/router-compat';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { IMG } from '@/data/v2Images';
+import { EXPEDITION_ROUTES } from '@/data/neTaxonomy';
+
+export const adventureGuides = {
+  'adventure-tours-northeast-india': {
+    title: 'Adventure tours in Northeast India', image: IMG.assam,
+    lead: 'Start from Guwahati for road journeys into Meghalaya, Arunachal Pradesh and Nagaland. The right route depends on your time, the season and permit eligibility — not just the distance on a map.',
+    sections: [
+      ['Choose a circuit', 'For a first trip, base in Shillong and allow 3–4 days for Dawki, Mawlynnong and Cherrapunji. Tawang is a separate high-altitude journey from Guwahati via Bhalukpong, Bomdila and Dirang; allow at least 5–6 days round trip. Kohima via Dimapur takes 3–4 days round trip, with a possible Dzukou Valley trekking day.'],
+      ['When to go', 'October to April is a practical window for the Meghalaya river circuit and clearer roads. Tawang is better planned for April–June or mid-September–October. Rain and landslides can disrupt hill roads in summer; snow can close high passes in winter. Check local conditions before departure.'],
+      ['Permits and preparation', 'Meghalaya does not require an Inner Line Permit. Indian visitors to Arunachal Pradesh and Nagaland should arrange the relevant ILP; international visitors must check current entry requirements, including protected-area or registration rules. Carry valid ID, vehicle documents and weather protection.'],
+    ],
+    links: [['Meghalaya adventure tour', '/meghalaya-adventure-tour'], ['Motorbike expedition guide', '/motorbike-expedition-northeast-india'], ['4x4 Meghalaya circuit', '/4x4-expedition-meghalaya']],
+  },
+  'meghalaya-adventure-tour': {
+    title: 'Meghalaya adventure tour', image: IMG.rootBridge,
+    lead: 'Build a Shillong-based trip around the Nongriat root-bridge trek, Sohra waterfalls and the Umngot river at Dawki. These are different kinds of days: plan the walking and driving separately.',
+    sections: [
+      ['A practical 4-day outline', 'Day 1: arrive in Shillong via Guwahati and visit Umiam Lake. Day 2: drive to Sohra for Nohkalikai Falls and Mawsmai Cave. Day 3: reserve a full day for the steep Nongriat descent and climb back; do not combine it with Dawki. Day 4: visit Mawlynnong and the Umngot river near Dawki before returning to Shillong or staying at the Dawki campsite.'],
+      ['Pick activities to suit conditions', 'The Nongriat path has thousands of steps and calls for good footwear and an early start. River activities at Shnongpdeng are subject to operator safety checks and water conditions. During the monsoon, waterfalls are at their fullest but trails may be slippery and Dawki water may not be clear.'],
+      ['Access and costs', 'Shillong is the main base, reached by road from Guwahati. Meghalaya has no ILP for visitors, but local entry fees and activity charges vary. Ask for a current trip quote rather than assuming transport, guide, meals or river activities are included.'],
+    ],
+    links: [['Meghalaya packages', '/meghalaya-tour-packages'], ['Adventure activities', '/things-to-do-in-meghalaya'], ['Dawki campsite', '/xtsy-adventure-campsite-dawki']],
+  },
+  'motorbike-expedition-northeast-india': {
+    title: 'Motorbike expedition in Northeast India', image: IMG.bumla,
+    lead: 'Compare a gentle Meghalaya loop with longer rides to Tawang and Kohima. Daily distances are only one part of the plan: permits, altitude, fuel and daylight matter as much as the map.',
+    sections: [
+      ['Start with Meghalaya', 'The roughly 350 km Shillong–Dawki–Mawlynnong–Sohra loop works over 3–4 days. Roads are generally surfaced, with narrow village sections and blind bends on the Dawki descent. No ILP is required within Meghalaya.'],
+      ['Ride to Tawang', 'From Guwahati, the route via Bhalukpong, Bomdila and Dirang covers roughly 520 km one way. Split the ascent to acclimatise before Sela Pass. Indian riders need an Arunachal ILP; foreign visitors must check protected-area requirements. Bumla needs separate local permission and is weather-dependent.'],
+      ['Kohima and riding essentials', 'The approximately 340 km Guwahati–Dimapur–Kohima route includes a slow hill climb after Dimapur. Arrange Nagaland entry requirements ahead of time. Bring licence, registration, insurance, protective gear and wet-weather layers; plan fuel and avoid unfamiliar mountain roads after dark.'],
+    ],
+    links: [['Meghalaya motorbike route', '/expeditions/motorbike/meghalaya-loop'], ['Tawang motorbike route', '/expeditions/motorbike/guwahati-to-tawang'], ['Kohima motorbike route', '/expeditions/motorbike/guwahati-to-kohima']],
+  },
+  '4x4-expedition-meghalaya': {
+    title: '4x4 expedition in Meghalaya', image: IMG.dawki,
+    lead: 'A 3–4 day driving circuit from Shillong connects Dawki, Mawlynnong and Sohra. A high-clearance vehicle is useful for rougher approaches, but most main roads do not require four-wheel drive.',
+    sections: [
+      ['The loop', 'Leave Shillong for Dawki and the Umngot river, continue through Mawlynnong and the Riwai root bridge, then travel toward Sohra for Nohkalikai and Seven Sisters Falls. Return via Shillong. The circuit is roughly 350 km before local detours.'],
+      ['Road and trail reality', 'Shillong–Dawki–Sohra roads are mainly paved, but village lanes narrow and the Dawki descent has steep blind hairpins. Nongriat’s double-decker root bridge is reached on foot, not by driving a 4x4 to the bridge. Some waterfall approach tracks need clearance or a local driver.'],
+      ['Season and entry', 'October–April usually brings clearer water at Dawki; late monsoon can make waterfalls dramatic while roads and trails remain slippery. No ILP is needed in Meghalaya. Carry ID near the border and allow for local entry fees and changing weather.'],
+    ],
+    links: [['Full 4x4 route details', '/expeditions/4x4/meghalaya-loop'], ['Meghalaya adventure tour', '/meghalaya-adventure-tour'], ['Explore Dawki', '/destinations/meghalaya/dawki']],
+  },
+} as const;
+
+export type AdventureGuideKey = keyof typeof adventureGuides;
+
+export default function AdventureLanding({ guide }: { guide: AdventureGuideKey }) {
+  const content = adventureGuides[guide];
+  return <div className="min-h-screen bg-background text-foreground">
+    <Header />
+    <main className="pt-20 pb-20">
+      <div className="relative h-64 sm:h-96 overflow-hidden">
+        <img src={content.image} alt={content.title} className="h-full w-full object-cover" />
+      </div>
+      <div className="container mx-auto max-w-4xl px-4 pt-10">
+        <Link to="/expeditions" className="text-sm text-primary underline">All expeditions</Link>
+        <h1 className="mt-4 text-3xl font-bold sm:text-5xl">{content.title}</h1>
+        <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{content.lead}</p>
+        <div className="mt-12 space-y-10">{content.sections.map(([heading, body]) => <section key={heading}>
+          <h2 className="text-2xl font-semibold">{heading}</h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">{body}</p>
+        </section>)}</div>
+        <section className="mt-12 border-t border-border pt-8">
+          <h2 className="text-2xl font-semibold">Plan the next leg</h2>
+          <nav className="mt-5 grid gap-3 sm:grid-cols-2">{content.links.map(([label, href]) => <Link key={href} to={href} className="border border-border p-4 text-primary underline hover:bg-muted">{label}</Link>)}</nav>
+        </section>
+        <p className="mt-10 text-sm text-muted-foreground">Routes, permits and availability can change. Confirm details before travelling.</p>
+      </div>
+    </main>
+    <Footer />
+  </div>;
+}
