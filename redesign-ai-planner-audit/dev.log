@@ -1,14 +1,11 @@
 $ vite dev
 [33mThe plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the [1mresolve.tsconfigPaths[22m option. You can remove the plugin and set [1mresolve.tsconfigPaths: true[22m in your Vite config instead.[39m
 
-  [32m[1mVITE[22m v8.2.1[39m  [2mready in [0m[1m1717[22m[2m[0m ms[22m
+  [32m[1mVITE[22m v8.2.1[39m  [2mready in [0m[1m1210[22m[2m[0m ms[22m
 
   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m8080[22m/[39m
-  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.1.0.179:[1m8080[22m/[39m  [2meth0[22m
-[2m1:59:45 PM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m connected.
-[2m1:59:45 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] scanning dependencies...
-[2m1:59:47 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
-[2m2:00:20 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
-[2m2:00:22 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mdependencies optimized: [33m@tanstack/router-core, @tanstack/router-core/isServer, @tanstack/router-core/ssr/client, seroval[32m[39m
-[2m2:00:22 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32moptimized dependencies changed. reloading[39m
-[2m2:01:41 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2m.output/public/google26fc7f8979f6290c.html[22m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.1.0.182:[1m8080[22m/[39m  [2meth0[22m
+[2m2:09:09 PM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m connected.
+[2m2:09:38 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
+[2m2:09:40 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mdependencies optimized: [33m@tanstack/router-core, @tanstack/router-core/isServer, @tanstack/router-core/ssr/client, seroval[32m[39m
+[2m2:09:40 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32moptimized dependencies changed. reloading[39m
