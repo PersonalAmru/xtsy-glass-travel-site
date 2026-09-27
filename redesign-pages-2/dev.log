@@ -1,0 +1,8 @@
+$ vite dev
+[33mThe plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the [1mresolve.tsconfigPaths[22m option. You can remove the plugin and set [1mresolve.tsconfigPaths: true[22m in your Vite config instead.[39m
+
+  [32m[1mVITE[22m v8.2.1[39m  [2mready in [0m[1m1187[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m8080[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.1.0.24:[1m8080[22m/[39m  [2meth0[22m
+[2m12:19:46 PM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m connected.
