@@ -1,0 +1,344 @@
+import React, { useState, lazy, Suspense } from "react";
+import { Menu, X, User, LogOut, Download, Phone, MessageCircle, MapPin, Mountain, Plane, HelpCircle, Camera, Sparkles, PawPrint, Search, UtensilsCrossed } from "lucide-react";
+
+const IntelligentSearchOverlay = lazy(() => import("@/components/IntelligentSearchOverlay"));
+import { Link, useNavigate } from "@/lib/router-compat";
+import xtsyLogo from "@/assets/xtsy-color-logo.webp";
+import { useMediaQuery } from "@/hooks/use-mobile";
+import { useUserAuth } from "@/contexts/UserAuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+
+const Header = () => {
+  const [logoLoaded, setLogoLoaded] = useState(false);
+  const [logoError, setLogoError] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const navigate = useNavigate();
+  const { user, signOut } = useUserAuth();
+  const isAuthenticated = !!user;
+
+  const isMobile = useMediaQuery('(max-width: 767px)');
+  const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1023px)');
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
+
+  const handleLogoError = () => {
+    setLogoError(true);
+  };
+
+  const handleLogoLoad = () => {
+    setLogoLoaded(true);
+    setLogoError(false);
+  };
+
+  const primeLinks = [
+    { to: "/xtsy-270", label: "Experience by XTSY", icon: Mountain },
+    { to: "/pet-friendly", label: "Pet Friendly Stays", icon: PawPrint },
+    { to: "/female-travellers", label: "Female Travellers", icon: Sparkles },
+    { to: "/gallery", label: "Gallery", icon: Camera },
+  ];
+
+  const navLinks = [
+    { to: "/tours", label: "Travel", icon: Plane },
+    { to: "/about", label: "About Us", icon: HelpCircle },
+    { to: "/faq", label: "FAQs", icon: HelpCircle },
+  ];
+
+  const moreLinks = [
+    { to: "/xtsy-vs-zostel", label: "XTSY vs Zostel", icon: Mountain },
+  ];
+
+  // Top-performing SEO pages (highest organic traffic) — surfaced for discovery.
+  const topGuides = [
+    { to: "/best-time-to-visit-meghalaya", label: "Best Time to Visit Meghalaya", icon: Mountain },
+    { to: "/meghalaya-waterfalls", label: "Meghalaya Waterfalls", icon: Mountain },
+    { to: "/destinations/meghalaya/cherrapunji/seven-sisters-falls", label: "Seven Sisters Falls", icon: Camera },
+    { to: "/destinations/meghalaya/shillong/umiam-lake", label: "Umiam Lake", icon: Camera },
+    { to: "/things-to-do-in-meghalaya", label: "Things to Do in Meghalaya", icon: Mountain },
+  ];
+
+  // Dining / TAB Bistro discovery links.
+  const diningLinks = [
+    { to: "/restaurant-in-shillong", label: "Restaurant in Shillong", icon: UtensilsCrossed },
+    { to: "/best-restaurants-shillong", label: "Best Restaurants in Shillong", icon: UtensilsCrossed },
+    { to: "/cafe-shillong", label: "Cafés in Shillong", icon: UtensilsCrossed },
+  ];
+
+  return (
+    <header className="sticky top-0 z-50 safe-top safe-left safe-right border-b border-white/10 bg-black">
+      <div className="responsive-container mobile-compact">
+        <div className={`flex justify-between items-center ${isMobile ? 'h-16' : 'h-20'}`}>
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2 touch-target ml-4 sm:ml-6">
+            {!logoError ? (
+              <img
+                src={xtsyLogo}
+                alt="XTSY Travellers Hostel"
+                className={`w-auto hover:opacity-80 transition-opacity cursor-pointer ${
+                  isMobile ? 'h-10' : isTablet ? 'h-12' : 'h-14'
+                }`}
+                loading="eager"
+                fetchPriority="high"
+                decoding="sync"
+                width={440}
+                height={160}
+                onLoad={handleLogoLoad}
+                onError={handleLogoError}
+              />
+            ) : (
+              <div className={`bg-gradient-to-r from-primary to-brand-secondary rounded-lg flex items-center justify-center ${
+                isMobile ? 'h-14 w-28' : isTablet ? 'h-[4.5rem] w-36' : 'h-[5.5rem] w-44'
+              }`}>
+                <span className="text-white font-bold text-lg">XTSY</span>
+              </div>
+            )}
+          </Link>
+
+          {/* Right side */}
+          <div className="flex items-center gap-2 sm:gap-3 mr-4 sm:mr-6">
+            {/* Search Button */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center justify-center w-10 h-10 rounded-md text-white hover:bg-white/10 hover:text-primary transition-colors touch-target"
+              aria-label="Search"
+            >
+              <Search size={20} />
+            </button>
+
+            {/* Sign In / Profile */}
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-2 text-white hover:text-primary transition-colors duration-200 touch-target">
+                  {user?.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt={user.displayName || 'Profile'}
+                      className="w-8 h-8 rounded-full object-cover ring-2 ring-primary/30"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                      <User size={16} className="text-primary" />
+                    </div>
+                  )}
+                  {isDesktop && (
+                    <span className="text-sm font-medium">
+                      {user?.displayName || user?.email?.split('@')[0] || 'Account'}
+                    </span>
+                  )}
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-black/95 border-white/20 min-w-[180px]">
+                  <div className="px-3 py-2 border-b border-white/10">
+                    <p className="text-white font-medium text-sm truncate">
+                      {user?.displayName || user?.email?.split('@')[0] || 'Account'}
+                    </p>
+                    <p className="text-white/60 text-xs truncate">{user?.email}</p>
+                  </div>
+                  <DropdownMenuItem className="text-white hover:text-primary cursor-pointer" onClick={() => navigate('/profile')}>
+                    <User size={16} className="mr-2" /> My Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="text-blue-400 hover:text-blue-300 cursor-pointer" onClick={() => navigate('/install')}>
+                    <Download size={16} className="mr-2" /> Install App
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="text-white hover:text-destructive cursor-pointer" onClick={() => signOut()}>
+                    <LogOut size={16} className="mr-2" /> Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link
+                to="/auth"
+                className="flex items-center gap-2 px-4 py-2 text-white bg-primary/20 hover:bg-primary hover:text-white rounded-md transition-all duration-200 font-medium text-sm"
+              >
+                <User size={16} />
+                Sign In
+              </Link>
+            )}
+
+            {/* Hamburger Menu */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <button
+                  className="flex items-center justify-center w-10 h-10 rounded-md text-white hover:bg-white/10 transition-colors touch-target"
+                  aria-label="Open navigation menu"
+                >
+                  <Menu size={22} />
+                </button>
+              </SheetTrigger>
+              <SheetContent side="right" className="bg-gray-950 border-white/10 w-[300px] sm:w-[340px] p-0 overflow-y-auto">
+                <SheetHeader className="px-5 pt-5 pb-3 border-b border-white/10">
+                  <SheetTitle className="text-white text-lg font-semibold text-left">Explore XTSY</SheetTitle>
+                </SheetHeader>
+
+                <nav className="flex flex-col py-3">
+                  {/* XTSY Prime Section */}
+                  <div className="px-5 py-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-primary/80">XTSY Prime</span>
+                  </div>
+                  {primeLinks.map((link) => (
+                    <SheetClose asChild key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                      >
+                        <link.icon size={18} className="text-primary/70" />
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+
+                  {/* TAB Bistro Prominent CTA */}
+                  <div className="px-5 py-3">
+                    <SheetClose asChild>
+                      <Link
+                        to="/tab-bistro"
+                        className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-lg bg-amber-500/15 border border-amber-500/30 text-amber-400 hover:bg-amber-500/25 hover:text-amber-300 transition-colors text-sm font-bold tracking-wide"
+                      >
+                        <UtensilsCrossed size={18} />
+                        TAB Bistro by XTSY
+                      </Link>
+                    </SheetClose>
+                  </div>
+
+                  {/* Meghalaya Explore CTA */}
+                  <div className="px-5 pb-3">
+                    <SheetClose asChild>
+                      <Link
+                        to="/things-to-do-in-meghalaya"
+                        className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 hover:text-emerald-300 transition-colors text-sm font-bold tracking-wide"
+                      >
+                        <Mountain size={18} />
+                        Explore Meghalaya
+                      </Link>
+                    </SheetClose>
+                  </div>
+
+                  <div className="mx-5 my-2 border-t border-white/10" />
+
+                  {/* Dining — TAB Bistro */}
+                  <div className="px-5 py-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-amber-400/80">Dining</span>
+                  </div>
+                  {diningLinks.map((link) => (
+                    <SheetClose asChild key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                      >
+                        <link.icon size={18} className="text-amber-400/70" />
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+
+                  <div className="mx-5 my-2 border-t border-white/10" />
+
+                  {/* Top Guides — highest-traffic pages */}
+                  <div className="px-5 py-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400/80">Top Guides</span>
+                  </div>
+                  {topGuides.map((link) => (
+                    <SheetClose asChild key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                      >
+                        <link.icon size={18} className="text-emerald-400/70" />
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+
+                  <div className="mx-5 my-2 border-t border-white/10" />
+
+                  {/* Pages */}
+                  {navLinks.map((link) => (
+                    <SheetClose asChild key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                      >
+                        <link.icon size={18} className="text-primary/70" />
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+
+                  <div className="mx-5 my-2 border-t border-white/10" />
+
+                  {/* More */}
+                  <div className="px-5 py-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-primary/80">More</span>
+                  </div>
+                  {moreLinks.map((link) => (
+                    <SheetClose asChild key={link.to}>
+                      <Link
+                        to={link.to}
+                        className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                      >
+                        <link.icon size={18} className="text-primary/70" />
+                        {link.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+
+                  <div className="mx-5 my-2 border-t border-white/10" />
+
+                  {/* Contact CTAs */}
+                  <div className="px-5 py-2">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-primary/80">Connect</span>
+                  </div>
+
+                  <a
+                    href="tel:+918837317070"
+                    className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                  >
+                    <Phone size={18} className="text-emerald-400" />
+                    +91 8837317070
+                  </a>
+
+                  <a
+                    href="https://wa.me/918837317070"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                  >
+                    <MessageCircle size={18} className="text-[#25D366]" />
+                    WhatsApp Us
+                  </a>
+
+                  <a
+                    href="https://maps.app.goo.gl/6WaBkJmkb1NjEB2i9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"
+                  >
+                    <MapPin size={18} className="text-rose-400" />
+                    Get Directions
+                  </a>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
+      </div>
+      {searchOpen && (
+        <Suspense fallback={null}>
+          <IntelligentSearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+        </Suspense>
+      )}
+    </header>
+  );
+};
+
+export default Header;
