@@ -138,7 +138,7 @@ const PlacesToVisitMeghalaya = () => {
           <PlanTripLinks
             source="places-to-visit-in-meghalaya"
             heading="Ready to see these places? Book your Shillong base"
-            bookingAnchor="Stay central in Shillong to reach Cherrapunji, Dawki & Mawlynnong — dorm beds from ₹369, private rooms & glamping"
+            bookingAnchor="Stay central in Shillong to reach Cherrapunji, Dawki & Mawlynnong — dorm beds from ₹399, private rooms & glamping"
             slugs={['dawki-umngot-river', 'double-decker-living-root-bridge', 'nohkalikai-falls', 'mawlynnong-village']}
           />
 

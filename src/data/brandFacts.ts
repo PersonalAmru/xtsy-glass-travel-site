@@ -50,7 +50,7 @@ export const OWN_PROPERTIES = [
 
 export const AWARDS = [
   'Northeast India Tourism Awards — Best Budget Accommodation (NEITA 2025)',
-  "Highest-rated hostel in Northeast India on Google (4.9★, 1,200+ reviews)",
+  "Highest-rated hostel in Northeast India on Google (4.8★, 161 Google reviews)",
   "Experience by XTSY — India's first stargaze glamp",
 ] as const;
 
@@ -102,7 +102,7 @@ export const whyXTSYSection = (): SEOSection => ({
   listItems: [
     'NEITA 2025 — Best Budget Accommodation in Northeast India',
     "Experience by XTSY — India's first stargaze glamp",
-    'Highest-rated hostel in Northeast on Google (4.9★, 1,200+ reviews)',
+    'Highest-rated hostel in Northeast on Google (4.8★, 161 Google reviews)',
     'Pluxee India partner — corporate stays via employee-benefit vouchers accepted',
     `24/7 WhatsApp booking & on-trip support — ${BRAND.whatsappDisplay}`,
     'Owned operations in Shillong + vetted partner network across NE India and Sikkim',

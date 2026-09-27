@@ -193,7 +193,7 @@ export default function HowToReachMeghalaya() {
         <section className="mb-10 rounded-xl border border-border bg-muted/30 p-6">
           <h2 className="text-2xl font-bold mb-2">Where to stay when you land</h2>
           <p className="text-foreground/90 mb-4">
-            XTSY Travellers Hostel in Shillong has mixed dorm beds from <strong>Rs 369 per person per night</strong>,
+            XTSY Travellers Hostel in Shillong has mixed dorm beds from <strong>Rs 399 per person per night</strong>,
             private rooms, TAB Bistro on site, and front-desk help with onward Dawki and Cherrapunji transport.
           </p>
           <div className="flex flex-wrap gap-3">

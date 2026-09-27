@@ -25,6 +25,8 @@ async function main() {
     out += block.replace(url, `/fonts/${file}`).trim() + '\n';
     console.log(family, subset, file);
   }
+  // Body font: optional (no late swap → no CLS). Display font keeps swap.
+  out = out.replace(/(font-family: 'Manrope';[^}]*?)font-display: swap;/g, '$1font-display: optional;');
   fs.writeFileSync('public/fonts/fonts.css', out);
 }
 main().catch((e) => { console.error(e); process.exit(1); });

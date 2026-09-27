@@ -85,7 +85,7 @@ export default function HomeHero() {
         <img src={hero?.src ?? HERO_IMAGE.src} srcSet={hero?.srcSet} sizes="100vw" width={hero?.w} height={hero?.h} alt={HERO_IMAGE.alt} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: HERO_IMAGE.position }} fetchPriority="high" decoding="async" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-xt-ink via-xt-ink/60 to-xt-ink/20" />
         <div className="max-w-5xl">
-          <p className="xt-eyebrow mb-4 text-sm uppercase text-[#F2B8C2]!">New Shillong Township · Meghalaya</p>
+          <p className="xt-eyebrow mb-4 text-sm uppercase text-[#F2B8C2]!">Best hostel in Shillong · New Shillong Township</p>
           {/* Fixed two-line box: the headline never changes the hero's height while the font loads (no layout shift). */}
           <h1 className="xt-display m-0 h-[2em] text-6xl leading-none sm:text-8xl lg:text-9xl">XTSY Travellers Hostel</h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed">Dorms from ₹399 · King Double ₹2,200 · Panorama stay only ₹5,399 or with breakfast for two ₹5,799 per night.</p>

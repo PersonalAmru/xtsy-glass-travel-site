@@ -11,11 +11,11 @@ export const Route = createFileRoute("/")({
   head: () =>
     buildRouteHead({
       path: "/",
-      title: "XTSY Travellers Hostel in New Shillong Township | Stays & Tours",
+      title: "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
       description:
-        "Stay in New Shillong Township: mixed dorm beds from ₹399, King Double ₹2,200 and Panorama stay-only ₹5,399 or breakfast-for-two ₹5,799 per night. Check-in 11 AM, check-out 10 AM.",
+        "XTSY Travellers Hostel, New Shillong Township: dorm beds from ₹399, women-only dorm, King Double ₹2,200, Experience by XTSY glass suite ₹5,399. TAB Bistro on site.",
       keywords:
-        "best hostel Shillong, biggest hostel northeast India, Shillong hostel, Meghalaya accommodation, budget stay Shillong",
+        "best hostel in Shillong, hostel in Shillong, hostels in Shillong, cheap hostel Shillong, budget stay Shillong, dorm in Shillong, backpacker hostel Meghalaya",
       // Preload the real hero photo (responsive WebP) so it is the first image the browser fetches.
       preloadImage: hero?.src ?? HERO_IMAGE.src,
       preloadImageSrcSet: hero?.srcSet,

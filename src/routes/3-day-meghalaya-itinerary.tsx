@@ -8,7 +8,7 @@ export const Route = createFileRoute("/3-day-meghalaya-itinerary")({
       path: "/3-day-meghalaya-itinerary",
       title: "3 Day Meghalaya Itinerary from Shillong | XTSY",
       description:
-        "A tested 3 day Meghalaya itinerary: Shillong, Cherrapunji waterfalls and Dawki's Umngot river, with travel times, costs and hostel stays from Rs 369.",
+        "A tested 3 day Meghalaya itinerary: Shillong, Cherrapunji waterfalls and Dawki's Umngot river, with travel times, costs and hostel stays from Rs 399.",
     }),
   component: BlogItinerary3Day,
 });

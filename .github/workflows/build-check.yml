@@ -96,6 +96,7 @@ jobs:
         env:
           BASE_URL: http://localhost:8080
           OUT_DIR: shots
+          ROUTES: /best-hostel-in-shillong,/cheap-hostels-shillong,/shillong-dormitory,/3-day-meghalaya-itinerary,/hostel-in-guwahati-tonight,/faq
 
       - name: Trip assistant check
         continue-on-error: true
@@ -115,6 +116,13 @@ jobs:
           sleep 2
           if curl -sf -o /dev/null http://localhost:4174/; then echo "PROD_URL=http://localhost:4174" >> "$GITHUB_ENV"; echo "PERF_SERVER=production+brotli" >> "$GITHUB_ENV"; else echo "PROD_URL=http://localhost:8080" >> "$GITHUB_ENV"; echo "PERF_SERVER=dev" >> "$GITHUB_ENV"; fi
 
+      - name: Server-rendered SEO check (what non-JS crawlers see)
+        continue-on-error: true
+        run: bunx tsx scripts/ci-seo-check.ts
+        env:
+          BASE_URL: ${{ env.PROD_URL }}
+          OUT_DIR: shots
+
       - name: Image + performance audit
         continue-on-error: true
         run: |
@@ -126,6 +134,7 @@ jobs:
           OUT_DIR: shots
           SKIP_IMAGES: "1"
           BASELINE_URL: https://xtsy.one
+          PERF_ROUTES: /,/best-hostel-in-shillong,/cheap-hostels-shillong,/shillong-dormitory,/xtsy-270
 
       - name: Publish screenshots to ci-screenshots branch
         if: always()

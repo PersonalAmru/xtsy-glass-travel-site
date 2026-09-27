@@ -54,11 +54,11 @@ const hostelSchema = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 25.5788,
-    longitude: 91.8933,
+    latitude: 25.535,
+    longitude: 91.965,
   },
-  checkinTime: '13:00',
-  checkoutTime: '11:00',
+  checkinTime: '11:00',
+  checkoutTime: '10:00',
   amenityFeature: [
     { '@type': 'LocationFeatureSpecification', name: 'Free WiFi', value: true },
     { '@type': 'LocationFeatureSpecification', name: '24/7 Reception', value: true },
@@ -127,7 +127,7 @@ const About = () => {
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                   <div className="text-sm text-muted-foreground">
-                    <p>Check-in: 1:00 PM | Check-out: 11:00 AM</p>
+                    <p>Check-in: 11:00 AM | Check-out: 10:00 AM (strict)</p>
                     <p>Reception: 24/7</p>
                   </div>
                 </div>

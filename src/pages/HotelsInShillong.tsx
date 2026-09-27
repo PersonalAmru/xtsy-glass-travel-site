@@ -22,7 +22,7 @@ const HotelsInShillong = memo(() => {
           '@type': 'LodgingBusiness',
           name: 'XTSY Travellers Hostel',
           description: 'India\'s biggest hostel — private rooms, Experience by XTSY, and budget dorms',
-          priceRange: '₹369 - ₹4,999',
+          priceRange: '₹399 - ₹4,999',
           starRating: { '@type': 'Rating', ratingValue: '4.8' },
         },
       },
@@ -54,7 +54,7 @@ const HotelsInShillong = memo(() => {
         name: 'How much does a hotel room cost in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Budget hotels start at ₹1,200-₹2,000/night. Mid-range hotels cost ₹2,500-₹4,500. Luxury stays range from ₹5,000-₹8,500. XTSY offers rooms across all budgets starting at ₹369 for dorms.',
+          text: 'Budget hotels start at ₹1,200-₹2,000/night. Mid-range hotels cost ₹2,500-₹4,500. Luxury stays range from ₹5,000-₹8,500. XTSY offers rooms across all budgets starting at ₹399 for dorms.',
         },
       },
     ],
@@ -84,7 +84,7 @@ const HotelsInShillong = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Hotels in Shillong from ₹369/night | XTSY</title>
+        <title>Hotels in Shillong from ₹399/night | XTSY</title>
         <meta name="description" content="Find the best hotels in Shillong — budget, mid-range, and luxury. Compare prices from ₹1,200-₹4,999/night. Book direct for best rates in Meghalaya's capital." />
         <meta name="keywords" content="hotel in Shillong, best hotel Shillong, budget hotel Shillong, luxury hotel Shillong, Shillong hotel booking, hotels near Police Bazaar, cheap hotel Shillong, 3 star hotel Shillong" />
         <link rel="canonical" href="https://xtsy.one/hotels-in-shillong" />

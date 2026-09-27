@@ -44,16 +44,12 @@ async function submitIndexNow(paths: string[]): Promise<{ status: number; body: 
 }
 
 async function submitGoogleIndexingAPI(paths: string[]): Promise<{ status: number; body: string } | null> {
-  const sa = Deno.env.get('GOOGLE_INDEXING_API_KEY');
-  if (!sa) return null;
-
-  // Service-account JWT flow is non-trivial here; we expose a placeholder
-  // success log so the UI can show "Google Indexing API: configured".
-  // Real impl requires JWT signing with the service account private key.
-  return {
-    status: 200,
-    body: `Google Indexing API configured. ${paths.length} URLs queued (jwt-signing impl TBD).`,
-  };
+  // Google's Indexing API is only permitted for JobPosting and BroadcastEvent
+  // pages, so it is deliberately not used for XTSY's hostel/travel pages.
+  // Google discovery runs through sitemaps (resubmitted by the
+  // "Search indexing" GitHub workflow via the Search Console API).
+  if (!Deno.env.get('GOOGLE_INDEXING_API_KEY')) return null;
+  return { status: 204, body: `Google Indexing API skipped for ${paths.length} URLs (not permitted for these page types); sitemaps are resubmitted via Search Console instead.` };
 }
 
 async function pingSitemap(): Promise<{ status: number; body: string }> {

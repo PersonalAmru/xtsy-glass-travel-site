@@ -432,7 +432,7 @@ const EnquirySuccessModal = ({
                 <p className="font-medium text-foreground text-[10px] mb-1">Terms & Conditions</p>
                 <p>• Quotation valid until host confirmation. Final invoice issued upon approval.</p>
                 <p>• Booking amount is non-refundable once confirmed.</p>
-                <p>• Check-in: 1:00 PM | Check-out: 11:00 AM</p>
+                <p>• Check-in: 11:00 AM | Check-out: 10:00 AM (strict)</p>
                 <p>• All disputes subject to Meghalaya jurisdiction.</p>
               </motion.div>
 

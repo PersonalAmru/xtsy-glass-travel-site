@@ -1,6 +1,6 @@
 /**
  * /faq — FAQs with topic tabs (redesign). All answers are also emitted as
- * FAQPage structured data.
+ * FAQPage structured data (rendered server-side by the route head).
  */
 import { useState } from 'react';
 import SEOHead from '@/components/SEOHead';
@@ -10,7 +10,7 @@ import { inr, lowestDormPrice, roomPrice } from '@/components/v2/pricing';
 
 type Topic = { id: string; n: string; q: [string, string][] };
 
-function buildTopics(): Topic[] {
+export function buildTopics(): Topic[] {
   const suite = roomPrice('xtsy-270');
   const female = roomPrice('4-bed-female-only-dorm');
   return [
@@ -58,16 +58,21 @@ function buildTopics(): Topic[] {
   ];
 }
 
+export function faqSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': 'https://xtsy.one/faq#faq',
+    about: { '@id': 'https://xtsy.one/#hostel' },
+    mainEntity: buildTopics().flatMap((t) => t.q.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }))),
+  };
+}
+
 export default function FaqV2() {
   const topics = buildTopics();
   const [topic, setTopic] = useState(topics[0].id);
   const [open, setOpen] = useState(0);
   const current = topics.find((t) => t.id === topic) ?? topics[0];
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: topics.flatMap((t) => t.q.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }))),
-  };
   return (
     <>
       <SEOHead
@@ -75,7 +80,6 @@ export default function FaqV2() {
         description="Answers about XTSY Travellers Hostel in New Shillong Township: rooms, Experience by XTSY, check-in, pets, tours, payments and getting here."
         keywords="XTSY FAQ, hostel Shillong questions, Experience by XTSY FAQ, Meghalaya travel FAQ, booking help XTSY"
         canonicalUrl="https://xtsy.one/faq"
-        structuredData={schema}
       />
       <PageShell cta={{ title: 'Still wondering?', sub: 'Ask the XTSY desk on WhatsApp. We reply day and night.' }}>
         <section className={`${PAD} relative overflow-hidden bg-xt-cream py-16 lg:py-24`}>

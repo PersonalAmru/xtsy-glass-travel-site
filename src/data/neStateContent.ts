@@ -32,7 +32,7 @@ const XTSY_STAYS: StayLink[] = [
   {
     label: 'XTSY Travellers Hostel, Shillong',
     href: '/best-hostel-in-shillong',
-    note: 'Mixed dorms from ₹369 per bed/night plus private rooms, in New Shillong Township.',
+    note: 'Mixed dorms from ₹399 per bed/night plus private rooms, in New Shillong Township.',
   },
   {
     label: 'XTSY 270 — glamping & private stays',

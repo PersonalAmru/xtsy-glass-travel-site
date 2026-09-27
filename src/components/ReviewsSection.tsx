@@ -686,7 +686,7 @@ const ReviewsSection = () => {
       name: "XTSY Travellers Hostel",
       url: "https://xtsy.one/",
       image: "https://xtsy.one/og-image.jpg",
-      priceRange: "₹369 - ₹9,999",
+      priceRange: "₹399 - ₹9,999",
       address: {
         "@type": "PostalAddress",
         streetAddress: "Mawdiangdiang Road, New Shillong Township",
