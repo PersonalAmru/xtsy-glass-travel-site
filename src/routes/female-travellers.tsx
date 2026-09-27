@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import FemaleTravellers from "@/pages/FemaleTravellers";
+import WomenSafeV2 from "@/pages/v2/WomenSafeV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/female-travellers")({
@@ -10,5 +10,5 @@ export const Route = createFileRoute("/female-travellers")({
       description:
         "Safety guidance for solo female travellers in Meghalaya, plus female-only dorms, 24x7 staffed reception and CCTV-covered common areas at XTSY Shillong.",
     }),
-  component: FemaleTravellers,
+  component: WomenSafeV2,
 });
