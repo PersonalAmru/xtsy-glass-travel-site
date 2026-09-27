@@ -20,6 +20,7 @@ import EnquirySuccessModal from './EnquirySuccessModal';
 import CelebrationInterstitial from './CelebrationInterstitial';
 import { CurrencySelector } from './CurrencySelector';
 import { useApp } from '@/contexts/AppContext';
+import { PANORAMA_STAY_ONLY, PANORAMA_WITH_BREAKFAST, PANORAMA_DECORATION } from '@/data/panoramaPricing';
 
 interface BookingRoom {
   id: string;
@@ -43,6 +44,7 @@ const ADD_ONS = [
   { id: 'transport', name: 'Airport Pickup/Drop Service', price: 0, unit: 'enquiry', icon: '🚗', tag: 'Check Availability', description: 'Private car with driver (not shared transport)' },
   { id: 'self_drive', name: 'Self Drive Cars & Bikes', price: 0, unit: 'enquiry', icon: '🏍️', tag: 'Check Availability', description: 'Explore at your own pace with our rental options' },
   { id: 'itinerary', name: 'Curated Itinerary + 24/7 Support', price: 0, unit: 'free', icon: '🗺️', tag: 'Service charges applicable', description: 'Full-fledged travel support throughout your trip' },
+  { id: 'panorama_decoration', name: 'Panorama Decoration', price: PANORAMA_DECORATION, unit: 'one-time', icon: '🌹', tag: 'Panorama only', description: 'Rose petals, scented candles, bouquet and cake. Arrange 48 hours ahead.' },
 ];
 
 // Country codes for international compliance
@@ -378,6 +380,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   const [checkIn, setCheckIn] = useState<Date | undefined>(initialCheckIn);
   const [checkOut, setCheckOut] = useState<Date | undefined>(initialCheckOut);
   const [selectedAddOns, setSelectedAddOns] = useState<Record<string, boolean>>({});
+  const [panoramaBreakfast, setPanoramaBreakfast] = useState(false);
   const [guestName, setGuestName] = useState('');
   const [guestEmail, setGuestEmail] = useState('');
   const [guestPhone, setGuestPhone] = useState('');
@@ -429,6 +432,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       setCheckOut(initialCheckOut);
       setGuests(initialGuests);
       setSelectedAddOns({});
+      setPanoramaBreakfast(false);
       setSpecialRequests('');
       setGuestWhatsApp('');
       setCountryCode('+91');
@@ -493,6 +497,8 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
   }, [ROOMS]);
 
   const nights = checkIn && checkOut ? Math.max(1, differenceInDays(checkOut, checkIn)) : 0;
+  const hasPanorama = roomSelections.some(sel => sel.roomId === 'xtsy-270');
+  const priceForRoom = (room: BookingRoom) => room.id === 'xtsy-270' ? (panoramaBreakfast ? PANORAMA_WITH_BREAKFAST : PANORAMA_STAY_ONLY) : room.price;
   
   const totalBedsSelected = useMemo(() => {
     return roomSelections.reduce((sum, sel) => {
@@ -509,12 +515,12 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
     return roomSelections.reduce((total, sel) => {
       const room = ROOMS.find(r => r.id === sel.roomId);
       if (!room) return total;
-      return total + (room.price * sel.quantity * nights);
+      return total + (priceForRoom(room) * sel.quantity * nights);
     }, 0);
-  }, [roomSelections, ROOMS, nights]);
+  }, [roomSelections, ROOMS, nights, panoramaBreakfast]);
 
   const addOnTotal = Object.entries(selectedAddOns).reduce((total, [id, selected]) => {
-    if (!selected) return total;
+    if (!selected || (id === 'panorama_decoration' && !hasPanorama)) return total;
     const addOn = ADD_ONS.find(a => a.id === id);
     if (!addOn) return total;
     return addOn.unit === 'one-time' ? total + addOn.price : total + addOn.price * guests * nights;
@@ -532,8 +538,9 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
     roomSelections.forEach(sel => {
       const room = ROOMS.find(r => r.id === sel.roomId);
       if (!room) return;
-      const roomLineTotal = room.price * sel.quantity * nights;
-      if (room.price >= 7500) {
+      const rate = priceForRoom(room);
+      const roomLineTotal = rate * sel.quantity * nights;
+      if (rate >= 7500) {
         gst18Total += roomLineTotal;
       } else {
         gst5Total += roomLineTotal;
@@ -553,7 +560,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
       gst18Amount,
       totalGst: gst5Amount + gst18Amount
     };
-  }, [roomSelections, ROOMS, nights, addOnTotal]);
+  }, [roomSelections, ROOMS, nights, addOnTotal, panoramaBreakfast]);
   
   const gstAmount = gstBreakdown.totalGst;
   const totalAmount = subtotal + gstAmount;
@@ -577,10 +584,14 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
         const room = ROOMS.find(r => r.id === sel.roomId);
         if (!room) return { success: false, error: 'Room not found' };
 
-        const roomSubtotal = room.price * sel.quantity * nights;
+        const rate = priceForRoom(room);
+        const isPanorama = room.id === 'xtsy-270';
+        const decoration = isPanorama && !!selectedAddOns.panorama_decoration;
+        const decorationCost = decoration ? PANORAMA_DECORATION : 0;
+        const roomSubtotal = rate * sel.quantity * nights + decorationCost;
         // Correct GST rate based on per-night price
-        const roomGstRate = room.price >= 7500 ? 18 : 5;
-        const roomGst = Math.round(roomSubtotal * (roomGstRate / 100));
+        const roomGstRate = rate >= 7500 ? 18 : 5;
+        const roomGst = Math.round(rate * sel.quantity * nights * (roomGstRate / 100)) + Math.round(decorationCost * 0.18);
         const roomTotal = roomSubtotal + roomGst;
 
         return createEnquiry({
@@ -589,16 +600,16 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           guestPhone,
           checkIn: format(checkIn, 'yyyy-MM-dd'),
           checkOut: format(checkOut, 'yyyy-MM-dd'),
-          roomName: room.name,
+          roomName: isPanorama ? `${room.name} — ${panoramaBreakfast ? 'Stay + breakfast for 2' : 'Stay only'}${decoration ? ' + Decoration' : ''}` : room.name,
           roomType: room.id,
           quantity: sel.quantity,
           nights,
-          ratePerNight: room.price,
+          ratePerNight: rate,
           subtotal: roomSubtotal,
           gstRate: room.price >= 7500 ? 18 : 5,
           gstAmount: roomGst,
           totalAmount: roomTotal,
-          specialRequests: specialRequests || undefined,
+          specialRequests: [specialRequests, isPanorama ? `Panorama package: ${panoramaBreakfast ? 'Stay + breakfast for 2' : 'Stay only'}; nightly ₹${rate}; decoration: ${decoration ? 'yes, ₹2,500 one-time (rose petals, scented candles, bouquet, cake)' : 'no'}` : ''].filter(Boolean).join(' | ') || undefined,
           userId: user?.id,
         });
       }));
@@ -609,16 +620,16 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
         const primaryRoom = ROOMS.find(r => r.id === roomSelections[0]?.roomId);
         const selectionDetails = roomSelections.map(sel => {
           const room = ROOMS.find(r => r.id === sel.roomId);
-          const rate = room?.price || 0;
+          const rate = room ? priceForRoom(room) : 0;
           const lineSubtotal = rate * sel.quantity * nights;
           const lineGstRate = rate >= 7500 ? 18 : 5;
           const lineGst = Math.round(lineSubtotal * (lineGstRate / 100));
           return {
-            roomName: room?.name || 'Room',
+            roomName: room?.id === 'xtsy-270' ? `${room.name} — ${panoramaBreakfast ? 'Stay + breakfast for 2' : 'Stay only'}${selectedAddOns.panorama_decoration ? ' + Decoration' : ''}` : room?.name || 'Room',
             quantity: sel.quantity,
             ratePerNight: rate,
             gstRate: lineGstRate,
-            lineTotal: lineSubtotal + lineGst,
+            lineTotal: lineSubtotal + lineGst + (room?.id === 'xtsy-270' && selectedAddOns.panorama_decoration ? PANORAMA_DECORATION + Math.round(PANORAMA_DECORATION * .18) : 0),
           };
         });
         setSuccessData({
@@ -629,7 +640,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           roomCount: roomSelections.reduce((sum, sel) => sum + sel.quantity, 0),
           roomType: primaryRoom?.name || 'Premium Stay',
           totalAmount,
-          ratePerNight: primaryRoom?.price || 0,
+          ratePerNight: primaryRoom ? priceForRoom(primaryRoom) : 0,
           quantity: roomSelections.reduce((sum, sel) => sum + sel.quantity, 0),
           nights,
           gstRate: gstBreakdown.gst18Base > 0 ? 18 : 5,
@@ -1031,7 +1042,8 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                 </div>
 
                 <div className="space-y-3">
-                  {ADD_ONS.map((addOn) => (
+                  {hasPanorama && <fieldset className="space-y-2 border border-border p-4"><legend className="font-semibold">Panorama package</legend><p className="text-sm text-muted-foreground">Breakfast is not complimentary. Choose a nightly package for two.</p>{[false, true].map(withBreakfast => <Button type="button" key={String(withBreakfast)} variant={panoramaBreakfast === withBreakfast ? 'default' : 'outline'} className="mr-2 h-12" onClick={() => setPanoramaBreakfast(withBreakfast)}>{withBreakfast ? 'Stay + breakfast for 2 · ₹5,799/night' : 'Stay only · ₹5,399/night'}</Button>)}</fieldset>}
+                  {ADD_ONS.filter(addOn => addOn.id !== 'panorama_decoration' || hasPanorama).map((addOn) => (
                     <button 
                       key={addOn.id} 
                       onClick={() => setSelectedAddOns(prev => ({ ...prev, [addOn.id]: !prev[addOn.id] }))} 
@@ -1196,7 +1208,8 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                   />
                   
                   {/* Promotional Code Section with Winter Discount */}
-                  <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20">
+                  {/* No automatic seasonal discount: the listed room rates are the quoted rates. */}
+                  {false && <div className="p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20">
                     <div className="flex items-center gap-2 mb-2">
                       <Sparkles className="w-4 h-4 text-emerald-500" />
                       <span className="font-semibold text-foreground text-sm">Promotional Offer Applied</span>
@@ -1211,7 +1224,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     <p className="text-xs text-muted-foreground mt-2">
                       Applied to all bookings. Valid for the winter season.
                     </p>
-                  </div>
+                  </div>}
                 </div>
 
                 {/* Consent Section */}
@@ -1269,17 +1282,17 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                     {roomSelections.map(sel => {
                       const room = ROOMS.find(r => r.id === sel.roomId);
                       if (!room) return null;
-                      const lineTotal = room.price * sel.quantity * nights;
+                       const lineTotal = priceForRoom(room) * sel.quantity * nights;
                       return (
                         <div key={sel.roomId} className="flex justify-between text-muted-foreground">
-                          <span>{sel.quantity}× {room.name.replace('Bed in ', '').slice(0, 20)}</span>
+                           <span>{sel.quantity}× {room.name.replace('Bed in ', '').slice(0, 20)}{room.id === 'xtsy-270' ? ` (${panoramaBreakfast ? 'with breakfast for 2' : 'stay only'})` : ''}</span>
                           <span>₹{lineTotal.toLocaleString()}</span>
                         </div>
                       );
                     })}
                     {addOnTotal > 0 && (
                       <div className="flex justify-between text-muted-foreground">
-                        <span>Add-ons</span>
+                         <span>{selectedAddOns.panorama_decoration && hasPanorama ? 'Decoration · rose petals, candles, bouquet, cake' : 'Add-ons'}</span>
                         <span>₹{addOnTotal.toLocaleString()}</span>
                       </div>
                     )}
