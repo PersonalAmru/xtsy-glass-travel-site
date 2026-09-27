@@ -181,7 +181,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
       },
       {
         heading: 'Check-In Process',
-        content: `Check-in is at 1:00 PM, but early check-in is available subject to room availability. Late arrivals are welcome — just inform us via WhatsApp. Check-out is at 11:00 AM.`,
+        content: `Standard check-in is at 11:00 AM and check-out is strictly at 10:00 AM. Late arrivals are welcome — just inform us via WhatsApp.`,
       },
       {
         heading: 'Guest Reviews',
@@ -189,7 +189,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
       },
     ],
     faqs: [
-      { question: 'Can I check in tonight?', answer: 'Yes, we accept same-day check-ins. Standard check-in is 1 PM, but late arrivals are welcome. Just message us on WhatsApp after booking.' },
+      { question: 'Can I check in tonight?', answer: 'Yes, subject to availability. Standard check-in is 11 AM; late arrivals can contact us on WhatsApp after booking. Check-out is strictly 10 AM.' },
       { question: 'Is there a minimum stay requirement?', answer: 'No minimum stay — you can book for just one night. Many guests book for tonight and extend their stay if they love it (most do!).' },
     ],
     schemaType: 'LodgingBusiness',
