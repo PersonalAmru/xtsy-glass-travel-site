@@ -1,6 +1,7 @@
 import { Link } from '@/lib/router-compat';
 import { BedDouble, ArrowRight } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { inr, lowestDormPrice } from '@/components/v2/pricing';
 
 /**
  * ShillongHostelLinkBlock — a keyword-rich internal link block that funnels
@@ -29,7 +30,7 @@ const ShillongHostelLinkBlock = ({
           </h2>
           <p className="mt-2 max-w-2xl text-muted-foreground">
             XTSY Travellers Hostel is the best-rated, cheapest backpacker base for exploring {nearName}
-            {' '}— dorm beds from ₹369, female-only dorms and private rooms in New Shillong Township.
+            {' '}— dorm beds from {inr(lowestDormPrice())}, female-only dorms and private rooms in New Shillong Township.
           </p>
         </div>
         <Link
