@@ -10,7 +10,7 @@ import path from 'path';
 const BASE = process.env.BASE_URL || 'http://localhost:8080';
 const OUT = process.env.OUT_DIR || 'shots';
 const ROUTES = (process.env.ROUTES ||
-  '/,/merch,/places-to-visit/dawki-umngot-river,/meghalaya-villages,/tours,/xtsy-270,/auth,/book'
+  '/,/plan-trip-with-ai,/pet-friendly,/about,/work-from-home,/group-bookings-meghalaya,/gallery'
 ).split(',');
 
 const VIEWPORTS = [

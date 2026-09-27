@@ -124,7 +124,7 @@ export default function TourDetailV2() {
         canonicalUrl={tourUrl}
         structuredData={[tourSchema, tourBreadcrumb, faqSchema]}
       />
-      <PageShell cta={{ title: 'Want it your way?', sub: 'Every itinerary can change. Tell a travel expert your dates and pace on WhatsApp.', bookTo: '/#planner', bookLabel: 'Build a trip with AI' }}>
+      <PageShell cta={{ title: 'Want it your way?', sub: 'Every itinerary can change. Tell a travel expert your dates and pace on WhatsApp.', bookTo: '/plan-trip-with-ai', bookLabel: 'Build a trip with AI' }}>
         <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Tours', to: '/tours' }, { label: tour.title }]} />
 
         <section className={`${PAD} grid items-end gap-8 py-10 lg:grid-cols-12 lg:py-14`}>

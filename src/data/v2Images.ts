@@ -11,7 +11,9 @@ export const IMG = {
   suite: ROOM_IMAGES['xtsy-270'] ?? [],
   femaleDorm: ROOM_IMAGES['4-bed-female-only-dorm'] ?? [],
   mixedDorm: ROOM_IMAGES['6-bed-mixed-dorm'] ?? [],
-  property: cdnMany(['xtsy/Property Image 1.jpg', 'xtsy/Property Images 2.jpg', 'xtsy/Property Images 3.jpg', 'xtsy/Property Images 4.jpg']),
+  // Chosen in the Sept 2026 cover audit: exterior in the pines, terraces, common spaces.
+  // (Property Image 1 and Images 4 are curtain close-ups; Images 2 is the gate — not used as covers.)
+  property: cdnMany(['xtsy/Property Images 8.jpg', 'xtsy/Property Images 6.jpg', 'xtsy/Property Images 15.jpg', 'xtsy/Property Images 9.jpg', 'xtsy/Property Images 13.jpg', 'xtsy/Property Images 22.jpg', 'xtsy/Property Images 25.JPG', 'xtsy/Property Images 21.jpg']),
   king: ROOM_IMAGES['king-double-room'] ?? [],
   bistro: [BISTRO_COVER, ...cdnMany(['xtsy/TAB Bistro by XTSY.jpeg'])],
   campsite: cdnMany([
@@ -39,3 +41,24 @@ export const IMG = {
 };
 
 export const first = (list: string[] | string): string => (Array.isArray(list) ? list[0] ?? '' : list);
+
+/** Named cover photos for each page (all real XTSY photos). */
+export const COVERS = {
+  home: cdn('xtsy/Property Images 8.jpg'),
+  about: cdn('xtsy/Property Images 6.jpg'),
+  contact: cdn('xtsy/Property Images 9.jpg'),
+  pet: cdn('xtsy/Property Images 15.jpg'),
+  petGallery: cdnMany(['xtsy/Property Images 13.jpg', 'xtsy/Property Images 25.JPG', 'xtsy/Property Images 22.jpg']),
+  groups: cdn('xtsy/Property Images 12.jpg'),
+  commonRoom: cdn('xtsy/Property Images 16.jpg'),
+  workation: cdn('xtsy/Property Images 27.JPG'),
+  women: cdn('xtsy/4 Bed Female Dormitory.jpg'),
+  wedding: cdn('xtsy-270/XTSY270 6.JPG'),
+  terrace: cdn('xtsy/Property Images 21.jpg'),
+};
+
+export const HERO_IMAGE = {
+  src: COVERS.home,
+  alt: 'XTSY Travellers Hostel among the pines of New Shillong Township',
+  position: '50% 40%',
+};

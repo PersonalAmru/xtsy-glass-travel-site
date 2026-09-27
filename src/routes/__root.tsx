@@ -30,6 +30,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import RouteErrorBoundary from "@/components/RouteErrorBoundary";
 import ConsentModal from "@/components/consent/ConsentModal";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import ChatLauncher from "@/components/v2/ChatLauncher";
 import NotFound from "@/pages/NotFound";
 import { AppProvider } from "@/contexts/AppContext";
 import { HappyGuestsProvider } from "@/contexts/HappyGuestsContext";
@@ -184,9 +185,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://kzhsxemkntfwsakhkylt.supabase.co", crossOrigin: "anonymous" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      // Brand fonts are self-hosted and preloaded so headlines render in Staatliches from the first paint.
+      { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/staatliches-latin.woff2", crossOrigin: "anonymous" },
+      { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/manrope-latin.woff2", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "/fonts/fonts.css" },
+      // Legacy fonts still used by older admin screens.
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&family=Staatliches&family=Manrope:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
       },
       {
         rel: "icon",
@@ -409,6 +415,7 @@ function RootComponent() {
                           </RouteBoundary>
                         </RouteErrorBoundary>
                         <FloatingWhatsApp />
+                        {isGuestPage && <ChatLauncher />}
                       </TooltipProvider>
                     </EnhancedAnalyticsProvider>
                   </ConversionSignalsProvider>

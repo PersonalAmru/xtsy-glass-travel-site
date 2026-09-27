@@ -3,7 +3,7 @@
  * previous page (₹5,400 / ₹22,999 / ₹64,999).
  */
 import SEOHead from '@/components/SEOHead';
-import { IMG } from '@/data/v2Images';
+import { COVERS } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, PriceCards, StatRow, FaqList, PAD } from '@/components/v2/blocks';
 import { Photo, LiveDot, waLink } from '@/components/v2/primitives';
 
@@ -38,7 +38,7 @@ export default function WorkationV2() {
           title="Work from the pines."
           text="Fibre Wi-Fi with backup power, a real workspace and breakfast every morning. Shillong stays around 15–25°C most of the year, so the only thing running hot is your laptop."
           actions={<><Btn to="#plans">See plans</Btn><Btn to={wa()} kind="outline">Ask about dates</Btn></>}
-          media={<Photo src={IMG.property[2]} alt="XTSY Travellers Hostel, New Shillong Township" eager tone="slate" className="aspect-[628/560] rounded-[32px]" />}
+          media={<Photo src={COVERS.workation} alt="XTSY Travellers Hostel, New Shillong Township" eager tone="slate" className="aspect-[628/560] rounded-[32px]" />}
         />
 
         <section className={`${PAD} pt-16`}>

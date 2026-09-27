@@ -3,6 +3,7 @@
  */
 import { useState, type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
+import { responsiveImage } from '@/data/cdnImages';
 
 export const XTSY_MARK_PATH =
   'M22.32,0 L0,22.36 L18.68,41.10 L25.28,34.52 L13.13,22.36 L22.32,13.15 L54.14,44.99 L48.97,50.16 L55.53,56.74 L67.29,45.01 Z M71.29,48.93 L64.70,55.48 L76.87,67.67 L67.68,76.85 L35.86,44.99 L41.03,39.81 L34.47,33.23 L22.71,44.93 L67.68,90 L90,67.64 Z M22.32,76.85 L13.13,67.64 L25.28,55.48 L18.74,48.88 L0,67.64 L22.32,90 L41.03,71.26 L34.47,64.68 Z M90,22.36 L67.68,0 L48.99,18.74 L55.53,25.32 L67.68,13.15 L76.87,22.36 L64.75,34.49 L71.29,41.07 Z';
@@ -67,6 +68,9 @@ export function SectionHead({
  * Real photo with a branded fallback: if the image fails to load we show the
  * XTSY mark on a tinted panel instead of a broken-image icon.
  */
+/** Responsive WebP versions of a Lovable CDN photo, when the optimiser has made them. */
+export const responsive = responsiveImage;
+
 export function Photo({
   src,
   alt,
@@ -74,6 +78,8 @@ export function Photo({
   tone = 'slate',
   eager,
   children,
+  sizes = '(max-width: 768px) 100vw, 50vw',
+  position,
 }: {
   src?: string;
   alt: string;
@@ -81,20 +87,31 @@ export function Photo({
   tone?: 'sand' | 'slate' | 'crimson' | 'pine' | 'night';
   eager?: boolean;
   children?: ReactNode;
+  /** Rendered width hint for the responsive WebP versions. */
+  sizes?: string;
+  /** CSS object-position, e.g. "50% 30%". */
+  position?: string;
 }) {
   const [failed, setFailed] = useState(false);
+  const opt = responsive(src);
   const bg = { sand: '#E6DACA', slate: '#45506A', crimson: '#8A1D3A', pine: '#2F4A3F', night: '#1F2438' }[tone];
   return (
     <div className={cn('relative overflow-hidden', className)} style={{ background: bg }}>
       <XtsyMark className="absolute -right-[12%] -top-[14%] h-[70%] w-[70%] opacity-[0.12]" fill="#F4EFE8" />
       {src && !failed && (
         <img
-          src={src}
+          src={opt?.src ?? src}
+          srcSet={opt?.srcSet}
+          sizes={opt ? sizes : undefined}
+          width={opt?.w}
+          height={opt?.h}
           alt={alt}
           loading={eager ? 'eager' : 'lazy'}
+          fetchPriority={eager ? 'high' : undefined}
           decoding="async"
           onError={() => setFailed(true)}
           className="absolute inset-0 h-full w-full object-cover"
+          style={position ? { objectPosition: position } : undefined}
         />
       )}
       {children}

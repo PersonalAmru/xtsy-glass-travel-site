@@ -7,17 +7,38 @@
  * "bucket/Filename" keys to their public CDN URLs.
  */
 import { CDN_IMAGE_MAP } from './cdnImageMap';
+import { OPTIMIZED_IMAGES } from './optimizedImages';
 
 const PLACEHOLDER = '/placeholder.svg';
 
-/** Resolve a single "bucket/Filename" key to its CDN URL (falls back to placeholder). */
+type Opt = { w: number; h: number; srcs: [number, string][] };
+const defaultSrc = (o: Opt) => (o.srcs.find(([w]) => w >= 1280) ?? o.srcs[o.srcs.length - 1])[1];
+/** Look-up by CDN path or by the default WebP path. */
+const BY_ANY: Record<string, Opt> = {};
+for (const [p, o] of Object.entries(OPTIMIZED_IMAGES)) { if (o.srcs.length) { BY_ANY[p] = o; BY_ANY[defaultSrc(o)] = o; } }
+
+/**
+ * The CDN serves the original phone photos (often 2–7 MB). When the optimiser
+ * has made WebP versions, hand out the ~1280 px one instead.
+ */
+const best = (p: string) => (OPTIMIZED_IMAGES[p]?.srcs.length ? defaultSrc(OPTIMIZED_IMAGES[p]) : p);
+
+/** Resolve a single "bucket/Filename" key to its (optimised) URL (falls back to placeholder). */
 export function cdn(key: string): string {
-  return CDN_IMAGE_MAP[key] ?? PLACEHOLDER;
+  const p = CDN_IMAGE_MAP[key];
+  return p ? best(p) : PLACEHOLDER;
 }
 
 /** Resolve many keys; drops any that don't resolve to a real asset. */
 export function cdnMany(keys: string[]): string[] {
-  return keys.map((k) => CDN_IMAGE_MAP[k]).filter((u): u is string => Boolean(u));
+  return keys.map((k) => CDN_IMAGE_MAP[k]).filter((u): u is string => Boolean(u)).map(best);
+}
+
+/** srcset data for an image URL returned by cdn(), or null if it has no WebP versions. */
+export function responsiveImage(src?: string): { src: string; srcSet: string; w: number; h: number } | null {
+  const o = src ? BY_ANY[src] : undefined;
+  if (!o) return null;
+  return { src: defaultSrc(o), srcSet: o.srcs.map(([w, u]) => `${u} ${w}w`).join(', '), w: o.w, h: o.h };
 }
 
 /** True when a key resolves to a real uploaded asset. */

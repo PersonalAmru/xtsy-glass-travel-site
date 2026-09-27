@@ -3,7 +3,7 @@
  */
 import { Helmet } from 'react-helmet-async';
 import SEOHead from '@/components/SEOHead';
-import { IMG, first } from '@/data/v2Images';
+import { COVERS } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FaqList, Breadcrumbs, PAD } from '@/components/v2/blocks';
 import { EnquiryForm } from '@/components/v2/EnquiryForm';
 import { Photo, waLink } from '@/components/v2/primitives';
@@ -70,7 +70,7 @@ export default function GroupsV2() {
           title="One team for the whole group."
           text="Custom group tour packages, corporate offsites, whole-dorm stays at XTSY Travellers Hostel and group catering by TAB Bistro. Quote within ~1 hour · per-person group rates · direct booking saves 20–30% vs OTAs."
           actions={<><Btn to={GROUP_WA}>Get a group quote</Btn><Btn to="/book" kind="outline">Book a group stay</Btn></>}
-          media={<Photo src={IMG.mixedDorm[0] ?? first(IMG.property)} alt="Dorms at XTSY Travellers Hostel, New Shillong Township" eager tone="sand" className="aspect-[628/520] rounded-[32px]" />}
+          media={<Photo src={COVERS.groups} alt="The games room at XTSY Travellers Hostel, New Shillong Township" eager tone="sand" className="aspect-[628/520] rounded-[32px]" />}
         />
 
         <Section>

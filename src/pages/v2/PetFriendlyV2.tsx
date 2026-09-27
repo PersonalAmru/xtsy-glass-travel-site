@@ -8,7 +8,7 @@ import { useState } from 'react';
 import SEOHead from '@/components/SEOHead';
 import WhatsAppBookingForm from '@/components/WhatsAppBookingForm';
 import { Button } from '@/components/ui/button';
-import { IMG, first } from '@/data/v2Images';
+import { COVERS } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FaqList, PAD } from '@/components/v2/blocks';
 import { Photo, Eyebrow } from '@/components/v2/primitives';
 
@@ -55,7 +55,7 @@ export default function PetFriendlyV2() {
           }
           text="Cats and birds are most welcome. Dogs too, depending on breed and size. Please contact the XTSY desk about any additional charges. Our team can also sort the paperwork for pet travel in India or abroad."
           actions={<><Button onClick={() => setBookingOpen(true)}>Book via WhatsApp</Button><Btn to="/book" kind="outline">See rooms</Btn></>}
-          media={<Photo src={IMG.property[1] ?? first(IMG.property)} alt="The pines around XTSY Travellers Hostel" eager tone="pine" className="aspect-[628/560] rounded-[32px]" />}
+          media={<Photo src={COVERS.pet} alt="The terrace and pines at XTSY Travellers Hostel, where pets are welcome" eager tone="pine" className="aspect-[628/560] rounded-[32px]" />}
         />
 
         <Section>
@@ -93,8 +93,8 @@ export default function PetFriendlyV2() {
         </section>
 
         <section className={`${PAD} grid gap-6 pb-10 sm:grid-cols-3`}>
-          {[IMG.property[2], IMG.property[1], first(IMG.bistro)].map((src, i) => (
-            <Photo key={`${src}-${i}`} src={src} alt={['XTSY Travellers Hostel grounds', 'Around the hostel in New Shillong Township', 'TAB Bistro by XTSY'][i]} tone={(['sand', 'pine', 'crimson'] as const)[i]} className="xt-reveal aspect-[421/300] rounded-3xl" />
+          {COVERS.petGallery.map((src, i) => (
+            <Photo key={`${src}-${i}`} src={src} alt={['The terrace with hammock and chairs at XTSY', 'The pine-lined road outside XTSY in New Shillong', 'Prayer flags over the hills from the XTSY terrace'][i]} tone={(['sand', 'pine', 'crimson'] as const)[i]} className="xt-reveal aspect-[421/300] rounded-3xl" />
           ))}
         </section>
 

@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import SEOHead, { getSEOConfig } from '@/components/SEOHead';
 import { Link } from '@/lib/router-compat';
 import neitaCertificate from '@/assets/neita-award-certificate.jpeg';
-import { IMG, first } from '@/data/v2Images';
+import { COVERS } from '@/data/v2Images';
 import { PageShell, PageHero, Section, H2, StatRow, SplitFeature, PAD, Btn } from '@/components/v2/blocks';
 import { Photo, Eyebrow, XtsyMark, SpinningMark } from '@/components/v2/primitives';
 import { inr, lowestDormPrice } from '@/components/v2/pricing';
@@ -47,7 +47,7 @@ export default function AboutV2() {
           size="md"
           decoration={<SpinningMark className="-right-40 -top-32 h-[620px] w-[620px] opacity-[0.06]" />}
           text="XTSY is one home in the pines of New Shillong, with food and journeys that reach across the Northeast through trusted travel partners. We want Indian travel to feel personal, well designed and worth talking about."
-          media={<Photo src={first(IMG.property)} alt="XTSY Travellers Hostel, New Shillong Township" eager tone="pine" className="aspect-[628/520] rounded-[32px]" />}
+          media={<Photo src={COVERS.about} alt="XTSY Travellers Hostel, New Shillong Township" eager tone="pine" className="aspect-[628/520] rounded-[32px]" />}
         />
 
         <section className={`${PAD} pt-16`}>

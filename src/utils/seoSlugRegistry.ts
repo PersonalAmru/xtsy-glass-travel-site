@@ -41,6 +41,7 @@ export const STATIC_ROUTES: ReadonlyArray<string> = [
   '/motorbike-expedition-northeast-india',
   '/4x4-expedition-meghalaya',
   '/merch',
+  '/plan-trip-with-ai',
   '/group-bookings-meghalaya',
   '/meghalaya-couple-tour-package',
   '/shillong-tour-package',
