@@ -10,7 +10,7 @@ import path from 'path';
 const BASE = process.env.BASE_URL || 'http://localhost:8080';
 const OUT = process.env.OUT_DIR || 'shots';
 const ROUTES = (process.env.ROUTES ||
-  '/places-to-visit/nohkalikai-falls,/places-to-visit/umiam-lake,/meghalaya-waterfalls,/meghalaya-caves,/destinations/meghalaya/shillong/umiam-lake'
+  '/,/merch,/places-to-visit/dawki-umngot-river,/meghalaya-villages,/tours,/xtsy-270,/auth,/book'
 ).split(',');
 
 const VIEWPORTS = [
