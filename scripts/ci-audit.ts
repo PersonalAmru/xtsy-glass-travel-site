@@ -54,7 +54,8 @@ async function imageAudit(page: Page) {
 async function perfAudit() {
   const browser = await chromium.launch();
   const results: unknown[] = [];
-  for (const route of PERF_ROUTES) {
+  const targets: [string, string][] = [...PERF_ROUTES.map((r) => [BASE, r] as [string, string]), ...(process.env.BASELINE_URL ? [[process.env.BASELINE_URL, '/'] as [string, string]] : [])];
+  for (const [base, route] of targets) {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
     await ctx.route('**/__l5e/**', async (r) => {
       try {
@@ -96,7 +97,7 @@ async function perfAudit() {
     const t0 = Date.now();
     let status = 0;
     try {
-      const res = await page.goto(BASE + route, { waitUntil: 'load', timeout: 120000 });
+      const res = await page.goto(base + route, { waitUntil: 'load', timeout: 120000 });
       status = res?.status() ?? 0;
       await page.waitForTimeout(6000);
       const data = await page.evaluate(() => {
@@ -115,7 +116,7 @@ async function perfAudit() {
       for (const k of Object.keys(byType)) byType[k].kb = Math.round(byType[k].kb);
       const biggest = [...reqs].sort((a, b) => b.bytes - a.bytes).slice(0, 12).map((r) => ({ ...r, kb: Math.round(r.bytes / 1024) }));
       const lcpList = data.lcp as { t: number }[];
-      results.push({ route, status, wallMs: Date.now() - t0, ttfb: data.ttfb, fcp: data.fcp, lcp: lcpList[lcpList.length - 1] ?? null, lcpCandidates: lcpList, cls: Number(data.cls.toFixed(3)), requests: reqs.length, byType, biggest });
+      results.push({ route: base === BASE ? route : `${base}${route}`, status, wallMs: Date.now() - t0, ttfb: data.ttfb, fcp: data.fcp, lcp: lcpList[lcpList.length - 1] ?? null, lcpCandidates: lcpList, cls: Number(data.cls.toFixed(3)), requests: reqs.length, byType, biggest });
     } catch (e) {
       results.push({ route, status, error: String(e) });
     }

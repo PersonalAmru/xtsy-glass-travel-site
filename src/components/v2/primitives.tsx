@@ -3,7 +3,7 @@
  */
 import { useState, type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import { OPTIMIZED_IMAGES } from '@/data/optimizedImages';
+import { responsiveImage } from '@/data/cdnImages';
 
 export const XTSY_MARK_PATH =
   'M22.32,0 L0,22.36 L18.68,41.10 L25.28,34.52 L13.13,22.36 L22.32,13.15 L54.14,44.99 L48.97,50.16 L55.53,56.74 L67.29,45.01 Z M71.29,48.93 L64.70,55.48 L76.87,67.67 L67.68,76.85 L35.86,44.99 L41.03,39.81 L34.47,33.23 L22.71,44.93 L67.68,90 L90,67.64 Z M22.32,76.85 L13.13,67.64 L25.28,55.48 L18.74,48.88 L0,67.64 L22.32,90 L41.03,71.26 L34.47,64.68 Z M90,22.36 L67.68,0 L48.99,18.74 L55.53,25.32 L67.68,13.15 L76.87,22.36 L64.75,34.49 L71.29,41.07 Z';
@@ -69,13 +69,7 @@ export function SectionHead({
  * XTSY mark on a tinted panel instead of a broken-image icon.
  */
 /** Responsive WebP versions of a Lovable CDN photo, when the optimiser has made them. */
-export function responsive(src?: string): { src: string; srcSet: string; w: number; h: number } | null {
-  if (!src) return null;
-  const o = OPTIMIZED_IMAGES[src];
-  if (!o || !o.srcs.length) return null;
-  const mid = o.srcs.find(([w]) => w >= 1280) ?? o.srcs[o.srcs.length - 1];
-  return { src: mid[1], srcSet: o.srcs.map(([w, u]) => `${u} ${w}w`).join(', '), w: o.w, h: o.h };
-}
+export const responsive = responsiveImage;
 
 export function Photo({
   src,

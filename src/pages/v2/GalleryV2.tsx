@@ -5,7 +5,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import SEOHead from '@/components/SEOHead';
 import { ROOM_IMAGES } from '@/config/roomTypes';
-import { CDN_IMAGE_MAP } from '@/data/cdnImages';
+import { CDN_IMAGE_MAP, responsiveImage } from '@/data/cdnImages';
 import { PageShell, PAD } from '@/components/v2/blocks';
 import { SpinningMark } from '@/components/v2/primitives';
 
@@ -82,14 +82,14 @@ export default function GalleryV2() {
           <div id="gallery" className="columns-2 gap-4 sm:columns-3 lg:columns-4">
             {list.map((s, i) => (
               <button key={s.src} type="button" onClick={() => setOpen(i)} className="xt-lift mb-4 block w-full overflow-hidden rounded-2xl bg-xt-cream p-0" aria-label={`Open photo: ${s.alt}`}>
-                <img src={s.src} alt={s.alt} loading={i < 8 ? 'eager' : 'lazy'} decoding="async" className="block h-auto w-full" />
+                <img src={responsiveImage(s.src)?.src ?? s.src} srcSet={responsiveImage(s.src)?.srcSet} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" alt={s.alt} loading={i < 6 ? 'eager' : 'lazy'} decoding="async" className="block h-auto w-full" />
               </button>
             ))}
           </div>
         </section>
         {open !== null && list[open] && (
           <div role="dialog" aria-modal="true" aria-label={list[open].alt} className="fixed inset-0 z-[70] flex items-center justify-center bg-black/90 p-4" onClick={() => setOpen(null)}>
-            <img src={list[open].src} alt={list[open].alt} className="max-h-[86vh] max-w-full rounded-xl object-contain" onClick={(e) => e.stopPropagation()} />
+            <img src={responsiveImage(list[open].src)?.src ?? list[open].src} alt={list[open].alt} className="max-h-[86vh] max-w-full rounded-xl object-contain" onClick={(e) => e.stopPropagation()} />
             <button type="button" aria-label="Close" onClick={() => setOpen(null)} className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-white text-xt-ink">✕</button>
             <button type="button" aria-label="Previous photo" onClick={(e) => { e.stopPropagation(); setOpen((open - 1 + list.length) % list.length); }} className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xt-ink">‹</button>
             <button type="button" aria-label="Next photo" onClick={(e) => { e.stopPropagation(); setOpen((open + 1) % list.length); }} className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xt-ink">›</button>
