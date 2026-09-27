@@ -353,7 +353,7 @@ computing gzip size...
 - Using dynamic import() to code-split the application
 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 4.75s[39m
+[32m✓ built in 5.46s[39m
 [36mvite v8.2.1 [32mbuilding ssr environment for production...[36m[39m
 [2Ktransforming...✓ 652 modules transformed.
 rendering chunks...
@@ -592,7 +592,17 @@ node_modules/.nitro/vite/services/ssr/assets/router-D3Th6vfG.js                 
 
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 2.50s[39m
+[32m✓ built in 3.35s[39m
+[33m[33m[PLUGIN_TIMINGS] [0mYour build spent 89% of 3.3s inside plugin hooks (2.9s).
+Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
+  - @tailwindcss/vite:generate:build transform (33%, 1.1s, 1 call)
+Those rows are 33% of the build; the rest of the 89% is below.
+Not measurable — 3 hooks whose calls overlap, so elapsed time covers work other calls were doing. Profile with `node --cpu-prof`:
+  - tanstack-start-core:import-protection resolveId (2601 calls)
+  - vite:asset load (41 calls)
+  - tanstack-start-core::server-fn:ssr transform (15 calls)
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+[39m
 [start] [nitro] Building [[35mNitro[39m] [2m(preset: `cloudflare-module`, compatibility: `2026-09-27`)[22m
 [success] [nitro] Generated public [36m.output/public[39m
 [36mvite v8.2.1 [32mbuilding nitro environment for production...[36m[39m
@@ -841,7 +851,7 @@ computing gzip size...
 .output/server/_ssr/pet-friendly-B2VJf7Yu.mjs                             87.71 kB │ gzip:  16.39 kB
 .output/server/_libs/tailwind-merge.mjs                                   88.13 kB │ gzip:  15.66 kB
 .output/server/_libs/lucide-react.mjs                                     89.95 kB │ gzip:  16.92 kB
-.output/server/index.mjs                                                  95.52 kB │ gzip:  21.22 kB
+.output/server/index.mjs                                                  95.52 kB │ gzip:  21.27 kB
 .output/server/_libs/zod.mjs                                              99.99 kB │ gzip:  17.26 kB
 .output/server/_libs/supabase__postgrest-js.mjs                          105.54 kB │ gzip:  21.68 kB
 .output/server/_libs/@supabase/storage-js+[...].mjs                      119.62 kB │ gzip:  22.37 kB
@@ -857,7 +867,7 @@ computing gzip size...
 .output/server/_libs/@tanstack/react-router+[...].mjs                    647.60 kB │ gzip: 136.81 kB
 .output/server/_ssr/router-D3Th6vfG.mjs                                1,453.90 kB │ gzip: 345.11 kB
 
-[32m✓ built in 1.80s[39m
+[32m✓ built in 2.89s[39m
 [info] [nitro] Using auto generated worker name: `personalamru-xtsy-glass-travel-site`
 [info] Generated [36m.output/server/wrangler.json[39m
 [info] Generated [36m.wrangler/deploy/config.json[39m
