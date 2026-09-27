@@ -78,8 +78,13 @@ async function perfAudit() {
           (window as unknown as { __lcp: unknown[] }).__lcp.push({ t: Math.round(x.startTime), size: x.size, url: x.url, tag: el?.tagName, cls: (el as HTMLElement | undefined)?.className?.toString().slice(0, 120), text: el?.textContent?.slice(0, 60) });
         }
       }).observe({ type: 'largest-contentful-paint', buffered: true });
+      (window as unknown as { __shifts: unknown[] }).__shifts = [];
       new PerformanceObserver((l) => {
-        for (const e of l.getEntries() as unknown as { value: number; hadRecentInput: boolean }[]) if (!e.hadRecentInput) (window as unknown as { __cls: number }).__cls += e.value;
+        for (const e of l.getEntries() as unknown as { value: number; hadRecentInput: boolean; startTime: number; sources?: { node?: Element }[] }[]) {
+          if (e.hadRecentInput) continue;
+          (window as unknown as { __cls: number }).__cls += e.value;
+          (window as unknown as { __shifts: unknown[] }).__shifts.push({ v: Number(e.value.toFixed(4)), t: Math.round(e.startTime), nodes: (e.sources ?? []).map((s) => s.node ? `${s.node.nodeName}.${String((s.node as HTMLElement).className ?? '').slice(0, 80)}` : '?') });
+        }
       }).observe({ type: 'layout-shift', buffered: true });
     });
     const page = await ctx.newPage();
@@ -106,6 +111,7 @@ async function perfAudit() {
         return {
           lcp: (window as unknown as { __lcp: unknown[] }).__lcp,
           cls: (window as unknown as { __cls: number }).__cls,
+          shifts: (window as unknown as { __shifts: unknown[] }).__shifts,
           ttfb: nav ? Math.round(nav.responseStart) : null,
           fcp: fcp ? Math.round(fcp.startTime) : null,
           domContentLoaded: nav ? Math.round(nav.domContentLoadedEventEnd) : null,
@@ -116,7 +122,7 @@ async function perfAudit() {
       for (const k of Object.keys(byType)) byType[k].kb = Math.round(byType[k].kb);
       const biggest = [...reqs].sort((a, b) => b.bytes - a.bytes).slice(0, 12).map((r) => ({ ...r, kb: Math.round(r.bytes / 1024) }));
       const lcpList = data.lcp as { t: number }[];
-      results.push({ route: base === BASE ? route : `${base}${route}`, status, wallMs: Date.now() - t0, ttfb: data.ttfb, fcp: data.fcp, lcp: lcpList[lcpList.length - 1] ?? null, lcpCandidates: lcpList, cls: Number(data.cls.toFixed(3)), requests: reqs.length, byType, biggest });
+      results.push({ route: base === BASE ? route : `${base}${route}`, status, wallMs: Date.now() - t0, ttfb: data.ttfb, fcp: data.fcp, lcp: lcpList[lcpList.length - 1] ?? null, lcpCandidates: lcpList, cls: Number(data.cls.toFixed(3)), shifts: data.shifts, requests: reqs.length, byType, biggest });
     } catch (e) {
       results.push({ route, status, error: String(e) });
     }

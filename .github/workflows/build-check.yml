@@ -92,7 +92,9 @@ jobs:
           ls .output/server 2>/dev/null | head || true
           if [ -f .output/server/index.mjs ]; then (PORT=4173 node .output/server/index.mjs > prod.log 2>&1 &); fi
           for i in $(seq 1 30); do curl -sf -o /dev/null http://localhost:4173/ && break; sleep 2; done
-          if curl -sf -o /dev/null http://localhost:4173/; then echo "PROD_URL=http://localhost:4173" >> "$GITHUB_ENV"; echo "PERF_SERVER=production" >> "$GITHUB_ENV"; else echo "PROD_URL=http://localhost:8080" >> "$GITHUB_ENV"; echo "PERF_SERVER=dev" >> "$GITHUB_ENV"; fi
+          (node scripts/ci-compress-proxy.mjs > proxy.log 2>&1 &)
+          sleep 2
+          if curl -sf -o /dev/null http://localhost:4174/; then echo "PROD_URL=http://localhost:4174" >> "$GITHUB_ENV"; echo "PERF_SERVER=production+brotli" >> "$GITHUB_ENV"; else echo "PROD_URL=http://localhost:8080" >> "$GITHUB_ENV"; echo "PERF_SERVER=dev" >> "$GITHUB_ENV"; fi
 
       - name: Image + performance audit
         continue-on-error: true
