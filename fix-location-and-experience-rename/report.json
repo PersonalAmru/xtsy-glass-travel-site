@@ -1,0 +1,459 @@
+[
+  {
+    "route": "/",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-home.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ]
+  },
+  {
+    "route": "/best-hostel-in-shillong",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-best-hostel-in-shillong.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/xtsy-270",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-xtsy-270.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/book",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-book.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ]
+  },
+  {
+    "route": "/faq",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-faq.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/hostel-near-me",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-hostel-near-me.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/pet-friendly",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-pet-friendly.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/tours",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-tours.png",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-about.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-contact.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/tab-bistro",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-tab-bistro.png",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/hostel-in-gangtok-today",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-hostel-in-gangtok-today.png",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-home.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/best-hostel-in-shillong",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-best-hostel-in-shillong.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/xtsy-270",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-xtsy-270.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/book",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-book.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ]
+  },
+  {
+    "route": "/faq",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-faq.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/hostel-near-me",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-hostel-near-me.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/pet-friendly",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-pet-friendly.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/tours",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-tours.png",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/about",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-about.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-contact.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/tab-bistro",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-tab-bistro.png",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/hostel-in-gangtok-today",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-hostel-in-gangtok-today.png",
+    "errors": [
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /things-to-do-in-meghalaya",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  }
+]
