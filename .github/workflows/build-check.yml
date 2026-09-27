@@ -72,6 +72,25 @@ jobs:
           BASE_URL: http://localhost:8080
           OUT_DIR: shots
 
+      - name: Production server for the performance audit
+        continue-on-error: true
+        run: |
+          NITRO_PRESET=node-server bun run build > build-node.log 2>&1 || true
+          ls .output/server 2>/dev/null | head || true
+          if [ -f .output/server/index.mjs ]; then (PORT=4173 node .output/server/index.mjs > prod.log 2>&1 &); fi
+          for i in $(seq 1 30); do curl -sf -o /dev/null http://localhost:4173/ && break; sleep 2; done
+          if curl -sf -o /dev/null http://localhost:4173/; then echo "PROD_URL=http://localhost:4173" >> "$GITHUB_ENV"; echo "PERF_SERVER=production" >> "$GITHUB_ENV"; else echo "PROD_URL=http://localhost:8080" >> "$GITHUB_ENV"; echo "PERF_SERVER=dev" >> "$GITHUB_ENV"; fi
+
+      - name: Image + performance audit
+        continue-on-error: true
+        run: |
+          bunx tsx scripts/ci-audit.ts
+          mkdir -p shots/audit && echo "${PERF_SERVER:-unknown}" > shots/audit/server.txt
+          cp build-node.log prod.log shots/audit/ 2>/dev/null || true
+        env:
+          BASE_URL: ${{ env.PROD_URL }}
+          OUT_DIR: shots
+
       - name: Publish screenshots to ci-screenshots branch
         if: always()
         run: |
