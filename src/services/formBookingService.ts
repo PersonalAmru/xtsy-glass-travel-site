@@ -22,6 +22,8 @@ interface WhatsAppBookingData {
   totalAmount: number;
   subtotal: number;
   taxes: number;
+  breakfast: boolean;
+  decoration: boolean;
 }
 
 interface XTSY270BookingData {
@@ -76,8 +78,8 @@ export async function saveWhatsAppBooking(data: WhatsAppBookingData) {
       p_guests: data.guests,
       p_room_ids: data.selectedRooms.map(r => r.roomTypeId),
       p_quantities: data.selectedRooms.map(r => r.quantity),
-      p_breakfast: data.specialRequests.includes('Stay + breakfast for 2'),
-      p_decoration: data.specialRequests.includes('Decoration: ₹2,500'),
+      p_breakfast: data.breakfast,
+      p_decoration: data.decoration,
       p_subtotal: data.subtotal,
       p_taxes: data.taxes,
       p_total: data.totalAmount,

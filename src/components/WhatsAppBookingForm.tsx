@@ -462,6 +462,8 @@ Looking forward to hearing from you. Thank you! 🌟`;
       totalAmount: finalAmount || 0,
       subtotal: subtotalAmount - discountAmount,
       taxes: getGst(),
+      breakfast: panoramaBreakfast,
+      decoration: panoramaDecoration,
     });
     if (!result.success) {
       setIsSubmitting(false);
