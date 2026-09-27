@@ -30,6 +30,7 @@ import { Route as CheapHostelsShillongRouteImport } from './routes/cheap-hostels
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DestinationWeddingShillongRouteImport } from './routes/destination-wedding-shillong'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as MerchRouteImport } from './routes/merch'
 import { Route as FemaleTravellersRouteImport } from './routes/female-travellers'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as GroupBookingsMeghalayaRouteImport } from './routes/group-bookings-meghalaya'
@@ -232,6 +233,11 @@ const DestinationWeddingShillongRoute =
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MerchRoute = MerchRouteImport.update({
+  id: '/merch',
+  path: '/merch',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FemaleTravellersRoute = FemaleTravellersRouteImport.update({
@@ -745,6 +751,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
+  '/merch': typeof MerchRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -863,6 +870,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
+  '/merch': typeof MerchRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -982,6 +990,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
+  '/merch': typeof MerchRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -1102,6 +1111,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/destination-wedding-shillong'
     | '/faq'
+    | '/merch'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1220,6 +1230,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/destination-wedding-shillong'
     | '/faq'
+    | '/merch'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1338,6 +1349,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/destination-wedding-shillong'
     | '/faq'
+    | '/merch'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1457,6 +1469,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DestinationWeddingShillongRoute: typeof DestinationWeddingShillongRoute
   FaqRoute: typeof FaqRoute
+  MerchRoute: typeof MerchRoute
   FemaleTravellersRoute: typeof FemaleTravellersRoute
   GalleryRoute: typeof GalleryRoute
   GroupBookingsMeghalayaRoute: typeof GroupBookingsMeghalayaRoute
@@ -1701,6 +1714,13 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/merch': {
+      id: '/merch'
+      path: '/merch'
+      fullPath: '/merch'
+      preLoaderRoute: typeof MerchRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/female-travellers': {
@@ -2393,6 +2413,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DestinationWeddingShillongRoute: DestinationWeddingShillongRoute,
   FaqRoute: FaqRoute,
+  MerchRoute: MerchRoute,
   FemaleTravellersRoute: FemaleTravellersRoute,
   GalleryRoute: GalleryRoute,
   GroupBookingsMeghalayaRoute: GroupBookingsMeghalayaRoute,

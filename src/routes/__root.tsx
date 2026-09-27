@@ -344,7 +344,9 @@ RouteBoundary.displayName = "RouteBoundary";
 
 function RootComponent() {
   const pathname = useLocation().pathname;
-  const isGuestPage = !/^\/(admin(?:\/|$)|admin-login(?:\/|$)|franchise(?:\/|$)|auth(?:\/|$)|profile(?:\/|$)|install(?:\/|$)|unsubscribe(?:\/|$)|\.lovable(?:\/|$)|api(?:\/|$))/.test(pathname);
+  // Every guest-facing surface (pages, account, consent, chat) uses the light
+  // 2026 palette; admin and franchise consoles keep the dark theme.
+  const isGuestPage = !/^\/(admin(?:\/|$)|admin-login(?:\/|$)|franchise(?:\/|$)|\.lovable(?:\/|$)|api(?:\/|$))/.test(pathname);
   // Recover from stale hashed chunks after a deploy (blank screen +
   // "Importing a module script failed"). Must run before anything lazy-loads.
   installChunkRecovery();
@@ -376,7 +378,7 @@ function RootComponent() {
             enableHSTS: import.meta.env.MODE === "production",
           }}
         >
-          <div className="dark" id="main-content">
+          <div className={isGuestPage ? "dark public-design" : "dark"} id="main-content">
             <ClientOnly fallback={null}>
               <PerformanceMonitor />
             </ClientOnly>
