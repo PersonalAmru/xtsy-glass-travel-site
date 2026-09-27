@@ -31,7 +31,7 @@ $ vite build
 [36mvite v8.2.1 [32mbuilding client environment for production...[36m[39m
 [2Ktransforming...✓ 4948 modules transformed.
 rendering chunks...
-[31m✗[39m Build failed in 4.58s
+[31m✗[39m Build failed in 4.80s
 [31merror during build:
 [31mBuild failed with 1 error:
 
