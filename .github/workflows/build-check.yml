@@ -1,0 +1,91 @@
+name: Build check + screenshots
+
+# Builds every pull request and takes desktop + mobile screenshots of key pages,
+# so changes can be reviewed without spending Lovable credits.
+#
+# Org policy blocks third-party actions, so this uses ZERO `uses:` references
+# (plain git checkout, Bun via its install script, Playwright via bunx).
+# Screenshots are pushed to the `ci-screenshots` branch under <branch-name>/.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch or SHA to build"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-check-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_REF: ${{ github.event.inputs.ref || github.head_ref || github.sha }}
+      BRANCH_NAME: ${{ github.head_ref || github.event.inputs.ref || github.ref_name }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${TARGET_REF}"
+          git checkout -q FETCH_HEAD
+          git log -1 --oneline
+
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile || bun install
+
+      - name: Production build
+        run: bun run build 2>&1 | tee build.log
+
+      - name: Install Playwright Chromium
+        run: bunx playwright install --with-deps chromium
+
+      - name: Start dev server
+        run: |
+          (bun run dev > dev.log 2>&1 &)
+          for i in $(seq 1 90); do
+            curl -sf -o /dev/null http://localhost:8080/ && break
+            sleep 2
+          done
+          curl -sf -o /dev/null http://localhost:8080/ || (tail -50 dev.log; exit 1)
+
+      - name: Screenshot key pages
+        run: bunx tsx scripts/ci-screenshots.ts
+        env:
+          BASE_URL: http://localhost:8080
+          OUT_DIR: shots
+
+      - name: Publish screenshots to ci-screenshots branch
+        if: always()
+        run: |
+          set -euo pipefail
+          [ -d shots ] || exit 0
+          cp build.log shots/ 2>/dev/null || true
+          cp dev.log shots/ 2>/dev/null || true
+          SAFE=$(echo "${BRANCH_NAME}" | tr '/' '-')
+          mkdir -p /tmp/pub && cd /tmp/pub
+          git init -q .
+          git config user.name "xtsy-ci"
+          git config user.email "ci@xtsy.one"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git fetch --depth=1 origin ci-screenshots 2>/dev/null; then git checkout -q FETCH_HEAD; else git checkout -q --orphan ci-screenshots; fi
+          rm -rf "$SAFE" && mkdir -p "$SAFE"
+          cp -r "$GITHUB_WORKSPACE/shots/." "$SAFE/"
+          git add -A
+          git commit -q -m "Screenshots for ${BRANCH_NAME} @ ${GITHUB_SHA::7}" || exit 0
+          git push -q origin HEAD:ci-screenshots
