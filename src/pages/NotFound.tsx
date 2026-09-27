@@ -3,11 +3,9 @@ import { Link, useLocation, useNavigate } from "@/lib/router-compat";
 import { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { SEOHead } from "@/components/SEOHead";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Home, MapPin, Search, RefreshCw, MessageCircle, Phone, ArrowRight } from "lucide-react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import SiteHeader from "@/components/v2/SiteHeader";
+import SiteFooter from "@/components/v2/SiteFooter";
+import { SpinningMark } from "@/components/v2/primitives";
 import { GONE_SLUGS } from "@/data/seoGoneSlugs";
 import { useGoneStatus } from "@/hooks/useGoneStatus";
 import { meghalayaDestinations, getDestinationImages } from "@/data/meghalayaDestinations";
@@ -106,7 +104,7 @@ const NotFound = ({ statusCode }: NotFoundProps) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="xt min-h-screen">
       <Helmet>
         {/* Prerender + edge-layer hint to return correct HTTP status to crawlers */}
         <meta name="prerender-status-code" content={String(finalStatus)} />
@@ -123,99 +121,73 @@ const NotFound = ({ statusCode }: NotFoundProps) => {
         noIndex
       />
 
-      <Header />
+      <SiteHeader />
 
-      <main className="flex-1 px-4 py-12">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-7xl md:text-8xl font-bold text-primary mb-2">{finalStatus}</p>
-          <h1 className="text-2xl md:text-3xl font-semibold text-foreground mb-3">
-            {isGone ? "This page has been removed" : "We couldn't find that page"}
-          </h1>
-          <p className="text-muted-foreground mb-8">
-            {isGone ? (
-              <>The page <code className="px-1 py-0.5 bg-muted rounded text-sm">{location.pathname}</code> is no longer available. Try a search or one of the popular pages below.</>
-            ) : (
-              <>The page <code className="px-1 py-0.5 bg-muted rounded text-sm">{location.pathname}</code> doesn't exist or has been moved. Search below or pick a destination.</>
+      <main>
+        <section className="relative overflow-hidden bg-xt-slate px-4 py-20 text-xt-paper sm:px-8 lg:px-16 lg:py-28">
+          <SpinningMark fill="#F4EFE8" className="-right-24 -top-24 h-[520px] w-[520px] opacity-[0.07]" />
+          <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-5 text-center">
+            <div className="xt-in xt-eyebrow text-[15px] text-xt-rose! sm:text-[18px]">{finalStatus} · {isGone ? "removed" : "lost in the clouds"}</div>
+            <h1 className="xt-in xt-d1 xt-display m-0 text-[56px] leading-[0.9] sm:text-[96px]">
+              {isGone ? "This page has been removed." : "This trail doesn’t go anywhere."}
+            </h1>
+            <p className="xt-in xt-d2 m-0 text-[17px] leading-relaxed text-xt-fog">
+              <code className="rounded bg-white/10 px-1.5 py-0.5 text-[14px]">{location.pathname}</code>{" "}
+              {isGone ? "is no longer available." : "moved or never existed."} These will get you back on the road.
+            </p>
+
+            <form onSubmit={handleSearch} className="xt-in xt-d3 relative w-full max-w-xl">
+              <label htmlFor="nf-search" className="sr-only">Search the site</label>
+              <input
+                id="nf-search"
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search hostels, tours, destinations…"
+                className="h-14 w-full rounded-full border-0 bg-white pl-5 pr-32 text-[15px] text-xt-ink"
+              />
+              <button type="submit" className="absolute right-1.5 top-1.5 h-11 rounded-full bg-xt-crimson px-6 text-[15px] font-extrabold text-white">Search</button>
+            </form>
+
+            {results.length > 0 && (
+              <ul className="m-0 w-full max-w-xl list-none divide-y divide-xt-line overflow-hidden rounded-2xl bg-white p-0 text-left text-xt-ink">
+                {results.map((r) => (
+                  <li key={r.to}>
+                    <Link to={r.to} className="flex items-center justify-between px-5 py-3 text-[15px] font-bold hover:bg-xt-sand">
+                      <span>{r.label}</span><span aria-hidden="true">→</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             )}
-          </p>
 
-          {/* On-page search — filters live, always links to real pages */}
-          <form onSubmit={handleSearch} className="relative max-w-xl mx-auto mb-2">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search hostels, tours, destinations…"
-              aria-label="Search the site"
-              className="pl-10 pr-24 h-12"
-            />
-            <Button type="submit" size="sm" className="absolute right-1.5 top-1/2 -translate-y-1/2">
-              Search
-            </Button>
-          </form>
-
-          {results.length > 0 && (
-            <ul className="max-w-xl mx-auto mb-8 text-left rounded-lg border border-border bg-card divide-y divide-border overflow-hidden">
-              {results.map((r) => (
-                <li key={r.to}>
-                  <Link
-                    to={r.to}
-                    className="flex items-center justify-between px-4 py-3 text-sm text-foreground hover:bg-muted transition-colors"
-                  >
-                    <span>{r.label}</span>
-                    <ArrowRight className="h-4 w-4 text-muted-foreground" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center mb-10 mt-6">
-            {!isGone && (
-              <Button onClick={() => window.location.reload()} size="lg" variant="secondary">
-                <RefreshCw className="mr-2 h-4 w-4" /> Try Again
-              </Button>
-            )}
-            <Button asChild size="lg">
-              <Link to="/" aria-label="Go to homepage">
-                <Home className="mr-2 h-4 w-4" /> Homepage
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link to="/tours" aria-label="Browse tours">
-                <MapPin className="mr-2 h-4 w-4" /> Browse Tours
-              </Link>
-            </Button>
+            <div className="xt-in xt-d3 flex flex-wrap justify-center gap-3">
+              <Link to="/" className="xt-btn flex h-12 items-center rounded-full bg-xt-paper px-6 font-extrabold text-xt-ink">Home</Link>
+              <Link to="/book" className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-paper px-6 font-extrabold text-xt-paper">Book a room</Link>
+              <Link to="/tours" className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-paper px-6 font-extrabold text-xt-paper">Tours</Link>
+              {!isGone && (
+                <button type="button" onClick={() => window.location.reload()} className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-paper/40 px-6 font-extrabold text-xt-paper">Try again</button>
+              )}
+            </div>
           </div>
-        </div>
+        </section>
 
-        {/* Popular destinations grid — internal links preserve SEO context */}
         {popular.length > 0 && (
-          <section className="max-w-5xl mx-auto mt-4" aria-labelledby="popular-destinations">
-            <h2 id="popular-destinations" className="text-xl font-semibold text-foreground mb-5 text-center">
-              Popular destinations in Meghalaya
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <section className="px-4 py-16 sm:px-8 lg:px-16" aria-labelledby="popular-destinations">
+            <h2 id="popular-destinations" className="xt-display m-0 mb-6 text-[40px] leading-none sm:text-[56px]">Popular in Meghalaya</h2>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
               {popular.map((d) => (
                 <Link
                   key={d.slug}
                   to={destinationPath(d.slug)}
-                  className="group relative overflow-hidden rounded-xl border border-border bg-card aspect-[4/3] focus:outline-hidden focus:ring-2 focus:ring-primary"
+                  className="xt-lift group relative aspect-[4/3] overflow-hidden rounded-3xl bg-xt-pine"
                   aria-label={`Visit ${d.name} guide`}
                 >
-                  {d.img && (
-                    <img
-                      src={d.img}
-                      alt={`${d.name}, ${d.region}`}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  )}
+                  {d.img && <img src={d.img} alt={`${d.name}, ${d.region}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3 text-left">
-                    <p className="text-sm font-semibold text-white">{d.name}</p>
-                    <p className="text-xs text-white/80">{d.region}</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
+                    <p className="m-0 text-[16px] font-extrabold text-white">{d.name}</p>
+                    <p className="m-0 text-[13px] text-white/80">{d.region}</p>
                   </div>
                 </Link>
               ))}
@@ -223,41 +195,18 @@ const NotFound = ({ statusCode }: NotFoundProps) => {
           </section>
         )}
 
-        {/* Contact + secondary nav */}
-        <div className="max-w-3xl mx-auto text-center mt-12">
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
-            <Button asChild variant="outline" size="sm">
-              <a href="https://wa.me/918837317070" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-                <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp Us
-              </a>
-            </Button>
-            <Button asChild variant="outline" size="sm">
-              <a href="tel:+918837317070" aria-label="Call XTSY">
-                <Phone className="mr-2 h-4 w-4" /> Call +91 88373 17070
-              </a>
-            </Button>
-            <Button asChild variant="ghost" size="sm">
-              <Link to="/book" aria-label="Book direct">
-                Book Direct
-              </Link>
-            </Button>
-          </div>
-
-          <nav aria-label="Popular pages" className="text-sm">
-            <p className="text-muted-foreground mb-2">Or try these popular pages:</p>
-            <ul className="flex flex-wrap gap-x-4 gap-y-2 justify-center">
-              <li><Link to="/best-hostel-in-shillong" className="text-primary hover:underline">Best Hostel Shillong</Link></li>
-              <li><Link to="/meghalaya-tour-packages" className="text-primary hover:underline">Meghalaya Tours</Link></li>
-              <li><Link to="/things-to-do-in-meghalaya" className="text-primary hover:underline">Things to Do</Link></li>
-              <li><Link to="/tab-bistro" className="text-primary hover:underline">TAB Bistro</Link></li>
-              <li><Link to="/gallery" className="text-primary hover:underline">Gallery</Link></li>
-              <li><Link to="/about" className="text-primary hover:underline">About</Link></li>
-            </ul>
-          </nav>
-        </div>
+        <nav aria-label="Popular pages" className="px-4 pb-16 text-center sm:px-8 lg:px-16">
+          <ul className="m-0 flex list-none flex-wrap justify-center gap-x-5 gap-y-2 p-0 text-[15px] font-bold">
+            <li><Link to="/best-hostel-in-shillong" className="text-xt-crimson">Best hostel in Shillong</Link></li>
+            <li><Link to="/meghalaya-tour-packages" className="text-xt-crimson">Meghalaya tours</Link></li>
+            <li><Link to="/things-to-do-in-meghalaya" className="text-xt-crimson">Things to do</Link></li>
+            <li><Link to="/tab-bistro" className="text-xt-crimson">TAB Bistro</Link></li>
+            <li><Link to="/contact" className="text-xt-crimson">Contact</Link></li>
+          </ul>
+        </nav>
       </main>
 
-      <Footer />
+      <SiteFooter />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import About from "@/pages/About";
+import AboutV2 from "@/pages/v2/AboutV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/about")({
@@ -11,5 +11,5 @@ export const Route = createFileRoute("/about")({
         "XTSY Travellers Hostel, Shillong: Experience by XTSY, India's first stargaze glamp, NEITA 2025 nominated, 2.5 hrs from Guwahati airport. Read the story behind XTSY.",
       keywords: "XTSY about, biggest hostel northeast, Shillong hostel story, NEITA 2025",
     }),
-  component: About,
+  component: AboutV2,
 });

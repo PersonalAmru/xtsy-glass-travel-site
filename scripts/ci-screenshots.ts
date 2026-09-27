@@ -10,7 +10,7 @@ import path from 'path';
 const BASE = process.env.BASE_URL || 'http://localhost:8080';
 const OUT = process.env.OUT_DIR || 'shots';
 const ROUTES = (process.env.ROUTES ||
-  '/,/best-hostel-in-shillong,/xtsy-270,/book,/faq,/hostel-near-me,/pet-friendly,/tours,/about,/contact,/tab-bistro,/hostel-in-gangtok-today'
+  '/,/xtsy-270,/pet-friendly,/female-travellers,/work-from-home,/contact,/about,/faq,/this-page-does-not-exist,/book,/tours,/tab-bistro,/best-hostel-in-shillong'
 ).split(',');
 
 const VIEWPORTS = [

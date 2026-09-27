@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Contact from "@/pages/Contact";
+import ContactV2 from "@/pages/v2/ContactV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/contact")({
@@ -10,5 +10,5 @@ export const Route = createFileRoute("/contact")({
       description:
         "Reach XTSY Travellers Hostel Shillong on +91 8837317070, message us on WhatsApp, or find directions to New Shillong Township for check-in and group enquiries.",
     }),
-  component: Contact,
+  component: ContactV2,
 });
