@@ -32,7 +32,7 @@ const Footer = () => {
             <h3 className="font-semibold text-foreground text-sm mb-3">Stays</h3>
             <ul className="space-y-1.5">
               <li><Link to="/book" className={linkClass}>Book a Room</Link></li>
-              <li><Link to="/xtsy-270" className={linkClass}>270° Glass Suite</Link></li>
+              <li><Link to="/xtsy-270" className={linkClass}>Experience by XTSY</Link></li>
               <li><Link to="/pet-friendly" className={linkClass}>Pet-Friendly</Link></li>
               <li><Link to="/female-travellers" className={linkClass}>Women Safe Stays</Link></li>
               <li><Link to="/work-from-home" className={linkClass}>Workation</Link></li>

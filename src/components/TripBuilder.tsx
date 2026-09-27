@@ -15,6 +15,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
+import { createTourEnquiry } from '@/services/tourBookingService';
+
+const XTSY_WHATSAPP = '918837317070';
 
 // ── Duration options ──
 const DURATIONS = [
@@ -243,7 +246,7 @@ const TripBuilder = memo(() => {
   const [experiences, setExperiences] = useState<string[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', dates: '', groupSize: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', dates: '', groupSize: '', message: '' });
 
   const toggleMulti = useCallback((arr: string[], setter: React.Dispatch<React.SetStateAction<string[]>>, val: string) => {
     setter(prev => prev.includes(val) ? prev.filter(v => v !== val) : [...prev, val]);
@@ -256,24 +259,64 @@ const TripBuilder = memo(() => {
     : [];
 
   const handleSubmit = useCallback(async () => {
-    if (!formData.name || !formData.email) {
-      toast.error('Please fill in your name and email');
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
+      toast.error('Please fill in your name, email and WhatsApp number');
       return;
     }
     setSubmitting(true);
-    // Simulate submission delay
-    await new Promise(r => setTimeout(r, 1200));
+
+    const destNames = destinations.map(s => DESTINATIONS.find(d => d.slug === s)?.name || s);
+    const styleNames = styles.map(s => STYLES.find(st => st.value === s)?.label || s);
+    const expNames = experiences.map(s => EXPERIENCES.find(e => e.value === s)?.label || s);
+    const travellers = Math.max(1, parseInt(formData.groupSize, 10) || 1);
+    const summary = [
+      `Styles: ${styleNames.join(', ')}`,
+      `Experiences: ${expNames.join(', ')}`,
+      'Draft itinerary:',
+      ...itinerary.map((d, i) => `Day ${i + 1}: ${d}`),
+      formData.message.trim() ? `Guest note: ${formData.message.trim()}` : '',
+    ].filter(Boolean).join('\n');
+
+    // Save the request so the XTSY desk sees it in the admin enquiries inbox.
+    const result = await createTourEnquiry({
+      packageTitle: 'Custom trip (Trip Builder)',
+      packageDuration: DURATIONS.find(d => d.value === duration)?.label || duration,
+      packageDifficulty: 'custom',
+      packageCategory: 'custom',
+      packageLocation: destNames.join(', '),
+      travellers,
+      preferredDate: formData.dates.trim() || 'Flexible',
+      groupType: travellers > 1 ? 'group' : 'solo',
+      perPersonPrice: 0,
+      totalAmount: 0,
+      guestName: formData.name.trim(),
+      email: formData.email.trim(),
+      whatsappNumber: formData.phone.trim(),
+      specialRequests: summary,
+    });
     setSubmitting(false);
+
+    const waText = `Hi XTSY! I built a trip on xtsy.one.\nName: ${formData.name.trim()}\nDates: ${formData.dates.trim() || 'Flexible'}\nGroup size: ${travellers}\n${summary}${result.enquiryId ? `\nRef: ${result.enquiryId}` : ''}`;
+    const waUrl = `https://wa.me/${XTSY_WHATSAPP}?text=${encodeURIComponent(waText)}`;
+
+    if (!result.success) {
+      // Saving failed: send the plan over WhatsApp so the lead is never lost.
+      toast.error('We could not save your request online, so we are opening WhatsApp with your plan.');
+      if (typeof window !== 'undefined') window.location.href = waUrl;
+      return;
+    }
     setShowForm(false);
-    toast.success('Trip request sent! Our Meghalaya travel team will send you a customized itinerary.');
+    toast.success(`Trip request sent (ref ${result.enquiryId}). The XTSY desk will reply on WhatsApp with your itinerary.`, {
+      action: { label: 'Chat now', onClick: () => window.open(waUrl, '_blank', 'noopener') },
+    });
     // Reset
     setStep(0);
     setDuration('');
     setStyles([]);
     setDestinations([]);
     setExperiences([]);
-    setFormData({ name: '', email: '', dates: '', groupSize: '', message: '' });
-  }, [formData]);
+    setFormData({ name: '', email: '', phone: '', dates: '', groupSize: '', message: '' });
+  }, [formData, destinations, styles, experiences, itinerary, duration]);
 
   const showPreview = step === 3 && experiences.length > 0 && itinerary.length > 0;
 
@@ -456,6 +499,13 @@ const TripBuilder = memo(() => {
               type="email"
               value={formData.email}
               onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
+            />
+            <Input
+              placeholder="WhatsApp number *"
+              type="tel"
+              inputMode="tel"
+              value={formData.phone}
+              onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))}
             />
             <div className="grid grid-cols-2 gap-3">
               <Input

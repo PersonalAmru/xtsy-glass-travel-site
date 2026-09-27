@@ -23,10 +23,10 @@ const HostelNearMe = memo(() => {
     '@context': 'https://schema.org',
     '@type': ['Hostel', 'LocalBusiness', 'LodgingBusiness'],
     '@id': 'https://xtsy.one/hostel-near-me#local',
-    name: 'XTSY Travellers Hostel — Nearest Backpacker Hostel in Shillong',
-    alternateName: ['XTSY Hostel Shillong', 'Hostel near Police Bazar Shillong'],
+    name: 'XTSY Travellers Hostel — New Shillong Township',
+    alternateName: ['XTSY Hostel Shillong', 'XTSY New Shillong Township'],
     description:
-      'The closest verified backpacker hostel to Police Bazar, Ward\'s Lake and Shillong city centre. Walkable to cafés, transport hubs and viewpoints — dorm beds from ₹369, 4.8★ from 161 verified guests.',
+      'Backpacker hostel on Mawdiangdiang Road, New Shillong Township, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University — dorm beds from ₹369, 4.8★ from 161 verified guests.',
     url: 'https://xtsy.one/hostel-near-me',
     telephone: '+918837317070',
     email: 'stay@xtsy.one',
@@ -38,10 +38,10 @@ const HostelNearMe = memo(() => {
     ],
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Mawkhar, near Police Bazar',
+      streetAddress: 'Mawdiangdiang Road, New Shillong Township',
       addressLocality: 'Shillong',
       addressRegion: 'Meghalaya',
-      postalCode: '793001',
+      postalCode: '793018',
       addressCountry: 'IN',
     },
     geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
@@ -91,37 +91,36 @@ const HostelNearMe = memo(() => {
   };
 
   const nearby = [
-    { icon: Footprints, place: 'Police Bazar (city centre)', distance: '1.2 km', time: '5 min drive · 15 min walk' },
-    { icon: Footprints, place: "Ward's Lake", distance: '1.4 km', time: '6 min drive' },
-    { icon: Footprints, place: 'Don Bosco Museum', distance: '2.1 km', time: '8 min drive' },
-    { icon: Bus, place: 'MTC Bus Stand', distance: '1.5 km', time: '6 min drive' },
-    { icon: Car, place: 'Shared Sumo Stand (for Cherrapunji / Dawki)', distance: '1.8 km', time: '7 min drive' },
-    { icon: Compass, place: 'Shillong Peak Viewpoint', distance: '8 km', time: '25 min drive' },
-    { icon: Compass, place: 'Elephant Falls', distance: '11 km', time: '30 min drive' },
-    { icon: Plane, place: 'Guwahati Airport (GAU)', distance: '124 km', time: '3 hr — pre-book transfer' },
-    { icon: Plane, place: 'Shillong Airport (SHL, Umroi)', distance: '30 km', time: '1 hr drive' },
+    { icon: Footprints, place: 'NIFT Shillong', distance: 'Nearby', time: 'New Shillong Township' },
+    { icon: Footprints, place: 'IIM Shillong', distance: 'Nearby', time: 'New Shillong Township' },
+    { icon: Footprints, place: 'NEIGRIMS', distance: 'Nearby', time: 'Mawdiangdiang' },
+    { icon: Footprints, place: 'NEIAH', distance: 'Nearby', time: 'Mawdiangdiang' },
+    { icon: Footprints, place: 'Martin Luther Christian University', distance: 'Nearby', time: 'Short drive' },
+    { icon: Car, place: 'Police Bazar (city centre)', distance: 'Cab ride', time: 'XTSY desk can book a cab' },
+    { icon: Plane, place: 'Shillong Airport (SHL, Umroi)', distance: 'Drive', time: 'Pre-book a transfer' },
+    { icon: Plane, place: 'Guwahati Airport (GAU)', distance: 'Road trip', time: 'Pre-book a transfer' },
   ];
 
   const faqs = [
     {
-      q: 'Where exactly is the nearest XTSY hostel to me in Shillong?',
-      a: 'XTSY Travellers Hostel is in Mawkhar, ~1.2 km from Police Bazar — the most central hostel address in Shillong. GPS: 25.5788° N, 91.8933° E. Walking distance from most city cafés and viewpoints; 5-minute drive from the main taxi and bus stands.',
+      q: 'Where exactly is XTSY in Shillong?',
+      a: 'XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is not in central Shillong — Police Bazar is a cab ride away.',
     },
     {
       q: 'Which is the closest hostel to Guwahati airport (GAU)?',
       a: 'From GAU, XTSY Shillong is the closest verified backpacker hostel with a direct pickup service — 124 km, ~3 hours via NH6. Pre-book a shared cab (₹700/seat) or private sedan (₹3,500) at the time of booking. No airport hostel in Guwahati beats the value of arriving straight in the hills.',
     },
     {
-      q: 'Is there a hostel near Police Bazar Shillong?',
-      a: 'Yes — XTSY Travellers Hostel is the nearest budget hostel to Police Bazar (1.2 km / 5 min drive). Walkable in daylight; use Ola/Uber or a local taxi (₹80–120) after dark.',
+      q: 'Is XTSY near Police Bazar?',
+      a: 'No. XTSY is in New Shillong Township, not central Shillong. Police Bazar is a cab ride away, and the XTSY desk can book the cab for you.',
     },
     {
       q: 'How do I reach XTSY from where I am right now?',
-      a: 'Open Google Maps and search "XTSY Travellers Hostel Shillong" or tap the "Get Directions" button on this page. From Guwahati Railway Station, take a shared Sumo (₹250, 3.5 hr) to Police Bazar and taxi 1.2 km to the hostel.',
+      a: 'Open Google Maps and search "XTSY Travellers Hostel Shillong" or tap the "Get Directions" button on this page. From Guwahati Railway Station, take a shared Sumo to Shillong and a cab to Mawdiangdiang Road, New Shillong Township — or ask the XTSY desk to arrange a direct transfer.',
     },
     {
       q: 'Are there other hostels near me in Shillong worth comparing?',
-      a: 'Shillong has ~6 verified hostels. XTSY is the largest (India\'s biggest hostel in the northeast), highest rated (4.8★, 161 verified reviews) and closest to Police Bazar. Compare on /xtsy-vs-zostel or /best-hostel-in-shillong.',
+      a: 'Shillong has ~6 verified hostels. XTSY is the largest (India\'s biggest hostel in the northeast), highest rated (4.8★, 161 verified reviews) and sits in quiet New Shillong Township. Compare on /xtsy-vs-zostel or /best-hostel-in-shillong.',
     },
     {
       q: 'Can I walk-in without booking online?',
@@ -145,7 +144,7 @@ const HostelNearMe = memo(() => {
       <Helmet>
         <meta
           name="description"
-          content="Looking for a hostel near you in Shillong? XTSY is 1.2 km from Police Bazar — the closest verified backpacker hostel with dorm beds from ₹369, 4.8★ from 161 verified guests. Get directions, distances & instant booking."
+          content="Looking for a hostel near you in Shillong? XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township, near NIFT and IIM Shillong — dorm beds from ₹369, 4.8★ from 161 verified guests. Directions and instant booking."
         />
         <meta
           name="keywords"
@@ -163,15 +162,15 @@ const HostelNearMe = memo(() => {
         <section className="relative pt-28 pb-16 px-4 bg-gradient-to-br from-primary/10 via-background to-brand-ember/10">
           <div className="container mx-auto max-w-5xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-4">
-              <MapPin className="h-4 w-4" /> 1.2 km from Police Bazar, Shillong
+              <MapPin className="h-4 w-4" /> Mawdiangdiang Road, New Shillong Township
             </div>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
               Hostel Near Me in Shillong
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
-              XTSY Travellers Hostel is the <strong>closest verified backpacker hostel</strong> to
-              Shillong city centre — walkable to Police Bazar, Ward's Lake and the Sumo stand for
-              Cherrapunji & Dawki. Dorm beds from <strong>₹369</strong>, 4.8★ from 161 verified guests.
+              XTSY Travellers Hostel is on <strong>Mawdiangdiang Road, New Shillong Township</strong>, near
+              NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University —
+              a quiet, green base with TAB Bistro on site. Dorm beds from <strong>₹369</strong>, 4.8★ from 161 verified guests.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Button size="lg" asChild>
@@ -202,10 +201,10 @@ const HostelNearMe = memo(() => {
         {/* Nearby distances */}
         <section className="py-14 px-4">
           <div className="container mx-auto max-w-5xl">
-            <h2 className="text-3xl font-bold mb-2">Distance from key Shillong landmarks</h2>
+            <h2 className="text-3xl font-bold mb-2">What's near XTSY</h2>
             <p className="text-muted-foreground mb-8">
-              Every distance is measured from our front door in Mawkhar. If you're searching
-              "hostel near me" from any of these locations, XTSY is your closest verified match.
+              XTSY is in New Shillong Township, not central Shillong. These are the landmarks around us,
+              and how to reach the places most travellers ask about.
             </p>
             <div className="grid gap-4 md:grid-cols-2">
               {nearby.map(({ icon: Icon, place, distance, time }) => (
@@ -231,7 +230,7 @@ const HostelNearMe = memo(() => {
         <section className="py-14 px-4 bg-muted/30">
           <div className="container mx-auto max-w-5xl">
             <h2 className="text-3xl font-bold mb-6">
-              Why the "nearest hostel" actually matters in Shillong
+              Why travellers choose XTSY in New Shillong Township
             </h2>
             <div className="grid gap-6 md:grid-cols-2 text-muted-foreground">
               <div>
@@ -239,9 +238,9 @@ const HostelNearMe = memo(() => {
                   <Clock className="inline h-5 w-5 mr-1 text-primary" /> Late arrivals from Guwahati
                 </h3>
                 <p>
-                  Most travellers land at GAU by evening and reach Shillong after 8 PM. Being 1.2 km
-                  from Police Bazar means your driver knows the drop point, cabs are available, and
-                  you're not stuck in Laitumkhrah or Nongthymmai far from food and taxis.
+                  Most travellers land at GAU by evening and reach Shillong after dark. Share your
+                  arrival time with the XTSY desk and we can arrange the transfer straight to
+                  Mawdiangdiang Road, so you are not hunting for a cab at night.
                 </p>
               </div>
               <div>
@@ -249,19 +248,17 @@ const HostelNearMe = memo(() => {
                   <Compass className="inline h-5 w-5 mr-1 text-primary" /> Day trips to Cherrapunji & Dawki
                 </h3>
                 <p>
-                  Shared Sumos to Cherrapunji, Dawki and Mawlynnong leave from the Bara Bazar stand
-                  (1.8 km). Staying close means catching the 6 AM departure without a ₹300 taxi
-                  from a far-flung hostel.
+                  The XTSY travel desk books early-morning cabs and guided day trips to Cherrapunji,
+                  Dawki and Mawlynnong, so you leave from the hostel instead of a city Sumo stand.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">
-                  <Wifi className="inline h-5 w-5 mr-1 text-primary" /> Café & remote-work density
+                  <Wifi className="inline h-5 w-5 mr-1 text-primary" /> Quiet for remote work
                 </h3>
                 <p>
-                  Café Shillong, Dylan's, ML05 and Cloud 9 are all under 2 km. If you're a digital
-                  nomad searching "hostel near me with WiFi", the Mawkhar cluster wins on
-                  fibre coverage and 4G/5G strength.
+                  New Shillong Township is calmer and greener than the city centre, with TAB Bistro on
+                  site for coffee and meals. Laitumkhrah cafés and Police Bazar are a cab ride away.
                 </p>
               </div>
               <div>
@@ -269,9 +266,8 @@ const HostelNearMe = memo(() => {
                   <Shield className="inline h-5 w-5 mr-1 text-primary" /> Solo & female safety
                 </h3>
                 <p>
-                  Central Shillong is well-lit, has active police presence around Police Bazar, and
-                  taxis are metered until midnight. Female-only dorm, CCTV and 24/7 reception at
-                  XTSY complete the picture.
+                  Female-only dorm, CCTV in common areas and a staffed desk at XTSY. The desk can book
+                  trusted cabs whenever you head into town.
                 </p>
               </div>
             </div>
@@ -300,8 +296,8 @@ const HostelNearMe = memo(() => {
                 <div className="text-sm text-muted-foreground">Female-only dorm + safety guide.</div>
               </Link>
               <Link to="/xtsy-270" className="rounded-xl border p-5 hover:border-primary transition">
-                <div className="font-semibold mb-1">270° Glass Suite</div>
-                <div className="text-sm text-muted-foreground">India's first stargazing suite — same address.</div>
+                <div className="font-semibold mb-1">Experience by XTSY</div>
+                <div className="text-sm text-muted-foreground">India's first stargaze glamp — same address.</div>
               </Link>
               <Link to="/tours" className="rounded-xl border p-5 hover:border-primary transition">
                 <div className="font-semibold mb-1">Meghalaya Tours</div>

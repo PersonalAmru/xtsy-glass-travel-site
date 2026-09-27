@@ -71,7 +71,7 @@ const DestinationWeddingShillong = memo(() => {
         name: 'How many guests can XTSY host for a wedding?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'XTSY specialises in intimate weddings of 20-100 guests. With on-site dorms, private rooms, and the 270° Glass Suite for the couple, most of your guests can stay on-property — making it a true multi-day wedding experience rather than a single-day event.',
+          text: 'XTSY specialises in intimate weddings of 20-100 guests. With on-site dorms, private rooms, and Experience by XTSY for the couple, most of your guests can stay on-property — making it a true multi-day wedding experience rather than a single-day event.',
         },
       },
       {
@@ -103,7 +103,7 @@ const DestinationWeddingShillong = memo(() => {
   };
 
   const packages = [
-    { name: 'Intimate Elopement', guests: '2-15 guests', price: 'From ₹1.5 lakh', desc: 'Just the two of you (and closest few). Glass Suite stay, private ceremony setup, couple photography, and a curated dinner.' },
+    { name: 'Intimate Elopement', guests: '2-15 guests', price: 'From ₹1.5 lakh', desc: 'Just the two of you (and closest few). Experience by XTSY stay, private ceremony setup, couple photography, and a curated dinner.' },
     { name: 'Classic Mountain Wedding', guests: '30-50 guests', price: 'From ₹3-5 lakh', desc: 'Open-air ceremony, TAB Bistro catering, guest accommodation, décor, and day-of coordination. Our most popular package.' },
     { name: 'Grand Celebration', guests: '50-100 guests', price: 'Custom quote', desc: 'Multi-day affair — mehendi, sangeet, ceremony and reception across the property, full event production and stay for all guests.' },
   ];
@@ -111,8 +111,8 @@ const DestinationWeddingShillong = memo(() => {
   const services = [
     { icon: Mountain, title: 'Mountain Venue', desc: 'Open-air ceremony with panoramic Khasi Hills backdrop. Pine forests, misty mornings, golden sunsets.' },
     { icon: Utensils, title: 'TAB Bistro Catering', desc: 'Multi-cuisine menu — Indian, Continental, Chinese, Northeast specials. Customizable for any dietary requirement.' },
-    { icon: Users, title: 'Guest Accommodation', desc: 'Dorms, private rooms, and the 270° Glass Suite for the couple. All guests stay on-site.' },
-    { icon: Camera, title: 'Photo-Ready Spaces', desc: 'Glass suite, mountain terrace, forest trail — every corner is Instagram-worthy for wedding photography.' },
+    { icon: Users, title: 'Guest Accommodation', desc: 'Dorms, private rooms, and Experience by XTSY for the couple. All guests stay on-site.' },
+    { icon: Camera, title: 'Photo-Ready Spaces', desc: 'Experience by XTSY, mountain terrace, forest trail — every corner is Instagram-worthy for wedding photography.' },
     { icon: Music, title: 'Event Coordination', desc: 'Full event planning support — decor, music, lighting, seating, and day-of coordination.' },
     { icon: Heart, title: 'Intimate Setting', desc: 'Perfect for 20-100 guests. Intimate, personal, and unforgettable — no generic banquet halls.' },
   ];
@@ -134,11 +134,11 @@ const DestinationWeddingShillong = memo(() => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Destination Wedding in Shillong — Venue, Catering & Stays | XTSY</title>
-        <meta name="description" content="Plan your dream destination wedding in Shillong, Meghalaya. Mountain venue, TAB Bistro catering, guest accommodation, and 270° Glass Suite for the couple. Intimate weddings for 20-100 guests." />
+        <meta name="description" content="Plan your dream destination wedding in Shillong, Meghalaya. Mountain venue, TAB Bistro catering, guest accommodation, and Experience by XTSY for the couple. Intimate weddings for 20-100 guests." />
         <meta name="keywords" content="destination wedding Shillong, destination wedding Meghalaya, wedding venue Shillong, event catering Shillong, wedding venue northeast India, intimate wedding Meghalaya, mountain wedding India, event venue Shillong, corporate event Shillong, party venue Shillong" />
         <link rel="canonical" href="https://xtsy.one/destination-wedding-shillong" />
         <meta property="og:title" content="Destination Wedding in Shillong — XTSY Meghalaya" />
-        <meta property="og:description" content="Intimate mountain weddings with TAB Bistro catering, guest stays, and India's 270° Glass Suite for the couple." />
+        <meta property="og:description" content="Intimate mountain weddings with TAB Bistro catering, guest stays, and Experience by XTSY for the couple." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://xtsy.one/destination-wedding-shillong" />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
@@ -253,7 +253,7 @@ const DestinationWeddingShillong = memo(() => {
             </p>
             <div className="mt-6 space-y-4">
               {[
-                { step: '1. Pick your dates', body: 'Aim for October–April for clear skies and golden light. Lock dates 3-6 months ahead for the best Glass Suite and room availability.' },
+                { step: '1. Pick your dates', body: 'Aim for October–April for clear skies and golden light. Lock dates 3-6 months ahead for the best Experience by XTSY and room availability.' },
                 { step: '2. Choose your guest count', body: 'Our sweet spot is 20-100 guests. Tell us the number and we map the right ceremony space and on-site accommodation mix.' },
                 { step: '3. Build your menu with TAB Bistro', body: 'Indian, Continental, Chinese, and Khasi specialties — fully customisable for veg, Jain, and dietary needs, served as plated dinners or live counters.' },
                 { step: '4. Add décor, music & shoots', body: 'Floral and light décor, sound, and pre-wedding shoots across the glass suite, mountain terrace, and pine-forest trail.' },
@@ -273,12 +273,12 @@ const DestinationWeddingShillong = memo(() => {
               <Star className="h-5 w-5" />
               <span className="font-medium">For the Couple</span>
             </div>
-            <h3 className="text-xl font-bold text-foreground">The 270° Glass Suite — Your Wedding Night</h3>
+            <h3 className="text-xl font-bold text-foreground">Experience by XTSY — Your Wedding Night</h3>
             <p className="mt-2 text-muted-foreground">
               India's first panoramic glass suite makes the perfect wedding night stay. Three glass walls, mountain views, stargazing from bed, premium breakfast, and complete privacy. An experience no hotel can match.
             </p>
             <Link to="/luxury-glamping-shillong" className="mt-4 inline-flex items-center gap-2 text-sm text-primary font-medium hover:underline">
-              Learn more about the Glass Suite →
+              Learn more about Experience by XTSY →
             </Link>
           </section>
 

@@ -137,7 +137,7 @@ const EnquirySuccessModal = ({
   <div class="header">
     <div class="company">
       <h1>XTSY Travellers Hostel</h1>
-      <p>Laitumkhrah, Shillong, Meghalaya 793003</p>
+      <p>Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018</p>
       <p>GSTIN: 17QSKPK1714H1ZE &nbsp;|&nbsp; PAN: QSKPK1714H</p>
       <p>Email: hello@xtsy.in &nbsp;|&nbsp; Web: xtsy.in</p>
     </div>
@@ -319,7 +319,7 @@ const EnquirySuccessModal = ({
               >
                 <h3 className="font-bold text-foreground text-sm">XTSY Travellers Hostel</h3>
                 <p className="text-[11px] text-muted-foreground leading-relaxed mt-1">
-                  Laitumkhrah, Shillong, Meghalaya 793003<br />
+                  Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018<br />
                   GSTIN: <span className="font-mono font-medium text-foreground">17QSKPK1714H1ZE</span> &nbsp;|&nbsp; PAN: <span className="font-mono font-medium text-foreground">QSKPK1714H</span>
                 </p>
               </motion.div>

@@ -178,7 +178,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
       { heading: 'Dining in Laitumkhrah', content: 'What the area is known for:', listItems: ['Buzzing café culture & live music', 'Casual Chinese & momo joints', 'Continental & fast food', 'Student-friendly pricing', 'Late-evening hangouts'] },
       { heading: 'Pair It With TAB Bistro', content: 'When you want more variety:', listItems: ['Multi-cuisine forest dining', 'Barbecue & tandoor', 'Veg & non-veg menus', 'Reservations & catering', 'In-house guest discount of 15%'] },
     ],
-    [{ question: 'Which are the best restaurants in Laitumkhrah?', answer: 'Laitumkhrah is famous for its cafés, Chinese eateries and casual dining. For a full multi-cuisine spread, TAB Bistro by XTSY nearby serves barbecue, tandoor and global cuisine.' }, tabFaq],
+    [{ question: 'Which are the best restaurants in Laitumkhrah?', answer: 'Laitumkhrah is famous for its cafés, Chinese eateries and casual dining. For a full multi-cuisine spread, TAB Bistro by XTSY in New Shillong Township serves barbecue, tandoor and global cuisine.' }, tabFaq],
     ['restaurants-in-police-bazar-shillong', 'restaurant-in-shillong', 'cafe-shillong'],
     ['restaurants in laitumkhrah', 'best restaurants in laitumkhrah', 'restaurant in laitumkhrah', 'restaurants in laitumkhrah shillong', 'best restaurants in shillong laitumkhrah'],
   ),

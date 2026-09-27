@@ -41,7 +41,7 @@ const XTSYvsZostel = () => {
     { number: "8+", label: "Corporate Retreats", icon: Zap },
     { number: "50+", label: "Guest Capacity", icon: Coffee },
     { number: "8", label: "NE States Coverage", icon: MapPin },
-    { number: "270°", label: "India's First Glass Suite", icon: Mountain },
+    { number: "270°", label: "India's First Stargaze Glamp", icon: Mountain },
   ];
 
   const brandPositioning = [
@@ -49,10 +49,10 @@ const XTSYvsZostel = () => {
       brand: "XTSY Travel",
       tagline: "Self-Sustaining Ecosystem — No Franchise Model",
       model: "No franchise model. Curated private tours from solo to groups of 50+. XTSY One — single, accountable entity.",
-      nePresence: "8 NE states — HQ in Shillong, govt partnerships, 270° Glass Suite",
+      nePresence: "8 NE states — HQ in Shillong, govt partnerships, Experience by XTSY",
       pricing: "Transparent pricing, custom itineraries, year-round availability",
       segments: "Solo, couples, families, corporates, schools, groups 50+, pets",
-      strengths: ["No franchise — consistent quality", "270° Glass Suite (India's first)", "NEITA 2025 nominated", "Pet-friendly stays", "Groups of any size", "Govt. tourism collaborator", "32+ IIT/IIM tours hosted"],
+      strengths: ["No franchise — consistent quality", "Experience by XTSY (India's first)", "NEITA 2025 nominated", "Pet-friendly stays", "Groups of any size", "Govt. tourism collaborator", "32+ IIT/IIM tours hosted"],
       weaknesses: [],
       color: "border-primary",
       highlight: true,
@@ -128,7 +128,7 @@ const XTSYvsZostel = () => {
     },
     {
       icon: Camera,
-      title: "270° Glass Suite — India's First",
+      title: "Experience by XTSY — India's First",
       description: "Panoramic lake-view architectural marvel",
       detail: "Not available at any Zostel or competitor — an XTSY-exclusive luxury experience",
     },
@@ -136,7 +136,7 @@ const XTSYvsZostel = () => {
 
   const comparisonFeatures = [
     { feature: "Solo Travelers", xtsy: true, zostel: true },
-    { feature: "Luxury Stays (Suites)", xtsy: true, zostel: false, xtsyNote: "270° Glass Suite", zostelNote: "Zo Selections (coming)" },
+    { feature: "Luxury Stays (Suites)", xtsy: true, zostel: false, xtsyNote: "Experience by XTSY", zostelNote: "Zo Selections (coming)" },
     { feature: "Groups 6+ Encouraged", xtsy: true, zostel: false, highlight: true, xtsyNote: "10–50+", zostelNote: "Discourages >6" },
     { feature: "Family-Friendly (All Ages)", xtsy: true, zostel: false, zostelNote: "Hostel-only" },
     { feature: "Educational Tours", xtsy: true, zostel: false, xtsyNote: "72+ Tours" },
@@ -196,14 +196,14 @@ const XTSYvsZostel = () => {
     {
       icon: AlertTriangle,
       title: "No luxury. No 270° Suite. No pets. No groups 50+.",
-      description: "Zostel's model caps at hostel beds and pre-packaged tours. No luxury suites, no pet-friendly stays, no support for groups over 6. XTSY covers every traveler — from solo to 50+ groups, dorms to India's first 270° Glass Suite.",
+      description: "Zostel's model caps at hostel beds and pre-packaged tours. No luxury suites, no pet-friendly stays, no support for groups over 6. XTSY covers every traveler — from solo to 50+ groups, dorms to Experience by XTSY, India's first stargaze glamp.",
     },
   ];
 
   const faqs = [
     {
       question: "How is XTSY actually different from Zostel in Northeast India?",
-      answer: "Zostel is a franchise-operated hostel chain focused on solo backpackers. XTSY is a complete, self-sustaining hospitality ecosystem — budget dorms to India's first 270° Glass Suite, solo trips to 50+ person groups, families with elders, IIT/IIM tours, corporate retreats, cross-border international tours, pet-friendly stays, and government tourism partnerships. We're NEITA 2025 nominated and operate across 8 Northeast states.",
+      answer: "Zostel is a franchise-operated hostel chain focused on solo backpackers. XTSY is a complete, self-sustaining hospitality ecosystem — budget dorms to Experience by XTSY, India's first stargaze glamp, solo trips to 50+ person groups, families with elders, IIT/IIM tours, corporate retreats, cross-border international tours, pet-friendly stays, and government tourism partnerships. We're NEITA 2025 nominated and operate across 8 Northeast states.",
       quote: "Just one word for XTSY: THE BEST. It's one of the best stays I have been to lately.",
       quoteName: "Rahul"
     },
@@ -226,7 +226,7 @@ const XTSYvsZostel = () => {
       quoteName: "Sahil"
     },
     {
-      question: "Is the 270° Glass Suite real? Zostel has nothing like it.",
+      question: "Is Experience by XTSY real? Zostel has nothing like it.",
       answer: "Absolutely real and India's first. A panoramic glass suite overlooking Umiam Lake with 270° unobstructed views. Zostel's upcoming 'Zo Selections' premium tier still won't match this — it's partner-operated premium stays, not purpose-built architectural marvels. The 270° Suite is an XTSY-exclusive.",
     },
     {
@@ -251,7 +251,7 @@ const XTSYvsZostel = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="XTSY vs Zostel — Local Hospitality vs Franchise Chain | Northeast India"
-        description="Compare XTSY's self-sustaining ecosystem vs Zostel's franchise model in Northeast India. 8 states, 270° Glass Suite, groups 50+, govt partnerships vs pre-packaged bus tours."
+        description="Compare XTSY's self-sustaining ecosystem vs Zostel's franchise model in Northeast India. 8 states, Experience by XTSY, groups 50+, govt partnerships vs pre-packaged bus tours."
         keywords="XTSY vs Zostel, Northeast India hostel, Shillong hostel comparison, best hostel Meghalaya, Zostel franchise, Zo Trips alternative"
         canonicalUrl="https://xtsy.one/xtsy-vs-zostel"
       />
@@ -584,7 +584,7 @@ const XTSYvsZostel = () => {
                   { icon: Star, label: "9.4/10 on Booking.com", desc: "Consistently rated, not franchise-variable" },
                   { icon: MapPin, label: "8 NE states covered", desc: "Local team across all of Northeast India" },
                   { icon: DollarSign, label: "Transparent pricing", desc: "No hidden vendor markups or OTA commissions" },
-                  { icon: Mountain, label: "270° Glass Suite", desc: "India's first — no competitor has this" },
+                  { icon: Mountain, label: "Experience by XTSY", desc: "India's first — no competitor has this" },
                 ].map((item, i) => {
                   const Icon = item.icon;
                   return (

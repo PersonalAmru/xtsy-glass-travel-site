@@ -171,7 +171,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
       case 'king-double-room':
         return 'King Double Room';
       case 'xtsy-270':
-        return '270° Panorama Glass Ensuite';
+        return 'Experience by XTSY';
       default:
         return room.name;
     }
@@ -417,7 +417,7 @@ const FastRoomCard: React.FC<FastRoomCardProps> = React.memo(({
                   }
                 </p>
 
-                {/* Optional breakfast package for Panorama by XTSY */}
+                {/* Optional breakfast package for Experience by XTSY */}
                 {isXTSY270 && (
                   <div className="flex justify-center mb-2">
                     <Badge className="bg-amber-500/15 text-amber-300 border border-amber-500/40 text-[11px] px-2 py-0.5">

@@ -131,7 +131,7 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
   'xtsy-270': {
     id: 'xtsy-270',
     name: 'XTSY 270° Panorama Glass Ensuite',
-    shortName: '270° Glass Suite',
+    shortName: 'Experience by XTSY',
     category: 'luxury',
     kind: 'private',
     basePrice: getSeasonalPrice('xtsy-270').discounted,

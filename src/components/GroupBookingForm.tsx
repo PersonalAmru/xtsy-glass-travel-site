@@ -57,7 +57,7 @@ const GroupBookingForm = ({ isOpen, onClose }: GroupBookingFormProps) => {
   const roomTypes = [
     { id: "4-bed-dorm", name: "4-Bed Mixed Dorm", pricePerNight: 800, capacity: 4 },
     { id: "6-bed-dorm", name: "6-Bed Mixed Dorm", pricePerNight: 700, capacity: 6 },
-    { id: "signature-suite", name: "270° Panorama Glass Ensuite", pricePerNight: 2500, capacity: 2 },
+    { id: "signature-suite", name: "Experience by XTSY", pricePerNight: 2500, capacity: 2 },
     { id: "private-room", name: "Private Room", pricePerNight: 2000, capacity: 2 },
     { id: "entire-property", name: "Entire Property", pricePerNight: 15000, capacity: 50 }
   ];

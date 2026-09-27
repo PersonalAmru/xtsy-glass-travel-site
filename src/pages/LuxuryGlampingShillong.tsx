@@ -10,7 +10,7 @@ const LuxuryGlampingShillong = memo(() => {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'LodgingBusiness',
-    name: 'XTSY 270° Glass Suite — Luxury Glamping Shillong',
+    name: 'Experience by XTSY — Luxury Glamping Shillong',
     description: 'India\'s first 270° panoramic glass suite in Shillong, Meghalaya. Luxury glamping with mountain views, stargazing, and sunrise experiences.',
     url: 'https://xtsy.one/luxury-glamping-shillong',
     telephone: '+918837317070',
@@ -40,7 +40,7 @@ const LuxuryGlampingShillong = memo(() => {
         name: 'What is glamping in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Glamping in Shillong means luxury camping with full amenities. XTSY\'s 270° Glass Suite is India\'s first panoramic glass house — three glass walls offering mountain views, stargazing, and sunrise from your bed. It includes a private bathroom, queen bed, climate control, and premium breakfast.',
+          text: 'Glamping in Shillong means luxury camping with full amenities. Experience by XTSY is India\'s first panoramic glass house — three glass walls offering mountain views, stargazing, and sunrise from your bed. It includes a private bathroom, queen bed, climate control, and premium breakfast.',
         },
       },
       {
@@ -48,15 +48,15 @@ const LuxuryGlampingShillong = memo(() => {
         name: 'How much does glamping cost in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'XTSY\'s 270° Glass Suite is priced at ₹4,999/night including premium breakfast, WiFi, and all amenities. This is the only panoramic glass suite in Northeast India.',
+          text: 'Experience by XTSY is priced at ₹4,999/night including premium breakfast, WiFi, and all amenities. This is the only panoramic glass suite in Northeast India.',
         },
       },
       {
         '@type': 'Question',
-        name: 'Is the 270° Glass Suite good for couples?',
+        name: 'Is Experience by XTSY good for couples?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Absolutely! The Glass Suite is perfect for romantic getaways, anniversaries, honeymoons, and proposals. Private glass walls face natural landscapes, not buildings. Couples get sunrise views, stargazing, and complete privacy with blackout curtains.',
+          text: 'Absolutely! Experience by XTSY is perfect for romantic getaways, anniversaries, honeymoons, and proposals. Private glass walls face natural landscapes, not buildings. Couples get sunrise views, stargazing, and complete privacy with blackout curtains.',
         },
       },
     ],
@@ -67,11 +67,11 @@ const LuxuryGlampingShillong = memo(() => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Luxury Glamping in Shillong — 270° Glass Suite | XTSY Meghalaya</title>
+        <title>Luxury Glamping in Shillong — Experience by XTSY | XTSY Meghalaya</title>
         <meta name="description" content="India's first 270° panoramic glass suite in Shillong. Luxury glamping with stargazing, mountain views, sunrise from bed. Perfect for couples, anniversaries, proposals. ₹4,999/night." />
         <meta name="keywords" content="glamping in Shillong, luxury glamping Meghalaya, glass suite Shillong, stargazing room India, romantic stay Shillong, luxury stay Meghalaya, couple friendly hotel Shillong, honeymoon Shillong, unique stays India" />
         <link rel="canonical" href="https://xtsy.one/luxury-glamping-shillong" />
-        <meta property="og:title" content="270° Glass Suite — Luxury Glamping in Shillong" />
+        <meta property="og:title" content="Experience by XTSY — Luxury Glamping in Shillong" />
         <meta property="og:description" content="India's first panoramic glass suite. Stargazing, mountain views, sunrise from bed. Perfect for couples." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://xtsy.one/luxury-glamping-shillong" />
@@ -87,7 +87,7 @@ const LuxuryGlampingShillong = memo(() => {
           <div className="container mx-auto px-4 max-w-5xl">
             <div className="flex items-center gap-2 text-primary text-sm font-medium mb-4">
               <Sparkles className="h-4 w-4" />
-              <span>India's First 270° Panoramic Glass Suite</span>
+              <span>Experience by XTSY — India's First Stargaze Glamp</span>
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-foreground leading-tight">
               Luxury Glamping in Shillong, Meghalaya
@@ -97,7 +97,7 @@ const LuxuryGlampingShillong = memo(() => {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button onClick={handleWhatsApp} className="gap-2">
-                <MessageCircle className="h-4 w-4" /> Book Glass Suite
+                <MessageCircle className="h-4 w-4" /> Book Experience by XTSY
               </Button>
               <Link to="/xtsy-270">
                 <Button variant="outline">View Full Details</Button>
@@ -110,7 +110,7 @@ const LuxuryGlampingShillong = memo(() => {
 
           {/* Experience */}
           <section>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground">The 270° Glass Suite Experience</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground">Experience by XTSY Experience</h2>
             <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 { icon: Sun, title: 'Sunrise from Bed', desc: 'Three glass walls face east — watch the Khasi Hills glow golden without leaving your bed.' },
@@ -183,7 +183,7 @@ const LuxuryGlampingShillong = memo(() => {
 
           {/* CTA */}
           <section className="bg-primary/10 rounded-2xl p-8 text-center">
-            <h2 className="text-2xl font-bold text-foreground">Book the Glass Suite</h2>
+            <h2 className="text-2xl font-bold text-foreground">Book Experience by XTSY</h2>
             <p className="mt-2 text-muted-foreground">Limited to 1 suite — book early to secure your dates.</p>
             <div className="mt-6 flex flex-wrap gap-4 justify-center">
               <Button onClick={handleWhatsApp} className="gap-2"><MessageCircle className="h-4 w-4" /> WhatsApp Booking</Button>

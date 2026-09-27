@@ -1,0 +1,52 @@
+/**
+ * CI helper: screenshots key routes at desktop and mobile widths and records
+ * console errors / HTTP status per route in report.json.
+ * Used by .github/workflows/build-check.yml.
+ */
+import { chromium } from '@playwright/test';
+import fs from 'fs';
+import path from 'path';
+
+const BASE = process.env.BASE_URL || 'http://localhost:8080';
+const OUT = process.env.OUT_DIR || 'shots';
+const ROUTES = (process.env.ROUTES ||
+  '/,/best-hostel-in-shillong,/xtsy-270,/book,/faq,/hostel-near-me,/pet-friendly,/tours,/about,/contact,/tab-bistro,/hostel-in-gangtok-today'
+).split(',');
+
+const VIEWPORTS = [
+  { name: 'desktop', width: 1440, height: 900 },
+  { name: 'mobile', width: 390, height: 844 },
+];
+
+async function main() {
+  fs.mkdirSync(OUT, { recursive: true });
+  const browser = await chromium.launch();
+  const report: Record<string, unknown>[] = [];
+  for (const vp of VIEWPORTS) {
+    const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height } });
+    for (const route of ROUTES) {
+      const page = await ctx.newPage();
+      const errors: string[] = [];
+      page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
+      page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text().slice(0, 300)); });
+      let status = 0;
+      try {
+        const res = await page.goto(BASE + route, { waitUntil: 'networkidle', timeout: 60000 });
+        status = res?.status() ?? 0;
+        await page.waitForTimeout(1500);
+        const file = `${vp.name}${route === '/' ? '-home' : route.replace(/\//g, '-')}.png`;
+        await page.screenshot({ path: path.join(OUT, file), fullPage: vp.name === 'mobile' ? false : true });
+        report.push({ route, viewport: vp.name, status, file, errors });
+      } catch (e) {
+        report.push({ route, viewport: vp.name, status, error: String(e), errors });
+      }
+      await page.close();
+    }
+    await ctx.close();
+  }
+  await browser.close();
+  fs.writeFileSync(path.join(OUT, 'report.json'), JSON.stringify(report, null, 2));
+  console.log(JSON.stringify(report.map((r) => [r.viewport, r.route, r.status, (r.errors as string[]).length])));
+}
+
+main().catch((e) => { console.error(e); process.exit(1); });

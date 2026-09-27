@@ -21,7 +21,7 @@ const HotelsInShillong = memo(() => {
         item: {
           '@type': 'LodgingBusiness',
           name: 'XTSY Travellers Hostel',
-          description: 'India\'s biggest hostel — private rooms, 270° glass suite, and budget dorms',
+          description: 'India\'s biggest hostel — private rooms, Experience by XTSY, and budget dorms',
           priceRange: '₹369 - ₹4,999',
           starRating: { '@type': 'Rating', ratingValue: '4.8' },
         },
@@ -38,7 +38,7 @@ const HotelsInShillong = memo(() => {
         name: 'What are the best hotels in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Shillong has hotels ranging from ₹1,500 to ₹8,000/night. For a unique experience, XTSY offers private rooms with hostel-community vibes plus India\'s first 270° Glass Suite for luxury travellers at ₹4,999/night.',
+          text: 'Shillong has hotels ranging from ₹1,500 to ₹8,000/night. For a unique experience, XTSY offers private rooms with hostel-community vibes plus Experience by XTSY, India\'s first stargaze glamp for luxury travellers at ₹4,999/night.',
         },
       },
       {
@@ -46,7 +46,7 @@ const HotelsInShillong = memo(() => {
         name: 'Which area is best for hotels in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Police Bazaar and Mawkhar are the best areas — close to transport, restaurants, and attractions. XTSY is located in Mawkhar, walkable to Police Bazaar and major landmarks.',
+          text: 'Police Bazaar is the busiest area for shopping and transport; New Shillong Township is quieter and greener. XTSY is on Mawdiangdiang Road, New Shillong Township, near NIFT Shillong, IIM Shillong and NEIGRIMS — Police Bazaar is a cab ride away.',
         },
       },
       {
@@ -143,7 +143,7 @@ const HotelsInShillong = memo(() => {
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
                 { icon: Hotel, title: 'Private Rooms', desc: 'Hotel-quality rooms from ₹1,200/night' },
-                { icon: Star, title: '270° Glass Suite', desc: 'India\'s first panoramic luxury suite' },
+                { icon: Star, title: 'Experience by XTSY', desc: 'India\'s first panoramic luxury suite' },
                 { icon: Wifi, title: 'Free WiFi & Hot Water', desc: 'Hotels charge extra — we don\'t' },
                 { icon: Shield, title: '24/7 Security', desc: 'Safe for solo, female & family travellers' },
                 { icon: MapPin, title: 'Tour Packages', desc: 'Curated Meghalaya tours from ₹7,999' },
@@ -165,7 +165,7 @@ const HotelsInShillong = memo(() => {
             <div className="mt-4 space-y-3 text-muted-foreground">
               <p>• <strong className="text-foreground">Book direct</strong> — OTAs add 15-25% markup. Always check the property's own website.</p>
               <p>• <strong className="text-foreground">Peak season (Oct–Mar)</strong> — book 2-3 weeks ahead. Weekends fill up fast.</p>
-              <p>• <strong className="text-foreground">Location</strong> — stay near Police Bazaar or Mawkhar for best access to food, transport, and sights.</p>
+              <p>• <strong className="text-foreground">Location</strong> — Police Bazaar suits shoppers; New Shillong Township (where XTSY is) suits travellers who want a quieter base with cabs arranged by the desk.</p>
               <p>• <strong className="text-foreground">Check inclusions</strong> — many hotels charge extra for WiFi, hot water, and breakfast.</p>
             </div>
           </section>
@@ -184,7 +184,7 @@ const HotelsInShillong = memo(() => {
 
           <section className="bg-primary/10 rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-bold text-foreground">Book Your Shillong Hotel</h2>
-            <p className="mt-2 text-muted-foreground">From budget rooms to India's only 270° Glass Suite.</p>
+            <p className="mt-2 text-muted-foreground">From budget rooms to Experience by XTSY.</p>
             <div className="mt-6 flex flex-wrap gap-4 justify-center">
               <Link to="/best-hostel-in-shillong"><Button className="gap-2">Budget Stays</Button></Link>
               <Link to="/luxury-glamping-shillong"><Button variant="outline">Luxury Glamping</Button></Link>

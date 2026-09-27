@@ -29,13 +29,13 @@ const competitorPages: SEOPageData[] = [
     'Zostel vs XTSY Shillong — Honest Comparison 2026', 'Comparing Zostel Shillong with XTSY Travellers Hostel. See pricing, amenities, location & reviews. Find the best hostel in Shillong for your trip.',
     'Zostel vs XTSY — Best Hostel in Shillong?', 'Searching for Zostel in Shillong? Compare it with XTSY Travellers Hostel — Shillong\'s highest-rated backpacker stay with 4.8★ Google reviews, dorms from ₹369, and an in-house restaurant.',
     [
-      { heading: 'Price Comparison', content: 'XTSY offers competitive pricing with dorms starting at ₹369/night — among the lowest in Shillong. Our rates include free WiFi, hot water, kitchen access, and locker usage with zero hidden fees.', listItems: ['8-Bed Mixed Dorm: ₹369/night', '6-Bed Mixed Dorm: ₹699/night', 'Private Double Room: ₹1,499/night', 'XTSY 270° Glasshouse: ₹4,999/night'] },
-      { heading: 'Location & Accessibility', content: 'XTSY is located in New Shillong Township, 10 minutes from Police Bazaar. Our location offers easy access to all major day trips — Cherrapunji (2hr), Dawki (3hr), Mawlynnong (2.5hr).' },
+      { heading: 'Price Comparison', content: 'XTSY offers competitive pricing with dorms starting at ₹369/night — among the lowest in Shillong. Our rates include free WiFi, hot water, kitchen access, and locker usage with zero hidden fees.', listItems: ['8-Bed Mixed Dorm: ₹369/night', '6-Bed Mixed Dorm: ₹699/night', 'Private Double Room: ₹1,499/night', 'Experience by XTSY: ₹4,999/night'] },
+      { heading: 'Location & Accessibility', content: 'XTSY is on Mawdiangdiang Road in New Shillong Township, near NIFT and IIM Shillong, a cab ride from Police Bazaar. Our location offers easy access to all major day trips — Cherrapunji (2hr), Dawki (3hr), Mawlynnong (2.5hr).' },
       { heading: 'Guest Reviews Speak', content: 'XTSY maintains a 4.8★ rating on Google with 161 verified reviews. Guests consistently praise the hospitality, cleanliness, food at TAB Bistro, and the vibrant travel community.' },
       { heading: 'Unique to XTSY', content: 'What sets XTSY apart:', listItems: ['In-house restaurant — TAB Bistro', '270° panoramic glasshouse room', 'Curated Meghalaya tour packages', 'Car & bike rental desk', 'Bonfire & community events'] },
     ],
     [
-      { question: 'Is XTSY better than Zostel in Shillong?', answer: 'XTSY is independently rated 4.8★ on Google with 161 verified reviews. We offer comparable dorm pricing, an in-house restaurant, and unique experiences like the 270° glasshouse stay.' },
+      { question: 'Is XTSY better than Zostel in Shillong?', answer: 'XTSY is independently rated 4.8★ on Google with 161 verified reviews. We offer comparable dorm pricing, an in-house restaurant, and unique experiences like Experience by XTSY stay.' },
       { question: 'Does XTSY have a female-only dorm?', answer: 'Yes, we have a dedicated 4-bed female-only dormitory with enhanced security, personal lockers, and attached bathroom.' },
     ],
     ['backpacker-hostel-shillong', 'cheap-hostel-shillong', 'hostels-in-meghalaya'],
@@ -46,7 +46,7 @@ const competitorPages: SEOPageData[] = [
     'Isabella Hostel vs XTSY Shillong — Compare 2026', 'Isabella Hostel vs XTSY Travellers Hostel Shillong. Compare price, location, amenities & reviews. Book the best backpacker hostel.',
     'Isabella Hostel vs XTSY — Which Is Better?', 'Deciding between Isabella Hostel and XTSY in Shillong? Here\'s an honest comparison to help you pick the right stay for your Meghalaya trip.',
     [
-      { heading: 'Why Choose XTSY', content: 'XTSY offers a complete travel ecosystem:', listItems: ['Dorms from ₹369 with privacy curtains', 'In-house TAB Bistro restaurant', 'Tour packages & rental desk', '270° glasshouse luxury option', '4.8★ Google rating, 161 verified reviews'] },
+      { heading: 'Why Choose XTSY', content: 'XTSY offers a complete travel ecosystem:', listItems: ['Dorms from ₹369 with privacy curtains', 'In-house TAB Bistro restaurant', 'Tour packages & rental desk', 'Experience by XTSY luxury option', '4.8★ Google rating, 161 verified reviews'] },
       { heading: 'Amenities Comparison', content: 'XTSY provides free WiFi, hot showers, common kitchen, luggage storage, and a social lounge — all included in the base price. Our in-house restaurant means you never need to go far for meals.' },
     ],
     [
@@ -333,7 +333,7 @@ const experiencePages: SEOPageData[] = [
     [
       { heading: 'Best Time to Visit', content: 'Shillong is beautiful year-round:', listItems: ['March-May: Pleasant spring, cherry blossoms', 'June-September: Monsoon, lush green (heavy rain)', 'October-November: Autumn Festival season', 'December-February: Cold winter, clear skies'] },
       { heading: 'Top Things to Do', content: 'Must-do experiences:', listItems: ['Explore Police Bazaar & Iewduh market', 'Visit Shillong Peak for panoramic views', 'Day trip to Cherrapunji\'s waterfalls', 'Dawki river crystal clear water', 'Trek to Laitlum Canyons', 'Live music at local cafés'] },
-      { heading: 'Where to Stay', content: 'XTSY Travellers Hostel is your best base — centrally located with dorms from ₹369 and private rooms from ₹1,499. In-house restaurant, tour desk, and car rentals available.' },
+      { heading: 'Where to Stay', content: 'XTSY Travellers Hostel is your best base — in New Shillong Township, with dorms from ₹369 and private rooms from ₹1,499. In-house restaurant, tour desk, and car rentals available.' },
     ],
     [
       { question: 'How many days are enough for Shillong?', answer: '3-4 days is ideal for Shillong and nearby attractions. For the full Meghalaya experience including Cherrapunji and Dawki, plan 5-7 days.' },
@@ -360,14 +360,14 @@ const experiencePages: SEOPageData[] = [
   ),
 
   mkPage('luxury-resorts-for-couples-shillong', 'glamping', 'LodgingBusiness',
-    'Luxury Resorts for Couples in Shillong | XTSY 270°', 'Romantic luxury stays in Shillong for couples. XTSY 270° panoramic glasshouse with forest views. Perfect for honeymoons & anniversaries.',
+    'Luxury Resorts for Couples in Shillong | Experience by XTSY', 'Romantic luxury stays in Shillong for couples. Experience by XTSY, a 270° panoramic glass suite, with forest views. Perfect for honeymoons & anniversaries.',
     'Luxury Resorts for Couples in Shillong', 'Looking for a romantic luxury stay in Shillong? XTSY\'s 270° panoramic glasshouse offers couples an unforgettable experience — wake up to forest views in a glass-walled room.',
     [
-      { heading: 'XTSY 270° Glasshouse', content: 'The ultimate romantic stay:', listItems: ['270° panoramic glass walls', 'Surrounded by pine forests', 'King-size bed with premium linen', 'Private bathroom with hot shower', 'Star-gazing from your bed', 'Starting at ₹4,999/night'] },
+      { heading: 'Experience by XTSY', content: 'The ultimate romantic stay:', listItems: ['270° panoramic glass walls', 'Surrounded by pine forests', 'King-size bed with premium linen', 'Private bathroom with hot shower', 'Star-gazing from your bed', 'Starting at ₹4,999/night'] },
       { heading: 'Romantic Experiences', content: 'Make your stay special:', listItems: ['Candlelit dinner at TAB Bistro', 'Sunrise view from the glasshouse', 'Couple\'s day trip to Dawki', 'Cherry blossom walks (March-April)', 'Bonfire under the stars'] },
     ],
     [
-      { question: 'Is the glasshouse private?', answer: 'Yes, the XTSY 270° Glasshouse is a completely private room with its own entrance, bathroom, and uninterrupted forest views.' },
+      { question: 'Is the glasshouse private?', answer: 'Yes, Experience by XTSY is a completely private room with its own entrance, bathroom, and uninterrupted forest views.' },
       { question: 'Can you arrange a surprise for my partner?', answer: 'Yes! We can arrange cake, flowers, room decoration, and special dining experiences. Contact us in advance for arrangements.' },
     ],
     ['luxury-glamping-shillong', 'meghalaya-honeymoon-package', 'shillong-tour-package'],
@@ -375,18 +375,18 @@ const experiencePages: SEOPageData[] = [
   ),
 
   mkPage('unique-luxury-stay-india', 'glamping', 'LodgingBusiness',
-    'Unique Luxury Stays in India — XTSY 270° Glasshouse', 'Experience India\'s most unique luxury stay — XTSY 270° Glasshouse in Shillong. 270° panoramic glass room in pine forest. Book now.',
-    'Unique Luxury Stay in India — XTSY 270°', 'Looking for a truly unique luxury stay in India? The XTSY 270° Glasshouse in Shillong offers a one-of-a-kind experience — sleep in a glass room surrounded by pine forests.',
+    'Unique Luxury Stays in India — Experience by XTSY', 'Experience India\'s most unique luxury stay — Experience by XTSY in Shillong. 270° panoramic glass room in pine forest. Book now.',
+    'Unique Luxury Stay in India — Experience by XTSY', 'Looking for a truly unique luxury stay in India? Experience by XTSY in Shillong offers a one-of-a-kind experience — sleep in a glass room surrounded by pine forests.',
     [
       { heading: 'Why It\'s Unique', content: 'What makes XTSY 270° special:', listItems: ['India\'s only 270° panoramic glass room', 'Located in Meghalaya\'s pine forests', 'Unobstructed views of hills & sky', 'Star-gazing from bed', 'Instagram-worthy design'] },
       { heading: 'The Experience', content: 'A stay at XTSY 270° includes:', listItems: ['Premium king-size bed', 'Private bathroom with hot shower', 'Complimentary breakfast at TAB Bistro', 'Access to all XTSY amenities', 'Guided nature walk on request'] },
     ],
     [
-      { question: 'Where is the XTSY 270° Glasshouse?', answer: 'Located in New Shillong Township, Meghalaya — about 10 minutes from Shillong city center, surrounded by pine forests.' },
+      { question: 'Where is Experience by XTSY?', answer: 'On Mawdiangdiang Road, New Shillong Township, Meghalaya (793018), surrounded by pine forests — at the same address as XTSY Travellers Hostel.' },
     ],
     ['luxury-glamping-shillong', 'luxury-resorts-for-couples-shillong'],
     ['unique luxury stay india', 'glasshouse stay india', 'unique hotel india', 'glass room hotel india'],
-    'Book Glasshouse', '/book'
+    'Book Experience by XTSY', '/book'
   ),
 
   mkPage('luxury-stays-in-india', 'glamping', 'LodgingBusiness',
@@ -410,9 +410,9 @@ const experiencePages: SEOPageData[] = [
 const accommodationExpansionPages: SEOPageData[] = [
   mkPage('stays-in-shillong', 'accommodation', 'LodgingBusiness',
     'Best Stays in Shillong 2026 — Budget to Luxury | XTSY', 'Find the best stays in Shillong. Hostels from ₹369, private rooms from ₹1,499, luxury glasshouse ₹4,999. All at XTSY Travellers Hostel.',
-    'Best Stays in Shillong', 'From budget dorms to luxury glasshouse — find your perfect stay in Shillong at XTSY. Rated 4.8★ on Google with 161 verified reviews, centrally located with in-house dining.',
+    'Best Stays in Shillong', 'From budget dorms to luxury glasshouse — find your perfect stay in Shillong at XTSY. Rated 4.8★ on Google with 161 verified reviews, in New Shillong Township with in-house dining.',
     [
-      { heading: 'Stay Options at XTSY', content: 'Something for every traveler:', listItems: ['8-Bed Mixed Dorm — ₹369/night', '6-Bed Mixed Dorm — ₹699/night', '4-Bed Female-Only Dorm — ₹799/night', 'Private Double Room — ₹1,499/night', 'Deluxe Room — ₹1,999/night', 'XTSY 270° Glasshouse — ₹4,999/night'] },
+      { heading: 'Stay Options at XTSY', content: 'Something for every traveler:', listItems: ['8-Bed Mixed Dorm — ₹369/night', '6-Bed Mixed Dorm — ₹699/night', '4-Bed Female-Only Dorm — ₹799/night', 'Private Double Room — ₹1,499/night', 'Deluxe Room — ₹1,999/night', 'Experience by XTSY — ₹4,999/night'] },
       { heading: 'What\'s Included', content: 'Every stay includes free WiFi, hot water, common kitchen, lounge access, luggage storage, and 24/7 reception. In-house TAB Bistro restaurant for meals.' },
     ],
     [
@@ -437,7 +437,7 @@ const accommodationExpansionPages: SEOPageData[] = [
   ),
 
   mkPage('places-to-stay-shillong', 'accommodation', 'LodgingBusiness',
-    'Places to Stay in Shillong 2026 — Top Options | XTSY', 'Best places to stay in Shillong. Hostels, hotels, homestays compared. XTSY rated 4.8★. Central location, dorms from ₹369.',
+    'Places to Stay in Shillong 2026 — Top Options | XTSY', 'Best places to stay in Shillong. Hostels, hotels, homestays compared. XTSY rated 4.8★. New Shillong Township, dorms from ₹369.',
     'Best Places to Stay in Shillong', 'Looking for the best place to stay in Shillong? Compare hostels, hotels, and homestays. XTSY Travellers Hostel offers the best value with multiple room types and top-rated hospitality.',
     [
       { heading: 'Accommodation Types', content: 'Shillong offers various stay options:', listItems: ['Hostels (XTSY) — ₹369-1,999/night, social atmosphere', 'Budget Hotels — ₹1,500-3,000/night', 'Homestays — ₹1,000-2,500/night', 'Luxury Hotels — ₹5,000-15,000/night', 'Unique Stays (XTSY 270°) — ₹4,999/night'] },
@@ -466,14 +466,14 @@ const accommodationExpansionPages: SEOPageData[] = [
   ),
 
   mkPage('hotel-near-police-bazar', 'hotels', 'Hotel',
-    'Hotel Near Police Bazar Shillong — Best Options 2026', 'Find hotels near Police Bazar Shillong. XTSY Hostel is 10 min away with rooms from ₹369. Central location, 4.8★ rated.',
-    'Hotels Near Police Bazar, Shillong', 'Looking for a hotel near Police Bazar in Shillong? XTSY Travellers Hostel is just 10 minutes away with options from ₹369 dorms to ₹4,999 glasshouse rooms.',
+    'Hotel Near Police Bazar Shillong — Best Options 2026', 'Staying near Police Bazar or somewhere quieter? XTSY is in New Shillong Township, a cab ride away, with rooms from ₹369. 4.8★ rated.',
+    'Hotels Near Police Bazar, Shillong', 'Looking for a hotel near Police Bazar in Shillong? XTSY Travellers Hostel is a cab ride away in New Shillong Township, with options from ₹369 dorms to ₹4,999 glasshouse rooms.',
     [
-      { heading: 'XTSY — Near Police Bazar', content: 'Just 10 minutes from Police Bazaar:', listItems: ['3.5 km from Police Bazaar center', 'Auto-rickshaw: ₹50-80, 10 minutes', 'Shared taxi: ₹30-50', 'Peaceful location away from city noise', 'Easy access to all Shillong attractions'] },
-      { heading: 'Room Options', content: 'Stay at any budget level:', listItems: ['Dorm beds from ₹369', 'Private rooms from ₹1,499', 'Deluxe rooms from ₹1,999', 'XTSY 270° Glasshouse — ₹4,999'] },
+      { heading: 'Where XTSY Is', content: 'XTSY is on Mawdiangdiang Road, New Shillong Township — not in Police Bazaar:', listItems: ['Near NIFT Shillong, IIM Shillong and NEIGRIMS', 'Police Bazaar is a cab ride away', 'The XTSY desk can book cabs', 'Peaceful location away from city noise', 'Easy access to all Shillong attractions'] },
+      { heading: 'Room Options', content: 'Stay at any budget level:', listItems: ['Dorm beds from ₹369', 'Private rooms from ₹1,499', 'Deluxe rooms from ₹1,999', 'Experience by XTSY — ₹4,999'] },
     ],
     [
-      { question: 'How far is XTSY from Police Bazar?', answer: 'XTSY is about 3.5 km (10 minutes by auto) from Police Bazaar. Regular shared autos and taxis are available.' },
+      { question: 'How far is XTSY from Police Bazar?', answer: 'XTSY is in New Shillong Township, a cab ride from Police Bazaar. The XTSY desk can book one for you.' },
     ],
     ['hostel-near-police-bazar-shillong', 'stays-in-shillong', 'budget-stay-shillong'],
     ['hotel near police bazar shillong', 'police bazaar hotels', 'accommodation near police bazar', 'hotel police bazar shillong']
@@ -550,7 +550,7 @@ const itineraryExpansionPages: SEOPageData[] = [
     it.title, `Plan the perfect ${it.days}-day Meghalaya trip with this detailed day-by-day itinerary. Covers the best attractions, transport, accommodation, and budget tips.`,
     [
       { heading: 'Day-by-Day Plan', content: `Your ${it.days}-day Meghalaya itinerary:`, listItems: it.plan },
-      { heading: 'Where to Stay', content: `Base yourself at XTSY Travellers Hostel in Shillong. Dorms from ₹369, private rooms from ₹1,499. Central location for all day trips.` },
+      { heading: 'Where to Stay', content: `Base yourself at XTSY Travellers Hostel in Shillong. Dorms from ₹369, private rooms from ₹1,499. Travel desk for all day trips.` },
       { heading: 'Budget Estimate', content: `Approximate ${it.days}-day budget:`, listItems: [`Accommodation: ₹${parseInt(it.days) * 500}-${parseInt(it.days) * 1500}`, `Food: ₹${parseInt(it.days) * 400}-${parseInt(it.days) * 800}`, `Transport: ₹${parseInt(it.days) * 500}-${parseInt(it.days) * 1500}`, `Activities: ₹${parseInt(it.days) * 200}-${parseInt(it.days) * 500}`, `Total: ₹${parseInt(it.days) * 1600}-${parseInt(it.days) * 4300}`] },
     ],
     [
@@ -778,7 +778,7 @@ const foodPages: SEOPageData[] = [
       { heading: 'Khasi Cuisine Must-Try', content: 'Traditional dishes to try:', listItems: ['Jadoh — Khasi rice & pork', 'Tungrymbai — fermented soybean curry', 'Doh Khlieh — spiced pork salad', 'Ki Kpu — Khasi blood sausage', 'Kwai — betel nut (local custom)'] },
     ],
     [
-      { question: 'Where to eat near XTSY?', answer: 'TAB Bistro, our in-house restaurant, serves breakfast, lunch, and dinner. For variety, Police Bazaar (10 min away) has dozens of restaurants.' },
+      { question: 'Where to eat near XTSY?', answer: 'TAB Bistro, our in-house restaurant, serves breakfast, lunch, and dinner. For variety, Police Bazaar (a cab ride away) has dozens of restaurants.' },
     ],
     ['shillong-vacation-planner', 'budget-stay-shillong'],
     ['best restaurants shillong', 'restaurants in shillong', 'where to eat shillong', 'shillong food guide'],
@@ -854,7 +854,7 @@ const weddingExpansionPages: SEOPageData[] = [
     'Pre-Wedding Shoot in Meghalaya — Best Locations 2026', 'Best pre-wedding photoshoot locations in Meghalaya. Dawki river, waterfalls, root bridges. Photography packages by XTSY.',
     'Pre-Wedding Shoot in Meghalaya', 'Meghalaya offers India\'s most stunning pre-wedding shoot locations — from crystal-clear rivers to misty waterfalls and living root bridges.',
     [
-      { heading: 'Top Shoot Locations', content: 'Instagram-worthy locations:', listItems: ['Dawki — crystal clear river backdrop', 'Laitlum Canyon — dramatic cliffs', 'Living Root Bridges — unique natural arch', 'Nohkalikai Falls — tallest waterfall', 'XTSY 270° Glasshouse — panoramic room', 'Cherry blossom avenues (March)'] },
+      { heading: 'Top Shoot Locations', content: 'Instagram-worthy locations:', listItems: ['Dawki — crystal clear river backdrop', 'Laitlum Canyon — dramatic cliffs', 'Living Root Bridges — unique natural arch', 'Nohkalikai Falls — tallest waterfall', 'Experience by XTSY — panoramic room', 'Cherry blossom avenues (March)'] },
       { heading: 'XTSY Photography Packages', content: 'We connect you with local photographers and arrange:', listItems: ['Location permits & access', 'Transport to shoot locations', 'Accommodation during shoot days', 'Styling consultation', 'Customized shoot itinerary'] },
     ],
     [

@@ -45,10 +45,10 @@ const Contact: React.FC = () => {
               email,
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: 'XTSY Travellers Hostel, Laitumkhrah',
+                streetAddress: 'Mawdiangdiang Road, New Shillong Township',
                 addressLocality: 'Shillong',
                 addressRegion: 'Meghalaya',
-                postalCode: '793003',
+                postalCode: '793018',
                 addressCountry: 'IN',
               },
               contactPoint: [
@@ -132,7 +132,7 @@ const Contact: React.FC = () => {
                 <p className="text-slate-600 text-sm">
                   XTSY Travellers Hostel<br />
                   Laitumkhrah, Shillong<br />
-                  Meghalaya 793003, India
+                  Meghalaya 793018, India
                 </p>
               </div>
             </div>

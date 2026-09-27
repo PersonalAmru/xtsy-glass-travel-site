@@ -46,7 +46,7 @@ const LINK_GROUPS: LinkGroup[] = [
       { label: 'Homestays in Shillong', href: '/homestays-in-shillong' },
       { label: 'Luxury Glamping', href: '/luxury-glamping-shillong' },
       { label: 'Destination Wedding', href: '/destination-wedding-shillong' },
-      { label: 'XTSY 270° Glasshouse', href: '/xtsy-270' },
+      { label: 'Experience by XTSY', href: '/xtsy-270' },
       { label: 'TAB Bistro Restaurant', href: '/tab-bistro' },
       { label: 'XTSY vs Zostel', href: '/xtsy-vs-zostel' },
     ],

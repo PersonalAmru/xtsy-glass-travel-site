@@ -27,7 +27,7 @@ const SEARCH_INDEX: SearchResult[] = [
   { title: '6-Bed Mixed Dorm', description: 'Recommended · From ₹499/night', icon: '🛏️', path: '/book', keywords: ['dorm', '6 bed', 'mixed', 'recommended', '499'], tags: ['budget', 'explore'] },
   { title: '4-Bed Female Dorm', description: 'Women only · From ₹599/night', icon: '👩', path: '/book', keywords: ['female', 'women', '4 bed', '599', 'ladies'], tags: ['female', 'budget'] },
   { title: 'King Double Room', description: 'Couple favourite · From ₹2,200/night', icon: '👫', path: '/book', keywords: ['king', 'double', 'couple', 'private', 'room', '2200', 'luxury'], tags: ['couples', 'luxury'] },
-  { title: 'Panorama by XTSY – 270° Glass Ensuite', description: 'Ultra luxury · Stay only ₹5,399/night', icon: '✨', path: '/xtsy-270', keywords: ['270', 'panorama', 'glass', 'luxury', 'premium', 'ensuite', '5399', 'view', 'mountain', 'experience by xtsy'], tags: ['luxury'] },
+  { title: "Experience by XTSY – India's First Stargaze Glamp", description: 'Ultra luxury · Stay only ₹5,399/night', icon: '✨', path: '/xtsy-270', keywords: ['270', 'panorama', 'glass', 'luxury', 'premium', 'ensuite', '5399', 'view', 'mountain', 'experience by xtsy'], tags: ['luxury'] },
   // Properties
   { title: 'XTSY Travellers Hostel', description: 'Biggest hostel in North East India', icon: '🏠', path: '/', keywords: ['hostel', 'travellers', 'backpacker', 'shillong', 'budget', 'stay'], tags: ['explore', 'budget'] },
   { title: 'Experience by XTSY', description: 'Premium glass ensuite in Shillong', icon: '💎', path: '/xtsy-270', keywords: ['luxury', 'premium', 'glass', 'panorama', 'high-end', 'experience'], tags: ['luxury'] },
@@ -53,7 +53,7 @@ const PLACEHOLDER_HINTS = [
   { text: 'Book dorm from ₹399/night', icon: '🛏️' },
   { text: 'Explore Meghalaya', icon: '🏔️' },
   { text: 'Search North East India', icon: '🌿' },
-  { text: 'XTSY 270° Glass Ensuite', icon: '✨' },
+  { text: 'XTSY Experience by XTSY', icon: '✨' },
   { text: 'Adventure packages & tours', icon: '🎒' },
   { text: 'Pet-friendly stays', icon: '🐾' },
 ];

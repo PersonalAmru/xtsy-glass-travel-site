@@ -11,12 +11,12 @@ import { Quote, MessageCircle, Sparkles, Mountain, Map, Plane, CreditCard, Star 
 const FAQ = () => {
   const faqSections = [
     {
-      title: "The Glass Suite",
+      title: "Experience by XTSY",
       icon: Sparkles,
       iconColor: "text-amber-500",
       faqs: [
         {
-          question: "What makes the 270° Glass Suite worth it?",
+          question: "What makes Experience by XTSY worth it?",
           answer: "Three glass walls. 270° views. Sunrise over the mountains from your bed. It's India's first panoramic glass house—couples, proposals, anniversary vibes, or just treating yourself. The photos don't do it justice.",
           hasQuote: true,
           quote: "Absolutely beautiful view from their glass house. It was an unforgettable experience!",
@@ -95,7 +95,7 @@ const FAQ = () => {
       faqs: [
         {
           question: "How far in advance should I book?",
-          answer: "Glass Suite: 2-3 weeks ahead during peak season. Tour packages: 1-2 weeks usually works. Last-minute bookings? Possible, but availability might be limited.",
+          answer: "Experience by XTSY: 2-3 weeks ahead during peak season. Tour packages: 1-2 weeks usually works. Last-minute bookings? Possible, but availability might be limited.",
         },
         {
           question: "What's your cancellation policy?",
@@ -128,7 +128,7 @@ const FAQ = () => {
       faqs: [
         {
           question: "What dorm and room types can I choose?",
-          answer: "4, 6 and 8-bed mixed dormitories, female-only dorms (4 and 6-bed), private double rooms with mountain views, and the flagship 270° Panorama Glass En-suite at Experience by XTSY. Every bed has a locker, reading light and charging point. Dorms from ₹369.",
+          answer: "4, 6 and 8-bed mixed dormitories, female-only dorms (4 and 6-bed), private double rooms with mountain views, and Experience by XTSY, India's first stargaze glamp. Every bed has a locker, reading light and charging point. Dorms from ₹369.",
           hasQuote: true,
           quote: "One of the best dormitories — clean, comfortable and full of good vibes.",
           quoteName: "Kandarp"
@@ -148,8 +148,8 @@ const FAQ = () => {
           quoteName: "Priyadarshinee Nayak"
         },
         {
-          question: "Does the glass suite get hot in the daytime?",
-          answer: "Daytime sun can warm any glass structure — a point a couple of guests raised. The Panorama Glass En-suite now has climate control, blackout shades and cross ventilation, and guests rate it less humid than glamping setups across Asia and Europe. Nights under the stars are the real magic.",
+          question: "Does Experience by XTSY get hot in the daytime?",
+          answer: "Daytime sun can warm any glass structure — a point a couple of guests raised. Experience by XTSY now has climate control, blackout shades and cross ventilation, and guests rate it less humid than glamping setups across Asia and Europe. Nights under the stars are the real magic.",
           hasQuote: true,
           quote: "Sleeping under a transparent glass roof with Meghalaya's skies above you is just surreal.",
           quoteName: "Airbnb Guest"
@@ -180,8 +180,8 @@ const FAQ = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="FAQ — XTSY Hostel Shillong | Glass Suite, Rooms, Tours"
-        description="Frequently asked questions about XTSY Hostel Shillong. Glass suite, dorm rooms, check-in/out, pet policy, Meghalaya tours, and booking help."
+        title="FAQ — XTSY Hostel Shillong | Experience by XTSY, Rooms, Tours"
+        description="Frequently asked questions about XTSY Hostel Shillong. Experience by XTSY, dorm rooms, check-in/out, pet policy, Meghalaya tours, and booking help."
         keywords="XTSY FAQ, hostel Shillong questions, glass suite FAQ, Meghalaya travel FAQ, booking help XTSY"
         canonicalUrl="https://xtsy.one/faq"
         structuredData={faqSchema}

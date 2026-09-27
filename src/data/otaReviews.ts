@@ -82,7 +82,7 @@ export const otaReviews: Review[] = [
       "Had an amazing stay at Experience by XTSY – India's First Stargaze Glamping. The entire concept is super unique and honestly feels unlike a regular hotel experience. Sleeping under a transparent glass roof with Meghalaya's skies above you is just surreal. 🌌✨ What stood out was that the glass room felt noticeably less humid compared to many glamping setups across Asia and Europe. The ventilation and ambience were surprisingly comfortable. The property is clearly built around the experience — cozy lighting, aesthetic interiors, peaceful atmosphere, and a perfect stargazing vibe at night. Ideal for couples, content creators, and travellers looking for something memorable. The host was super supportive, the place was clean and the whole stay felt thoughtfully designed. Definitely one of the most unique experiential stays in India and South East Asia.",
     date: 'May 2026',
     source: 'Airbnb',
-    roomType: 'Panorama Glass En-suite by XTSY',
+    roomType: 'Experience by XTSY',
     property: GLASS,
     travelType: 'Couple',
     highlights: 'Stargazing · Unique experience · Clean',
@@ -221,7 +221,7 @@ export const otaReviews: Review[] = [
     comment: 'Good experience. The glass suite can get warm during the day as it is made of glass.',
     date: 'April 2026',
     source: 'MakeMyTrip',
-    roomType: 'Panorama Glass En-suite by XTSY',
+    roomType: 'Experience by XTSY',
     property: GLASS,
     travelType: 'Group',
     ownerReply:
@@ -252,10 +252,10 @@ export const otaReviews: Review[] = [
   {
     name: 'Amrit Warudkar',
     rating: 5,
-    comment: 'The Panorama glass en-suite is a stunning, one-of-a-kind experience.',
+    comment: 'Experience by XTSY is a stunning, one-of-a-kind experience.',
     date: 'May 2026',
     source: 'Goibibo',
-    roomType: 'Panorama Glass En-suite by XTSY',
+    roomType: 'Experience by XTSY',
     property: GLASS,
   },
   {

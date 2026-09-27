@@ -28,12 +28,12 @@ interface SEOHeadProps {
 }
 
 const DEFAULT_TITLE = "XTSY — Best Hostel in Shillong, Meghalaya";
-const DEFAULT_DESCRIPTION = "India's biggest hostel in Shillong, Meghalaya. Budget dorms, luxury 270° glass suite, tours & experiences. Book direct for best rates.";
+const DEFAULT_DESCRIPTION = "India's biggest hostel in Shillong, Meghalaya. Budget dorms, Experience by XTSY, tours & experiences. Book direct for best rates.";
 const DEFAULT_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png";
 const SEO_CONFIG: Record<string, { title: string; description: string; keywords?: string }> = {
   home: {
     title: "Best Hostel in Shillong from ₹369/night | XTSY",
-    description: "India's biggest hostel in Shillong. Dorms from ₹369, 270° glass suite ₹4,999, curated Meghalaya tours from ₹7,999. Book direct — save 20-30% vs Booking.com.",
+    description: "India's biggest hostel in Shillong. Dorms from ₹369, Experience by XTSY ₹4,999, curated Meghalaya tours from ₹7,999. Book direct — save 20-30% vs Booking.com.",
     keywords: "best hostel Shillong, biggest hostel northeast India, Shillong hostel, Meghalaya accommodation, budget stay Shillong",
   },
   travel: {
@@ -42,23 +42,23 @@ const SEO_CONFIG: Record<string, { title: string; description: string; keywords?
     keywords: "Meghalaya tour packages, Northeast India tours, living root bridges tour, Cherrapunji tour, Dawki trip",
   },
   gallery: {
-    title: "XTSY Photo Gallery — Hostel & Glass Suite Photos",
-    description: "See inside XTSY Shillong — 270° glass suite, dormitories, common areas, mountain views. Real photos from India's biggest hostel.",
+    title: "XTSY Photo Gallery — Hostel & Experience by XTSY Photos",
+    description: "See inside XTSY Shillong — Experience by XTSY, dormitories, common areas, mountain views. Real photos from India's biggest hostel.",
     keywords: "XTSY photos, Shillong hostel gallery, glass suite photos, hostel rooms Meghalaya",
   },
   about: {
     title: "About XTSY — India's Biggest Hostel in Northeast",
-    description: "XTSY Travellers Hostel, Shillong. India's first 270° glass suite, NEITA 2025 nominated. 2.5 hrs from Guwahati airport. Learn our story.",
+    description: "XTSY Travellers Hostel, Shillong. Experience by XTSY, India's first stargaze glamp, NEITA 2025 nominated. 2.5 hrs from Guwahati airport. Learn our story.",
     keywords: "XTSY about, biggest hostel northeast, Shillong hostel story, NEITA 2025",
   },
   booking: {
     title: "Book Shillong Hostel — Dorms ₹369+ | XTSY",
-    description: "Book dorms from ₹369, King Double rooms from ₹2,399, Panorama 270° glass suite at ₹4,999. Best price guaranteed at XTSY Shillong.",
+    description: "Book dorms from ₹369, King Double rooms from ₹2,399, Experience by XTSY at ₹4,999. Best price guaranteed at XTSY Shillong.",
     keywords: "book hostel Shillong, hostel booking Meghalaya, Shillong room booking",
   },
   search: {
     title: "Search Rooms & Availability | XTSY Shillong",
-    description: "Check room availability at XTSY Shillong. Compare dorms, private rooms, and the 270° glass suite. Instant booking confirmation.",
+    description: "Check room availability at XTSY Shillong. Compare dorms, private rooms, and Experience by XTSY. Instant booking confirmation.",
     keywords: "room search Shillong, hostel availability Meghalaya, XTSY rooms",
   },
   blog: {
@@ -87,7 +87,7 @@ const SEO_CONFIG: Record<string, { title: string; description: string; keywords?
     keywords: "XTSY vs Zostel, best hostel India comparison, Zostel alternative, hostel chain comparison",
   },
   'xtsy-270': {
-    title: "270° Glass Suite — India's First Stargazing Room | XTSY",
+    title: "Experience by XTSY — India's First Stargazing Room | XTSY",
     description: "India's first 270° panoramic glass suite in Shillong. Stargazing, mountain views, luxury glamping. Perfect for couples & anniversaries.",
     keywords: "glass suite Shillong, stargazing room India, luxury glamping Meghalaya, romantic stay Shillong",
   },
@@ -103,7 +103,7 @@ const SEO_CONFIG: Record<string, { title: string; description: string; keywords?
   },
   properties: {
     title: "XTSY Properties — Hostels & Luxury Stays in Shillong",
-    description: "Browse XTSY properties: Travellers Hostel and Luxury Glass Suite in Shillong. Compare amenities, rooms, and book direct.",
+    description: "Browse XTSY properties: Travellers Hostel and Experience by XTSY in New Shillong Township. Compare amenities, rooms, and book direct.",
     keywords: "XTSY properties, Shillong hostels, accommodation Meghalaya",
   },
   'privacy-policy': {

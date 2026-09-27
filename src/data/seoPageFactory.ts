@@ -140,7 +140,7 @@ const faqsForDestination = (destination: string): SEOFaq[] => {
     { question: `Is ${label} safe for solo and female travellers?`, answer: `Yes. Northeast India is among the safest regions in the country, and XTSY runs dedicated female-only dorms with 24/7 reception. Solo and female guests consistently rate their stays 5/5 for safety and a peaceful atmosphere.` },
     { question: `How do I book a stay near ${label}?`, answer: `Message us on WhatsApp at +91 88373 17070 for instant availability and the best direct rate. Our Shillong base offers 24/7 check-in.` },
     { question: `What do guests say about staying with XTSY near ${label}?`, answer: `XTSY Travellers Hostel is rated highly across Google, MakeMyTrip, Goibibo, Agoda and Hostelworld. Guests repeatedly praise the spotless dorms, friendly staff, great food at TAB Bistro and a genuine international backpacker vibe — "one of the best dormitories near Shillong".` },
-    { question: `Where will I sleep — what rooms are available near ${label}?`, answer: `Choose 4, 6 and 8-bed mixed dorms, female-only dorms, private rooms, or the flagship 270° Panorama Glass En-suite at Experience by XTSY. Every bed has a locker, reading light and charging point. Dorms from ₹369, glass suite for couples and content creators.` },
+    { question: `Where will I sleep — what rooms are available near ${label}?`, answer: `Choose 4, 6 and 8-bed mixed dorms, female-only dorms, private rooms, or Experience by XTSY, India's first stargaze glamp. Every bed has a locker, reading light and charging point. Dorms from ₹369, glass suite for couples and content creators.` },
   ];
 };
 
@@ -332,7 +332,7 @@ export function buildInstitutionPage(slug: string, inst: { slug: string; name: s
     sections: [
       {
         heading: `Distance & Transport from XTSY to ${inst.name}`,
-        content: `XTSY is centrally located in Mawdiangdiang, with easy taxi/cab access to ${inst.name}. Local rates: ₹150–₹300 one-way. Shared sumos available from Police Bazaar.`,
+        content: `XTSY is on Mawdiangdiang Road, New Shillong Township, with easy taxi/cab access to ${inst.name}. Local rates: ₹150–₹300 one-way. The XTSY desk can book a cab.`,
         listItems: [
           'Shared taxis run frequently to all major Shillong landmarks',
           'Reception staff can pre-book a cab with prior notice',

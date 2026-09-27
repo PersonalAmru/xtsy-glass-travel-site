@@ -30,9 +30,9 @@ const XTSY270: React.FC = () => {
   const keywords = (XTSY270_DATA as any).seoKeywords || '';
 
   const handleBookingClick = () => {
-    const message = `🏕️ *Experience by XTSY – Glasshouse Glamping Inquiry*
+    const message = `🏕️ *Experience by XTSY – Stargaze Glamp Inquiry*
 
-Hi XTSY Team! I'd love to experience India's first 270° glasshouse glamping retreat! 🌟
+Hi XTSY Team! I'd love to stay at Experience by XTSY, India's first stargaze glamp! 🌟
 
 🏔️ *What I'm Interested In:*
 • Experience by XTSY – 270° Glamping Retreat
@@ -56,7 +56,7 @@ Can't wait to sleep under the stars! 🌌✨`;
   const roomLd = {
     '@context': 'https://schema.org',
     '@type': 'LodgingBusiness',
-    name: 'Experience by XTSY – 270° Glasshouse Glamping Retreat',
+    name: "Experience by XTSY – India's First Stargaze Glamp",
     description: 'India\'s first 270° panoramic glasshouse glamping retreat in Shillong, Meghalaya. Sleep under stars, wake to mountains — luxury glamping for couples.',
     url: canonicalUrl,
     address: {
@@ -101,7 +101,7 @@ Can't wait to sleep under the stars! 🌌✨`;
             <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
               <Badge variant="outline" className="bg-card border-border text-foreground font-semibold shadow-xs">
                 <Award className="w-3 h-3 mr-1 text-primary" />
-                India's First Glasshouse Glamping
+                India's First Stargaze Glamp
               </Badge>
               <Badge variant="outline" className="bg-card border-border text-foreground font-semibold shadow-xs">
                 <Star className="w-3 h-3 mr-1 text-primary" />
@@ -119,7 +119,7 @@ Can't wait to sleep under the stars! 🌌✨`;
                 Experience by XTSY
               </h1>
               <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-foreground/80">
-                India's First 270° Glasshouse Glamping Retreat
+                India's First Stargaze Glamp
               </h2>
               <p className="text-lg md:text-xl text-muted-foreground font-medium max-w-3xl mx-auto leading-relaxed mb-4">
                 Sleep under the stars. Wake to mountains.
@@ -163,7 +163,7 @@ Can't wait to sleep under the stars! 🌌✨`;
             </div>
 
             {/* Hero Interactive Image Selector */}
-            <figure className="animate-fade-in" style={{ animationDelay: '0.6s' }} aria-label="XTSY 270° Panorama Glass Ensuite luxury experience">
+            <figure className="animate-fade-in" style={{ animationDelay: '0.6s' }} aria-label="Experience by XTSY, India's first stargaze glamp">
               <InteractiveSelector
                 options={[
                   { title: 'Stargazing Suite', description: 'Sleep under open skies from your bed', image: xtsyStargazing, icon: <Star className="w-6 h-6" /> },
@@ -174,7 +174,7 @@ Can't wait to sleep under the stars! 🌌✨`;
                 ]}
               />
               <figcaption className="mt-4 text-center text-muted-foreground font-medium">
-                India's first 270° glasshouse glamping retreat — where architecture disappears into nature
+                India's first stargaze glamp — where architecture disappears into nature
               </figcaption>
               <p className="mt-2 text-center text-sm text-muted-foreground/70">
                 Purely designed and curated by Team XTSY in the pine forests of Shillong
@@ -347,7 +347,7 @@ Can't wait to sleep under the stars! 🌌✨`;
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(roomLd) }} />
       <XTSY270Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <B2BBookingForm isOpen={isB2BFormOpen} onClose={() => setIsB2BFormOpen(false)} customTitle="Will it be yours? - XTSY 270° Glass Suite" customDescription="India's First 270° Panoramic Glass House - Exclusive luxury experience" customIcon={Sparkles} maxGuests={2} fixedGuests={true} isCoupleFocused={true} />
+      <B2BBookingForm isOpen={isB2BFormOpen} onClose={() => setIsB2BFormOpen(false)} customTitle="Will it be yours? - Experience by XTSY" customDescription="India's First Stargaze Glamp - Exclusive luxury experience" customIcon={Sparkles} maxGuests={2} fixedGuests={true} isCoupleFocused={true} />
     </div>
   );
 };

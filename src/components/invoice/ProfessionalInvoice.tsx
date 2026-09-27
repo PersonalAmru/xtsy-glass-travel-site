@@ -59,7 +59,7 @@ export default function ProfessionalInvoice({
   gstAmount,
   totalAmount,
   propertyName = 'XTSY Travellers Hostel',
-  propertyAddress = 'Shillong, Meghalaya 793001',
+  propertyAddress = 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018',
   propertyGSTIN = 'PENDING',
 }: InvoiceProps) {
   const invoiceRef = useRef<HTMLDivElement>(null);

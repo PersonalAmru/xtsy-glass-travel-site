@@ -689,10 +689,10 @@ const ReviewsSection = () => {
       priceRange: "₹369 - ₹9,999",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Mawkhar, Shillong",
+        streetAddress: "Mawdiangdiang Road, New Shillong Township",
         addressLocality: "Shillong",
         addressRegion: "Meghalaya",
-        postalCode: "793001",
+        postalCode: "793018",
         addressCountry: "IN",
       },
       aggregateRating: {

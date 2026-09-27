@@ -6,7 +6,7 @@ import neitaAwardCertificate from "@/assets/neita-award-certificate.jpeg";
 const AboutSection = () => {
   useEffect(() => {
     // Enhanced SEO meta tags
-    document.title = 'About XTSY | India\'s Fastest-Growing Travel & Hospitality Brand | First 270° Glass Suite';
+    document.title = 'About XTSY | India\'s Fastest-Growing Travel & Hospitality Brand | Experience by XTSY, India\'s First Stargaze Glamp';
     
     const metaDescription = document.querySelector('meta[name="description"]');
     const descContent = 'XTSY - India\'s fastest-growing travel & hospitality brand. Home to India\'s first 270° panoramic glass suite and Northeast India\'s biggest & highest-rated hostel. Award-nominated excellence. Powered by XTSY ONE.';
@@ -61,7 +61,7 @@ const AboutSection = () => {
   const accommodationServices = [
     {
       icon: Camera,
-      title: "270° Panorama Glass Ensuite",
+      title: "Experience by XTSY",
       description: "India's first panoramic stargazing accommodation"
     },
     {
@@ -185,7 +185,7 @@ const AboutSection = () => {
           </div>
         </section>
 
-        {/* India's First 270° Panorama Glass Ensuite */}
+        {/* India's First Stargaze Glamp — Experience by XTSY */}
         <section className="mb-16">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-5 py-2 rounded-full text-sm font-bold mb-4">
@@ -193,12 +193,12 @@ const AboutSection = () => {
               <span>Architectural Milestone</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-4 leading-tight">
-              India's First 270° Panorama Glass Ensuite
+              India's First Stargaze Glamp — Experience by XTSY
             </h2>
           </div>
           <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
             <p className="text-base sm:text-lg md:text-xl leading-relaxed text-center max-w-4xl mx-auto mb-6">
-              Our flagship creation — the <strong className="text-amber-400">XTSY 270° Luxury Glass Suite</strong> — is India's first panoramic stargazing accommodation.
+              Our flagship creation — the <strong className="text-amber-400">Experience by XTSY</strong> — is India's first panoramic stargazing accommodation.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
               <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-xs">
@@ -372,7 +372,7 @@ const AboutSection = () => {
                   <div className="flex items-start gap-3">
                     <Camera className="w-5 h-5 text-amber-600 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="font-bold text-slate-800 text-base mb-1">XTSY 270° Luxury Glass Suite</h4>
+                      <h4 className="font-bold text-slate-800 text-base mb-1">Experience by XTSY</h4>
                       <p className="text-sm text-slate-600">India's first 270° panoramic glass house with mountain stargazing</p>
                     </div>
                   </div>

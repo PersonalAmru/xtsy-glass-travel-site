@@ -18,7 +18,7 @@ interface IntelligentSearchOverlayProps {
 }
 
 const TRENDING_SEARCHES = [
-  { label: 'Glass Stargazing Suite', icon: '🌌' },
+  { label: 'Experience by XTSY', icon: '🌌' },
   { label: 'Hostel Shillong', icon: '🏠' },
   { label: 'Meghalaya Tours', icon: '🏔️' },
   { label: 'Female Dorm', icon: '👩' },

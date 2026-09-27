@@ -852,7 +852,7 @@ export const googleReviews: GoogleReview[] = [
   },
   {
     name: "deep seth",
-    rating: 5,
+    rating: 1, // was wrongly stored as 5; negative review — verify the exact star rating on Google
     comment: "One of the worst properties to stay at in Shillong. It's honestly hard to understand how this place has received so many positive reviews.",
     date: "13 weeks ago",
     source: "Google",

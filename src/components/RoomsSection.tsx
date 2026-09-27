@@ -138,7 +138,7 @@ const RoomsSection = () => {
         <div className="center-aligned mb-16">
           <PropertySection
             title="XTSY Travellers Hostel"
-            description="Budget-friendly and premium accommodation options in the heart of Shillong with modern amenities and vibrant community spaces"
+            description="Budget-friendly and premium accommodation options in New Shillong Township with modern amenities and vibrant community spaces"
             rooms={hostelRooms}
             propertyType="hostel"
             onSelectRoom={scrollToCalendar}

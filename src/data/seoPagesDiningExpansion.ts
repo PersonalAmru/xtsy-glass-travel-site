@@ -825,7 +825,7 @@ localities.forEach((l) => {
       ],
       localityRelated.filter((s) => s !== l.slug).slice(0, 4),
       l.keywords,
-      `For dining ${l.area.startsWith('near') ? l.area : `in ${l.area}`}, Shillong (${l.known}), TAB Bistro by XTSY nearby serves multi-cuisine food and barbecue, open 9 AM–10:30 PM.`,
+      `For dining ${l.area.startsWith('near') ? l.area : `in ${l.area}`}, Shillong (${l.known}), TAB Bistro by XTSY in New Shillong Township serves multi-cuisine food and barbecue, open 9 AM–10:30 PM.`,
     ),
   );
 });
@@ -871,12 +871,12 @@ combos.forEach((c) => {
     dish(
       c.slug,
       `${c.food.charAt(0).toUpperCase() + c.food.slice(1)} in ${c.area} Shillong — ${c.dishes[0].split(' & ')[0]} & More | TAB Bistro`,
-      `Looking for a ${c.food} in ${c.area}, Shillong? TAB Bistro by XTSY nearby serves ${c.dishes[0].toLowerCase()}, ${c.dishes[1].toLowerCase()} & more. ${HOURS}.`,
+      `Looking for a ${c.food} in ${c.area}, Shillong? TAB Bistro by XTSY in New Shillong Township serves ${c.dishes[0].toLowerCase()}, ${c.dishes[1].toLowerCase()} & more. ${HOURS}.`,
       `${c.food.charAt(0).toUpperCase() + c.food.slice(1)} in ${c.area}, Shillong`,
       `Hunting for a ${areaPhrase}? ${c.area} has plenty of options, and for a full multi-cuisine spread TAB Bistro by XTSY is a short hop away in New Shillong Township — serving ${c.food === 'café' ? 'coffee, breakfast' : c.dishes[0].toLowerCase()} and much more.`,
       [
         { heading: 'What to Order', content: 'Popular picks:', listItems: c.dishes },
-        { heading: 'Why TAB Bistro Nearby', content: 'A reliable choice close to ' + c.area + ':', listItems: ['10+ cuisines under one roof', 'Live tandoor & barbecue', 'Veg & non-veg menus', 'Reservations & catering', 'In-house guest discount of 15%'] },
+        { heading: 'Why TAB Bistro Nearby', content: 'A reliable choice a cab ride from ' + c.area + ':', listItems: ['10+ cuisines under one roof', 'Live tandoor & barbecue', 'Veg & non-veg menus', 'Reservations & catering', 'In-house guest discount of 15%'] },
       ],
       [
         { question: `Where is a good ${c.food} in ${c.area}, Shillong?`, answer: `${c.area} has several options for a ${c.food}. For ${c.food === 'café' ? 'coffee and breakfast' : c.dishes[0].toLowerCase()} plus a full multi-cuisine menu, TAB Bistro by XTSY nearby is a top pick, open 9 AM–10:30 PM.` },
@@ -884,7 +884,7 @@ combos.forEach((c) => {
       ],
       comboRelated.filter((s) => s !== c.slug).slice(0, 4),
       c.keywords,
-      `For a ${areaPhrase}, TAB Bistro by XTSY nearby serves ${c.food === 'café' ? 'coffee and breakfast' : c.dishes[0].toLowerCase()} and a full multi-cuisine menu, open 9 AM–10:30 PM.`,
+      `For a ${areaPhrase}, TAB Bistro by XTSY in New Shillong Township serves ${c.food === 'café' ? 'coffee and breakfast' : c.dishes[0].toLowerCase()} and a full multi-cuisine menu, open 9 AM–10:30 PM.`,
     ),
   );
 });

@@ -156,7 +156,7 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
   'xtsy-270': {
     id: 'xtsy-270',
     name: 'XTSY 270° Panorama Glass Ensuite',
-    shortName: '270° Glass Suite',
+    shortName: 'Experience by XTSY',
     category: 'luxury',
     unitType: 'room',
     capacity: 2,

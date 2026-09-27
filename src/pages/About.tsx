@@ -21,10 +21,10 @@ const organizationSchema = {
   email: 'xtsytravellershostel@gmail.com',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Mawkhar, Shillong',
+    streetAddress: 'Mawdiangdiang Road, New Shillong Township',
     addressLocality: 'Shillong',
     addressRegion: 'Meghalaya',
-    postalCode: '793001',
+    postalCode: '793018',
     addressCountry: 'IN',
   },
   sameAs: [
@@ -39,7 +39,7 @@ const hostelSchema = {
   name: 'XTSY Travellers Hostel',
   url: 'https://xtsy.one/about',
   image: 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png',
-  description: 'India\'s biggest hostel in Shillong, Meghalaya — budget dorms, private rooms, and India\'s first 270° glass suite. NEITA 2025 nominated.',
+  description: 'India\'s biggest hostel in Shillong, Meghalaya — budget dorms, private rooms, and Experience by XTSY, India\'s first stargaze glamp. NEITA 2025 nominated.',
   telephone: '+918837317070',
   email: 'admin@xtsy.one',
   priceRange: '₹325 - ₹9,999',
@@ -144,7 +144,7 @@ const About = () => {
                 </ul>
                 <div className="pt-2">
                   <p className="text-xs text-muted-foreground">
-                    <span className="font-medium">Nearby Landmarks:</span> Police Bazaar (1.5 km), Shillong Cathedral (2 km), Ward's Lake (1.8 km), Don Bosco Museum (3 km)
+                    <span className="font-medium">Nearby Landmarks:</span> NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH, Martin Luther Christian University
                   </p>
                 </div>
               </div>

@@ -113,13 +113,13 @@ const activity = (slug: string, title: string, metaDesc: string, h1: string, int
 // ============================================================================
 
 const hostelPages: SEOPageData[] = [
-  hostel('backpacker-hostel-shillong', 'Best Backpacker Hostel in Shillong 2026 | XTSY', 'Top-rated backpacker hostel in Shillong with dorms from ₹369. Free WiFi, common kitchen, social lounge. Perfect for solo travelers & groups.', 'Best Backpacker Hostel in Shillong', 'Looking for a lively, affordable backpacker hostel in Shillong? XTSY Travellers Hostel is the top-rated hostel for solo travelers, backpackers, and groups exploring Meghalaya. Located in New Shillong Township with easy access to Police Bazaar and all major attractions.',
+  hostel('backpacker-hostel-shillong', 'Best Backpacker Hostel in Shillong 2026 | XTSY', 'Top-rated backpacker hostel in Shillong with dorms from ₹369. Free WiFi, common kitchen, social lounge. Perfect for solo travelers & groups.', 'Best Backpacker Hostel in Shillong', 'Looking for a lively, affordable backpacker hostel in Shillong? XTSY Travellers Hostel is the top-rated hostel for solo travelers, backpackers, and groups exploring Meghalaya. Located on Mawdiangdiang Road in New Shillong Township, near NIFT Shillong and IIM Shillong.',
     [
       { heading: 'Why Backpackers Love XTSY Hostel', content: 'XTSY is designed ground-up for the backpacker community. Our vibrant common areas, fully-equipped kitchen, and social lounge make it the perfect basecamp for exploring Meghalaya.', listItems: ['Mixed & female-only dormitories from ₹369/night', 'High-speed WiFi throughout the property', 'Common kitchen with free tea & coffee', 'Social lounge with board games & Netflix', 'Luggage storage & laundry service', '24/7 reception with local travel advice'] },
-      { heading: 'Location & Accessibility', content: 'Situated on Mawdiangdiang Road in New Shillong Township, XTSY is just 10 minutes from Police Bazaar, 15 minutes from Shillong Peak, and serves as the perfect base for day trips to Cherrapunji, Dawki, and Mawlynnong.' },
+      { heading: 'Location & Accessibility', content: 'Situated on Mawdiangdiang Road in New Shillong Township, near NIFT Shillong, IIM Shillong and NEIGRIMS, XTSY is a cab ride from Police Bazaar and serves as the perfect base for day trips to Cherrapunji, Dawki, and Mawlynnong.' },
       { heading: 'Room Types & Pricing', content: 'We offer a range of accommodation to suit every budget:', listItems: ['8-Bed Mixed Dormitory — ₹369/night', '6-Bed Mixed Dormitory — ₹699/night', '4-Bed Female Dormitory — ₹799/night', 'Private Double Room — ₹1,499/night', 'Deluxe Private Room — ₹1,999/night'] },
       { heading: 'Activities & Experiences', content: 'XTSY isn\'t just a place to sleep — it\'s an experience. Join our community events, guided treks, city walks, and bonfire nights. Meet fellow travelers and create memories that last a lifetime.' },
-      { heading: 'How to Reach XTSY Hostel', content: 'From Guwahati Airport (SHL/GAU): Take a shared taxi to Shillong (₹500, 2.5 hours) or book a private cab. From Shillong city: Auto-rickshaw from Police Bazaar takes 10 minutes.' },
+      { heading: 'How to Reach XTSY Hostel', content: 'From Guwahati Airport (SHL/GAU): Take a shared taxi to Shillong (₹500, 2.5 hours) or book a private cab. From Shillong city: take a cab from Police Bazaar, or ask the XTSY desk to arrange a pickup.' },
     ],
     [
       { question: 'Is XTSY a party hostel?', answer: 'XTSY is a social hostel with a vibrant atmosphere. We have a common lounge, bonfire area, and organize social events. However, we maintain quiet hours after 11 PM for guests who want to rest.' },
@@ -159,13 +159,13 @@ const hostelPages: SEOPageData[] = [
     ['dormitory in shillong', 'shillong dorm', 'mixed dormitory shillong', 'female dormitory shillong']
   ),
 
-  hostel('budget-stay-shillong', 'Budget Stay in Shillong — From ₹369/Night | XTSY', 'Best budget stays & budget hotels in Shillong starting ₹369. Hostel dorms, private rooms & group accommodation. Central location, all amenities included.', 'Budget Stay in Shillong — Affordable Hotels & Hostels', 'Planning a budget trip to Shillong? XTSY Travellers Hostel offers the best value accommodation with options ranging from ₹369 dorm beds to ₹1,999 private rooms. If you are searching for budget hotels in Shillong, our private rooms give you hotel-grade comfort at hostel prices — central location, free WiFi, hot water, and a vibrant travel community.',
+  hostel('budget-stay-shillong', 'Budget Stay in Shillong — From ₹369/Night | XTSY', 'Best budget stays & budget hotels in Shillong starting ₹369. Hostel dorms, private rooms & group accommodation. New Shillong Township location, all amenities included.', 'Budget Stay in Shillong — Affordable Hotels & Hostels', 'Planning a budget trip to Shillong? XTSY Travellers Hostel offers the best value accommodation with options ranging from ₹369 dorm beds to ₹1,999 private rooms. If you are searching for budget hotels in Shillong, our private rooms give you hotel-grade comfort at hostel prices — a quiet New Shillong Township location, free WiFi, hot water, and a vibrant travel community.',
     [
       { heading: 'Budget Accommodation Options', content: 'We offer accommodation for every budget level — from social dorm beds to private rooms that rival budget hotels in Shillong:', listItems: ['Dormitory beds from ₹369/night', 'Private rooms from ₹1,499/night', 'Deluxe rooms from ₹1,999/night', 'Group packages for 6+ travelers'] },
       { heading: 'Budget Hotels vs Hostel Stays in Shillong', content: 'Most budget hotels in Shillong charge ₹1,500–2,500 for a basic room with few extras. At XTSY you get a private room from ₹1,499 with free high-speed WiFi, 24/7 reception, hot water, an in-house restaurant (TAB Bistro), and a tour desk — plus the option to drop to a ₹369 dorm bed when you want to travel even leaner. You also book direct, so there are no OTA markups inflating your nightly rate.' },
       { heading: 'Save Money in Shillong', content: 'Tips to make your Shillong trip affordable:', listItems: ['Cook in our free common kitchen', 'Join shared day trips to split transport costs', 'Visit free attractions like Laitlum Canyons', 'Use shared taxis instead of private cabs', 'Book direct for best rates — no OTA markups', 'Travel in shoulder season (June–September) for lower rates'] },
       { heading: 'What\'s Included in Your Stay', content: 'Every booking at XTSY includes WiFi, hot water, common area access, kitchen usage, luggage storage, and local travel advice. No hidden fees or surprise charges — the price you see is the price you pay, whether you book a dorm bed or a private room.' },
-      { heading: 'Location — Central & Connected', content: 'XTSY sits in New Shillong Township, roughly 10 minutes from Police Bazaar and a comfortable base for day trips to Cherrapunji, Dawki, and Mawlynnong. For a budget stay you get genuinely convenient access without paying a city-centre premium.' },
+      { heading: 'Location — New Shillong Township', content: 'XTSY sits on Mawdiangdiang Road in New Shillong Township, near NIFT and IIM Shillong — a cab ride from Police Bazaar and a comfortable base for day trips to Cherrapunji, Dawki, and Mawlynnong. For a budget stay you get genuinely convenient access without paying a city-centre premium.' },
     ],
     [
       { question: 'What is the cheapest way to stay in Shillong?', answer: 'XTSY dorm beds at ₹369/night are the most affordable quality accommodation in Shillong. Combined with self-cooking in our kitchen, you can manage a Shillong trip on ₹1,500/day.' },
@@ -177,13 +177,13 @@ const hostelPages: SEOPageData[] = [
     ['budget stay shillong', 'budget hotels in shillong', 'budget hotel shillong', 'affordable accommodation shillong', 'cheap stay shillong']
   ),
 
-  hostel('hostel-near-police-bazar-shillong', 'Hostel Near Police Bazar Shillong | XTSY', 'Best hostel near Police Bazar Shillong. 10 min from city center. Dorms from ₹369, private rooms from ₹1,499. Book now at XTSY.', 'Hostel Near Police Bazar, Shillong', 'Looking for a hostel near Police Bazar in Shillong? XTSY Travellers Hostel is located just 10 minutes from Police Bazaar, the heart of Shillong. Easy access to shopping, restaurants, and local transport.',
+  hostel('hostel-near-police-bazar-shillong', 'Hostel Near Police Bazar Shillong | XTSY', 'Looking near Police Bazar? XTSY is in New Shillong Township, a cab ride from the city centre. Dorms from ₹369, private rooms from ₹1,499.', 'Hostel Near Police Bazar, Shillong', 'Looking for a hostel near Police Bazar in Shillong? XTSY Travellers Hostel is not in Police Bazaar — it is on Mawdiangdiang Road in New Shillong Township, near NIFT and IIM Shillong. Police Bazaar is a cab ride away, and the XTSY desk can book one.',
     [
-      { heading: 'Location Advantage', content: 'XTSY is perfectly positioned for exploring Shillong:', listItems: ['10 minutes to Police Bazaar by auto', '15 minutes to Shillong Peak', '20 minutes to Elephant Falls', 'Close to Iewduh (Bara Bazaar)', 'Near local bus & taxi stands'] },
+      { heading: 'Location Advantage', content: 'Getting around from XTSY:', listItems: ['Police Bazaar and Iewduh (Bara Bazaar) — a cab ride away', 'Shillong Peak and Elephant Falls — short drives', 'Cabs and day trips booked by the XTSY desk', 'Near NIFT Shillong, IIM Shillong and NEIGRIMS'] },
       { heading: 'Nearby Attractions', content: 'From XTSY, easily access Shillong\'s top spots including Police Bazaar market, Ward\'s Lake, Don Bosco Museum, Shillong Peak, and Lady Hydari Park — all within 20 minutes.' },
     ],
     [
-      { question: 'How far is XTSY from Police Bazaar?', answer: 'XTSY is approximately 3.5 km from Police Bazaar, a 10-minute drive by auto-rickshaw (₹50-80).' },
+      { question: 'How far is XTSY from Police Bazaar?', answer: 'XTSY is in New Shillong Township, a cab ride from Police Bazaar. The XTSY desk can book a cab for you.' },
       { question: 'Is there public transport from Police Bazaar to XTSY?', answer: 'Yes, shared autos and city buses run frequently between Police Bazaar and New Shillong Township. Auto fare is around ₹30-50.' },
     ],
     ['backpacker-hostel-shillong', 'budget-stay-shillong'],
@@ -192,7 +192,7 @@ const hostelPages: SEOPageData[] = [
 
   hostel('hostels-in-meghalaya', 'Best Hostels in Meghalaya 2026 — Top Rated | XTSY', 'Discover the best hostels in Meghalaya. From Shillong to Cherrapunji, find budget dorms & backpacker hostels. Top-rated stays for solo & group travel.', 'Best Hostels in Meghalaya — Complete Guide', 'Meghalaya is emerging as a top backpacker destination in India, and hostels are the best way to explore this beautiful state on a budget. Here\'s your complete guide to hostels across Meghalaya.',
     [
-      { heading: 'Top Hostels in Meghalaya', content: 'XTSY Travellers Hostel in Shillong leads the hostel scene in Meghalaya with modern facilities, social atmosphere, and the best location for day trips.', listItems: ['XTSY Travellers Hostel, Shillong — From ₹369', 'Central Shillong location', 'In-house restaurant (TAB Bistro)', 'Tour desk for Cherrapunji, Dawki trips'] },
+      { heading: 'Top Hostels in Meghalaya', content: 'XTSY Travellers Hostel in Shillong leads the hostel scene in Meghalaya with modern facilities, social atmosphere, and the best location for day trips.', listItems: ['XTSY Travellers Hostel, Shillong — From ₹369', 'New Shillong Township location', 'In-house restaurant (TAB Bistro)', 'Tour desk for Cherrapunji, Dawki trips'] },
       { heading: 'Why Choose Hostels in Meghalaya', content: 'Hostels offer the perfect base for Meghalaya exploration:', listItems: ['Meet fellow travelers for group trips', 'Local travel advice from staff', 'Shared transport to save costs', 'Social events & bonfire nights', 'Affordable long-stay options'] },
       { heading: 'Hostel Tips for Meghalaya', content: 'Book in advance during peak season (October-April). Carry warm clothes as Shillong gets cold. Most hostels provide lockers — bring a padlock. Join group trips organized by the hostel to save on transport costs.' },
     ],
@@ -206,12 +206,12 @@ const hostelPages: SEOPageData[] = [
 
   hostel('couples-hostel-shillong', 'Couple-Friendly Hostel in Shillong | Private Rooms', 'Couple-friendly hostel in Shillong with private rooms from ₹1,499. Cozy rooms, scenic views, and romantic dining at TAB Bistro. Book at XTSY.', 'Couple-Friendly Hostel in Shillong', 'Traveling as a couple to Shillong? XTSY offers private rooms perfect for couples, combining hostel affordability with hotel-level privacy. Enjoy cozy rooms, forest views, and romantic dining at our in-house TAB Bistro.',
     [
-      { heading: 'Private Rooms for Couples', content: 'Our couple-friendly rooms offer:', listItems: ['Private Double Room — ₹1,499/night', 'Deluxe Double Room — ₹1,999/night', 'XTSY 270° Glasshouse — ₹4,999/night (romantic getaway)', 'All rooms with attached bathroom & hot water', 'Forest/mountain views available'] },
-      { heading: 'Romantic Experiences', content: 'Make your Shillong trip special with candlelight dinner at TAB Bistro, sunset views from Laitlum Canyons, private Dawki boating, and stargazing from our 270° Glasshouse.' },
+      { heading: 'Private Rooms for Couples', content: 'Our couple-friendly rooms offer:', listItems: ['Private Double Room — ₹1,499/night', 'Deluxe Double Room — ₹1,999/night', 'Experience by XTSY — ₹4,999/night (romantic getaway)', 'All rooms with attached bathroom & hot water', 'Forest/mountain views available'] },
+      { heading: 'Romantic Experiences', content: 'Make your Shillong trip special with candlelight dinner at TAB Bistro, sunset views from Laitlum Canyons, private Dawki boating, and stargazing from Experience by XTSY.' },
     ],
     [
       { question: 'Is XTSY couple-friendly?', answer: 'Yes! XTSY has private rooms specifically designed for couples with king-size beds, attached bathrooms, and a peaceful environment.' },
-      { question: 'What is the best room for couples?', answer: 'The XTSY 270° Glasshouse is our most romantic option — a glass-walled suite with panoramic forest views, stargazing ceiling, and sunrise breakfast service.' },
+      { question: 'What is the best room for couples?', answer: 'Experience by XTSY is our most romantic option — a glass-walled suite with panoramic forest views, stargazing ceiling, and sunrise breakfast service.' },
     ],
     ['backpacker-hostel-shillong', 'luxury-glamping-shillong'],
     ['couple friendly hostel shillong', 'couple hotel shillong', 'romantic stay shillong', 'couple room shillong']
@@ -262,7 +262,7 @@ const hostelPages: SEOPageData[] = [
 // ============================================================================
 
 const hotelPages: SEOPageData[] = [
-  hotel('budget-hotel-shillong', 'Budget Hotels in Shillong — From ₹999 | XTSY', 'Affordable budget hotels in Shillong from ₹999/night. Clean rooms, central location, free WiFi. Best value stays near Police Bazar.', 'Budget Hotels in Shillong', 'Looking for a budget hotel in Shillong? While traditional hotels can be expensive, XTSY offers hotel-quality private rooms at hostel prices. Enjoy clean rooms, attached bathrooms, and premium amenities from just ₹999.',
+  hotel('budget-hotel-shillong', 'Budget Hotels in Shillong — From ₹999 | XTSY', 'Affordable budget hotels in Shillong from ₹999/night. Clean rooms, free WiFi, New Shillong Township location.', 'Budget Hotels in Shillong', 'Looking for a budget hotel in Shillong? While traditional hotels can be expensive, XTSY offers hotel-quality private rooms at hostel prices. Enjoy clean rooms, attached bathrooms, and premium amenities from just ₹999.',
     [
       { heading: 'Why Choose XTSY Over Traditional Hotels', content: 'XTSY offers the best of both worlds:', listItems: ['Private rooms at 40-50% less than hotels', 'Modern amenities: WiFi, hot water, clean linen', 'In-house restaurant (no need to go out)', 'Social atmosphere if you want it', 'Quiet private rooms if you need peace'] },
       { heading: 'Compare Hotel Prices in Shillong', content: 'Average hotel room in Shillong costs ₹2,500-5,000/night. XTSY private rooms start at ₹1,499 with the same amenities and a better location.' },
@@ -274,7 +274,7 @@ const hotelPages: SEOPageData[] = [
     ['budget hotel shillong', 'cheap hotel shillong', 'affordable hotel shillong', 'hotel under 1000 shillong']
   ),
 
-  hotel('hotel-near-neigrihms-shillong', 'Hotel Near NEIGRIHMS Shillong — XTSY Hostel', 'Affordable hotel near NEIGRIHMS Hospital Shillong. Private rooms from ₹1,499. Clean, safe & comfortable. 10 min from NEIGRIHMS campus.', 'Hotel Near NEIGRIHMS Hospital, Shillong', 'Need accommodation near NEIGRIHMS Hospital in Shillong? XTSY Travellers Hostel is located in New Shillong Township, just 10 minutes from the NEIGRIHMS campus. Ideal for patients\' families and visitors.',
+  hotel('hotel-near-neigrihms-shillong', 'Hotel Near NEIGRIHMS Shillong — XTSY Hostel', 'Affordable hotel near NEIGRIHMS Hospital Shillong. Private rooms from ₹1,499. Clean, safe & comfortable. Near the NEIGRIHMS campus.', 'Hotel Near NEIGRIHMS Hospital, Shillong', 'Need accommodation near NEIGRIHMS Hospital in Shillong? XTSY Travellers Hostel is located in New Shillong Township, close to the NEIGRIHMS campus. Ideal for patients\' families and visitors.',
     [
       { heading: 'Proximity to NEIGRIHMS', content: 'XTSY is conveniently located near NEIGRIHMS:', listItems: ['10 minutes by auto-rickshaw from NEIGRIHMS', 'Affordable daily & weekly rates', 'Home-cooked meals at TAB Bistro', 'Quiet, peaceful environment', 'Long-stay discounts for patient families'] },
       { heading: 'Amenities for Hospital Visitors', content: 'We understand the needs of hospital visitors. XTSY offers quiet rooms, flexible check-in times, meal service, WiFi for staying connected, and a supportive staff.' },
@@ -322,9 +322,9 @@ const hotelPages: SEOPageData[] = [
 
   hotel('places-to-stay-shillong', 'Best Places to Stay in Shillong 2026 — Complete Guide', 'Complete guide to places to stay in Shillong. Hostels, hotels, homestays, glamping compared. Prices, locations & booking links.', 'Best Places to Stay in Shillong — 2026 Guide', 'Planning your Shillong trip and confused about where to stay? This comprehensive guide covers every accommodation type in Shillong from budget dorm beds to luxury glamping experiences.',
     [
-      { heading: 'Accommodation Types in Shillong', content: 'Shillong offers diverse stay options:', listItems: ['Hostels & Dorms — ₹369-999/night (best for solo/backpackers)', 'Budget Hotels — ₹1,000-2,500/night', 'Mid-Range Hotels — ₹2,500-5,000/night', 'Homestays — ₹1,500-3,000/night', 'Luxury Hotels — ₹5,000-15,000/night', 'Glamping — ₹4,999+/night (XTSY 270° Glasshouse)'] },
+      { heading: 'Accommodation Types in Shillong', content: 'Shillong offers diverse stay options:', listItems: ['Hostels & Dorms — ₹369-999/night (best for solo/backpackers)', 'Budget Hotels — ₹1,000-2,500/night', 'Mid-Range Hotels — ₹2,500-5,000/night', 'Homestays — ₹1,500-3,000/night', 'Luxury Hotels — ₹5,000-15,000/night', 'Glamping — ₹4,999+/night (Experience by XTSY)'] },
       { heading: 'Best Areas to Stay in Shillong', content: 'Top areas for tourists:', listItems: ['Police Bazaar — central, shopping & food hub', 'Laitumkhrah — quiet, local restaurants', 'New Shillong Township — spacious, near XTSY', 'Upper Shillong — scenic, forest surroundings'] },
-      { heading: 'Our Recommendation', content: 'For the best value and experience, XTSY Travellers Hostel in New Shillong Township offers dorms (₹369), private rooms (₹1,499), and the iconic 270° Glasshouse (₹4,999) — catering to every budget and travel style.' },
+      { heading: 'Our Recommendation', content: 'For the best value and experience, XTSY Travellers Hostel in New Shillong Township offers dorms (₹369), private rooms (₹1,499), and Experience by XTSY (₹4,999) — catering to every budget and travel style.' },
     ],
     [
       { question: 'What is the best area to stay in Shillong?', answer: 'For tourists, Police Bazaar area offers the most convenience. For a peaceful experience with nature views, New Shillong Township (where XTSY is located) is ideal.' },
@@ -549,15 +549,15 @@ const tourPages: SEOPageData[] = [
     ['shillong tour package 2 days', '2 day shillong trip', 'shillong weekend getaway', 'quick shillong tour']
   ),
 
-  tour('meghalaya-honeymoon-package', 'Meghalaya Honeymoon Package — ₹18,999/Couple | XTSY', 'Romantic Meghalaya honeymoon package for couples. 270° Glasshouse stay, private Dawki boating, candlelight dinner. 5 days ₹18,999.', 'Meghalaya Honeymoon Package — Romantic Getaway', 'Celebrate your love amidst Meghalaya\'s stunning landscapes! Our honeymoon package features a stay in the iconic XTSY 270° Glasshouse, private Dawki boating, sunset at Laitlum, and candlelight dinner.',
+  tour('meghalaya-honeymoon-package', 'Meghalaya Honeymoon Package — ₹18,999/Couple | XTSY', 'Romantic Meghalaya honeymoon package for couples. Experience by XTSY stay, private Dawki boating, candlelight dinner. 5 days ₹18,999.', 'Meghalaya Honeymoon Package — Romantic Getaway', 'Celebrate your love amidst Meghalaya\'s stunning landscapes! Our honeymoon package features a stay in the iconic Experience by XTSY, private Dawki boating, sunset at Laitlum, and candlelight dinner.',
     [
-      { heading: 'Romantic Itinerary', content: '5 days of romance in Meghalaya:', listItems: ['Day 1: Arrive → XTSY 270° Glasshouse check-in → Welcome dinner', 'Day 2: Shillong viewpoints → Sunset at Laitlum → Stargazing', 'Day 3: Private Dawki boating → Shnongpdeng beach', 'Day 4: Cherrapunji waterfalls → Candlelight dinner', 'Day 5: Leisure morning → Departure'] },
-      { heading: 'Romantic Experiences', content: 'Special couple experiences:', listItems: ['270° Glasshouse with panoramic views & stargazing', 'Private Umngot River boating (crystal-clear water)', 'Candlelight dinner at TAB Bistro', 'Couples photography at scenic viewpoints', 'Sunrise breakfast in bed'] },
+      { heading: 'Romantic Itinerary', content: '5 days of romance in Meghalaya:', listItems: ['Day 1: Arrive → Experience by XTSY check-in → Welcome dinner', 'Day 2: Shillong viewpoints → Sunset at Laitlum → Stargazing', 'Day 3: Private Dawki boating → Shnongpdeng beach', 'Day 4: Cherrapunji waterfalls → Candlelight dinner', 'Day 5: Leisure morning → Departure'] },
+      { heading: 'Romantic Experiences', content: 'Special couple experiences:', listItems: ['Experience by XTSY with panoramic views & stargazing', 'Private Umngot River boating (crystal-clear water)', 'Candlelight dinner at TAB Bistro', 'Couples photography at scenic viewpoints', 'Sunrise breakfast in bed'] },
       { heading: 'Pricing', content: '₹18,999 per couple for 5 days/4 nights. Includes premium accommodation, all meals, private transport, and romantic add-ons.' },
     ],
     [
-      { question: 'Is Meghalaya good for honeymoon?', answer: 'Meghalaya is one of India\'s most romantic destinations with pristine nature, pleasant weather, and unique experiences like our 270° Glasshouse — perfect for couples.' },
-      { question: 'What is the XTSY 270° Glasshouse?', answer: 'It\'s India\'s first 270-degree glass-walled suite offering panoramic forest views and stargazing. A truly unique romantic experience.' },
+      { question: 'Is Meghalaya good for honeymoon?', answer: 'Meghalaya is one of India\'s most romantic destinations with pristine nature, pleasant weather, and unique experiences like Experience by XTSY — perfect for couples.' },
+      { question: 'What is Experience by XTSY?', answer: 'It\'s India\'s first 270-degree glass-walled suite offering panoramic forest views and stargazing. A truly unique romantic experience.' },
     ],
     ['meghalaya-tour-package-5-days', 'luxury-glamping-shillong', 'couples-hostel-shillong'],
     ['meghalaya honeymoon package', 'honeymoon in meghalaya', 'romantic trip meghalaya', 'couples meghalaya trip']
