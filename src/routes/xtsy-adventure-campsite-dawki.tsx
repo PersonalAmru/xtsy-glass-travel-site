@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import XTSYAdventureCampsiteDawki from "@/pages/XTSYAdventureCampsiteDawki";
+import XTSYAdventureCampsiteDawki from "@/pages/v2/CampsiteV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/xtsy-adventure-campsite-dawki")({

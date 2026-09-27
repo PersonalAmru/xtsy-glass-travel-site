@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Gallery from "@/pages/Gallery";
+import Gallery from "@/pages/v2/GalleryV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/gallery")({

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import DestinationWeddingShillong from "@/pages/DestinationWeddingShillong";
+import DestinationWeddingShillong from "@/pages/v2/WeddingsV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/destination-wedding-shillong")({

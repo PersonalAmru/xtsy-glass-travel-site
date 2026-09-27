@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import GroupBookingsMeghalaya from "@/pages/GroupBookingsMeghalaya";
+import GroupBookingsMeghalaya from "@/pages/v2/GroupsV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/group-bookings-meghalaya")({

@@ -10,7 +10,7 @@ import path from 'path';
 const BASE = process.env.BASE_URL || 'http://localhost:8080';
 const OUT = process.env.OUT_DIR || 'shots';
 const ROUTES = (process.env.ROUTES ||
-  '/,/xtsy-270,/pet-friendly,/female-travellers,/work-from-home,/contact,/about,/faq,/this-page-does-not-exist,/book,/tours,/tab-bistro,/best-hostel-in-shillong'
+  '/tours,/tab-bistro,/gallery,/xtsy-vs-zostel,/xtsy-adventure-campsite-dawki,/group-bookings-meghalaya,/destination-wedding-shillong,/xtsy-rentals,/catering-shillong,/tab-bistro/catering,/expeditions,/expeditions/motorbike/meghalaya-loop,/expeditions/4x4/meghalaya-loop'
 ).split(',');
 
 const VIEWPORTS = [

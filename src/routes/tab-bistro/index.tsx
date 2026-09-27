@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import TabBistro from "@/pages/TabBistro";
+import TabBistro from "@/pages/v2/BistroV2";
 import { buildRouteHead } from "@/lib/seo-head";
 import { RESTAURANT_SCHEMA } from "@/data/siteSchemas";
 

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import ExpeditionRoutePage from "@/pages/expeditions/ExpeditionRoutePage";
+import { ExpeditionRouteV2 as ExpeditionRoutePage } from "@/pages/v2/ExpeditionsV2";
 import { buildRouteHead } from "@/lib/seo-head";
 import { getExpeditionRoute, type ExpeditionType } from "@/data/neTaxonomy";
 
