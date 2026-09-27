@@ -349,7 +349,7 @@ computing gzip size...
 - Using dynamic import() to code-split the application
 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 4.04s[39m
+[32m✓ built in 4.83s[39m
 [36mvite v8.2.1 [32mbuilding ssr environment for production...[36m[39m
 [2Ktransforming...✓ 646 modules transformed.
 rendering chunks...
@@ -585,7 +585,7 @@ node_modules/.nitro/vite/services/ssr/assets/router-24Sanhxk.js                 
 
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 1.85s[39m
+[32m✓ built in 2.60s[39m
 [start] [nitro] Building [[35mNitro[39m] [2m(preset: `cloudflare-module`, compatibility: `2026-09-27`)[22m
 [success] [nitro] Generated public [36m.output/public[39m
 [36mvite v8.2.1 [32mbuilding nitro environment for production...[36m[39m
@@ -849,7 +849,7 @@ computing gzip size...
 .output/server/_libs/@tanstack/router-core+[...].mjs                     122.31 kB │ gzip:  25.85 kB
 .output/server/_libs/react-day-picker.mjs                                135.54 kB │ gzip:  26.54 kB
 .output/server/_libs/date-fns.mjs                                        138.36 kB │ gzip:  24.45 kB
-.output/server/index.mjs                                                 143.03 kB │ gzip:  29.37 kB
+.output/server/index.mjs                                                 143.03 kB │ gzip:  29.41 kB
 .output/server/_libs/lodash.mjs                                          161.80 kB │ gzip:  29.45 kB
 .output/server/_libs/supabase__auth-js.mjs                               312.48 kB │ gzip:  63.71 kB
 .output/server/_libs/@sentry/browser+[...].mjs                           347.09 kB │ gzip:  82.31 kB
@@ -858,7 +858,7 @@ computing gzip size...
 .output/server/_libs/@tanstack/react-router+[...].mjs                    647.59 kB │ gzip: 136.80 kB
 .output/server/_ssr/router-24Sanhxk.mjs                                1,462.75 kB │ gzip: 347.98 kB
 
-[32m✓ built in 1.84s[39m
+[32m✓ built in 3.27s[39m
 [info] [nitro] Using auto generated worker name: `personalamru-xtsy-glass-travel-site`
 [info] Generated [36m.output/server/wrangler.json[39m
 [info] Generated [36m.wrangler/deploy/config.json[39m
