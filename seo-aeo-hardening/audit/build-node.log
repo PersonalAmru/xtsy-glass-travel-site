@@ -348,7 +348,7 @@ computing gzip size...
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 5.22s[39m
+[32m✓ built in 5.20s[39m
 [36mvite v8.2.1 [32mbuilding ssr environment for production...[36m[39m
 [2Ktransforming...✓ 645 modules transformed.
 rendering chunks...
@@ -596,7 +596,7 @@ node_modules/.nitro/vite/services/ssr/assets/seoPages-MwdSOdtl.js               
 [2Ktransforming...✓ 4604 modules transformed.
 [info] Tracing dependencies:
 - `tslib` (2.8.1)
-[success] Traced 1 dependencies (4 files) in 95ms.
+[success] Traced 1 dependencies (4 files) in 91ms.
 [info] Ensure your production environment matches the builder OS and architecture (`linux-x64`) to avoid native module issues.
 rendering chunks...
 computing gzip size...
@@ -857,7 +857,7 @@ computing gzip size...
 .output/server/_libs/@tanstack/router-core+[...].mjs                   122.17 kB │ gzip:  25.81 kB
 .output/server/_libs/react-day-picker.mjs                              135.54 kB │ gzip:  26.54 kB
 .output/server/_libs/date-fns.mjs                                      138.36 kB │ gzip:  24.45 kB
-.output/server/index.mjs                                               144.88 kB │ gzip:  30.34 kB
+.output/server/index.mjs                                               144.88 kB │ gzip:  30.33 kB
 .output/server/_libs/lodash.mjs                                        161.64 kB │ gzip:  29.40 kB
 .output/server/_libs/supabase__auth-js.mjs                             312.44 kB │ gzip:  63.67 kB
 .output/server/_libs/@sentry/browser+[...].mjs                         335.44 kB │ gzip:  79.58 kB
@@ -867,6 +867,6 @@ computing gzip size...
 .output/server/_libs/@tanstack/react-router+[...].mjs                  654.29 kB │ gzip: 137.39 kB
 .output/server/_ssr/seoPages-MwdSOdtl.mjs                              968.70 kB │ gzip: 232.58 kB
 
-[32m✓ built in 2.55s[39m
+[32m✓ built in 2.60s[39m
 [info] Generated [36m.output/nitro.json[39m
 [success] [nitro] You can preview this build using `npx vite preview`
