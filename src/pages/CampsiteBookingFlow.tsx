@@ -78,8 +78,8 @@ const CampsiteBookingFlow = memo(() => {
   const selectedPkg = useMemo(() => PACKAGES.find(p => p.id === packageId)!, [packageId]);
 
   const nights = useMemo(() => {
-    if (checkIn && checkOut) return Math.max(1, differenceInDays(checkOut, checkIn));
-    return 1;
+    if (checkIn && checkOut) return Math.max(0, differenceInDays(checkOut, checkIn));
+    return 0;
   }, [checkIn, checkOut]);
 
   const total = useMemo(() => selectedPkg.price * guests * nights, [selectedPkg, guests, nights]);
@@ -87,34 +87,22 @@ const CampsiteBookingFlow = memo(() => {
   useEffect(() => { window.scrollTo(0, 0); }, [step]);
 
   const handleSubmit = async () => {
-    if (!name.trim() || !phone.trim() || !email.trim() || !checkIn || !checkOut) {
+    if (!name.trim() || !phone.trim() || !email.trim() || !checkIn || !checkOut || nights < 1 || guests < 1) {
       toast.error("Please fill all required details");
       return;
     }
     setSubmitting(true);
     try {
-      const id = `XTSY-CMP-${Date.now().toString().slice(-8)}`;
-      setEnquiryId(id);
-      const { error } = await supabase.from("enquiries").insert({
-        enquiry_id: id,
-        guest_name: name,
-        email,
-        phone,
-        check_in: format(checkIn, "yyyy-MM-dd"),
-        check_out: format(checkOut, "yyyy-MM-dd"),
-        nights,
-        quantity: guests,
-        room_type: "campsite-dawki",
-        room_name: `XTSY Adventure Campsite — ${selectedPkg.title}`,
-        rate_per_night: selectedPkg.price,
-        subtotal: total,
-        gst_amount: 0,
-        gst_rate: 0,
-        total_amount: total,
-        special_requests: notes || null,
-        status: "pending",
+      const { data: saved, error } = await supabase.rpc('create_enquiry', {
+        p_guest_name: name, p_email: email, p_phone: phone,
+        p_check_in: format(checkIn, 'yyyy-MM-dd'), p_check_out: format(checkOut, 'yyyy-MM-dd'),
+        p_room_type: 'campsite-dawki', p_room_name: `XTSY Adventure Campsite — ${selectedPkg.title}`,
+        p_quantity: guests, p_nights: nights, p_rate_per_night: selectedPkg.price,
+        p_subtotal: total, p_gst_rate: 0, p_gst_amount: 0, p_total_amount: total,
+        p_special_requests: notes || null,
       });
-      if (error) throw error;
+      if (error || !saved?.[0]?.enquiry_id) throw error || new Error('Could not save enquiry');
+      setEnquiryId(saved[0].enquiry_id);
       setStep("confirmation");
     } catch (err: any) {
       toast.error(err.message || "Could not submit enquiry. Please WhatsApp us.");

@@ -11,7 +11,9 @@ export const HOSTEL_SCHEMA: Record<string, unknown> = {
   url: "https://xtsy.one",
   logo: "https://xtsy.one/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png",
   telephone: "+91-8837317070",
-  priceRange: "₹369 - ₹4,999",
+  priceRange: "₹399 - ₹5,799",
+  checkinTime: "11:00",
+  checkoutTime: "10:00",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Mawdiangdiang Road, New Shillong Township",

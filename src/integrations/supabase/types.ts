@@ -5934,6 +5934,25 @@ export type Database = {
           enquiry_uuid: string
         }[]
       }
+      create_whatsapp_enquiry: {
+        Args: {
+          p_breakfast: boolean
+          p_check_in: string
+          p_check_out: string
+          p_decoration: boolean
+          p_email: string
+          p_guest_name: string
+          p_guests: number
+          p_phone: string
+          p_quantities: number[]
+          p_requests?: string
+          p_room_ids: string[]
+          p_subtotal: number
+          p_taxes: number
+          p_total: number
+        }
+        Returns: Json
+      }
       current_user_id: { Args: never; Returns: string }
       delete_email: {
         Args: { message_id: number; queue_name: string }

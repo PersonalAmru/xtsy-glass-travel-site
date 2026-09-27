@@ -8,6 +8,13 @@
       "when": 1789702774010,
       "tag": "0000_harden_selected_function_paths_and_rls_policies",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790507121620,
+      "tag": "0001_secure_whatsapp_room_enquiry_quote",
+      "breakpoints": true
     }
   ]
 }
