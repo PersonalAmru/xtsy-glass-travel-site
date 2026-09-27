@@ -84,8 +84,8 @@ export function ExpeditionRouteV2() {
       <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Expeditions', to: '/expeditions' }, { label }]} />
       <PageHero
         size="md"
-        eyebrow={`${label} expedition · ${expedition.distanceKm} km · ${expedition.difficulty}`}
-        title={`${expedition.name}`}
+        eyebrow={`${label} expedition · ${expedition.name.split(' — ')[1] ?? `${expedition.distanceKm} km`}`}
+        title={expedition.name.split(' — ')[0]}
         text={<>{expedition.summary}{detail ? ` By ${label.toLowerCase()} it takes ${detail.duration} and starts from ${inr(detail.priceFrom)} per person with XTSY support.` : ''}</>}
         actions={<><Btn to={wa}>Ask on WhatsApp</Btn><Btn to="/book" kind="outline">Check availability</Btn></>}
         media={<Photo src={photoFor(expedition.name, expedition.highlights.join(' '))} alt={expedition.name} eager tone="slate" className="aspect-[628/480] rounded-[32px]" />}

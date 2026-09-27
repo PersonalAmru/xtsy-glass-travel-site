@@ -4,7 +4,6 @@
  * placeholder instead of an unrelated or AI-generated image.
  */
 import { IMG, first } from './v2Images';
-import { cdn } from './cdnImages';
 
 const RULES: [RegExp, string][] = [
   [/xtsy 270|experience by xtsy|glass|stargaz|honeymoon cloud|romantic/i, first(IMG.suite)],
@@ -23,15 +22,26 @@ const RULES: [RegExp, string][] = [
   [/kaziranga|assam|guwahati/i, IMG.assam],
   [/nagaland|kohima|dzukou|hornbill/i, IMG.nagaland],
   [/sikkim|pelling|gangtok|kanchenjunga/i, IMG.sikkim],
-  [/bhutan/i, cdn('xtsyvoyage/Bhutan Mindful Kingdom Journey.jpeg')],
-  [/ecolog|biodiversity/i, cdn('xtsyvoyage/Northeast Ecological Immersion.jpeg')],
-  [/yoga|himachal yoga/i, cdn('xtsyvoyage/Himachal Yoga Retreat Program.jpeg')],
-  [/dravidian|tamil|temple circuit/i, cdn('xtsyvoyage/Dravidian Architecture Masterclass.jpeg')],
   [/waterfall|meghalaya|shillong|wari chora/i, IMG.meghalaya],
 ];
 
+const ok = (src: string) => Boolean(src) && !src.endsWith('placeholder.svg');
+
+/**
+ * The first text (usually the title) decides the photo when it matches a rule.
+ * Otherwise the photo comes from the other texts, rotating between the matches
+ * so a row of similar packages doesn't repeat one image.
+ */
 export function photoFor(...texts: (string | undefined)[]): string {
-  const s = texts.filter(Boolean).join(' ');
-  for (const [re, src] of RULES) if (re.test(s) && src && !src.endsWith('placeholder.svg')) return src;
-  return '';
+  const [title = '', ...rest] = texts;
+  const specific = RULES.slice(0, -1);
+  const generic = RULES[RULES.length - 1];
+  for (const [re, src] of specific) if (re.test(title) && ok(src)) return src;
+  const s = rest.filter(Boolean).join(' ');
+  const hits = specific.filter(([re, src]) => re.test(s) && ok(src)).map(([, src]) => src);
+  const unique = [...new Set(hits)];
+  if (!unique.length) return generic[0].test(`${title} ${s}`) && ok(generic[1]) ? generic[1] : '';
+  let h = 0;
+  for (const c of title) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return unique[h % Math.min(unique.length, 3)];
 }
