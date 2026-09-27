@@ -4,10 +4,13 @@
  * size; guests contact the XTSY desk for any additional charges.
  */
 import type { CSSProperties } from 'react';
+import { useState } from 'react';
 import SEOHead from '@/components/SEOHead';
+import WhatsAppBookingForm from '@/components/WhatsAppBookingForm';
+import { Button } from '@/components/ui/button';
 import { IMG, first } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FaqList, PAD } from '@/components/v2/blocks';
-import { Photo, Eyebrow, waLink } from '@/components/v2/primitives';
+import { Photo, Eyebrow } from '@/components/v2/primitives';
 
 const PAWS = [
   { x: '3%', y: '78%', r: -20, d: 0 }, { x: '8%', y: '70%', r: -10, d: 0.6 }, { x: '13%', y: '64%', r: 0, d: 1.2 },
@@ -30,7 +33,7 @@ const FAQS = [
 ];
 
 export default function PetFriendlyV2() {
-  const wa = waLink('Hi XTSY! I want to stay with my pet. Pet type/breed/size: … Dates: …');
+  const [bookingOpen, setBookingOpen] = useState(false);
   return (
     <>
       <SEOHead
@@ -51,7 +54,7 @@ export default function PetFriendlyV2() {
             </div>
           }
           text="Cats and birds are most welcome. Dogs too, depending on breed and size. Please contact the XTSY desk about any additional charges. Our team can also sort the paperwork for pet travel in India or abroad."
-          actions={<><Btn to={wa}>Book via WhatsApp</Btn><Btn to="/book" kind="outline">See rooms</Btn></>}
+          actions={<><Button onClick={() => setBookingOpen(true)}>Book via WhatsApp</Button><Btn to="/book" kind="outline">See rooms</Btn></>}
           media={<Photo src={IMG.property[1] ?? first(IMG.property)} alt="The pines around XTSY Travellers Hostel" eager tone="pine" className="aspect-[628/560] rounded-[32px]" />}
         />
 
@@ -97,6 +100,7 @@ export default function PetFriendlyV2() {
 
         <FaqList faqs={FAQS} />
       </PageShell>
+      <WhatsAppBookingForm isOpen={bookingOpen} onClose={() => setBookingOpen(false)} />
     </>
   );
 }

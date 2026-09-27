@@ -320,12 +320,12 @@ const SummaryStep = ({
           <div>
             <p className="text-[10px] text-white/75 uppercase tracking-widest">Check-in</p>
             <p className="font-semibold text-white">{format(checkIn, 'EEE, MMM d')}</p>
-            <p className="text-sm text-white/75">After 12:00 PM</p>
+            <p className="text-sm text-white/75">From 11:00 AM</p>
           </div>
           <div>
             <p className="text-[10px] text-white/75 uppercase tracking-widest">Check-out</p>
             <p className="font-semibold text-white">{format(checkOut, 'EEE, MMM d')}</p>
-            <p className="text-sm text-white/75">Before 10:00 AM</p>
+            <p className="text-sm text-white/75">Strictly 10:00 AM</p>
           </div>
         </div>
         <div className="mt-4 pt-4 border-t border-white/10">

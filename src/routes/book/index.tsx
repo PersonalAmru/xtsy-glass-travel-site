@@ -8,7 +8,7 @@ export const Route = createFileRoute("/book/")({
       path: "/book",
       title: "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
       description:
-        "Online hostel booking made easy. Book a dorm bed or private room at XTSY Travellers Hostel, Shillong from ₹369/night. Instant confirmation, best direct price, no OTA fees.",
+        "Enquire about XTSY stays in New Shillong Township: dorm beds from ₹399, King Double ₹2,200 and Panorama ₹5,399 stay only or ₹5,799 with breakfast for two. Check-in 11 AM; check-out strictly 10 AM.",
       keywords:
         "hostel booking, online hostel booking, book hostel shillong, dorm booking shillong, hostel booking meghalaya",
     }),
