@@ -10,6 +10,7 @@ import {
   HeadContent,
   Outlet,
   Scripts,
+  useLocation,
   useRouter,
 } from "@tanstack/react-router";
 import { lazy, memo, Suspense, useEffect, type ReactNode } from "react";
@@ -342,6 +343,8 @@ const RouteBoundary = memo(({ children }: { children: ReactNode }) => (
 RouteBoundary.displayName = "RouteBoundary";
 
 function RootComponent() {
+  const pathname = useLocation().pathname;
+  const isGuestPage = !/^\/(admin(?:\/|$)|admin-login(?:\/|$)|franchise(?:\/|$)|auth(?:\/|$)|profile(?:\/|$)|install(?:\/|$)|unsubscribe(?:\/|$)|\.lovable(?:\/|$)|api(?:\/|$))/.test(pathname);
   // Recover from stale hashed chunks after a deploy (blank screen +
   // "Importing a module script failed"). Must run before anything lazy-loads.
   installChunkRecovery();
@@ -398,7 +401,9 @@ function RootComponent() {
                           routeKey={typeof window !== "undefined" ? window.location.pathname : ""}
                         >
                           <RouteBoundary>
-                            <Outlet />
+                             <div className={isGuestPage ? "public-design" : undefined}>
+                               <Outlet />
+                             </div>
                           </RouteBoundary>
                         </RouteErrorBoundary>
                         <FloatingWhatsApp />

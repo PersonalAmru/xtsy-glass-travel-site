@@ -1,10 +1,10 @@
 import { memo } from "react";
 import { UtensilsCrossed } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cdn } from "@/data/cdnImages";
+import { BISTRO_COVER } from "@/data/bistroCover";
 
 const WHATSAPP = "https://wa.me/918837317070?text=";
-const HERO_IMG = cdn("xtsy/TAB Bistro by XTSY 1.jpeg");
+const HERO_IMG = BISTRO_COVER;
 
 const TabBistroHero = memo(() => (
   <section className="bg-background pt-20 pb-16 sm:pt-28 sm:pb-20 px-4 sm:px-8">

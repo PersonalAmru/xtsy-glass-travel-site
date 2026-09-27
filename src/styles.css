@@ -900,3 +900,33 @@ img.lazy-below-fold {
 /* Global heading/paragraph line-heights in styles/typography.css are unlayered and
    would beat Tailwind's leading-* utilities; inside .xt let the utilities win. */
 .xt :where(h1, h2, h3, h4, p) { line-height: revert-layer; }
+
+/* Guest-facing legacy pages use the same paper/ink/crimson language as home.
+   Keep admin, account, and consent surfaces outside this scope. */
+.public-design {
+  --background: 36 38% 96%;
+  --foreground: 229 21% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 229 21% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 229 21% 15%;
+  --primary: 346 64% 39%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 35 38% 91%;
+  --secondary-foreground: 229 21% 15%;
+  --muted: 34 34% 92%;
+  --muted-foreground: 222 15% 37%;
+  --accent: 35 38% 91%;
+  --accent-foreground: 229 21% 15%;
+  --border: 35 28% 85%;
+  --input: 35 28% 85%;
+  --ring: 346 64% 39%;
+  min-height: 100vh;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: "Manrope", system-ui, sans-serif;
+}
+.public-design :where(h1, h2) { font-family: "Staatliches", Impact, sans-serif; font-weight: 400; letter-spacing: 0; }
+.public-design :where(main > section, article > section) { scroll-margin-top: 7rem; }
+.public-design :where(input, textarea, select) { font-size: max(16px, 1em); }
+.public-design .xt { --background: 36 38% 96%; --foreground: 229 21% 15%; }
