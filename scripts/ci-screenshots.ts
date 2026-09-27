@@ -36,7 +36,10 @@ async function main() {
     });
     // Pre-accept the cookie banner so it doesn't cover the page.
     await ctx.addInitScript(() => {
-      try { localStorage.setItem('xtsy_cookie_consent_ci', '1'); } catch { /* ignore */ }
+      try {
+        localStorage.setItem('xtsy_consent_v2', JSON.stringify({ necessary: true, analytics: false, marketing: false, personalization: false }));
+        localStorage.setItem('xtsy_consent_timestamp', new Date().toISOString());
+      } catch { /* ignore */ }
     });
     for (const route of ROUTES) {
       const page = await ctx.newPage();
@@ -48,11 +51,17 @@ async function main() {
         const res = await page.goto(BASE + route, { waitUntil: 'networkidle', timeout: 60000 });
         status = res?.status() ?? 0;
         await page.waitForTimeout(1500);
-        for (const label of ['Reject Non-Essential', 'Accept All']) {
-          const btn = page.getByRole('button', { name: label });
-          if (await btn.count()) { await btn.first().click({ timeout: 2000 }).catch(() => {}); break; }
-        }
-        await page.waitForTimeout(500);
+        // Scroll through the page so lazy images load, then return to the top.
+        await page.evaluate(async () => {
+          const step = Math.max(400, Math.floor(window.innerHeight * 0.8));
+          for (let y = 0; y < document.body.scrollHeight; y += step) {
+            window.scrollTo(0, y);
+            await new Promise((r) => setTimeout(r, 150));
+          }
+          window.scrollTo(0, 0);
+        });
+        await page.waitForLoadState('networkidle', { timeout: 20000 }).catch(() => {});
+        await page.waitForTimeout(800);
         const file = `${vp.name}${route === '/' ? '-home' : route.replace(/\//g, '-')}.png`;
         await page.screenshot({ path: path.join(OUT, file), fullPage: vp.name === 'mobile' ? false : true });
         report.push({ route, viewport: vp.name, status, file, errors });
