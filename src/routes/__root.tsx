@@ -30,6 +30,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import RouteErrorBoundary from "@/components/RouteErrorBoundary";
 import ConsentModal from "@/components/consent/ConsentModal";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import ChatLauncher from "@/components/v2/ChatLauncher";
 import NotFound from "@/pages/NotFound";
 import { AppProvider } from "@/contexts/AppContext";
 import { HappyGuestsProvider } from "@/contexts/HappyGuestsContext";
@@ -409,6 +410,7 @@ function RootComponent() {
                           </RouteBoundary>
                         </RouteErrorBoundary>
                         <FloatingWhatsApp />
+                        {isGuestPage && <ChatLauncher />}
                       </TooltipProvider>
                     </EnhancedAnalyticsProvider>
                   </ConversionSignalsProvider>

@@ -930,3 +930,8 @@ img.lazy-below-fold {
 .public-design :where(main > section, article > section) { scroll-margin-top: 7rem; }
 .public-design :where(input, textarea, select) { font-size: max(16px, 1em); }
 .public-design .xt { --background: 36 38% 96%; --foreground: 229 21% 15%; }
+
+/* Trip assistant typing dots */
+@keyframes xtTyping { 0%, 80%, 100% { opacity: .35; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+.xt-typing { animation: xtTyping 1s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .xt-typing { animation: none; } }

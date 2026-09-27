@@ -1,0 +1,50 @@
+name: Optimise images
+
+# Manually run: fetches the Lovable CDN originals, writes responsive WebP files
+# to public/img/o/ and src/data/optimizedImages.ts, and commits them to the
+# chosen branch. No third-party actions (org policy).
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to commit the optimised images to"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  optimise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      BRANCH: ${{ github.event.inputs.branch }}
+    steps:
+      - name: Checkout branch (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${BRANCH}"
+          git checkout -q -B "${BRANCH}" FETCH_HEAD
+
+      - name: Install Bun and sharp
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+
+      - name: Optimise
+        run: |
+          bun add --no-save sharp@0.33.5
+          bun scripts/optimize-images.ts
+
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "xtsy-ci"
+          git config user.email "ci@xtsy.one"
+          git add public/img/o src/data/optimizedImages.ts
+          git commit -q -m "Optimised WebP images for faster loading" || { echo "nothing to commit"; exit 0; }
+          git push -q origin "HEAD:${BRANCH}"
