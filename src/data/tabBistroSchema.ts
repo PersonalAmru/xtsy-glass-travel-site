@@ -1,4 +1,5 @@
 import { menuSections } from "./tabBistroMenu";
+import { BISTRO_COVER } from "./bistroCover";
 
 /**
  * Structured-data helpers for TAB Bistro by XTSY.
@@ -8,7 +9,7 @@ import { menuSections } from "./tabBistroMenu";
 
 export const TAB_BISTRO_NAME = "TAB Bistro by XTSY";
 export const TAB_BISTRO_URL = "https://xtsy.one/tab-bistro";
-export const TAB_BISTRO_IMAGE = "https://xtsy.one/__l5e/assets-v1/25f05fa4-5f52-4eda-ab5a-216c4b4b5772/xtsy-tab-bistro-by-xtsy.jpeg";
+export const TAB_BISTRO_IMAGE = new URL(BISTRO_COVER, TAB_BISTRO_URL).href;
 export const TAB_BISTRO_PHONE = "+918837317070";
 export const TAB_BISTRO_OPENS = "09:00";
 export const TAB_BISTRO_CLOSES = "22:30";

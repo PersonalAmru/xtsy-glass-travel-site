@@ -35,6 +35,11 @@ export const STATIC_ROUTES: ReadonlyArray<string> = [
   '/meghalaya-villages',
   '/meghalaya-viewpoints',
   '/meghalaya-tour-packages',
+  '/expeditions',
+  '/adventure-tours-northeast-india',
+  '/meghalaya-adventure-tour',
+  '/motorbike-expedition-northeast-india',
+  '/4x4-expedition-meghalaya',
   '/group-bookings-meghalaya',
   '/meghalaya-couple-tour-package',
   '/shillong-tour-package',
@@ -74,6 +79,7 @@ export function isResolvable(path: string): boolean {
   if (normalized.startsWith('/places-to-visit/')) return true;
   // tours/* dynamic
   if (normalized.startsWith('/tours/')) return true;
+  if (normalized.startsWith('/expeditions/')) return true;
 
   return false;
 }

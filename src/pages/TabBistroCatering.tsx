@@ -14,9 +14,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { createCateringEnquiry } from "@/services/cateringService";
-import { cdn } from "@/data/cdnImages";
+import { BISTRO_COVER } from "@/data/bistroCover";
 
-const HERO_IMG = cdn("xtsy/TAB Bistro by XTSY 1.jpeg");
+const HERO_IMG = BISTRO_COVER;
 
 const EVENT_TYPES = [
   "Wedding",

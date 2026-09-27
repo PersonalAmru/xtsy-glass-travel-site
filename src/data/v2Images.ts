@@ -5,6 +5,7 @@
  */
 import { cdn, cdnMany } from './cdnImages';
 import { ROOM_IMAGES } from '@/config/roomTypes';
+import { BISTRO_COVER } from './bistroCover';
 
 export const IMG = {
   suite: ROOM_IMAGES['xtsy-270'] ?? [],
@@ -12,7 +13,7 @@ export const IMG = {
   mixedDorm: ROOM_IMAGES['6-bed-mixed-dorm'] ?? [],
   property: cdnMany(['xtsy/Property Image 1.jpg', 'xtsy/Property Images 2.jpg', 'xtsy/Property Images 3.jpg', 'xtsy/Property Images 4.jpg']),
   king: ROOM_IMAGES['king-double-room'] ?? [],
-  bistro: cdnMany(['xtsy/TAB Bistro by XTSY.jpeg', 'xtsy/TAB Bistro by XTSY 1.jpeg']),
+  bistro: [BISTRO_COVER, ...cdnMany(['xtsy/TAB Bistro by XTSY.jpeg'])],
   campsite: cdnMany([
     'xtsy-adventure-campsite/Dawki Campsite 4.jpeg',
     'xtsy-adventure-campsite/Dawki Campsite 1.jpeg',

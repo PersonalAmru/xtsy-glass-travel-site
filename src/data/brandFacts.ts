@@ -27,13 +27,17 @@ export const BRAND = {
   gstin: '17QSKPK1714H1ZE',
 } as const;
 
+export const PROPERTY_ADDRESS = 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018';
+export const PROPERTY_CHECK_IN = '11:00';
+export const PROPERTY_CHECK_OUT = '10:00';
+
 export const OWN_PROPERTIES = [
   {
     name: 'XTSY Travellers Hostel',
     tagline: "Northeast India's Best Budget Accommodation",
     city: 'New Shillong Township, Shillong',
     description:
-      "India's biggest backpacker hostel in Northeast — NEITA 2025-recognised, female-safe, 24/7 check-in.",
+      "India's biggest backpacker hostel in Northeast — NEITA 2025-recognised, female-safe, with 24/7 arrival support. Standard check-in is 11 AM and check-out is strictly 10 AM.",
   },
   {
     name: 'Experience by XTSY',

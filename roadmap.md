@@ -1,3 +1,12 @@
 - [ ] Align existing adventure tour, activity, expedition, and local city pages with approved search terms.
 - [ ] Improve on-site search discovery and relevant internal links without creating doorway pages.
 - [ ] Keep sitemap coverage accurate and validate metadata, links, desktop/mobile views, and type safety.
+- [x] Use the existing TAB Bistro cover consistently wherever Bistro is featured.
+- [x] Carry the current homepage palette and typography across guest-facing pages without changing admin tools or booking logic.
+- [x] Verify representative public pages on desktop and mobile.
+- [ ] Panorama package and decoration pricing match summary, tax, WhatsApp and saved enquiry.
+- [ ] Persist guest WhatsApp, room and campsite enquiries with dates, guests and totals; verify with real rooms.
+- [ ] Add distinct detailed Northeast adventure landing pages and request Google indexing.
+- [ ] Refresh homepage in selected photographic editorial direction without changing room rates.
+- [ ] Normalize New Shillong Township address and strict 11 AM / 10 AM property times in SEO and AEO.
+- [ ] Flat nightly price for unspecified room: waiting on room name and amount from owner.

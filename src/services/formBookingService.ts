@@ -20,6 +20,10 @@ interface WhatsAppBookingData {
   }>;
   nights: number;
   totalAmount: number;
+  subtotal: number;
+  taxes: number;
+  breakfast: boolean;
+  decoration: boolean;
 }
 
 interface XTSY270BookingData {
@@ -65,34 +69,21 @@ export async function saveWhatsAppBooking(data: WhatsAppBookingData) {
       return { success: false, error: `Validation failed: ${errorMessages}` };
     }
 
-    // Calculate taxes (12% GST)
-    const subtotal = data.totalAmount || 0;
-    const taxes = Math.round(subtotal * 0.12);
-    const totalWithTax = subtotal + taxes;
-
-    // Use secure RPC function for booking creation (includes rate limiting & fraud detection)
-    const { data: result, error } = await supabase.rpc('create_booking_secure', {
-      p_guest_name: data.name || 'Guest',
-      p_email: data.email || 'not-provided@example.com',
-      p_whatsapp_number: data.phone || '0000000000',
-      p_city: data.city || undefined,
-      p_pincode: data.pincode || undefined,
-      p_check_in: data.checkIn || new Date().toISOString().split('T')[0],
-      p_check_out: data.checkOut || new Date(Date.now() + 86400000).toISOString().split('T')[0],
-      p_guests: data.guests || 1,
-      p_special_requests: data.specialRequests 
-        ? `[WhatsApp Inquiry] ${data.specialRequests}` 
-        : '[WhatsApp Inquiry]',
-      p_room_type: data.selectedRooms.length > 0 
-        ? data.selectedRooms.map(r => r.roomTypeName).join(', ')
-        : 'Not specified',
-      p_room_type_id: data.selectedRooms.length > 0 
-        ? data.selectedRooms[0].roomTypeId 
-        : 'inquiry',
-      p_quantity: data.selectedRooms.reduce((sum, room) => sum + room.quantity, 0) || 1,
-      p_subtotal: subtotal,
-      p_taxes: taxes,
-      p_total_amount: totalWithTax,
+    const { data: result, error } = await supabase.rpc('create_whatsapp_enquiry', {
+      p_guest_name: data.name,
+      p_email: data.email,
+      p_phone: data.phone,
+      p_check_in: data.checkIn,
+      p_check_out: data.checkOut,
+      p_guests: data.guests,
+      p_room_ids: data.selectedRooms.map(r => r.roomTypeId),
+      p_quantities: data.selectedRooms.map(r => r.quantity),
+      p_breakfast: data.breakfast,
+      p_decoration: data.decoration,
+      p_subtotal: data.subtotal,
+      p_taxes: data.taxes,
+      p_total: data.totalAmount,
+      p_requests: data.specialRequests,
     });
 
     if (error) {
@@ -119,8 +110,7 @@ export async function saveWhatsAppBooking(data: WhatsAppBookingData) {
       };
     }
     
-    console.log('Booking saved successfully via secure RPC:', bookingResult.booking_id);
-    return { success: true, bookingId: bookingResult.booking_id };
+    return { success: true, bookingId: bookingResult.enquiry_id };
   } catch (error: any) {
     console.error('Error saving WhatsApp booking:', error);
     return { success: false, error: error.message || 'Unknown error occurred' };

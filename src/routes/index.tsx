@@ -7,9 +7,9 @@ export const Route = createFileRoute("/")({
   head: () =>
     buildRouteHead({
       path: "/",
-      title: "Best Hostel in Shillong from ₹369/night | XTSY",
+      title: "XTSY Travellers Hostel in New Shillong Township | Stays & Tours",
       description:
-        "India's biggest hostel in Shillong. Dorm beds from ₹369, Experience by XTSY ₹4,999 and curated Meghalaya tours. Book direct and save 20-30% vs OTAs.",
+        "Stay in New Shillong Township: mixed dorm beds from ₹399, King Double ₹2,200 and Panorama stay-only ₹5,399 or breakfast-for-two ₹5,799 per night. Check-in 11 AM, check-out 10 AM.",
       keywords:
         "best hostel Shillong, biggest hostel northeast India, Shillong hostel, Meghalaya accommodation, budget stay Shillong",
       preloadImage: "/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif",

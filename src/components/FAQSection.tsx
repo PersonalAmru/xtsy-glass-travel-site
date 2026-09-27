@@ -38,7 +38,7 @@ const FAQSection = () => {
     },
     {
       question: "What are your check-in and check-out times?",
-      answer: "Check-in: 1:00 PM | Check-out: 11:00 AM. Early check-in from 10 AM is free if a bed is available, otherwise ₹300 (dorm) / ₹500 (private). Late check-in is free until 11 PM — after that call ahead. Late check-out until 2 PM is ₹300; after that a half-day charge applies.",
+      answer: "Standard check-in: 11:00 AM. Check-out: strictly 10:00 AM. Contact the desk before a late arrival; 24/7 arrival support does not change the check-in or check-out times.",
     },
     {
       question: "What is your cancellation and refund policy?",
@@ -77,7 +77,7 @@ const FAQSection = () => {
     },
     {
       question: "Check-in/check-out times?",
-      answer: "Check-in: 2 PM | Check-out: 11 AM. Need early check-in? Subject to availability (might cost extra). Late check-in is free until 11 PM, ₹500 after. We're here 24/7 so you can show up whenever.",
+      answer: "Standard check-in is 11 AM and check-out is strictly 10 AM. Please contact us for late arrivals; our arrival desk can assist around the clock.",
     },
     {
       question: "Best time to visit Northeast?",

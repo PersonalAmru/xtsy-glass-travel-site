@@ -100,7 +100,7 @@ export const TermsOfService: React.FC = () => {
                 <li>All bookings are subject to availability</li>
                 <li>A booking is confirmed only after payment is successfully processed</li>
                 <li>Room assignments are at our discretion unless a specific room is booked</li>
-                <li>Check-in time is 2:00 PM and check-out time is 11:00 AM unless otherwise specified</li>
+                <li>Standard check-in is 11:00 AM and check-out is strictly 10:00 AM.</li>
               </ul>
               
               <h3 className="text-xl font-medium mb-3 mt-4 text-foreground">4.2 Pricing & GST</h3>
