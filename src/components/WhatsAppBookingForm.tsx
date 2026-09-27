@@ -21,7 +21,6 @@ import { useLocationConsent } from "@/hooks/useLocationConsent";
 import { useFormEngagement } from "@/hooks/useFormEngagement";
 import { useEnhancedAnalytics } from "@/hooks/useEnhancedAnalytics";
 import { XTSY270_DATA } from "@/data/rooms/xtsy270";
-import { ROOM_TYPES } from '@/config/roomTypes';
 import { panoramaQuote } from '@/data/panoramaPricing';
 
 // All Indian states and union territories
@@ -357,7 +356,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   };
 
   // Check if eligible for 5% welcome discount
-  const isEligibleForWelcomeDiscount = DISCOUNT_ELIGIBLE_STATES.includes(travelPreferences.visitorState);
+  const isEligibleForWelcomeDiscount = false;
   
   const getWelcomeDiscount = () => {
     if (!isEligibleForWelcomeDiscount) return 0;
