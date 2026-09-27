@@ -76,7 +76,7 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          [ -d shots ] || exit 0
+          mkdir -p shots
           cp build.log shots/ 2>/dev/null || true
           cp dev.log shots/ 2>/dev/null || true
           SAFE=$(echo "${BRANCH_NAME}" | tr '/' '-')
