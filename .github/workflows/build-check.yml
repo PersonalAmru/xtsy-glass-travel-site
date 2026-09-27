@@ -62,6 +62,18 @@ jobs:
           git commit -q -m "Optimised WebP images for faster loading"
           git push -q origin "HEAD:refs/heads/${BRANCH_NAME}"
 
+      - name: Self-host brand fonts (only when .github/fetch-fonts.flag exists)
+        run: |
+          set -euo pipefail
+          if [ ! -f .github/fetch-fonts.flag ]; then echo "no flag"; exit 0; fi
+          bun scripts/fetch-fonts.ts
+          git config user.name "xtsy-ci"
+          git config user.email "ci@xtsy.one"
+          git rm -q .github/fetch-fonts.flag
+          git add public/fonts
+          git commit -q -m "Self-hosted brand fonts"
+          git push -q origin "HEAD:refs/heads/${BRANCH_NAME}"
+
       - name: Production build
         run: |
           set -o pipefail
