@@ -188,6 +188,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       // Brand fonts are self-hosted and preloaded so headlines render in Staatliches from the first paint.
       { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/staatliches-latin.woff2", crossOrigin: "anonymous" },
       { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/manrope-latin.woff2", crossOrigin: "anonymous" },
+      // ₹ (U+20B9) lives in the latin-ext subset; every page shows prices, so
+      // preload it too or the late swap shifts the layout (CLS).
+      { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/manrope-latin-ext.woff2", crossOrigin: "anonymous" },
+      { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/staatliches-latin-ext.woff2", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "/fonts/fonts.css" },
       // Legacy fonts still used by older admin screens.
       {
