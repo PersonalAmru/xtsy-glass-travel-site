@@ -12,6 +12,7 @@ import {
   Scripts,
   useLocation,
   useRouter,
+  useRouterState,
 } from "@tanstack/react-router";
 import { lazy, memo, Suspense, useEffect, type ReactNode } from "react";
 import { trackAIReferral } from "@/utils/aiReferralTracking";
@@ -343,6 +344,10 @@ const RouteBoundary = memo(({ children }: { children: ReactNode }) => (
 RouteBoundary.displayName = "RouteBoundary";
 
 function RootComponent() {
+  // Public pages use the light XTSY 2026 palette (see .xt-theme in styles.css);
+  // admin and franchise consoles keep the original dark theme.
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isConsole = /^\/(admin|franchise)(\/|-|$)/.test(pathname);
   const pathname = useLocation().pathname;
   const isGuestPage = !/^\/(admin(?:\/|$)|admin-login(?:\/|$)|franchise(?:\/|$)|auth(?:\/|$)|profile(?:\/|$)|install(?:\/|$)|unsubscribe(?:\/|$)|\.lovable(?:\/|$)|api(?:\/|$))/.test(pathname);
   // Recover from stale hashed chunks after a deploy (blank screen +
@@ -376,7 +381,7 @@ function RootComponent() {
             enableHSTS: import.meta.env.MODE === "production",
           }}
         >
-          <div className="dark" id="main-content">
+          <div className={isConsole ? "dark" : "dark xt-theme"} id="main-content">
             <ClientOnly fallback={null}>
               <PerformanceMonitor />
             </ClientOnly>

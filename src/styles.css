@@ -930,3 +930,58 @@ img.lazy-below-fold {
 .public-design :where(main > section, article > section) { scroll-margin-top: 7rem; }
 .public-design :where(input, textarea, select) { font-size: max(16px, 1em); }
 .public-design .xt { --background: 36 38% 96%; --foreground: 229 21% 15%; }
+
+/* ─────────────────────────────────────────────────────────────
+   XTSY 2026 theme bridge
+   Pages not yet rebuilt in v2 still use the shadcn tokens. On public
+   routes #main-content gets .xt-theme, which remaps those tokens to the
+   light v2 palette (sand, ink, crimson) so every page matches the new
+   design. Admin/franchise consoles keep the dark theme.
+   ───────────────────────────────────────────────────────────── */
+.dark.xt-theme {
+  --background: 35 40% 94%;
+  --foreground: 229 22% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 229 22% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 229 22% 15%;
+  --primary: 345 63% 39%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 34 40% 90%;
+  --secondary-foreground: 229 22% 15%;
+  --muted: 34 40% 90%;
+  --muted-foreground: 224 15% 36%;
+  --accent: 349 40% 92%;
+  --accent-foreground: 345 63% 30%;
+  --border: 35 32% 84%;
+  --input: 35 23% 75%;
+  --ring: 345 63% 39%;
+  --brand-accent: 345 63% 39%;
+  --brand-gold: 345 55% 45%;
+  --surface-elevated: 0 0% 100%;
+  --surface-overlay: 35 40% 96%;
+  --surface-highlight: 345 63% 39% / 0.08;
+  --glass-bg-solid: 0 0% 100%;
+  --glass-bg-tablet: 0 0% 100% / 0.92;
+  --glass-bg-desktop: 0 0% 100% / 0.7;
+  --glass-border-light: 229 22% 15% / 0.08;
+  --glass-border-solid: 35 32% 84%;
+  --glass-shadow-light: 0 8px 32px hsl(229 22% 15% / 0.08);
+  --glass-shadow-solid: 0 4px 16px hsl(229 22% 15% / 0.06);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(31, 34, 48, 0.08);
+  --glass-shadow: 0 8px 32px rgba(31, 34, 48, 0.08);
+  --gradient-primary: linear-gradient(135deg, #A12444, #8A1D3A);
+  --gradient-gold: linear-gradient(135deg, #C0445F, #A12444);
+  --gradient-ember: linear-gradient(135deg, #A12444, #8A1D3A);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
+  --shadow-elegant: 0 4px 24px -4px hsl(345 63% 39% / 0.18);
+  --shadow-premium: 0 8px 40px -8px hsl(229 22% 15% / 0.18);
+  --travel-gradient-warm: linear-gradient(135deg, #A12444, #8A1D3A);
+  --travel-glow-warm: 0 0 40px hsl(345 63% 39% / 0.18);
+  background: #F6F1EA;
+  color: #1F2230;
+  font-family: "Manrope", system-ui, sans-serif;
+  color-scheme: light;
+}
+.xt-theme :where(h1, h2):not(.xt *) { font-family: "Staatliches", Impact, sans-serif; font-weight: 400; letter-spacing: 0.01em; line-height: 0.95; }

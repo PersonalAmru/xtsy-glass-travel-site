@@ -10,7 +10,7 @@ import path from 'path';
 const BASE = process.env.BASE_URL || 'http://localhost:8080';
 const OUT = process.env.OUT_DIR || 'shots';
 const ROUTES = (process.env.ROUTES ||
-  '/,/xtsy-270,/pet-friendly,/female-travellers,/work-from-home,/contact,/about,/faq,/this-page-does-not-exist,/book,/tours,/tab-bistro,/best-hostel-in-shillong'
+  '/best-hostel-in-shillong,/hostels-in-shillong-today,/meghalaya-tour-packages,/places-to-visit-in-meghalaya,/things-to-do-in-meghalaya,/destinations,/meghalaya-waterfalls,/3-day-meghalaya-itinerary,/hotels-in-shillong,/luxury-glamping-shillong,/tours/4n-5d-shillong-meghalaya-tour,/book,/auth,/privacy-policy,/travel-guide/how-to-reach-meghalaya'
 ).split(',');
 
 const VIEWPORTS = [
