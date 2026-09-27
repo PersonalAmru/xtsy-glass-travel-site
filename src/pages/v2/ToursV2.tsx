@@ -78,7 +78,7 @@ export default function ToursV2() {
         canonicalUrl="https://xtsy.one/tours"
       />
       <Helmet><script type="application/ld+json">{JSON.stringify(itemList)}</script></Helmet>
-      <PageShell cta={{ title: 'Not sure which trip fits?', sub: 'Tell a travel expert your dates and budget on WhatsApp. We’ll shape a plan around you — or try the AI trip builder.', bookTo: '/#planner', bookLabel: 'Build a trip with AI' }}>
+      <PageShell cta={{ title: 'Not sure which trip fits?', sub: 'Tell a travel expert your dates and budget on WhatsApp. We’ll shape a plan around you — or try the AI trip builder.', bookTo: '/plan-trip-with-ai', bookLabel: 'Build a trip with AI' }}>
         <section className={`${PAD} relative grid items-end gap-8 overflow-hidden py-14 lg:grid-cols-2 lg:gap-14 lg:py-[72px]`}>
           <SpinningMark className="-right-24 -top-36 h-[520px] w-[520px] opacity-[0.07]" />
           <div className="relative flex flex-col gap-5">

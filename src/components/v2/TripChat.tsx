@@ -74,7 +74,7 @@ function PlanCard({ plan }: { plan: Plan }) {
 
 export default function TripChat({ variant = 'embedded', className, onClose, initialPrompt, title }: { variant?: 'embedded' | 'panel'; className?: string; onClose?: () => void; initialPrompt?: string; title?: ReactNode }) {
   const navigate = useNavigate();
-  const [msgs, setMsgs] = useState<Msg[]>([]);
+  const [msgs, setMsgs] = useState<Msg[]>(() => [{ from: 'xtsy', ...WELCOME }]);
   const [state, setState] = useState<ChatState>(INITIAL_STATE);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
@@ -87,7 +87,6 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
   useEffect(() => {
     const saved = load();
     if (saved?.msgs?.length) { setMsgs(saved.msgs); setState({ ...INITIAL_STATE, ...saved.state }); }
-    else setMsgs([{ from: 'xtsy', ...WELCOME }]);
   }, []);
   useEffect(() => { if (msgs.length) save(msgs, state); }, [msgs, state]);
   useEffect(() => { const el = listRef.current; if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' }); }, [msgs, typing, sendFor]);

@@ -25,7 +25,7 @@ const COLS = [
       { to: '/expeditions', label: 'Expeditions' },
       { to: '/group-bookings-meghalaya', label: 'Group bookings' },
       { to: '/xtsy-rentals', label: 'Bike & car rentals' },
-      { to: '/#planner', label: 'Plan a trip with AI' },
+      { to: '/plan-trip-with-ai', label: 'Plan a trip with AI' },
     ],
   },
   {

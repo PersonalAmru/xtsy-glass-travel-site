@@ -31,7 +31,7 @@ function buildTopics(): Topic[] {
     ] },
     { id: 'tours', n: 'Tours & rentals', q: [
       ['What are the must-see spots?', 'Living root bridges, Dawki’s clear Umngot river, Nohkalikai Falls and Mawlynnong village. We arrange guided trips to all of them.'],
-      ['Can you customise a trip?', 'Yes. Try the AI trip builder on the home page, then send the plan to the XTSY desk.'],
+      ['Can you customise a trip?', 'Yes. Try Plan a trip with AI (on the home page or the Plan a trip page), then send the plan to the XTSY desk.'],
       ['Who provides stays and vehicles outside New Shillong?', 'Trusted travel partners that XTSY books and coordinates. XTSY stays your single point of contact.'],
       ['Do you handle permits?', 'Yes, for Arunachal Pradesh, parts of Nagaland and border areas. Share your details 15–20 days before travel.'],
       ['Do you rent bikes and cars?', 'Yes. Royal Enfields from ₹1,300 a day and cars from ₹1,800, booked through trusted rental partners, with drivers on request.'],

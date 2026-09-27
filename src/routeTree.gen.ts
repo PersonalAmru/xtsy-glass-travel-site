@@ -31,6 +31,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DestinationWeddingShillongRouteImport } from './routes/destination-wedding-shillong'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as MerchRouteImport } from './routes/merch'
+import { Route as PlanTripWithAiRouteImport } from './routes/plan-trip-with-ai'
 import { Route as FemaleTravellersRouteImport } from './routes/female-travellers'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as GroupBookingsMeghalayaRouteImport } from './routes/group-bookings-meghalaya'
@@ -238,6 +239,11 @@ const FaqRoute = FaqRouteImport.update({
 const MerchRoute = MerchRouteImport.update({
   id: '/merch',
   path: '/merch',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanTripWithAiRoute = PlanTripWithAiRouteImport.update({
+  id: '/plan-trip-with-ai',
+  path: '/plan-trip-with-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FemaleTravellersRoute = FemaleTravellersRouteImport.update({
@@ -752,6 +758,7 @@ export interface FileRoutesByFullPath {
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
   '/merch': typeof MerchRoute
+  '/plan-trip-with-ai': typeof PlanTripWithAiRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -871,6 +878,7 @@ export interface FileRoutesByTo {
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
   '/merch': typeof MerchRoute
+  '/plan-trip-with-ai': typeof PlanTripWithAiRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -991,6 +999,7 @@ export interface FileRoutesById {
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
   '/merch': typeof MerchRoute
+  '/plan-trip-with-ai': typeof PlanTripWithAiRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -1112,6 +1121,7 @@ export interface FileRouteTypes {
     | '/destination-wedding-shillong'
     | '/faq'
     | '/merch'
+    | '/plan-trip-with-ai'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1231,6 +1241,7 @@ export interface FileRouteTypes {
     | '/destination-wedding-shillong'
     | '/faq'
     | '/merch'
+    | '/plan-trip-with-ai'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1350,6 +1361,7 @@ export interface FileRouteTypes {
     | '/destination-wedding-shillong'
     | '/faq'
     | '/merch'
+    | '/plan-trip-with-ai'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1470,6 +1482,7 @@ export interface RootRouteChildren {
   DestinationWeddingShillongRoute: typeof DestinationWeddingShillongRoute
   FaqRoute: typeof FaqRoute
   MerchRoute: typeof MerchRoute
+  PlanTripWithAiRoute: typeof PlanTripWithAiRoute
   FemaleTravellersRoute: typeof FemaleTravellersRoute
   GalleryRoute: typeof GalleryRoute
   GroupBookingsMeghalayaRoute: typeof GroupBookingsMeghalayaRoute
@@ -1721,6 +1734,13 @@ declare module '@tanstack/react-router' {
       path: '/merch'
       fullPath: '/merch'
       preLoaderRoute: typeof MerchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plan-trip-with-ai': {
+      id: '/plan-trip-with-ai'
+      path: '/plan-trip-with-ai'
+      fullPath: '/plan-trip-with-ai'
+      preLoaderRoute: typeof PlanTripWithAiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/female-travellers': {
@@ -2414,6 +2434,7 @@ const rootRouteChildren: RootRouteChildren = {
   DestinationWeddingShillongRoute: DestinationWeddingShillongRoute,
   FaqRoute: FaqRoute,
   MerchRoute: MerchRoute,
+  PlanTripWithAiRoute: PlanTripWithAiRoute,
   FemaleTravellersRoute: FemaleTravellersRoute,
   GalleryRoute: GalleryRoute,
   GroupBookingsMeghalayaRoute: GroupBookingsMeghalayaRoute,

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Link } from '@/lib/router-compat';
 import { googleReviews } from '@/data/googleReviews';
 import { SIGNATURE_PACKAGES, formatPackagePrice } from '@/data/signaturePackages';
-import { IMG, first } from '@/data/v2Images';
+import { IMG, COVERS, first } from '@/data/v2Images';
 import { Eyebrow, LiveDot, Marquee, Photo, SectionHead, SpinningMark } from '../primitives';
 import { inr, lowestDormPrice, roomPrice } from '../pricing';
 
@@ -162,10 +162,10 @@ export function PrimeRail() {
   const suite = roomPrice('xtsy-270');
   const prime = [
     { t: 'Experience by XTSY', cat: 'INDIA’S FIRST STARGAZE GLAMP', d: 'A 270° panoramic glass suite for couples, proposals and anniversaries.', price: inr(suite.now), note: `per night · was ${inr(suite.was)}`, img: IMG.suite[1] ?? first(IMG.suite), to: '/xtsy-270', tone: 'night' as const },
-    { t: 'Pet Friendly Stays', cat: 'PET TRAVEL', d: 'Cats and birds most welcome; dogs depending on breed and size.', price: 'Ask the desk', note: 'about any extra charges', img: IMG.property[0], to: '/pet-friendly', tone: 'pine' as const },
-    { t: 'XTSY vs Zostel', cat: 'WHY XTSY', d: 'Big groups, families, educational tours and cross-border trips.', price: 'Compare', note: 'see the difference', img: IMG.property[1], to: '/xtsy-vs-zostel', tone: 'sand' as const },
-    { t: 'Female Travellers', cat: 'WOMEN SAFETY', d: 'Women-only dorm, secure lockers and female staff on call.', price: inr(roomPrice('4-bed-female-only-dorm').now), note: 'per bed / night', img: IMG.femaleDorm[1] ?? first(IMG.femaleDorm), to: '/female-travellers', tone: 'crimson' as const },
-    { t: 'Work From Home', cat: 'DIGITAL NOMAD', d: 'Fibre Wi-Fi, a desk with a view and TAB Bistro downstairs.', price: 'Weekly plans', note: 'ask the desk', img: IMG.property[2], to: '/work-from-home', tone: 'slate' as const },
+    { t: 'Pet Friendly Stays', cat: 'PET TRAVEL', d: 'Cats and birds most welcome; dogs depending on breed and size.', price: 'Ask the desk', note: 'about any extra charges', img: COVERS.pet, to: '/pet-friendly', tone: 'pine' as const },
+    { t: 'Group Trips', cat: 'GROUPS OF 6–60', d: 'Whole-dorm stays, colleges, families and company offsites, with transport and TAB Bistro meals.', price: 'Per-person rates', note: 'quote in ~1 hour', img: COVERS.groups, to: '/group-bookings-meghalaya', tone: 'sand' as const },
+    { t: 'Female Travellers', cat: 'WOMEN SAFETY', d: 'Women-only dorm, secure lockers and female staff on call.', price: inr(roomPrice('4-bed-female-only-dorm').now), note: 'per bed / night', img: COVERS.women, to: '/female-travellers', tone: 'crimson' as const },
+    { t: 'Work From Home', cat: 'DIGITAL NOMAD', d: 'Fibre Wi-Fi, a desk with a view and TAB Bistro downstairs.', price: 'Weekly plans', note: 'ask the desk', img: COVERS.workation, to: '/work-from-home', tone: 'slate' as const },
     { t: 'XTSY Rentals', cat: 'VEHICLE RENTAL', d: 'Cars and Royal Enfields, booked through trusted rental partners.', price: '₹1,300', note: 'per day onwards', img: IMG.bumla, to: '/xtsy-rentals', tone: 'crimson' as const },
   ];
   const doubled = prime.concat(prime);

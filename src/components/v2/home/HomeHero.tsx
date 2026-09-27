@@ -6,10 +6,10 @@ import { useEffect, useState, type FormEvent, type MouseEvent as ReactMouseEvent
 import { Link, useNavigate } from '@/lib/router-compat';
 import { formatLocalDateString } from '@/lib/date-utils';
 import { useComponentTracking } from '@/hooks/useComponentTracking';
-import { IMG } from '@/data/v2Images';
 import { Button } from '@/components/ui/button';
 import TripChat from '../TripChat';
 import { HERO_IMAGE } from '@/data/v2Images';
+import { responsive } from '../primitives';
 
 const addDays = (iso: string, n: number) => {
   const d = new Date(`${iso}T00:00:00`);
@@ -69,6 +69,7 @@ export default function HomeHero() {
     navigate(`/book/select?${new URLSearchParams({ location: 'shillong', checkIn, checkOut, guests: String(g) }).toString()}`);
   };
 
+  const hero = responsive(HERO_IMAGE.src);
   const goPlanner = (e: ReactMouseEvent) => {
     e.preventDefault();
     trackCTA('plan_trip_ai', {});
@@ -81,7 +82,7 @@ export default function HomeHero() {
   return (
     <>
       <section className="relative isolate flex min-h-[65vh] flex-col justify-end overflow-hidden bg-xt-ink px-5 py-12 text-xt-paper sm:px-8 lg:min-h-[68vh] lg:px-14">
-        <img src={HERO_IMAGE.src} alt={HERO_IMAGE.alt} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: HERO_IMAGE.position }} fetchPriority="high" decoding="async" />
+        <img src={hero?.src ?? HERO_IMAGE.src} srcSet={hero?.srcSet} sizes="100vw" width={hero?.w} height={hero?.h} alt={HERO_IMAGE.alt} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: HERO_IMAGE.position }} fetchPriority="high" decoding="async" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-xt-ink via-xt-ink/60 to-xt-ink/20" />
         <div className="max-w-5xl">
           <p className="xt-eyebrow mb-4 text-sm uppercase text-[#F2B8C2]!">New Shillong Township · Meghalaya</p>

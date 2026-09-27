@@ -45,6 +45,7 @@ const STATIC_ROUTES: { path: string; priority: string; changefreq: string; lastm
   { path: '/motorbike-expedition-northeast-india', priority: '0.8', changefreq: 'monthly', lastmod: TODAY },
   { path: '/4x4-expedition-meghalaya', priority: '0.8', changefreq: 'monthly', lastmod: TODAY },
   { path: '/merch', priority: '0.6', changefreq: 'monthly', lastmod: TODAY },
+  { path: '/plan-trip-with-ai', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
   { path: '/travel', priority: '0.9', changefreq: 'daily', lastmod: TODAY },
   { path: '/xtsy-270', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
   { path: '/xtsy-rentals', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },

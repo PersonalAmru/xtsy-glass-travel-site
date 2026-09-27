@@ -7,6 +7,7 @@ import { Link, useLocation } from '@/lib/router-compat';
 import { useUserAuth } from '@/contexts/UserAuthContext';
 import xtsyLogo from '@/assets/xtsy-color-logo.webp';
 import { cn } from '@/lib/utils';
+import { openTripChat } from './tripChatEvents';
 import { XtsyMark, WHATSAPP_DISPLAY, waLink } from './primitives';
 import { inr, lowestDormPrice } from './pricing';
 
@@ -41,7 +42,7 @@ const MENU_GROUPS = [
       { to: '/expeditions', label: 'Expeditions' },
       { to: '/group-bookings-meghalaya', label: 'Group bookings' },
       { to: '/xtsy-rentals', label: 'Bike & car rentals' },
-      { to: '/#planner', label: 'Plan a trip with AI' },
+      { to: '/plan-trip-with-ai', label: 'Plan a trip with AI' },
     ],
   },
   {
@@ -128,6 +129,16 @@ export default function SiteHeader() {
             className="flex h-11 w-11 items-center justify-center rounded-full text-xt-ink hover:bg-xt-cream"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+          </button>
+          <button
+            type="button"
+            onClick={() => openTripChat()}
+            className="xt-btn hidden h-11 items-center gap-2 rounded-full bg-xt-ink pl-2.5 pr-4 text-[14px] font-bold text-xt-paper lg:flex"
+          >
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-xt-crimson" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18.5l-2.2-6.3L3.5 10l6.3-1.7z" /></svg>
+            </span>
+            Plan with AI
           </button>
           <Link
             to={user ? '/profile' : '/auth'}

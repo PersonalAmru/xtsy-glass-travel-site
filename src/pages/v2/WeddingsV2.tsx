@@ -3,7 +3,7 @@
  */
 import { Helmet } from 'react-helmet-async';
 import SEOHead from '@/components/SEOHead';
-import { IMG, first } from '@/data/v2Images';
+import { COVERS } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FeatureCards, PriceCards, FaqList, PAD } from '@/components/v2/blocks';
 import { EnquiryForm } from '@/components/v2/EnquiryForm';
 import { Photo, waLink } from '@/components/v2/primitives';
@@ -52,7 +52,7 @@ export default function WeddingsV2() {
           title="Say yes in the hills."
           text="Intimate weddings for 20–100 guests with a Khasi Hills backdrop, TAB Bistro catering, on-site guest stays and Experience by XTSY for the couple."
           actions={<><Btn to="#enquire">Plan your wedding</Btn><Btn to={waLink('Hi XTSY! We are planning a wedding in Shillong. Dates: … Guests: …')} kind="outline">WhatsApp us</Btn></>}
-          media={<Photo src={IMG.suite[1] ?? first(IMG.suite)} alt="Experience by XTSY, India’s First Stargaze Glamp" eager tone="crimson" className="aspect-[628/520] rounded-[32px]" />}
+          media={<Photo src={COVERS.wedding} alt="Experience by XTSY, India’s First Stargaze Glamp" eager tone="crimson" className="aspect-[628/520] rounded-[32px]" />}
         />
 
         <Section>

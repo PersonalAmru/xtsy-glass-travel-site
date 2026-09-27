@@ -10,7 +10,7 @@ import path from 'path';
 const BASE = process.env.BASE_URL || 'http://localhost:8080';
 const OUT = process.env.OUT_DIR || 'shots';
 const ROUTES = (process.env.ROUTES ||
-  '/,/pet-friendly,/xtsy-vs-zostel'
+  '/,/plan-trip-with-ai,/pet-friendly,/about,/group-bookings-meghalaya,/work-from-home,/destination-wedding-shillong'
 ).split(',');
 
 const VIEWPORTS = [
