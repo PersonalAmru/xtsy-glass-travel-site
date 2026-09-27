@@ -1,6 +1,6 @@
 - [ ] Align existing adventure tour, activity, expedition, and local city pages with approved search terms.
 - [ ] Improve on-site search discovery and relevant internal links without creating doorway pages.
 - [ ] Keep sitemap coverage accurate and validate metadata, links, desktop/mobile views, and type safety.
-- [ ] Use the existing TAB Bistro cover consistently wherever Bistro is featured.
-- [ ] Carry the current homepage design across guest-facing pages without changing admin tools or booking logic.
-- [ ] Verify representative public pages on desktop and mobile.
+- [x] Use the existing TAB Bistro cover consistently wherever Bistro is featured.
+- [x] Carry the current homepage palette and typography across guest-facing pages without changing admin tools or booking logic.
+- [x] Verify representative public pages on desktop and mobile.
