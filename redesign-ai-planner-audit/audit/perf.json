@@ -2,49 +2,416 @@
  {
   "route": "/",
   "status": 200,
-  "wallMs": 27645,
-  "ttfb": 60,
-  "fcp": 8944,
+  "wallMs": 19861,
+  "ttfb": 94,
+  "fcp": 1616,
   "lcp": {
-   "t": 8944,
+   "t": 6356,
    "size": 219570,
-   "url": "http://localhost:4173/img/o/xtsy-property-images-8-1280.webp",
+   "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.webp",
    "tag": "IMG",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover",
    "text": ""
   },
   "lcpCandidates": [
    {
-    "t": 8944,
+    "t": 1616,
+    "size": 38540,
+    "url": "",
+    "tag": "H1",
+    "cls": "xt-display m-0 text-6xl leading-none sm:text-8xl lg:text-9xl",
+    "text": "XTSY Travellers Hostel"
+   },
+   {
+    "t": 6356,
     "size": 219570,
-    "url": "http://localhost:4173/img/o/xtsy-property-images-8-1280.webp",
+    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.webp",
     "tag": "IMG",
     "cls": "absolute inset-0 -z-20 h-full w-full object-cover",
     "text": ""
    }
   ],
-  "cls": 0.206,
-  "requests": 78,
+  "cls": 0.179,
+  "shifts": [
+   {
+    "v": 0.0007,
+    "t": 2550,
+    "nodes": [
+     "#text."
+    ]
+   },
+   {
+    "v": 0.0295,
+    "t": 2763,
+    "nodes": [
+     "DIV.max-w-5xl",
+     "SECTION.border-b border-xt-line bg-xt-paper px-5 py-8 sm:px-8 lg:px-14"
+    ]
+   },
+   {
+    "v": 0.1488,
+    "t": 3065,
+    "nodes": [
+     "MAIN.",
+     "DIV.flex items-center gap-2",
+     "A.text-xt-paper underline-offset-2 hover:underline",
+     "SPAN.xt-live inline-block h-2 w-2 rounded-full bg-xt-leaf"
+    ]
+   }
+  ],
+  "requests": 79,
   "byType": {
+   "document": {
+    "n": 1,
+    "kb": 139
+   },
    "image": {
     "n": 10,
     "kb": 806
-   },
-   "stylesheet": {
-    "n": 2,
-    "kb": 435
    },
    "script": {
     "n": 33,
     "kb": 3590
    },
-   "document": {
-    "n": 1,
-    "kb": 139
+   "stylesheet": {
+    "n": 2,
+    "kb": 435
    },
    "font": {
     "n": 5,
     "kb": 92
+   },
+   "fetch": {
+    "n": 16,
+    "kb": 2
+   },
+   "xhr": {
+    "n": 8,
+    "kb": 15
+   },
+   "ping": {
+    "n": 1,
+    "kb": 0
+   },
+   "other": {
+    "n": 3,
+    "kb": 0
+   }
+  },
+  "biggest": [
+   {
+    "url": "http://localhost:4174/assets/index-DevUeOYg.js",
+    "type": "script",
+    "bytes": 1686168,
+    "kb": 1647
+   },
+   {
+    "url": "https://t.contentsquare.net/uxa/8a1781ba2e7b5.js",
+    "type": "script",
+    "bytes": 559936,
+    "kb": 547
+   },
+   {
+    "url": "http://localhost:4174/assets/esm-YspT_man.js",
+    "type": "script",
+    "bytes": 475465,
+    "kb": 464
+   },
+   {
+    "url": "http://localhost:4174/assets/styles-BPUiwmex.css",
+    "type": "stylesheet",
+    "bytes": 424198,
+    "kb": 414
+   },
+   {
+    "url": "http://localhost:4174/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
+    "type": "image",
+    "bytes": 210210,
+    "kb": 205
+   },
+   {
+    "url": "http://localhost:4174/assets/client-kMGS092h.js",
+    "type": "script",
+    "bytes": 208985,
+    "kb": 204
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
+    "type": "script",
+    "bytes": 197745,
+    "kb": 193
+   },
+   {
+    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.webp",
+    "type": "image",
+    "bytes": 194506,
+    "kb": 190
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+    "type": "script",
+    "bytes": 163174,
+    "kb": 159
+   },
+   {
+    "url": "http://localhost:4174/",
+    "type": "document",
+    "bytes": 142612,
+    "kb": 139
+   },
+   {
+    "url": "http://localhost:4174/img/o/xtsyvoyage-dawki-river-735.webp",
+    "type": "image",
+    "bytes": 108474,
+    "kb": 106
+   },
+   {
+    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+    "type": "image",
+    "bytes": 88578,
+    "kb": 87
+   }
+  ]
+ },
+ {
+  "route": "/xtsy-270",
+  "status": 200,
+  "wallMs": 17703,
+  "ttfb": 100,
+  "fcp": 1736,
+  "lcp": {
+   "t": 2508,
+   "size": 64889,
+   "url": "",
+   "tag": "H1",
+   "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:text-[136px]",
+   "text": "Experience by XTSY"
+  },
+  "lcpCandidates": [
+   {
+    "t": 1736,
+    "size": 2754,
+    "url": "",
+    "tag": "BUTTON",
+    "cls": "xt-btn fixed bottom-[148px] right-4 z-50 flex h-14 items-center gap-2.5 rounded-full bg-xt-ink pl-3 pr-5 text-[15px] fon",
+    "text": "Plan a trip with AI"
+   },
+   {
+    "t": 2508,
+    "size": 64889,
+    "url": "",
+    "tag": "H1",
+    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:text-[136px]",
+    "text": "Experience by XTSY"
+   }
+  ],
+  "cls": 0.013,
+  "shifts": [
+   {
+    "v": 0.001,
+    "t": 2761,
+    "nodes": [
+     "SPAN.flex flex-col pb-1.5 text-[15px] text-[#A3ABC2]"
+    ]
+   },
+   {
+    "v": 0.0122,
+    "t": 3029,
+    "nodes": [
+     "DIV.xt-in xt-d3 flex flex-wrap gap-3",
+     "BUTTON.xt-btn fixed bottom-[148px] right-4 z-50 flex h-14 items-center gap-2.5 rounded-",
+     "DIV.mt-6 flex items-end gap-4",
+     "DIV.xt-in xt-d2 relative",
+     "DIV.flex items-center gap-2"
+    ]
+   }
+  ],
+  "requests": 94,
+  "byType": {
+   "document": {
+    "n": 1,
+    "kb": 71
+   },
+   "image": {
+    "n": 7,
+    "kb": 550
+   },
+   "script": {
+    "n": 52,
+    "kb": 3544
+   },
+   "stylesheet": {
+    "n": 2,
+    "kb": 435
+   },
+   "font": {
+    "n": 5,
+    "kb": 92
+   },
+   "fetch": {
+    "n": 15,
+    "kb": 2
+   },
+   "xhr": {
+    "n": 8,
+    "kb": 15
+   },
+   "ping": {
+    "n": 1,
+    "kb": 0
+   },
+   "other": {
+    "n": 3,
+    "kb": 0
+   }
+  },
+  "biggest": [
+   {
+    "url": "http://localhost:4174/assets/index-DevUeOYg.js",
+    "type": "script",
+    "bytes": 1686168,
+    "kb": 1647
+   },
+   {
+    "url": "https://t.contentsquare.net/uxa/8a1781ba2e7b5.js",
+    "type": "script",
+    "bytes": 559936,
+    "kb": 547
+   },
+   {
+    "url": "http://localhost:4174/assets/esm-YspT_man.js",
+    "type": "script",
+    "bytes": 475465,
+    "kb": 464
+   },
+   {
+    "url": "http://localhost:4174/assets/styles-BPUiwmex.css",
+    "type": "stylesheet",
+    "bytes": 424198,
+    "kb": 414
+   },
+   {
+    "url": "http://localhost:4174/assets/client-kMGS092h.js",
+    "type": "script",
+    "bytes": 208985,
+    "kb": 204
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1h1",
+    "type": "script",
+    "bytes": 197740,
+    "kb": 193
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+    "type": "script",
+    "bytes": 163165,
+    "kb": 159
+   },
+   {
+    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-900.webp",
+    "type": "image",
+    "bytes": 153132,
+    "kb": 150
+   },
+   {
+    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-3-1280.webp",
+    "type": "image",
+    "bytes": 132296,
+    "kb": 129
+   },
+   {
+    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-4-1280.webp",
+    "type": "image",
+    "bytes": 102672,
+    "kb": 100
+   },
+   {
+    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-2-900.webp",
+    "type": "image",
+    "bytes": 81976,
+    "kb": 80
+   },
+   {
+    "url": "http://localhost:4174/xtsy-270",
+    "type": "document",
+    "bytes": 72389,
+    "kb": 71
+   }
+  ]
+ },
+ {
+  "route": "/tours",
+  "status": 200,
+  "wallMs": 17460,
+  "ttfb": 96,
+  "fcp": 1420,
+  "lcp": {
+   "t": 2608,
+   "size": 78336,
+   "url": "",
+   "tag": "P",
+   "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[20px]",
+   "text": "Root bridges, caves, Dawki’s clear river, Tawang’s monasteri"
+  },
+  "lcpCandidates": [
+   {
+    "t": 1420,
+    "size": 18928,
+    "url": "",
+    "tag": "H2",
+    "cls": "xt-display m-0 text-[44px] leading-[0.95] sm:text-[60px] lg:text-[72px]",
+    "text": "Northeast signatures"
+   },
+   {
+    "t": 2608,
+    "size": 78336,
+    "url": "",
+    "tag": "P",
+    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[20px]",
+    "text": "Root bridges, caves, Dawki’s clear river, Tawang’s monasteri"
+   }
+  ],
+  "cls": 0.005,
+  "shifts": [
+   {
+    "v": 0.0004,
+    "t": 2546,
+    "nodes": [
+     "#text."
+    ]
+   },
+   {
+    "v": 0.0047,
+    "t": 2886,
+    "nodes": [
+     "BUTTON.xt-btn fixed bottom-[148px] right-4 z-50 flex h-14 items-center gap-2.5 rounded-",
+     "DIV.flex items-center gap-2",
+     "A.text-xt-paper underline-offset-2 hover:underline"
+    ]
+   }
+  ],
+  "requests": 70,
+  "byType": {
+   "document": {
+    "n": 1,
+    "kb": 202
+   },
+   "script": {
+    "n": 31,
+    "kb": 3474
+   },
+   "stylesheet": {
+    "n": 2,
+    "kb": 435
+   },
+   "image": {
+    "n": 6,
+    "kb": 473
+   },
+   "font": {
+    "n": 4,
+    "kb": 83
    },
    "fetch": {
     "n": 15,
@@ -55,7 +422,7 @@
     "kb": 15
    },
    "ping": {
-    "n": 2,
+    "n": 1,
     "kb": 0
    },
    "other": {
@@ -65,7 +432,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
+    "url": "http://localhost:4174/assets/index-DevUeOYg.js",
     "type": "script",
     "bytes": 1686168,
     "kb": 1647
@@ -77,354 +444,76 @@
     "kb": 547
    },
    {
-    "url": "http://localhost:4173/assets/esm-YspT_man.js",
+    "url": "http://localhost:4174/assets/esm-YspT_man.js",
     "type": "script",
     "bytes": 475465,
     "kb": 464
    },
    {
-    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
+    "url": "http://localhost:4174/assets/styles-BPUiwmex.css",
     "type": "stylesheet",
     "bytes": 424198,
     "kb": 414
    },
    {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
+    "url": "http://localhost:4174/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
     "type": "image",
     "bytes": 210210,
     "kb": 205
    },
    {
-    "url": "http://localhost:4173/assets/client-kMGS092h.js",
+    "url": "http://localhost:4174/assets/client-kMGS092h.js",
     "type": "script",
     "bytes": 208985,
     "kb": 204
    },
    {
-    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
-    "type": "script",
-    "bytes": 197747,
-    "kb": 193
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsy-property-images-8-1280.webp",
-    "type": "image",
-    "bytes": 194506,
-    "kb": 190
-   },
-   {
-    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
-    "type": "script",
-    "bytes": 163173,
-    "kb": 159
-   },
-   {
-    "url": "http://localhost:4173/",
-    "type": "document",
-    "bytes": 142612,
-    "kb": 139
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-dawki-river-735.webp",
-    "type": "image",
-    "bytes": 108474,
-    "kb": 106
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
-    "type": "image",
-    "bytes": 88578,
-    "kb": 87
-   }
-  ]
- },
- {
-  "route": "/xtsy-270",
-  "status": 200,
-  "wallMs": 22939,
-  "ttfb": 18,
-  "fcp": 7996,
-  "lcp": {
-   "t": 8676,
-   "size": 64889,
-   "url": "",
-   "tag": "H1",
-   "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:text-[136px]",
-   "text": "Experience by XTSY"
-  },
-  "lcpCandidates": [
-   {
-    "t": 7996,
-    "size": 2754,
-    "url": "",
-    "tag": "BUTTON",
-    "cls": "xt-btn fixed bottom-[148px] right-4 z-50 flex h-14 items-center gap-2.5 rounded-full bg-xt-ink pl-3 pr-5 text-[15px] fon",
-    "text": "Plan a trip with AI"
-   },
-   {
-    "t": 8676,
-    "size": 64889,
-    "url": "",
-    "tag": "H1",
-    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:text-[136px]",
-    "text": "Experience by XTSY"
-   }
-  ],
-  "cls": 0.013,
-  "requests": 75,
-  "byType": {
-   "image": {
-    "n": 6,
-    "kb": 549
-   },
-   "stylesheet": {
-    "n": 2,
-    "kb": 435
-   },
-   "script": {
-    "n": 47,
-    "kb": 2337
-   },
-   "document": {
-    "n": 1,
-    "kb": 71
-   },
-   "font": {
-    "n": 5,
-    "kb": 92
-   },
-   "fetch": {
-    "n": 11,
-    "kb": 2
-   },
-   "other": {
-    "n": 3,
-    "kb": 0
-   }
-  },
-  "biggest": [
-   {
-    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
-    "type": "script",
-    "bytes": 1686168,
-    "kb": 1647
-   },
-   {
-    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
-    "type": "stylesheet",
-    "bytes": 424198,
-    "kb": 414
-   },
-   {
-    "url": "http://localhost:4173/assets/client-kMGS092h.js",
-    "type": "script",
-    "bytes": 208985,
-    "kb": 204
-   },
-   {
-    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
-    "type": "script",
-    "bytes": 163173,
-    "kb": 159
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsy-270-xtsy270-900.webp",
-    "type": "image",
-    "bytes": 153132,
-    "kb": 150
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsy-270-xtsy270-3-1280.webp",
-    "type": "image",
-    "bytes": 132296,
-    "kb": 129
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsy-270-xtsy270-4-1280.webp",
-    "type": "image",
-    "bytes": 102672,
-    "kb": 100
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsy-270-xtsy270-2-900.webp",
-    "type": "image",
-    "bytes": 81976,
-    "kb": 80
-   },
-   {
-    "url": "http://localhost:4173/xtsy-270",
-    "type": "document",
-    "bytes": 72389,
-    "kb": 71
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsy-270-xtsy270-5-960.webp",
-    "type": "image",
-    "bytes": 69444,
-    "kb": 68
-   },
-   {
-    "url": "http://localhost:4173/assets/meghalayaDestinations-CJH8XywN.js",
-    "type": "script",
-    "bytes": 67450,
-    "kb": 66
-   },
-   {
-    "url": "http://localhost:4173/assets/cdnImages-AGSeSHyi.js",
-    "type": "script",
-    "bytes": 33369,
-    "kb": 33
-   }
-  ]
- },
- {
-  "route": "/tours",
-  "status": 200,
-  "wallMs": 22985,
-  "ttfb": 30,
-  "fcp": 7728,
-  "lcp": {
-   "t": 8600,
-   "size": 78337,
-   "url": "",
-   "tag": "P",
-   "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[20px]",
-   "text": "Root bridges, caves, Dawki’s clear river, Tawang’s monasteri"
-  },
-  "lcpCandidates": [
-   {
-    "t": 7728,
-    "size": 18928,
-    "url": "",
-    "tag": "H2",
-    "cls": "xt-display m-0 text-[44px] leading-[0.95] sm:text-[60px] lg:text-[72px]",
-    "text": "Northeast signatures"
-   },
-   {
-    "t": 8600,
-    "size": 78337,
-    "url": "",
-    "tag": "P",
-    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[20px]",
-    "text": "Root bridges, caves, Dawki’s clear river, Tawang’s monasteri"
-   }
-  ],
-  "cls": 0.005,
-  "requests": 53,
-  "byType": {
-   "stylesheet": {
-    "n": 2,
-    "kb": 435
-   },
-   "script": {
-    "n": 27,
-    "kb": 2268
-   },
-   "image": {
-    "n": 5,
-    "kb": 473
-   },
-   "document": {
-    "n": 1,
-    "kb": 202
-   },
-   "font": {
-    "n": 4,
-    "kb": 83
-   },
-   "fetch": {
-    "n": 11,
-    "kb": 2
-   },
-   "other": {
-    "n": 3,
-    "kb": 0
-   }
-  },
-  "biggest": [
-   {
-    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
-    "type": "script",
-    "bytes": 1686168,
-    "kb": 1647
-   },
-   {
-    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
-    "type": "stylesheet",
-    "bytes": 424198,
-    "kb": 414
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
-    "type": "image",
-    "bytes": 210210,
-    "kb": 205
-   },
-   {
-    "url": "http://localhost:4173/assets/client-kMGS092h.js",
-    "type": "script",
-    "bytes": 208985,
-    "kb": 204
-   },
-   {
-    "url": "http://localhost:4173/tours",
+    "url": "http://localhost:4174/tours",
     "type": "document",
     "bytes": 207055,
     "kb": 202
    },
    {
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
+    "type": "script",
+    "bytes": 197745,
+    "kb": 193
+   },
+   {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163173,
+    "bytes": 163174,
     "kb": 159
    },
    {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-dawki-river-735.webp",
+    "url": "http://localhost:4174/img/o/xtsyvoyage-dawki-river-735.webp",
     "type": "image",
     "bytes": 108474,
     "kb": 106
    },
    {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
     "type": "image",
     "bytes": 88578,
     "kb": 87
    },
    {
-    "url": "http://localhost:4173/assets/meghalayaDestinations-CJH8XywN.js",
+    "url": "http://localhost:4174/assets/meghalayaDestinations-CJH8XywN.js",
     "type": "script",
     "bytes": 67450,
     "kb": 66
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-assam-cover-image-736.webp",
-    "type": "image",
-    "bytes": 54014,
-    "kb": 53
-   },
-   {
-    "url": "http://localhost:4173/assets/cdnImages-AGSeSHyi.js",
-    "type": "script",
-    "bytes": 33369,
-    "kb": 33
-   },
-   {
-    "url": "https://fonts.gstatic.com/s/josefinsans/v34/Qw3aZQNVED7rKGKxtqIqX5EUDXx4.woff2",
-    "type": "font",
-    "bytes": 28528,
-    "kb": 28
    }
   ]
  },
  {
   "route": "/pet-friendly",
   "status": 200,
-  "wallMs": 25142,
-  "ttfb": 26,
-  "fcp": 8636,
+  "wallMs": 19490,
+  "ttfb": 45,
+  "fcp": 1640,
   "lcp": {
-   "t": 9492,
-   "size": 56672,
+   "t": 2608,
+   "size": 56671,
    "url": "",
    "tag": "DIV",
    "cls": "xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm:text-[20px]",
@@ -432,7 +521,15 @@
   },
   "lcpCandidates": [
    {
-    "t": 8636,
+    "t": 1640,
+    "size": 2646,
+    "url": "",
+    "tag": "A",
+    "cls": "text-xt-paper underline-offset-2 hover:underline",
+    "text": "Dorm beds from ₹399/night"
+   },
+   {
+    "t": 1656,
     "size": 2754,
     "url": "",
     "tag": "BUTTON",
@@ -440,53 +537,77 @@
     "text": "Plan a trip with AI"
    },
    {
-    "t": 9492,
-    "size": 56672,
+    "t": 2608,
+    "size": 56671,
     "url": "",
     "tag": "DIV",
     "cls": "xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm:text-[20px]",
     "text": "Cats and birds are most welcome. Dogs too, depending on bree"
    }
   ],
-  "cls": 0.01,
-  "requests": 88,
+  "cls": 0.012,
+  "shifts": [
+   {
+    "v": 0.0013,
+    "t": 2628,
+    "nodes": [
+     "#text."
+    ]
+   },
+   {
+    "v": 0.0104,
+    "t": 2923,
+    "nodes": [
+     "DIV.xt-in xt-d2 relative",
+     "BUTTON.xt-btn fixed bottom-[148px] right-4 z-50 flex h-14 items-center gap-2.5 rounded-",
+     "DIV.xt-in xt-d3 flex flex-wrap gap-3",
+     "DIV.flex items-center gap-2",
+     "A.xt-btn inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 text"
+    ]
+   }
+  ],
+  "requests": 100,
   "byType": {
-   "stylesheet": {
-    "n": 2,
-    "kb": 435
-   },
-   "image": {
-    "n": 5,
-    "kb": 801
-   },
-   "script": {
-    "n": 56,
-    "kb": 3164
-   },
    "document": {
     "n": 1,
     "kb": 62
+   },
+   "image": {
+    "n": 6,
+    "kb": 801
+   },
+   "script": {
+    "n": 58,
+    "kb": 3631
+   },
+   "stylesheet": {
+    "n": 2,
+    "kb": 435
    },
    "font": {
     "n": 4,
     "kb": 83
    },
    "fetch": {
-    "n": 11,
+    "n": 15,
     "kb": 2
+   },
+   "ping": {
+    "n": 4,
+    "kb": 0
+   },
+   "xhr": {
+    "n": 7,
+    "kb": 15
    },
    "other": {
     "n": 3,
     "kb": 0
-   },
-   "xhr": {
-    "n": 6,
-    "kb": 15
    }
   },
   "biggest": [
    {
-    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
+    "url": "http://localhost:4174/assets/index-DevUeOYg.js",
     "type": "script",
     "bytes": 1686168,
     "kb": 1647
@@ -498,19 +619,25 @@
     "kb": 547
    },
    {
-    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
+    "url": "http://localhost:4174/assets/esm-YspT_man.js",
+    "type": "script",
+    "bytes": 475465,
+    "kb": 464
+   },
+   {
+    "url": "http://localhost:4174/assets/styles-BPUiwmex.css",
     "type": "stylesheet",
     "bytes": 424198,
     "kb": 414
    },
    {
-    "url": "http://localhost:4173/img/o/xtsy-property-images-25-1242.webp",
+    "url": "http://localhost:4174/img/o/xtsy-property-images-25-1242.webp",
     "type": "image",
     "bytes": 272746,
     "kb": 266
    },
    {
-    "url": "http://localhost:4173/assets/client-kMGS092h.js",
+    "url": "http://localhost:4174/assets/client-kMGS092h.js",
     "type": "script",
     "bytes": 208985,
     "kb": 204
@@ -518,23 +645,23 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
     "type": "script",
-    "bytes": 197747,
+    "bytes": 197745,
     "kb": 193
    },
    {
-    "url": "http://localhost:4173/img/o/xtsy-property-images-15-1280.webp",
+    "url": "http://localhost:4174/img/o/xtsy-property-images-15-1280.webp",
     "type": "image",
     "bytes": 186058,
     "kb": 182
    },
    {
-    "url": "http://localhost:4173/img/o/xtsy-property-images-22-1280.webp",
+    "url": "http://localhost:4174/img/o/xtsy-property-images-22-1280.webp",
     "type": "image",
     "bytes": 175412,
     "kb": 171
    },
    {
-    "url": "http://localhost:4173/img/o/xtsy-property-images-13-1280.webp",
+    "url": "http://localhost:4174/img/o/xtsy-property-images-13-1280.webp",
     "type": "image",
     "bytes": 163194,
     "kb": 159
@@ -542,40 +669,34 @@
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163173,
+    "bytes": 163182,
     "kb": 159
    },
    {
-    "url": "http://localhost:4173/assets/pet-friendly-BeoQsy1u.js",
+    "url": "http://localhost:4174/assets/pet-friendly-BeoQsy1u.js",
     "type": "script",
     "bytes": 101556,
     "kb": 99
-   },
-   {
-    "url": "http://localhost:4173/assets/meghalayaDestinations-CJH8XywN.js",
-    "type": "script",
-    "bytes": 67450,
-    "kb": 66
    }
   ]
  },
  {
   "route": "/places-to-visit/nohkalikai-falls",
   "status": 200,
-  "wallMs": 20894,
-  "ttfb": 182,
-  "fcp": 7684,
+  "wallMs": 15646,
+  "ttfb": 191,
+  "fcp": 1824,
   "lcp": {
-   "t": 8376,
+   "t": 2912,
    "size": 105704,
-   "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+   "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
    "tag": "IMG",
    "cls": "absolute inset-0 h-full w-full object-cover",
    "text": ""
   },
   "lcpCandidates": [
    {
-    "t": 7684,
+    "t": 1824,
     "size": 4050,
     "url": "",
     "tag": "SPAN",
@@ -583,40 +704,76 @@
     "text": "Cherrapunji"
    },
    {
-    "t": 8376,
+    "t": 2832,
+    "size": 33677,
+    "url": "",
+    "tag": "H1",
+    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:text-[104px] lg:text-[124px]",
+    "text": "Nohkalikai Falls"
+   },
+   {
+    "t": 2912,
     "size": 105704,
-    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
     "tag": "IMG",
     "cls": "absolute inset-0 h-full w-full object-cover",
     "text": ""
    }
   ],
-  "cls": 0.005,
-  "requests": 63,
+  "cls": 0.006,
+  "shifts": [
+   {
+    "v": 0.0007,
+    "t": 2869,
+    "nodes": [
+     "#text."
+    ]
+   },
+   {
+    "v": 0.0052,
+    "t": 3078,
+    "nodes": [
+     "BUTTON.xt-btn fixed bottom-[148px] right-4 z-50 flex h-14 items-center gap-2.5 rounded-",
+     "DIV.flex items-center gap-2",
+     "A.text-xt-paper underline-offset-2 hover:underline",
+     "LI.flex items-center gap-1.5",
+     "LI.flex items-center gap-1.5"
+    ]
+   }
+  ],
+  "requests": 80,
   "byType": {
    "document": {
     "n": 2,
     "kb": 74
    },
    "image": {
-    "n": 3,
+    "n": 4,
     "kb": 300
+   },
+   "script": {
+    "n": 40,
+    "kb": 3497
    },
    "stylesheet": {
     "n": 2,
     "kb": 435
-   },
-   "script": {
-    "n": 36,
-    "kb": 2290
    },
    "font": {
     "n": 5,
     "kb": 120
    },
    "fetch": {
-    "n": 12,
+    "n": 16,
     "kb": 2
+   },
+   "xhr": {
+    "n": 7,
+    "kb": 15
+   },
+   "ping": {
+    "n": 1,
+    "kb": 0
    },
    "other": {
     "n": 3,
@@ -625,25 +782,43 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
+    "url": "http://localhost:4174/assets/index-DevUeOYg.js",
     "type": "script",
     "bytes": 1686168,
     "kb": 1647
    },
    {
-    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
+    "url": "https://t.contentsquare.net/uxa/8a1781ba2e7b5.js",
+    "type": "script",
+    "bytes": 559936,
+    "kb": 547
+   },
+   {
+    "url": "http://localhost:4174/assets/esm-YspT_man.js",
+    "type": "script",
+    "bytes": 475465,
+    "kb": 464
+   },
+   {
+    "url": "http://localhost:4174/assets/styles-BPUiwmex.css",
     "type": "stylesheet",
     "bytes": 424198,
     "kb": 414
    },
    {
-    "url": "http://localhost:4173/assets/client-kMGS092h.js",
+    "url": "http://localhost:4174/assets/client-kMGS092h.js",
     "type": "script",
     "bytes": 208985,
     "kb": 204
    },
    {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-2-720.webp",
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
+    "type": "script",
+    "bytes": 197745,
+    "kb": 193
+   },
+   {
+    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-2-720.webp",
     "type": "image",
     "bytes": 195372,
     "kb": 191
@@ -651,23 +826,23 @@
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163173,
+    "bytes": 163174,
     "kb": 159
    },
    {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
     "type": "image",
     "bytes": 88578,
     "kb": 87
    },
    {
-    "url": "http://localhost:4173/destinations/meghalaya/cherrapunji/nohkalikai-falls",
+    "url": "http://localhost:4174/destinations/meghalaya/cherrapunji/nohkalikai-falls",
     "type": "document",
     "bytes": 75643,
     "kb": 74
    },
    {
-    "url": "http://localhost:4173/assets/meghalayaDestinations-CJH8XywN.js",
+    "url": "http://localhost:4174/assets/meghalayaDestinations-CJH8XywN.js",
     "type": "script",
     "bytes": 67450,
     "kb": 66
@@ -677,35 +852,17 @@
     "type": "font",
     "bytes": 38404,
     "kb": 38
-   },
-   {
-    "url": "http://localhost:4173/assets/cdnImages-AGSeSHyi.js",
-    "type": "script",
-    "bytes": 33369,
-    "kb": 33
-   },
-   {
-    "url": "https://fonts.gstatic.com/s/josefinsans/v34/Qw3aZQNVED7rKGKxtqIqX5EUDXx4.woff2",
-    "type": "font",
-    "bytes": 28528,
-    "kb": 28
-   },
-   {
-    "url": "http://localhost:4173/assets/utils-DojpP95n.js",
-    "type": "script",
-    "bytes": 27262,
-    "kb": 27
    }
   ]
  },
  {
   "route": "/book",
   "status": 200,
-  "wallMs": 20540,
-  "ttfb": 23,
-  "fcp": 7576,
+  "wallMs": 14710,
+  "ttfb": 57,
+  "fcp": 1268,
   "lcp": {
-   "t": 7576,
+   "t": 1268,
    "size": 2880,
    "url": "",
    "tag": "DIV",
@@ -714,7 +871,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 7576,
+    "t": 1268,
     "size": 2880,
     "url": "",
     "tag": "DIV",
@@ -723,120 +880,152 @@
    }
   ],
   "cls": 0.033,
-  "requests": 75,
+  "shifts": [
+   {
+    "v": 0.0041,
+    "t": 2127,
+    "nodes": [
+     "BUTTON.xt-btn fixed bottom-[148px] right-4 z-50 flex h-14 items-center gap-2.5 rounded-",
+     "DIV.text-white/80"
+    ]
+   },
+   {
+    "v": 0.0007,
+    "t": 10527,
+    "nodes": [
+     "#text."
+    ]
+   },
+   {
+    "v": 0.0282,
+    "t": 10841,
+    "nodes": [
+     "DIV.max-w-5xl"
+    ]
+   }
+  ],
+  "requests": 108,
   "byType": {
    "document": {
     "n": 1,
     "kb": 20
    },
+   "script": {
+    "n": 53,
+    "kb": 3773
+   },
    "stylesheet": {
     "n": 2,
     "kb": 435
-   },
-   "script": {
-    "n": 46,
-    "kb": 2387
    },
    "font": {
     "n": 5,
     "kb": 92
    },
    "fetch": {
-    "n": 10,
+    "n": 21,
     "kb": 2
+   },
+   "xhr": {
+    "n": 8,
+    "kb": 15
+   },
+   "ping": {
+    "n": 4,
+    "kb": 0
+   },
+   "image": {
+    "n": 11,
+    "kb": 806
    },
    "other": {
     "n": 3,
     "kb": 0
-   },
-   "image": {
-    "n": 8,
-    "kb": 771
    }
   },
   "biggest": [
    {
-    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
+    "url": "http://localhost:4174/assets/index-DevUeOYg.js",
     "type": "script",
     "bytes": 1686168,
     "kb": 1647
    },
    {
-    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
+    "url": "https://t.contentsquare.net/uxa/8a1781ba2e7b5.js",
+    "type": "script",
+    "bytes": 559936,
+    "kb": 547
+   },
+   {
+    "url": "http://localhost:4174/assets/esm-YspT_man.js",
+    "type": "script",
+    "bytes": 475465,
+    "kb": 464
+   },
+   {
+    "url": "http://localhost:4174/assets/styles-BPUiwmex.css",
     "type": "stylesheet",
     "bytes": 424198,
     "kb": 414
    },
    {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
+    "url": "http://localhost:4174/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
     "type": "image",
     "bytes": 210210,
     "kb": 205
    },
    {
-    "url": "http://localhost:4173/assets/client-kMGS092h.js",
+    "url": "http://localhost:4174/assets/client-kMGS092h.js",
     "type": "script",
     "bytes": 208985,
     "kb": 204
    },
    {
-    "url": "http://localhost:4173/img/o/xtsy-property-images-8-1280.webp",
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
+    "type": "script",
+    "bytes": 197745,
+    "kb": 193
+   },
+   {
+    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.webp",
     "type": "image",
     "bytes": 194506,
     "kb": 190
    },
    {
-    "url": "http://localhost:4173/assets/proxy-CfOVWsUd.js",
+    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+    "type": "script",
+    "bytes": 163174,
+    "kb": 159
+   },
+   {
+    "url": "http://localhost:4174/assets/proxy-CfOVWsUd.js",
     "type": "script",
     "bytes": 120966,
     "kb": 118
    },
    {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-dawki-river-735.webp",
+    "url": "http://localhost:4174/img/o/xtsyvoyage-dawki-river-735.webp",
     "type": "image",
     "bytes": 108474,
     "kb": 106
    },
    {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
     "type": "image",
     "bytes": 88578,
     "kb": 87
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-umiam-lake-736.webp",
-    "type": "image",
-    "bytes": 72652,
-    "kb": 71
-   },
-   {
-    "url": "http://localhost:4173/assets/meghalayaDestinations-CJH8XywN.js",
-    "type": "script",
-    "bytes": 67450,
-    "kb": 66
-   },
-   {
-    "url": "http://localhost:4173/img/o/xtsyvoyage-krang-shuri-waterfall-736.webp",
-    "type": "image",
-    "bytes": 62850,
-    "kb": 61
-   },
-   {
-    "url": "http://localhost:4173/assets/TripChat-PmPstOzR.js",
-    "type": "script",
-    "bytes": 55421,
-    "kb": 54
    }
   ]
  },
  {
   "route": "https://xtsy.one/",
   "status": 200,
-  "wallMs": 17531,
-  "ttfb": 1552,
-  "fcp": 3644,
+  "wallMs": 18051,
+  "ttfb": 1680,
+  "fcp": 4028,
   "lcp": {
-   "t": 3644,
+   "t": 4028,
    "size": 12036,
    "url": "",
    "tag": "P",
@@ -845,7 +1034,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 3644,
+    "t": 4028,
     "size": 12036,
     "url": "",
     "tag": "P",
@@ -854,7 +1043,231 @@
    }
   ],
   "cls": 0.017,
-  "requests": 128,
+  "shifts": [
+   {
+    "v": 0.0008,
+    "t": 4730,
+    "nodes": [
+     "#text.",
+     "#text.",
+     "#text."
+    ]
+   },
+   {
+    "v": 0.0163,
+    "t": 12682,
+    "nodes": [
+     "MAIN.",
+     "DIV.flex items-center gap-2 sm:gap-3 mr-4 sm:mr-6",
+     "A.flex items-center space-x-2 touch-target ml-4 sm:ml-6 active"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 12771,
+    "nodes": [
+     "#text.",
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 12846,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 12931,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 13029,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 13195,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 13276,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 13354,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 13408,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 13556,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 13619,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 13706,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 13770,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 13924,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 14076,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 14159,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 14220,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 14314,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 14441,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 14543,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 14628,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 14724,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 14776,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 17539,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 17602,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 17670,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 17765,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 17837,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 17908,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   },
+   {
+    "v": 0,
+    "t": 17989,
+    "nodes": [
+     "SPAN.inline-block w-[2px] h-4 ml-0.5 bg-primary animate-pulse rounded-full"
+    ]
+   }
+  ],
+  "requests": 127,
   "byType": {
    "document": {
     "n": 1,
@@ -864,13 +1277,13 @@
     "n": 15,
     "kb": 1833
    },
-   "script": {
-    "n": 76,
-    "kb": 3820
-   },
    "stylesheet": {
     "n": 3,
     "kb": 409
+   },
+   "script": {
+    "n": 75,
+    "kb": 3355
    },
    "font": {
     "n": 2,
@@ -905,12 +1318,6 @@
     "type": "script",
     "bytes": 559936,
     "kb": 547
-   },
-   {
-    "url": "https://xtsy.one/assets/esm-YspT_man.js",
-    "type": "script",
-    "bytes": 475465,
-    "kb": 464
    },
    {
     "url": "https://xtsy.one/assets/styles-DXvjcykF.css",
@@ -949,15 +1356,15 @@
     "kb": 195
    },
    {
-    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1h1",
     "type": "script",
-    "bytes": 197747,
+    "bytes": 197740,
     "kb": 193
    },
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163173,
+    "bytes": 163165,
     "kb": 159
    },
    {
@@ -965,6 +1372,12 @@
     "type": "image",
     "bytes": 159386,
     "kb": 156
+   },
+   {
+    "url": "https://xtsy.one/__l5e/assets-v1/150a6c68-33c3-4f67-a9da-759bfc9b2ea4/xtsyvoyage-mawlynnong.jpeg",
+    "type": "image",
+    "bytes": 157837,
+    "kb": 154
    }
   ]
  }

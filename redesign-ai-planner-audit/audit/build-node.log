@@ -349,7 +349,7 @@ computing gzip size...
 - Using dynamic import() to code-split the application
 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 4.11s[39m
+[32m✓ built in 5.01s[39m
 [36mvite v8.2.1 [32mbuilding ssr environment for production...[36m[39m
 [2Ktransforming...✓ 646 modules transformed.
 rendering chunks...
@@ -585,14 +585,14 @@ node_modules/.nitro/vite/services/ssr/assets/router-CF5WOeJO.js                 
 
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 1.78s[39m
+[32m✓ built in 2.36s[39m
 [start] [nitro] Building [[35mNitro[39m] [2m(preset: `node-server`, compatibility: `2026-09-27`)[22m
 [success] [nitro] Generated public [36m.output/public[39m
 [36mvite v8.2.1 [32mbuilding nitro environment for production...[36m[39m
 [2Ktransforming...✓ 4599 modules transformed.
 [info] Tracing dependencies:
 - `tslib` (2.8.1)
-[success] Traced 1 dependencies (4 files) in 78ms.
+[success] Traced 1 dependencies (4 files) in 98ms.
 [info] Ensure your production environment matches the builder OS and architecture (`linux-x64`) to avoid native module issues.
 rendering chunks...
 computing gzip size...
@@ -852,7 +852,7 @@ computing gzip size...
 .output/server/_libs/@tanstack/router-core+[...].mjs                     122.17 kB │ gzip:  25.81 kB
 .output/server/_libs/react-day-picker.mjs                                135.54 kB │ gzip:  26.54 kB
 .output/server/_libs/date-fns.mjs                                        138.36 kB │ gzip:  24.45 kB
-.output/server/index.mjs                                                 144.48 kB │ gzip:  30.07 kB
+.output/server/index.mjs                                                 144.48 kB │ gzip:  30.17 kB
 .output/server/_libs/lodash.mjs                                          161.64 kB │ gzip:  29.40 kB
 .output/server/_libs/supabase__auth-js.mjs                               312.44 kB │ gzip:  63.67 kB
 .output/server/_libs/@sentry/browser+[...].mjs                           335.44 kB │ gzip:  79.58 kB
@@ -861,6 +861,6 @@ computing gzip size...
 .output/server/_libs/@tanstack/react-router+[...].mjs                    655.16 kB │ gzip: 137.59 kB
 .output/server/_ssr/router-CF5WOeJO.mjs                                1,462.55 kB │ gzip: 347.93 kB
 
-[32m✓ built in 1.87s[39m
+[32m✓ built in 2.57s[39m
 [info] Generated [36m.output/nitro.json[39m
 [success] [nitro] You can preview this build using `npx vite preview`
