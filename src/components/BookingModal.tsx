@@ -983,7 +983,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                       if (!room) return null;
                       const isDorm = room.type === 'dorm';
                       const unitLabel = isDorm ? 'bed' : 'room';
-                      const lineTotal = room.price * sel.quantity * nights;
+                       const lineTotal = priceForRoom(room) * sel.quantity * nights;
                       
                       return (
                         <div key={sel.roomId} className="flex items-center justify-between text-sm">
@@ -998,7 +998,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
                             </span>
                           </div>
                           <span className="text-muted-foreground">
-                            {nights > 0 ? `₹${lineTotal.toLocaleString()}` : `₹${room.price}/night`}
+                             {nights > 0 ? `₹${lineTotal.toLocaleString()}` : `₹${priceForRoom(room)}/night`}
                           </span>
                         </div>
                       );

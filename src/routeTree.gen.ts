@@ -12,9 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as R3DayMeghalayaItineraryRouteImport } from './routes/3-day-meghalaya-itinerary'
+import { Route as R4x4ExpeditionMeghalayaRouteImport } from './routes/4x4-expedition-meghalaya'
 import { Route as R5DayMeghalayaItineraryRouteImport } from './routes/5-day-meghalaya-itinerary'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminLoginRouteImport } from './routes/admin-login'
+import { Route as AdventureToursNortheastIndiaRouteImport } from './routes/adventure-tours-northeast-india'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BackpackingIndiaRouteImport } from './routes/backpacking-india'
 import { Route as BestHostelInShillongRouteImport } from './routes/best-hostel-in-shillong'
@@ -38,6 +40,7 @@ import { Route as HostelNearMeRouteImport } from './routes/hostel-near-me'
 import { Route as HotelsInShillongRouteImport } from './routes/hotels-in-shillong'
 import { Route as InstallRouteImport } from './routes/install'
 import { Route as LuxuryGlampingShillongRouteImport } from './routes/luxury-glamping-shillong'
+import { Route as MeghalayaAdventureTourRouteImport } from './routes/meghalaya-adventure-tour'
 import { Route as MeghalayaCavesRouteImport } from './routes/meghalaya-caves'
 import { Route as MeghalayaCoupleTourPackageRouteImport } from './routes/meghalaya-couple-tour-package'
 import { Route as MeghalayaPhotoGalleryRouteImport } from './routes/meghalaya-photo-gallery'
@@ -45,6 +48,7 @@ import { Route as MeghalayaTourPackagesRouteImport } from './routes/meghalaya-to
 import { Route as MeghalayaViewpointsRouteImport } from './routes/meghalaya-viewpoints'
 import { Route as MeghalayaVillagesRouteImport } from './routes/meghalaya-villages'
 import { Route as MeghalayaWaterfallsRouteImport } from './routes/meghalaya-waterfalls'
+import { Route as MotorbikeExpeditionNortheastIndiaRouteImport } from './routes/motorbike-expedition-northeast-india'
 import { Route as PetFriendlyRouteImport } from './routes/pet-friendly'
 import { Route as PlacesToVisitInMeghalayaRouteImport } from './routes/places-to-visit-in-meghalaya'
 import { Route as PricingCancellationPolicyRouteImport } from './routes/pricing-cancellation-policy'
@@ -137,6 +141,11 @@ const R3DayMeghalayaItineraryRoute = R3DayMeghalayaItineraryRouteImport.update({
   path: '/3-day-meghalaya-itinerary',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R4x4ExpeditionMeghalayaRoute = R4x4ExpeditionMeghalayaRouteImport.update({
+  id: '/4x4-expedition-meghalaya',
+  path: '/4x4-expedition-meghalaya',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const R5DayMeghalayaItineraryRoute = R5DayMeghalayaItineraryRouteImport.update({
   id: '/5-day-meghalaya-itinerary',
   path: '/5-day-meghalaya-itinerary',
@@ -152,6 +161,12 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin-login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdventureToursNortheastIndiaRoute =
+  AdventureToursNortheastIndiaRouteImport.update({
+    id: '/adventure-tours-northeast-india',
+    path: '/adventure-tours-northeast-india',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
@@ -269,6 +284,11 @@ const LuxuryGlampingShillongRoute = LuxuryGlampingShillongRouteImport.update({
   path: '/luxury-glamping-shillong',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MeghalayaAdventureTourRoute = MeghalayaAdventureTourRouteImport.update({
+  id: '/meghalaya-adventure-tour',
+  path: '/meghalaya-adventure-tour',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MeghalayaCavesRoute = MeghalayaCavesRouteImport.update({
   id: '/meghalaya-caves',
   path: '/meghalaya-caves',
@@ -305,6 +325,12 @@ const MeghalayaWaterfallsRoute = MeghalayaWaterfallsRouteImport.update({
   path: '/meghalaya-waterfalls',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MotorbikeExpeditionNortheastIndiaRoute =
+  MotorbikeExpeditionNortheastIndiaRouteImport.update({
+    id: '/motorbike-expedition-northeast-india',
+    path: '/motorbike-expedition-northeast-india',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PetFriendlyRoute = PetFriendlyRouteImport.update({
   id: '/pet-friendly',
   path: '/pet-friendly',
@@ -701,9 +727,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$slug': typeof SlugRoute
   '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
+  '/4x4-expedition-meghalaya': typeof R4x4ExpeditionMeghalayaRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
   '/admin-login': typeof AdminLoginRoute
+  '/adventure-tours-northeast-india': typeof AdventureToursNortheastIndiaRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
   '/best-hostel-in-shillong': typeof BestHostelInShillongRoute
@@ -727,6 +755,7 @@ export interface FileRoutesByFullPath {
   '/hotels-in-shillong': typeof HotelsInShillongRoute
   '/install': typeof InstallRoute
   '/luxury-glamping-shillong': typeof LuxuryGlampingShillongRoute
+  '/meghalaya-adventure-tour': typeof MeghalayaAdventureTourRoute
   '/meghalaya-caves': typeof MeghalayaCavesRoute
   '/meghalaya-couple-tour-package': typeof MeghalayaCoupleTourPackageRoute
   '/meghalaya-photo-gallery': typeof MeghalayaPhotoGalleryRoute
@@ -734,6 +763,7 @@ export interface FileRoutesByFullPath {
   '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
   '/meghalaya-villages': typeof MeghalayaVillagesRoute
   '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
+  '/motorbike-expedition-northeast-india': typeof MotorbikeExpeditionNortheastIndiaRoute
   '/pet-friendly': typeof PetFriendlyRoute
   '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
   '/pricing-cancellation-policy': typeof PricingCancellationPolicyRoute
@@ -815,9 +845,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$slug': typeof SlugRoute
   '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
+  '/4x4-expedition-meghalaya': typeof R4x4ExpeditionMeghalayaRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
   '/admin-login': typeof AdminLoginRoute
+  '/adventure-tours-northeast-india': typeof AdventureToursNortheastIndiaRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
   '/best-hostel-in-shillong': typeof BestHostelInShillongRoute
@@ -841,6 +873,7 @@ export interface FileRoutesByTo {
   '/hotels-in-shillong': typeof HotelsInShillongRoute
   '/install': typeof InstallRoute
   '/luxury-glamping-shillong': typeof LuxuryGlampingShillongRoute
+  '/meghalaya-adventure-tour': typeof MeghalayaAdventureTourRoute
   '/meghalaya-caves': typeof MeghalayaCavesRoute
   '/meghalaya-couple-tour-package': typeof MeghalayaCoupleTourPackageRoute
   '/meghalaya-photo-gallery': typeof MeghalayaPhotoGalleryRoute
@@ -848,6 +881,7 @@ export interface FileRoutesByTo {
   '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
   '/meghalaya-villages': typeof MeghalayaVillagesRoute
   '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
+  '/motorbike-expedition-northeast-india': typeof MotorbikeExpeditionNortheastIndiaRoute
   '/pet-friendly': typeof PetFriendlyRoute
   '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
   '/pricing-cancellation-policy': typeof PricingCancellationPolicyRoute
@@ -930,9 +964,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$slug': typeof SlugRoute
   '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
+  '/4x4-expedition-meghalaya': typeof R4x4ExpeditionMeghalayaRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
   '/admin-login': typeof AdminLoginRoute
+  '/adventure-tours-northeast-india': typeof AdventureToursNortheastIndiaRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
   '/best-hostel-in-shillong': typeof BestHostelInShillongRoute
@@ -956,6 +992,7 @@ export interface FileRoutesById {
   '/hotels-in-shillong': typeof HotelsInShillongRoute
   '/install': typeof InstallRoute
   '/luxury-glamping-shillong': typeof LuxuryGlampingShillongRoute
+  '/meghalaya-adventure-tour': typeof MeghalayaAdventureTourRoute
   '/meghalaya-caves': typeof MeghalayaCavesRoute
   '/meghalaya-couple-tour-package': typeof MeghalayaCoupleTourPackageRoute
   '/meghalaya-photo-gallery': typeof MeghalayaPhotoGalleryRoute
@@ -963,6 +1000,7 @@ export interface FileRoutesById {
   '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
   '/meghalaya-villages': typeof MeghalayaVillagesRoute
   '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
+  '/motorbike-expedition-northeast-india': typeof MotorbikeExpeditionNortheastIndiaRoute
   '/pet-friendly': typeof PetFriendlyRoute
   '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
   '/pricing-cancellation-policy': typeof PricingCancellationPolicyRoute
@@ -1046,9 +1084,11 @@ export interface FileRouteTypes {
     | '/'
     | '/$slug'
     | '/3-day-meghalaya-itinerary'
+    | '/4x4-expedition-meghalaya'
     | '/5-day-meghalaya-itinerary'
     | '/about'
     | '/admin-login'
+    | '/adventure-tours-northeast-india'
     | '/auth'
     | '/backpacking-india'
     | '/best-hostel-in-shillong'
@@ -1072,6 +1112,7 @@ export interface FileRouteTypes {
     | '/hotels-in-shillong'
     | '/install'
     | '/luxury-glamping-shillong'
+    | '/meghalaya-adventure-tour'
     | '/meghalaya-caves'
     | '/meghalaya-couple-tour-package'
     | '/meghalaya-photo-gallery'
@@ -1079,6 +1120,7 @@ export interface FileRouteTypes {
     | '/meghalaya-viewpoints'
     | '/meghalaya-villages'
     | '/meghalaya-waterfalls'
+    | '/motorbike-expedition-northeast-india'
     | '/pet-friendly'
     | '/places-to-visit-in-meghalaya'
     | '/pricing-cancellation-policy'
@@ -1160,9 +1202,11 @@ export interface FileRouteTypes {
     | '/'
     | '/$slug'
     | '/3-day-meghalaya-itinerary'
+    | '/4x4-expedition-meghalaya'
     | '/5-day-meghalaya-itinerary'
     | '/about'
     | '/admin-login'
+    | '/adventure-tours-northeast-india'
     | '/auth'
     | '/backpacking-india'
     | '/best-hostel-in-shillong'
@@ -1186,6 +1230,7 @@ export interface FileRouteTypes {
     | '/hotels-in-shillong'
     | '/install'
     | '/luxury-glamping-shillong'
+    | '/meghalaya-adventure-tour'
     | '/meghalaya-caves'
     | '/meghalaya-couple-tour-package'
     | '/meghalaya-photo-gallery'
@@ -1193,6 +1238,7 @@ export interface FileRouteTypes {
     | '/meghalaya-viewpoints'
     | '/meghalaya-villages'
     | '/meghalaya-waterfalls'
+    | '/motorbike-expedition-northeast-india'
     | '/pet-friendly'
     | '/places-to-visit-in-meghalaya'
     | '/pricing-cancellation-policy'
@@ -1274,9 +1320,11 @@ export interface FileRouteTypes {
     | '/'
     | '/$slug'
     | '/3-day-meghalaya-itinerary'
+    | '/4x4-expedition-meghalaya'
     | '/5-day-meghalaya-itinerary'
     | '/about'
     | '/admin-login'
+    | '/adventure-tours-northeast-india'
     | '/auth'
     | '/backpacking-india'
     | '/best-hostel-in-shillong'
@@ -1300,6 +1348,7 @@ export interface FileRouteTypes {
     | '/hotels-in-shillong'
     | '/install'
     | '/luxury-glamping-shillong'
+    | '/meghalaya-adventure-tour'
     | '/meghalaya-caves'
     | '/meghalaya-couple-tour-package'
     | '/meghalaya-photo-gallery'
@@ -1307,6 +1356,7 @@ export interface FileRouteTypes {
     | '/meghalaya-viewpoints'
     | '/meghalaya-villages'
     | '/meghalaya-waterfalls'
+    | '/motorbike-expedition-northeast-india'
     | '/pet-friendly'
     | '/places-to-visit-in-meghalaya'
     | '/pricing-cancellation-policy'
@@ -1389,9 +1439,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SlugRoute: typeof SlugRoute
   R3DayMeghalayaItineraryRoute: typeof R3DayMeghalayaItineraryRoute
+  R4x4ExpeditionMeghalayaRoute: typeof R4x4ExpeditionMeghalayaRoute
   R5DayMeghalayaItineraryRoute: typeof R5DayMeghalayaItineraryRoute
   AboutRoute: typeof AboutRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdventureToursNortheastIndiaRoute: typeof AdventureToursNortheastIndiaRoute
   AuthRoute: typeof AuthRoute
   BackpackingIndiaRoute: typeof BackpackingIndiaRoute
   BestHostelInShillongRoute: typeof BestHostelInShillongRoute
@@ -1415,6 +1467,7 @@ export interface RootRouteChildren {
   HotelsInShillongRoute: typeof HotelsInShillongRoute
   InstallRoute: typeof InstallRoute
   LuxuryGlampingShillongRoute: typeof LuxuryGlampingShillongRoute
+  MeghalayaAdventureTourRoute: typeof MeghalayaAdventureTourRoute
   MeghalayaCavesRoute: typeof MeghalayaCavesRoute
   MeghalayaCoupleTourPackageRoute: typeof MeghalayaCoupleTourPackageRoute
   MeghalayaPhotoGalleryRoute: typeof MeghalayaPhotoGalleryRoute
@@ -1422,6 +1475,7 @@ export interface RootRouteChildren {
   MeghalayaViewpointsRoute: typeof MeghalayaViewpointsRoute
   MeghalayaVillagesRoute: typeof MeghalayaVillagesRoute
   MeghalayaWaterfallsRoute: typeof MeghalayaWaterfallsRoute
+  MotorbikeExpeditionNortheastIndiaRoute: typeof MotorbikeExpeditionNortheastIndiaRoute
   PetFriendlyRoute: typeof PetFriendlyRoute
   PlacesToVisitInMeghalayaRoute: typeof PlacesToVisitInMeghalayaRoute
   PricingCancellationPolicyRoute: typeof PricingCancellationPolicyRoute
@@ -1523,6 +1577,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R3DayMeghalayaItineraryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/4x4-expedition-meghalaya': {
+      id: '/4x4-expedition-meghalaya'
+      path: '/4x4-expedition-meghalaya'
+      fullPath: '/4x4-expedition-meghalaya'
+      preLoaderRoute: typeof R4x4ExpeditionMeghalayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/5-day-meghalaya-itinerary': {
       id: '/5-day-meghalaya-itinerary'
       path: '/5-day-meghalaya-itinerary'
@@ -1542,6 +1603,13 @@ declare module '@tanstack/react-router' {
       path: '/admin-login'
       fullPath: '/admin-login'
       preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/adventure-tours-northeast-india': {
+      id: '/adventure-tours-northeast-india'
+      path: '/adventure-tours-northeast-india'
+      fullPath: '/adventure-tours-northeast-india'
+      preLoaderRoute: typeof AdventureToursNortheastIndiaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -1705,6 +1773,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LuxuryGlampingShillongRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/meghalaya-adventure-tour': {
+      id: '/meghalaya-adventure-tour'
+      path: '/meghalaya-adventure-tour'
+      fullPath: '/meghalaya-adventure-tour'
+      preLoaderRoute: typeof MeghalayaAdventureTourRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/meghalaya-caves': {
       id: '/meghalaya-caves'
       path: '/meghalaya-caves'
@@ -1752,6 +1827,13 @@ declare module '@tanstack/react-router' {
       path: '/meghalaya-waterfalls'
       fullPath: '/meghalaya-waterfalls'
       preLoaderRoute: typeof MeghalayaWaterfallsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/motorbike-expedition-northeast-india': {
+      id: '/motorbike-expedition-northeast-india'
+      path: '/motorbike-expedition-northeast-india'
+      fullPath: '/motorbike-expedition-northeast-india'
+      preLoaderRoute: typeof MotorbikeExpeditionNortheastIndiaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pet-friendly': {
@@ -2293,9 +2375,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SlugRoute: SlugRoute,
   R3DayMeghalayaItineraryRoute: R3DayMeghalayaItineraryRoute,
+  R4x4ExpeditionMeghalayaRoute: R4x4ExpeditionMeghalayaRoute,
   R5DayMeghalayaItineraryRoute: R5DayMeghalayaItineraryRoute,
   AboutRoute: AboutRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdventureToursNortheastIndiaRoute: AdventureToursNortheastIndiaRoute,
   AuthRoute: AuthRoute,
   BackpackingIndiaRoute: BackpackingIndiaRoute,
   BestHostelInShillongRoute: BestHostelInShillongRoute,
@@ -2319,6 +2403,7 @@ const rootRouteChildren: RootRouteChildren = {
   HotelsInShillongRoute: HotelsInShillongRoute,
   InstallRoute: InstallRoute,
   LuxuryGlampingShillongRoute: LuxuryGlampingShillongRoute,
+  MeghalayaAdventureTourRoute: MeghalayaAdventureTourRoute,
   MeghalayaCavesRoute: MeghalayaCavesRoute,
   MeghalayaCoupleTourPackageRoute: MeghalayaCoupleTourPackageRoute,
   MeghalayaPhotoGalleryRoute: MeghalayaPhotoGalleryRoute,
@@ -2326,6 +2411,8 @@ const rootRouteChildren: RootRouteChildren = {
   MeghalayaViewpointsRoute: MeghalayaViewpointsRoute,
   MeghalayaVillagesRoute: MeghalayaVillagesRoute,
   MeghalayaWaterfallsRoute: MeghalayaWaterfallsRoute,
+  MotorbikeExpeditionNortheastIndiaRoute:
+    MotorbikeExpeditionNortheastIndiaRoute,
   PetFriendlyRoute: PetFriendlyRoute,
   PlacesToVisitInMeghalayaRoute: PlacesToVisitInMeghalayaRoute,
   PricingCancellationPolicyRoute: PricingCancellationPolicyRoute,

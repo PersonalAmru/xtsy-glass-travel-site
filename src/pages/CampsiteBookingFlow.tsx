@@ -99,7 +99,7 @@ const CampsiteBookingFlow = memo(() => {
         p_room_type: 'campsite-dawki', p_room_name: `XTSY Adventure Campsite — ${selectedPkg.title}`,
         p_quantity: guests, p_nights: nights, p_rate_per_night: selectedPkg.price,
         p_subtotal: total, p_gst_rate: 0, p_gst_amount: 0, p_total_amount: total,
-        p_special_requests: notes || null,
+        p_special_requests: notes || undefined,
       });
       if (error || !saved?.[0]?.enquiry_id) throw error || new Error('Could not save enquiry');
       setEnquiryId(saved[0].enquiry_id);
@@ -295,7 +295,7 @@ const CampsiteBookingFlow = memo(() => {
                 Our team will WhatsApp you within 30 mins to confirm your camping dates.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <a href={`${WHATSAPP}?text=${encodeURIComponent(`Hi! I just submitted enquiry ${enquiryId} for Dawki camping.`)}`}
+                 <a href={`${WHATSAPP}?text=${encodeURIComponent(`Hi! I submitted enquiry ${enquiryId} for ${selectedPkg.title} at XTSY Adventure Campsite, Dawki. Check-in: ${checkIn ? format(checkIn, 'yyyy-MM-dd') : ''}; check-out: ${checkOut ? format(checkOut, 'yyyy-MM-dd') : ''}; ${guests} guests × ${nights} nights at ₹${selectedPkg.price}/person/night. Total ₹${total.toLocaleString('en-IN')}. Please confirm availability.`)}`}
                   target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 w-full sm:w-auto">
                     <MessageCircle className="w-4 h-4 mr-2" /> Open WhatsApp
