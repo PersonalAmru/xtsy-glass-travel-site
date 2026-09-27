@@ -86,7 +86,8 @@ export default function HomeHero() {
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-xt-ink via-xt-ink/60 to-xt-ink/20" />
         <div className="max-w-5xl">
           <p className="xt-eyebrow mb-4 text-sm uppercase text-[#F2B8C2]!">New Shillong Township · Meghalaya</p>
-          <h1 className="xt-display m-0 text-6xl leading-none sm:text-8xl lg:text-9xl">XTSY Travellers Hostel</h1>
+          {/* Fixed two-line box: the headline never changes the hero's height while the font loads (no layout shift). */}
+          <h1 className="xt-display m-0 h-[2em] text-6xl leading-none sm:text-8xl lg:text-9xl">XTSY Travellers Hostel</h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed">Dorms from ₹399 · King Double ₹2,200 · Panorama stay only ₹5,399 or with breakfast for two ₹5,799 per night.</p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link to="/book" className="xt-btn flex h-14 items-center rounded-full bg-xt-crimson px-7 text-[16px] font-extrabold text-white hover:text-white">Book a stay</Link>
