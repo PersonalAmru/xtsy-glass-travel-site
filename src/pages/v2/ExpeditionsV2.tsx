@@ -41,6 +41,18 @@ export function ExpeditionsIndexV2() {
         actions={<><Btn to="#routes">See the routes</Btn><Btn to={waLink('Hi XTSY! I want to plan an expedition. Route: … Dates: … Riders: …')} kind="outline-light">Ask on WhatsApp</Btn></>}
         media={<Photo src={IMG.bumla} alt="Bumla Pass bike expedition" eager tone="night" className="aspect-[628/520] rounded-[32px]" />}
       />
+      <section className={`${PAD} pt-14`}>
+        <nav aria-label="Adventure planning guides" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { to: '/adventure-tours-northeast-india', t: 'Adventure tours in Northeast India' },
+            { to: '/meghalaya-adventure-tour', t: 'Meghalaya adventure tour' },
+            { to: '/motorbike-expedition-northeast-india', t: 'Motorbike expedition planning' },
+            { to: '/4x4-expedition-meghalaya', t: 'Meghalaya 4x4 expedition' },
+          ].map((g) => (
+            <Link key={g.to} to={g.to} className="xt-lift flex items-center justify-between gap-3 rounded-2xl bg-white px-5 py-4 text-[15px] font-extrabold text-xt-ink hover:text-xt-crimson">{g.t}<span aria-hidden="true">→</span></Link>
+          ))}
+        </nav>
+      </section>
       {EXPEDITION_TYPES.map((type, i) => (
         <Section key={type} id={i === 0 ? 'routes' : undefined} className={i % 2 ? 'bg-xt-cream' : undefined}>
           <H2 eyebrow={`${typeLabel(type)} routes`}>{type === '4x4' ? '4x4 expeditions' : 'Motorbike expeditions'}</H2>
