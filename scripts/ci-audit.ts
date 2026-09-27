@@ -80,10 +80,10 @@ async function perfAudit() {
       }).observe({ type: 'largest-contentful-paint', buffered: true });
       (window as unknown as { __shifts: unknown[] }).__shifts = [];
       new PerformanceObserver((l) => {
-        for (const e of l.getEntries() as unknown as { value: number; hadRecentInput: boolean; startTime: number; sources?: { node?: Element }[] }[]) {
+        for (const e of l.getEntries() as unknown as { value: number; hadRecentInput: boolean; startTime: number; sources?: { node?: Element; previousRect?: DOMRectReadOnly; currentRect?: DOMRectReadOnly }[] }[]) {
           if (e.hadRecentInput) continue;
           (window as unknown as { __cls: number }).__cls += e.value;
-          (window as unknown as { __shifts: unknown[] }).__shifts.push({ v: Number(e.value.toFixed(4)), t: Math.round(e.startTime), nodes: (e.sources ?? []).map((s) => s.node ? `${s.node.nodeName}.${String((s.node as HTMLElement).className ?? '').slice(0, 80)}` : '?') });
+          (window as unknown as { __shifts: unknown[] }).__shifts.push({ v: Number(e.value.toFixed(4)), t: Math.round(e.startTime), nodes: (e.sources ?? []).map((s) => s.node ? `${s.node.nodeName}.${String((s.node as HTMLElement).className ?? '').slice(0, 80)}` : '?'), rects: (e.sources ?? []).map((s) => { const a = s.previousRect, b = s.currentRect; return a && b ? `${Math.round(a.x)},${Math.round(a.y)} ${Math.round(a.width)}x${Math.round(a.height)} -> ${Math.round(b.x)},${Math.round(b.y)} ${Math.round(b.width)}x${Math.round(b.height)}` : ''; }), text: (e.sources ?? []).map((s) => (s.node?.textContent ?? '').slice(0, 40)) });
         }
       }).observe({ type: 'layout-shift', buffered: true });
     });
