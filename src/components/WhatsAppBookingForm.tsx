@@ -76,6 +76,9 @@ const isXtsy270Room = (roomName: string): boolean => {
   return lowerName.includes('panorama glass ensuite') || lowerName.includes('270');
 };
 
+const isAvailableRoom = (room: RoomType): boolean =>
+  room.name.trim().toLowerCase() !== 'bed in 4-bed mixed dormitory';
+
 const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   const { currency, formatPrice } = useApp();
   const { locationData, isLoading: locationLoading, requestLocation, hasConsented } = useLocationConsent();
@@ -185,12 +188,12 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
           if (tableError) {
             console.error('Fallback also failed:', tableError);
           } else if (roomTypesData) {
-            setRoomTypes((roomTypesData) as unknown as RoomType[]);
+            setRoomTypes(((roomTypesData) as unknown as RoomType[]).filter(isAvailableRoom));
             setRoomsError("");
             console.log('Loaded room types from fallback:', roomTypesData.length);
           }
         } else if (data) {
-          setRoomTypes(data as unknown as RoomType[]);
+          setRoomTypes((data as unknown as RoomType[]).filter(isAvailableRoom));
           console.log('Loaded room types:', data.length);
         }
       } catch (err) {
@@ -205,7 +208,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
             .eq('is_active', true);
           
           if (!tableError && roomTypesData) {
-            setRoomTypes((roomTypesData) as unknown as RoomType[]);
+            setRoomTypes(((roomTypesData) as unknown as RoomType[]).filter(isAvailableRoom));
             setRoomsError("");
             console.log('Loaded room types from fallback after exception:', roomTypesData.length);
           }
@@ -262,7 +265,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
 
   const handleRoomToggle = (roomTypeId: string) => {
     const roomType = roomTypes.find(rt => rt.id === roomTypeId);
-    if (!roomType) return;
+    if (!roomType || !isAvailableRoom(roomType)) return;
 
     setSelectedRoomIds(prev => {
       const newSet = new Set(prev);
