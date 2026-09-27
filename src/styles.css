@@ -827,3 +827,76 @@ img.lazy-below-fold {
 .tours-section-bg {
   background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(150 20% 5%) 50%, hsl(var(--background)) 100%);
 }
+
+/* ───────────────────────── XTSY 2026 redesign (v2) ─────────────────────────
+   Light "sand" theme with Staatliches display type and Manrope body.
+   Pages opt in by wrapping content in .xt (see src/components/v2). */
+@theme inline {
+  --font-display: "Staatliches", Impact, sans-serif;
+  --font-manrope: "Manrope", system-ui, sans-serif;
+  --color-xt-crimson: #A12444;
+  --color-xt-crimson-dark: #8A1D3A;
+  --color-xt-rose: #E07A8B;
+  --color-xt-blush: #F3E3E6;
+  --color-xt-sand: #F6F1EA;
+  --color-xt-cream: #EFE6DA;
+  --color-xt-oat: #EADFD0;
+  --color-xt-line: #E3D8C9;
+  --color-xt-stone: #CFC3B2;
+  --color-xt-ink: #1F2230;
+  --color-xt-night: #1F2438;
+  --color-xt-slate: #2E3548;
+  --color-xt-steel: #45506A;
+  --color-xt-mute: #4F566A;
+  --color-xt-fog: #C9CFDD;
+  --color-xt-pine: #2F4A3F;
+  --color-xt-leaf: #2F8F5B;
+  --color-xt-paper: #F4EFE8;
+}
+
+.xt { background: #F6F1EA; color: #1F2230; font-family: "Manrope", system-ui, sans-serif; }
+.xt a:not([class*="text-"]) { color: inherit; }
+.xt-display { font-family: "Staatliches", Impact, sans-serif; font-weight: 400; letter-spacing: 0.01em; }
+.xt-eyebrow { font-family: "Staatliches", Impact, sans-serif; letter-spacing: 0.22em; color: #A12444; }
+
+@keyframes xtRise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes xtMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes xtSpin { to { transform: rotate(360deg); } }
+@keyframes xtFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes xtPop { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes xtPulse { 0% { box-shadow: 0 0 0 0 rgba(47,143,91,.55); } 100% { box-shadow: 0 0 0 10px rgba(47,143,91,0); } }
+@keyframes xtShine { 0% { transform: translateX(-80px) skewX(-20deg); } 60%,100% { transform: translateX(320px) skewX(-20deg); } }
+@keyframes xtTwinkle { 0%,100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.25) rotate(20deg); } }
+@keyframes xtPeek { 0%,12% { transform: translateX(70px); } 22%,78% { transform: translateX(0); } 88%,100% { transform: translateX(70px); } }
+@keyframes xtBlink { 0%,44%,50%,100% { transform: scaleY(1); } 47% { transform: scaleY(.1); } }
+
+.xt-in { animation: xtRise .9s cubic-bezier(.2,.7,.2,1) both; }
+.xt-d1 { animation-delay: .12s; } .xt-d2 { animation-delay: .24s; } .xt-d3 { animation-delay: .36s; } .xt-d4 { animation-delay: .5s; }
+.xt-reveal { animation: xtRise .9s cubic-bezier(.2,.7,.2,1) both; }
+@supports (animation-timeline: view()) { .xt-reveal { animation-timeline: view(); animation-range: entry 0% entry 60%; } }
+.xt-lift { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; }
+.xt-lift:hover { transform: translateY(-6px); box-shadow: 0 22px 44px -22px rgba(31,34,48,.45); }
+.xt-marquee { animation: xtMarquee 30s linear infinite; }
+.xt-rail { animation: xtMarquee 60s linear infinite; }
+.xt-rail:hover { animation-play-state: paused; }
+.xt-spin { animation: xtSpin 90s linear infinite; }
+.xt-float { animation: xtFloat 6s ease-in-out infinite; }
+.xt-pop { animation: xtPop .45s cubic-bezier(.2,.7,.2,1) both; }
+.xt-live { animation: xtPulse 1.6s ease-out infinite; }
+.xt-btn { transition: transform .2s; }
+.xt-btn:hover { transform: translateY(-2px); }
+.xt-chip { transition: background-color .2s, color .2s, border-color .2s, transform .15s; }
+.xt-chip:active { transform: scale(.96); }
+.xt-shine { animation: xtShine 3.2s ease-in-out infinite; }
+.xt-twinkle { transform-origin: center; animation: xtTwinkle 2.4s ease-in-out infinite; }
+.xt-ai-btn { transition: transform .25s, box-shadow .25s; box-shadow: 0 14px 30px -16px rgba(161,36,68,.7); }
+.xt-ai-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 36px -16px rgba(161,36,68,.9); }
+.xt-peek { animation: xtPeek 7s ease-in-out infinite; }
+.xt-blink { transform-box: fill-box; transform-origin: center; animation: xtBlink 4s infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .xt-in, .xt-reveal, .xt-marquee, .xt-rail, .xt-spin, .xt-float, .xt-pop, .xt-live, .xt-shine, .xt-twinkle, .xt-peek, .xt-blink { animation: none; }
+  .xt-lift, .xt-btn, .xt-chip, .xt-ai-btn { transition: none; }
+}
+/* Global heading/paragraph line-heights in styles/typography.css are unlayered and
+   would beat Tailwind's leading-* utilities; inside .xt let the utilities win. */
+.xt :where(h1, h2, h3, h4, p) { line-height: revert-layer; }

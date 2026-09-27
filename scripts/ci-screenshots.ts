@@ -23,7 +23,24 @@ async function main() {
   const browser = await chromium.launch();
   const report: Record<string, unknown>[] = [];
   for (const vp of VIEWPORTS) {
-    const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height } });
+    const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height }, reducedMotion: 'reduce' });
+    // Lovable CDN images (/__l5e/...) only exist on the hosted site: proxy them from xtsy.one.
+    await ctx.route('**/__l5e/**', async (route) => {
+      try {
+        const u = new URL(route.request().url());
+        const res = await route.fetch({ url: `https://xtsy.one${u.pathname}` });
+        await route.fulfill({ response: res });
+      } catch {
+        await route.continue();
+      }
+    });
+    // Pre-accept the cookie banner so it doesn't cover the page.
+    await ctx.addInitScript(() => {
+      try {
+        localStorage.setItem('xtsy_consent_v2', JSON.stringify({ necessary: true, analytics: true, marketing: false, personalization: false, timestamp: new Date().toISOString(), version: '2.0' }));
+        localStorage.setItem('xtsy_consent_timestamp', new Date().toISOString());
+      } catch { /* ignore */ }
+    });
     for (const route of ROUTES) {
       const page = await ctx.newPage();
       const errors: string[] = [];
@@ -34,6 +51,17 @@ async function main() {
         const res = await page.goto(BASE + route, { waitUntil: 'networkidle', timeout: 60000 });
         status = res?.status() ?? 0;
         await page.waitForTimeout(1500);
+        // Scroll through the page so lazy images load, then return to the top.
+        await page.evaluate(async () => {
+          const step = Math.max(400, Math.floor(window.innerHeight * 0.8));
+          for (let y = 0; y < document.body.scrollHeight; y += step) {
+            window.scrollTo(0, y);
+            await new Promise((r) => setTimeout(r, 150));
+          }
+          window.scrollTo(0, 0);
+        });
+        await page.waitForLoadState('networkidle', { timeout: 20000 }).catch(() => {});
+        await page.waitForTimeout(800);
         const file = `${vp.name}${route === '/' ? '-home' : route.replace(/\//g, '-')}.png`;
         await page.screenshot({ path: path.join(OUT, file), fullPage: vp.name === 'mobile' ? false : true });
         report.push({ route, viewport: vp.name, status, file, errors });
