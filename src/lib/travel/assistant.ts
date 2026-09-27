@@ -213,7 +213,10 @@ export function respond(message: string, prev: ChatState): { reply: Reply; state
 
   // Questions first (unless the message is clearly a trip request with days).
   const dist = distanceAnswer(places, t);
-  if (dist) return { reply: { text: dist, chips: places[0] ? [`Plan a trip with ${places[places.length - 1].name}`, 'Where should I stay?'] : ['How far is Dawki?', 'How far is Tawang?'], actions: [] }, state };
+  if (dist) {
+    const target = places.find((p) => p.id !== 'shillong' && p.cluster !== 'shillong') ?? places[0];
+    return { reply: { text: dist, chips: target ? [`Plan a trip with ${target.name}`, `Where should I stay near ${target.name}?`] : ['How far is Dawki?', 'How far is Tawang?'], actions: [] }, state };
+  }
   if (/(where|best place|good place|recommend).{0,30}(stay|hostel|hotel|homestay|sleep|accommodation)|best hostel|best hotel|stay in shillong|hostel in shillong|hotel in shillong/.test(t) && !parseDays(t)) {
     return { reply: { text: stayAnswer(places[0]), chips: ['Check live availability', 'Plan my trip around XTSY', 'Pet policy'], actions: ['book'] }, state };
   }

@@ -133,7 +133,7 @@ export default function SiteHeader() {
           <button
             type="button"
             onClick={() => openTripChat()}
-            className="xt-btn hidden h-11 items-center gap-2 rounded-full bg-xt-ink pl-2.5 pr-4 text-[14px] font-bold text-xt-paper lg:flex"
+            className="xt-btn hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-xt-ink pl-2.5 pr-4 text-[14px] font-bold text-xt-paper lg:flex"
           >
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-xt-crimson" aria-hidden="true">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18.5l-2.2-6.3L3.5 10l6.3-1.7z" /></svg>
@@ -142,12 +142,12 @@ export default function SiteHeader() {
           </button>
           <Link
             to={user ? '/profile' : '/auth'}
-            className="hidden h-11 items-center gap-2 rounded-full border-[1.5px] border-xt-ink px-4 text-[14px] font-bold text-xt-ink md:flex"
+            className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full border-[1.5px] border-xt-ink px-4 text-[14px] font-bold text-xt-ink md:flex lg:hidden 2xl:flex"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg>
             <span className="max-w-[120px] truncate">{accountLabel || 'Sign in'}</span>
           </Link>
-          <Link to="/book" className="xt-btn flex h-11 items-center rounded-full bg-xt-crimson px-5 text-[14px] font-bold text-white hover:text-white">
+          <Link to="/book" className="xt-btn flex h-11 items-center whitespace-nowrap rounded-full bg-xt-crimson px-5 text-[14px] font-bold text-white hover:text-white">
             Book now
           </Link>
           <button
