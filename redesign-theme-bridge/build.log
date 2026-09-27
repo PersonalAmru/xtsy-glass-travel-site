@@ -1,0 +1,60 @@
+$ tsx scripts/generateWorkerSlimMap.ts && bun run sitemaps:rebuild
+✅ seo-slim-map.json: 612 entries → 133.2 KB
+$ tsx scripts/generateProgrammaticSitemap.ts && tsx scripts/generateSitemaps.ts && tsx scripts/dedupeSitemapsCrossBranch.ts && tsx scripts/generate-image-sitemap.ts
+✅ sitemap-programmatic.xml: 25 URLs (skipped 507 owned by curated branches)
+ ↳ Skipped (owned by other branch) : 507
+ ↳ Skipped (in-branch duplicate)   : 0
+ ↳ Skipped (legacy places redirect): 39
+═══════════════════════════════════════════════
+ SITEMAP GENERATION REPORT
+═══════════════════════════════════════════════
+ Static URLs        : 40
+ Priority URLs      : 0
+ GSC coverage slugs : 99
+ Missing from map   : 0
+───────────────────────────────────────────────
+ ✅ All GSC coverage slugs present in sitemap.
+✔ sitemap-destinations.xml: removed 0 cross-branch dupes
+✔ sitemap-hostel.xml: removed 0 cross-branch dupes
+✔ sitemap-tours.xml: removed 0 cross-branch dupes
+✔ sitemap-dining.xml: removed 0 cross-branch dupes
+✔ sitemap-misc.xml: removed 0 cross-branch dupes
+✔ sitemap-guides.xml: removed 0 cross-branch dupes
+✔ sitemap-programmatic.xml: removed 0 cross-branch dupes
+🧹 sitemap-static.xml: removed 4 cross-branch dupes
+
+Total cross-branch dupes removed: 4
+Unique URLs across all branches:  649
+sitemap-images.xml written (2 pages, 40 image refs)
+$ vite build
+[33mThe plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the [1mresolve.tsconfigPaths[22m option. You can remove the plugin and set [1mresolve.tsconfigPaths: true[22m in your Vite config instead.[39m
+[36mvite v8.2.1 [32mbuilding client environment for production...[36m[39m
+[2Ktransforming...✓ 4542 modules transformed.
+[31m✗[39m Build failed in 1.97s
+[31merror during build:
+[31mBuild failed with 1 error:
+
+[plugin tanstack-router:code-splitter:compile-reference-file] /home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/src/routes/__root.tsx:351:8
+SyntaxError: Identifier 'pathname' has already been declared. (351:8)
+    at constructor (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@babel/parser/lib/index.js:369:19)
+    at TypeScriptParserMixin.raise (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@babel/parser/lib/index.js:6620:19)
+    at TypeScriptScopeHandler.checkRedeclarationInScope (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@babel/parser/lib/index.js:1623:19)
+    at TypeScriptScopeHandler.declareName (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@babel/parser/lib/index.js:1589:12)
+    at TypeScriptScopeHandler.declareName (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@babel/parser/lib/index.js:4896:11)
+    at TypeScriptParserMixin.declareNameFromIdentifier (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@babel/parser/lib/index.js:7588:16)
+    at TypeScriptParserMixin.checkIdentifier (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@babel/parser/lib/index.js:7584:12)
+    at TypeScriptParserMixin.checkLVal (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@babel/parser/lib/index.js:7521:12)
+    at TypeScriptParserMixin.parseVarId (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@babel/parser/lib/index.js:13441:10)
+    at TypeScriptParserMixin.parseVarId (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@babel/parser/lib/index.js:9773:11)[31m
+    at aggregateBindingErrorsIntoJsError (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/rolldown/dist/shared/error-BzLGqhSQ.mjs:48:18)
+    at unwrapBindingResult (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/rolldown/dist/shared/error-BzLGqhSQ.mjs:18:128)
+    at #build (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/rolldown/dist/shared/rolldown-I5b6h5Km.mjs:132:34)
+    at async buildEnvironment (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/vite/dist/node/chunks/node.js:33730:66)
+    at async Object.build (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/vite/dist/node/chunks/node.js:34150:19)
+    at async buildStartViteEnvironments (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@tanstack/start-plugin-core/dist/esm/vite/planning.js:95:23)
+    at async Object.buildApp (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/@tanstack/start-plugin-core/dist/esm/vite/plugin.js:113:8)
+    at async Object.buildApp (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/vite/dist/node/chunks/node.js:34142:6)
+    at async CAC.<anonymous> (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/vite/dist/node/cli.js:776:3) {
+  errors: [Getter/Setter]
+}[39m
+error: script "build" exited with code 1
