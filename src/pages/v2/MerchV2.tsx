@@ -78,7 +78,7 @@ export default function MerchV2() {
             <div className="absolute bottom-6 left-6 flex items-center gap-2.5 rounded-full bg-white px-4 py-3 text-[14px] font-bold">
               <span className="h-2.5 w-2.5 rounded-full bg-xt-crimson" />Trail Laptop Backpack
             </div>
-            <div className="absolute right-6 top-6 rounded-xl bg-xt-slate px-4 py-2.5 font-display text-[18px] tracking-[3px] text-xt-paper">Drop 01 · New Shillong</div>
+            <div className="absolute right-4 top-4 rounded-xl bg-xt-slate px-3 py-2 font-display text-[13px] tracking-[3px] text-xt-paper sm:right-6 sm:top-6 sm:px-4 sm:py-2.5 sm:text-[18px]">Drop 01 · New Shillong</div>
           </div>
         </section>
 

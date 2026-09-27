@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import CategoryPage from "@/pages/destinations/CategoryPage";
+import CategoryPage from "@/pages/v2/CategoryV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/meghalaya-caves")({
