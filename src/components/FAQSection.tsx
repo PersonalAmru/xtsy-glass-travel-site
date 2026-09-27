@@ -11,7 +11,7 @@ const FAQSection = () => {
 
   const faqData = [
     {
-      question: "What's the XTSY 270° Glass Suite all about?",
+      question: "What's Experience by XTSY all about?",
       answer: "Picture this: floor-to-ceiling glass walls, 270° mountain views, and you waking up to sunrises over the Himalayas. It's India's first panoramic glass house—perfect for couples, proposals, or just that main-character moment. Weekend: ₹9,999/night, Weekday: ₹7,999/night. Trust us, the reels will go crazy.",
       hasQuote: true,
       quote: "Absolutely beautiful view from their glass house. It was an unforgettable experience!",
@@ -19,7 +19,7 @@ const FAQSection = () => {
     },
     {
       question: "What kind of stays do you have?",
-      answer: "We've got options for every budget. Luxury: 270° Glass Suite (₹7,999-9,999). Hostel vibes: Private rooms (₹3,500) or 6-bed dorms (₹700/bed). Economy: Female dorm (₹325/bed) or mixed dorm (₹399/bed). All in Shillong with 24/7 security—no sketchy vibes here.",
+      answer: "We've got options for every budget. Luxury: Experience by XTSY (₹7,999-9,999). Hostel vibes: Private rooms (₹3,500) or 6-bed dorms (₹700/bed). Economy: Female dorm (₹325/bed) or mixed dorm (₹399/bed). All in Shillong with 24/7 security—no sketchy vibes here.",
       hasQuote: true,
       quote: "The hostel has a very welcoming atmosphere... cleanliness is always maintained.",
       quoteName: "Ritika"
@@ -30,7 +30,7 @@ const FAQSection = () => {
     },
     {
       question: "How far in advance should I book?",
-      answer: "For dorm beds: 3–7 days ahead is usually fine (except long weekends and Dec–Jan peak). Private rooms and the 270° Glass Suite: book 2–4 weeks ahead, especially Oct–May. Same-day bookings often work outside peak — check live availability on our booking page or WhatsApp us.",
+      answer: "For dorm beds: 3–7 days ahead is usually fine (except long weekends and Dec–Jan peak). Private rooms and Experience by XTSY: book 2–4 weeks ahead, especially Oct–May. Same-day bookings often work outside peak — check live availability on our booking page or WhatsApp us.",
     },
     {
       question: "What payment methods do you accept for booking?",
@@ -42,11 +42,11 @@ const FAQSection = () => {
     },
     {
       question: "What is your cancellation and refund policy?",
-      answer: "Free cancellation up to 48 hours before check-in for dorm beds and private rooms — full refund. Cancel within 48 hours: first night is charged. No-show: full booking is charged. The 270° Glass Suite and tour packages are non-refundable but modifiable once within 90 days (date change or upgrade, subject to availability and fare difference). Full policy: xtsy.one/pricing-cancellation-policy.",
+      answer: "Free cancellation up to 48 hours before check-in for dorm beds and private rooms — full refund. Cancel within 48 hours: first night is charged. No-show: full booking is charged. Experience by XTSY and tour packages are non-refundable but modifiable once within 90 days (date change or upgrade, subject to availability and fare difference). Full policy: xtsy.one/pricing-cancellation-policy.",
     },
     {
       question: "How do I book?",
-      answer: "Super easy—WhatsApp us at +91 88373 17070 (fastest response), book on our website, or email booking@xtsy.one. We confirm instantly for available dates. Pro tip: Glass Suite needs 2-3 weeks advance during peak season because it books out fast.",
+      answer: "Super easy—WhatsApp us at +91 88373 17070 (fastest response), book on our website, or email booking@xtsy.one. We confirm instantly for available dates. Pro tip: Experience by XTSY needs 2-3 weeks advance during peak season because it books out fast.",
     },
 
     {
@@ -92,7 +92,7 @@ const FAQSection = () => {
     },
     {
       question: "Why XTSY over other hostels?",
-      answer: "We're not just a hostel—we're Northeast specialists. India's first 270° Glass Suite, 4-tier accommodation, 12 states coverage, eco-tourism practices, and genuine cultural immersion. Plus, we're nominated for 'Best Budget Accommodation' by NEITA 2025. That's the difference.",
+      answer: "We're not just a hostel—we're Northeast specialists. Experience by XTSY, India's first stargaze glamp, 4-tier accommodation, 12 states coverage, eco-tourism practices, and genuine cultural immersion. Plus, we're nominated for 'Best Budget Accommodation' by NEITA 2025. That's the difference.",
       hasQuote: true,
       quote: "Just one word for XTSY: THE BEST. It's one of the best stays I have been to lately.",
       quoteName: "Rahul"
@@ -103,7 +103,7 @@ const FAQSection = () => {
     },
     {
       question: "What payment methods work?",
-      answer: "UPI, cards, net banking, cash (subject to availability). International guests? PayPal or wire transfer works. Glass Suite and tours need advance payment. Groups can do flexible payment plans—just ask.",
+      answer: "UPI, cards, net banking, cash (subject to availability). International guests? PayPal or wire transfer works. Experience by XTSY and tours need advance payment. Groups can do flexible payment plans—just ask.",
     },
     {
       question: "Good for remote work?",
@@ -124,8 +124,8 @@ const FAQSection = () => {
       quoteName: "Millie Celeste"
     },
     {
-      question: "Does the 270° Glass Suite get hot during the day?",
-      answer: "Honest answer—daytime sun can warm any glass structure, which a few guests noted. That's exactly why the Panorama Glass En-suite by XTSY now has climate control, blackout shades and cross ventilation. Nights are the magic: you fall asleep under Meghalaya's stars. Guests still rate the ventilation better than glamping setups they've tried across Asia and Europe.",
+      question: "Does Experience by XTSY get hot during the day?",
+      answer: "Honest answer—daytime sun can warm any glass structure, which a few guests noted. That's exactly why Experience by XTSY now has climate control, blackout shades and cross ventilation. Nights are the magic: you fall asleep under Meghalaya's stars. Guests still rate the ventilation better than glamping setups they've tried across Asia and Europe.",
       hasQuote: true,
       quote: "The glass room felt noticeably less humid compared to many glamping setups across Asia and Europe.",
       quoteName: "Airbnb Guest, Experience by XTSY"

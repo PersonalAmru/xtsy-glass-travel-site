@@ -185,7 +185,7 @@ export default function HowToReachMeghalaya() {
             <Card className="p-5">
               <MapPin className="w-5 h-5 text-primary mb-2" />
               <h3 className="font-semibold mb-1">Drop point matters</h3>
-              <p className="text-sm text-muted-foreground">Most taxis stop at Police Bazaar — 3 km from XTSY in Laitumkhrah.</p>
+              <p className="text-sm text-muted-foreground">Most taxis stop at Police Bazaar. XTSY is in New Shillong Township (Mawdiangdiang Road) — take a cab from there, or ask the XTSY desk to arrange a direct transfer.</p>
             </Card>
           </div>
         </section>

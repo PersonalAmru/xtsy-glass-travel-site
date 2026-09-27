@@ -107,7 +107,7 @@ interface GallerySource {
 }
 
 const GALLERY_SOURCES: GallerySource[] = [
-  { property: "XTSY 270° Glass Suite", category: "luxury-suite", title: "270° Panorama Glass Suite", roomId: "xtsy-270", featured: true },
+  { property: "Experience by XTSY", category: "luxury-suite", title: "Experience by XTSY", roomId: "xtsy-270", featured: true },
   { property: "King Double Room", category: "private-rooms", title: "King Double Room", roomId: "king-double-room" },
   { property: "4-Bed Female Only Dorm", category: "dormitories", title: "4-Bed Female Dorm", roomId: "4-bed-female-only-dorm" },
   { property: "4-Bed Mixed Dorm", category: "dormitories", title: "4-Bed Mixed Dorm", roomId: "4-bed-mixed-female-dorm" },
@@ -176,7 +176,7 @@ const GallerySection = ({ asPageHeading = false }: { asPageHeading?: boolean } =
         <div className="text-center mb-10 sm:mb-14">
           {asPageHeading ? (
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
-              XTSY Photo Gallery — Shillong Hostel, 270° Glass Suite & Meghalaya
+              XTSY Photo Gallery — Shillong Hostel, Experience by XTSY & Meghalaya
             </h1>
           ) : (
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
@@ -184,7 +184,7 @@ const GallerySection = ({ asPageHeading = false }: { asPageHeading?: boolean } =
             </h2>
           )}
           <p className="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
-            Explore real photos of our dorms, private rooms, the 270° glass suite and Meghalaya experiences
+            Explore real photos of our dorms, private rooms, Experience by XTSY and Meghalaya experiences
           </p>
         </div>
 

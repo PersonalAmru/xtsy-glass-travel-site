@@ -3,9 +3,9 @@
  * Shows bookable rooms with realistic social proof and scarcity indicators
  */
 import { memo, useMemo } from 'react';
-import { Users, Clock, ChevronRight, Flame, TrendingUp } from 'lucide-react';
+import { Users, Clock, ChevronRight, TrendingUp } from 'lucide-react';
 import { Link } from '@/lib/router-compat';
-import { getBookableRooms, TAG_LABELS, type RoomType, getSimulatedAvailability, getPriceHikeMessage } from '@/data/roomInventory';
+import { getBookableRooms, TAG_LABELS, type RoomType, getPriceHikeMessage } from '@/data/roomInventory';
 import { formatLocalDateString } from '@/lib/date-utils';
 import { cn } from '@/lib/utils';
 
@@ -23,7 +23,6 @@ const AvailabilityCard = memo(({ room }: { room: RoomType }) => {
   const today = formatLocalDateString(new Date());
   const tomorrow = formatLocalDateString(new Date(Date.now() + 86400000));
   const socialProof = getSocialProof(room);
-  const availableLeft = getSimulatedAvailability(room.id);
   const priceHike = getPriceHikeMessage(room.id);
 
   // Viewing count proportional to room size
@@ -50,11 +49,6 @@ const AvailabilityCard = memo(({ room }: { room: RoomType }) => {
         {discount > 0 && (
           <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
             {discount}% OFF
-          </span>
-        )}
-        {availableLeft <= 3 && (
-          <span className="absolute top-2 right-2 bg-orange-500/90 text-white text-xs font-medium px-2 py-0.5 rounded-full flex items-center gap-1">
-            <Flame className="w-3 h-3" /> Only {availableLeft} left
           </span>
         )}
       </div>

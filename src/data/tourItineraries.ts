@@ -3207,19 +3207,19 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
   601: [
     {
       day: "Day 1",
-      title: "Arrival & Romantic Glasshouse Experience",
+      title: "Arrival & a Night at Experience by XTSY",
       route: "Guwahati → Shillong",
       activities: [
         "Arrival at Lokpriya Gopinath Bordoloi International Airport or Guwahati Railway Station",
         "Scenic drive towards the hills of Shillong",
         "En route stop at the breathtaking Umiam Lake — tranquil waters stretching across surrounding hills and pine forests",
         "Continue toward your romantic retreat near New Shillong",
-        "Check in to the XTSY Panorama Glasshouse",
+        "Check in to the Experience by XTSY",
         "Evening surrounded by peaceful forest landscapes and fresh mountain air",
-        "Glasshouse Experience — panoramic glasshouse architecture, peaceful forest surroundings",
+        "Experience by XTSY — panoramic glasshouse architecture, peaceful forest surroundings",
         "Transparent roof perfect for stargazing — the magical experience of sleeping under the moon and stars"
       ],
-      overnight: "XTSY Panorama Glasshouse"
+      overnight: "Experience by XTSY"
     },
     {
       day: "Day 2",
@@ -3236,7 +3236,7 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
         "Cozy bonfire setup under the open sky",
         "Quiet romantic evening surrounded by forest and nature"
       ],
-      overnight: "XTSY Panorama Glasshouse"
+      overnight: "Experience by XTSY"
     },
     {
       day: "Day 3",
@@ -3306,21 +3306,21 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
   603: [
     {
       day: "Day 1",
-      title: "Arrival & Romantic Glasshouse Experience",
+      title: "Arrival & a Night at Experience by XTSY",
       route: "Guwahati → Shillong (Drive: 3-4 hrs)",
       activities: [
         "Arrival at Lokpriya Gopinath Bordoloi International Airport or Guwahati Railway Station",
         "Scenic drive towards the hills of Shillong",
         "En route stop at breathtaking Umiam Lake — tranquil waters surrounded by hills and pine forests",
         "Continue journey toward romantic retreat near New Shillong",
-        "Check in to XTSY Panorama Glasshouse",
-        "The Glasshouse Experience — evening surrounded by peaceful forest landscapes and fresh mountain air",
+        "Check in to Experience by XTSY",
+        "Experience by XTSY Experience — evening surrounded by peaceful forest landscapes and fresh mountain air",
         "Panoramic glasshouse architecture with transparent roof perfect for stargazing",
         "Peaceful forest surroundings designed to immerse couples in nature with comfort and privacy",
         "Magical experience of sleeping under the moon and stars",
         "Unforgettable stay setting the perfect romantic tone for the Meghalaya journey"
       ],
-      overnight: "XTSY Panorama Glasshouse"
+      overnight: "Experience by XTSY"
     },
     {
       day: "Day 2",
@@ -3338,7 +3338,7 @@ export const tourItineraries: Record<number, ItineraryDay[]> = {
         "Private candlelight dinner under the open sky",
         "Cozy bonfire setup surrounded by forest and nature"
       ],
-      overnight: "XTSY Panorama Glasshouse"
+      overnight: "Experience by XTSY"
     },
     {
       day: "Day 3",

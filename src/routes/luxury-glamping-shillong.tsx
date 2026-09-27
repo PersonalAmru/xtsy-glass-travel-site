@@ -8,7 +8,7 @@ export const Route = createFileRoute("/luxury-glamping-shillong")({
       path: "/luxury-glamping-shillong",
       title: "Luxury Glamping in Shillong & Meghalaya | XTSY",
       description:
-        "Glamping near Shillong with proper beds, private washrooms and mountain views, plus the XTSY 270 degree glass suite for couples wanting comfort outdoors.",
+        "Glamping near Shillong with proper beds, private washrooms and mountain views, plus Experience by XTSY, India's first stargaze glamp, for couples wanting comfort outdoors.",
     }),
   component: LuxuryGlampingShillong,
 });

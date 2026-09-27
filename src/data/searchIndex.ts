@@ -119,7 +119,7 @@ function buildSearchIndex(): SearchEntry[] {
   // 3. Experiences
   entries.push({
     id: 'exp-stargazing',
-    title: 'XTSY Glass Stargazing Suite',
+    title: 'Experience by XTSY',
     description: 'India\'s first 270° panoramic glass house for stargazing experiences',
     category: 'experiences',
     icon: '🌌',

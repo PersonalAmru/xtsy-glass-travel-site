@@ -67,10 +67,10 @@ const Index = memo(() => {
     image: 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Mawkhar, Shillong',
+      streetAddress: 'Mawdiangdiang Road, New Shillong Township',
       addressLocality: 'Shillong',
       addressRegion: 'Meghalaya',
-      postalCode: '793001',
+      postalCode: '793018',
       addressCountry: 'IN',
     },
     geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
@@ -142,7 +142,7 @@ const Index = memo(() => {
         name: 'How much does a hostel in Shillong cost per night?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'At XTSY Travellers Hostel, dormitory beds start from ₹369/night, private rooms from ₹2,500/night, and the exclusive 270° Glass Stargazing Suite from ₹4,999/night. Prices vary by season.',
+          text: 'At XTSY Travellers Hostel, dormitory beds start from ₹369/night, private rooms from ₹2,500/night, and Experience by XTSY from ₹4,999/night. Prices vary by season.',
         },
       },
       {

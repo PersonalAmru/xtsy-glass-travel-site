@@ -8,9 +8,9 @@ import xtsyInterior from '@/assets/xtsy-270-interior.jpeg';
 export const XTSY270_DATA = {
   path: '/xtsy-270',
   canonicalUrl: 'https://xtsy.one/xtsy-270',
-  name: 'Experience by XTSY – 270° Glasshouse Glamping Retreat',
+  name: "Experience by XTSY – India's First Stargaze Glamp",
   shortName: 'Experience by XTSY',
-  seoTitle: 'Experience by XTSY – India\'s First 270° Glasshouse Glamping Retreat | Shillong, Meghalaya',
+  seoTitle: 'Experience by XTSY – India\'s First Stargaze Glamp | Shillong, Meghalaya',
   seoDescription:
     'Sleep under stars. Wake to mountains. Experience by XTSY is India\'s first 270° panoramic glasshouse glamping retreat in Shillong. Luxury glamping for couples — pine forests, stargazing, complimentary breakfast for 2. Book now.',
   seoKeywords:

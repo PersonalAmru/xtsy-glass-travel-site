@@ -138,7 +138,7 @@ const HomeTourPackages: React.FC<HomeTourPackagesProps> = ({ className }) => {
               <Heart className="h-3 w-3 fill-white" /> 15% Exclusive Couple Discount
             </span>
             <p className="text-xs text-muted-foreground mt-2">
-              Includes XTSY 270 Panorama Glass Ensuite stay • Private touring • Romantic add-ons
+              Includes an Experience by XTSY stay • Private touring • Romantic add-ons
             </p>
           </motion.div>
         )}

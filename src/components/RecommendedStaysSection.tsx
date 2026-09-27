@@ -17,7 +17,7 @@ import { ROOM_IMAGES } from '@/config/roomTypes';
 const featuredRooms = [
   {
     id: 'xtsy-270',
-    name: '270° Panorama Glass Ensuite',
+    name: 'Experience by XTSY',
     type: 'Luxury Suite',
     tagline: 'Wake up to mountain views',
     price: 5399,

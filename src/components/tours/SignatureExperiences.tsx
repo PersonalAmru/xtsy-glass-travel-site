@@ -7,7 +7,7 @@ import { ROOM_IMAGES } from "@/config/roomTypes";
 
 const EXPERIENCES = [
   {
-    title: "Glasshouse Stargazing Experience",
+    title: "Stargazing at Experience by XTSY",
     description: "Sleep under the stars inside a transparent glass glamping dome surrounded by pine forests.",
     duration: "Overnight",
     includes: ["Stargazing session", "Bonfire night", "Dinner at TAB Bistro"],

@@ -42,7 +42,7 @@ const TRENDING: TrendingDestination[] = [
   { name: 'Nongriat Root Bridge', href: '/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge', imageKey: 'double-decker-living-root-bridge', tagline: 'Trek to the iconic double-decker bridge', category: 'Trek', location: 'Meghalaya' },
 
   // XTSY 270 Romantic Escape
-  { name: 'Romantic Meghalaya Escape', href: '/xtsy-270', tagline: '270° glasshouse glamping under the stars', category: 'Romantic', location: 'Shillong', imageOverride: xtsy270Stargazing },
+  { name: 'Romantic Meghalaya Escape', href: '/xtsy-270', tagline: 'Experience by XTSY — stargaze glamping', category: 'Romantic', location: 'Shillong', imageOverride: xtsy270Stargazing },
 
   // More Meghalaya — DestinationDetail route
   { name: 'Umiam Lake', href: '/destinations/meghalaya/shillong/umiam-lake', imageKey: 'umiam-lake', tagline: 'Scenic lake surrounded by pine hills', category: 'Lake', location: 'Meghalaya' },

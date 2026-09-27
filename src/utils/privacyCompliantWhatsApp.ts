@@ -63,7 +63,7 @@ export const generateXTSY270Message = (params: {
   mobile: string;
   email: string;
 }): string => {
-  return `🏔️ *XTSY 270° Panorama Glass Suite Inquiry* 🏔️
+  return `🏔️ *XTSY Experience by XTSY Inquiry* 🏔️
 
 Hi XTSY Team! ✨
 
@@ -77,7 +77,7 @@ Mobile: ${params.mobile}
 Email: ${params.email}
 
 🏨 *Property Details:*
-• XTSY 270° Panorama Glass Ensuite
+• Experience by XTSY (270° panoramic glass suite)
 • Only 1 suite available per night in India
 • Exclusive signature stay – limited edition
 

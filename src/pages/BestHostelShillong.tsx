@@ -21,16 +21,16 @@ const BestHostelShillong = memo(() => {
     '@type': 'Hostel',
     '@id': `${pageUrl}#hostel`,
     name: 'XTSY Travellers Hostel',
-    description: 'One of the best cheap hostels in Shillong, Meghalaya — budget dorm beds from ₹369, private rooms, and India\'s first 270° glass suite. Central location, 24/7 security, 4.8★ rated.',
+    description: 'One of the best cheap hostels in Shillong, Meghalaya — budget dorm beds from ₹369, private rooms, and Experience by XTSY, India\'s first stargaze glamp. New Shillong Township location, 24/7 security, 4.8★ rated.',
     url: pageUrl,
     telephone: '+918837317070',
     email: 'xtsytravellershostel@gmail.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Mawkhar, Shillong',
+      streetAddress: 'Mawdiangdiang Road, New Shillong Township',
       addressLocality: 'Shillong',
       addressRegion: 'Meghalaya',
-      postalCode: '793001',
+      postalCode: '793018',
       addressCountry: 'IN',
     },
     geo: {
@@ -92,7 +92,7 @@ const BestHostelShillong = memo(() => {
         name: 'How much does a dorm bed in a Shillong hostel cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'A dorm bed in a Shillong hostel at XTSY starts from ₹369/night in the 6-bed mixed dorm. Female-only dorms are ₹550/night, private double rooms from ₹2,500/night, and the premium 270° Glass Suite is ₹4,999/night.',
+          text: 'A dorm bed in a Shillong hostel at XTSY starts from ₹369/night in the 6-bed mixed dorm. Female-only dorms are ₹550/night, private double rooms from ₹2,500/night, and Experience by XTSY is ₹4,999/night.',
         },
       },
       {
@@ -124,7 +124,7 @@ const BestHostelShillong = memo(() => {
         name: 'Where is XTSY hostel located in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'XTSY Travellers Hostel is in Mawkhar, central Shillong — walking distance to Police Bazaar, cafés and transport, and a short drive from Umiam Lake, Elephant Falls and the Dawki–Cherrapunji circuits.',
+          text: 'XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong (793018), near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a scenic drive from Umiam Lake, Elephant Falls and the Dawki–Cherrapunji circuits.',
         },
       },
       {
@@ -147,7 +147,7 @@ const BestHostelShillong = memo(() => {
 
   const privateRooms = [
     { name: 'Private Double Room', price: '₹2,500', desc: 'Ensuite bathroom, mountain views, queen bed — hostel social vibe with private comfort.', icon: Mountain },
-    { name: 'Panorama by XTSY', price: '₹4,999', desc: 'India\'s first 270° panoramic glass suite — stargazing from bed.', icon: Star },
+    { name: 'Experience by XTSY', price: '₹4,999', desc: 'India\'s first 270° panoramic glass suite — stargazing from bed.', icon: Star },
   ];
 
   const amenities = [
@@ -185,10 +185,10 @@ const BestHostelShillong = memo(() => {
                 : 'Hostels in Shillong — Cheap Dorm Beds from ₹369'}
             </h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
-              Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 161 verified guests, with budget mixed dorms from ₹369/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Central Mawkhar location, minutes from Police Bazaar.
+              Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 161 verified guests, with budget mixed dorms from ₹369/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Mawdiangdiang Road, New Shillong Township — near NIFT, IIM Shillong and NEIGRIMS.
             </p>
             <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
-              <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> Mawkhar, Shillong</span>
+              <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> New Shillong Township, Shillong</span>
               <span className="flex items-center gap-1"><Star className="h-4 w-4 text-yellow-500 fill-yellow-500" /> 4.8 (161 verified reviews)</span>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -345,7 +345,7 @@ const BestHostelShillong = memo(() => {
                 <tbody className="text-muted-foreground">
                   {[
                     ['Starting Price', '₹369/night', '₹500-800/night'],
-                    ['Glass Suite', '✅ 270° Panoramic', '❌'],
+                    ['Experience by XTSY (stargaze glamp)', '✅ 270° Panoramic', '❌'],
                     ['Pet Friendly', '✅', '❌'],
                     ['Female Dorms', '✅ Dedicated', 'Limited'],
                     ['On-site Restaurant', '✅ TAB Bistro', '❌'],
@@ -403,7 +403,7 @@ const BestHostelShillong = memo(() => {
               <Link to="/hotels-in-shillong" className="text-sm text-primary hover:underline">Hotels in Shillong</Link>
               <Link to="/homestays-in-shillong" className="text-sm text-primary hover:underline">Homestays in Shillong</Link>
               <Link to="/luxury-glamping-shillong" className="text-sm text-primary hover:underline">Luxury Glamping Shillong</Link>
-              <Link to="/xtsy-270" className="text-sm text-primary hover:underline">270° Glass Suite</Link>
+              <Link to="/xtsy-270" className="text-sm text-primary hover:underline">Experience by XTSY</Link>
               <Link to="/female-travellers" className="text-sm text-primary hover:underline">Female Travellers</Link>
               <Link to="/pet-friendly" className="text-sm text-primary hover:underline">Pet-Friendly Stays</Link>
               <Link to="/meghalaya-tour-packages" className="text-sm text-primary hover:underline">Tour Packages</Link>

@@ -11,7 +11,7 @@ const faqs = [
   { q: "How much does a shared taxi from Guwahati to Shillong cost?", a: "Shared Sumo/Innova taxis from Paltan Bazaar and Guwahati Airport (GAU) charge ₹400–₹600 per seat. Full cab hire ranges from ₹2,800 to ₹4,200 one-way depending on vehicle." },
   { q: "How long does the drive from Guwahati to Shillong take?", a: "The 100 km route on NH6 takes about 3 to 3.5 hours in normal traffic, and up to 4.5 hours during monsoon or on weekends." },
   { q: "Are there buses from Guwahati to Shillong?", a: "Yes. Meghalaya Transport Corporation (MTC) and private operators run AC and non-AC buses from Guwahati ISBT to Shillong Police Bazaar. Fares are ₹250–₹550. Buses take 4–5 hours." },
-  { q: "Where do shared taxis drop passengers in Shillong?", a: "Most shared taxis drop at Police Bazaar or Khyndailad. Pre-book a private cab from there to XTSY (Laitumkhrah / Lachumiere) — about 10 minutes by road." },
+  { q: "Where do shared taxis drop passengers in Shillong?", a: "Most shared taxis drop at Police Bazaar or Khyndailad. Pre-book a private cab from there to XTSY on Mawdiangdiang Road, New Shillong Township, or book an XTSY transfer from Guwahati." },
   { q: "Is it safe to travel from Guwahati Airport to Shillong at night?", a: "Roads are safe but poorly lit after 8 PM. We recommend arriving before dusk. If your flight lands late, pre-book an XTSY airport transfer instead of a shared taxi." },
   { q: "Can I book an airport pickup with XTSY?", a: "Yes — XTSY guests can pre-book a private cab from Guwahati Airport (GAU) to the hostel at fixed rates. Message us on WhatsApp after booking your room." },
 ];
@@ -125,7 +125,7 @@ export default function GuwahatiToShillongTransport() {
 
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4">4. From Shillong drop-off to XTSY</h2>
-          <p>Police Bazaar → XTSY (Laitumkhrah) is 3 km. Local taxis charge ₹200–₹300, or grab an app cab in 5 minutes. If you booked an XTSY airport transfer, the driver takes you door-to-door.</p>
+          <p>From Police Bazaar, take a cab to XTSY on Mawdiangdiang Road, New Shillong Township (near NIFT and IIM Shillong). If you booked an XTSY airport transfer, the driver takes you door-to-door.</p>
         </section>
 
         <section className="mb-10">

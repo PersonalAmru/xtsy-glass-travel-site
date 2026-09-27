@@ -31,7 +31,7 @@ const packages = [
     title: 'Couple Romantic Getaway',
     price: '₹18,999',
     duration: '5 Days / 4 Nights',
-    highlights: ['270° Glass Suite at XTSY', 'Private Dawki boating', 'Sunset at Laitlum', 'Candlelight dinner at TAB Bistro', 'All transfers'],
+    highlights: ['Experience by XTSY at XTSY', 'Private Dawki boating', 'Sunset at Laitlum', 'Candlelight dinner at TAB Bistro', 'All transfers'],
     tag: 'For Couples',
   },
 ];

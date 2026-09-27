@@ -9,7 +9,7 @@ const MeghalayaCoupleTourPackage = () => (
   <div className="min-h-screen bg-background">
     <Helmet>
       <title>Meghalaya Couple Tour Package 2026 — Romantic Getaway | XTSY</title>
-      <meta name="description" content="Romantic Meghalaya tour for couples. 270° Glass Suite, private Dawki boating, sunset viewpoints, candlelight dining. Starting ₹18,999 per couple." />
+      <meta name="description" content="Romantic Meghalaya tour for couples. Experience by XTSY, private Dawki boating, sunset viewpoints, candlelight dining. Starting ₹18,999 per couple." />
       <meta name="keywords" content="Meghalaya couple tour, romantic trip Meghalaya, honeymoon Shillong, couple getaway Meghalaya" />
       <link rel="canonical" href="https://xtsy.one/meghalaya-couple-tour-package" />
     </Helmet>
@@ -26,7 +26,7 @@ const MeghalayaCoupleTourPackage = () => (
           <h1 className="text-3xl md:text-4xl font-bold text-foreground">Meghalaya Couple Tour Package</h1>
         </div>
         <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
-          A romantic 5-day getaway designed for couples — featuring XTSY's 270° Glass Suite, private river experiences, sunset viewpoints, and candlelight dining at TAB Bistro.
+          A romantic 5-day getaway designed for couples — featuring Experience by XTSY, private river experiences, sunset viewpoints, and candlelight dining at TAB Bistro.
         </p>
 
         <div className="mt-8 rounded-xl border border-border p-6">
@@ -38,7 +38,7 @@ const MeghalayaCoupleTourPackage = () => (
           <p className="mt-4 text-3xl font-bold text-foreground">₹18,999 <span className="text-sm font-normal text-muted-foreground">/ per couple</span></p>
           <ul className="mt-4 space-y-2">
             {[
-              '2 nights in XTSY 270° Glass Suite',
+              '2 nights in Experience by XTSY',
               '2 nights in XTSY Private Room',
               'Private boating on Dawki crystal river',
               'Sunset picnic at Laitlum Canyons',

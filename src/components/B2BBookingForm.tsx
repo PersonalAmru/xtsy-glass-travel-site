@@ -183,7 +183,7 @@ const B2BBookingForm = ({
       const whatsappMessage = isCoupleFocused 
         ? `✨ *Romantic Getaway Inquiry* ✨
 
-🌟 *Welcome to Premium Panoramic Glass Suite Experience*
+🌟 *Welcome to Experience by XTSY — India's First Stargaze Glamp*
 
 Hi XTSY Team! We're planning a romantic escape and would love to experience your stunning suite! 💕
 

@@ -141,7 +141,7 @@ const enrichmentFor = (cat: SEOPageCategory): Enrichment => {
     content: (t) =>
       `Planning ${t.toLowerCase()} is simplest with a local base. XTSY's Shillong properties put you within easy reach of the region's waterfalls, living root bridges, caves and viewpoints, with a team that arranges transport, guides and day trips on request.`,
     items: (t) => [
-      `Central Shillong base for easy day trips`,
+      `New Shillong Township base with a travel desk for day trips`,
       `Transport and local Khasi guides arranged on request`,
       `Best-time and route advice from people on the ground`,
       `Verified, budget-friendly stays with 24/7 check-in`,

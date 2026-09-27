@@ -139,10 +139,10 @@ const XTSY270Modal: React.FC<XTSY270ModalProps> = ({ isOpen, onClose }) => {
       >
         <DialogHeader>
           <DialogTitle className="text-center text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Reserve XTSY 270° Glass Suite
+            Reserve Experience by XTSY
           </DialogTitle>
           <VisuallyHidden>
-            <DialogDescription>Submit your inquiry to reserve India's only 270° panorama glass suite</DialogDescription>
+            <DialogDescription>Submit your inquiry to reserve Experience by XTSY, India's first stargaze glamp</DialogDescription>
           </VisuallyHidden>
           <p className="text-center text-sm text-muted-foreground">
             Only 1 exclusive suite available per night in India

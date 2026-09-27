@@ -24,7 +24,7 @@ const TravelCoupleAndSolo = ({ onSelect }: Props) => (
             15% Exclusive Couple Discount
           </div>
           <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
-            XTSY 270 Panorama Glass Ensuite + Curated Tour
+            Experience by XTSY + Curated Tour
           </h3>
           <p className="text-muted-foreground text-sm max-w-xl mx-auto">
             Premium couples packages with luxury stay at our signature XTSY 270° panoramic glass room.

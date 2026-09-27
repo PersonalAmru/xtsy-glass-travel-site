@@ -14,6 +14,7 @@ import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as R3DayMeghalayaItineraryRouteImport } from './routes/3-day-meghalaya-itinerary'
 import { Route as R5DayMeghalayaItineraryRouteImport } from './routes/5-day-meghalaya-itinerary'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as AdminLoginRouteImport } from './routes/admin-login'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BackpackingIndiaRouteImport } from './routes/backpacking-india'
@@ -144,6 +145,11 @@ const R5DayMeghalayaItineraryRoute = R5DayMeghalayaItineraryRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
@@ -697,6 +703,7 @@ export interface FileRoutesByFullPath {
   '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
+  '/faq': typeof FaqRoute
   '/admin-login': typeof AdminLoginRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
@@ -810,6 +817,7 @@ export interface FileRoutesByTo {
   '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
+  '/faq': typeof FaqRoute
   '/admin-login': typeof AdminLoginRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
@@ -924,6 +932,7 @@ export interface FileRoutesById {
   '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
+  '/faq': typeof FaqRoute
   '/admin-login': typeof AdminLoginRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
@@ -1039,6 +1048,7 @@ export interface FileRouteTypes {
     | '/3-day-meghalaya-itinerary'
     | '/5-day-meghalaya-itinerary'
     | '/about'
+    | '/faq'
     | '/admin-login'
     | '/auth'
     | '/backpacking-india'
@@ -1152,6 +1162,7 @@ export interface FileRouteTypes {
     | '/3-day-meghalaya-itinerary'
     | '/5-day-meghalaya-itinerary'
     | '/about'
+    | '/faq'
     | '/admin-login'
     | '/auth'
     | '/backpacking-india'
@@ -1265,6 +1276,7 @@ export interface FileRouteTypes {
     | '/3-day-meghalaya-itinerary'
     | '/5-day-meghalaya-itinerary'
     | '/about'
+    | '/faq'
     | '/admin-login'
     | '/auth'
     | '/backpacking-india'
@@ -1379,6 +1391,7 @@ export interface RootRouteChildren {
   R3DayMeghalayaItineraryRoute: typeof R3DayMeghalayaItineraryRoute
   R5DayMeghalayaItineraryRoute: typeof R5DayMeghalayaItineraryRoute
   AboutRoute: typeof AboutRoute
+  FaqRoute: typeof FaqRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AuthRoute: typeof AuthRoute
   BackpackingIndiaRoute: typeof BackpackingIndiaRoute
@@ -1522,6 +1535,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin-login': {
@@ -2275,6 +2295,7 @@ const rootRouteChildren: RootRouteChildren = {
   R3DayMeghalayaItineraryRoute: R3DayMeghalayaItineraryRoute,
   R5DayMeghalayaItineraryRoute: R5DayMeghalayaItineraryRoute,
   AboutRoute: AboutRoute,
+  FaqRoute: FaqRoute,
   AdminLoginRoute: AdminLoginRoute,
   AuthRoute: AuthRoute,
   BackpackingIndiaRoute: BackpackingIndiaRoute,

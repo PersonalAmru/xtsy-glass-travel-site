@@ -6,8 +6,10 @@
  * URLs. Edit once → propagates everywhere.
  *
  * RULES (also tracked in mem://brand/positioning-master-v1):
- *  - Own properties are in Shillong ONLY. Anywhere else, refer to the
- *    "trusted accommodation partner network" — do NOT claim a property.
+ *  - The only own property is on Mawdiangdiang Road, New Shillong Township,
+ *    Shillong 793018 (NOT Mawkhar / Police Bazaar / central Shillong).
+ *    Anywhere else, XTSY facilitates stays, transport and travel help
+ *    through trusted travel partners — do NOT claim a property.
  *  - Always credit XTSY ONE Ventures Pvt Ltd as parent company.
  *  - Pluxee partner badge + NEITA award line must be eligible to surface
  *    on every page (length-permitting).
@@ -29,14 +31,14 @@ export const OWN_PROPERTIES = [
   {
     name: 'XTSY Travellers Hostel',
     tagline: "Northeast India's Best Budget Accommodation",
-    city: 'Shillong',
+    city: 'New Shillong Township, Shillong',
     description:
       "India's biggest backpacker hostel in Northeast — NEITA 2025-recognised, female-safe, 24/7 check-in.",
   },
   {
-    name: 'Experience by XTSY (XTSY 270°)',
-    tagline: "India's First 270° Stargaze Glamping Ensuite",
-    city: 'Shillong',
+    name: 'Experience by XTSY',
+    tagline: "India's First Stargaze Glamp",
+    city: 'New Shillong Township, Shillong',
     description:
       'A first-of-its-kind panoramic glass suite designed for stargazing, anniversaries and slow luxury — built and operated in Shillong.',
   },
@@ -45,7 +47,7 @@ export const OWN_PROPERTIES = [
 export const AWARDS = [
   'Northeast India Tourism Awards — Best Budget Accommodation (NEITA 2025)',
   "Highest-rated hostel in Northeast India on Google (4.9★, 1,200+ reviews)",
-  "India's first 270° stargaze glamping ensuite (Experience by XTSY)",
+  "Experience by XTSY — India's first stargaze glamp",
 ] as const;
 
 export const PARTNERS = [
@@ -57,7 +59,7 @@ export const PARTNERS = [
 export const GROUP_VENTURES = [
   {
     name: 'XTSY Tourism',
-    summary: 'Curated tours across Northeast India, Sikkim & beyond — owned operations, no outsourcing.',
+    summary: 'Curated tours across Northeast India, Sikkim & beyond — planned by XTSY, delivered with trusted travel partners outside New Shillong.',
   },
   {
     name: 'XTSY Destination Weddings',
@@ -95,7 +97,7 @@ export const whyXTSYSection = (): SEOSection => ({
     "XTSY is Northeast India's highest-rated independent hospitality brand — Shillong-born, traveller-built, and now serving 50,000+ guests a year through owned properties, curated tours, weddings, catering and rentals.",
   listItems: [
     'NEITA 2025 — Best Budget Accommodation in Northeast India',
-    "India's first 270° stargaze glamping ensuite (Experience by XTSY)",
+    "Experience by XTSY — India's first stargaze glamp",
     'Highest-rated hostel in Northeast on Google (4.9★, 1,200+ reviews)',
     'Pluxee India partner — corporate stays via employee-benefit vouchers accepted',
     `24/7 WhatsApp booking & on-trip support — ${BRAND.whatsappDisplay}`,

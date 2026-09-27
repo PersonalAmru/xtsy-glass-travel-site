@@ -811,7 +811,7 @@ const _coupleLuxuryTours: TourPackage[] = [
   {
     id: 601,
     title: "XTSY 270 Romantic Meghalaya Escape",
-    description: "Meghalaya Honeymoon Circuit — XTSY Panorama Glasshouse stay, Cherrapunji waterfalls, Dawki sunrise kayaking, Mawlynnong village, candlelight dinner & Brahmaputra sunset cruise.",
+    description: "Meghalaya Honeymoon Circuit — Experience by XTSY stay, Cherrapunji waterfalls, Dawki sunrise kayaking, Mawlynnong village, candlelight dinner & Brahmaputra sunset cruise.",
     duration: "6 Days",
     difficulty: "Easy",
     price: "₹29,999",
@@ -819,7 +819,7 @@ const _coupleLuxuryTours: TourPackage[] = [
     rating: 4.9,
     category: "leisure",
     location: "Meghalaya",
-    highlights: ["XTSY Panorama Glasshouse Stay", "Romantic Candlelight Dinner & Bonfire", "Cherrapunji Waterfalls & Garden of Caves", "Mawlynnong & Living Root Bridge", "Dawki Sunrise Kayaking for Couples", "Brahmaputra Sunset Cruise"],
+    highlights: ["Experience by XTSY Stay", "Romantic Candlelight Dinner & Bonfire", "Cherrapunji Waterfalls & Garden of Caves", "Mawlynnong & Living Root Bridge", "Dawki Sunrise Kayaking for Couples", "Brahmaputra Sunset Cruise"],
     bestSeason: "Oct-Mar",
     exclusive: true,
     groupSize: "2 people (Couples only)"

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/meghalaya-couple-tour-package")({
       path: "/meghalaya-couple-tour-package",
       title: "Meghalaya Couple Tour Package | XTSY Travel",
       description:
-        "Romantic Meghalaya packages for couples: root bridges, Dawki boating, private cabs and a stay in the 270 degree glass suite, with transparent per-couple pricing.",
+        "Romantic Meghalaya packages for couples: root bridges, Dawki boating, private cabs and a stay at Experience by XTSY, with transparent per-couple pricing.",
     }),
   component: MeghalayaCoupleTourPackage,
 });

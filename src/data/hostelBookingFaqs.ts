@@ -11,7 +11,7 @@ export interface HostelFaq {
 export const hostelDealFaqs: HostelFaq[] = [
   {
     q: 'Do you need to book a hostel in advance in Shillong?',
-    a: 'For dorm beds, 3–7 days ahead is enough outside peak. You do need to book in advance — ideally 2–4 weeks — for October to May, Christmas–New Year, Cherry Blossom Festival, Durga Puja and long weekends, and always for private rooms or the 270° Glass Suite. Booking in advance direct at xtsy.one/book also locks the lowest rate, since last-minute inventory is the most expensive.',
+    a: 'For dorm beds, 3–7 days ahead is enough outside peak. You do need to book in advance — ideally 2–4 weeks — for October to May, Christmas–New Year, Cherry Blossom Festival, Durga Puja and long weekends, and always for private rooms or Experience by XTSY. Booking in advance direct at xtsy.one/book also locks the lowest rate, since last-minute inventory is the most expensive.',
   },
   {
     q: 'How do I get the best hostel deals?',
@@ -31,7 +31,7 @@ export const hostelDealFaqs: HostelFaq[] = [
   },
   {
     q: 'Do I pay upfront when I book?',
-    a: 'No prepayment is required on most dorm beds — pay on arrival by UPI, card or cash. Private rooms, the Glass Suite, group blocks and peak-season dates take a partial advance to hold the inventory. Every direct booking gets an instant WhatsApp confirmation and a GST invoice.',
+    a: 'No prepayment is required on most dorm beds — pay on arrival by UPI, card or cash. Private rooms, Experience by XTSY, group blocks and peak-season dates take a partial advance to hold the inventory. Every direct booking gets an instant WhatsApp confirmation and a GST invoice.',
   },
 ];
 

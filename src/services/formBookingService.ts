@@ -149,13 +149,13 @@ export async function saveXTSY270Inquiry(data: XTSY270BookingData) {
       p_check_in: new Date().toISOString().split('T')[0],
       p_check_out: new Date(Date.now() + 86400000).toISOString().split('T')[0],
       p_guests: 2,
-      p_room_type: 'XTSY 270° Panorama Glass Suite',
+      p_room_type: 'XTSY Experience by XTSY',
       p_room_type_id: 'xtsy-270',
       p_quantity: 1,
       p_subtotal: 0,
       p_taxes: 0,
       p_total_amount: 0,
-      p_special_requests: '[XTSY 270° Glass Suite Inquiry]',
+      p_special_requests: '[Experience by XTSY Inquiry]',
     });
 
     if (error) {

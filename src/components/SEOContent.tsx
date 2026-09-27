@@ -21,7 +21,7 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
         };
       case 'about':
         return {
-          title: "XTSY Travellers Hostel & Experience | India's First 270° Glass Ensuite & Biggest Hostel in North East India",
+          title: "XTSY Travellers Hostel & Experience | India's First Stargaze Glamp & Biggest Hostel in North East India",
           description: "Discover XTSY – India's biggest hostel in North East India and highest-rated traveller hostel. Featuring India's first 270° stargazing glass suite and premium group accommodations. Powered by xtsyonellp.",
           keywords: "biggest hostel north east india, biggest hostel shillong meghalaya, highest rated traveller hostel north east, best honeymoon stay india, group travel hostel india, luxury stargazing suite india, 270° glass room shillong, pan india travel brand, xtsyonellp, XTSY Travellers Hostel, Experience by XTSY, northeast india accommodation, stargazing glass suite, architectural innovation india, photographer friendly stay india, couple travel india 2025, backpacker hostel northeast india"
         };
@@ -59,7 +59,7 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
         <section>
           <h2>Why XTSY Travellers Hostel is India's Best Hostel for Gen Z Travelers and Tech Innovation</h2>
           <p>
-            XTSY Travellers Hostel stands as India's best hostel, located in the heart of Shillong, Meghalaya. 
+            XTSY Travellers Hostel stands as India's best hostel, located on Mawdiangdiang Road in New Shillong Township, Shillong, Meghalaya. 
             As the biggest hostel in Shillong and the entire North East India region, we offer unparalleled 
             accommodation experiences ranging from budget-friendly dormitories to luxury glass suites perfect for 
             Gen Z travelers, digital nomads, solo travelers, and Instagram-worthy stays. By 2026, XTSY will become 
@@ -86,12 +86,12 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
           <h2>Best Gen Z Friendly Accommodation, Dormitories & Tour Packages in Shillong, Meghalaya</h2>
           <p>
             Experience the best hostel in India with our comprehensive range of accommodations including the exclusive 
-            270° Panorama Glass Ensuite (first in Shillong), premium dormitory options, and expertly curated tour packages. 
+            Experience by XTSY (India's first stargaze glamp), premium dormitory options, and expertly curated tour packages. 
             XTSY Travellers Hostel offers India's most complete travel experience combining luxury suites, budget-friendly 
             dormitories, and authentic Northeast India tour packages for Gen Z travelers, digital nomads, and adventure seekers.
           </p>
           <ul>
-            <li>270° Panorama Glass Ensuite - Shillong's first panoramic luxury suite with 270-degree mountain views</li>
+            <li>Experience by XTSY - India's first stargaze glamp and Shillong's first panoramic luxury suite with 270-degree mountain views</li>
             <li>Premium Dormitory Options - Mixed, female-only, and economy dormitories with 24/7 security</li>
             <li>Budget-Friendly Accommodation - India's best value dormitory stays for backpackers and budget travelers</li>
             <li>Northeast India Tour Packages - Authentic cultural immersion and adventure tours</li>
@@ -167,7 +167,7 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
             When comparing XTSY with Zostel hostels, The Hosteller properties, goSTOPS locations, Moustache Hostels network, 
             and Madpackers accommodations, travelers consistently choose XTSY for our exclusive Northeast India location, 
             smart room technology, AI-powered services, sustainable practices, and personalized experiences that chain 
-            hostels simply cannot match. Our 270° Glass Suite, IoT-connected amenities, and cultural immersion programs 
+            hostels simply cannot match. Experience by XTSY, IoT-connected amenities, and cultural immersion programs 
             set us apart from generic chain experiences offered by competitors.
           </p>
         </section>
@@ -230,10 +230,10 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
         <section>
           <h3>Best Hostel Location in Shillong, Meghalaya</h3>
           <p>
-            Strategically located in Shillong, the capital of Meghalaya, XTSY Travellers Hostel offers 
-            easy access to Police Bazaar, Ward's Lake, Elephant Falls, and other major attractions. 
-            Our position as the biggest hostel in Shillong ensures convenient transportation links 
-            and proximity to the city's best restaurants, markets, and cultural sites.
+            XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near
+            NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. The XTSY
+            desk arranges cabs and day trips to Police Bazaar, Ward's Lake, Elephant Falls and other
+            major attractions, and TAB Bistro is on site.
           </p>
         </section>
 

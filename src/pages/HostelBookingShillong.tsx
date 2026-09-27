@@ -28,10 +28,10 @@ const HostelBookingShillong = memo(() => {
     paymentAccepted: 'Cash, UPI, Credit Card, Debit Card, Net Banking, PayPal',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Mawkhar, Shillong',
+      streetAddress: 'Mawdiangdiang Road, New Shillong Township',
       addressLocality: 'Shillong',
       addressRegion: 'Meghalaya',
-      postalCode: '793001',
+      postalCode: '793018',
       addressCountry: 'IN',
     },
     geo: { '@type': 'GeoCoordinates', latitude: 25.5788, longitude: 91.8933 },
@@ -77,7 +77,7 @@ const HostelBookingShillong = memo(() => {
     },
     {
       q: 'How far in advance should I book?',
-      a: 'Dorm beds: 3–7 days is usually fine outside peak. Private rooms and the 270° Glass Suite: 2–4 weeks ahead, especially Oct–May and long weekends.',
+      a: 'Dorm beds: 3–7 days is usually fine outside peak. Private rooms and Experience by XTSY: 2–4 weeks ahead, especially Oct–May and long weekends.',
     },
     {
       q: 'What is the cheapest hostel booking in Shillong?',
@@ -93,7 +93,7 @@ const HostelBookingShillong = memo(() => {
     },
     {
       q: 'Can I cancel or modify my booking?',
-      a: 'Free cancellation up to 48 hours before check-in for dorm beds and private rooms. Within 48 hours: first night charged. Glass Suite and tours are non-refundable but modifiable once within 90 days.',
+      a: 'Free cancellation up to 48 hours before check-in for dorm beds and private rooms. Within 48 hours: first night charged. Experience by XTSY and tours are non-refundable but modifiable once within 90 days.',
     },
     ...hostelDealFaqs,
   ];
@@ -113,7 +113,7 @@ const HostelBookingShillong = memo(() => {
     { name: '6-Bed Mixed Dorm', price: '₹499', per: 'per bed / night', tag: 'Popular' },
     { name: 'Female-only Dorm', price: '₹599', per: 'per bed / night', tag: 'Solo-safe' },
     { name: 'Private Double Room', price: '₹2,200', per: 'per room / night', tag: 'Couples' },
-    { name: '270° Glass Suite', price: '₹5,399', per: 'stay only / night', tag: 'Signature' },
+    { name: 'Experience by XTSY', price: '₹5,399', per: 'stay only / night', tag: 'Signature' },
   ];
 
   return (
@@ -228,7 +228,7 @@ const HostelBookingShillong = memo(() => {
         <section className="py-14 px-4">
           <div className="container mx-auto max-w-4xl">
             <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 font-playfair">
-              Location — Mawkhar, Central Shillong
+              Location — New Shillong Township
             </h2>
             <div className="grid sm:grid-cols-2 gap-6">
               <Card className="border-border/50">
@@ -236,9 +236,8 @@ const HostelBookingShillong = memo(() => {
                   <MapPin className="w-5 h-5 text-primary mb-2" />
                   <h3 className="font-semibold mb-2 text-sm">Address</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    XTSY Travellers Hostel, Mawkhar, Shillong, Meghalaya 793001, India
+                    XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018, India
                   </p>
-                  <p className="text-xs text-muted-foreground mt-2">Lat 25.5788° N · Long 91.8933° E</p>
                 </CardContent>
               </Card>
               <Card className="border-border/50">
@@ -247,7 +246,7 @@ const HostelBookingShillong = memo(() => {
                   <h3 className="font-semibold mb-2 text-sm">Getting Here</h3>
                   <ul className="text-sm text-muted-foreground space-y-1.5">
                     <li className="flex gap-2"><Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" /> 2.5 hrs from Guwahati Airport (GAU)</li>
-                    <li className="flex gap-2"><Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" /> 15 min from Police Bazaar</li>
+                    <li className="flex gap-2"><Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" /> Near NIFT Shillong, IIM Shillong &amp; NEIGRIMS</li>
                     <li className="flex gap-2"><Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" /> Airport pickup available on request</li>
                   </ul>
                 </CardContent>

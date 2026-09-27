@@ -3,7 +3,7 @@ import { Sparkles, TreePine, Droplets, Flame, Star } from "lucide-react";
 const EXPERIENCES = [
   {
     icon: Star,
-    title: "270° Glasshouse Stargazing",
+    title: "Stargazing at Experience by XTSY",
     desc: "India's first panoramic glass suite under the stars",
     gradient: "from-indigo-500 to-purple-600",
   },

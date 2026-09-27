@@ -23,7 +23,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
           '6-Bed Mixed Dorm — ₹499/night (18 beds)',
           '4-Bed Female Dorm — ₹599/night (4 beds)',
           'King Double Room — ₹2,200/night (3 rooms)',
-          '270° Panorama Glass Suite — ₹5,399/night (1 suite)',
+          'Experience by XTSY — ₹5,399/night (1 suite)',
         ],
       },
       {
@@ -38,7 +38,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
       },
       {
         heading: 'Getting to XTSY from Guwahati',
-        content: `XTSY is located in Mawkhar, Shillong — just 2.5 hours from Guwahati Airport. Shared taxis run every 30 minutes from ISBT Guwahati. We can also arrange private airport transfers for guests.`,
+        content: `XTSY is on Mawdiangdiang Road, New Shillong Township, Shillong — a road trip up from Guwahati Airport. Shared taxis run every 30 minutes from ISBT Guwahati. We can also arrange private airport transfers for guests.`,
       },
     ],
     faqs: [
@@ -70,13 +70,13 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
         listItems: [
           'Dorm beds from ₹399/night',
           'Private rooms from ₹2,200/night',
-          'Luxury 270° Glass Suite from ₹5,399/night',
+          'Luxury Experience by XTSY from ₹5,399/night',
           'All prices inclusive of taxes',
         ],
       },
       {
         heading: 'What\'s Nearby',
-        content: `XTSY is located in the heart of Shillong, walking distance from Police Bazaar, Ward\'s Lake, and Don Bosco Museum. The famous Café Shillong and local eateries are within 5 minutes.`,
+        content: `XTSY is on Mawdiangdiang Road in New Shillong Township, near NIFT Shillong, IIM Shillong and NEIGRIMS. TAB Bistro is on site, and Police Bazaar is a cab ride away.`,
       },
     ],
     faqs: [
@@ -138,7 +138,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
         content: `Our private rooms offer hotel-grade comfort at hostel-friendly prices. Every room includes high-speed Wi-Fi, hot water, daily housekeeping, and mountain views.`,
         listItems: [
           'King Double Room — ₹2,200/night (fits 2 guests)',
-          '270° Panorama Glass Ensuite — ₹5,399/night (luxury experience)',
+          'Experience by XTSY — ₹5,399/night (luxury experience)',
         ],
       },
       {
@@ -147,7 +147,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
       },
       {
         heading: 'Location & Accessibility',
-        content: `Located in Mawkhar, Shillong — central to all major attractions. 5 minutes from Police Bazaar, 10 minutes from Ward's Lake, and 15 minutes from Shillong Peak viewpoint.`,
+        content: `Located on Mawdiangdiang Road, New Shillong Township, near NIFT Shillong and IIM Shillong. Police Bazaar, Ward's Lake and Shillong Peak are short cab rides away.`,
       },
     ],
     faqs: [
@@ -176,7 +176,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
           '6-Bed Mixed Dorm — From ₹499/night (recommended)',
           '4-Bed Female Dorm — From ₹599/night (women only)',
           'King Double Room — From ₹2,200/night (couples)',
-          '270° Glass Suite — From ₹5,399/night (luxury)',
+          'Experience by XTSY — From ₹5,399/night (luxury)',
         ],
       },
       {

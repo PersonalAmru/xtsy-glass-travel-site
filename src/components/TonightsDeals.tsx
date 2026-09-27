@@ -5,7 +5,7 @@
 import { memo, useState, useEffect } from 'react';
 import { Clock, Zap, ChevronRight } from 'lucide-react';
 import { Link } from '@/lib/router-compat';
-import { getBookableRooms, type RoomType, getSimulatedAvailability, isMayPricingActive } from '@/data/roomInventory';
+import { getBookableRooms, type RoomType, isMayPricingActive } from '@/data/roomInventory';
 import { formatLocalDateString } from '@/lib/date-utils';
 import { cn } from '@/lib/utils';
 
@@ -44,7 +44,6 @@ const DealCard = memo(({ room }: { room: RoomType }) => {
   const discount = room.originalPrice > room.discountedPrice
     ? Math.round((1 - room.discountedPrice / room.originalPrice) * 100)
     : 0;
-  const availableLeft = getSimulatedAvailability(room.id);
 
   if (discount <= 0) return null;
 
@@ -71,7 +70,7 @@ const DealCard = memo(({ room }: { room: RoomType }) => {
           <div className="flex items-center gap-2 mt-1.5">
             <CountdownTimer />
             <span className="text-[11px] text-muted-foreground">
-              {availableLeft <= 3 ? `Only ${availableLeft} left` : 'Valid today only'}
+              Valid today only
             </span>
           </div>
           {!isMayPricingActive() && (
