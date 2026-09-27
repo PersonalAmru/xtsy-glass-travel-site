@@ -37,7 +37,7 @@ async function main() {
     // Pre-accept the cookie banner so it doesn't cover the page.
     await ctx.addInitScript(() => {
       try {
-        localStorage.setItem('xtsy_consent_v2', JSON.stringify({ necessary: true, analytics: false, marketing: false, personalization: false }));
+        localStorage.setItem('xtsy_consent_v2', JSON.stringify({ necessary: true, analytics: true, marketing: false, personalization: false, timestamp: new Date().toISOString(), version: '2.0' }));
         localStorage.setItem('xtsy_consent_timestamp', new Date().toISOString());
       } catch { /* ignore */ }
     });
