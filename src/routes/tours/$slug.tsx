@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import TourDetail from "@/pages/TourDetail";
+import TourDetail from "@/pages/v2/TourDetailV2";
 import { buildRouteHead } from "@/lib/seo-head";
 import { getAllTours, mergeItinerary } from "@/data/travelData";
 import { getSignaturePackageBySlug, signaturePackageToTourPackage } from "@/data/signaturePackages";

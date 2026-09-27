@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import TabBistroCatering from "@/pages/TabBistroCatering";
+import TabBistroCatering from "@/pages/v2/CateringV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/tab-bistro/catering")({

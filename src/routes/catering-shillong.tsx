@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import TabBistroCatering from "@/pages/TabBistroCatering";
+import CateringV2 from "@/pages/v2/CateringV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/catering-shillong")({
@@ -10,5 +10,9 @@ export const Route = createFileRoute("/catering-shillong")({
       description:
         "TAB Bistro by XTSY handles catering in Shillong for weddings, corporate events, retreats and group stays, with set menus, live counters and per-plate pricing.",
     }),
-  component: TabBistroCatering,
+  component: CateringShillong,
 });
+
+function CateringShillong() {
+  return <CateringV2 canonical="https://xtsy.one/catering-shillong" />;
+}

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import ExpeditionsIndex from "@/pages/expeditions/ExpeditionsIndex";
+import { ExpeditionsIndexV2 as ExpeditionsIndex } from "@/pages/v2/ExpeditionsV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/expeditions/")({

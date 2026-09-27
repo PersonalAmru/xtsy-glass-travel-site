@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import Tours from "@/pages/Tours";
+import Tours from "@/pages/v2/ToursV2";
 import { buildRouteHead } from "@/lib/seo-head";
 import toursHero900 from "@/assets/tours-hero-mountains-900.webp";
 import toursHero1600 from "@/assets/tours-hero-mountains-1600.webp";

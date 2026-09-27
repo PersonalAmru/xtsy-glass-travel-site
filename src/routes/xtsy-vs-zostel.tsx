@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import XTSYvsZostel from "@/pages/XTSYvsZostel";
+import XTSYvsZostel from "@/pages/v2/ZostelV2";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/xtsy-vs-zostel")({

@@ -52,7 +52,7 @@ jobs:
       - name: Production build
         run: |
           set -o pipefail
-          bun run build 2>&1 | tee build.log
+          bun run build 2>&1 | tee build.log || { grep -iE "error|failed" build.log | tail -15 | sed 's/^/::error::/'; exit 1; }
 
       - name: Install Playwright Chromium
         run: bunx playwright install --with-deps chromium
@@ -76,7 +76,7 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          [ -d shots ] || exit 0
+          mkdir -p shots
           cp build.log shots/ 2>/dev/null || true
           cp dev.log shots/ 2>/dev/null || true
           SAFE=$(echo "${BRANCH_NAME}" | tr '/' '-')
@@ -90,4 +90,9 @@ jobs:
           cp -r "$GITHUB_WORKSPACE/shots/." "$SAFE/"
           git add -A
           git commit -q -m "Screenshots for ${BRANCH_NAME} @ ${GITHUB_SHA::7}" || exit 0
-          git push -q origin HEAD:ci-screenshots
+          for i in 1 2 3 4 5; do
+            git push -q origin HEAD:ci-screenshots && exit 0
+            git fetch -q --depth=1 origin ci-screenshots && git rebase -q FETCH_HEAD || true
+            sleep 5
+          done
+          exit 1

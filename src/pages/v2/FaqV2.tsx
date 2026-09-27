@@ -18,7 +18,7 @@ function buildTopics(): Topic[] {
       ['Where exactly is XTSY?', 'XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University, in a calm, green part of Shillong away from the city centre.'],
       ['Does XTSY have properties in other places?', 'No. XTSY Travellers Hostel in New Shillong Township (with Experience by XTSY and TAB Bistro) is XTSY’s only property. Everywhere else, including Dawki, Sohra, Tawang and beyond, XTSY arranges stays, transport and travel help through trusted travel partners, and our desk stays your single contact.'],
       ['What rooms do you have?', `6 and 8-bed mixed dorms from ${inr(lowestDormPrice())}, a 4-bed female-only dorm (${inr(female.now)}), King Double private rooms and Experience by XTSY, India’s First Stargaze Glamp. Every bed has a locker, reading light and charging point.`],
-      ['What are check-in and check-out times?', 'Check-in is from 2 PM and check-out by 11 AM (see our Terms of Service). Arriving late? Message the desk with your arrival time.'],
+      ['What are check-in and check-out times?', 'Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the desk with your arrival time; our arrival desk can help around the clock.'],
       ['Is XTSY safe for solo women?', 'Yes. A women-only dorm, female staff on call, CCTV in common areas and personal lockers.'],
       ['Why book direct?', 'You save 20–30% vs OTAs and get instant confirmation from the XTSY team.'],
     ] },
