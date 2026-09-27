@@ -21,6 +21,7 @@ import CelebrationInterstitial from './CelebrationInterstitial';
 import { CurrencySelector } from './CurrencySelector';
 import { useApp } from '@/contexts/AppContext';
 import { PANORAMA_STAY_ONLY, PANORAMA_WITH_BREAKFAST, PANORAMA_DECORATION } from '@/data/panoramaPricing';
+import { supabase } from '@/integrations/supabase/client';
 
 interface BookingRoom {
   id: string;
@@ -594,6 +595,28 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
         const roomGst = Math.round(rate * sel.quantity * nights * (roomGstRate / 100)) + Math.round(decorationCost * 0.18);
         const roomTotal = roomSubtotal + roomGst;
 
+        if (isPanorama) {
+          const { data: matchingRoom, error: roomError } = await supabase.from('room_types').select('id').eq('name', 'XTSY 270° Panorama Glass Ensuite').eq('is_active', true).maybeSingle();
+          if (roomError || !matchingRoom) return { success: false, error: 'Panorama is not available for enquiries right now' };
+          const { data, error } = await supabase.rpc('create_whatsapp_enquiry', {
+            p_guest_name: guestName,
+            p_email: guestEmail,
+            p_phone: guestPhone,
+            p_check_in: format(checkIn, 'yyyy-MM-dd'),
+            p_check_out: format(checkOut, 'yyyy-MM-dd'),
+            p_guests: guests,
+            p_room_ids: [matchingRoom.id],
+            p_quantities: [sel.quantity],
+            p_breakfast: panoramaBreakfast,
+            p_decoration: decoration,
+            p_subtotal: roomSubtotal,
+            p_taxes: roomGst,
+            p_total: roomTotal,
+            p_requests: [specialRequests, `Panorama ${panoramaBreakfast ? 'Stay + breakfast for 2' : 'Stay only'}, Decoration ${decoration ? '₹2,500' : 'none'}`].filter(Boolean).join(' | '),
+          });
+          const response = data as { success?: boolean; error?: string } | null;
+          return { success: !error && !!response?.success, error: error?.message || response?.error };
+        }
         return createEnquiry({
           guestName,
           guestEmail,
@@ -606,7 +629,7 @@ export default function BookingModal({ isOpen, onClose, initialCheckIn, initialC
           nights,
           ratePerNight: rate,
           subtotal: roomSubtotal,
-          gstRate: room.price >= 7500 ? 18 : 5,
+          gstRate: rate >= 7500 ? 18 : 5,
           gstAmount: roomGst,
           totalAmount: roomTotal,
           specialRequests: [specialRequests, isPanorama ? `Panorama package: ${panoramaBreakfast ? 'Stay + breakfast for 2' : 'Stay only'}; nightly ₹${rate}; decoration: ${decoration ? 'yes, ₹2,500 one-time (rose petals, scented candles, bouquet, cake)' : 'no'}` : ''].filter(Boolean).join(' | ') || undefined,
