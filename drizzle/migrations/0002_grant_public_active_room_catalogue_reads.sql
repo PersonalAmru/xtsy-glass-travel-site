@@ -1,0 +1,1 @@
+GRANT SELECT ON public.room_types TO anon, authenticated, service_role;

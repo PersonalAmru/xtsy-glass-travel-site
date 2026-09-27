@@ -15,6 +15,13 @@
       "when": 1790507121620,
       "tag": "0001_secure_whatsapp_room_enquiry_quote",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790512411290,
+      "tag": "0002_grant_public_active_room_catalogue_reads",
+      "breakpoints": true
     }
   ]
 }
