@@ -1,36 +1,17 @@
-import { memo, lazy } from "react";
+import { memo } from "react";
 import { Helmet } from "react-helmet-async";
-import HeroSection from "@/components/HeroSection";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import LazyWrapper from "@/components/LazyWrapper";
-import LastMinuteBanner from "@/components/LastMinuteBanner";
-
 import SEOHead, { getSEOConfig } from "@/components/SEOHead";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 import { googleReviews } from "@/data/googleReviews";
-
-// Lazy load below-fold sections for better initial load
-const DestinationExplorer = lazy(() => import("@/components/DestinationExplorer"));
-const XTSYPrimeSection = lazy(() => import("@/components/XTSYPrimeSection"));
-const TrendingDestinations = lazy(() => import("@/components/TrendingDestinations"));
-const TripBuilder = lazy(() => import("@/components/TripBuilder"));
-const HomeTourPackages = lazy(() => import("@/components/HomeTourPackages"));
-const AdventureCallToAction = lazy(() => import("@/components/AdventureCallToAction"));
-const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
-const AvailableStaysNow = lazy(() => import("@/components/AvailableStaysNow"));
-const TonightsDeals = lazy(() => import("@/components/TonightsDeals"));
-const DawkiCampsiteCard = lazy(() => import("@/components/DawkiCampsiteCard"));
-
-const FAQSection = lazy(() => import("@/components/FAQSection"));
-const SEOFooterLinks = lazy(() => import("@/components/SEOFooterLinks"));
-
-// Minimal mobile-friendly fallback
-const SectionFallback = memo(({ height = 'h-64' }: { height?: string }) => (
-  <div className={`${height} bg-muted/30 rounded-lg mx-4`} />
-));
-
-SectionFallback.displayName = 'SectionFallback';
+import SiteHeader from "@/components/v2/SiteHeader";
+import SiteFooter from "@/components/v2/SiteFooter";
+import CtaBand from "@/components/v2/CtaBand";
+import HomeHero from "@/components/v2/home/HomeHero";
+import {
+  LastMinuteBar, StatsStrip, PromiseMarquee, Trending, Stays, CampsiteBanner, StateExplorer,
+  PrimeRail, GlampFeature, BistroFeature, ToursRow, TonightDeals, ExpeditionsBanner, Reviews,
+  HomeFaq, SeoLinks, HOME_FAQS,
+} from "@/components/v2/home/HomeSections";
 
 const Index = memo(() => {
   // Track scroll depth milestones (25%, 50%, 75%, 100%)
@@ -120,52 +101,15 @@ const Index = memo(() => {
   const homeFaqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What is the best time to visit Shillong, Meghalaya?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The best time to visit Shillong is October to May for clear skies and pleasant weather. June to September is monsoon season — ideal for experiencing Cherrapunji\'s waterfalls at full force. XTSY Travellers Hostel is open year-round.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How to reach Shillong from Guwahati?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Shillong is 100 km from Guwahati Airport (GAU), approximately 2.5 hours by road via NH6. Shared taxis run every 30 minutes from ISBT Guwahati. XTSY can arrange airport transfers for guests.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How much does a hostel in Shillong cost per night?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'At XTSY Travellers Hostel, dormitory beds start from ₹369/night, private rooms from ₹2,500/night, and Experience by XTSY from ₹4,999/night. Prices vary by season.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What is the biggest hostel in Northeast India?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'XTSY Travellers Hostel in Shillong is the biggest hostel in Northeast India, featuring multiple room types including dormitories, private rooms, and India\'s first 270° panoramic glass suite.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does XTSY offer Meghalaya tour packages?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, XTSY offers 30+ curated tour packages including Living Root Bridge treks, Dawki river expeditions, cave explorations, and multi-day Meghalaya itineraries starting from ₹13,999.',
-        },
-      },
-    ],
+    mainEntity: HOME_FAQS.map(([q, a]) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
   };
 
   return (
-    <div className="min-h-screen">
+    <>
       <SEOHead structuredDataOnly 
         title={seoConfig.title}
         description={seoConfig.description}
@@ -177,74 +121,31 @@ const Index = memo(() => {
         <script type="application/ld+json">{JSON.stringify(homeFaqSchema)}</script>
       </Helmet>
       
-      <Header />
-      <main style={{ contain: 'layout style' }}>
-        <HeroSection />
-        
-        {/* Last-Minute Banner — urgency signal right after hero */}
-        <div className="max-w-5xl mx-auto px-4 mt-4 mb-2">
-          <LastMinuteBanner />
-        </div>
-        
-        {/* Wave 2E — Demoted XTSYPrime + HomeTourPackages from eager.
-            Only the first 2 below-fold sections hydrate eagerly to keep TBT low. */}
-        {/* Wave 3 — All below-fold sections deferred via IntersectionObserver.
-            Eager hydration was starving the hero LCP paint. */}
-        <LazyWrapper fallback={<SectionFallback height="h-[420px]" />}>
-          <TrendingDestinations />
-        </LazyWrapper>
-        
-        <LazyWrapper fallback={<SectionFallback height="h-80" />}>
-          <AvailableStaysNow />
-        </LazyWrapper>
-        
-        {/* Dawki Adventure Campsite — featured prominently right below Shillong stays */}
-        <LazyWrapper fallback={<SectionFallback height="h-80" />}>
-          <DawkiCampsiteCard />
-        </LazyWrapper>
-        
-        <LazyWrapper fallback={<SectionFallback height="h-64" />}>
-          <DestinationExplorer />
-        </LazyWrapper>
-        
-        <LazyWrapper fallback={<SectionFallback height="h-96" />}>
-          <TripBuilder />
-        </LazyWrapper>
-        
-        <LazyWrapper fallback={<SectionFallback height="h-80" />}>
-          <XTSYPrimeSection />
-        </LazyWrapper>
-        
-        <LazyWrapper fallback={<SectionFallback height="h-96" />}>
-          <HomeTourPackages />
-        </LazyWrapper>
-        
-        {/* Tonight's Deals — urgency-driven deals */}
-        <LazyWrapper fallback={<SectionFallback height="h-64" />}>
-          <TonightsDeals />
-        </LazyWrapper>
-        
-        {/* Adventure CTA */}
-        <LazyWrapper fallback={<SectionFallback height="h-48" />}>
-          <AdventureCallToAction />
-        </LazyWrapper>
-        
-        {/* Guest Reviews */}
-        <LazyWrapper fallback={<SectionFallback />}>
-          <ReviewsSection />
-        </LazyWrapper>
-        
-        <LazyWrapper fallback={<SectionFallback />}>
-          <FAQSection />
-        </LazyWrapper>
-        
-        {/* SEO Footer Links - crawl hub */}
-        <LazyWrapper fallback={<SectionFallback height="h-48" />}>
-          <SEOFooterLinks />
-        </LazyWrapper>
-      </main>
-      <Footer />
-    </div>
+      <div className="xt min-h-screen">
+        <SiteHeader />
+        <LastMinuteBar />
+        <main>
+          <HomeHero />
+          <StatsStrip />
+          <PromiseMarquee />
+          <Trending />
+          <Stays />
+          <CampsiteBanner />
+          <StateExplorer />
+          <PrimeRail />
+          <GlampFeature />
+          <BistroFeature />
+          <ToursRow />
+          <TonightDeals />
+          <ExpeditionsBanner />
+          <Reviews />
+          <HomeFaq />
+          <SeoLinks />
+          <CtaBand />
+        </main>
+        <SiteFooter />
+      </div>
+    </>
   );
 });
 
