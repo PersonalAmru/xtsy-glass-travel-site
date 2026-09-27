@@ -14,6 +14,7 @@ import { RECOVERY_REDIRECTS } from '@/data/seoAffectedSlugs';
 import { getDestinationGeo } from '@/data/destinationGeo';
 import { getWheelLinks } from '@/data/seoLinkingWheel';
 import { getHeroImageForPage, getAIHeroURL, getSectionImage } from '@/utils/seoHeroImages';
+import { BISTRO_COVER } from '@/data/bistroCover';
 import { SEO_UPDATED_DATE, SEO_YEAR } from '@/utils/seoDate';
 import { Check, ChevronDown, ChevronUp, MessageCircle, Sparkles } from 'lucide-react';
 import { useState, memo, useEffect } from 'react';
@@ -247,8 +248,9 @@ const ProgrammaticSEOPage = () => {
   const page = slug ? findSEOPage(slug) : undefined;
 
   // Hook order must be stable across renders — declare hooks BEFORE any early return
-  const curatedHero = page ? getHeroImageForPage(page.slug, page.category) : '';
-  const aiHero = page ? getAIHeroURL(page.slug) : '';
+  const isBistroPage = Boolean(page && (page.slug.includes('tab-bistro') || page.slug.includes('xtsy-restaurant')));
+  const curatedHero = page ? (isBistroPage ? BISTRO_COVER : getHeroImageForPage(page.slug, page.category)) : '';
+  const aiHero = page && !isBistroPage ? getAIHeroURL(page.slug) : '';
   const [heroSrc, setHeroSrc] = useState(curatedHero);
 
   useEffect(() => {
@@ -257,6 +259,7 @@ const ProgrammaticSEOPage = () => {
     const img = new Image();
     img.onload = () => setHeroSrc(aiHero);
     img.onerror = () => setHeroSrc(curatedHero);
+    if (!aiHero) { setHeroSrc(curatedHero); return; }
     img.src = aiHero;
   }, [page, aiHero, curatedHero]);
 
