@@ -1,0 +1,971 @@
+[
+ {
+  "route": "/",
+  "status": 200,
+  "wallMs": 27645,
+  "ttfb": 60,
+  "fcp": 8944,
+  "lcp": {
+   "t": 8944,
+   "size": 219570,
+   "url": "http://localhost:4173/img/o/xtsy-property-images-8-1280.webp",
+   "tag": "IMG",
+   "cls": "absolute inset-0 -z-20 h-full w-full object-cover",
+   "text": ""
+  },
+  "lcpCandidates": [
+   {
+    "t": 8944,
+    "size": 219570,
+    "url": "http://localhost:4173/img/o/xtsy-property-images-8-1280.webp",
+    "tag": "IMG",
+    "cls": "absolute inset-0 -z-20 h-full w-full object-cover",
+    "text": ""
+   }
+  ],
+  "cls": 0.206,
+  "requests": 78,
+  "byType": {
+   "image": {
+    "n": 10,
+    "kb": 806
+   },
+   "stylesheet": {
+    "n": 2,
+    "kb": 435
+   },
+   "script": {
+    "n": 33,
+    "kb": 3590
+   },
+   "document": {
+    "n": 1,
+    "kb": 139
+   },
+   "font": {
+    "n": 5,
+    "kb": 92
+   },
+   "fetch": {
+    "n": 15,
+    "kb": 2
+   },
+   "xhr": {
+    "n": 7,
+    "kb": 15
+   },
+   "ping": {
+    "n": 2,
+    "kb": 0
+   },
+   "other": {
+    "n": 3,
+    "kb": 0
+   }
+  },
+  "biggest": [
+   {
+    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
+    "type": "script",
+    "bytes": 1686168,
+    "kb": 1647
+   },
+   {
+    "url": "https://t.contentsquare.net/uxa/8a1781ba2e7b5.js",
+    "type": "script",
+    "bytes": 559936,
+    "kb": 547
+   },
+   {
+    "url": "http://localhost:4173/assets/esm-YspT_man.js",
+    "type": "script",
+    "bytes": 475465,
+    "kb": 464
+   },
+   {
+    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
+    "type": "stylesheet",
+    "bytes": 424198,
+    "kb": 414
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
+    "type": "image",
+    "bytes": 210210,
+    "kb": 205
+   },
+   {
+    "url": "http://localhost:4173/assets/client-kMGS092h.js",
+    "type": "script",
+    "bytes": 208985,
+    "kb": 204
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
+    "type": "script",
+    "bytes": 197747,
+    "kb": 193
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsy-property-images-8-1280.webp",
+    "type": "image",
+    "bytes": 194506,
+    "kb": 190
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+    "type": "script",
+    "bytes": 163173,
+    "kb": 159
+   },
+   {
+    "url": "http://localhost:4173/",
+    "type": "document",
+    "bytes": 142612,
+    "kb": 139
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-dawki-river-735.webp",
+    "type": "image",
+    "bytes": 108474,
+    "kb": 106
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+    "type": "image",
+    "bytes": 88578,
+    "kb": 87
+   }
+  ]
+ },
+ {
+  "route": "/xtsy-270",
+  "status": 200,
+  "wallMs": 22939,
+  "ttfb": 18,
+  "fcp": 7996,
+  "lcp": {
+   "t": 8676,
+   "size": 64889,
+   "url": "",
+   "tag": "H1",
+   "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:text-[136px]",
+   "text": "Experience by XTSY"
+  },
+  "lcpCandidates": [
+   {
+    "t": 7996,
+    "size": 2754,
+    "url": "",
+    "tag": "BUTTON",
+    "cls": "xt-btn fixed bottom-[148px] right-4 z-50 flex h-14 items-center gap-2.5 rounded-full bg-xt-ink pl-3 pr-5 text-[15px] fon",
+    "text": "Plan a trip with AI"
+   },
+   {
+    "t": 8676,
+    "size": 64889,
+    "url": "",
+    "tag": "H1",
+    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:text-[136px]",
+    "text": "Experience by XTSY"
+   }
+  ],
+  "cls": 0.013,
+  "requests": 75,
+  "byType": {
+   "image": {
+    "n": 6,
+    "kb": 549
+   },
+   "stylesheet": {
+    "n": 2,
+    "kb": 435
+   },
+   "script": {
+    "n": 47,
+    "kb": 2337
+   },
+   "document": {
+    "n": 1,
+    "kb": 71
+   },
+   "font": {
+    "n": 5,
+    "kb": 92
+   },
+   "fetch": {
+    "n": 11,
+    "kb": 2
+   },
+   "other": {
+    "n": 3,
+    "kb": 0
+   }
+  },
+  "biggest": [
+   {
+    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
+    "type": "script",
+    "bytes": 1686168,
+    "kb": 1647
+   },
+   {
+    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
+    "type": "stylesheet",
+    "bytes": 424198,
+    "kb": 414
+   },
+   {
+    "url": "http://localhost:4173/assets/client-kMGS092h.js",
+    "type": "script",
+    "bytes": 208985,
+    "kb": 204
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+    "type": "script",
+    "bytes": 163173,
+    "kb": 159
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsy-270-xtsy270-900.webp",
+    "type": "image",
+    "bytes": 153132,
+    "kb": 150
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsy-270-xtsy270-3-1280.webp",
+    "type": "image",
+    "bytes": 132296,
+    "kb": 129
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsy-270-xtsy270-4-1280.webp",
+    "type": "image",
+    "bytes": 102672,
+    "kb": 100
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsy-270-xtsy270-2-900.webp",
+    "type": "image",
+    "bytes": 81976,
+    "kb": 80
+   },
+   {
+    "url": "http://localhost:4173/xtsy-270",
+    "type": "document",
+    "bytes": 72389,
+    "kb": 71
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsy-270-xtsy270-5-960.webp",
+    "type": "image",
+    "bytes": 69444,
+    "kb": 68
+   },
+   {
+    "url": "http://localhost:4173/assets/meghalayaDestinations-CJH8XywN.js",
+    "type": "script",
+    "bytes": 67450,
+    "kb": 66
+   },
+   {
+    "url": "http://localhost:4173/assets/cdnImages-AGSeSHyi.js",
+    "type": "script",
+    "bytes": 33369,
+    "kb": 33
+   }
+  ]
+ },
+ {
+  "route": "/tours",
+  "status": 200,
+  "wallMs": 22985,
+  "ttfb": 30,
+  "fcp": 7728,
+  "lcp": {
+   "t": 8600,
+   "size": 78337,
+   "url": "",
+   "tag": "P",
+   "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[20px]",
+   "text": "Root bridges, caves, Dawki’s clear river, Tawang’s monasteri"
+  },
+  "lcpCandidates": [
+   {
+    "t": 7728,
+    "size": 18928,
+    "url": "",
+    "tag": "H2",
+    "cls": "xt-display m-0 text-[44px] leading-[0.95] sm:text-[60px] lg:text-[72px]",
+    "text": "Northeast signatures"
+   },
+   {
+    "t": 8600,
+    "size": 78337,
+    "url": "",
+    "tag": "P",
+    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[20px]",
+    "text": "Root bridges, caves, Dawki’s clear river, Tawang’s monasteri"
+   }
+  ],
+  "cls": 0.005,
+  "requests": 53,
+  "byType": {
+   "stylesheet": {
+    "n": 2,
+    "kb": 435
+   },
+   "script": {
+    "n": 27,
+    "kb": 2268
+   },
+   "image": {
+    "n": 5,
+    "kb": 473
+   },
+   "document": {
+    "n": 1,
+    "kb": 202
+   },
+   "font": {
+    "n": 4,
+    "kb": 83
+   },
+   "fetch": {
+    "n": 11,
+    "kb": 2
+   },
+   "other": {
+    "n": 3,
+    "kb": 0
+   }
+  },
+  "biggest": [
+   {
+    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
+    "type": "script",
+    "bytes": 1686168,
+    "kb": 1647
+   },
+   {
+    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
+    "type": "stylesheet",
+    "bytes": 424198,
+    "kb": 414
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
+    "type": "image",
+    "bytes": 210210,
+    "kb": 205
+   },
+   {
+    "url": "http://localhost:4173/assets/client-kMGS092h.js",
+    "type": "script",
+    "bytes": 208985,
+    "kb": 204
+   },
+   {
+    "url": "http://localhost:4173/tours",
+    "type": "document",
+    "bytes": 207055,
+    "kb": 202
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+    "type": "script",
+    "bytes": 163173,
+    "kb": 159
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-dawki-river-735.webp",
+    "type": "image",
+    "bytes": 108474,
+    "kb": 106
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+    "type": "image",
+    "bytes": 88578,
+    "kb": 87
+   },
+   {
+    "url": "http://localhost:4173/assets/meghalayaDestinations-CJH8XywN.js",
+    "type": "script",
+    "bytes": 67450,
+    "kb": 66
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-assam-cover-image-736.webp",
+    "type": "image",
+    "bytes": 54014,
+    "kb": 53
+   },
+   {
+    "url": "http://localhost:4173/assets/cdnImages-AGSeSHyi.js",
+    "type": "script",
+    "bytes": 33369,
+    "kb": 33
+   },
+   {
+    "url": "https://fonts.gstatic.com/s/josefinsans/v34/Qw3aZQNVED7rKGKxtqIqX5EUDXx4.woff2",
+    "type": "font",
+    "bytes": 28528,
+    "kb": 28
+   }
+  ]
+ },
+ {
+  "route": "/pet-friendly",
+  "status": 200,
+  "wallMs": 25142,
+  "ttfb": 26,
+  "fcp": 8636,
+  "lcp": {
+   "t": 9492,
+   "size": 56672,
+   "url": "",
+   "tag": "DIV",
+   "cls": "xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm:text-[20px]",
+   "text": "Cats and birds are most welcome. Dogs too, depending on bree"
+  },
+  "lcpCandidates": [
+   {
+    "t": 8636,
+    "size": 2754,
+    "url": "",
+    "tag": "BUTTON",
+    "cls": "xt-btn fixed bottom-[148px] right-4 z-50 flex h-14 items-center gap-2.5 rounded-full bg-xt-ink pl-3 pr-5 text-[15px] fon",
+    "text": "Plan a trip with AI"
+   },
+   {
+    "t": 9492,
+    "size": 56672,
+    "url": "",
+    "tag": "DIV",
+    "cls": "xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm:text-[20px]",
+    "text": "Cats and birds are most welcome. Dogs too, depending on bree"
+   }
+  ],
+  "cls": 0.01,
+  "requests": 88,
+  "byType": {
+   "stylesheet": {
+    "n": 2,
+    "kb": 435
+   },
+   "image": {
+    "n": 5,
+    "kb": 801
+   },
+   "script": {
+    "n": 56,
+    "kb": 3164
+   },
+   "document": {
+    "n": 1,
+    "kb": 62
+   },
+   "font": {
+    "n": 4,
+    "kb": 83
+   },
+   "fetch": {
+    "n": 11,
+    "kb": 2
+   },
+   "other": {
+    "n": 3,
+    "kb": 0
+   },
+   "xhr": {
+    "n": 6,
+    "kb": 15
+   }
+  },
+  "biggest": [
+   {
+    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
+    "type": "script",
+    "bytes": 1686168,
+    "kb": 1647
+   },
+   {
+    "url": "https://t.contentsquare.net/uxa/8a1781ba2e7b5.js",
+    "type": "script",
+    "bytes": 559936,
+    "kb": 547
+   },
+   {
+    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
+    "type": "stylesheet",
+    "bytes": 424198,
+    "kb": 414
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsy-property-images-25-1242.webp",
+    "type": "image",
+    "bytes": 272746,
+    "kb": 266
+   },
+   {
+    "url": "http://localhost:4173/assets/client-kMGS092h.js",
+    "type": "script",
+    "bytes": 208985,
+    "kb": 204
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
+    "type": "script",
+    "bytes": 197747,
+    "kb": 193
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsy-property-images-15-1280.webp",
+    "type": "image",
+    "bytes": 186058,
+    "kb": 182
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsy-property-images-22-1280.webp",
+    "type": "image",
+    "bytes": 175412,
+    "kb": 171
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsy-property-images-13-1280.webp",
+    "type": "image",
+    "bytes": 163194,
+    "kb": 159
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+    "type": "script",
+    "bytes": 163173,
+    "kb": 159
+   },
+   {
+    "url": "http://localhost:4173/assets/pet-friendly-BeoQsy1u.js",
+    "type": "script",
+    "bytes": 101556,
+    "kb": 99
+   },
+   {
+    "url": "http://localhost:4173/assets/meghalayaDestinations-CJH8XywN.js",
+    "type": "script",
+    "bytes": 67450,
+    "kb": 66
+   }
+  ]
+ },
+ {
+  "route": "/places-to-visit/nohkalikai-falls",
+  "status": 200,
+  "wallMs": 20894,
+  "ttfb": 182,
+  "fcp": 7684,
+  "lcp": {
+   "t": 8376,
+   "size": 105704,
+   "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+   "tag": "IMG",
+   "cls": "absolute inset-0 h-full w-full object-cover",
+   "text": ""
+  },
+  "lcpCandidates": [
+   {
+    "t": 7684,
+    "size": 4050,
+    "url": "",
+    "tag": "SPAN",
+    "cls": "font-display text-[26px] capitalize leading-none text-xt-crimson sm:text-[32px]",
+    "text": "Cherrapunji"
+   },
+   {
+    "t": 8376,
+    "size": 105704,
+    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+    "tag": "IMG",
+    "cls": "absolute inset-0 h-full w-full object-cover",
+    "text": ""
+   }
+  ],
+  "cls": 0.005,
+  "requests": 63,
+  "byType": {
+   "document": {
+    "n": 2,
+    "kb": 74
+   },
+   "image": {
+    "n": 3,
+    "kb": 300
+   },
+   "stylesheet": {
+    "n": 2,
+    "kb": 435
+   },
+   "script": {
+    "n": 36,
+    "kb": 2290
+   },
+   "font": {
+    "n": 5,
+    "kb": 120
+   },
+   "fetch": {
+    "n": 12,
+    "kb": 2
+   },
+   "other": {
+    "n": 3,
+    "kb": 0
+   }
+  },
+  "biggest": [
+   {
+    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
+    "type": "script",
+    "bytes": 1686168,
+    "kb": 1647
+   },
+   {
+    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
+    "type": "stylesheet",
+    "bytes": 424198,
+    "kb": 414
+   },
+   {
+    "url": "http://localhost:4173/assets/client-kMGS092h.js",
+    "type": "script",
+    "bytes": 208985,
+    "kb": 204
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-2-720.webp",
+    "type": "image",
+    "bytes": 195372,
+    "kb": 191
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+    "type": "script",
+    "bytes": 163173,
+    "kb": 159
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+    "type": "image",
+    "bytes": 88578,
+    "kb": 87
+   },
+   {
+    "url": "http://localhost:4173/destinations/meghalaya/cherrapunji/nohkalikai-falls",
+    "type": "document",
+    "bytes": 75643,
+    "kb": 74
+   },
+   {
+    "url": "http://localhost:4173/assets/meghalayaDestinations-CJH8XywN.js",
+    "type": "script",
+    "bytes": 67450,
+    "kb": 66
+   },
+   {
+    "url": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXDTzYgA.woff2",
+    "type": "font",
+    "bytes": 38404,
+    "kb": 38
+   },
+   {
+    "url": "http://localhost:4173/assets/cdnImages-AGSeSHyi.js",
+    "type": "script",
+    "bytes": 33369,
+    "kb": 33
+   },
+   {
+    "url": "https://fonts.gstatic.com/s/josefinsans/v34/Qw3aZQNVED7rKGKxtqIqX5EUDXx4.woff2",
+    "type": "font",
+    "bytes": 28528,
+    "kb": 28
+   },
+   {
+    "url": "http://localhost:4173/assets/utils-DojpP95n.js",
+    "type": "script",
+    "bytes": 27262,
+    "kb": 27
+   }
+  ]
+ },
+ {
+  "route": "/book",
+  "status": 200,
+  "wallMs": 20540,
+  "ttfb": 23,
+  "fcp": 7576,
+  "lcp": {
+   "t": 7576,
+   "size": 2880,
+   "url": "",
+   "tag": "DIV",
+   "cls": "text-white/80",
+   "text": "Loading booking details..."
+  },
+  "lcpCandidates": [
+   {
+    "t": 7576,
+    "size": 2880,
+    "url": "",
+    "tag": "DIV",
+    "cls": "text-white/80",
+    "text": "Loading booking details..."
+   }
+  ],
+  "cls": 0.033,
+  "requests": 75,
+  "byType": {
+   "document": {
+    "n": 1,
+    "kb": 20
+   },
+   "stylesheet": {
+    "n": 2,
+    "kb": 435
+   },
+   "script": {
+    "n": 46,
+    "kb": 2387
+   },
+   "font": {
+    "n": 5,
+    "kb": 92
+   },
+   "fetch": {
+    "n": 10,
+    "kb": 2
+   },
+   "other": {
+    "n": 3,
+    "kb": 0
+   },
+   "image": {
+    "n": 8,
+    "kb": 771
+   }
+  },
+  "biggest": [
+   {
+    "url": "http://localhost:4173/assets/index-DevUeOYg.js",
+    "type": "script",
+    "bytes": 1686168,
+    "kb": 1647
+   },
+   {
+    "url": "http://localhost:4173/assets/styles-BPUiwmex.css",
+    "type": "stylesheet",
+    "bytes": 424198,
+    "kb": 414
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
+    "type": "image",
+    "bytes": 210210,
+    "kb": 205
+   },
+   {
+    "url": "http://localhost:4173/assets/client-kMGS092h.js",
+    "type": "script",
+    "bytes": 208985,
+    "kb": 204
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsy-property-images-8-1280.webp",
+    "type": "image",
+    "bytes": 194506,
+    "kb": 190
+   },
+   {
+    "url": "http://localhost:4173/assets/proxy-CfOVWsUd.js",
+    "type": "script",
+    "bytes": 120966,
+    "kb": 118
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-dawki-river-735.webp",
+    "type": "image",
+    "bytes": 108474,
+    "kb": 106
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+    "type": "image",
+    "bytes": 88578,
+    "kb": 87
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-umiam-lake-736.webp",
+    "type": "image",
+    "bytes": 72652,
+    "kb": 71
+   },
+   {
+    "url": "http://localhost:4173/assets/meghalayaDestinations-CJH8XywN.js",
+    "type": "script",
+    "bytes": 67450,
+    "kb": 66
+   },
+   {
+    "url": "http://localhost:4173/img/o/xtsyvoyage-krang-shuri-waterfall-736.webp",
+    "type": "image",
+    "bytes": 62850,
+    "kb": 61
+   },
+   {
+    "url": "http://localhost:4173/assets/TripChat-PmPstOzR.js",
+    "type": "script",
+    "bytes": 55421,
+    "kb": 54
+   }
+  ]
+ },
+ {
+  "route": "https://xtsy.one/",
+  "status": 200,
+  "wallMs": 17531,
+  "ttfb": 1552,
+  "fcp": 3644,
+  "lcp": {
+   "t": 3644,
+   "size": 12036,
+   "url": "",
+   "tag": "P",
+   "cls": "mx-auto mb-4 max-w-2xl text-sm sm:text-base text-white/80",
+   "text": "Live the XTSY vibe with affordable dorms, private stays and "
+  },
+  "lcpCandidates": [
+   {
+    "t": 3644,
+    "size": 12036,
+    "url": "",
+    "tag": "P",
+    "cls": "mx-auto mb-4 max-w-2xl text-sm sm:text-base text-white/80",
+    "text": "Live the XTSY vibe with affordable dorms, private stays and "
+   }
+  ],
+  "cls": 0.017,
+  "requests": 128,
+  "byType": {
+   "document": {
+    "n": 1,
+    "kb": 57
+   },
+   "image": {
+    "n": 15,
+    "kb": 1833
+   },
+   "script": {
+    "n": 76,
+    "kb": 3820
+   },
+   "stylesheet": {
+    "n": 3,
+    "kb": 409
+   },
+   "font": {
+    "n": 2,
+    "kb": 49
+   },
+   "fetch": {
+    "n": 19,
+    "kb": 2
+   },
+   "xhr": {
+    "n": 7,
+    "kb": 15
+   },
+   "ping": {
+    "n": 2,
+    "kb": 0
+   },
+   "other": {
+    "n": 3,
+    "kb": 0
+   }
+  },
+  "biggest": [
+   {
+    "url": "https://xtsy.one/assets/index-DdOTAmfk.js",
+    "type": "script",
+    "bytes": 1817142,
+    "kb": 1775
+   },
+   {
+    "url": "https://t.contentsquare.net/uxa/8a1781ba2e7b5.js",
+    "type": "script",
+    "bytes": 559936,
+    "kb": 547
+   },
+   {
+    "url": "https://xtsy.one/assets/esm-YspT_man.js",
+    "type": "script",
+    "bytes": 475465,
+    "kb": 464
+   },
+   {
+    "url": "https://xtsy.one/assets/styles-DXvjcykF.css",
+    "type": "stylesheet",
+    "bytes": 404417,
+    "kb": 395
+   },
+   {
+    "url": "https://xtsy.one/assets/xtsy-270-stargazing-8YxgOSuv.jpeg",
+    "type": "image",
+    "bytes": 320593,
+    "kb": 313
+   },
+   {
+    "url": "https://xtsy.one/__l5e/assets-v1/9600c514-c11c-4166-8a2c-6cc2fc724ba8/xtsyvoyage-nongriat-double-decker-root-bridge.jpeg",
+    "type": "image",
+    "bytes": 257187,
+    "kb": 251
+   },
+   {
+    "url": "https://xtsy.one/assets/tawang-monastery-mountains-Cx6EsSHR.jpg",
+    "type": "image",
+    "bytes": 222608,
+    "kb": 217
+   },
+   {
+    "url": "https://xtsy.one/assets/client-DodRtoPU.js",
+    "type": "script",
+    "bytes": 207981,
+    "kb": 203
+   },
+   {
+    "url": "https://xtsy.one/__l5e/assets-v1/24e4c5fe-426c-47f4-b67a-15000b25acd4/xtsyvoyage-elephant-falls.jpeg",
+    "type": "image",
+    "bytes": 200183,
+    "kb": 195
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
+    "type": "script",
+    "bytes": 197747,
+    "kb": 193
+   },
+   {
+    "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+    "type": "script",
+    "bytes": 163173,
+    "kb": 159
+   },
+   {
+    "url": "https://xtsy.one/__l5e/assets-v1/3440e4b7-3262-40fc-8876-09e5fb7434b7/xtsyvoyage-dawki-river.jpeg",
+    "type": "image",
+    "bytes": 159386,
+    "kb": 156
+   }
+  ]
+ }
+]
