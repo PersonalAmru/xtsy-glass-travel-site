@@ -1,23 +1,23 @@
 [
   {
-    "route": "/places-to-visit/nohkalikai-falls",
+    "route": "/",
     "viewport": "desktop",
     "status": 200,
-    "file": "desktop-places-to-visit-nohkalikai-falls.png",
+    "file": "desktop-home.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
       "Failed to load resource: the server responded with a status of 401 ()",
-      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
       "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
       "Failed to load resource: the server responded with a status of 401 ()"
     ]
   },
   {
-    "route": "/places-to-visit/umiam-lake",
+    "route": "/merch",
     "viewport": "desktop",
     "status": 200,
-    "file": "desktop-places-to-visit-umiam-lake.png",
+    "file": "desktop-merch.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
@@ -28,10 +28,10 @@
     ]
   },
   {
-    "route": "/meghalaya-waterfalls",
+    "route": "/places-to-visit/dawki-umngot-river",
     "viewport": "desktop",
     "status": 200,
-    "file": "desktop-meghalaya-waterfalls.png",
+    "file": "desktop-places-to-visit-dawki-umngot-river.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
@@ -42,10 +42,10 @@
     ]
   },
   {
-    "route": "/meghalaya-caves",
+    "route": "/meghalaya-villages",
     "viewport": "desktop",
     "status": 200,
-    "file": "desktop-meghalaya-caves.png",
+    "file": "desktop-meghalaya-villages.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
@@ -56,10 +56,10 @@
     ]
   },
   {
-    "route": "/destinations/meghalaya/shillong/umiam-lake",
+    "route": "/tours",
     "viewport": "desktop",
     "status": 200,
-    "file": "desktop-destinations-meghalaya-shillong-umiam-lake.png",
+    "file": "desktop-tours.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
@@ -70,10 +70,10 @@
     ]
   },
   {
-    "route": "/places-to-visit/nohkalikai-falls",
-    "viewport": "mobile",
+    "route": "/xtsy-270",
+    "viewport": "desktop",
     "status": 200,
-    "file": "mobile-places-to-visit-nohkalikai-falls.png",
+    "file": "desktop-xtsy-270.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
@@ -84,10 +84,10 @@
     ]
   },
   {
-    "route": "/places-to-visit/umiam-lake",
-    "viewport": "mobile",
+    "route": "/auth",
+    "viewport": "desktop",
     "status": 200,
-    "file": "mobile-places-to-visit-umiam-lake.png",
+    "file": "desktop-auth.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
@@ -98,10 +98,41 @@
     ]
   },
   {
-    "route": "/meghalaya-waterfalls",
+    "route": "/book",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-book.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/",
     "viewport": "mobile",
     "status": 200,
-    "file": "mobile-meghalaya-waterfalls.png",
+    "file": "mobile-home.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/merch",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-merch.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
@@ -112,10 +143,10 @@
     ]
   },
   {
-    "route": "/meghalaya-caves",
+    "route": "/places-to-visit/dawki-umngot-river",
     "viewport": "mobile",
     "status": 200,
-    "file": "mobile-meghalaya-caves.png",
+    "file": "mobile-places-to-visit-dawki-umngot-river.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
@@ -126,11 +157,70 @@
     ]
   },
   {
-    "route": "/destinations/meghalaya/shillong/umiam-lake",
+    "route": "/meghalaya-villages",
     "viewport": "mobile",
     "status": 200,
-    "file": "mobile-destinations-meghalaya-shillong-umiam-lake.png",
+    "file": "mobile-meghalaya-villages.png",
     "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/tours",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-tours.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/xtsy-270",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-xtsy-270.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/auth",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-auth.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/book",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-book.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
       "Failed to load resource: the server responded with a status of 401 ()",
