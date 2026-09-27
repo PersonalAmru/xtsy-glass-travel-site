@@ -85,6 +85,13 @@ jobs:
           BASE_URL: http://localhost:8080
           OUT_DIR: shots
 
+      - name: Trip assistant check
+        continue-on-error: true
+        run: bunx tsx scripts/ci-chat-test.ts
+        env:
+          BASE_URL: http://localhost:8080
+          OUT_DIR: shots
+
       - name: Production server for the performance audit
         continue-on-error: true
         run: |
