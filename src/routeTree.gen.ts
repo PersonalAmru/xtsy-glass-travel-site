@@ -14,7 +14,6 @@ import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as R3DayMeghalayaItineraryRouteImport } from './routes/3-day-meghalaya-itinerary'
 import { Route as R5DayMeghalayaItineraryRouteImport } from './routes/5-day-meghalaya-itinerary'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as FaqRouteImport } from './routes/faq'
 import { Route as AdminLoginRouteImport } from './routes/admin-login'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BackpackingIndiaRouteImport } from './routes/backpacking-india'
@@ -28,6 +27,7 @@ import { Route as CheapHostelShillongRouteImport } from './routes/cheap-hostel-s
 import { Route as CheapHostelsShillongRouteImport } from './routes/cheap-hostels-shillong'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DestinationWeddingShillongRouteImport } from './routes/destination-wedding-shillong'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FemaleTravellersRouteImport } from './routes/female-travellers'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as GroupBookingsMeghalayaRouteImport } from './routes/group-bookings-meghalaya'
@@ -147,11 +147,6 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const FaqRoute = FaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin-login',
   path: '/admin-login',
@@ -219,6 +214,11 @@ const DestinationWeddingShillongRoute =
     path: '/destination-wedding-shillong',
     getParentRoute: () => rootRouteImport,
   } as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FemaleTravellersRoute = FemaleTravellersRouteImport.update({
   id: '/female-travellers',
   path: '/female-travellers',
@@ -703,7 +703,6 @@ export interface FileRoutesByFullPath {
   '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
-  '/faq': typeof FaqRoute
   '/admin-login': typeof AdminLoginRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
@@ -717,6 +716,7 @@ export interface FileRoutesByFullPath {
   '/cheap-hostels-shillong': typeof CheapHostelsShillongRoute
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
+  '/faq': typeof FaqRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -817,7 +817,6 @@ export interface FileRoutesByTo {
   '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
-  '/faq': typeof FaqRoute
   '/admin-login': typeof AdminLoginRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
@@ -831,6 +830,7 @@ export interface FileRoutesByTo {
   '/cheap-hostels-shillong': typeof CheapHostelsShillongRoute
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
+  '/faq': typeof FaqRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -932,7 +932,6 @@ export interface FileRoutesById {
   '/3-day-meghalaya-itinerary': typeof R3DayMeghalayaItineraryRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
-  '/faq': typeof FaqRoute
   '/admin-login': typeof AdminLoginRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
@@ -946,6 +945,7 @@ export interface FileRoutesById {
   '/cheap-hostels-shillong': typeof CheapHostelsShillongRoute
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
+  '/faq': typeof FaqRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -1048,7 +1048,6 @@ export interface FileRouteTypes {
     | '/3-day-meghalaya-itinerary'
     | '/5-day-meghalaya-itinerary'
     | '/about'
-    | '/faq'
     | '/admin-login'
     | '/auth'
     | '/backpacking-india'
@@ -1062,6 +1061,7 @@ export interface FileRouteTypes {
     | '/cheap-hostels-shillong'
     | '/contact'
     | '/destination-wedding-shillong'
+    | '/faq'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1162,7 +1162,6 @@ export interface FileRouteTypes {
     | '/3-day-meghalaya-itinerary'
     | '/5-day-meghalaya-itinerary'
     | '/about'
-    | '/faq'
     | '/admin-login'
     | '/auth'
     | '/backpacking-india'
@@ -1176,6 +1175,7 @@ export interface FileRouteTypes {
     | '/cheap-hostels-shillong'
     | '/contact'
     | '/destination-wedding-shillong'
+    | '/faq'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1276,7 +1276,6 @@ export interface FileRouteTypes {
     | '/3-day-meghalaya-itinerary'
     | '/5-day-meghalaya-itinerary'
     | '/about'
-    | '/faq'
     | '/admin-login'
     | '/auth'
     | '/backpacking-india'
@@ -1290,6 +1289,7 @@ export interface FileRouteTypes {
     | '/cheap-hostels-shillong'
     | '/contact'
     | '/destination-wedding-shillong'
+    | '/faq'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1391,7 +1391,6 @@ export interface RootRouteChildren {
   R3DayMeghalayaItineraryRoute: typeof R3DayMeghalayaItineraryRoute
   R5DayMeghalayaItineraryRoute: typeof R5DayMeghalayaItineraryRoute
   AboutRoute: typeof AboutRoute
-  FaqRoute: typeof FaqRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AuthRoute: typeof AuthRoute
   BackpackingIndiaRoute: typeof BackpackingIndiaRoute
@@ -1405,6 +1404,7 @@ export interface RootRouteChildren {
   CheapHostelsShillongRoute: typeof CheapHostelsShillongRoute
   ContactRoute: typeof ContactRoute
   DestinationWeddingShillongRoute: typeof DestinationWeddingShillongRoute
+  FaqRoute: typeof FaqRoute
   FemaleTravellersRoute: typeof FemaleTravellersRoute
   GalleryRoute: typeof GalleryRoute
   GroupBookingsMeghalayaRoute: typeof GroupBookingsMeghalayaRoute
@@ -1537,13 +1537,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/faq': {
-      id: '/faq'
-      path: '/faq'
-      fullPath: '/faq'
-      preLoaderRoute: typeof FaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/admin-login': {
       id: '/admin-login'
       path: '/admin-login'
@@ -1633,6 +1626,13 @@ declare module '@tanstack/react-router' {
       path: '/destination-wedding-shillong'
       fullPath: '/destination-wedding-shillong'
       preLoaderRoute: typeof DestinationWeddingShillongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/female-travellers': {
@@ -2295,7 +2295,6 @@ const rootRouteChildren: RootRouteChildren = {
   R3DayMeghalayaItineraryRoute: R3DayMeghalayaItineraryRoute,
   R5DayMeghalayaItineraryRoute: R5DayMeghalayaItineraryRoute,
   AboutRoute: AboutRoute,
-  FaqRoute: FaqRoute,
   AdminLoginRoute: AdminLoginRoute,
   AuthRoute: AuthRoute,
   BackpackingIndiaRoute: BackpackingIndiaRoute,
@@ -2309,6 +2308,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheapHostelsShillongRoute: CheapHostelsShillongRoute,
   ContactRoute: ContactRoute,
   DestinationWeddingShillongRoute: DestinationWeddingShillongRoute,
+  FaqRoute: FaqRoute,
   FemaleTravellersRoute: FemaleTravellersRoute,
   GalleryRoute: GalleryRoute,
   GroupBookingsMeghalayaRoute: GroupBookingsMeghalayaRoute,
