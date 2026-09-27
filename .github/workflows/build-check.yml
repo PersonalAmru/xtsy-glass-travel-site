@@ -49,6 +49,19 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile || bun install
 
+      - name: Optimise images (only when .github/optimize-images.flag exists)
+        run: |
+          set -euo pipefail
+          if [ ! -f .github/optimize-images.flag ]; then echo "no flag"; exit 0; fi
+          bun add --no-save sharp@0.33.5
+          bun scripts/optimize-images.ts
+          git config user.name "xtsy-ci"
+          git config user.email "ci@xtsy.one"
+          git rm -q .github/optimize-images.flag
+          git add public/img/o src/data/optimizedImages.ts
+          git commit -q -m "Optimised WebP images for faster loading"
+          git push -q origin "HEAD:refs/heads/${BRANCH_NAME}"
+
       - name: Production build
         run: |
           set -o pipefail
