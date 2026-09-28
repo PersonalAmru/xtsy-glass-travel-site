@@ -1,7 +1,7 @@
 {
  "site": "http://localhost:4174",
  "pages": 671,
- "pagesWithFindings": 513,
+ "pagesWithFindings": 512,
  "siteFiles": {
   "/robots.txt": {
    "status": 200,
@@ -46,35 +46,35 @@
   "aeo:no concise answer paragraph under H1": {
    "pages": 51,
    "examples": [
-    "/female-travellers — 84",
     "/about — 166",
+    "/female-travellers — 84",
     "/work-from-home — 153",
     "/xtsy-rentals — 144",
     "/book — 0",
     "/expeditions — 187",
-    "/hostel-near-police-bazar-shillong — 140",
     "/budget-stay-shillong — 171",
-    "/group-stay-shillong — 183",
     "/couples-hostel-shillong — 121",
+    "/hostel-near-police-bazar-shillong — 140",
     "/solo-travel-hostel-shillong — 124",
-    "/zion-backpackers-vs-xtsy — 188"
+    "/group-stay-shillong — 183",
+    "/stargaze-hostel-vs-xtsy — 180"
    ]
   },
   "aeo:no FAQ or question headings": {
    "pages": 19,
    "examples": [
     "/xtsy-vs-zostel — ",
-    "/book — ",
     "/privacy-policy — ",
     "/terms-of-service — ",
     "/pricing-cancellation-policy — ",
+    "/book — ",
+    "/motorbike-expedition-northeast-india — ",
     "/meghalaya-adventure-tour — ",
     "/expeditions — ",
-    "/motorbike-expedition-northeast-india — ",
     "/4x4-expedition-meghalaya — ",
+    "/merch — ",
     "/meghalaya-couple-tour-package — ",
-    "/shillong-tour-package — ",
-    "/merch — "
+    "/shillong-tour-package — "
    ]
   },
   "price:8-bed dorm": {
@@ -112,18 +112,18 @@
     "/car-rental-guwahati —  Aadhaar/passport for ID, and a security deposit of ₹5,000 (refundable). Credit card preferred for d"
    ]
   },
-  "price:king/private room": {
-   "pages": 2,
-   "examples": [
-    "/dawki-umngot-river-guide — ₹1500 — \"00-1,500/person including meals ✓ Kayaking: 1-2 hours on the Umngot, ₹1,500-2,500/person ✓ Cliff jumping: 5-15 meter j\"",
-    "/shnongpdeng-camping — ₹1500 — \"enture sports center: ✓ Kayaking: 1-2 hours on crystal-clear Umngot, ₹1,500-3,000/person ✓ Cliff jumping: 5-15 meter j\""
-   ]
-  },
   "location:\"heart of Shillong\"": {
    "pages": 2,
    "examples": [
     "/shillong-travel-guide —  museum covering all NE India cultures, ₹100 entry ✓ Police Bazaar — Heart of Shillong, shopping, street food, nightlif",
     "/restaurants-in-police-bazar-shillong — rgaze glamping ensuite, both in Shillong. Police Bazar is the beating heart of Shillong's food scene — restaurants, café"
+   ]
+  },
+  "price:king/private room": {
+   "pages": 2,
+   "examples": [
+    "/dawki-umngot-river-guide — ₹1500 — \"00-1,500/person including meals ✓ Kayaking: 1-2 hours on the Umngot, ₹1,500-2,500/person ✓ Cliff jumping: 5-15 meter j\"",
+    "/shnongpdeng-camping — ₹1500 — \"enture sports center: ✓ Kayaking: 1-2 hours on crystal-clear Umngot, ₹1,500-3,000/person ✓ Cliff jumping: 5-15 meter j\""
    ]
   },
   "price:female dorm": {
@@ -160,12 +160,6 @@
    "pages": 1,
    "examples": [
     "/meghalaya-travel-guide — ₹5000 — \"mium experiences like Experience by XTSY or luxury resorts range from ₹5,000-15,000 per night. ✓ Budget: ₹1,500-2,500/d\""
-   ]
-  },
-  "contact:email": {
-   "pages": 1,
-   "examples": [
-    "/contact — admin@xtsy.one."
    ]
   }
  }

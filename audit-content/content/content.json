@@ -6390,13 +6390,8 @@
  {
   "url": "/contact",
   "status": 200,
-  "words": 532,
-  "findings": [
-   {
-    "rule": "contact:email",
-    "detail": "admin@xtsy.one."
-   }
-  ],
+  "words": 540,
+  "findings": [],
   "seo": {
    "title": "Contact XTSY Shillong: Phone, Address & Map",
    "titleLen": 43,
