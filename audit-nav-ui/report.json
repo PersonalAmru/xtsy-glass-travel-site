@@ -1,12 +1,13 @@
 [
   {
-    "route": "/book/campsite",
+    "route": "/guides",
     "viewport": "desktop",
     "status": 200,
-    "file": "desktop-book-campsite.png",
+    "file": "desktop-guides.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 404 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
@@ -14,27 +15,29 @@
     ]
   },
   {
-    "route": "/tours/4n-5d-shillong-meghalaya-tour",
+    "route": "/female-travellers",
     "viewport": "desktop",
     "status": 200,
-    "file": "desktop-tours-4n-5d-shillong-meghalaya-tour.png",
+    "file": "desktop-female-travellers.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()"
     ]
   },
   {
-    "route": "/tours/7n-guwahati-shillong-kaziranga-tour",
+    "route": "/book",
     "viewport": "desktop",
     "status": 200,
-    "file": "desktop-tours-7n-guwahati-shillong-kaziranga-tour.png",
+    "file": "desktop-book.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 404 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
@@ -42,13 +45,14 @@
     ]
   },
   {
-    "route": "/tours/5n-6d-tawang-tour",
+    "route": "/faq",
     "viewport": "desktop",
     "status": 200,
-    "file": "desktop-tours-5n-6d-tawang-tour.png",
+    "file": "desktop-faq.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 404 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
@@ -56,13 +60,14 @@
     ]
   },
   {
-    "route": "/tours",
+    "route": "/contact",
     "viewport": "desktop",
     "status": 200,
-    "file": "desktop-tours.png",
+    "file": "desktop-contact.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 404 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
@@ -70,13 +75,30 @@
     ]
   },
   {
-    "route": "/book/campsite",
+    "route": "/guides",
     "viewport": "mobile",
     "status": 200,
-    "file": "mobile-book-campsite.png",
+    "file": "mobile-guides.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/female-travellers",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-female-travellers.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 404 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
@@ -84,13 +106,29 @@
     ]
   },
   {
-    "route": "/tours/4n-5d-shillong-meghalaya-tour",
+    "route": "/book",
     "viewport": "mobile",
     "status": 200,
-    "file": "mobile-tours-4n-5d-shillong-meghalaya-tour.png",
+    "file": "mobile-book.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+      "Failed to load resource: the server responded with a status of 401 ()",
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
+  },
+  {
+    "route": "/faq",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-faq.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 404 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
@@ -98,45 +136,17 @@
     ]
   },
   {
-    "route": "/tours/7n-guwahati-shillong-kaziranga-tour",
+    "route": "/contact",
     "viewport": "mobile",
     "status": 200,
-    "file": "mobile-tours-7n-guwahati-shillong-kaziranga-tour.png",
+    "file": "mobile-contact.png",
     "errors": [
       "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
       "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+      "Failed to load resource: the server responded with a status of 404 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-      "Failed to load resource: the server responded with a status of 401 ()"
-    ]
-  },
-  {
-    "route": "/tours/5n-6d-tawang-tour",
-    "viewport": "mobile",
-    "status": 200,
-    "file": "mobile-tours-5n-6d-tawang-tour.png",
-    "errors": [
-      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-      "Failed to load resource: the server responded with a status of 401 ()",
-      "Failed to load resource: the server responded with a status of 401 ()",
-      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-      "Failed to load resource: the server responded with a status of 401 ()"
-    ]
-  },
-  {
-    "route": "/tours",
-    "viewport": "mobile",
-    "status": 200,
-    "file": "mobile-tours.png",
-    "errors": [
-      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-      "Failed to load resource: the server responded with a status of 401 ()",
-      "Failed to load resource: the server responded with a status of 401 ()",
-      "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-      "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()"
     ]
   }

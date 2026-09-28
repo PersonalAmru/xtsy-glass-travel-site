@@ -1,69 +1,23 @@
 {
  "site": "http://localhost:4174",
- "crawled": 713,
- "ok": 712,
- "sitemapUrls": 669,
- "broken": 0,
+ "crawled": 712,
+ "ok": 688,
+ "sitemapUrls": 668,
+ "broken": 23,
  "internalRedirects": 1,
- "orphans": 269,
+ "orphans": 0,
  "depthHistogram": {
   "0": 1,
-  "1": 62,
-  "2": 144,
-  "3": 24,
-  "4": 37,
-  "5": 27,
-  "6": 10,
-  "unreachable": 407
+  "1": 63,
+  "2": 620,
+  "3": 4
  },
- "deepPages": [
-  "4 /nohkalikai-falls-guide",
-  "4 /living-root-bridges-meghalaya",
-  "4 /mawlynnong-cleanest-village",
-  "4 /wei-sawdong-falls-meghalaya",
-  "4 /dawki-river-boating",
-  "4 /laitlum-canyons-shillong",
-  "4 /mawphlang-sacred-forest",
-  "4 /shnongpdeng-camping",
-  "4 /kongthong-whistling-village",
-  "4 /2-day-shillong-itinerary",
-  "4 /7-day-meghalaya-itinerary",
-  "4 /shnongpdeng-camping-guide",
-  "4 /homestay-in-dawki",
-  "4 /dawki-tour-package",
-  "4 /nongjrong-tour-package",
-  "4 /meghalaya-tour-package-3-days",
-  "4 /meghalaya-tour-package-5-days",
-  "4 /meghalaya-tour-package-7-days",
-  "4 /shillong-tour-package-2-days",
-  "4 /meghalaya-honeymoon-package",
-  "4 /meghalaya-adventure-package",
-  "4 /meghalaya-photography-tour",
-  "5 /living-root-bridge-trek",
-  "5 /laitlum-canyons-guide",
-  "5 /krang-suri-falls-guide",
-  "5 /elephant-falls-guide",
-  "5 /wei-sawdong-falls-guide",
-  "5 /rainbow-falls-guide",
-  "5 /10-day-meghalaya-itinerary",
-  "5 /shillong-weekend-trip",
-  "5 /4-day-meghalaya-itinerary",
-  "5 /6-day-meghalaya-itinerary",
-  "5 /8-day-meghalaya-itinerary",
-  "5 /weekend-meghalaya-trip",
-  "5 /2-day-meghalaya-itinerary",
-  "5 /2-day-meghalaya-trip",
-  "5 /meghalaya-itinerary-planning",
-  "5 /dawki-river-travel-guide",
-  "5 /homestay-in-cherrapunji",
-  "5 /homestay-in-mawlynnong"
- ],
- "unreachableFromHome": 407,
+ "deepPages": [],
+ "unreachableFromHome": 0,
  "legacyDesignPages": [
   "/book",
   "/auth",
-  "/install",
-  "/backpacker-hostel-shillong"
+  "/install"
  ],
  "h1Problems": [],
  "duplicateTitles": [
@@ -72,13 +26,6 @@
    "urls": [
     "/tours",
     "/tours?group=northeast"
-   ]
-  },
-  {
-   "value": "hostel in shillong today — xtsy, new shillong township",
-   "urls": [
-    "/hostels-in-shillong-today",
-    "/hostel-in-shillong-today"
    ]
   }
  ],
@@ -89,17 +36,10 @@
     "/tours",
     "/tours?group=northeast"
    ]
-  },
-  {
-   "value": "need a bed in shillong today? xtsy travellers hostel is in new shillong township, near nift and iim shillong. dorms from ₹389, female-only dorm, private rooms.",
-   "urls": [
-    "/hostels-in-shillong-today",
-    "/hostel-in-shillong-today"
-   ]
   }
  ],
  "navLinks": [
-  "/book",
+  "/best-hostel-in-shillong",
   "/xtsy-270",
   "/tours",
   "/tab-bistro",
@@ -125,6 +65,7 @@
   "/things-to-do-in-meghalaya",
   "/meghalaya-waterfalls",
   "/places-to-visit-in-meghalaya",
+  "/guides",
   "/gallery",
   "/tab-bistro",
   "/tab-bistro/catering",
@@ -139,141 +80,260 @@
   "/terms-of-service",
   "/install"
  ],
- "brokenList": [],
+ "brokenList": [
+  {
+   "url": "/dawki-umngot-river",
+   "status": 404,
+   "from": [
+    "/travel-guide/how-to-reach-meghalaya",
+    "/travel-guide/guwahati-to-shillong-transport"
+   ],
+   "fromCount": 2
+  },
+  {
+   "url": "/umiam-lake",
+   "status": 404,
+   "from": [
+    "/travel-guide/how-to-reach-meghalaya"
+   ],
+   "fromCount": 1
+  },
+  {
+   "url": "/dawki-travel-guide",
+   "status": 404,
+   "from": [
+    "/meghalaya-travel-guide",
+    "/cherrapunji-travel-guide",
+    "/trekking-in-meghalaya",
+    "/places-to-visit-meghalaya",
+    "/backpacking-northeast-india",
+    "/things-to-do-meghalaya",
+    "/waterfalls-in-meghalaya",
+    "/budget-trip-meghalaya"
+   ],
+   "fromCount": 72
+  },
+  {
+   "url": "/meghalaya-3-day-itinerary",
+   "status": 404,
+   "from": [
+    "/meghalaya-travel-guide",
+    "/cherrapunji-travel-guide",
+    "/trekking-in-meghalaya",
+    "/places-to-visit-meghalaya",
+    "/backpacking-northeast-india",
+    "/things-to-do-meghalaya",
+    "/waterfalls-in-meghalaya",
+    "/budget-trip-meghalaya"
+   ],
+   "fromCount": 480
+  },
+  {
+   "url": "/shnongpdeng-camping-meghalaya",
+   "status": 404,
+   "from": [
+    "/cherrapunji-travel-guide",
+    "/dawki-umngot-river-guide",
+    "/mawlynnong-cleanest-village",
+    "/mawsmai-cave-cherrapunji",
+    "/nohkalikai-falls-meghalaya",
+    "/cheap-homestay-in-cherrapunji"
+   ],
+   "fromCount": 6
+  },
+  {
+   "url": "/things-to-do-in-cherrapunjee",
+   "status": 404,
+   "from": [
+    "/cherrapunji-travel-guide",
+    "/mawsmai-cave-cherrapunji",
+    "/nohkalikai-falls-meghalaya",
+    "/cheap-homestay-in-cherrapunji"
+   ],
+   "fromCount": 4
+  },
+  {
+   "url": "/shillong-to-cherrapunjee-road-trip",
+   "status": 404,
+   "from": [
+    "/cherrapunji-travel-guide",
+    "/mawsmai-cave-cherrapunji",
+    "/nohkalikai-falls-meghalaya",
+    "/cheap-homestay-in-cherrapunji"
+   ],
+   "fromCount": 4
+  },
+  {
+   "url": "/double-decker-root-bridge",
+   "status": 404,
+   "from": [
+    "/trekking-in-meghalaya",
+    "/dawki-umngot-river-guide",
+    "/mawlynnong-cleanest-village"
+   ],
+   "fromCount": 3
+  },
+  {
+   "url": "/mawryngkhang-bamboo-trail",
+   "status": 404,
+   "from": [
+    "/trekking-in-meghalaya"
+   ],
+   "fromCount": 1
+  },
+  {
+   "url": "/trekking-trails-meghalaya",
+   "status": 404,
+   "from": [
+    "/trekking-in-meghalaya"
+   ],
+   "fromCount": 1
+  },
+  {
+   "url": "/adventure-activities-meghalaya",
+   "status": 404,
+   "from": [
+    "/trekking-in-meghalaya"
+   ],
+   "fromCount": 1
+  },
+  {
+   "url": "/meghalaya-caves-guide",
+   "status": 404,
+   "from": [
+    "/waterfalls-in-meghalaya",
+    "/elephant-falls-shillong",
+    "/krang-suri-falls-meghalaya",
+    "/wei-sawdong-falls-meghalaya"
+   ],
+   "fromCount": 4
+  },
+  {
+   "url": "/best-waterfalls-meghalaya",
+   "status": 404,
+   "from": [
+    "/waterfalls-in-meghalaya",
+    "/elephant-falls-shillong",
+    "/krang-suri-falls-meghalaya",
+    "/wei-sawdong-falls-meghalaya"
+   ],
+   "fromCount": 4
+  },
+  {
+   "url": "/waterfalls-near-shillong",
+   "status": 404,
+   "from": [
+    "/waterfalls-in-meghalaya",
+    "/elephant-falls-shillong",
+    "/krang-suri-falls-meghalaya",
+    "/wei-sawdong-falls-meghalaya"
+   ],
+   "fromCount": 4
+  },
+  {
+   "url": "/things-to-do-in-dawki",
+   "status": 404,
+   "from": [
+    "/dawki-umngot-river-guide",
+    "/mawlynnong-cleanest-village"
+   ],
+   "fromCount": 2
+  },
+  {
+   "url": "/shillong-to-dawki-road-trip",
+   "status": 404,
+   "from": [
+    "/dawki-umngot-river-guide",
+    "/mawlynnong-cleanest-village"
+   ],
+   "fromCount": 2
+  },
+  {
+   "url": "/police-bazaar-shillong",
+   "status": 404,
+   "from": [
+    "/shillong-travel-guide",
+    "/laitlum-canyons-shillong",
+    "/umiam-lake-shillong"
+   ],
+   "fromCount": 3
+  },
+  {
+   "url": "/ward-lake-shillong",
+   "status": 404,
+   "from": [
+    "/shillong-travel-guide",
+    "/laitlum-canyons-shillong",
+    "/umiam-lake-shillong"
+   ],
+   "fromCount": 3
+  },
+  {
+   "url": "/things-to-do-in-shillong",
+   "status": 404,
+   "from": [
+    "/shillong-travel-guide",
+    "/laitlum-canyons-shillong",
+    "/umiam-lake-shillong"
+   ],
+   "fromCount": 3
+  },
+  {
+   "url": "/best-cafes-shillong",
+   "status": 404,
+   "from": [
+    "/shillong-travel-guide",
+    "/laitlum-canyons-shillong",
+    "/umiam-lake-shillong"
+   ],
+   "fromCount": 3
+  },
+  {
+   "url": "/dawki-river-guide",
+   "status": 404,
+   "from": [
+    "/living-root-bridges-meghalaya",
+    "/cherrapunji-guide",
+    "/dawki-guide",
+    "/dawki-river-boating",
+    "/elephant-falls-shillong",
+    "/kongthong-whistling-village",
+    "/krang-suri-falls-meghalaya",
+    "/laitlum-canyons-shillong"
+   ],
+   "fromCount": 18
+  },
+  {
+   "url": "/dawki-suspension-bridge-meghalaya",
+   "status": 404,
+   "from": [
+    "/mawlynnong-cleanest-village"
+   ],
+   "fromCount": 1
+  },
+  {
+   "url": "/seven-sisters-falls-meghalaya",
+   "status": 404,
+   "from": [
+    "/mawsmai-cave-cherrapunji",
+    "/nohkalikai-falls-meghalaya"
+   ],
+   "fromCount": 2
+  }
+ ],
  "redirectList": [
   {
-   "url": "/cheap-hostel-shillong",
-   "to": "/cheap-hostels-shillong",
-   "fromCount": 30,
+   "url": "/backpacker-hostel-shillong",
+   "to": "/best-hostel-in-shillong",
+   "fromCount": 466,
    "from": [
-    "/couples-hostel-shillong",
-    "/budget-stay-shillong",
-    "/solo-travel-hostel-shillong",
-    "/group-stay-shillong",
-    "/shillong-dormitory"
+    "/meghalaya-travel-guide",
+    "/places-to-visit-meghalaya",
+    "/backpacking-northeast-india",
+    "/things-to-do-meghalaya",
+    "/budget-trip-meghalaya"
    ]
   }
  ],
- "orphanList": [
-  "/stargaze-hostel-vs-xtsy",
-  "/zion-backpackers-vs-xtsy",
-  "/dorms-in-shillong",
-  "/hostel-in-shillong-today",
-  "/hostel-in-shillong-tonight",
-  "/hostel-in-shillong-this-weekend",
-  "/hostel-in-shillong-tomorrow",
-  "/hostel-in-shillong-last-minute",
-  "/hostel-in-shillong-now",
-  "/hostel-near-shillong-airport",
-  "/cheap-hostel-in-cherrapunji",
-  "/best-hostel-in-cherrapunji",
-  "/hostel-near-cherrapunji-airport",
-  "/cheap-hostel-in-guwahati",
-  "/best-hostel-in-guwahati",
-  "/hostel-near-guwahati-airport",
-  "/cheap-hostel-in-gangtok",
-  "/best-hostel-in-gangtok",
-  "/hostel-near-gangtok-airport",
-  "/cheap-homestay-in-shillong",
-  "/best-homestay-in-shillong",
-  "/homestay-near-shillong-airport",
-  "/cheap-homestay-in-cherrapunji",
-  "/best-homestay-in-cherrapunji",
-  "/homestay-near-cherrapunji-airport",
-  "/best-glamping-in-shillong",
-  "/glamping-near-shillong-airport",
-  "/cheap-glamping-in-cherrapunji",
-  "/best-glamping-in-cherrapunji",
-  "/glamping-near-cherrapunji-airport",
-  "/cheap-glamping-in-guwahati",
-  "/parent-stay-near-iim-shillong",
-  "/stay-near-nift-shillong",
-  "/hostel-near-nift-shillong",
-  "/hotel-near-nift-shillong",
-  "/accommodation-near-nift-shillong",
-  "/student-accommodation-near-nift-shillong",
-  "/parent-stay-near-nift-shillong",
-  "/stay-near-nehu",
-  "/hostel-near-nehu",
-  "/hotel-near-nehu",
-  "/accommodation-near-nehu",
-  "/student-accommodation-near-nehu",
-  "/parent-stay-near-nehu",
-  "/stay-near-iit-guwahati",
-  "/hostel-near-iit-guwahati",
-  "/tour-operators-shillong",
-  "/assam-tour-packages",
-  "/arunachal-pradesh-tour-packages",
-  "/nagaland-tour-packages",
-  "/manipur-tour-packages",
-  "/mizoram-tour-packages",
-  "/tripura-tour-packages",
-  "/sikkim-tour-packages",
-  "/group-tour-pelling",
-  "/group-tour-aizawl",
-  "/group-tour-imphal",
-  "/group-tour-agartala",
-  "/group-tour-shnongpdeng",
-  "/group-tour-nongjrong",
-  "/group-tour-jowai",
-  "/group-tour-meghalaya",
-  "/group-tour-assam",
-  "/group-tour-arunachal-pradesh",
-  "/group-tour-nagaland",
-  "/group-tour-manipur",
-  "/group-tour-mizoram",
-  "/group-tour-tripura",
-  "/group-tour-sikkim",
-  "/group-tour-package-shillong",
-  "/group-tour-package-cherrapunji",
-  "/group-tour-package-dawki",
-  "/group-tour-package-mawlynnong",
-  "/group-tour-package-guwahati",
-  "/corporate-retreat-aizawl",
-  "/corporate-retreat-imphal",
-  "/corporate-retreat-agartala",
-  "/corporate-retreat-shnongpdeng",
-  "/corporate-retreat-nongjrong",
-  "/corporate-retreat-jowai",
-  "/corporate-retreat-meghalaya",
-  "/corporate-retreat-assam",
-  "/corporate-retreat-arunachal-pradesh",
-  "/corporate-retreat-nagaland",
-  "/honeymoon-package-kaziranga",
-  "/honeymoon-package-majuli",
-  "/honeymoon-package-jorhat",
-  "/honeymoon-package-tezpur",
-  "/honeymoon-package-haflong",
-  "/honeymoon-package-tawang",
-  "/honeymoon-package-ziro",
-  "/honeymoon-package-bomdila",
-  "/honeymoon-package-pasighat",
-  "/honeymoon-package-itanagar",
-  "/honeymoon-package-kohima",
-  "/honeymoon-package-dzukou-valley",
-  "/honeymoon-package-mokokchung",
-  "/honeymoon-package-imphal",
-  "/honeymoon-package-loktak-lake",
-  "/honeymoon-package-aizawl",
-  "/honeymoon-package-champhai",
-  "/honeymoon-package-reiek",
-  "/honeymoon-package-agartala",
-  "/honeymoon-package-unakoti",
-  "/honeymoon-package-gangtok",
-  "/honeymoon-package-pelling",
-  "/honeymoon-package-lachung",
-  "/honeymoon-package-tsomgo-lake",
-  "/honeymoon-package-meghalaya",
-  "/honeymoon-package-assam",
-  "/honeymoon-package-arunachal-pradesh",
-  "/honeymoon-package-nagaland",
-  "/honeymoon-package-manipur",
-  "/honeymoon-package-mizoram",
-  "/bike-trip-pelling",
-  "/bike-trip-aizawl",
-  "/bike-trip-imphal",
-  "/bike-trip-agartala",
-  "/bike-trip-shnongpdeng",
-  "/bike-trip-nongjrong"
- ]
+ "orphanList": []
 }

@@ -21,8 +21,7 @@
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -79,19 +78,17 @@
   "viewport": "phone",
   "route": "/book",
   "status": 200,
-  "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
-  "design": "v2",
+  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
+  "design": "legacy",
   "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
-   "menuOpens": true,
-   "menuLinks": 25,
-   "menuClosesOnEscape": true,
-   "searchOpens": true,
+   "menuButton": "missing",
+   "searchButton": "missing",
    "chatOpens": true,
    "whatsapp": true,
-   "bookAboveFold": true
+   "bookAboveFold": false
   },
   "errors": [
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
@@ -107,18 +104,7 @@
   "status": 200,
   "title": "Book XTSY Adventure Campsite, Dawki | Riverside Camping",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 2,
-    "examples": [
-     ".bg-emerald-600\\/10",
-     ".absolute"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -151,7 +137,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -168,19 +155,7 @@
   "status": 200,
   "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 6,
-    "examples": [
-     "#tour-advisory-heading",
-     ".rounded-xl.border.border-amber-500\\/30:nth-child(1) > div > .mb-1.text-amber-300",
-     ".rounded-xl.border.border-amber-500\\/30:nth-child(1) > div > .text-white\\/80.text-sm.leading-relaxed"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -196,8 +171,7 @@
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -247,7 +221,8 @@
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
   ]
  },
  {
@@ -306,19 +281,7 @@
   "status": 200,
   "title": "Places to Visit in Shillong, Meghalaya | XTSY",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 8,
-    "examples": [
-     ".group.rounded-xl.hover\\:border-primary\\/30:nth-child(2) > .relative.aspect-\\[4\\/3\\].bg-muted > .gap-2.inset-0.absolute > .text-xs.capitalize.text-muted-foreground\\/40",
-     ".group.rounded-xl.hover\\:border-primary\\/30:nth-child(5) > .relative.aspect-\\[4\\/3\\].bg-muted > .gap-2.inset-0.absolute > .text-xs.capitalize.text-muted-foreground\\/40",
-     ".group.rounded-xl.hover\\:border-primary\\/30:nth-child(6) > .relative.aspect-\\[4\\/3\\].bg-muted > .gap-2.inset-0.absolute > .text-xs.capitalize.text-muted-foreground\\/40"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -494,17 +457,7 @@
   "status": 200,
   "title": "About XTSY — India's Biggest Hostel in Northeast India",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 1,
-    "examples": [
-     ".text-xt-rose\\!"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -536,16 +489,7 @@
     "help": "Elements must meet minimum color contrast ratio thresholds",
     "count": 1,
     "examples": [
-     ".text-xt-rose.font-extrabold.text-\\[15px\\]"
-    ]
-   },
-   {
-    "id": "definition-list",
-    "impact": "serious",
-    "help": "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements",
-    "count": 1,
-    "examples": [
-     "dl"
+     ".text-xt-rose.text-\\[15px\\].font-extrabold"
     ]
    }
   ],
@@ -598,17 +542,7 @@
   "status": 200,
   "title": "Pet-Friendly Hostel in Shillong — Travel With Your Pet | XTSY",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 1,
-    "examples": [
-     ".sm\\:text-\\[17px\\]"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -649,8 +583,8 @@
   "errors": [
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
   ]
  },
  {
@@ -734,28 +668,7 @@
   "status": 200,
   "title": "Meghalaya Tour Packages 2026 — Starting ₹7,999 | XTSY",
   "design": "v2",
-  "axe": [
-   {
-    "id": "list",
-    "impact": "serious",
-    "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
-    "count": 1,
-    "examples": [
-     ".flex-wrap"
-    ]
-   },
-   {
-    "id": "listitem",
-    "impact": "serious",
-    "help": "<li> elements must be contained in a <ul> or <ol>",
-    "count": 3,
-    "examples": [
-     ".contents:nth-child(2) > .inline-flex.gap-1\\.5",
-     ".contents:nth-child(3) > .inline-flex.gap-1\\.5",
-     ".contents:nth-child(4) > .inline-flex.gap-1\\.5"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -763,7 +676,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -780,38 +694,7 @@
   "status": 200,
   "title": "Things to Do in Meghalaya: 50 Most Beautiful Places to Visit (2026)",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 18,
-    "examples": [
-     "section:nth-child(2) > .lg\\:grid-cols-3.grid-cols-1.sm\\:grid-cols-2 > .group.block.bg-card:nth-child(2) > .aspect-\\[4\\/3\\].relative.bg-muted > .flex-col.justify-center.gap-2 > .text-xs.capitalize.text-muted-foreground\\/40",
-     "section:nth-child(2) > .lg\\:grid-cols-3.grid-cols-1.sm\\:grid-cols-2 > .group.block.bg-card:nth-child(5) > .aspect-\\[4\\/3\\].relative.bg-muted > .flex-col.justify-center.gap-2 > .text-xs.capitalize.text-muted-foreground\\/40",
-     ".group.block.bg-card:nth-child(6) > .aspect-\\[4\\/3\\].relative.bg-muted > .flex-col.justify-center.gap-2 > .text-xs.capitalize.text-muted-foreground\\/40"
-    ]
-   },
-   {
-    "id": "list",
-    "impact": "serious",
-    "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
-    "count": 1,
-    "examples": [
-     ".break-words"
-    ]
-   },
-   {
-    "id": "listitem",
-    "impact": "serious",
-    "help": "<li> elements must be contained in a <ul> or <ol>",
-    "count": 2,
-    "examples": [
-     ".contents:nth-child(2) > li:nth-child(2)",
-     ".contents:nth-child(3) > li:nth-child(2)"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -870,7 +753,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -878,8 +762,7 @@
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -893,11 +776,11 @@
     "id": "color-contrast",
     "impact": "serious",
     "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 5,
+    "count": 3,
     "examples": [
-     "tbody > .bg-green-500\\/10 > .text-green-600",
-     ".text-amber-600",
-     "section:nth-child(4) > .bg-red-500\\/10.border-red-500\\/30.p-5 > .text-red-600.dark\\:text-red-400"
+     "section:nth-child(4) > .bg-red-500\\/10.border-red-500\\/30.p-5 > .text-red-700.dark\\:text-red-400",
+     "section:nth-child(5) > .bg-red-500\\/10.border-red-500\\/30.p-5 > .text-red-700.dark\\:text-red-400",
+     ".dark\\:text-green-400"
     ]
    }
   ],
@@ -921,8 +804,34 @@
  },
  {
   "viewport": "phone",
-  "route": "/this-page-does-not-exist",
+  "route": "/guides",
   "status": 200,
+  "title": "All Shillong & Meghalaya Travel Guides A–Z | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": false,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/this-page-does-not-exist",
+  "status": 404,
   "title": "Page Not Found (404) | XTSY Travel",
   "design": "v2",
   "axe": [],
@@ -950,17 +859,7 @@
   "status": 200,
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 1,
-    "examples": [
-     ".max-w-\\[720px\\] > .text-xt-rose\\!.sm\\:text-\\[17px\\].xt-eyebrow"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -993,7 +892,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -1001,7 +901,8 @@
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
   ]
  },
  {
@@ -1018,7 +919,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -1026,37 +928,24 @@
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
   "viewport": "desktop",
   "route": "/book",
   "status": 200,
-  "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
-  "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 1,
-    "examples": [
-     ".max-w-\\[720px\\] > .text-xt-rose\\!.sm\\:text-\\[17px\\].xt-eyebrow"
-    ]
-   }
-  ],
+  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
+  "design": "legacy",
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
-   "menuOpens": true,
-   "menuLinks": 25,
-   "menuClosesOnEscape": true,
-   "searchOpens": true,
+   "menuButton": "missing",
+   "searchButton": "missing",
    "chatOpens": true,
    "whatsapp": true,
-   "bookAboveFold": true
+   "bookAboveFold": false
   },
   "errors": [
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
@@ -1072,18 +961,7 @@
   "status": 200,
   "title": "Book XTSY Adventure Campsite, Dawki | Riverside Camping",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 2,
-    "examples": [
-     ".bg-emerald-600\\/10",
-     ".absolute"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -1133,19 +1011,7 @@
   "status": 200,
   "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 6,
-    "examples": [
-     "#tour-advisory-heading",
-     ".rounded-xl.border.border-amber-500\\/30:nth-child(1) > div > .mb-1.text-amber-300",
-     ".rounded-xl.border.border-amber-500\\/30:nth-child(1) > div > .text-white\\/80.text-sm.leading-relaxed"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -1153,7 +1019,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -1270,19 +1137,7 @@
   "status": 200,
   "title": "Places to Visit in Shillong, Meghalaya | XTSY",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 8,
-    "examples": [
-     ".group.rounded-xl.hover\\:border-primary\\/30:nth-child(2) > .relative.aspect-\\[4\\/3\\].bg-muted > .inset-0.gap-2.absolute > .text-xs.capitalize.text-muted-foreground\\/40",
-     ".group.rounded-xl.hover\\:border-primary\\/30:nth-child(5) > .relative.aspect-\\[4\\/3\\].bg-muted > .inset-0.gap-2.absolute > .text-xs.capitalize.text-muted-foreground\\/40",
-     ".group.rounded-xl.hover\\:border-primary\\/30:nth-child(6) > .relative.aspect-\\[4\\/3\\].bg-muted > .inset-0.gap-2.absolute > .text-xs.capitalize.text-muted-foreground\\/40"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -1290,7 +1145,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -1347,8 +1203,8 @@
   },
   "errors": [
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
@@ -1359,13 +1215,23 @@
   "title": "Best Waterfalls in Meghalaya — Travel Guide 2026",
   "design": "v2",
   "axe": [],
-  "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Plan a trip with AI' }).first()\n    - locator resolved to <button type=\"button\" aria-label",
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
   "errors": [
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1407,7 +1273,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -1432,7 +1299,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -1449,17 +1317,7 @@
   "status": 200,
   "title": "About XTSY — India's Biggest Hostel in Northeast India",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 1,
-    "examples": [
-     ".text-xt-rose\\!"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -1467,7 +1325,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -1491,51 +1350,7 @@
     "help": "Elements must meet minimum color contrast ratio thresholds",
     "count": 1,
     "examples": [
-     ".text-xt-rose.font-extrabold.text-\\[15px\\]"
-    ]
-   },
-   {
-    "id": "definition-list",
-    "impact": "serious",
-    "help": "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements",
-    "count": 1,
-    "examples": [
-     "dl"
-    ]
-   }
-  ],
-  "ui": {
-   "firstTab": "Skip to content",
-   "focusVisible": true,
-   "menuOpens": true,
-   "menuLinks": 25,
-   "menuClosesOnEscape": true,
-   "searchOpens": true,
-   "chatOpens": true,
-   "whatsapp": true,
-   "bookAboveFold": true
-  },
-  "errors": [
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
-  ]
- },
- {
-  "viewport": "desktop",
-  "route": "/faq",
-  "status": 200,
-  "title": "FAQ — XTSY Hostel Shillong | Experience by XTSY, Rooms, Tours",
-  "design": "v2",
-  "axe": [
-   {
-    "id": "aria-required-children",
-    "impact": "critical",
-    "help": "Certain ARIA roles must contain particular children",
-    "count": 1,
-    "examples": [
-     ".overflow-x-auto"
+     ".text-xt-rose.text-\\[15px\\].font-extrabold"
     ]
    }
   ],
@@ -1559,21 +1374,37 @@
  },
  {
   "viewport": "desktop",
+  "route": "/faq",
+  "status": 200,
+  "title": "FAQ — XTSY Hostel Shillong | Experience by XTSY, Rooms, Tours",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
   "route": "/pet-friendly",
   "status": 200,
   "title": "Pet-Friendly Hostel in Shillong — Travel With Your Pet | XTSY",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 1,
-    "examples": [
-     ".sm\\:text-\\[17px\\]"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -1600,13 +1431,24 @@
   "title": "Safe Stays for Women — Female-Only Dorm in Shillong | XTSY",
   "design": "v2",
   "axe": [],
-  "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Plan a trip with AI' }).first()\n    - locator resolved to <button type=\"button\" aria-label",
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
   "errors": [
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header"
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
   ]
  },
  {
@@ -1616,13 +1458,23 @@
   "title": "Work From Shillong — Remote Work & Digital Nomad Hostel | XTSY",
   "design": "v2",
   "axe": [],
-  "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Plan a trip with AI' }).first()\n    - locator resolved to <button type=\"button\" aria-label",
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
   "errors": [
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1681,28 +1533,7 @@
   "status": 200,
   "title": "Meghalaya Tour Packages 2026 — Starting ₹7,999 | XTSY",
   "design": "v2",
-  "axe": [
-   {
-    "id": "list",
-    "impact": "serious",
-    "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
-    "count": 1,
-    "examples": [
-     ".flex-wrap"
-    ]
-   },
-   {
-    "id": "listitem",
-    "impact": "serious",
-    "help": "<li> elements must be contained in a <ul> or <ol>",
-    "count": 3,
-    "examples": [
-     ".contents:nth-child(2) > .inline-flex.gap-1\\.5",
-     ".contents:nth-child(3) > .inline-flex.gap-1\\.5",
-     ".contents:nth-child(4) > .inline-flex.gap-1\\.5"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -1727,38 +1558,7 @@
   "status": 200,
   "title": "Things to Do in Meghalaya: 50 Most Beautiful Places to Visit (2026)",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 18,
-    "examples": [
-     "section:nth-child(2) > .lg\\:grid-cols-3.grid-cols-1.sm\\:grid-cols-2 > .group.block.bg-card:nth-child(2) > .aspect-\\[4\\/3\\].relative.bg-muted > .flex-col.justify-center.gap-2 > .text-xs.capitalize.text-muted-foreground\\/40",
-     "section:nth-child(2) > .lg\\:grid-cols-3.grid-cols-1.sm\\:grid-cols-2 > .group.block.bg-card:nth-child(5) > .aspect-\\[4\\/3\\].relative.bg-muted > .flex-col.justify-center.gap-2 > .text-xs.capitalize.text-muted-foreground\\/40",
-     ".group.block.bg-card:nth-child(6) > .aspect-\\[4\\/3\\].relative.bg-muted > .flex-col.justify-center.gap-2 > .text-xs.capitalize.text-muted-foreground\\/40"
-    ]
-   },
-   {
-    "id": "list",
-    "impact": "serious",
-    "help": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
-    "count": 1,
-    "examples": [
-     ".break-words"
-    ]
-   },
-   {
-    "id": "listitem",
-    "impact": "serious",
-    "help": "<li> elements must be contained in a <ul> or <ol>",
-    "count": 2,
-    "examples": [
-     ".contents:nth-child(2) > li:nth-child(2)",
-     ".contents:nth-child(3) > li:nth-child(2)"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -1766,7 +1566,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -1817,7 +1618,8 @@
    "menuLinks": 25,
    "menuClosesOnEscape": true,
    "searchOpens": true,
-   "chatOpens": true,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },
@@ -1839,11 +1641,11 @@
     "id": "color-contrast",
     "impact": "serious",
     "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 5,
+    "count": 3,
     "examples": [
-     "tbody > .bg-green-500\\/10 > .text-green-600",
-     ".text-amber-600",
-     "section:nth-child(4) > .bg-red-500\\/10.border-red-500\\/30.p-5 > .text-red-600.dark\\:text-red-400"
+     "section:nth-child(4) > .bg-red-500\\/10.border-red-500\\/30.p-5 > .text-red-700.dark\\:text-red-400",
+     "section:nth-child(5) > .bg-red-500\\/10.border-red-500\\/30.p-5 > .text-red-700.dark\\:text-red-400",
+     ".dark\\:text-green-400"
     ]
    }
   ],
@@ -1867,21 +1669,36 @@
  },
  {
   "viewport": "desktop",
-  "route": "/this-page-does-not-exist",
+  "route": "/guides",
   "status": 200,
+  "title": "All Shillong & Meghalaya Travel Guides A–Z | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/this-page-does-not-exist",
+  "status": 404,
   "title": "Page Not Found (404) | XTSY Travel",
   "design": "v2",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 1,
-    "examples": [
-     ".xt-eyebrow"
-    ]
-   }
-  ],
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
