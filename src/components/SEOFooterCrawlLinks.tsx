@@ -20,7 +20,7 @@ const LINK_GROUPS: LinkGroup[] = [
       { label: 'Things to Do in Meghalaya', href: '/things-to-do-in-meghalaya' },
       { label: 'Best Time to Visit', href: '/best-time-to-visit-meghalaya' },
       { label: 'Budget Trip to Meghalaya', href: '/budget-trip-meghalaya' },
-      { label: '3-Day Itinerary', href: '/meghalaya-3-day-itinerary' },
+      { label: '3-Day Itinerary', href: '/3-day-meghalaya-itinerary' },
       { label: '5-Day Itinerary', href: '/meghalaya-5-day-itinerary' },
       { label: 'Hidden Places in Meghalaya', href: '/hidden-places-meghalaya' },
     ],

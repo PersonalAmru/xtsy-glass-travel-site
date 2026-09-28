@@ -63,7 +63,7 @@ const INTENT_ROUTES: Array<{ match: RegExp; entry: Omit<SearchEntry, 'id'> }> = 
       description: 'Boat ride, camping, suspension bridge, India–Bangladesh viewpoint',
       category: 'locations',
       icon: '🗺️',
-      url: '/things-to-do-in-dawki',
+      url: '/dawki-guide',
       location: 'Dawki, Meghalaya',
       keywords: ['things to do dawki', 'dawki itinerary'],
     },
