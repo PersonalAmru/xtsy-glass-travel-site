@@ -12,6 +12,7 @@ import { getAllTours, mergeItinerary, type TourPackage } from '@/data/travelData
 import { getSignaturePackageBySlug, signaturePackageToTourPackage } from '@/data/signaturePackages';
 import { useApp } from '@/contexts/AppContext';
 import { photoFor } from '@/data/v2TourImages';
+import { reviewedPhoto, reviewedAlt, photoCredit } from '@/data/tourPhotos';
 import { PageShell, Breadcrumbs, PAD } from '@/components/v2/blocks';
 import { Photo, waLink } from '@/components/v2/primitives';
 
@@ -38,7 +39,9 @@ export default function TourDetailV2() {
 
   if (!tour) return <NotFound />;
 
-  const photo = photoFor(tour.title, tour.location);
+  const photoKey = slug && getSignaturePackageBySlug(slug) ? `sig-${slug}` : `tour-${tour.id}`;
+  const photo = reviewedPhoto(photoKey) || photoFor(tour.title, tour.location);
+  const credit = photoCredit(photoKey);
   const schemaImages = tour.images?.length ? [tour.image, ...tour.images] : [tour.image];
   const basePrice = parseInt(tour.price.replace(/[^\d]/g, ''));
   const displayPrice = (tour.fixedPrice || currency.code === 'INR') ? tour.price : formatPrice(Math.round(basePrice * 1.10));
@@ -143,7 +146,10 @@ export default function TourDetailV2() {
               <span>Best: {tour.bestSeason}</span>
             </div>
           </div>
-          <Photo src={photo} alt={tour.title} eager tone="pine" className="xt-in xt-d2 aspect-[560/380] rounded-[28px] lg:col-span-5" />
+          <figure className="m-0 flex flex-col gap-1.5 lg:col-span-5">
+            <Photo src={photo} alt={reviewedAlt(photoKey) ?? tour.title} eager tone="pine" className="xt-in xt-d2 aspect-[560/380] rounded-[28px]" />
+            {credit && <figcaption className="text-[12px] text-xt-mute">Photo: <a href={credit.url} target="_blank" rel="noopener noreferrer nofollow" className="underline">{credit.name}</a> on <a href={credit.pexelsUrl} target="_blank" rel="noopener noreferrer nofollow" className="underline">Pexels</a></figcaption>}
+          </figure>
         </section>
 
         <section className={`${PAD} grid gap-10 pb-16 lg:grid-cols-12`}>

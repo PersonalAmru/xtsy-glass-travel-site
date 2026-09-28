@@ -3,6 +3,7 @@ import DestinationDetail from "@/pages/v2/DestinationV2";
 import { buildRouteHead } from "@/lib/seo-head";
 import { getDestinationBySlug } from "@/data/meghalayaDestinations";
 import { getStateBySlug, getCityBySlug } from "@/data/neTaxonomy";
+import { fitTitle } from "@/lib/seo/fitTitle";
 
 export const Route = createFileRoute("/destinations/$state/$city/$attraction")({
   head: ({ params }) => {
@@ -12,7 +13,17 @@ export const Route = createFileRoute("/destinations/$state/$city/$attraction")({
     const place = dest?.name ?? params.attraction.replace(/-/g, " ");
     const where = [city?.name, state?.name].filter(Boolean).join(", ") || "Meghalaya";
 
-    const title = dest?.seoTitle ?? `${place}, ${where} — Guide, Timings & How to Reach`;
+    // Search results show ~60 characters: pick the most descriptive title that fits
+    // whole, instead of cutting a long one mid-word.
+    const cityShort = (city?.name ?? '').replace(/\s*\(.*?\)\s*/g, '').trim();
+    const title = fitTitle([
+      dest?.seoTitle ?? '',
+      `${place}, ${cityShort || 'Meghalaya'} — Timings & How to Reach`,
+      `${place}, ${cityShort || 'Meghalaya'}: How to Reach & Timings`,
+      `${place}, ${cityShort || 'Meghalaya'} — Travel Guide`,
+      `${place}, Meghalaya — Travel Guide`,
+      `${place} — Travel Guide`,
+    ]);
     const description =
       dest?.seoDescription ??
       dest?.shortDescription ??
@@ -20,7 +31,7 @@ export const Route = createFileRoute("/destinations/$state/$city/$attraction")({
 
     return buildRouteHead({
       path: `/destinations/${params.state}/${params.city}/${params.attraction}`,
-      title: title.slice(0, 70),
+      title,
       description: description.slice(0, 158),
       keywords: dest?.seoKeywords,
       noIndex: !dest,

@@ -9,6 +9,7 @@ import { Link, useSearchParams } from '@/lib/router-compat';
 import { getAllTours, type TourPackage } from '@/data/travelData';
 import { SIGNATURE_PACKAGES, formatPackagePrice } from '@/data/signaturePackages';
 import { photoFor } from '@/data/v2TourImages';
+import { reviewedPhoto } from '@/data/tourPhotos';
 import { PageShell, PAD, Section, H2 } from '@/components/v2/blocks';
 import { Photo, SpinningMark, waLink } from '@/components/v2/primitives';
 
@@ -100,7 +101,7 @@ export default function ToursV2() {
                 badge={p.minGroup ? `Min ${p.minGroup} guests` : p.region}
                 text={p.shortDescription}
                 price={formatPackagePrice(p.pricePerPerson)}
-                img={photoFor(p.title, p.highlights.join(' '), p.region)}
+                img={reviewedPhoto(`sig-${p.slug}`) || photoFor(p.title, p.highlights.join(' '), p.region)}
                 enquire={waLink(`Hi XTSY! I'm interested in the ${p.title}. Dates: … Travellers: …`)}
               />
             ))}
@@ -130,7 +131,7 @@ export default function ToursV2() {
                 badge={t.international ? `${t.location} · partner-run` : t.location}
                 text={t.description}
                 price={t.price}
-                img={photoFor(t.title, t.location)}
+                img={reviewedPhoto(`tour-${t.id}`) || photoFor(t.title, t.location)}
                 enquire={waLink(`Hi XTSY! I'm interested in ${t.title}. Dates: … Travellers: …`)}
               />
             ))}

@@ -5,6 +5,7 @@ import { Link, useParams } from '@/lib/router-compat';
 import NotFound from '@/pages/NotFound';
 import { EXPEDITION_ROUTES, EXPEDITION_TYPES, getExpeditionRoute, type ExpeditionType, type ExpeditionRouteStub } from '@/data/neTaxonomy';
 import { photoFor } from '@/data/v2TourImages';
+import { reviewedPhoto } from '@/data/tourPhotos';
 import { IMG } from '@/data/v2Images';
 import { inr, lowestDormPrice } from '@/components/v2/pricing';
 import { PageShell, PageHero, Btn, Section, H2, Breadcrumbs, PAD } from '@/components/v2/blocks';
@@ -17,7 +18,7 @@ function RouteCard({ r, type }: { r: ExpeditionRouteStub; type: ExpeditionType }
   const d = r.byType[type];
   return (
     <Link to={`/expeditions/${type}/${r.slug}`} className="xt-reveal xt-lift flex flex-col overflow-hidden rounded-3xl bg-white text-xt-ink hover:text-xt-ink">
-      <Photo src={photoFor(r.name, r.highlights.join(' '))} alt={r.name} tone="slate" className="aspect-[421/220]" />
+      <Photo src={reviewedPhoto(`exp-${r.slug}`) || photoFor(r.name, r.highlights.join(' '))} alt={r.name} tone="slate" className="aspect-[421/220]" />
       <div className="flex flex-col gap-2 p-6">
         <span className="text-[20px] font-extrabold leading-tight">{r.name}</span>
         <span className="text-[14px] text-xt-mute">{r.distanceKm} km · {r.difficulty} · {d?.duration}</span>
@@ -100,7 +101,7 @@ export function ExpeditionRouteV2() {
         title={expedition.name.split(' — ')[0]}
         text={<>{expedition.summary}{detail ? ` By ${label.toLowerCase()} it takes ${detail.duration} and starts from ${inr(detail.priceFrom)} per person with XTSY support.` : ''}</>}
         actions={<><Btn to={wa}>Ask on WhatsApp</Btn><Btn to="/book" kind="outline">Check availability</Btn></>}
-        media={<Photo src={photoFor(expedition.name, expedition.highlights.join(' '))} alt={expedition.name} eager tone="slate" className="aspect-[628/480] rounded-[32px]" />}
+        media={<Photo src={reviewedPhoto(`exp-${expedition.slug}`) || photoFor(expedition.name, expedition.highlights.join(' '))} alt={expedition.name} eager tone="slate" className="aspect-[628/480] rounded-[32px]" />}
       />
 
       {highAltitude && (

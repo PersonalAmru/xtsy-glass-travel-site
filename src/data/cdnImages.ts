@@ -8,6 +8,7 @@
  */
 import { CDN_IMAGE_MAP } from './cdnImageMap';
 import { OPTIMIZED_IMAGES } from './optimizedImages';
+import { PEXELS_PHOTOS } from './pexelsPhotos';
 
 const PLACEHOLDER = '/placeholder.svg';
 
@@ -16,6 +17,8 @@ const defaultSrc = (o: Opt) => (o.srcs.find(([w]) => w >= 1280) ?? o.srcs[o.srcs
 /** Look-up by CDN path or by the default WebP path. */
 const BY_ANY: Record<string, Opt> = {};
 for (const [p, o] of Object.entries(OPTIMIZED_IMAGES)) { if (o.srcs.length) { BY_ANY[p] = o; BY_ANY[defaultSrc(o)] = o; } }
+// Reviewed Pexels photos (tours, expeditions, destination guides) get the same srcset treatment.
+for (const o of Object.values(PEXELS_PHOTOS)) if (o.srcs.length) BY_ANY[defaultSrc(o)] = o;
 
 /**
  * The CDN serves the original phone photos (often 2–7 MB). When the optimiser
