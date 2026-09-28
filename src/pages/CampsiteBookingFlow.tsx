@@ -8,7 +8,7 @@ import { memo, useState, useMemo, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate, useSearchParams } from "@/lib/router-compat";
 import { motion } from "framer-motion";
-import { differenceInDays, format, parseISO } from "date-fns";
+import { addDays, differenceInDays, format, parseISO } from "date-fns";
 import {
   Tent, Coffee, Users, Calendar, MapPin, Check, ChevronLeft,
   Phone, MessageCircle, Sparkles, Loader2,
@@ -58,7 +58,7 @@ const CampsiteBookingFlow = memo(() => {
 
   const [step, setStep] = useState<Step>("package");
   const [packageId, setPackageId] = useState<PackageId>("camping-breakfast");
-  const [guests, setGuests] = useState<number>(parseInt(searchParams.get("guests") || "2"));
+  const [guests, setGuests] = useState<number>(() => Math.max(1, parseInt(searchParams.get("guests") || "2") || 2));
   const [checkIn, setCheckIn] = useState<Date | undefined>(() => {
     const v = searchParams.get("checkIn");
     return v ? parseISO(v) : undefined;
@@ -86,11 +86,32 @@ const CampsiteBookingFlow = memo(() => {
 
   useEffect(() => { window.scrollTo(0, 0); }, [step]);
 
+  /** Why the dates can't be used yet, or null when they're fine. */
+  const dateProblem = !checkIn || !checkOut
+    ? "Pick your check-in and check-out dates"
+    : nights < 1
+      ? "Check-out must be at least one night after check-in"
+      : null;
+
+  const pickCheckIn = (v: string) => {
+    const d = v ? parseISO(v) : undefined;
+    setCheckIn(d);
+    // Keep check-out at least one night after the new check-in.
+    if (d && (!checkOut || differenceInDays(checkOut, d) < 1)) setCheckOut(addDays(d, 1));
+  };
+
   const handleSubmit = async () => {
-    if (!name.trim() || !phone.trim() || !email.trim() || !checkIn || !checkOut || nights < 1 || guests < 1) {
-      toast.error("Please fill all required details");
+    if (dateProblem) {
+      toast.error(dateProblem);
+      setStep("package");
       return;
     }
+    const missing = [!name.trim() && "name", !email.trim() && "email", !phone.trim() && "phone"].filter(Boolean);
+    if (missing.length) {
+      toast.error(`Please add your ${missing.join(", ")}`);
+      return;
+    }
+    if (!checkIn || !checkOut) return;
     setSubmitting(true);
     try {
       const { data: saved, error } = await supabase.rpc('create_enquiry', {
@@ -204,12 +225,12 @@ const CampsiteBookingFlow = memo(() => {
                   <Label htmlFor="ci" className="text-xs uppercase tracking-wider text-muted-foreground">Check-in</Label>
                   <Input id="ci" type="date" value={checkIn ? format(checkIn, "yyyy-MM-dd") : ""}
                     min={format(new Date(), "yyyy-MM-dd")}
-                    onChange={(e) => setCheckIn(e.target.value ? parseISO(e.target.value) : undefined)} />
+                    onChange={(e) => pickCheckIn(e.target.value)} />
                 </div>
                 <div>
                   <Label htmlFor="co" className="text-xs uppercase tracking-wider text-muted-foreground">Check-out</Label>
                   <Input id="co" type="date" value={checkOut ? format(checkOut, "yyyy-MM-dd") : ""}
-                    min={checkIn ? format(checkIn, "yyyy-MM-dd") : format(new Date(), "yyyy-MM-dd")}
+                    min={format(addDays(checkIn ?? new Date(), 1), "yyyy-MM-dd")}
                     onChange={(e) => setCheckOut(e.target.value ? parseISO(e.target.value) : undefined)} />
                 </div>
                 <div>
@@ -222,11 +243,20 @@ const CampsiteBookingFlow = memo(() => {
               {/* Total preview */}
               <div className="bg-muted/40 rounded-xl p-4 flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-muted-foreground">{guests} guest × {nights} night × ₹{selectedPkg.price}</p>
-                  <p className="text-xl font-bold">₹{total.toLocaleString()}</p>
+                  {nights > 0 ? (
+                    <>
+                      <p className="text-xs text-muted-foreground">{guests} {guests === 1 ? "guest" : "guests"} × {nights} {nights === 1 ? "night" : "nights"} × ₹{selectedPkg.price.toLocaleString("en-IN")}</p>
+                      <p className="text-xl font-bold">₹{total.toLocaleString("en-IN")}</p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-xs text-muted-foreground">{dateProblem ?? "Pick your dates"} to see your total</p>
+                      <p className="text-xl font-bold">₹{selectedPkg.price.toLocaleString("en-IN")} <span className="text-xs font-normal text-muted-foreground">/person/night</span></p>
+                    </>
+                  )}
                 </div>
                 <Button size="lg" onClick={() => {
-                  if (!checkIn || !checkOut) { toast.error("Pick check-in & check-out dates"); return; }
+                  if (dateProblem) { toast.error(dateProblem); return; }
                   setStep("details");
                 }}>
                   Continue
@@ -264,12 +294,12 @@ const CampsiteBookingFlow = memo(() => {
                   <span className="font-semibold">₹{selectedPkg.price}/person/night</span>
                 </div>
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
-                  <span>{guests} × {nights} nights</span>
-                  <span>₹{total.toLocaleString()}</span>
+                  <span>{guests} {guests === 1 ? "guest" : "guests"} × {nights} {nights === 1 ? "night" : "nights"}</span>
+                  <span>₹{total.toLocaleString("en-IN")}</span>
                 </div>
                 <div className="border-t border-border mt-2 pt-2 flex items-center justify-between font-bold">
                   <span>Total</span>
-                  <span>₹{total.toLocaleString()}</span>
+                  <span>₹{total.toLocaleString("en-IN")}</span>
                 </div>
               </div>
 

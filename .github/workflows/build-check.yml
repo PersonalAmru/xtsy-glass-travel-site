@@ -125,7 +125,7 @@ jobs:
         env:
           BASE_URL: http://localhost:8080
           OUT_DIR: shots
-          ROUTES: /best-hostel-in-shillong,/cheap-hostels-shillong,/female-travellers,/xtsy-270,/tours/6d-meghalaya-honeymoon-package,/
+          ROUTES: /book/campsite,/tours/4n-5d-shillong-meghalaya-tour,/tours/7n-guwahati-shillong-kaziranga-tour,/tours/5n-6d-tawang-tour,/tours
 
       - name: Trip assistant check
         continue-on-error: true
