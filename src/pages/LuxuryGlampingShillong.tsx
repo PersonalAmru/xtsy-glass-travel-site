@@ -52,7 +52,7 @@ const LuxuryGlampingShillong = memo(() => {
         name: 'How much does glamping cost in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Experience by XTSY is priced at ₹5,399/night including premium breakfast, WiFi, and all amenities. This is the only panoramic glass suite in Northeast India.',
+          text: `Experience by XTSY is ${GLAMP_NIGHT}/night for the stay only, or ₹5,799/night with breakfast for two. WiFi and all amenities are included.`,
         },
       },
       {
@@ -139,7 +139,7 @@ const LuxuryGlampingShillong = memo(() => {
                 'Queen-size bed with premium linens',
                 'Private ensuite bathroom with hot shower',
                 'Climate control (heating + cooling)',
-                'Premium breakfast at TAB Bistro',
+                'Breakfast for two at TAB Bistro on the ₹5,799 rate',
                 'High-speed WiFi',
                 'Blackout curtains for privacy',
                 'Welcome drink on arrival',
