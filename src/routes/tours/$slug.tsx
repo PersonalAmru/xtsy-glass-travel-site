@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import TourDetail from "@/pages/v2/TourDetailV2";
 import { buildRouteHead } from "@/lib/seo-head";
+import { fitTitle } from "@/lib/seo/fitTitle";
 import { getAllTours, mergeItinerary } from "@/data/travelData";
 import { getSignaturePackageBySlug, signaturePackageToTourPackage } from "@/data/signaturePackages";
 
@@ -82,7 +83,13 @@ export const Route = createFileRoute("/tours/$slug")({
   
       return buildRouteHead({
         path: url,
-        title: `${tour.title} — ${tour.duration} from ${tour.price} | XTSY Travel`,
+        title: fitTitle([
+          `${tour.title} — ${tour.duration} from ${tour.price} | XTSY`,
+          `${tour.title} — ${tour.duration} | XTSY`,
+          `${tour.title} | XTSY Tours`,
+          `${tour.title} | XTSY`,
+          tour.title,
+        ]),
         description: String(tour.description).slice(0, 155),
         keywords: `${tour.title}, ${tour.location} tour, ${tour.category} tour, ${tour.duration} Meghalaya package, XTSY Travel`,
         image: tour.image,
