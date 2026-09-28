@@ -2,11 +2,11 @@
  {
   "route": "/",
   "status": 200,
-  "wallMs": 19764,
-  "ttfb": 58,
-  "fcp": 1916,
+  "wallMs": 19875,
+  "ttfb": 29,
+  "fcp": 1700,
   "lcp": {
-   "t": 4748,
+   "t": 4844,
    "size": 249600,
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.webp",
    "tag": "IMG",
@@ -15,7 +15,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1916,
+    "t": 1700,
     "size": 38540,
     "url": "",
     "tag": "H1",
@@ -23,7 +23,7 @@
     "text": "XTSY Travellers Hostel"
    },
    {
-    "t": 4748,
+    "t": 4844,
     "size": 249600,
     "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.webp",
     "tag": "IMG",
@@ -35,7 +35,7 @@
   "shifts": [
    {
     "v": 0.0099,
-    "t": 4275,
+    "t": 4367,
     "nodes": [
      "DIV.max-w-5xl"
     ],
@@ -47,7 +47,7 @@
     ]
    }
   ],
-  "requests": 102,
+  "requests": 101,
   "byType": {
    "document": {
     "n": 1,
@@ -59,7 +59,7 @@
    },
    "stylesheet": {
     "n": 3,
-    "kb": 427
+    "kb": 426
    },
    "script": {
     "n": 55,
@@ -67,7 +67,7 @@
    },
    "font": {
     "n": 5,
-    "kb": 86
+    "kb": 92
    },
    "fetch": {
     "n": 15,
@@ -78,7 +78,7 @@
     "kb": 15
    },
    "ping": {
-    "n": 4,
+    "n": 3,
     "kb": 0
    },
    "other": {
@@ -88,7 +88,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-Cg_fgL9i.js",
+    "url": "http://localhost:4174/assets/index-Coj5hj0H.js",
     "type": "script",
     "bytes": 1722040,
     "kb": 1682
@@ -126,7 +126,7 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
     "type": "script",
-    "bytes": 197745,
+    "bytes": 197738,
     "kb": 193
    },
    {
@@ -138,13 +138,13 @@
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163182,
+    "bytes": 163173,
     "kb": 159
    },
    {
     "url": "http://localhost:4174/",
     "type": "document",
-    "bytes": 148191,
+    "bytes": 148269,
     "kb": 145
    },
    {
@@ -164,11 +164,11 @@
  {
   "route": "/best-hostel-in-shillong",
   "status": 200,
-  "wallMs": 19151,
-  "ttfb": 36,
-  "fcp": 1644,
+  "wallMs": 19435,
+  "ttfb": 34,
+  "fcp": 1688,
   "lcp": {
-   "t": 1644,
+   "t": 1688,
    "size": 82984,
    "url": "",
    "tag": "P",
@@ -177,7 +177,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1644,
+    "t": 1688,
     "size": 82984,
     "url": "",
     "tag": "P",
@@ -189,7 +189,7 @@
   "shifts": [
    {
     "v": 0.0197,
-    "t": 4213,
+    "t": 4211,
     "nodes": [
      "DIV.rounded-[22px] bg-xt-blush p-5",
      "#text.",
@@ -254,7 +254,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-Cg_fgL9i.js",
+    "url": "http://localhost:4174/assets/index-Coj5hj0H.js",
     "type": "script",
     "bytes": 1722040,
     "kb": 1682
@@ -292,7 +292,7 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
     "type": "script",
-    "bytes": 197745,
+    "bytes": 197738,
     "kb": 193
    },
    {
@@ -304,7 +304,7 @@
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163174,
+    "bytes": 163181,
     "kb": 159
    },
    {
@@ -322,7 +322,7 @@
    {
     "url": "http://localhost:4174/best-hostel-in-shillong",
     "type": "document",
-    "bytes": 74474,
+    "bytes": 74479,
     "kb": 73
    }
   ]
@@ -330,11 +330,11 @@
  {
   "route": "/cheap-hostels-shillong",
   "status": 200,
-  "wallMs": 19198,
-  "ttfb": 27,
-  "fcp": 1656,
+  "wallMs": 19410,
+  "ttfb": 33,
+  "fcp": 1660,
   "lcp": {
-   "t": 1656,
+   "t": 1660,
    "size": 65727,
    "url": "",
    "tag": "P",
@@ -343,7 +343,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1656,
+    "t": 1660,
     "size": 65727,
     "url": "",
     "tag": "P",
@@ -355,7 +355,7 @@
   "shifts": [
    {
     "v": 0.0423,
-    "t": 4220,
+    "t": 4227,
     "nodes": [
      "DIV.rounded-[22px] bg-xt-blush p-5",
      "DIV.flex flex-wrap gap-2",
@@ -379,7 +379,7 @@
     ]
    }
   ],
-  "requests": 100,
+  "requests": 99,
   "byType": {
    "document": {
     "n": 1,
@@ -405,13 +405,13 @@
     "n": 15,
     "kb": 2
    },
-   "ping": {
-    "n": 3,
-    "kb": 0
-   },
    "xhr": {
     "n": 7,
     "kb": 15
+   },
+   "ping": {
+    "n": 2,
+    "kb": 0
    },
    "other": {
     "n": 3,
@@ -420,7 +420,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-Cg_fgL9i.js",
+    "url": "http://localhost:4174/assets/index-Coj5hj0H.js",
     "type": "script",
     "bytes": 1722040,
     "kb": 1682
@@ -458,7 +458,7 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
     "type": "script",
-    "bytes": 197745,
+    "bytes": 197738,
     "kb": 193
    },
    {
@@ -470,7 +470,7 @@
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163174,
+    "bytes": 163173,
     "kb": 159
    },
    {
@@ -488,7 +488,7 @@
    {
     "url": "http://localhost:4174/cheap-hostels-shillong",
     "type": "document",
-    "bytes": 74722,
+    "bytes": 74727,
     "kb": 73
    }
   ]
@@ -496,11 +496,11 @@
  {
   "route": "/shillong-dormitory",
   "status": 200,
-  "wallMs": 15842,
-  "ttfb": 32,
-  "fcp": 1660,
+  "wallMs": 16018,
+  "ttfb": 41,
+  "fcp": 1688,
   "lcp": {
-   "t": 1660,
+   "t": 1688,
    "size": 93532,
    "url": "",
    "tag": "P",
@@ -509,7 +509,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1660,
+    "t": 1688,
     "size": 93532,
     "url": "",
     "tag": "P",
@@ -521,7 +521,7 @@
   "shifts": [
    {
     "v": 0.0041,
-    "t": 4193,
+    "t": 4217,
     "nodes": [
      "#text.",
      "#text."
@@ -536,7 +536,7 @@
     ]
    }
   ],
-  "requests": 98,
+  "requests": 97,
   "byType": {
    "document": {
     "n": 1,
@@ -548,7 +548,7 @@
    },
    "stylesheet": {
     "n": 3,
-    "kb": 427
+    "kb": 426
    },
    "script": {
     "n": 58,
@@ -556,18 +556,18 @@
    },
    "font": {
     "n": 5,
-    "kb": 86
+    "kb": 92
    },
    "fetch": {
-    "n": 16,
+    "n": 15,
     "kb": 2
    },
    "xhr": {
-    "n": 8,
+    "n": 7,
     "kb": 15
    },
    "ping": {
-    "n": 1,
+    "n": 2,
     "kb": 0
    },
    "other": {
@@ -577,7 +577,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-Cg_fgL9i.js",
+    "url": "http://localhost:4174/assets/index-Coj5hj0H.js",
     "type": "script",
     "bytes": 1722040,
     "kb": 1682
@@ -607,9 +607,9 @@
     "kb": 204
    },
    {
-    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1h1",
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
     "type": "script",
-    "bytes": 197740,
+    "bytes": 197738,
     "kb": 193
    },
    {
@@ -621,7 +621,7 @@
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163165,
+    "bytes": 163173,
     "kb": 159
    },
    {
@@ -653,11 +653,11 @@
  {
   "route": "/xtsy-270",
   "status": 200,
-  "wallMs": 18336,
-  "ttfb": 23,
-  "fcp": 1680,
+  "wallMs": 18197,
+  "ttfb": 42,
+  "fcp": 1716,
   "lcp": {
-   "t": 2520,
+   "t": 2616,
    "size": 61766,
    "url": "",
    "tag": "H1",
@@ -666,7 +666,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1680,
+    "t": 1716,
     "size": 2646,
     "url": "",
     "tag": "A",
@@ -674,7 +674,7 @@
     "text": "Dorm beds from ₹389/night"
    },
    {
-    "t": 2520,
+    "t": 2616,
     "size": 61766,
     "url": "",
     "tag": "H1",
@@ -686,7 +686,7 @@
   "shifts": [
    {
     "v": 0.0112,
-    "t": 4120,
+    "t": 4153,
     "nodes": [
      "#text.",
      "#text.",
@@ -704,7 +704,7 @@
     ]
    }
   ],
-  "requests": 97,
+  "requests": 98,
   "byType": {
    "document": {
     "n": 1,
@@ -735,7 +735,7 @@
     "kb": 15
    },
    "ping": {
-    "n": 2,
+    "n": 3,
     "kb": 0
    },
    "other": {
@@ -745,7 +745,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-Cg_fgL9i.js",
+    "url": "http://localhost:4174/assets/index-Coj5hj0H.js",
     "type": "script",
     "bytes": 1722040,
     "kb": 1682
@@ -777,13 +777,13 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
     "type": "script",
-    "bytes": 197745,
+    "bytes": 197738,
     "kb": 193
    },
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163174,
+    "bytes": 163181,
     "kb": 159
    },
    {
@@ -821,11 +821,11 @@
  {
   "route": "https://xtsy.one/",
   "status": 200,
-  "wallMs": 20873,
-  "ttfb": 1207,
-  "fcp": 3848,
+  "wallMs": 22398,
+  "ttfb": 2573,
+  "fcp": 5248,
   "lcp": {
-   "t": 8312,
+   "t": 9540,
    "size": 249600,
    "url": "https://xtsy.one/img/o/xtsy-property-images-8-1280.webp",
    "tag": "IMG",
@@ -834,7 +834,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 3848,
+    "t": 5248,
     "size": 38556,
     "url": "",
     "tag": "H1",
@@ -842,7 +842,7 @@
     "text": "XTSY Travellers Hostel"
    },
    {
-    "t": 8312,
+    "t": 9540,
     "size": 249600,
     "url": "https://xtsy.one/img/o/xtsy-property-images-8-1280.webp",
     "tag": "IMG",
@@ -858,21 +858,21 @@
     "n": 1,
     "kb": 144
    },
+   "script": {
+    "n": 55,
+    "kb": 3730
+   },
    "stylesheet": {
     "n": 3,
-    "kb": 426
+    "kb": 427
    },
    "image": {
     "n": 10,
     "kb": 806
    },
-   "script": {
-    "n": 55,
-    "kb": 3730
-   },
    "font": {
     "n": 5,
-    "kb": 92
+    "kb": 86
    },
    "fetch": {
     "n": 18,
@@ -929,9 +929,9 @@
     "kb": 204
    },
    {
-    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1",
+    "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69n1h1",
     "type": "script",
-    "bytes": 197745,
+    "bytes": 197733,
     "kb": 193
    },
    {
@@ -943,7 +943,7 @@
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163174,
+    "bytes": 163163,
     "kb": 159
    },
    {
