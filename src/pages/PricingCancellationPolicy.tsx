@@ -171,7 +171,7 @@ export const PricingCancellationPolicy: React.FC = () => {
               </h2>
               
               <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-5">
-                <h4 className="font-semibold text-red-700 dark:text-red-400 mb-3 flex items-center">
+                <h4 className="font-semibold text-red-800 dark:text-red-400 mb-3 flex items-center">
                   <AlertTriangle className="h-4 w-4 mr-2" />
                   Important: Non-Refundable Advance
                 </h4>
@@ -192,7 +192,7 @@ export const PricingCancellationPolicy: React.FC = () => {
               </h2>
               
               <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-5">
-                <h4 className="font-semibold text-red-700 dark:text-red-400 mb-3">
+                <h4 className="font-semibold text-red-800 dark:text-red-400 mb-3">
                   Strict No-Refund Policy
                 </h4>
                 <ul className="space-y-2 text-foreground/90">

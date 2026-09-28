@@ -96,7 +96,7 @@ export default function ContactV2() {
             <div className="xt-reveal flex flex-col gap-3 rounded-[28px] bg-xt-slate p-8 text-xt-paper">
               <h2 className="xt-display m-0 text-[36px] leading-none">Getting here</h2>
               <p className="m-0 text-[15px] leading-relaxed text-xt-fog">{ADDRESS}. Near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. About 2.5–3 hours by road from Guwahati airport.</p>
-              <Link to="/travel-guide/how-to-reach-meghalaya" className="text-[15px] font-extrabold text-xt-rose">How to reach Shillong →</Link>
+              <Link to="/travel-guide/how-to-reach-meghalaya" className="text-[15px] font-extrabold text-[#F7C9D1] underline-offset-4 hover:underline">How to reach Shillong →</Link>
             </div>
             <dl className="xt-reveal m-0 grid gap-4 rounded-[28px] border-[1.5px] border-xt-line p-8 text-[15px]">
               <div><dt className="font-extrabold">Registered address</dt><dd className="m-0 text-xt-mute">{ADDRESS}</dd></div>
