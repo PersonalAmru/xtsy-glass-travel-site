@@ -1,0 +1,24 @@
+$ tsx scripts/generateWorkerSlimMap.ts && bun run sitemaps:rebuild
+✅ seo-slim-map.json: 612 entries → 133.2 KB
+$ tsx scripts/generateTourPackageSitemap.ts && tsx scripts/generateProgrammaticSitemap.ts && tsx scripts/generateSitemaps.ts && tsx scripts/dedupeSitemapsCrossBranch.ts && tsx scripts/generate-image-sitemap.ts && tsx scripts/pruneNoindexFromSitemaps.ts && tsx scripts/writeSitemapIndex.ts
+node:internal/modules/esm/get_format:219
+  throw new ERR_UNKNOWN_FILE_EXTENSION(ext, filepath);
+        ^
+
+TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".jpg" for /home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/src/assets/meghalaya-biodiversity-authentic.jpg
+    at Object.getFileProtocolModuleFormat [as file:] (node:internal/modules/esm/get_format:219:9)
+    at defaultGetFormat (node:internal/modules/esm/get_format:245:36)
+    at defaultLoadSync (node:internal/modules/esm/load:162:16)
+    at #loadAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:846:12)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at load (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/tsx/dist/register-C4vWVmug.mjs:2:5714)
+    at nextStep (node:internal/modules/customization_hooks:189:26)
+    at loadWithHooks (node:internal/modules/customization_hooks:374:18)
+    at #loadSync (node:internal/modules/esm/loader:865:14)
+    at ModuleLoader.load (node:internal/modules/esm/loader:824:28) {
+  code: 'ERR_UNKNOWN_FILE_EXTENSION'
+}
+
+Node.js v22.23.2
+error: script "sitemaps:rebuild" exited with code 1
+error: script "prebuild" exited with code 1
