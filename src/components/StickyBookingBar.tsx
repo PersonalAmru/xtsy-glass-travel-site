@@ -45,7 +45,7 @@ const StickyBookingBar = memo(() => {
         <div className="flex items-center gap-3">
           <div className="flex-1">
             <p className="text-xs text-muted-foreground">Tonight in Shillong</p>
-            <p className="text-sm font-semibold text-foreground">From ₹399/night</p>
+            <p className="text-sm font-semibold text-foreground">From ₹389/night</p>
           </div>
           <button
             onClick={handleBook}

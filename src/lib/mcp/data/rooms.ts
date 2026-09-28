@@ -84,7 +84,7 @@ export const MCP_ROOMS: McpRoom[] = [
     capacity: 8,
     property: "XTSY Travellers Hostel",
     description: "Best value mixed dormitory for budget-conscious backpackers.",
-    fromPriceInr: 399,
+    fromPriceInr: 389,
     originalPriceInr: 550,
     perUnit: "per bed / night",
     bookable: true,

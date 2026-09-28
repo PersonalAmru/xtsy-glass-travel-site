@@ -82,7 +82,7 @@ const DestinationDetail = () => {
     ...(destination.extraFaqs ?? []),
     {
       q: `Where can I stay near ${destination.name}?`,
-      a: `XTSY Travellers Hostel in Shillong is an affordable, well-located base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ₹399/night and curated Meghalaya tours that cover the region's top sights.`,
+      a: `XTSY Travellers Hostel in Shillong is an affordable, well-located base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ₹389/night and curated Meghalaya tours that cover the region's top sights.`,
     },
   ];
 
@@ -453,7 +453,7 @@ const DestinationBookingCTA = ({
 
   const anchor =
     destination.bookingAnchor ??
-    `Book a bed in Shillong from ₹399 — your base near ${destination.name}`;
+    `Book a bed in Shillong from ₹389 — your base near ${destination.name}`;
 
   const handleClick = (step: 'availability_check' | 'book_now') => {
     trackConversion('destination_to_booking', step, step === 'availability_check' ? 2 : 3, {

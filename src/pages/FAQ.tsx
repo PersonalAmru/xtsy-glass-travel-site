@@ -128,7 +128,7 @@ const FAQ = () => {
       faqs: [
         {
           question: "What dorm and room types can I choose?",
-          answer: "4, 6 and 8-bed mixed dormitories, female-only dorms (4 and 6-bed), private double rooms with mountain views, and Experience by XTSY, India's first stargaze glamp. Every bed has a locker, reading light and charging point. Dorms from ₹399.",
+          answer: "4, 6 and 8-bed mixed dormitories, female-only dorms (4 and 6-bed), private double rooms with mountain views, and Experience by XTSY, India's first stargaze glamp. Every bed has a locker, reading light and charging point. Dorms from ₹389.",
           hasQuote: true,
           quote: "One of the best dormitories — clean, comfortable and full of good vibes.",
           quoteName: "Kandarp"

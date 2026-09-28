@@ -32,7 +32,7 @@ const featuredRooms = [
     name: 'Mixed Dormitory',
     type: 'Hostel Bed',
     tagline: 'Social travelers welcome',
-    price: 399,
+    price: 389,
     originalPrice: 550,
     image: ROOM_IMAGES['6-bed-mixed-dorm'][0],
     rating: 4.8,

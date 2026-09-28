@@ -36,7 +36,7 @@ const PlanTripLinks = ({ slugs, bookingAnchor, heading, source }: PlanTripLinksP
     .map((d) => ({ slug: d.slug, name: d.name, region: d.region }));
 
   const anchor =
-    bookingAnchor ?? 'Book your Shillong base — dorm beds from ₹399, private rooms & glamping';
+    bookingAnchor ?? 'Book your Shillong base — dorm beds from ₹389, private rooms & glamping';
 
   const handleBookingClick = () => {
     trackConversion('destination_to_booking', 'availability_check', 2, {

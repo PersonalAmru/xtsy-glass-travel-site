@@ -254,7 +254,7 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     totalUnits: 24,
     propertyType: 'XTSY Travellers Hostel',
     isBookable: true,
-    basePrice: 399,
+    basePrice: 389,
     displayOrder: 60,
     tags: ['bestseller'],
     image: ROOM_IMAGES['8-bed-mixed-dorm'][0],

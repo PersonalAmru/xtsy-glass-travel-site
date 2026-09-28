@@ -57,7 +57,7 @@ const BlogItinerary5Day = () => (
         <PlanTripLinks
           source="5-day-meghalaya-itinerary"
           heading="Planning 5 days? Lock in your Shillong base"
-          bookingAnchor="A 5-day Meghalaya loop with Mawlynnong & the root-bridge trek — dorm beds from ₹399, private rooms & glamping"
+          bookingAnchor="A 5-day Meghalaya loop with Mawlynnong & the root-bridge trek — dorm beds from ₹389, private rooms & glamping"
           slugs={['nohkalikai-falls', 'dawki-umngot-river', 'mawlynnong-village', 'double-decker-living-root-bridge']}
         />
       </div>

@@ -19,7 +19,7 @@ const FAQSection = () => {
     },
     {
       question: "What kind of stays do you have?",
-      answer: "We've got options for every budget. Luxury: Experience by XTSY (₹5,399–5,799). Hostel vibes: Private rooms (₹3,500) or 6-bed dorms (₹700/bed). Economy: Female dorm (₹325/bed) or mixed dorm (₹399/bed). All in Shillong with 24/7 security—no sketchy vibes here.",
+      answer: "We've got options for every budget. Luxury: Experience by XTSY (₹5,399–5,799). Hostel vibes: Private rooms (₹3,500) or 6-bed dorms (₹700/bed). Economy: Female dorm (₹325/bed) or mixed dorm (₹389/bed). All in Shillong with 24/7 security—no sketchy vibes here.",
       hasQuote: true,
       quote: "The hostel has a very welcoming atmosphere... cleanliness is always maintained.",
       quoteName: "Ritika"

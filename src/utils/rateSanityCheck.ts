@@ -16,7 +16,7 @@ export const SHILLONG_CANONICAL_RATES: Record<string, number> = {
   '4-bed-female-only-dorm': 599,
   '6-bed-mixed-female-dorm': 389,
   '6-bed-mixed-dorm': 499,
-  '8-bed-mixed-dorm': 399,
+  '8-bed-mixed-dorm': 389,
 };
 
 /**
