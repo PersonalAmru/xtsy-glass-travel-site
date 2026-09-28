@@ -179,6 +179,13 @@ jobs:
           SITE_URL: ${{ env.PROD_URL }}
           OUT_DIR: shots/crawl
 
+      - name: Content + facts audit (prices, rating, policies, schema, SEO, AEO)
+        continue-on-error: true
+        run: bun scripts/audit/content-audit.ts
+        env:
+          SITE_URL: ${{ env.PROD_URL }}
+          OUT_DIR: shots/content
+
       - name: UI + accessibility audit (one page per template)
         continue-on-error: true
         run: |
