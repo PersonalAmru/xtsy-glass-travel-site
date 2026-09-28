@@ -292,15 +292,15 @@ export function TonightDeals() {
         title="Booking for tonight?"
         aside={<span className="max-w-[420px] text-[14px] leading-normal text-xt-mute">Tap Book to see what’s actually free tonight in our booking engine.</span>}
       />
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {deals.map((d) => (
           <div key={d.n} className="xt-reveal xt-lift flex items-center gap-4 rounded-[22px] bg-white p-5">
             <Photo src={d.img} alt={d.n} tone={d.tone} className="h-24 w-24 shrink-0 rounded-2xl" />
-            <div className="flex flex-grow flex-col gap-1">
+            <div className="flex min-w-0 flex-grow flex-col gap-1">
               <span className="text-[17px] font-extrabold">{d.n}</span>
               <span className="text-[20px] font-extrabold text-xt-crimson">{d.price} <span className="text-[13px] font-semibold text-xt-mute">{d.was}</span></span>
             </div>
-            <Link to="/book" className="xt-btn flex h-11 items-center rounded-full bg-xt-crimson px-4 text-[14px] font-extrabold text-white hover:text-white">Book</Link>
+            <Link to="/book" className="xt-btn flex h-[44px] shrink-0 items-center rounded-full bg-xt-crimson px-4 text-[14px] font-extrabold text-white hover:text-white">Book</Link>
           </div>
         ))}
       </div>

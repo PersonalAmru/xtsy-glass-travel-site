@@ -103,7 +103,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
               </div>
             ))}
           </dl>
-          <a href={XTSY_MAPS_URL} target="_blank" rel="noopener noreferrer" className="self-start text-[14px] font-bold text-xt-crimson">Open in Google Maps →</a>
+          <a href={XTSY_MAPS_URL} target="_blank" rel="noopener noreferrer" className="self-start py-2 text-[14px] font-bold text-xt-crimson">Open in Google Maps →</a>
         </div>
       </section>
 
