@@ -68,6 +68,7 @@ jobs:
         run: |
           set -euo pipefail
           if [ ! -f .github/pexels-candidates.flag ]; then echo "no flag"; exit 0; fi
+          if [ -z "${PEXELS_API_KEY:-}" ]; then echo "::warning::PEXELS_API_KEY secret is not set yet"; exit 0; fi
           bun add --no-save sharp@0.33.5
           bun scripts/images/pexels-candidates.ts
           git config user.name "xtsy-ci"
