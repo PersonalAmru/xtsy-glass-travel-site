@@ -14,7 +14,7 @@ import { inr, lowestDormPrice } from './pricing';
 const IntelligentSearchOverlay = lazy(() => import('@/components/IntelligentSearchOverlay'));
 
 export const MAIN_NAV = [
-  { to: '/book', label: 'Stays' },
+  { to: '/best-hostel-in-shillong', label: 'Stays' },
   { to: '/xtsy-270', label: 'Experience by XTSY' },
   { to: '/tours', label: 'Tours' },
   { to: '/tab-bistro', label: 'TAB Bistro' },
