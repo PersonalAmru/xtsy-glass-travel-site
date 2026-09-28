@@ -45,7 +45,7 @@ const HostelNearMe = memo(() => {
       addressCountry: 'IN',
     },
     geo: { '@type': 'GeoCoordinates', latitude: 25.535, longitude: 91.965 },
-    hasMap: 'https://maps.google.com/?q=25.535,91.965',
+    hasMap: 'https://maps.app.goo.gl/UnP9PfbSJdafMFMM6',
     areaServed: [
       { '@type': 'City', name: 'Shillong' },
       { '@type': 'AdministrativeArea', name: 'East Khasi Hills' },
@@ -285,7 +285,7 @@ const HostelNearMe = memo(() => {
               </Link>
               <Link to="/hostel-booking" className="rounded-xl border p-5 hover:border-primary transition">
                 <div className="font-semibold mb-1">Book a Hostel Online</div>
-                <div className="text-sm text-muted-foreground">Instant confirmation, free cancellation.</div>
+                <div className="text-sm text-muted-foreground">Instant confirmation, direct rates.</div>
               </Link>
               <Link to="/hotels-in-shillong" className="rounded-xl border p-5 hover:border-primary transition">
                 <div className="font-semibold mb-1">Hotels in Shillong</div>

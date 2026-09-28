@@ -194,10 +194,10 @@ const transportPages: SEOPageData[] = [
 
   mkPage('car-booking-shillong', 'rentals', 'AutoRental',
     'Car Booking Shillong — Instant Online | XTSY Rentals', 'Book cars online in Shillong. Self-drive & chauffeur. Instant confirmation via WhatsApp. SUVs, sedans from ₹1,200/day.',
-    'Car Booking in Shillong', 'Book a car in Shillong instantly with XTSY Rentals. Choose from self-drive or chauffeur-driven vehicles. Instant confirmation, flexible cancellation, and 24/7 support.',
+    'Car Booking in Shillong', 'Book a car in Shillong instantly with XTSY Rentals. Choose from self-drive or chauffeur-driven vehicles. Instant confirmation and 24/7 support.',
     [
       { heading: 'How to Book', content: 'Simple 3-step booking:', listItems: ['Choose vehicle type & dates', 'Send booking request via WhatsApp', 'Get instant confirmation & pickup details'] },
-      { heading: 'Why Book with XTSY', content: 'Advantages of booking through us:', listItems: ['No middlemen — direct pricing', 'Well-maintained, sanitized vehicles', 'Flexible cancellation policy', '24/7 roadside assistance', 'Local driver option for mountain roads'] },
+      { heading: 'Why Book with XTSY', content: 'Advantages of booking through us:', listItems: ['No middlemen — direct pricing', 'Well-maintained, sanitized vehicles', '24/7 roadside assistance', 'Local driver option for mountain roads'] },
     ],
     [
       { question: 'Can I book a car for a one-way trip?', answer: 'Yes! We offer one-way rentals between Guwahati, Shillong, Cherrapunji, and Dawki. One-way charges apply.' },

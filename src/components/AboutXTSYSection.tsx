@@ -6,7 +6,7 @@ import neitaAwardCertificate from "@/assets/neita-award-certificate.jpeg";
 const AboutXTSYSection: React.FC = () => {
   const stats = [
     { icon: Star, value: "9.4", label: "Rating on Booking.com", color: "text-yellow-500" },
-    { icon: Users, value: "15,000+", label: "Happy Travellers", color: "text-blue-500" },
+    { icon: Users, value: "10,786+", label: "Happy Travellers", color: "text-blue-500" },
     { icon: Globe, value: "50+", label: "Tour Destinations", color: "text-green-500" },
     { icon: Award, value: "NEITA 2025", label: "Award Nominated", color: "text-amber-500" },
   ];

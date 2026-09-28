@@ -15,7 +15,7 @@ interface Platform {
 }
 
 const PLATFORMS: Platform[] = [
-  { name: 'Google', rating: '5.0', scale: '/5', color: 'from-blue-500 to-blue-600', reviewCount: '80+' },
+  { name: 'Google', rating: '4.8', scale: '/5', color: 'from-blue-500 to-blue-600', reviewCount: '161' },
   { name: 'Booking.com', rating: '9.8', scale: '/10', color: 'from-blue-700 to-blue-800', reviewCount: '100+' },
   { name: 'Hostelworld', rating: '10', scale: '/10', color: 'from-orange-500 to-orange-600', reviewCount: '20+' },
   { name: 'MakeMyTrip', rating: '4.8', scale: '/5', color: 'from-red-500 to-red-600', reviewCount: '50+' },

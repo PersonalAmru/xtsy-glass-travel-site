@@ -4,7 +4,7 @@ const TrustSignals = () => (
   <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
     {[
       { icon: Award, label: '4.8★ Google Rating', sub: '161 verified reviews' },
-      { icon: Users, label: '5,000+ Guests', sub: 'Hosted since 2024' },
+      { icon: Users, label: '10,786+ Guests', sub: 'Hosted since 2024' },
       { icon: MapPin, label: 'Local Experts', sub: 'Based in Shillong' },
       { icon: Shield, label: 'Verified Business', sub: 'GST registered' },
     ].map(({ icon: Icon, label, sub }) => (

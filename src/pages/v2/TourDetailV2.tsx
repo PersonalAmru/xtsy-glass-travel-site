@@ -247,7 +247,7 @@ export default function TourDetailV2() {
               <button type="button" onClick={() => setIsBookingOpen(true)} className="xt-btn h-14 rounded-full bg-xt-crimson text-[16px] font-extrabold text-white">Book now</button>
               <a href={enquire} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-12 items-center justify-center rounded-full border-[1.5px] border-xt-paper text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">Enquire on WhatsApp</a>
               <ul className="m-0 flex list-none flex-col gap-1.5 border-t border-[#383D52] p-0 pt-4 text-[13px] text-xt-fog">
-                {['Instant confirmation', 'Free cancellation up to 48hrs', 'Best price guarantee'].map((s) => <li key={s}>✓ {s}</li>)}
+                {['Instant confirmation', 'One date change allowed · booking amount non-refundable', 'Best price guarantee'].map((s) => <li key={s}>✓ {s}</li>)}
               </ul>
             </div>
           </aside>

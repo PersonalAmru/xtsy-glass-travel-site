@@ -153,7 +153,7 @@ const faqs = [
   { question: "What is the fuel policy?", answer: "Vehicles are provided with a full tank. Please return with a full tank or we'll charge ₹150/litre above market price." },
   { question: "Is a driver available?", answer: "Yes! We provide experienced local drivers at ₹800-1200/day extra depending on the vehicle. They know all the scenic routes and hidden spots." },
   { question: "What about inter-state travel?", answer: "Inter-state travel is allowed with prior approval. Additional permits may be required for certain states like Arunachal Pradesh (ILP)." },
-  { question: "What is the cancellation policy?", answer: "Free cancellation up to 24 hours before pickup. 50% charge for cancellations within 24 hours. No refund for no-shows." },
+  { question: "What is the cancellation policy?", answer: "The booking amount is non-refundable — there is no free cancellation. You can change the pickup date once, subject to availability. No refund for no-shows. The security deposit is refunded when the vehicle is returned." },
   { question: "Is there a minimum rental period?", answer: "Minimum rental is 1 day (24 hours). Weekly and monthly discounts available - contact us for special rates." }
 ];
 

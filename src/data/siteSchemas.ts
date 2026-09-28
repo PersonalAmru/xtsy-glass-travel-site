@@ -1,3 +1,6 @@
+
+/** Owner-confirmed Google Maps pin for the gate of XTSY Travellers Hostel. */
+export const XTSY_MAPS_URL = 'https://maps.app.goo.gl/UnP9PfbSJdafMFMM6';
 /**
  * Sitewide JSON-LD entities, scoped per route.
  * WebSite + Organization stay in __root; Hostel is homepage-only and
@@ -18,7 +21,7 @@ export const HOSTEL_SCHEMA: Record<string, unknown> = {
     "https://xtsy.one/img/o/xtsy-property-images-6-1920.webp",
     "https://xtsy.one/img/o/xtsy-6-bed-mixed-dormitory-1-1280.webp",
   ],
-  hasMap: "https://www.google.com/maps/search/?api=1&query=XTSY+Travellers+Hostel+New+Shillong+Township",
+  hasMap: XTSY_MAPS_URL,
   petsAllowed: true,
   smokingAllowed: false,
   currenciesAccepted: "INR",

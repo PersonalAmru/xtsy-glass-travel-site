@@ -21,7 +21,7 @@ const LuxuryGlampingShillong = memo(() => {
       addressCountry: 'IN',
     },
     priceRange: '₹4,999/night',
-    starRating: { '@type': 'Rating', ratingValue: '4.9' },
+    starRating: { '@type': 'Rating', ratingValue: '4.8' },
     amenityFeature: [
       { '@type': 'LocationFeatureSpecification', name: '270° Panoramic Glass Walls', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Stargazing', value: true },

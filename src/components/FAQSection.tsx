@@ -42,7 +42,7 @@ const FAQSection = () => {
     },
     {
       question: "What is your cancellation and refund policy?",
-      answer: "Free cancellation up to 48 hours before check-in for dorm beds and private rooms — full refund. Cancel within 48 hours: first night is charged. No-show: full booking is charged. Experience by XTSY and tour packages are non-refundable but modifiable once within 90 days (date change or upgrade, subject to availability and fare difference). Full policy: xtsy.one/pricing-cancellation-policy.",
+      answer: "The booking amount is non-refundable — there is no free cancellation. You can modify a booking once within 90 days of the original check-in (request at least 48 hours before), subject to availability and any rate difference. No-shows are not refunded. Full policy: xtsy.one/pricing-cancellation-policy.",
     },
     {
       question: "How do I book?",

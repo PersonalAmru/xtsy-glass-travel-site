@@ -161,7 +161,7 @@ const FACTS: [RegExp, () => string, string[]][] = [
   [/\b(ilp|permit|permits|pap|rap)\b/, () => `Meghalaya and Assam need no permit. **Arunachal**, **Nagaland**, **Mizoram** and **Manipur** need an Inner Line Permit for Indian travellers (foreign nationals need a Protected Area Permit for Arunachal). **Sikkim**: Tsomgo, Nathula and North Sikkim need local permits. The XTSY desk helps with paperwork for trips we plan.`, ['Tawang in 7 days', 'Kohima & Dzukou trip']],
   [/workation|work from|wifi|wi-fi|remote work|digital nomad|coworking/, () => 'XTSY runs workation stays with fast Wi-Fi, desks and long-stay rates (weekly and monthly plans on the Workation page), with TAB Bistro downstairs.', ['Workation plans', 'Plan a slow 10-day trip']],
   [/group|college|corporate|offsite|students|school trip/, () => 'We plan group trips for 6–60 people: whole-dorm stays at XTSY, tempo or SUV transport, guides and TAB Bistro meals, with GST invoices on request.', ['Plan a group trip for 20', 'Group bookings page']],
-  [/cancel|refund/, () => 'Cancellation terms depend on the room and the dates, and the XTSY desk confirms them before you pay. See the Pricing & Cancellation Policy page for the details.', ['Talk to the desk on WhatsApp']],
+  [/cancel|refund/, () => 'The booking amount is **non-refundable** — there is no free cancellation. You can change your dates **once within 90 days** of the original check-in (ask at least 48 hours before), subject to availability and any rate difference. Full terms are on the Pricing & Cancellation Policy page.', ['Talk to the desk on WhatsApp']],
 ];
 
 function priceAnswer(): string {
