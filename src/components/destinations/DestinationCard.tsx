@@ -46,8 +46,8 @@ const DestinationCard = ({ destination, className = '' }: DestinationCardProps) 
         )}
         {showFallback ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center bg-muted gap-2">
-            <MapPin className="h-8 w-8 text-muted-foreground/40" />
-            <span className="text-xs text-muted-foreground/40 capitalize">{destination.category}</span>
+            <MapPin className="h-8 w-8 text-muted-foreground" aria-hidden />
+            <span className="text-xs text-muted-foreground capitalize">{destination.category}</span>
           </div>
         ) : (
           <img

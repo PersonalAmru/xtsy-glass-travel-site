@@ -26,16 +26,16 @@ const LINK_GROUPS: LinkGroup[] = [
     title: 'Top Destinations',
     links: [
       { label: 'Waterfalls in Meghalaya', to: '/meghalaya-waterfalls' },
-      { label: 'Caves in Meghalaya', to: '/meghalaya-caves-guide' },
+      { label: 'Caves in Meghalaya', to: '/mawsmai-cave-cherrapunji' },
       { label: 'Trekking in Meghalaya', to: '/trekking-in-meghalaya' },
       { label: 'Dawki & Umngot River', to: '/dawki-umngot-river-guide' },
-      { label: 'Camping in Meghalaya', to: '/camping-in-meghalaya' },
+      { label: 'Camping in Meghalaya', to: '/things-to-do-in-meghalaya' },
     ],
   },
   {
     title: 'Itineraries',
     links: [
-      { label: '3-Day Meghalaya Itinerary', to: '/meghalaya-3-day-itinerary' },
+      { label: '3-Day Meghalaya Itinerary', to: '/3-day-meghalaya-itinerary' },
       { label: '5-Day Meghalaya Itinerary', to: '/5-day-meghalaya-itinerary' },
       { label: '7-Day Meghalaya Itinerary', to: '/7-day-meghalaya-itinerary' },
       { label: 'Meghalaya Tour Packages', to: '/meghalaya-tour-packages' },

@@ -11,7 +11,7 @@ const PILLAR_CLUSTERS: Record<string, { pillar: ClusterLink; children: ClusterLi
     pillar: { slug: 'best-hostel-in-shillong', label: 'Best Hostel in Shillong' },
     children: [
       { slug: 'backpacker-hostel-shillong', label: 'Backpacker Hostel' },
-      { slug: 'cheap-hostel-shillong', label: 'Cheap Hostels' },
+      { slug: 'cheap-hostels-shillong', label: 'Cheap Hostels' },
       { slug: 'solo-travel-hostel-shillong', label: 'Solo Travel Hostel' },
       { slug: 'couples-hostel-shillong', label: 'Couples Hostel' },
       { slug: 'group-stay-shillong', label: 'Group Stay' },

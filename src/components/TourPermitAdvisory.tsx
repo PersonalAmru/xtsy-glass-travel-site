@@ -54,7 +54,7 @@ const TourPermitAdvisory = ({ location, title }: { location?: string; title?: st
 
   return (
     <section aria-labelledby="tour-advisory-heading" className="mb-8">
-      <h2 id="tour-advisory-heading" className="mb-3 font-playfair text-xl font-bold text-white">
+      <h2 id="tour-advisory-heading" className="mb-3 text-xl font-extrabold text-xt-ink">
         Permits &amp; safety you must know before booking
       </h2>
       <div className="space-y-3">
@@ -63,17 +63,17 @@ const TourPermitAdvisory = ({ location, title }: { location?: string; title?: st
           return (
             <div
               key={a.key}
-              className="flex gap-3 rounded-xl border border-amber-500/30 bg-amber-500/5 p-4"
+              className="flex gap-3 rounded-xl border border-amber-600/40 bg-amber-50 p-4"
             >
-              <Icon className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" aria-hidden />
+              <Icon className="mt-0.5 h-5 w-5 shrink-0 text-amber-700" aria-hidden />
               <div>
-                <h3 className="mb-1 text-sm font-semibold text-amber-300">{a.title}</h3>
-                <p className="text-sm leading-relaxed text-white/80">{a.body}</p>
+                <h3 className="mb-1 text-sm font-semibold text-amber-900">{a.title}</h3>
+                <p className="text-sm leading-relaxed text-xt-ink">{a.body}</p>
               </div>
             </div>
           );
         })}
-        <p className="flex items-start gap-2 text-[12px] text-white/70">
+        <p className="flex items-start gap-2 text-[12px] text-xt-mute">
           <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden />
           Permit rules and pass openings change. Confirm current requirements with the relevant state
           authority before you travel.

@@ -46,7 +46,7 @@ import { openWhatsAppDirectly, generateBookingMessage } from '@/utils/privacyCom
 import { pushToDataLayer, trackBookingStart, trackBookingComplete } from '@/utils/dataLayerService';
 import { routeGTMEvent } from '@/utils/gtmEventRouter';
 
-type BookingStep = 'rooms' | 'summary' | 'details' | 'confirmation';
+type BookingStep = 'dates' | 'rooms' | 'summary' | 'details' | 'confirmation';
 
 interface SelectedRoom {
   room: RoomType;
@@ -65,6 +65,56 @@ interface GuestDetails {
 }
 
 // Premium Header
+/** Step 0 — shown when /book is opened without dates (header "Book now", room cards, "Stays"). */
+function DateStep({ initialProperty, onSubmit }: { initialProperty: 'xtsy-hostel' | 'xtsy-experience'; onSubmit: (checkIn: string, checkOut: string, property: string) => void }) {
+  // Local calendar date (not UTC), so "today" is right for guests in India after midnight.
+  const iso = (d: Date) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  const today = new Date();
+  const [ci, setCi] = useState(iso(today));
+  const [co, setCo] = useState(iso(new Date(today.getTime() + 86400000)));
+  const [property, setProperty] = useState(initialProperty);
+  const nightsCount = Math.round((new Date(co).getTime() - new Date(ci).getTime()) / 86400000);
+  const valid = Boolean(ci && co) && nightsCount >= 1;
+  const pickCi = (v: string) => {
+    setCi(v);
+    if (v && (!co || new Date(co) <= new Date(v))) setCo(iso(new Date(new Date(v).getTime() + 86400000)));
+  };
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-[hsl(220,20%,12%)] to-[hsl(220,25%,6%)] px-4 py-10 text-white">
+      <div className="mx-auto flex max-w-md flex-col gap-6">
+        <a href="/" className="text-sm text-white/70 hover:text-white">← XTSY home</a>
+        <div>
+          <p className="text-xs uppercase tracking-widest text-white/70">Step 1</p>
+          <h1 className="mt-1 text-2xl font-semibold">Book your stay at XTSY Travellers Hostel</h1>
+          <p className="mt-1 text-sm text-white/80">Pick your dates to see live rooms and prices. Check-in 11 AM · check-out 10 AM.</p>
+        </div>
+        <form className="flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); if (valid) onSubmit(ci, co, property); }}>
+          <fieldset className="grid grid-cols-2 gap-2">
+            <legend className="mb-2 text-sm font-medium">Where</legend>
+            {([['xtsy-hostel', 'Hostel — dorms & rooms'], ['xtsy-experience', 'Experience by XTSY']] as const).map(([id, label]) => (
+              <label key={id} className={`flex min-h-[48px] cursor-pointer items-center justify-center rounded-xl border px-3 text-center text-sm font-medium ${property === id ? 'border-white bg-white text-[hsl(220,25%,10%)]' : 'border-white/30 text-white'}`}>
+                <input type="radio" name="property" value={id} checked={property === id} onChange={() => setProperty(id)} className="sr-only" />
+                {label}
+              </label>
+            ))}
+          </fieldset>
+          <div className="grid grid-cols-2 gap-3">
+            <label className="flex flex-col gap-1 text-sm font-medium" htmlFor="book-ci">Check-in
+              <input id="book-ci" type="date" required value={ci} min={iso(today)} onChange={(e) => pickCi(e.target.value)} className="h-12 rounded-xl border border-white/30 bg-white/10 px-3 text-white [color-scheme:dark]" />
+            </label>
+            <label className="flex flex-col gap-1 text-sm font-medium" htmlFor="book-co">Check-out
+              <input id="book-co" type="date" required value={co} min={ci ? iso(new Date(new Date(ci).getTime() + 86400000)) : iso(today)} onChange={(e) => setCo(e.target.value)} className="h-12 rounded-xl border border-white/30 bg-white/10 px-3 text-white [color-scheme:dark]" />
+            </label>
+          </div>
+          <p className="m-0 text-sm text-white/80" aria-live="polite">{valid ? `${nightsCount} ${nightsCount === 1 ? 'night' : 'nights'}` : 'Check-out must be at least one night after check-in'}</p>
+          <button type="submit" disabled={!valid} className="h-12 rounded-xl bg-[#B3262F] text-base font-semibold text-white disabled:opacity-50">See rooms and prices</button>
+        </form>
+        <p className="text-sm text-white/70">Prefer to talk? WhatsApp +91 88373 17070.</p>
+      </div>
+    </div>
+  );
+}
+
 const BookingHeader = ({ 
   step, 
   stepNumber,
@@ -855,7 +905,7 @@ const pageTransition = {
 // Main Component
 export default function SimplifiedBookingFlow() {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { trackConversion } = useEnhancedAnalytics();
   const hasTrackedEntry = useRef(false);
   
@@ -943,11 +993,13 @@ export default function SimplifiedBookingFlow() {
             navigate('/');
           }
         } else {
-          navigate('/');
+          // No dates yet (e.g. "Book now" from the header): ask for them here
+          // instead of bouncing the guest to the home page.
+          setCurrentStep('dates');
         }
       }
     } catch {
-      navigate('/');
+      setCurrentStep('dates');
     }
   }, [navigate, searchParams]);
 
@@ -1176,6 +1228,18 @@ export default function SimplifiedBookingFlow() {
       setIsSubmitting(false);
     }
   };
+
+  if (currentStep === 'dates') {
+    return (
+      <DateStep
+        initialProperty={searchParams.get('property') === 'xtsy-experience' || searchParams.get('location') === 'xtsy-270' ? 'xtsy-experience' : 'xtsy-hostel'}
+        onSubmit={(ci, co, property) => {
+          sessionStorage.removeItem('xtsy_simplified_booking');
+          setSearchParams({ checkIn: ci, checkOut: co, property, location: property === 'xtsy-experience' ? 'xtsy-270' : 'shillong' });
+        }}
+      />
+    );
+  }
 
   // Don't render until dates are loaded (rooms can be empty for hero search entry)
   if (!checkIn || !checkOut) {

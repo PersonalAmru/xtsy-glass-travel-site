@@ -133,7 +133,7 @@ export default function ProgrammaticV2() {
           <aside className="flex flex-col gap-4 lg:col-span-4">
             <div className="sticky top-28 flex flex-col gap-4">
               <div className="flex flex-col gap-3 rounded-[24px] bg-xt-ink p-6 text-xt-paper">
-                <span className="xt-eyebrow text-[13px] text-xt-rose!">Where to stay</span>
+                <span className="xt-eyebrow text-[13px] text-[#F7C9D1]!">Where to stay</span>
                 <span className="text-[20px] font-extrabold">XTSY Travellers Hostel</span>
                 <span className="text-[14px] leading-relaxed text-xt-fog">New Shillong Township, near IIM & NIFT Shillong. Dorms from {inr(lowestDormPrice())}, women-only dorm, King Double {inr(roomPrice('king-double-room').now)}, Experience by XTSY glass suite. TAB Bistro on site.</span>
                 <Link to="/book" className="xt-btn flex h-12 items-center justify-center rounded-full bg-xt-crimson text-[15px] font-extrabold text-white hover:text-white">Check availability</Link>

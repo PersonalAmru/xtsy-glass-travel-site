@@ -127,7 +127,7 @@ const NotFound = ({ statusCode }: NotFoundProps) => {
         <section className="relative overflow-hidden bg-xt-slate px-4 py-20 text-xt-paper sm:px-8 lg:px-16 lg:py-28">
           <SpinningMark fill="#F4EFE8" className="-right-24 -top-24 h-[520px] w-[520px] opacity-[0.07]" />
           <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-5 text-center">
-            <div className="xt-in xt-eyebrow text-[15px] text-xt-rose! sm:text-[18px]">{finalStatus} · {isGone ? "removed" : "lost in the clouds"}</div>
+            <div className="xt-in xt-eyebrow text-[15px] text-[#F7C9D1]! sm:text-[18px]">{finalStatus} · {isGone ? "removed" : "lost in the clouds"}</div>
             <h1 className="xt-in xt-d1 xt-display m-0 text-[56px] leading-[0.9] sm:text-[96px]">
               {isGone ? "This page has been removed." : "This trail doesn’t go anywhere."}
             </h1>

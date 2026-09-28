@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Link } from "@/lib/router-compat";
 import {
   Breadcrumb,
@@ -44,7 +45,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
             </BreadcrumbLink>
           </BreadcrumbItem>
           {items.map((item, i) => (
-            <span key={i} className="contents">
+            <Fragment key={i}>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 {item.href ? (
@@ -55,7 +56,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
                   <BreadcrumbPage>{item.label}</BreadcrumbPage>
                 )}
               </BreadcrumbItem>
-            </span>
+            </Fragment>
           ))}
         </BreadcrumbList>
       </Breadcrumb>

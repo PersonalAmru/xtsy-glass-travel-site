@@ -15,6 +15,11 @@ export function isConsolidatedSEOSlug(slug: string): boolean {
   return STAY_PREFIX.test(slug) && TIME_VARIANT.test(slug) && !slug.includes('shillong');
 }
 
+/** Near-identical twin pages: reachable, but canonical to (and replaced in sitemaps by) the named slug. */
+export const CANONICAL_TWIN: Readonly<Record<string, string>> = {
+  'hostel-in-shillong-today': 'hostels-in-shillong-today',
+};
+
 export function isIndexableSEOSlug(slug: string): boolean {
-  return !isConsolidatedSEOSlug(slug);
+  return !isConsolidatedSEOSlug(slug) && !CANONICAL_TWIN[slug];
 }

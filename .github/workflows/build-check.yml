@@ -125,7 +125,7 @@ jobs:
         env:
           BASE_URL: http://localhost:8080
           OUT_DIR: shots
-          ROUTES: /book/campsite,/tours/4n-5d-shillong-meghalaya-tour,/tours/7n-guwahati-shillong-kaziranga-tour,/tours/5n-6d-tawang-tour,/tours
+          ROUTES: /guides,/female-travellers,/book,/faq,/contact
 
       - name: Trip assistant check
         continue-on-error: true
@@ -171,6 +171,22 @@ jobs:
           SKIP_IMAGES: "1"
           BASELINE_URL: https://xtsy.one
           PERF_ROUTES: /,/best-hostel-in-shillong,/cheap-hostels-shillong,/shillong-dormitory,/xtsy-270
+
+      - name: Whole-site navigation crawl (links, orphans, depth, duplicates, design)
+        continue-on-error: true
+        run: bun scripts/audit/site-crawl.ts
+        env:
+          SITE_URL: ${{ env.PROD_URL }}
+          OUT_DIR: shots/crawl
+
+      - name: UI + accessibility audit (one page per template)
+        continue-on-error: true
+        run: |
+          bun add --no-save axe-core@4.10.2 >/dev/null 2>&1 || npm i --no-save axe-core@4.10.2 >/dev/null 2>&1
+          bunx tsx scripts/audit/ui-audit.ts
+        env:
+          BASE_URL: ${{ env.PROD_URL }}
+          OUT_DIR: shots/ui
 
       - name: Breakpoint audit (7 screen sizes × key pages)
         continue-on-error: true

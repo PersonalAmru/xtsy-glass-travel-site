@@ -14,6 +14,7 @@ import {
   Outlet as TSOutlet,
 } from "@tanstack/react-router";
 import { useMemo, useCallback, useEffect, useState, forwardRef, type ComponentProps, type ReactNode } from "react";
+import { resolveLinkTarget } from "@/data/linkTargets";
 
 // ---------- shared URL parsing ----------
 
@@ -125,7 +126,8 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   { to, replace, state, children, ...rest },
   ref,
 ) {
-  const { pathname, search, hash } = parseTo(to);
+  // Retired slugs resolve to their live page, so no internal link lands on a redirect or a 404.
+  const { pathname, search, hash } = parseTo(resolveLinkTarget(to));
   return (
     <TSLink
       ref={ref as never}
