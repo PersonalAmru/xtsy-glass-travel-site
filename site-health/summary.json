@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-09-28T14:43:41.218Z",
+ "checkedAt": "2026-09-28T16:52:48.461Z",
  "site": "https://xtsy.one",
  "sitemaps": [
   {
@@ -10,7 +10,7 @@
   {
    "sitemap": "https://xtsy.one/sitemap-hostel.xml",
    "status": 200,
-   "urls": 95
+   "urls": 94
   },
   {
    "sitemap": "https://xtsy.one/sitemap-tour-packages.xml",
@@ -53,16 +53,14 @@
    "urls": 2
   }
  ],
- "urlsChecked": 669,
+ "urlsChecked": 668,
  "healthy": 668,
- "withIssues": 1,
- "byIssue": {
-  "slow response": 1
- },
- "medianMs": 138,
- "p95Ms": 297,
- "withStructuredData": 669,
- "withQuickAnswer": 483,
+ "withIssues": 0,
+ "byIssue": {},
+ "medianMs": 113,
+ "p95Ms": 272,
+ "withStructuredData": 668,
+ "withQuickAnswer": 482,
  "extra": {
   "robots": 200,
   "llms": 200,
