@@ -3,7 +3,7 @@
   "route": "/",
   "status": 200,
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
-  "description": "XTSY Travellers Hostel, New Shillong Township: dorm beds from ₹389, women-only dorm, King Double ₹2,200, Experience by XTSY glass suite ₹5,399. TAB Bistro on site.",
+  "description": "XTSY Travellers Hostel, New Shillong Township: dorms from ₹389, women-only dorm, King Double ₹2,200, glass suite ₹5,399 and TAB Bistro on site.",
   "canonical": "https://xtsy.one/",
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   "h1": "XTSY Travellers Hostel",
@@ -17,9 +17,9 @@
    "LocationFeatureSpecification",
    "GeoCoordinates",
    "AggregateRating",
-   "Rating",
    "Review",
    "Person",
+   "Rating",
    "OpeningHoursSpecification",
    "FAQPage",
    "Question",
@@ -32,7 +32,7 @@
   "route": "/best-hostel-in-shillong",
   "status": 200,
   "title": "Hostels in Shillong 2026 — Dorms from ₹389 | XTSY",
-  "description": "Choosing a hostel in Shillong: XTSY Travellers Hostel (4.8★, 161 Google reviews) — dorms from ₹389, women-only dorm, private rooms and a glass suite in New Shillong Township.",
+  "description": "XTSY Travellers Hostel, New Shillong Township (4.8★, 161 Google reviews): dorms from ₹389, a women-only dorm, private rooms and a glass suite.",
   "canonical": "https://xtsy.one/best-hostel-in-shillong",
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   "h1": "Hostels in Shillong",
@@ -86,7 +86,7 @@
   "route": "/xtsy-270",
   "status": 200,
   "title": "Experience by XTSY — India&#x27;s First Stargaze Glamp, Shillong",
-  "description": "Stay at Experience by XTSY, India&#x27;s first stargaze glamp — a 270° panoramic glass suite in New Shillong Township. See photos, what&#x27;s included, rates and availability, and book direct.",
+  "description": "Experience by XTSY, India&#x27;s first stargaze glamp: a 270° panoramic glass suite in New Shillong Township. Photos, what&#x27;s included and rates. Book direct.",
   "canonical": "https://xtsy.one/xtsy-270",
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   "h1": "Experience by XTSY",
@@ -105,7 +105,7 @@
    "Question",
    "Answer"
   ],
-  "words": 548,
+  "words": 627,
   "preload": 2
  },
  {
@@ -126,7 +126,7 @@
    "Question",
    "Answer"
   ],
-  "words": 346,
+  "words": 1003,
   "preload": 1
  },
  {
@@ -149,7 +149,7 @@
    "Question",
    "Answer"
   ],
-  "words": 766,
+  "words": 945,
   "preload": 1
  },
  {
@@ -178,7 +178,7 @@
    "Question",
    "Answer"
   ],
-  "words": 1162,
+  "words": 1164,
   "preload": 3
  },
  {
@@ -207,7 +207,7 @@
    "Question",
    "Answer"
   ],
-  "words": 1089,
+  "words": 1091,
   "preload": 3
  },
  {
@@ -254,7 +254,7 @@
    "Question",
    "Answer"
   ],
-  "words": 1255,
+  "words": 1257,
   "preload": 3
  },
  {
@@ -281,7 +281,7 @@
    "Question",
    "Answer"
   ],
-  "words": 1515,
+  "words": 1517,
   "preload": 3
  }
 ]
