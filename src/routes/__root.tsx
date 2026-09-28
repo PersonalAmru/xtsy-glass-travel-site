@@ -159,8 +159,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
       { name: "geo.region", content: "IN-ML" },
       { name: "geo.placename", content: "Shillong, Meghalaya, India" },
-      { name: "geo.position", content: "25.535;91.965" },
-      { name: "ICBM", content: "25.535, 91.965" },
+      { name: "geo.position", content: "25.6025457;91.9448902" },
+      { name: "ICBM", content: "25.6025457, 91.9448902" },
       { name: "target", content: "all" },
       { name: "audience", content: "all" },
       { name: "coverage", content: "Worldwide" },

@@ -54,8 +54,8 @@ const hostelSchema = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 25.535,
-    longitude: 91.965,
+    latitude: 25.6025457,
+    longitude: 91.9448902,
   },
   checkinTime: '11:00',
   checkoutTime: '10:00',

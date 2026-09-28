@@ -34,7 +34,7 @@ const HostelBookingShillong = memo(() => {
       postalCode: '793018',
       addressCountry: 'IN',
     },
-    geo: { '@type': 'GeoCoordinates', latitude: 25.535, longitude: 91.965 },
+    geo: { '@type': 'GeoCoordinates', latitude: 25.6025457, longitude: 91.9448902 },
     checkinTime: '11:00',
     checkoutTime: '10:00',
     aggregateRating: {

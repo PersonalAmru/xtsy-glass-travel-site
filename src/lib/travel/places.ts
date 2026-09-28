@@ -56,8 +56,8 @@ export const XTSY = {
   name: 'XTSY Travellers Hostel',
   area: 'New Shillong Township',
   address: 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018',
-  lat: 25.535,
-  lng: 91.965,
+  lat: 25.6025457,
+  lng: 91.9448902,
 };
 
 export const CLUSTERS: Record<ClusterId, Cluster> = {

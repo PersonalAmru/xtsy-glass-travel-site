@@ -55,7 +55,7 @@ const buildSchema = (page: SEOPageData) => {
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
       telephone: '+91-8837317070',
       priceRange: '₹399 - ₹4,999',
-      geo: { '@type': 'GeoCoordinates', latitude: 25.535, longitude: 91.965 },
+      geo: { '@type': 'GeoCoordinates', latitude: 25.6025457, longitude: 91.9448902 },
       amenityFeature: [
         { '@type': 'LocationFeatureSpecification', name: 'Free WiFi', value: true },
         { '@type': 'LocationFeatureSpecification', name: 'Restaurant', value: true },
@@ -128,7 +128,7 @@ const buildSchema = (page: SEOPageData) => {
       '@id': `https://xtsy.one/${page.slug}#restaurant`,
       servesCuisine: ['North Indian', 'Tandoor', 'Indo-Chinese', 'Thai', 'Continental', 'Italian', 'Seafood', 'Northeast Indian', 'Cafe'],
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
-      geo: { '@type': 'GeoCoordinates', latitude: 25.535, longitude: 91.965 },
+      geo: { '@type': 'GeoCoordinates', latitude: 25.6025457, longitude: 91.9448902 },
       telephone: '+91-8837317070',
       priceRange: '₹₹',
       acceptsReservations: 'True',
