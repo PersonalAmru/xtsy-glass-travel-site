@@ -165,7 +165,7 @@ const CampsiteBookingFlow = memo(() => {
 
           {/* Header */}
           <div className="mb-6">
-            <div className="inline-flex items-center gap-1 bg-emerald-600/10 text-emerald-700 px-2.5 py-0.5 rounded-full text-xs font-semibold mb-2">
+            <div className="inline-flex items-center gap-1 bg-emerald-600/10 text-emerald-800 px-2.5 py-0.5 rounded-full text-xs font-semibold mb-2">
               <MapPin className="w-3 h-3" /> Dawki, Meghalaya
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold">XTSY Adventure Campsite</h1>
@@ -195,7 +195,7 @@ const CampsiteBookingFlow = memo(() => {
                         )}
                       >
                         {pkg.highlight && (
-                          <div className="absolute -top-2 right-4 inline-flex items-center gap-1 bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                          <div className="absolute -top-2 right-4 inline-flex items-center gap-1 bg-amber-700 text-white text-[12px] font-bold px-2 py-0.5 rounded-full">
                             <Sparkles className="w-2.5 h-2.5" /> POPULAR
                           </div>
                         )}

@@ -1,9 +1,22 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
+import { RECOVERY_REDIRECTS } from "@/data/seoAffectedSlugs";
+import { CANONICAL_TWIN } from "@/data/seoIndexPolicy";
 import ProgrammaticV2 from "@/pages/v2/ProgrammaticV2";
 import { buildRouteHead } from "@/lib/seo-head";
-import { programmaticModel, schemaFor } from "@/lib/seo/programmaticSeo";
+import { programmaticModel, schemaFor, isThinSEOPage } from "@/lib/seo/programmaticSeo";
 
 export const Route = createFileRoute("/$slug")({
+  // Unknown or thin slugs must answer with a real 404 status (not a "not found" page served as 200),
+  // and retired slugs with a server-side 301 — so search engines drop or move them.
+  beforeLoad: ({ params }) => {
+    const model = programmaticModel(params.slug);
+    if (!model) {
+      const to = RECOVERY_REDIRECTS[params.slug];
+      if (to) throw redirect({ to, statusCode: 301 });
+      throw notFound();
+    }
+    if (isThinSEOPage(model.page)) throw notFound();
+  },
   head: ({ params }) => {
     try {
       const model = programmaticModel(params.slug);
@@ -17,7 +30,7 @@ export const Route = createFileRoute("/$slug")({
       }
       const { page, hero } = model;
       return buildRouteHead({
-        path: `/${page.slug}`,
+        path: `/${CANONICAL_TWIN[page.slug] ?? page.slug}`,
         title: page.title,
         description: page.metaDescription,
         keywords: page.keywords?.join(", "),

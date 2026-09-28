@@ -38,7 +38,7 @@ const competitorPages: SEOPageData[] = [
       { question: 'Is XTSY better than Zostel in Shillong?', answer: 'XTSY is independently rated 4.8★ on Google with 161 verified reviews. We offer comparable dorm pricing, an in-house restaurant, and unique experiences like Experience by XTSY stay.' },
       { question: 'Does XTSY have a female-only dorm?', answer: 'Yes, we have a dedicated 4-bed female-only dormitory with enhanced security, personal lockers, and attached bathroom.' },
     ],
-    ['backpacker-hostel-shillong', 'cheap-hostel-shillong', 'hostels-in-meghalaya'],
+    ['backpacker-hostel-shillong', 'cheap-hostels-shillong', 'hostels-in-meghalaya'],
     ['zostel shillong', 'zostel vs xtsy', 'zostel meghalaya', 'zostel prices shillong', 'best hostel shillong']
   ),
 
@@ -52,7 +52,7 @@ const competitorPages: SEOPageData[] = [
     [
       { question: 'Which hostel is cheaper — Isabella or XTSY?', answer: 'XTSY dorms start at ₹389/night, making it one of the most affordable options in Shillong with premium amenities included.' },
     ],
-    ['zostel-vs-xtsy-shillong', 'backpacker-hostel-shillong', 'cheap-hostel-shillong'],
+    ['zostel-vs-xtsy-shillong', 'backpacker-hostel-shillong', 'cheap-hostels-shillong'],
     ['isabella hostel shillong', 'isabella vs xtsy', 'hostels in shillong comparison']
   ),
 
@@ -93,7 +93,7 @@ const competitorPages: SEOPageData[] = [
       { question: 'Is XTSY suitable for students?', answer: 'Absolutely! XTSY is popular with college students and young travelers. We offer student-friendly pricing, group discounts, and a social atmosphere perfect for making new friends.' },
       { question: 'Is there an age limit for hostels?', answer: 'XTSY welcomes guests of all ages. While most guests are between 18-35, we have no upper age limit and welcome anyone with a traveler\'s spirit.' },
     ],
-    ['backpacker-hostel-shillong', 'cheap-hostel-shillong', 'shillong-dormitory'],
+    ['backpacker-hostel-shillong', 'cheap-hostels-shillong', 'shillong-dormitory'],
     ['youth hostel shillong', 'student hostel shillong', 'young traveler hostel meghalaya']
   ),
 ];
@@ -432,7 +432,7 @@ const accommodationExpansionPages: SEOPageData[] = [
     [
       { question: 'Are dorms safe?', answer: 'Yes! XTSY dorms have personal lockers, CCTV in common areas, and 24/7 reception. Our female-only dorm provides an extra layer of security.' },
     ],
-    ['shillong-dormitory', 'cheap-hostel-shillong', 'budget-stay-shillong'],
+    ['shillong-dormitory', 'cheap-hostels-shillong', 'budget-stay-shillong'],
     ['dorms in shillong', 'dormitory room shillong', 'dorm stay shillong', 'shared room shillong']
   ),
 

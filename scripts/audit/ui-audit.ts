@@ -18,7 +18,7 @@ const ROUTES = (process.env.UI_ROUTES || [
   '/expeditions', '/destinations', '/destinations/meghalaya', '/destinations/meghalaya/shillong', '/destinations/meghalaya/cherrapunji/nohkalikai-falls',
   '/shillong-dormitory', '/meghalaya-waterfalls', '/plan-trip-with-ai', '/tab-bistro', '/gallery', '/about', '/contact', '/faq', '/pet-friendly',
   '/female-travellers', '/work-from-home', '/group-bookings-meghalaya', '/merch', '/meghalaya-tour-packages', '/things-to-do-in-meghalaya',
-  '/hotels-in-shillong', '/travel-guide/how-to-reach-meghalaya', '/pricing-cancellation-policy', '/this-page-does-not-exist',
+  '/hotels-in-shillong', '/travel-guide/how-to-reach-meghalaya', '/pricing-cancellation-policy', '/guides', '/this-page-does-not-exist',
 ].join(',')).split(',');
 const VPS = [{ name: 'phone', width: 390, height: 844, mobile: true }, { name: 'desktop', width: 1440, height: 900, mobile: false }];
 
@@ -50,9 +50,9 @@ async function interactions(page: Page, mobile: boolean) {
     await page.waitForTimeout(200);
   } else r.searchButton = 'missing';
   // Trip chat
-  const chat = page.getByRole('button', { name: 'Plan a trip with AI' }).first();
+  const chat = page.getByRole('button', { name: 'Plan a trip with AI', exact: true }).last();
   if (await chat.isVisible().catch(() => false)) {
-    await chat.click();
+    await chat.click({ timeout: 8000 }).catch((e) => { r.chatClickError = String(e).split('\n').filter((l) => /intercept|not stable|outside/.test(l)).slice(0, 2).join(' | ').slice(0, 300) || 'click failed'; });
     await page.waitForTimeout(700);
     r.chatOpens = await vis('[role="dialog"][aria-label="Plan a trip with AI"]');
     await page.keyboard.press('Escape');
@@ -95,7 +95,7 @@ async function main() {
         });
         row.axe = axe;
         row.ui = await interactions(page, vp.mobile);
-      } catch (e) { row.error = String(e).slice(0, 200); }
+      } catch (e) { row.error = String(e).slice(0, 600); }
       row.errors = errors.slice(0, 5);
       rows.push(row);
       console.log(`${vp.name} ${route} ${row.status} ${row.design} axe=${(row.axe as unknown[] | undefined)?.length ?? '?'} ${JSON.stringify(row.ui ?? {}).slice(0, 160)}`);

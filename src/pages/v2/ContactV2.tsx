@@ -104,11 +104,11 @@ export default function ContactV2() {
               <div><dt className="font-extrabold">Support hours</dt><dd className="m-0 text-xt-mute">Monday – Sunday, 8:00 AM – 10:00 PM IST (WhatsApp 24/7)</dd></div>
               <div><dt className="font-extrabold">Bookings & partnerships</dt><dd className="m-0"><a href={`mailto:${EMAIL}`} className="text-xt-crimson">{EMAIL}</a></dd></div>
               <div><dt className="font-extrabold">Support, billing & invoices</dt><dd className="m-0"><a href={`mailto:${SUPPORT}`} className="text-xt-crimson">{SUPPORT}</a></dd></div>
-              <div className="flex flex-wrap gap-x-4 gap-y-1 font-bold">
-                <Link to="/terms-of-service" className="text-xt-crimson">Terms of Service</Link>
-                <Link to="/privacy-policy" className="text-xt-crimson">Privacy Policy</Link>
-                <Link to="/pricing-cancellation-policy" className="text-xt-crimson">Pricing & Cancellation</Link>
-              </div>
+              <div><dt className="font-extrabold">Policies</dt><dd className="m-0 flex flex-wrap gap-x-4 gap-y-1 font-bold">
+                <Link to="/terms-of-service" className="inline-block py-1 text-xt-crimson">Terms of Service</Link>
+                <Link to="/privacy-policy" className="inline-block py-1 text-xt-crimson">Privacy Policy</Link>
+                <Link to="/pricing-cancellation-policy" className="inline-block py-1 text-xt-crimson">Pricing & Cancellation</Link>
+              </dd></div>
             </dl>
           </div>
         </section>

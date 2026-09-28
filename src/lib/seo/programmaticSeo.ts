@@ -6,8 +6,8 @@
  * (GPTBot, PerplexityBot, ClaudeBot… which don't run JavaScript) read — and by
  * the page component, so what's in the schema is also visible on the page.
  */
-import { findSEOPage, type SEOPageData } from '@/data/seoPages';
-import { isConsolidatedSEOSlug } from '@/data/seoIndexPolicy';
+import { findSEOPage, ALL_SEO_PAGES, type SEOPageData } from '@/data/seoPages';
+import { isConsolidatedSEOSlug, isIndexableSEOSlug } from '@/data/seoIndexPolicy';
 import { IMG, COVERS, first } from '@/data/v2Images';
 import { BISTRO_COVER } from '@/data/bistroCover';
 import { photoFor } from '@/data/v2TourImages';
@@ -242,4 +242,34 @@ export function programmaticModel(slug: string): ProgrammaticModel | null {
     quickAnswer: quickAnswerFor(page),
     facts: factsFor(page),
   };
+}
+
+/** Pages too thin to publish render a real 404 (see routes/$slug.tsx). */
+export function isThinSEOPage(page: SEOPageData): boolean {
+  const bodyLen = (page.intro?.length || 0) + page.sections.reduce((a, s) => a + (s.content?.length || 0), 0);
+  return page.sections.length < 3 || bodyLen < 600;
+}
+
+const shortLabel = (page: SEOPageData) => {
+  const full = (page.h1 || page.title).split(/\s[|–—]\s/)[0];
+  const head = full.split(/:\s/)[0];
+  // Keep the subtitle when cutting it would leave a dangling "for" / "in" / "to".
+  const label = /\b(for|in|to|of|and|with|the|a)$/i.test(head) ? full : head;
+  return label.replace(/(\s+(for|in))?\s*\(?20\d\d\)?$/i, '').trim();
+};
+
+export type GuideGroup = { category: string; label: string; hub?: string; pages: { slug: string; label: string }[] };
+
+/** Every live, indexable guide grouped by category: the crawlable A–Z at /guides. */
+export function guideDirectory(): GuideGroup[] {
+  const groups = new Map<string, GuideGroup>();
+  for (const page of ALL_SEO_PAGES) {
+    if (!isIndexableSEOSlug(page.slug) || isThinSEOPage(page)) continue;
+    const label = CATEGORY_LABELS[page.category] ?? 'More guides';
+    if (!groups.has(label)) groups.set(label, { category: page.category, label, hub: CATEGORY_HUB[page.category], pages: [] });
+    groups.get(label)!.pages.push({ slug: page.slug, label: shortLabel(page) });
+  }
+  const out = [...groups.values()];
+  for (const g of out) g.pages.sort((a, b) => a.label.localeCompare(b.label));
+  return out.sort((a, b) => b.pages.length - a.pages.length);
 }

@@ -35,6 +35,7 @@ const COLS = [
       { to: '/things-to-do-in-meghalaya', label: 'Travel guides' },
       { to: '/meghalaya-waterfalls', label: 'Meghalaya waterfalls' },
       { to: '/places-to-visit-in-meghalaya', label: 'Places to visit' },
+      { to: '/guides', label: 'All guides A–Z' },
       { to: '/gallery', label: 'Gallery' },
     ],
   },

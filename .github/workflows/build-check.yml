@@ -125,7 +125,7 @@ jobs:
         env:
           BASE_URL: http://localhost:8080
           OUT_DIR: shots
-          ROUTES: /book/campsite,/tours/4n-5d-shillong-meghalaya-tour,/tours/7n-guwahati-shillong-kaziranga-tour,/tours/5n-6d-tawang-tour,/tours
+          ROUTES: /guides,/female-travellers,/book,/faq,/contact
 
       - name: Trip assistant check
         continue-on-error: true

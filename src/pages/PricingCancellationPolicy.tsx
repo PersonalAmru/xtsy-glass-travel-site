@@ -64,12 +64,12 @@ export const PricingCancellationPolicy: React.FC = () => {
                   <tbody className="divide-y divide-border">
                     <tr className="bg-green-500/10">
                       <td className="px-4 py-3 font-medium">Up to ₹7,500</td>
-                      <td className="px-4 py-3 font-semibold text-green-600">5% GST</td>
+                      <td className="px-4 py-3 font-semibold text-green-800">5% GST</td>
                       <td className="px-4 py-3">CGST 2.5% + SGST 2.5%</td>
                     </tr>
                     <tr className="bg-amber-500/10">
                       <td className="px-4 py-3 font-medium">Above ₹7,500</td>
-                      <td className="px-4 py-3 font-semibold text-amber-600">18% GST</td>
+                      <td className="px-4 py-3 font-semibold text-amber-800">18% GST</td>
                       <td className="px-4 py-3">CGST 9% + SGST 9%</td>
                     </tr>
                   </tbody>
@@ -171,7 +171,7 @@ export const PricingCancellationPolicy: React.FC = () => {
               </h2>
               
               <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-5">
-                <h4 className="font-semibold text-red-600 dark:text-red-400 mb-3 flex items-center">
+                <h4 className="font-semibold text-red-700 dark:text-red-400 mb-3 flex items-center">
                   <AlertTriangle className="h-4 w-4 mr-2" />
                   Important: Non-Refundable Advance
                 </h4>
@@ -192,7 +192,7 @@ export const PricingCancellationPolicy: React.FC = () => {
               </h2>
               
               <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-5">
-                <h4 className="font-semibold text-red-600 dark:text-red-400 mb-3">
+                <h4 className="font-semibold text-red-700 dark:text-red-400 mb-3">
                   Strict No-Refund Policy
                 </h4>
                 <ul className="space-y-2 text-foreground/90">
@@ -223,7 +223,7 @@ export const PricingCancellationPolicy: React.FC = () => {
               </h2>
               
               <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-5">
-                <h4 className="font-semibold text-green-600 dark:text-green-400 mb-3 flex items-center">
+                <h4 className="font-semibold text-green-800 dark:text-green-400 mb-3 flex items-center">
                   <CheckCircle className="h-4 w-4 mr-2" />
                   Modify Instead of Cancel
                 </h4>

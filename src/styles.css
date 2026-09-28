@@ -900,6 +900,11 @@ img.lazy-below-fold {
 /* Global heading/paragraph line-heights in styles/typography.css are unlayered and
    would beat Tailwind's leading-* utilities; inside .xt let the utilities win. */
 .xt :where(h1, h2, h3, h4, p) { line-height: revert-layer; }
+/* Display headings (Staatliches): always use the heading's own leading-* value
+   (Tailwind sets --tw-leading), never the global 1.1–1.5 heading line-heights.
+   Without this, multi-line hero titles such as "Travel safe. Travel bold." render
+   with ~1.5 line spacing. */
+.xt .xt-display { line-height: var(--tw-leading, 0.95); }
 
 /* Guest-facing legacy pages use the same paper/ink/crimson language as home.
    Keep admin, account, and consent surfaces outside this scope. */

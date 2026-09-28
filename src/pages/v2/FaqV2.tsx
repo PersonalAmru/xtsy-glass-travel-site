@@ -90,7 +90,8 @@ export default function FaqV2() {
           </div>
         </section>
         <section className={`${PAD} grid gap-8 py-14 lg:grid-cols-12 lg:gap-10`}>
-          <div role="tablist" aria-label="FAQ topics" className="flex gap-2 overflow-x-auto pb-1 lg:col-span-4 lg:flex-col lg:overflow-visible">
+          <div className="flex flex-col gap-4 lg:col-span-4">
+          <div role="tablist" aria-label="FAQ topics" className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
             {topics.map((t) => (
               <button
                 key={t.id}
@@ -102,9 +103,10 @@ export default function FaqV2() {
                 {t.n}
               </button>
             ))}
-            <div className="hidden pt-4 lg:block"><Btn to={waLink('Hi XTSY! I have a question: ')}>Ask us on WhatsApp</Btn></div>
           </div>
-          <div role="tabpanel" className="flex flex-col gap-2.5 lg:col-span-8">
+            <div className="hidden lg:block"><Btn to={waLink('Hi XTSY! I have a question: ')}>Ask us on WhatsApp</Btn></div>
+          </div>
+          <div role="tabpanel" aria-label={current.n} className="flex flex-col gap-2.5 lg:col-span-8">
             {current.q.map(([q, a], i) => (
               <div key={q} className="xt-pop overflow-hidden rounded-[18px] bg-white" style={{ animationDelay: `${i * 0.04}s` }}>
                 <button type="button" aria-expanded={open === i} onClick={() => setOpen(open === i ? -1 : i)} className="flex w-full items-center justify-between gap-4 bg-transparent px-6 py-5 text-left text-[17px] font-extrabold text-xt-ink">

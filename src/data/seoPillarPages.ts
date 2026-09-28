@@ -217,7 +217,7 @@ export const PILLAR_PAGES: SEOPageData[] = [
       { question: 'Is Meghalaya good for backpackers?', answer: 'Excellent! Meghalaya offers affordable accommodation (dorms from ₹389), cheap local food, shared transport options, and stunning free-to-access natural attractions. The backpacker community is growing with XTSY Hostel as the main hub.' },
       { question: 'How much money do I need for a Meghalaya trip?', answer: 'Budget backpackers: ₹10,000-15,000 for 5 days. Mid-range: ₹20,000-30,000 for 7 days. These include accommodation at XTSY, food, and transport but exclude flights to Guwahati.' },
     ],
-    ['meghalaya-travel-guide', 'backpacker-hostel-shillong', 'cheap-hostel-shillong', 'meghalaya-itinerary'],
+    ['meghalaya-travel-guide', 'backpacker-hostel-shillong', 'cheap-hostels-shillong', 'meghalaya-itinerary'],
     ['meghalaya backpacking', 'backpacking meghalaya budget', 'meghalaya budget travel', 'backpacker guide meghalaya', 'cheap travel meghalaya']
   ),
 
@@ -255,7 +255,7 @@ export const PILLAR_PAGES: SEOPageData[] = [
       { question: 'What is the cheapest hostel in Shillong?', answer: 'XTSY offers dorm beds from ₹389/night — among the lowest in the city — with premium amenities included (WiFi, hot water, kitchen, locker).' },
       { question: 'Which hostel in Shillong has the best reviews?', answer: 'XTSY Travellers Hostel leads with 4.8★ on Google from 161 verified reviews, making it the highest-rated hostel in Shillong and all of Meghalaya.' },
     ],
-    ['backpacker-hostel-shillong', 'cheap-hostel-shillong', 'shillong-travel-guide', 'meghalaya-backpacking-guide'],
+    ['backpacker-hostel-shillong', 'cheap-hostels-shillong', 'shillong-travel-guide', 'meghalaya-backpacking-guide'],
     ['hostels in shillong', 'best hostel shillong', 'shillong hostel comparison', 'backpacker hostels shillong', 'budget stay shillong']
   ),
 ];

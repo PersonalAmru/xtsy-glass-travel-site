@@ -32,7 +32,7 @@ export function SpinningMark({ className, fill = '#A12444' }: { className?: stri
 
 export function Eyebrow({ children, className, light }: { children: ReactNode; className?: string; light?: boolean }) {
   return (
-    <div className={cn('xt-eyebrow text-[15px] sm:text-[17px]', light && 'text-xt-rose!', className)}>{children}</div>
+    <div className={cn('xt-eyebrow text-[15px] sm:text-[17px]', light && 'text-[#F7C9D1]!', className)}>{children}</div>
   );
 }
 
