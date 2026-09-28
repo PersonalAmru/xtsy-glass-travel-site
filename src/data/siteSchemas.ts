@@ -47,7 +47,7 @@ export const HOSTEL_SCHEMA: Record<string, unknown> = {
     addressCountry: "IN",
     postalCode: "793018",
   },
-  geo: { "@type": "GeoCoordinates", latitude: 25.535, longitude: 91.965 },
+  geo: { "@type": "GeoCoordinates", latitude: 25.6025457, longitude: 91.9448902 },
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.8",
@@ -75,7 +75,7 @@ export const RESTAURANT_SCHEMA: Record<string, unknown> = {
     postalCode: "793018",
     addressCountry: "IN",
   },
-  geo: { "@type": "GeoCoordinates", latitude: 25.535, longitude: 91.965 },
+  geo: { "@type": "GeoCoordinates", latitude: 25.6025457, longitude: 91.9448902 },
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
