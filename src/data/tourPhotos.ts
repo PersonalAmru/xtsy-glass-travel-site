@@ -8,8 +8,8 @@ import { IMG } from './v2Images';
 
 const main = (p: PexelsPhoto) => (p.srcs.find(([w]) => w >= 1280) ?? p.srcs[p.srcs.length - 1])[1];
 
-/** The three Experience by XTSY tours use different photos of the real suite. */
-const SUITE_TOURS: Record<string, number> = { 'tour-601': 1, 'tour-602': 2, 'tour-603': 3 };
+/** Couple packages use different photos of the real Experience by XTSY suite. */
+const SUITE_TOURS: Record<string, number> = { 'tour-601': 1, 'tour-602': 2, 'tour-603': 3, 'sig-6d-meghalaya-honeymoon-package': 4 };
 
 /** Photo URL for a target key (e.g. "tour-29", "sig-5n-6d-tawang-tour", "exp-guwahati-to-tawang", "dest-siju-cave"), or ''. */
 export function reviewedPhoto(key: string): string {
