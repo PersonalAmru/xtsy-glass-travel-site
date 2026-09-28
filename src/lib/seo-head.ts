@@ -96,3 +96,4 @@ export function buildRouteHead(input: RouteHeadInput) {
       : {}),
   };
 }
+

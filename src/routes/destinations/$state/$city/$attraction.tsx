@@ -7,35 +7,41 @@ import { fitTitle } from "@/lib/seo/fitTitle";
 
 export const Route = createFileRoute("/destinations/$state/$city/$attraction")({
   head: ({ params }) => {
-    const dest = getDestinationBySlug(params.attraction);
-    const state = getStateBySlug(params.state);
-    const city = getCityBySlug(params.state, params.city);
-    const place = dest?.name ?? params.attraction.replace(/-/g, " ");
-    const where = [city?.name, state?.name].filter(Boolean).join(", ") || "Meghalaya";
-
-    // Search results show ~60 characters: pick the most descriptive title that fits
-    // whole, instead of cutting a long one mid-word.
-    const cityShort = (city?.name ?? '').replace(/\s*\(.*?\)\s*/g, '').trim();
-    const title = fitTitle([
-      dest?.seoTitle ?? '',
-      `${place}, ${cityShort || 'Meghalaya'} — Timings & How to Reach`,
-      `${place}, ${cityShort || 'Meghalaya'}: How to Reach & Timings`,
-      `${place}, ${cityShort || 'Meghalaya'} — Travel Guide`,
-      `${place}, Meghalaya — Travel Guide`,
-      `${place} — Travel Guide`,
-    ]);
-    const description =
-      dest?.seoDescription ??
-      dest?.shortDescription ??
-      `Visit ${place} near ${where}: best time to go, how to reach, entry details and nearby stops, plus budget stays from XTSY.`;
-
-    return buildRouteHead({
-      path: `/destinations/${params.state}/${params.city}/${params.attraction}`,
-      title,
-      description: description.slice(0, 158),
-      keywords: dest?.seoKeywords,
-      noIndex: !dest,
-    });
+    try {
+      const dest = getDestinationBySlug(params.attraction);
+      const state = getStateBySlug(params.state);
+      const city = getCityBySlug(params.state, params.city);
+      const place = dest?.name ?? params.attraction.replace(/-/g, " ");
+      const where = [city?.name, state?.name].filter(Boolean).join(", ") || "Meghalaya";
+  
+      // Search results show ~60 characters: pick the most descriptive title that fits
+      // whole, instead of cutting a long one mid-word.
+      const cityShort = (city?.name ?? '').replace(/\s*\(.*?\)\s*/g, '').trim();
+      const title = fitTitle([
+        dest?.seoTitle ?? '',
+        `${place}, ${cityShort || 'Meghalaya'} — Timings & How to Reach`,
+        `${place}, ${cityShort || 'Meghalaya'}: How to Reach & Timings`,
+        `${place}, ${cityShort || 'Meghalaya'} — Travel Guide`,
+        `${place}, Meghalaya — Travel Guide`,
+        `${place} — Travel Guide`,
+      ]);
+      const description =
+        dest?.seoDescription ??
+        dest?.shortDescription ??
+        `Visit ${place} near ${where}: best time to go, how to reach, entry details and nearby stops, plus budget stays from XTSY.`;
+  
+      return buildRouteHead({
+        path: `/destinations/${params.state}/${params.city}/${params.attraction}`,
+        title,
+        description: description.slice(0, 158),
+        keywords: dest?.seoKeywords,
+        noIndex: !dest,
+      });
+    } catch (err) {
+      // Never turn a lookup failure into a bare 500: log it and serve a plain head.
+      console.error("[head] destinations/$state/$city/$attraction.tsx", err);
+      return buildRouteHead({ path: `/destinations/${params.state}/${params.city}/${params.attraction}`, title: `${params.attraction.replace(/-/g, " ")} — Travel Guide | XTSY`, description: "Travel guide with timings, how to reach and where to stay, by XTSY Travellers Hostel in New Shillong Township." });
+    }
   },
   component: DestinationDetail,
 });

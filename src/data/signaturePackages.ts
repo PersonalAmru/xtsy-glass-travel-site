@@ -974,27 +974,45 @@ export const PACKAGE_ITINERARIES: Record<string, ItineraryDay[]> = {
 export const getPackageItinerary = (slug: string): ItineraryDay[] | undefined =>
   PACKAGE_ITINERARIES[slug];
 
-const REGION_IMAGES: Record<PackageRegion, string[]> = {
+// Resolved lazily (first use) so no image lookup runs while modules are still loading.
+const REGION_IMAGE_KEYS: Record<PackageRegion, string[]> = {
   Meghalaya: [
-    cdn("xtsyvoyage/Meghalaya Cover Image.jpeg"),
-    cdn("xtsyvoyage/Nongriat Double Decker Root Bridge.jpeg"),
-    cdn("xtsyvoyage/Dawki River.jpeg"),
-    cdn("xtsyvoyage/Nohkalikai Falls.jpeg"),
-    cdn("xtsyvoyage/Mawlynnong.jpeg"),
+    "xtsyvoyage/Meghalaya Cover Image.jpeg",
+    "xtsyvoyage/Nongriat Double Decker Root Bridge.jpeg",
+    "xtsyvoyage/Dawki River.jpeg",
+    "xtsyvoyage/Nohkalikai Falls.jpeg",
+    "xtsyvoyage/Mawlynnong.jpeg",
   ],
   "Arunachal Pradesh": [
-    cdn("xtsyvoyage/Arunachal Pradesh Cover Image.jpeg"),
-    cdn("xtsyvoyage/Bumla Pass Bike Expedition.jpeg"),
+    "xtsyvoyage/Arunachal Pradesh Cover Image.jpeg",
+    "xtsyvoyage/Bumla Pass Bike Expedition.jpeg",
   ],
   "Assam & Meghalaya": [
-    cdn("xtsyvoyage/Assam Cover Image.jpeg"),
-    cdn("xtsyvoyage/Meghalaya Cover Image.jpeg"),
-    cdn("xtsyvoyage/Dawki River.jpeg"),
+    "xtsyvoyage/Assam Cover Image.jpeg",
+    "xtsyvoyage/Meghalaya Cover Image.jpeg",
+    "xtsyvoyage/Dawki River.jpeg",
   ],
 };
 
+const FALLBACK_REGION_IMAGE = "/img/o/xtsyvoyage-meghalaya-cover-image-736.webp";
+const regionImageCache: Partial<Record<string, string[]>> = {};
+function regionImages(region: string): string[] {
+  const hit = regionImageCache[region];
+  if (hit) return hit;
+  let list: string[] = [];
+  try {
+    const keys = REGION_IMAGE_KEYS[region as PackageRegion] ?? REGION_IMAGE_KEYS.Meghalaya;
+    list = keys.map((k) => cdn(k)).filter((u) => u && !u.endsWith("placeholder.svg"));
+  } catch (err) {
+    console.error("[signaturePackages] region image lookup failed", region, err);
+  }
+  if (!list.length) list = [FALLBACK_REGION_IMAGE];
+  regionImageCache[region] = list;
+  return list;
+}
+
 export const signaturePackageToTourPackage = (p: SignaturePackage): TourPackage => {
-  const imgs = REGION_IMAGES[p.region] ?? [cdn("xtsyvoyage/Meghalaya Cover Image.jpeg")];
+  const imgs = regionImages(p.region);
   return {
     id: 9000 + SIGNATURE_PACKAGES.indexOf(p),
     title: p.title,
