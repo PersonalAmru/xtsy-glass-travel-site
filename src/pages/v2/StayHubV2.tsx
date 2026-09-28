@@ -42,7 +42,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
   const list = rooms();
   const distances = [
     { t: 'Police Bazaar, central Shillong', v: '~30 min by road' },
-    { t: 'IIM Shillong · NIFT Shillong · NEIGRIMS', v: 'a few minutes away' },
+    { t: 'IIM Shillong · NIFT Shillong · NEIGRIHMS', v: 'a few minutes away' },
     { t: 'Laitlum Canyons', v: `~${fromXtsy('laitlum').hours} h` },
     { t: 'Umiam Lake', v: `~${fromXtsy('umiam').hours} h` },
     { t: 'Cherrapunji (Nohkalikai Falls)', v: `~${fromXtsy('nohkalikai').hours} h · day trip` },

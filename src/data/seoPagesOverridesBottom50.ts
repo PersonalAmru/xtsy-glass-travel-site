@@ -86,7 +86,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "Which Shillong hostel has the better location?",
-        "answer": "XTSY is on Mawdiangdiang Road in New Shillong Township, near NIFT Shillong, IIM Shillong and NEIGRIMS — a quieter area; take a cab into the city centre. Zion Backpackers is located in the Mawroh area, offering a quieter environment away from the city centre bustle."
+        "answer": "XTSY is on Mawdiangdiang Road in New Shillong Township, near NIFT Shillong, IIM Shillong and NEIGRIHMS — a quieter area; take a cab into the city centre. Zion Backpackers is located in the Mawroh area, offering a quieter environment away from the city centre bustle."
       },
       {
         "question": "What are the main amenities at XTSY vs Zion?",
@@ -119,11 +119,11 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "slug": "hostel-near-police-bazar-shillong",
     "quickAnswer": "XTSY is not in Police Bazar — it is on Mawdiangdiang Road, New Shillong Township (793018), a cab ride from the city centre, near NIFT Shillong and IIM Shillong. Dorm beds start at ₹389; WhatsApp +91 88373 17070.",
     "title": "Hostel near Police Bazar Shillong? Where XTSY Is | XTSY",
-    "intro": "Searching for a hostel near Police Bazar? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. To be clear about the location: XTSY is not in Police Bazar or central Shillong. It sits in the quieter New Shillong Township area, and Police Bazar is a cab ride away when you want the markets and street food. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed in Shillong, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
+    "intro": "Searching for a hostel near Police Bazar? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. To be clear about the location: XTSY is not in Police Bazar or central Shillong. It sits in the quieter New Shillong Township area, and Police Bazar is a cab ride away when you want the markets and street food. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed in Shillong, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "sections": [
       {
         "heading": "Where XTSY is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
       },
       {
         "heading": "What you can book",
@@ -150,7 +150,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
-        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University."
+        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University."
       },
       {
         "question": "Is XTSY near Police Bazar?",
@@ -871,7 +871,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "Which hostel has a better location for sightseeing?",
-        "answer": "Isabella Hostel is located in the Laban area, whereas XTSY is situated in Upper Shillong, providing faster access to the highways leading to Cherrapunji and Dawki."
+        "answer": "Isabella Hostel is located in the Laban area, whereas XTSY is on Mawdiangdiang Road in New Shillong Township, providing faster access to the highways leading to Cherrapunji and Dawki."
       },
       {
         "answer": "XTSY provides direct access to exclusive Meghalaya tour packages, rental bikes, and professional local guides, offering a more comprehensive travel ecosystem than a standard hostel.",
@@ -1144,7 +1144,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "content": "Let the XTSY desk handle logistics while you visit the most iconic landmarks in the East Khasi Hills.",
         "heading": "Location: New Shillong Township",
         "listItems": [
-          "Near NIFT Shillong, IIM Shillong and NEIGRIMS",
+          "Near NIFT Shillong, IIM Shillong and NEIGRIHMS",
           "Group cabs and tempo travellers arranged by the XTSY desk",
           "Close proximity to the Meghalaya Travel Guide hubs",
           "Safe neighbourhood for late-evening group walks",
@@ -1196,7 +1196,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
-        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University."
+        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University."
       },
       {
         "question": "Is XTSY near Police Bazar?",
@@ -1216,11 +1216,11 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       }
     ],
     "h1": "Hostel in Shillong Today",
-    "intro": "Need a bed in Shillong today? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for today, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
+    "intro": "Need a bed in Shillong today? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for today, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "sections": [
       {
         "heading": "Where XTSY is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
       },
       {
         "heading": "What you can book",
@@ -1258,13 +1258,13 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   },
   {
     "slug": "hostels-in-shillong-today",
-    "intro": "Need a bed in Shillong today? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for today, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
+    "intro": "Need a bed in Shillong today? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for today, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "metaDescription": "Need a bed in Shillong today? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹389, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
     "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed for today at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹389.",
     "sections": [
       {
         "heading": "Where XTSY is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
       },
       {
         "heading": "What you can book",
@@ -1292,7 +1292,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
-        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University."
+        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University."
       },
       {
         "question": "Is XTSY near Police Bazar?",
@@ -1328,7 +1328,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
-        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University."
+        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University."
       },
       {
         "question": "Is XTSY near Police Bazar?",
@@ -1347,13 +1347,13 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "answer": "No. XTSY's own property is only in New Shillong Township. In other places, XTSY arranges stays, transport and travel help through trusted travel partners."
       }
     ],
-    "intro": "Need a bed in Shillong tonight? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for tonight, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
+    "intro": "Need a bed in Shillong tonight? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for tonight, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "h1": "Hostel in Shillong Tonight",
     "metaDescription": "Need a bed in Shillong tonight? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹389, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
     "sections": [
       {
         "heading": "Where XTSY is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
       },
       {
         "heading": "What you can book",
@@ -1388,7 +1388,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   },
   {
     "slug": "hostel-in-shillong-this-weekend",
-    "intro": "Need a bed in Shillong this weekend? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for this weekend, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
+    "intro": "Need a bed in Shillong this weekend? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for this weekend, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "keywords": [
       "hostel in shillong",
       "shillong backpacker stay",
@@ -1405,7 +1405,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "sections": [
       {
         "heading": "Where XTSY is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
       },
       {
         "heading": "What you can book",
@@ -1432,7 +1432,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
-        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University."
+        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University."
       },
       {
         "question": "Is XTSY near Police Bazar?",
@@ -1464,11 +1464,11 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     ],
     "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed at short notice at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹389.",
     "h1": "Hostel in Shillong Last Minute",
-    "intro": "Need a bed in Shillong at the last minute? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed at short notice, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
+    "intro": "Need a bed in Shillong at the last minute? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed at short notice, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "sections": [
       {
         "heading": "Where XTSY is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
       },
       {
         "heading": "What you can book",
@@ -1495,7 +1495,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
-        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University."
+        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University."
       },
       {
         "question": "Is XTSY near Police Bazar?",
@@ -1521,7 +1521,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
-        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University."
+        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University."
       },
       {
         "question": "Is XTSY near Police Bazar?",
@@ -1553,11 +1553,11 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "police bazar hostels"
     ],
     "h1": "Hostel in Shillong Tomorrow",
-    "intro": "Need a bed in Shillong tomorrow? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for tomorrow, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
+    "intro": "Need a bed in Shillong tomorrow? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for tomorrow, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "sections": [
       {
         "heading": "Where XTSY is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
       },
       {
         "heading": "What you can book",
@@ -1584,7 +1584,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   {
     "slug": "hostel-in-shillong-now",
     "title": "Hostel in Shillong Right Now — XTSY, New Shillong Township",
-    "intro": "Need a bed in Shillong right now? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for right now, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
+    "intro": "Need a bed in Shillong right now? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed for right now, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "keywords": [
       "hostel in shillong",
       "shillong backpackers stay",
@@ -1597,7 +1597,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
-        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University."
+        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University."
       },
       {
         "question": "Is XTSY near Police Bazar?",
@@ -1620,7 +1620,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "sections": [
       {
         "heading": "Where XTSY is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
       },
       {
         "heading": "What you can book",
@@ -1650,7 +1650,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "sections": [
       {
         "heading": "Where XTSY is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
       },
       {
         "heading": "What you can book",
@@ -1675,7 +1675,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     ],
     "metaDescription": "Looking for a cheap hostel in Shillong? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹389, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
     "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed on a budget at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹389.",
-    "intro": "Looking for a cheap hostel in Shillong? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed on a budget, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
+    "intro": "Looking for a cheap hostel in Shillong? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed on a budget, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "h1": "Cheap Hostel in Shillong",
     "title": "Cheap Hostel in Shillong — Dorm Beds from ₹389 | XTSY",
     "keywords": [
@@ -1689,7 +1689,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
-        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University."
+        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University."
       },
       {
         "question": "Is XTSY near Police Bazar?",
@@ -1712,7 +1712,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   {
     "slug": "hostel-near-shillong-airport",
     "title": "Hostel near Shillong Airport — XTSY, New Shillong Township",
-    "intro": "Flying into Shillong Airport at Umroi? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Shillong Airport is at Umroi, outside the city; XTSY can arrange the cab from the airport, or from Guwahati if you fly in there. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed after your flight, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
+    "intro": "Flying into Shillong Airport at Umroi? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Shillong Airport is at Umroi, outside the city; XTSY can arrange the cab from the airport, or from Guwahati if you fly in there. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed after your flight, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
     "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed after your flight at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹389.",
     "keywords": [
       "shillong airport hostel",
@@ -1725,7 +1725,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "faqs": [
       {
         "question": "Where exactly is XTSY Travellers Hostel?",
-        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University."
+        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University."
       },
       {
         "question": "Is XTSY near Police Bazar?",
@@ -1747,7 +1747,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "sections": [
       {
         "heading": "Where XTSY is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
       },
       {
         "heading": "What you can book",
@@ -1831,7 +1831,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "quickAnswer": "XTSY's own property is only in New Shillong Township, Meghalaya. In Cherrapunji, XTSY arranges stays for today, transport and travel help through trusted travel partners — WhatsApp +91 88373 17070 with your dates for live options.",
@@ -1899,7 +1899,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ]
   },
@@ -2142,7 +2142,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "h1": "Hostel in Cherrapunji Tomorrow",
@@ -2216,7 +2216,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "h1": "Hostel in Cherrapunji Last Minute",
@@ -2271,7 +2271,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "h1": "Hostel in Cherrapunji Right Now",
@@ -2333,7 +2333,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "metaDescription": "Looking for a cheap stay in Cherrapunji? XTSY arranges partner stays, transfers and sightseeing in Cherrapunji, Meghalaya. XTSY's own hostel is in New Shillong Township. WhatsApp +91 88373 17070.",
@@ -2410,7 +2410,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "intro": "Looking for a good hostel in Cherrapunji? XTSY does not run its own hostel in Cherrapunji — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Cherrapunji (Sohra) is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Sohra has small homestays and guesthouses rather than backpacker hostels, and mobile signal can be patchy, so confirm your stay before you set off.",
@@ -2495,7 +2495,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ]
   },
@@ -2537,7 +2537,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "h1": "Hostels and Stays near Cherrapunji Airport",
@@ -2629,7 +2629,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ]
   },
@@ -2663,7 +2663,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "title": "Hostel in Guwahati This Weekend — Book via XTSY Partners",
@@ -2738,7 +2738,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "h1": "Hostel in Guwahati Tomorrow",
@@ -2791,7 +2791,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "title": "Hostel in Guwahati Last Minute — Book via XTSY Partners",
@@ -2864,7 +2864,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "intro": "Need a stay in Guwahati right now? XTSY does not run its own hostel in Guwahati — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Guwahati is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Guwahati is the main gateway to the Northeast, with Lokpriya Gopinath Bordoloi International Airport and Guwahati railway station. Most travellers spend a night here before heading on to Meghalaya.",
@@ -2920,7 +2920,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "keywords": [
@@ -2995,7 +2995,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "h1": "Best Hostels and Stays in Guwahati",
@@ -3081,7 +3081,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "intro": "Arriving by air for Guwahati? XTSY does not run its own hostel in Guwahati — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Guwahati is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Guwahati is the main gateway to the Northeast, with Lokpriya Gopinath Bordoloi International Airport and Guwahati railway station. Most travellers spend a night here before heading on to Meghalaya. Lokpriya Gopinath Bordoloi International Airport serves Guwahati. Tell the XTSY desk your flight time and we will suggest a partner stay close to your route and arrange the pickup.",
@@ -3134,7 +3134,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "h1": "Hostel in Gangtok Today",
@@ -3211,7 +3211,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "h1": "Hostel in Gangtok This Weekend",
@@ -3268,7 +3268,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "intro": "Need a stay in Gangtok tomorrow? XTSY does not run its own hostel in Gangtok — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Gangtok is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Gangtok is reached by road from Bagdogra Airport or NJP railway station, or via Pakyong Airport. Some high-altitude areas such as Tsomgo Lake and Nathu La need permits arranged in advance.",
@@ -3336,7 +3336,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "intro": "Need a stay in Gangtok tonight? XTSY does not run its own hostel in Gangtok — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Gangtok is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Gangtok is reached by road from Bagdogra Airport or NJP railway station, or via Pakyong Airport. Some high-altitude areas such as Tsomgo Lake and Nathu La need permits arranged in advance.",
@@ -3411,7 +3411,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ]
   },
@@ -3445,7 +3445,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "intro": "Need a stay in Gangtok right now? XTSY does not run its own hostel in Gangtok — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Gangtok is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Gangtok is reached by road from Bagdogra Airport or NJP railway station, or via Pakyong Airport. Some high-altitude areas such as Tsomgo Lake and Nathu La need permits arranged in advance.",
@@ -3532,7 +3532,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "keywords": [
@@ -3591,7 +3591,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "metaDescription": "Looking for a good hostel in Gangtok? XTSY arranges partner stays, transfers and sightseeing in Gangtok, Sikkim. XTSY's own hostel is in New Shillong Township. WhatsApp +91 88373 17070.",
@@ -3638,7 +3638,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "faqs": [
@@ -3738,7 +3738,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ]
   },
@@ -3802,7 +3802,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ]
   },
@@ -3837,7 +3837,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "Where XTSY's own stay is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
+        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
     "title": "Hostel in Kohima Tonight — Book via XTSY Partners",

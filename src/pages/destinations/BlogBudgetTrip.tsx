@@ -24,7 +24,7 @@ const BlogBudgetTrip = () => (
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
-            { icon: Bed, title: 'Accommodation', cost: '₹450–₹800/night', desc: 'XTSY dorm beds from ₹389. Private rooms from ₹2,500. Budget homestays in villages from ₹500.' },
+            { icon: Bed, title: 'Accommodation', cost: '₹450–₹800/night', desc: 'XTSY dorm beds from ₹389. Private King Double rooms from ₹2,200. Budget homestays in villages from ₹500.' },
             { icon: UtensilsCrossed, title: 'Food', cost: '₹300–₹500/day', desc: 'Local Khasi food at ₹80-150 per meal. TAB Bistro multi-cuisine from ₹150. Street food at Police Bazaar.' },
             { icon: Car, title: 'Transport', cost: '₹200–₹600/day', desc: 'Shared taxis Shillong-Cherrapunji ₹200. Dawki shared cab ₹300. Local Shillong taxis ₹100-200.' },
             { icon: IndianRupee, title: 'Activities', cost: '₹0–₹300/day', desc: 'Most viewpoints and waterfalls are free. Cave entries ₹20-50. Dawki boating ₹800/boat (shared).' },
@@ -68,7 +68,7 @@ const BlogBudgetTrip = () => (
         <PlanTripLinks
           source="budget-trip-to-meghalaya"
           heading="Travelling on a budget? Book beds from ₹389"
-          bookingAnchor="The cheapest comfortable base in Shillong — dorm beds from ₹389, private rooms from ₹2,099"
+          bookingAnchor="The cheapest comfortable base in Shillong — dorm beds from ₹389, private rooms from ₹2,200"
           slugs={['dawki-umngot-river', 'double-decker-living-root-bridge', 'nohkalikai-falls', 'mawlynnong-village']}
         />
       </div>

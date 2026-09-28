@@ -6,7 +6,7 @@ import SEOHead, { getSEOConfig } from '@/components/SEOHead';
 import { Link } from '@/lib/router-compat';
 import neitaCertificate from '@/assets/neita-award-certificate.jpeg';
 import { COVERS } from '@/data/v2Images';
-import { PageShell, PageHero, Section, H2, StatRow, SplitFeature, PAD, Btn } from '@/components/v2/blocks';
+import { PageShell, PageHero, Section, H2, StatRow, SplitFeature, PAD, Btn, FaqList } from '@/components/v2/blocks';
 import { Photo, Eyebrow, XtsyMark, SpinningMark } from '@/components/v2/primitives';
 import { inr, lowestDormPrice } from '@/components/v2/pricing';
 
@@ -18,6 +18,13 @@ const ADDRESS = {
   postalCode: '793018',
   addressCountry: 'IN',
 };
+
+const ABOUT_FAQS = [
+  { q: 'Where is XTSY Travellers Hostel?', a: 'On Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018 — near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is not in Police Bazar or central Shillong.' },
+  { q: 'What is Experience by XTSY?', a: "India's first stargaze glamp: a 270° panoramic glass suite at the same New Shillong Township property. It is booked directly with XTSY, from ₹5,399 a night (₹5,799 with breakfast for two)." },
+  { q: 'Does XTSY have properties outside Shillong?', a: "XTSY's own property is only in New Shillong Township. Elsewhere in Meghalaya and Northeast India, XTSY arranges stays, transport and travel help through trusted travel partners." },
+  { q: 'How highly rated is XTSY?', a: 'XTSY Travellers Hostel is rated 4.8★ from 161 Google reviews and has hosted 10,786+ guests. TAB Bistro by XTSY has its own Google profile.' },
+];
 
 export default function AboutV2() {
   const seo = getSEOConfig('about');
@@ -94,7 +101,7 @@ export default function AboutV2() {
               <h2 className="xt-display m-0 text-[40px] leading-none sm:text-[52px]">XTSY Travellers Hostel</h2>
               <address className="text-[16px] not-italic leading-relaxed text-xt-fog">
                 Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018, India
-                <br />Near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University
+                <br />Near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University
                 <br />+91 88373 17070 · admin@xtsy.one · Reception 24/7
               </address>
               <p className="m-0 text-[14px] text-[#9EA6B8]">This is XTSY’s only property. Everywhere else, XTSY arranges stays, transport and travel help through trusted travel partners.</p>
@@ -107,6 +114,7 @@ export default function AboutV2() {
             </ul>
           </div>
         </section>
+        <FaqList title="About XTSY, answered" faqs={ABOUT_FAQS} />
       </PageShell>
     </>
   );

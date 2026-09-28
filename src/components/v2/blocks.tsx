@@ -224,11 +224,14 @@ export function FaqList({ faqs, schema = true, title = 'Good to know' }: { faqs:
       <div className="flex flex-col gap-2.5 lg:col-span-8">
         {faqs.map((f, i) => (
           <div key={f.q} className="xt-reveal overflow-hidden rounded-[18px] bg-white">
-            <button type="button" aria-expanded={open === i} onClick={() => setOpen(open === i ? -1 : i)} className="flex w-full items-center justify-between gap-4 bg-transparent px-6 py-5 text-left text-[17px] font-extrabold text-xt-ink">
-              <span>{f.q}</span>
-              <span aria-hidden="true" className="text-[26px] font-normal text-xt-crimson">{open === i ? '−' : '+'}</span>
-            </button>
-            {open === i && <p className="m-0 px-6 pb-5 text-[16px] leading-relaxed text-xt-mute">{f.a}</p>}
+            <h3 className="m-0 text-[17px]">
+              <button type="button" aria-expanded={open === i} onClick={() => setOpen(open === i ? -1 : i)} className="flex w-full items-center justify-between gap-4 bg-transparent px-6 py-5 text-left text-[17px] font-extrabold text-xt-ink">
+                <span>{f.q}</span>
+                <span aria-hidden="true" className="text-[26px] font-normal text-xt-crimson">{open === i ? '−' : '+'}</span>
+              </button>
+            </h3>
+            {/* Closed answers stay in the HTML (visually hidden) so crawlers and AI assistants can read them. */}
+            <p className={open === i ? 'm-0 px-6 pb-5 text-[16px] leading-relaxed text-xt-mute' : 'sr-only'}>{f.a}</p>
           </div>
         ))}
       </div>

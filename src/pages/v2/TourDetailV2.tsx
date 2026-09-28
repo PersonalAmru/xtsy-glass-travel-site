@@ -176,12 +176,14 @@ export default function TourDetailV2() {
             <div>
               <div role="tablist" aria-label="Tour details" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
                 {tabs.map((t) => (
-                  <button key={t.id} type="button" role="tab" aria-selected={tab === t.id} onClick={() => setTab(t.id)} className={`xt-chip h-11 shrink-0 rounded-full border-[1.5px] px-5 text-[15px] font-extrabold ${tab === t.id ? 'border-xt-slate bg-xt-slate text-xt-paper' : 'border-xt-stone text-xt-ink'}`}>{t.label}</button>
+                  <button key={t.id} id={`tab-${t.id}`} type="button" role="tab" aria-selected={tab === t.id} aria-controls={`panel-${t.id}`} tabIndex={tab === t.id ? 0 : -1} onClick={() => setTab(t.id)} className={`xt-chip h-11 shrink-0 rounded-full border-[1.5px] px-5 text-[15px] font-extrabold ${tab === t.id ? 'border-xt-slate bg-xt-slate text-xt-paper' : 'border-xt-stone text-xt-ink'}`}>{t.label}</button>
                 ))}
               </div>
 
-              <div role="tabpanel" className="mt-6">
-                {tab === 'overview' && (
+              {/* Every panel stays in the server HTML (inactive ones are hidden) so search engines and AI
+                  assistants can read the itinerary, inclusions and FAQs — and the FAQ schema matches the page. */}
+              <div className="mt-6">
+                <div role="tabpanel" id="panel-overview" aria-labelledby="tab-overview" hidden={tab !== 'overview'}>
                   <div className="flex flex-col gap-5">
                     <p className="m-0 text-[17px] leading-relaxed text-xt-mute">{tour.description}</p>
                     <h3 className="m-0 text-[20px] font-extrabold">Tour highlights</h3>
@@ -189,9 +191,9 @@ export default function TourDetailV2() {
                       {tour.highlights.map((h) => <div key={h} className="rounded-2xl bg-white px-4 py-3 text-[15px] font-semibold">✓ {h}</div>)}
                     </div>
                   </div>
-                )}
+                </div>
 
-                {tab === 'itinerary' && (tour.itinerary && tour.itinerary.length > 0 ? (
+                <div role="tabpanel" id="panel-itinerary" aria-labelledby="tab-itinerary" hidden={tab !== 'itinerary'}>{(tour.itinerary && tour.itinerary.length > 0 ? (
                   <ol className="m-0 flex list-none flex-col gap-4 p-0">
                     {tour.itinerary.map((day, i) => (
                       <li key={i} className="relative rounded-3xl bg-white p-6 pl-20">
@@ -212,9 +214,9 @@ export default function TourDetailV2() {
                     <p className="m-0 text-[16px] text-xt-mute">Detailed day-by-day itinerary available on request.</p>
                     <a href={waLink(`Hi! I'd like the detailed itinerary for "${tour.title}"`)} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-ink px-6 text-[15px] font-extrabold text-xt-ink hover:text-xt-ink">Request itinerary</a>
                   </div>
-                ))}
+                ))}</div>
 
-                {tab === 'inclusions' && (
+                <div role="tabpanel" id="panel-inclusions" aria-labelledby="tab-inclusions" hidden={tab !== 'inclusions'}>
                   <div className="grid gap-6 md:grid-cols-2">
                     <div className="rounded-3xl bg-white p-6">
                       <h3 className="m-0 mb-3 text-[18px] font-extrabold">What’s included</h3>
@@ -225,18 +227,18 @@ export default function TourDetailV2() {
                       <ul className="m-0 flex list-none flex-col gap-2 p-0 text-[15px] text-xt-mute">{exclusions.map((x) => <li key={x}>✕ {x}</li>)}</ul>
                     </div>
                   </div>
-                )}
+                </div>
 
-                {tab === 'faqs' && (
+                <div role="tabpanel" id="panel-faqs" aria-labelledby="tab-faqs" hidden={tab !== 'faqs'}>
                   <div className="flex flex-col gap-3">
                     {faqs.map((f) => (
-                      <details key={f.q} className="group rounded-2xl bg-white">
-                        <summary className="cursor-pointer list-none px-6 py-4 text-[16px] font-extrabold">{f.q}</summary>
-                        <p className="m-0 px-6 pb-5 text-[15px] leading-relaxed text-xt-mute">{f.a}</p>
-                      </details>
+                      <div key={f.q} className="rounded-2xl bg-white px-6 py-4">
+                        <h3 className="m-0 text-[16px] font-extrabold">{f.q}</h3>
+                        <p className="m-0 mt-2 text-[15px] leading-relaxed text-xt-mute">{f.a}</p>
+                      </div>
                     ))}
                   </div>
-                )}
+                </div>
               </div>
             </div>
 

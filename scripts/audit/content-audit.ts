@@ -25,7 +25,9 @@ const PRICES: { key: string; re: RegExp; ok: number[] }[] = [
 ];
 const RATING = { hostel: ['4.8', '161'], bistro: ['4.7', '142'] };
 const PHONE_OK = /8837317070/;
-const EMAIL_OK = /^(admin|info|hello|bookings|support)@xtsy\.one$/i;
+const EMAIL_OK = /^(admin|info|hello|bookings?|support)@xtsy\.one$/i;
+/** Own properties only: partner stays (e.g. the Dawki campsite) have their own address. */
+const OWN = (name: unknown) => /xtsy|tab bistro/i.test(String(name ?? '')) && !/dawki|partner|via xtsy/i.test(String(name ?? ''));
 
 type Finding = { rule: string; detail: string };
 type PageOut = { url: string; status: number; words: number; findings: Finding[]; seo: Record<string, unknown>; aeo: Record<string, unknown> };
@@ -125,11 +127,11 @@ function jsonLdChecks(html: string, text: string, f: Finding[], aeo: Record<stri
     if (n.address && typeof n.address === 'object') {
       const a = n.address as Record<string, unknown>;
       const s = JSON.stringify(a);
-      if (/xtsy/i.test(String(n.name ?? '')) && (!/793018/.test(s) || /mawkhar|police baza/i.test(s))) f.push({ rule: 'schema:address', detail: `${n.name}: ${s.slice(0, 160)}` });
+      if (OWN(n.name) && (!/793018/.test(s) || /mawkhar|police baza/i.test(s))) f.push({ rule: 'schema:address', detail: `${n.name}: ${s.slice(0, 160)}` });
     }
     if (n.geo && typeof n.geo === 'object') {
       const g = n.geo as Record<string, unknown>;
-      if (/xtsy/i.test(String(n.name ?? '')) && (Math.abs(Number(g.latitude) - 25.6025457) > 0.002 || Math.abs(Number(g.longitude) - 91.9448902) > 0.002))
+      if (OWN(n.name) && (Math.abs(Number(g.latitude) - 25.6025457) > 0.002 || Math.abs(Number(g.longitude) - 91.9448902) > 0.002))
         f.push({ rule: 'schema:geo', detail: `${n.name}: ${g.latitude},${g.longitude}` });
     }
     if (typeof n.telephone === 'string' && !PHONE_OK.test(n.telephone.replace(/\D/g, ''))) f.push({ rule: 'schema:telephone', detail: n.telephone });

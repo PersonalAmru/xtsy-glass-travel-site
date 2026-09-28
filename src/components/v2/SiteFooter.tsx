@@ -85,7 +85,7 @@ export default function SiteFooter() {
               <br />
               Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018
               <br />
-              Near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University
+              Near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University
             </address>
             <p className="m-0 text-[13px] leading-relaxed text-[#9EA6B8]">
               This is XTSY’s only property. Everywhere else, XTSY arranges stays, transport and travel help through trusted travel partners.

@@ -6,6 +6,26 @@ import DestinationCard from '@/components/destinations/DestinationCard';
 import { getStateBySlug, getCityBySlug, getDestinationsForCity } from '@/data/neTaxonomy';
 import { NEARBY_ADVENTURES } from '@/data/nearbyAdventures';
 
+/** States where Indian nationals need an Inner Line Permit. */
+const ILP_STATES: Record<string, string> = {
+  'arunachal-pradesh': 'Arunachal Pradesh needs an Inner Line Permit (ILP) for Indian nationals; foreign nationals need a Protected Area Permit arranged in advance.',
+  nagaland: 'Nagaland needs an Inner Line Permit (ILP) for Indian nationals, issued online or at Dimapur.',
+  mizoram: 'Mizoram needs an Inner Line Permit (ILP) for Indian nationals, issued online or on arrival at the entry points.',
+  manipur: 'Manipur needs an Inner Line Permit (ILP) for Indian nationals, issued online before you travel.',
+};
+
+function cityFaqs(stateSlug: string, stateName: string, cityName: string) {
+  const short = cityName.replace(/\s*\(.*?\)\s*/g, '').trim();
+  const permit = ILP_STATES[stateSlug]
+    ? `${ILP_STATES[stateSlug]} Carry photo ID. Foreign nationals should check the current rules before travelling; XTSY can help with the paperwork when you book a trip.`
+    : `No Inner Line Permit is needed for ${stateName}. Carry a government photo ID; foreign nationals should carry their passport and visa.`;
+  return [
+    { q: `Do I need a permit to visit ${short}?`, a: permit },
+    { q: `Can XTSY plan a trip to ${short}?`, a: `Yes. XTSY's own stay is XTSY Travellers Hostel on Mawdiangdiang Road, New Shillong Township. For ${short}, XTSY arranges stays, vehicles and guides through trusted travel partners, with one point of contact on WhatsApp (+91 88373 17070).` },
+    { q: `How do I plan the route to ${short} from Shillong?`, a: `Most Northeast trips start from Guwahati (the region's main airport and railhead) or Shillong. Share your dates with the XTSY desk and we'll suggest a route, travel time and where to break the journey, or compare ready-made Northeast tours.` },
+  ];
+}
+
 const CityHub = () => {
   const { state: stateSlug, city: citySlug } = useParams<{ state: string; city: string }>();
   const state = getStateBySlug(stateSlug);
@@ -63,14 +83,24 @@ const CityHub = () => {
               ))}
             </div>
           ) : (
-            <p className="text-muted-foreground">
-              Detailed attraction guides for {city.name} are being published in the next content phase.{' '}
-              <Link to={`/destinations/${state.slug}`} className="underline">
-                Back to the {state.name} guide
-              </Link>
-              .
+            <p className="text-muted-foreground max-w-3xl">
+              {city.name} is part of our {state.name} guide. Browse the{' '}
+              <Link to={`/destinations/${state.slug}`} className="underline">places to visit across {state.name}</Link>, or{' '}
+              <Link to="/tours?group=northeast" className="underline">compare Northeast tours</Link> that include {city.name}.
             </p>
           )}
+
+          <section className="mt-14 max-w-3xl" aria-labelledby="city-faq">
+            <h2 id="city-faq" className="text-2xl font-semibold mb-5">Plan your visit to {city.name}</h2>
+            <div className="flex flex-col gap-5">
+              {cityFaqs(state.slug, state.name, city.name).map((f) => (
+                <div key={f.q}>
+                  <h3 className="font-semibold mb-1.5">{f.q}</h3>
+                  <p className="text-muted-foreground">{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
       </main>
       <Footer />

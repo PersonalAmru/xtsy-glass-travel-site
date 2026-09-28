@@ -11,7 +11,7 @@ const HOSTEL_INFO = {
       name: "XTSY Travellers Hostel",
       tagline: "Northeast India's Best Budget Accommodation",
       about:
-        "India's biggest backpacker hostel in Northeast India — NEITA 2025-recognised, female-safe, 24/7 check-in.",
+        "India's biggest backpacker hostel in Northeast India — NEITA 2025 nominee, female-safe, 24/7 check-in.",
     },
     {
       name: "Experience by XTSY (XTSY 270°)",
@@ -21,7 +21,7 @@ const HOSTEL_INFO = {
     },
   ],
   awards: [
-    "Northeast India Tourism Awards — Best Budget Accommodation (NEITA 2025)",
+    "Nominated: Best Budget-Friendly Accommodation, Northeast India Tourism Awards (NEITA 2025)",
     "Highest-rated hostel in Northeast India on Google (4.8★, 161 Google reviews)",
     "India's first 270° stargaze glamping ensuite (Experience by XTSY)",
   ],

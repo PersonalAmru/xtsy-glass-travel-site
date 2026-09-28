@@ -129,7 +129,7 @@ const TabBistroCatering = memo(() => {
     telephone: "+918837317070",
     servesCuisine: ["North Indian", "Indo-Chinese", "Thai", "Continental", "Italian", "Seafood", "Northeast Indian"],
     areaServed: ["Shillong", "Meghalaya"],
-    address: { "@type": "PostalAddress", addressLocality: "Shillong", addressRegion: "Meghalaya", addressCountry: "IN" },
+    address: { "@type": "PostalAddress", streetAddress: "Mawdiangdiang Road, New Shillong Township", addressLocality: "Shillong", addressRegion: "Meghalaya", postalCode: "793018", addressCountry: "IN" },
   };
 
   return (

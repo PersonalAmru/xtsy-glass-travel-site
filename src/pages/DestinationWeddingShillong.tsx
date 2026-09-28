@@ -249,7 +249,7 @@ const DestinationWeddingShillong = memo(() => {
           <section>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">How to Plan Your Meghalaya Destination Wedding</h2>
             <p className="mt-3 text-muted-foreground max-w-3xl">
-              Planning a destination wedding in Shillong is simpler than most couples expect. As Northeast India's NEITA-recognised hospitality brand, XTSY handles venue, stays, food, and coordination under one roof — so you deal with one team, not a dozen vendors.
+              Planning a destination wedding in Shillong is simpler than most couples expect. As a NEITA 2025-nominated Northeast hospitality brand, XTSY handles venue, stays, food, and coordination under one roof — so you deal with one team, not a dozen vendors.
             </p>
             <div className="mt-6 space-y-4">
               {[

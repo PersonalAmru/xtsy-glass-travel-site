@@ -40,7 +40,6 @@ const BestHostelShillong = memo(() => {
     },
     priceRange: '₹389 - ₹4,999',
     currenciesAccepted: 'INR',
-    starRating: { '@type': 'Rating', ratingValue: '4.8' },
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
@@ -84,7 +83,7 @@ const BestHostelShillong = memo(() => {
         name: 'Which are the best cheap hostels in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'XTSY Travellers Hostel is among the best cheap hostels in Shillong, with a 4.8★ rating from 161 verified guests. Budget dorm beds start at ₹389/night, making it one of the most affordable backpacker hostels in Meghalaya without cutting corners on safety or location.',
+          text: 'XTSY Travellers Hostel is among the best cheap hostels in Shillong, with a 4.8★ rating from 161 Google reviews. Budget dorm beds start at ₹389/night, making it one of the most affordable backpacker hostels in Meghalaya without cutting corners on safety or location.',
         },
       },
       {
@@ -124,7 +123,7 @@ const BestHostelShillong = memo(() => {
         name: 'Where is XTSY hostel located in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong (793018), near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is a scenic drive from Umiam Lake, Elephant Falls and the Dawki–Cherrapunji circuits.',
+          text: 'XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong (793018), near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a scenic drive from Umiam Lake, Elephant Falls and the Dawki–Cherrapunji circuits.',
         },
       },
       {
@@ -185,11 +184,11 @@ const BestHostelShillong = memo(() => {
                 : 'Hostels in Shillong — Cheap Dorm Beds from ₹389'}
             </h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-3xl">
-              Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 161 verified guests, with budget mixed dorms from ₹389/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Mawdiangdiang Road, New Shillong Township — near NIFT, IIM Shillong and NEIGRIMS.
+              Searching for cheap hostels in Shillong? XTSY Travellers Hostel is Shillong's top-rated backpacker hostel — 4.8★ from 161 Google reviews, with budget mixed dorms from ₹389/night, safe female-only dorms, private rooms, and India's first 270° panoramic glass suite. Mawdiangdiang Road, New Shillong Township — near NIFT, IIM Shillong and NEIGRIHMS.
             </p>
             <div className="mt-4 flex items-center gap-4 text-sm text-muted-foreground">
               <span className="flex items-center gap-1"><MapPin className="h-4 w-4" /> New Shillong Township, Shillong</span>
-              <span className="flex items-center gap-1"><Star className="h-4 w-4 text-yellow-500 fill-yellow-500" /> 4.8 (161 verified reviews)</span>
+              <span className="flex items-center gap-1"><Star className="h-4 w-4 text-yellow-500 fill-yellow-500" /> 4.8 (161 Google reviews)</span>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/book">

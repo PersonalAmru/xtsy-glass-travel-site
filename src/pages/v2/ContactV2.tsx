@@ -5,7 +5,7 @@
 import { useState, type FormEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from '@/lib/router-compat';
-import { PageShell, PAD } from '@/components/v2/blocks';
+import { PageShell, PAD, FaqList } from '@/components/v2/blocks';
 import { SpinningMark, waLink, WHATSAPP_DISPLAY } from '@/components/v2/primitives';
 
 const PHONE = '+91 8837317070';
@@ -15,6 +15,13 @@ const SUPPORT = 'support@xtsy.one';
 const ADDRESS = 'XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018, India';
 
 const TOPICS = ['A room or dorm bed', 'Experience by XTSY', 'A tour package', 'Bike or car rental', 'Workation', 'TAB Bistro or catering', 'Something else'];
+
+const CONTACT_FAQS = [
+  { q: 'What is the fastest way to reach XTSY?', a: 'WhatsApp the XTSY desk on +91 88373 17070 — it is answered day and night. You can also email admin@xtsy.one.' },
+  { q: 'What are the check-in and check-out times?', a: 'Check-in is from 11 AM and check-out is at 10 AM. Arriving late? Message the desk on WhatsApp so we can plan your arrival.' },
+  { q: 'Can I cancel my booking?', a: 'There is no free cancellation: the booking amount is non-refundable. You can change your dates once within 90 days of the original check-in (ask at least 48 hours before), subject to availability.' },
+  { q: 'Can I bring my pet?', a: 'Cats and birds are most welcome. Dogs are accepted depending on breed and size. Contact the XTSY desk before booking for any additional charges.' },
+];
 
 export default function ContactV2() {
   const [form, setForm] = useState({ name: '', phone: '', dates: '', topic: TOPICS[0], message: '' });
@@ -95,7 +102,7 @@ export default function ContactV2() {
           <div className="flex flex-col gap-6 lg:col-span-5">
             <div className="xt-reveal flex flex-col gap-3 rounded-[28px] bg-xt-slate p-8 text-xt-paper">
               <h2 className="xt-display m-0 text-[36px] leading-none">Getting here</h2>
-              <p className="m-0 text-[15px] leading-relaxed text-xt-fog">{ADDRESS}. Near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. About 2.5–3 hours by road from Guwahati airport.</p>
+              <p className="m-0 text-[15px] leading-relaxed text-xt-fog">{ADDRESS}. Near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. About 2.5–3 hours by road from Guwahati airport.</p>
               <Link to="/travel-guide/how-to-reach-meghalaya" className="text-[15px] font-extrabold text-[#F7C9D1] underline-offset-4 hover:underline">How to reach Shillong →</Link>
             </div>
             <dl className="xt-reveal m-0 grid gap-4 rounded-[28px] border-[1.5px] border-xt-line p-8 text-[15px]">
@@ -112,6 +119,7 @@ export default function ContactV2() {
             </dl>
           </div>
         </section>
+        <FaqList title="Before you message us" faqs={CONTACT_FAQS} />
       </PageShell>
     </>
   );

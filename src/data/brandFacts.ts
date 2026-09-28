@@ -37,7 +37,7 @@ export const OWN_PROPERTIES = [
     tagline: "Northeast India's Best Budget Accommodation",
     city: 'New Shillong Township, Shillong',
     description:
-      "India's biggest backpacker hostel in Northeast — NEITA 2025-recognised, female-safe, with 24/7 arrival support. Standard check-in is 11 AM and check-out is strictly 10 AM.",
+      "India's biggest backpacker hostel in Northeast — NEITA 2025 nominee, female-safe, with 24/7 arrival support. Standard check-in is 11 AM and check-out is strictly 10 AM.",
   },
   {
     name: 'Experience by XTSY',
@@ -49,7 +49,7 @@ export const OWN_PROPERTIES = [
 ] as const;
 
 export const AWARDS = [
-  'Northeast India Tourism Awards — Best Budget Accommodation (NEITA 2025)',
+  'Nominated: Best Budget-Friendly Accommodation, Northeast India Tourism Awards (NEITA 2025)',
   "Highest-rated hostel in Northeast India on Google (4.8★, 161 Google reviews)",
   "Experience by XTSY — India's first stargaze glamp",
 ] as const;
@@ -89,7 +89,7 @@ export const GROUP_VENTURES = [
 
 /** One-sentence brand opener prepended to every programmatic page intro. */
 export const BRAND_OPENER =
-  "Backed by XTSY — Northeast India's NEITA-recognised hospitality brand, operating India's biggest backpacker hostel and the country's first 270° stargaze glamping ensuite, both in Shillong.";
+  "Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality brand, operating India's biggest backpacker hostel and the country's first 270° stargaze glamping ensuite, both in Shillong.";
 
 /** Property-scope disclaimer. Used wherever a non-Shillong stay is mentioned. */
 export const PARTNER_NETWORK_NOTE =
@@ -100,7 +100,7 @@ export const whyXTSYSection = (): SEOSection => ({
   content:
     "XTSY is Northeast India's highest-rated independent hospitality brand — Shillong-born, traveller-built, and having hosted 10,786+ guests through owned properties, curated tours, weddings, catering and rentals.",
   listItems: [
-    'NEITA 2025 — Best Budget Accommodation in Northeast India',
+    'NEITA 2025 nominee — Best Budget-Friendly Accommodation in Northeast India',
     "Experience by XTSY — India's first stargaze glamp",
     'Highest-rated hostel in Northeast on Google (4.8★, 161 Google reviews)',
     'Pluxee India partner — corporate stays via employee-benefit vouchers accepted',

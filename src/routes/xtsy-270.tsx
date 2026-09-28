@@ -10,7 +10,7 @@ export const Route = createFileRoute("/xtsy-270")({
       jsonLd: [experienceSchema()],
       title: "Experience by XTSY — India's First Stargaze Glamp, Shillong",
       description:
-        "Stay at Experience by XTSY, India's first stargaze glamp — a 270° panoramic glass suite in New Shillong Township. See photos, what's included, rates and availability, and book direct.",
+        "Experience by XTSY, India's first stargaze glamp: a 270° panoramic glass suite in New Shillong Township. Photos, what's included and rates. Book direct.",
     }),
   component: ExperienceByXtsy,
 });

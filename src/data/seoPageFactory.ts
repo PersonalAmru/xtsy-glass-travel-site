@@ -14,7 +14,7 @@ import { SEO_YEAR } from '@/utils/seoDate';
 // Display label helpers
 // =============================================================
 const LABEL_OVERRIDES: Record<string, string> = {
-  neigrims: 'NEIGRIMS',
+  neigrims: 'NEIGRIHMS',
   'iim-shillong': 'IIM Shillong',
   'nift-shillong': 'NIFT Shillong',
   nehu: 'NEHU',
@@ -315,7 +315,7 @@ export function buildIntentStayPage(slug: string): SEOPageData {
   });
 }
 
-// ---- Institutions (NEIGRIMS, IIM, etc.) ----
+// ---- Institutions (NEIGRIHMS, IIM, etc.) ----
 export function buildInstitutionPage(slug: string, inst: { slug: string; name: string; type: 'medical' | 'education' }): SEOPageData {
   const intent = slug.replace(`-${inst.slug}`, '').replace(/-near$/, '');
   const intentLabel = slugToLabel(intent);

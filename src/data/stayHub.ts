@@ -29,7 +29,7 @@ export function stayHubCopy(v: StayHubVariant) {
     title: cheap ? `Cheap Hostels in Shillong — Dorm Beds from ${dorm} | XTSY` : `Hostels in Shillong 2026 — Dorms from ${dorm} | XTSY`,
     description: cheap
       ? `Cheap hostel in Shillong? XTSY dorm beds from ${dorm}, women-only dorm, lockers, Wi-Fi, TAB Bistro on site. New Shillong Township. Book direct, no OTA mark-up.`
-      : `Choosing a hostel in Shillong: XTSY Travellers Hostel (4.8★, 161 Google reviews) — dorms from ${dorm}, women-only dorm, private rooms and a glass suite in New Shillong Township.`,
+      : `XTSY Travellers Hostel, New Shillong Township (4.8★, 161 Google reviews): dorms from ${dorm}, a women-only dorm, private rooms and a glass suite.`,
     h1: cheap ? 'Cheap hostels in Shillong' : 'Hostels in Shillong',
     eyebrow: cheap ? `Budget beds from ${dorm} · book direct` : 'The 2026 guide · by the team that runs XTSY',
     quick: cheap
@@ -46,7 +46,7 @@ export function stayHubFaqs(v: StayHubVariant): { q: string; a: string }[] {
   const base = [
     { q: 'Which is the best hostel in Shillong?', a: `XTSY Travellers Hostel in New Shillong Township is one of the best-rated hostels in Shillong (4.8★ from 161 Google reviews). Dorms start at ${dorm}, there is a women-only dorm, private King Double rooms and the Experience by XTSY glass suite, and TAB Bistro is on site.` },
     { q: 'How much is a hostel in Shillong per night?', a: `At XTSY, dorm beds are ${dorm} (8-bed) and ${inr(roomPrice('6-bed-mixed-dorm').now)} (6-bed), the women-only dorm is ${inr(roomPrice('4-bed-female-only-dorm').now)}, the King Double room ${inr(roomPrice('king-double-room').now)}, and Experience by XTSY ${inr(PANORAMA_STAY_ONLY)} (${inr(PANORAMA_WITH_BREAKFAST)} with breakfast for two).` },
-    { q: 'Where is XTSY Travellers Hostel?', a: 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018 — near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is not in Police Bazaar or central Shillong; the drive to Police Bazaar takes about 30 minutes.' },
+    { q: 'Where is XTSY Travellers Hostel?', a: 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018 — near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is not in Police Bazaar or central Shillong; the drive to Police Bazaar takes about 30 minutes.' },
     { q: 'Is there a women-only dorm in Shillong?', a: `Yes. XTSY has a 4-bed women-only dorm (${inr(roomPrice('4-bed-female-only-dorm').now)} a night) with female staff on call, lockers and 24/7 arrival support.` },
     { q: 'What are check-in and check-out times?', a: 'Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the desk with your arrival time.' },
     { q: 'What is the cancellation policy?', a: 'The booking amount is non-refundable — there is no free cancellation. You can change your dates once within 90 days of the original check-in (ask at least 48 hours before), subject to availability and any rate difference.' },

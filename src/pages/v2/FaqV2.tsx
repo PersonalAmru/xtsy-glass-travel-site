@@ -15,7 +15,7 @@ export function buildTopics(): Topic[] {
   const female = roomPrice('4-bed-female-only-dorm');
   return [
     { id: 'stay', n: 'Staying at XTSY', q: [
-      ['Where exactly is XTSY?', 'XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University, in a calm, green part of Shillong away from the city centre.'],
+      ['Where exactly is XTSY?', 'XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University, in a calm, green part of Shillong away from the city centre.'],
       ['Does XTSY have properties in other places?', 'No. XTSY Travellers Hostel in New Shillong Township (with Experience by XTSY and TAB Bistro) is XTSY’s only property. Everywhere else, including Dawki, Sohra, Tawang and beyond, XTSY arranges stays, transport and travel help through trusted travel partners, and our desk stays your single contact.'],
       ['What rooms do you have?', `6 and 8-bed mixed dorms from ${inr(lowestDormPrice())}, a 4-bed female-only dorm (${inr(female.now)}), King Double private rooms and Experience by XTSY, India’s First Stargaze Glamp. Every bed has a locker, reading light and charging point.`],
       ['What are check-in and check-out times?', 'Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the desk with your arrival time; our arrival desk can help around the clock.'],
@@ -95,8 +95,10 @@ export default function FaqV2() {
             {topics.map((t) => (
               <button
                 key={t.id}
+                id={`faq-tab-${t.id}`}
                 role="tab"
                 aria-selected={t.id === topic}
+                aria-controls={`faq-${t.id}`}
                 onClick={() => { setTopic(t.id); setOpen(0); }}
                 className={`xt-chip shrink-0 rounded-full px-5 py-3 text-left text-[15px] font-extrabold lg:rounded-2xl lg:py-4 ${t.id === topic ? 'bg-xt-slate text-xt-paper' : 'bg-transparent text-xt-ink hover:bg-xt-cream'}`}
               >
@@ -106,14 +108,22 @@ export default function FaqV2() {
           </div>
             <div className="hidden lg:block"><Btn to={waLink('Hi XTSY! I have a question: ')}>Ask us on WhatsApp</Btn></div>
           </div>
-          <div role="tabpanel" aria-label={current.n} className="flex flex-col gap-2.5 lg:col-span-8">
-            {current.q.map(([q, a], i) => (
-              <div key={q} className="xt-pop overflow-hidden rounded-[18px] bg-white" style={{ animationDelay: `${i * 0.04}s` }}>
-                <button type="button" aria-expanded={open === i} onClick={() => setOpen(open === i ? -1 : i)} className="flex w-full items-center justify-between gap-4 bg-transparent px-6 py-5 text-left text-[17px] font-extrabold text-xt-ink">
-                  <span>{q}</span>
-                  <span aria-hidden="true" className="text-[26px] font-normal text-xt-crimson">{open === i ? '−' : '+'}</span>
-                </button>
-                {open === i && <p className="m-0 px-6 pb-5 text-[16px] leading-relaxed text-xt-mute">{a}</p>}
+          {/* All topics stay in the server HTML (inactive ones hidden) so every FAQ answer is readable by
+              search engines and AI assistants and matches the FAQPage schema. */}
+          <div className="lg:col-span-8">
+            {topics.map((t) => (
+              <div key={t.id} role="tabpanel" id={`faq-${t.id}`} aria-labelledby={`faq-tab-${t.id}`} hidden={t.id !== current.id} className="flex flex-col gap-2.5">
+                {t.q.map(([q, a], i) => (
+                  <div key={q} className="xt-pop overflow-hidden rounded-[18px] bg-white" style={{ animationDelay: `${i * 0.04}s` }}>
+                    <h2 className="m-0 text-[17px]">
+                      <button type="button" aria-expanded={open === i} onClick={() => setOpen(open === i ? -1 : i)} className="flex w-full items-center justify-between gap-4 bg-transparent px-6 py-5 text-left text-[17px] font-extrabold text-xt-ink">
+                        <span>{q}</span>
+                        <span aria-hidden="true" className="text-[26px] font-normal text-xt-crimson">{open === i ? '−' : '+'}</span>
+                      </button>
+                    </h2>
+                    <p className={open === i && t.id === current.id ? 'm-0 px-6 pb-5 text-[16px] leading-relaxed text-xt-mute' : 'sr-only'}>{a}</p>
+                  </div>
+                ))}
               </div>
             ))}
           </div>

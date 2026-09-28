@@ -8,7 +8,7 @@ export const Route = createFileRoute("/meghalaya-tour-packages")({
       path: "/meghalaya-tour-packages",
       title: "Meghalaya Tour Packages 2026 — Starting ₹7,999 | XTSY",
       description:
-        "Book curated Meghalaya tour packages starting ₹7,999. Shillong, Cherrapunji, Dawki and living root bridges. Stays, meals and transport included. Best price guaranteed.",
+        "Meghalaya tour packages from ₹7,999: Shillong, Cherrapunji, Dawki and the living root bridges, with stays, meals and transport included. Book direct.",
       keywords:
         "Meghalaya tour package, Meghalaya adventure tour, adventure tours in Northeast India, Shillong tour, Cherrapunji tour, Dawki trip",
     }),

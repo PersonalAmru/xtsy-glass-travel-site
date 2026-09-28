@@ -231,7 +231,7 @@ const SEOContent: React.FC<SEOContentProps> = ({ page = 'home' }) => {
           <h3>Best Hostel Location in Shillong, Meghalaya</h3>
           <p>
             XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near
-            NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. The XTSY
+            NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. The XTSY
             desk arranges cabs and day trips to Police Bazaar, Ward's Lake, Elephant Falls and other
             major attractions, and TAB Bistro is on site.
           </p>

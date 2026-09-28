@@ -26,7 +26,7 @@ const HostelNearMe = memo(() => {
     name: 'XTSY Travellers Hostel — New Shillong Township',
     alternateName: ['XTSY Hostel Shillong', 'XTSY New Shillong Township'],
     description:
-      'Backpacker hostel on Mawdiangdiang Road, New Shillong Township, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University — dorm beds from ₹389, 4.8★ from 161 verified guests.',
+      'Backpacker hostel on Mawdiangdiang Road, New Shillong Township, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University — dorm beds from ₹389, 4.8★ from 161 Google reviews.',
     url: 'https://xtsy.one/hostel-near-me',
     telephone: '+918837317070',
     email: 'stay@xtsy.one',
@@ -93,7 +93,7 @@ const HostelNearMe = memo(() => {
   const nearby = [
     { icon: Footprints, place: 'NIFT Shillong', distance: 'Nearby', time: 'New Shillong Township' },
     { icon: Footprints, place: 'IIM Shillong', distance: 'Nearby', time: 'New Shillong Township' },
-    { icon: Footprints, place: 'NEIGRIMS', distance: 'Nearby', time: 'Mawdiangdiang' },
+    { icon: Footprints, place: 'NEIGRIHMS', distance: 'Nearby', time: 'Mawdiangdiang' },
     { icon: Footprints, place: 'NEIAH', distance: 'Nearby', time: 'Mawdiangdiang' },
     { icon: Footprints, place: 'Martin Luther Christian University', distance: 'Nearby', time: 'Short drive' },
     { icon: Car, place: 'Police Bazar (city centre)', distance: 'Cab ride', time: 'XTSY desk can book a cab' },
@@ -104,7 +104,7 @@ const HostelNearMe = memo(() => {
   const faqs = [
     {
       q: 'Where exactly is XTSY in Shillong?',
-      a: 'XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It is not in central Shillong — Police Bazar is a cab ride away.',
+      a: 'XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is not in central Shillong — Police Bazar is a cab ride away.',
     },
     {
       q: 'Which is the closest hostel to Guwahati airport (GAU)?',
@@ -120,7 +120,7 @@ const HostelNearMe = memo(() => {
     },
     {
       q: 'Are there other hostels near me in Shillong worth comparing?',
-      a: 'Shillong has ~6 verified hostels. XTSY is the largest (India\'s biggest hostel in the northeast), highest rated (4.8★, 161 verified reviews) and sits in quiet New Shillong Township. Compare on /xtsy-vs-zostel or /best-hostel-in-shillong.',
+      a: 'Shillong has ~6 verified hostels. XTSY is the largest (India\'s biggest hostel in the northeast), highest rated (4.8★, 161 Google reviews) and sits in quiet New Shillong Township. Compare on /xtsy-vs-zostel or /best-hostel-in-shillong.',
     },
     {
       q: 'Can I walk-in without booking online?',
@@ -144,7 +144,7 @@ const HostelNearMe = memo(() => {
       <Helmet>
         <meta
           name="description"
-          content="Looking for a hostel near you in Shillong? XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township, near NIFT and IIM Shillong — dorm beds from ₹389, 4.8★ from 161 verified guests. Directions and instant booking."
+          content="Looking for a hostel near you in Shillong? XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township, near NIFT and IIM Shillong — dorm beds from ₹389, rated 4.8★ from 161 Google reviews."
         />
         <meta
           name="keywords"
@@ -169,8 +169,8 @@ const HostelNearMe = memo(() => {
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
               XTSY Travellers Hostel is on <strong>Mawdiangdiang Road, New Shillong Township</strong>, near
-              NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University —
-              a quiet, green base with TAB Bistro on site. Dorm beds from <strong>₹389</strong>, 4.8★ from 161 verified guests.
+              NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University —
+              a quiet, green base with TAB Bistro on site. Dorm beds from <strong>₹389</strong>, 4.8★ from 161 Google reviews.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Button size="lg" asChild>

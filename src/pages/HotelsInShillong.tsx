@@ -6,6 +6,8 @@ import Footer from '@/components/Footer';
 import { Hotel, Star, Check, ArrowRight, MapPin, Shield, Wifi, Car } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
+const GLAMP_NIGHT = `₹${PANORAMA_STAY_ONLY.toLocaleString('en-IN')}`;
 
 const HotelsInShillong = memo(() => {
   const structuredData = {
@@ -23,7 +25,6 @@ const HotelsInShillong = memo(() => {
           name: 'XTSY Travellers Hostel',
           description: 'India\'s biggest hostel — private rooms, Experience by XTSY, and budget dorms',
           priceRange: '₹389 - ₹4,999',
-          starRating: { '@type': 'Rating', ratingValue: '4.8' },
         },
       },
     ],
@@ -38,7 +39,7 @@ const HotelsInShillong = memo(() => {
         name: 'What are the best hotels in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Shillong has hotels ranging from ₹1,500 to ₹8,000/night. For a unique experience, XTSY offers private rooms with hostel-community vibes plus Experience by XTSY, India\'s first stargaze glamp for luxury travellers at ₹4,999/night.',
+          text: `Shillong has hotels ranging from ₹1,500 to ₹8,000/night. For a unique experience, XTSY offers private rooms with hostel-community vibes plus Experience by XTSY, India's first stargaze glamp for luxury travellers from ${GLAMP_NIGHT}/night.`,
         },
       },
       {
@@ -46,7 +47,7 @@ const HotelsInShillong = memo(() => {
         name: 'Which area is best for hotels in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Police Bazaar is the busiest area for shopping and transport; New Shillong Township is quieter and greener. XTSY is on Mawdiangdiang Road, New Shillong Township, near NIFT Shillong, IIM Shillong and NEIGRIMS — Police Bazaar is a cab ride away.',
+          text: 'Police Bazaar is the busiest area for shopping and transport; New Shillong Township is quieter and greener. XTSY is on Mawdiangdiang Road, New Shillong Township, near NIFT Shillong, IIM Shillong and NEIGRIHMS — Police Bazaar is a cab ride away.',
         },
       },
       {
@@ -75,7 +76,7 @@ const HotelsInShillong = memo(() => {
     },
     {
       type: 'Luxury Hotels',
-      price: '₹5,000 - ₹4,999/night',
+      price: '₹5,000+/night',
       features: ['Premium rooms', 'Spa/wellness', 'Panoramic views', 'Concierge'],
       best: 'Couples, special occasions',
     },
@@ -85,7 +86,7 @@ const HotelsInShillong = memo(() => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Hotels in Shillong from ₹389/night | XTSY</title>
-        <meta name="description" content="Find the best hotels in Shillong — budget, mid-range, and luxury. Compare prices from ₹1,200-₹4,999/night. Book direct for best rates in Meghalaya's capital." />
+        <meta name="description" content="Find the best hotels in Shillong — budget, mid-range, and luxury. Compare prices from ₹1,200 to ₹5,000+ a night. Book direct for best rates in Meghalaya's capital." />
         <meta name="keywords" content="hotel in Shillong, best hotel Shillong, budget hotel Shillong, luxury hotel Shillong, Shillong hotel booking, hotels near Police Bazaar, cheap hotel Shillong, 3 star hotel Shillong" />
         <link rel="canonical" href="https://xtsy.one/hotels-in-shillong" />
         <meta property="og:title" content="Best Hotels in Shillong 2026 — Budget to Luxury" />
