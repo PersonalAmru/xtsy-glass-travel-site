@@ -1,0 +1,247 @@
+{
+ "site": "http://localhost:4174",
+ "pages": 671,
+ "pagesWithFindings": 607,
+ "siteFiles": {
+  "/robots.txt": {
+   "status": 200,
+   "bytes": 2432,
+   "blocksAIBots": false
+  },
+  "/llms.txt": {
+   "status": 200,
+   "bytes": 6077
+  },
+  "/llms-full.txt": {
+   "status": 200,
+   "bytes": 10205
+  }
+ },
+ "info": {
+  "info:check-in time seen": {
+   "11a": 43
+  },
+  "info:check-out time seen": {
+   "10a": 43
+  }
+ },
+ "rules": {
+  "stale:year": {
+   "pages": 493,
+   "examples": [
+    "/about — 2025 — \"ence by XTSY, India's first stargaze glamp, NEITA 2025 nominated, 2.5 hrs from G\"",
+    "/about — 2025 — \"om ₹389 a night. Recognition Nominated at NEITA 2025 XTSY Traveller’s Hostel \"",
+    "/about — 2025 — \"lence Award at the Northeast India Tourism Awards 2025, an initiative of the Eme\"",
+    "/about — 2025 — \" North-East Eco Forum (ENEEF), held on 11 October 2025 in Guwahati. Location & \"",
+    "/xtsy-vs-zostel — 2025 — \"9.4 Booking.com rating 50+ Guests at once NEITA 2025 Nominated, Best Budget-Fr\"",
+    "/privacy-policy — 2025 — \"ook now Privacy Policy Last Updated: January 5, 2025 1. Introduction Welcome\"",
+    "/privacy-policy — 2023 — \"nt with the Digital Personal Data Protection Act, 2023 (DPDP Act) of India, Gene\"",
+    "/xtsy-rentals — 2025 — \"al 7 seats ₹4,000 /day Book on WhatsApp Top End 2025 Premium SUV Mahindra XUV \"",
+    "/terms-of-service — 2025 — \"k now Terms of Service Last Updated: January 5, 2025 Effective Date: January \"",
+    "/terms-of-service — 2025 — \"ated: January 5, 2025 Effective Date: January 5, 2025 1. Agreement to Terms T\"",
+    "/pricing-cancellation-policy — 2025 — \" Cancellation Policies Last Updated: January 18, 2025 This document outlines o\"",
+    "/cheap-hostels-shillong — 2025 — \"ick XTSY ✓ 4.8★ on Google (161 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\""
+   ]
+  },
+  "aeo:FAQ schema question not on page": {
+   "pages": 61,
+   "examples": [
+    "/tours/4n-5d-shillong-meghalaya-tour — 4/4: Is this a fixed price?",
+    "/tours/5n-6d-tawang-tour — 4/4: Is this a fixed price?",
+    "/tours/5n-6d-meghalaya-holiday-package — 4/4: Is this a fixed price?",
+    "/tours/6d-meghalaya-honeymoon-package — 4/4: Is this a fixed price?",
+    "/tours/5d-meghalaya-trip-package — 4/4: Is this a fixed price?",
+    "/tours/6n-7d-arunachal-pradesh-tour — 4/4: Is this a fixed price?",
+    "/tours/6n-7d-meghalaya-tour — 4/4: Is this a fixed price?",
+    "/tours/7n-8d-tawang-tour — 4/4: Is this a fixed price?",
+    "/tours/7n-guwahati-shillong-kaziranga-tour — 4/4: Is this a fixed price?",
+    "/tours/6d-shillong-meghalaya-tour — 4/4: Is this a fixed price?",
+    "/tours/assam-wildlife-tea-heritage — 4/4: What's the best time to do this tour?",
+    "/tours/bhutan-mindful-kingdom-journey — 4/4: What's the best time to do this tour?"
+   ]
+  },
+  "aeo:no FAQ or question headings": {
+   "pages": 49,
+   "examples": [
+    "/about — ",
+    "/xtsy-vs-zostel — ",
+    "/privacy-policy — ",
+    "/terms-of-service — ",
+    "/book — ",
+    "/pricing-cancellation-policy — ",
+    "/motorbike-expedition-northeast-india — ",
+    "/expeditions — ",
+    "/meghalaya-adventure-tour — ",
+    "/4x4-expedition-meghalaya — ",
+    "/meghalaya-couple-tour-package — ",
+    "/merch — "
+   ]
+  },
+  "aeo:no concise answer paragraph under H1": {
+   "pages": 49,
+   "examples": [
+    "/about — 166",
+    "/female-travellers — 84",
+    "/work-from-home — 153",
+    "/xtsy-rentals — 144",
+    "/book — 0",
+    "/expeditions — 187",
+    "/budget-stay-shillong — 170",
+    "/group-stay-shillong — 182",
+    "/couples-hostel-shillong — 120",
+    "/solo-travel-hostel-shillong — 123",
+    "/hostel-near-police-bazar-shillong — 139",
+    "/stargaze-hostel-vs-xtsy — 179"
+   ]
+  },
+  "seo:thin (<300 words)": {
+   "pages": 19,
+   "examples": [
+    "/gallery — 277",
+    "/book — 18",
+    "/meghalaya-photo-gallery — 254",
+    "/destinations/arunachal-pradesh/ziro — 256",
+    "/destinations/arunachal-pradesh/itanagar — 259",
+    "/destinations/arunachal-pradesh/dirang — 259",
+    "/destinations/arunachal-pradesh/tawang — 258",
+    "/destinations/nagaland/dimapur — 250",
+    "/destinations/nagaland/kohima — 255",
+    "/destinations/manipur/ukhrul — 253",
+    "/destinations/nagaland/mokokchung — 251",
+    "/destinations/mizoram/aizawl — 256"
+   ]
+  },
+  "seo:description < 70 chars": {
+   "pages": 11,
+   "examples": [
+    "/destinations/arunachal-pradesh/ziro — Apatani valley, paddy-fish cultivation and the Ziro music festival.",
+    "/destinations/nagaland/dimapur — Nagaland’s rail/air gateway in the plains.",
+    "/destinations/nagaland/kohima — State capital, WWII war cemetery and the base for Dzukou Valley.",
+    "/destinations/manipur/ukhrul — Shirui hills, the Shirui lily and Tangkhul Naga villages.",
+    "/destinations/nagaland/mokokchung — Ao Naga heartland with traditional village councils.",
+    "/destinations/mizoram/reiek — Reiek Tlang peak and the heritage Mizo village.",
+    "/destinations/manipur/imphal — Kangla Fort, Ima Keithel women’s market and WWII heritage sites.",
+    "/destinations/manipur/loktak — The floating-island lake and Keibul Lamjao National Park.",
+    "/destinations/mizoram/phawngpui — The Blue Mountain National Park, Mizoram’s highest peak.",
+    "/destinations/tripura/unakoti — Ancient hillside rock-cut Shaiva carvings in the state’s north.",
+    "/destinations/tripura/neermahal — The water palace on Rudrasagar Lake."
+   ]
+  },
+  "seo:description > 160 chars": {
+   "pages": 10,
+   "examples": [
+    "/ — 163: XTSY Travellers Hostel, New Shillong Township: dorm beds from ₹389, women-only dorm, King …",
+    "/about — 164: XTSY Travellers Hostel, Shillong: Experience by XTSY, India's first stargaze glamp, NEITA …",
+    "/xtsy-270 — 183: Stay at Experience by XTSY, India's first stargaze glamp — a 270° panoramic glass suite in…",
+    "/tab-bistro — 173: TAB Bistro by XTSY — multi-cuisine restaurant in Shillong. North Indian, Chinese, Thai, Co…",
+    "/book — 196: Enquire about XTSY stays in New Shillong Township: dorm beds from ₹389, King Double ₹2,200…",
+    "/luxury-glamping-shillong — 171: Glamping near Shillong with proper beds, private washrooms and mountain views, plus Experi…",
+    "/hostel-near-me — 177: Looking for a hostel near you in Shillong? XTSY is on Mawdiangdiang Road, New Shillong Tow…",
+    "/best-hostel-in-shillong — 174: Choosing a hostel in Shillong: XTSY Travellers Hostel (4.8★, 161 Google reviews) — dorms f…",
+    "/meghalaya-tour-packages — 167: Book curated Meghalaya tour packages starting ₹7,999. Shillong, Cherrapunji, Dawki and liv…",
+    "/travel-guide/meghalaya-for-international-tourists — 162: Indian e-Visa rules, which Northeast states need permits, SIM cards, money, solo-traveller…"
+   ]
+  },
+  "schema:address": {
+   "pages": 4,
+   "examples": [
+    "/tab-bistro — TAB Bistro by XTSY: {\"@type\":\"PostalAddress\",\"addressLocality\":\"Shillong\",\"addressRegion\":\"Meghalaya\",\"addressCountry\":\"IN\"}",
+    "/xtsy-adventure-campsite-dawki — Dawki riverside camping — booked via XTSY: {\"@type\":\"PostalAddress\",\"addressLocality\":\"Dawki\",\"addressRegion\":\"Meghalaya\",\"postalCode\":\"793109\",\"addressCountry\":\"IN\"}",
+    "/luxury-glamping-shillong — Experience by XTSY — Luxury Glamping Shillong: {\"@type\":\"PostalAddress\",\"addressLocality\":\"Shillong\",\"addressRegion\":\"Meghalaya\",\"addressCountry\":\"IN\"}",
+    "/restaurant-in-shillong — TAB Bistro by XTSY: {\"@type\":\"PostalAddress\",\"addressLocality\":\"Shillong\",\"addressRegion\":\"Meghalaya\",\"addressCountry\":\"IN\"}"
+   ]
+  },
+  "price:8-bed dorm": {
+   "pages": 4,
+   "examples": [
+    "/cheap-hostels-shillong — ₹499 — \"tel in Shillong per night? + At XTSY, dorm beds are ₹389 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the Kin\"",
+    "/cheap-hostels-shillong — ₹599 — \", dorm beds are ₹389 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the King Double room ₹2,200, and Experience \"",
+    "/best-hostel-in-shillong — ₹499 — \"tel in Shillong per night? + At XTSY, dorm beds are ₹389 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the Kin\"",
+    "/best-hostel-in-shillong — ₹599 — \", dorm beds are ₹389 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the King Double room ₹2,200, and Experience \""
+   ]
+  },
+  "price:king/private room": {
+   "pages": 4,
+   "examples": [
+    "/budget-trip-to-meghalaya — ₹2500 — \"dation ₹450–₹800/night XTSY dorm beds from ₹389. Private rooms from ₹2,500. Budget homestays in villages from ₹500. F\"",
+    "/budget-trip-to-meghalaya — ₹2099 — \"omfortable base in Shillong — dorm beds from ₹389, private rooms from ₹2,099 . Book Hostel Online All Places to Visit \"",
+    "/dawki-umngot-river-guide — ₹1500 — \"00-1,500/person including meals ✓ Kayaking: 1-2 hours on the Umngot, ₹1,500-2,500/person ✓ Cliff jumping: 5-15 meter j\"",
+    "/shnongpdeng-camping — ₹1500 — \"enture sports center: ✓ Kayaking: 1-2 hours on crystal-clear Umngot, ₹1,500-3,000/person ✓ Cliff jumping: 5-15 meter j\""
+   ]
+  },
+  "price:dorm \"from\" price": {
+   "pages": 4,
+   "examples": [
+    "/hostel-near-me — ₹430 — \" at XTSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission adde\"",
+    "/hostel-near-me — ₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission added to \"",
+    "/hostel-booking — ₹430 — \" at XTSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission adde\"",
+    "/hostel-booking — ₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission added to \""
+   ]
+  },
+  "policy:cancellation/refund claim": {
+   "pages": 3,
+   "examples": [
+    "/terms-of-service — e modification, OR Alternate equivalent accommodation, OR Full refund (only if accommodation canno",
+    "/pricing-cancellation-policy — nate room or equivalent property accommodation • Option 3: Full refund (only if accommodation canno",
+    "/car-rental-guwahati —  Aadhaar/passport for ID, and a security deposit of ₹5,000 (refundable). Credit card preferred for d"
+   ]
+  },
+  "price:Experience by XTSY": {
+   "pages": 2,
+   "examples": [
+    "/hotels-in-shillong — ₹4999 — \"rience by XTSY, India's first stargaze glamp for luxury travellers at ₹4,999/night. Which area is best for hotels in Sh\"",
+    "/meghalaya-travel-guide — ₹5000 — \"mium experiences like Experience by XTSY or luxury resorts range from ₹5,000-15,000 per night. ✓ Budget: ₹1,500-2,500/d\""
+   ]
+  },
+  "location:wrong area": {
+   "pages": 2,
+   "examples": [
+    "/isabella-hostel-vs-xtsy — abella Hostel is located in the Laban area, whereas XTSY is situated in Upper Shillong, providing faster access to the highways leading to C",
+    "/dorms-in-shillong — ellow explorers. Most hostels in Shillong are strategically located near Police Bazar or Laitumkhrah, ensuring you have easy access to local"
+   ]
+  },
+  "location:\"heart of Shillong\"": {
+   "pages": 2,
+   "examples": [
+    "/shillong-travel-guide —  museum covering all NE India cultures, ₹100 entry ✓ Police Bazaar — Heart of Shillong, shopping, street food, nightlif",
+    "/restaurants-in-police-bazar-shillong — rgaze glamping ensuite, both in Shillong. Police Bazar is the beating heart of Shillong's food scene — restaurants, café"
+   ]
+  },
+  "price:female dorm": {
+   "pages": 1,
+   "examples": [
+    "/ — ₹389 — \"ortheast Workation Pet-friendly Women safe stays 30+ tours Dorms from ₹389 Experience by XTSY TAB Bistro Partner stays a\""
+   ]
+  },
+  "placeholder:coming soon": {
+   "pages": 1,
+   "examples": [
+    "/tab-bistro — ily · 9 AM – 10:30 PM Reserve a table View the menu Rooftop deck · coming soon North Indian Indo-Chinese Thai Contin"
+   ]
+  },
+  "schema:geo": {
+   "pages": 1,
+   "examples": [
+    "/xtsy-adventure-campsite-dawki — Dawki riverside camping — booked via XTSY: 25.1858,92.0223"
+   ]
+  },
+  "aeo:no \"New Shillong Township\" entity mention": {
+   "pages": 1,
+   "examples": [
+    "/book — "
+   ]
+  },
+  "contact:email": {
+   "pages": 1,
+   "examples": [
+    "/pricing-cancellation-policy — booking@xtsy.one"
+   ]
+  },
+  "schema:offer price 0": {
+   "pages": 1,
+   "examples": [
+    "/plan-trip-with-ai — {\"@type\":\"Offer\",\"price\":0,\"priceCurrency\":\"INR\"}"
+   ]
+  }
+ }
+}
