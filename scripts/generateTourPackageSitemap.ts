@@ -1,6 +1,8 @@
 /**
  * public/sitemap-tour-packages.xml — every tour and signature-package detail page
  * (/tours/<slug>). These revenue pages were missing from all sitemaps.
+ * Committed like the other curated sitemaps; re-run with `npm run sitemaps:tours`
+ * (uses Bun, because the tour data imports .jpg assets) whenever tours change.
  */
 import fs from 'fs';
 import path from 'path';
