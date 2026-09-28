@@ -1,0 +1,92 @@
+name: Tour photos from Pexels (manual)
+
+# Step 1 (mode=candidates): search Pexels for every target in scripts/images/photoTargets.ts,
+#   commit scripts/images/pexels-candidates.json to the branch and publish numbered
+#   contact sheets to ci-screenshots/pexels/ for review.
+# Step 2 (mode=apply): download the reviewed picks (scripts/images/pexels-picks.json),
+#   write WebP files to public/img/px and src/data/pexelsPhotos.ts, commit to the branch.
+# The key comes from the PEXELS_API_KEY secret, or the one-time input (masked in logs).
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to work on"
+        required: true
+      mode:
+        description: "candidates or apply"
+        required: true
+        default: candidates
+      pexels_key:
+        description: "Pexels API key (only needed if the PEXELS_API_KEY secret is not set)"
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  photos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      BRANCH: ${{ github.event.inputs.branch }}
+    steps:
+      - name: Key
+        run: |
+          KEY="${{ secrets.PEXELS_API_KEY }}"
+          if [ -z "$KEY" ]; then KEY=$(jq -r '.inputs.pexels_key // ""' "$GITHUB_EVENT_PATH"); fi
+          if [ -n "$KEY" ]; then echo "::add-mask::$KEY"; echo "PEXELS_API_KEY=$KEY" >> "$GITHUB_ENV"; fi
+
+      - name: Checkout branch (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${BRANCH}"
+          git checkout -q -B "${BRANCH}" FETCH_HEAD
+          git config user.name "xtsy-ci"
+          git config user.email "ci@xtsy.one"
+
+      - name: Install Bun + sharp
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.bun/bin:$PATH"
+          mkdir -p /tmp/deps && cd /tmp/deps && bun init -y >/dev/null && bun add sharp@0.33.5 >/dev/null
+          echo "NODE_PATH=/tmp/deps/node_modules" >> "$GITHUB_ENV"
+          ln -s /tmp/deps/node_modules "$GITHUB_WORKSPACE/node_modules"
+
+      - name: Candidates
+        if: github.event.inputs.mode == 'candidates'
+        run: |
+          set -euo pipefail
+          bun scripts/images/pexels-candidates.ts
+          git add scripts/images/pexels-candidates.json
+          git commit -q -m "Pexels candidates for review" || true
+          git push -q origin "HEAD:refs/heads/${BRANCH}"
+
+      - name: Apply picks
+        if: github.event.inputs.mode == 'apply'
+        run: |
+          set -euo pipefail
+          bun scripts/images/pexels-apply.ts
+          git add public/img/px src/data/pexelsPhotos.ts
+          git commit -q -m "Reviewed Pexels photos for tours, routes and destination guides" || true
+          git push -q origin "HEAD:refs/heads/${BRANCH}"
+
+      - name: Publish contact sheets
+        if: always() && github.event.inputs.mode == 'candidates'
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/pub && cd /tmp/pub
+          git init -q .
+          git config user.name "xtsy-ci"; git config user.email "ci@xtsy.one"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git fetch --depth=1 origin ci-screenshots 2>/dev/null; then git checkout -q FETCH_HEAD; else git checkout -q --orphan ci-screenshots; fi
+          rm -rf pexels && mkdir -p pexels
+          cp -r "$GITHUB_WORKSPACE/shots/pexels/." pexels/ 2>/dev/null || true
+          git add -A
+          git commit -q -m "Pexels contact sheets" || exit 0
+          for i in 1 2 3 4 5; do git push -q origin HEAD:ci-screenshots && exit 0; git fetch -q --depth=1 origin ci-screenshots && git rebase -q FETCH_HEAD || true; sleep 5; done
+          exit 1
