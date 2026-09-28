@@ -30,8 +30,6 @@ import { Route as CheapHostelsShillongRouteImport } from './routes/cheap-hostels
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DestinationWeddingShillongRouteImport } from './routes/destination-wedding-shillong'
 import { Route as FaqRouteImport } from './routes/faq'
-import { Route as MerchRouteImport } from './routes/merch'
-import { Route as PlanTripWithAiRouteImport } from './routes/plan-trip-with-ai'
 import { Route as FemaleTravellersRouteImport } from './routes/female-travellers'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as GroupBookingsMeghalayaRouteImport } from './routes/group-bookings-meghalaya'
@@ -50,9 +48,11 @@ import { Route as MeghalayaTourPackagesRouteImport } from './routes/meghalaya-to
 import { Route as MeghalayaViewpointsRouteImport } from './routes/meghalaya-viewpoints'
 import { Route as MeghalayaVillagesRouteImport } from './routes/meghalaya-villages'
 import { Route as MeghalayaWaterfallsRouteImport } from './routes/meghalaya-waterfalls'
+import { Route as MerchRouteImport } from './routes/merch'
 import { Route as MotorbikeExpeditionNortheastIndiaRouteImport } from './routes/motorbike-expedition-northeast-india'
 import { Route as PetFriendlyRouteImport } from './routes/pet-friendly'
 import { Route as PlacesToVisitInMeghalayaRouteImport } from './routes/places-to-visit-in-meghalaya'
+import { Route as PlanTripWithAiRouteImport } from './routes/plan-trip-with-ai'
 import { Route as PricingCancellationPolicyRouteImport } from './routes/pricing-cancellation-policy'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as ProfileRouteImport } from './routes/profile'
@@ -236,16 +236,6 @@ const FaqRoute = FaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MerchRoute = MerchRouteImport.update({
-  id: '/merch',
-  path: '/merch',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PlanTripWithAiRoute = PlanTripWithAiRouteImport.update({
-  id: '/plan-trip-with-ai',
-  path: '/plan-trip-with-ai',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const FemaleTravellersRoute = FemaleTravellersRouteImport.update({
   id: '/female-travellers',
   path: '/female-travellers',
@@ -337,6 +327,11 @@ const MeghalayaWaterfallsRoute = MeghalayaWaterfallsRouteImport.update({
   path: '/meghalaya-waterfalls',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MerchRoute = MerchRouteImport.update({
+  id: '/merch',
+  path: '/merch',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MotorbikeExpeditionNortheastIndiaRoute =
   MotorbikeExpeditionNortheastIndiaRouteImport.update({
     id: '/motorbike-expedition-northeast-india',
@@ -354,6 +349,11 @@ const PlacesToVisitInMeghalayaRoute =
     path: '/places-to-visit-in-meghalaya',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PlanTripWithAiRoute = PlanTripWithAiRouteImport.update({
+  id: '/plan-trip-with-ai',
+  path: '/plan-trip-with-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingCancellationPolicyRoute =
   PricingCancellationPolicyRouteImport.update({
     id: '/pricing-cancellation-policy',
@@ -757,8 +757,6 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
-  '/merch': typeof MerchRoute
-  '/plan-trip-with-ai': typeof PlanTripWithAiRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -777,9 +775,11 @@ export interface FileRoutesByFullPath {
   '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
   '/meghalaya-villages': typeof MeghalayaVillagesRoute
   '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
+  '/merch': typeof MerchRoute
   '/motorbike-expedition-northeast-india': typeof MotorbikeExpeditionNortheastIndiaRoute
   '/pet-friendly': typeof PetFriendlyRoute
   '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
+  '/plan-trip-with-ai': typeof PlanTripWithAiRoute
   '/pricing-cancellation-policy': typeof PricingCancellationPolicyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/profile': typeof ProfileRoute
@@ -877,8 +877,6 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
-  '/merch': typeof MerchRoute
-  '/plan-trip-with-ai': typeof PlanTripWithAiRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -897,9 +895,11 @@ export interface FileRoutesByTo {
   '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
   '/meghalaya-villages': typeof MeghalayaVillagesRoute
   '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
+  '/merch': typeof MerchRoute
   '/motorbike-expedition-northeast-india': typeof MotorbikeExpeditionNortheastIndiaRoute
   '/pet-friendly': typeof PetFriendlyRoute
   '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
+  '/plan-trip-with-ai': typeof PlanTripWithAiRoute
   '/pricing-cancellation-policy': typeof PricingCancellationPolicyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/profile': typeof ProfileRoute
@@ -998,8 +998,6 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
-  '/merch': typeof MerchRoute
-  '/plan-trip-with-ai': typeof PlanTripWithAiRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
@@ -1018,9 +1016,11 @@ export interface FileRoutesById {
   '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
   '/meghalaya-villages': typeof MeghalayaVillagesRoute
   '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
+  '/merch': typeof MerchRoute
   '/motorbike-expedition-northeast-india': typeof MotorbikeExpeditionNortheastIndiaRoute
   '/pet-friendly': typeof PetFriendlyRoute
   '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
+  '/plan-trip-with-ai': typeof PlanTripWithAiRoute
   '/pricing-cancellation-policy': typeof PricingCancellationPolicyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/profile': typeof ProfileRoute
@@ -1120,8 +1120,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/destination-wedding-shillong'
     | '/faq'
-    | '/merch'
-    | '/plan-trip-with-ai'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1140,9 +1138,11 @@ export interface FileRouteTypes {
     | '/meghalaya-viewpoints'
     | '/meghalaya-villages'
     | '/meghalaya-waterfalls'
+    | '/merch'
     | '/motorbike-expedition-northeast-india'
     | '/pet-friendly'
     | '/places-to-visit-in-meghalaya'
+    | '/plan-trip-with-ai'
     | '/pricing-cancellation-policy'
     | '/privacy-policy'
     | '/profile'
@@ -1240,8 +1240,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/destination-wedding-shillong'
     | '/faq'
-    | '/merch'
-    | '/plan-trip-with-ai'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1260,9 +1258,11 @@ export interface FileRouteTypes {
     | '/meghalaya-viewpoints'
     | '/meghalaya-villages'
     | '/meghalaya-waterfalls'
+    | '/merch'
     | '/motorbike-expedition-northeast-india'
     | '/pet-friendly'
     | '/places-to-visit-in-meghalaya'
+    | '/plan-trip-with-ai'
     | '/pricing-cancellation-policy'
     | '/privacy-policy'
     | '/profile'
@@ -1360,8 +1360,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/destination-wedding-shillong'
     | '/faq'
-    | '/merch'
-    | '/plan-trip-with-ai'
     | '/female-travellers'
     | '/gallery'
     | '/group-bookings-meghalaya'
@@ -1380,9 +1378,11 @@ export interface FileRouteTypes {
     | '/meghalaya-viewpoints'
     | '/meghalaya-villages'
     | '/meghalaya-waterfalls'
+    | '/merch'
     | '/motorbike-expedition-northeast-india'
     | '/pet-friendly'
     | '/places-to-visit-in-meghalaya'
+    | '/plan-trip-with-ai'
     | '/pricing-cancellation-policy'
     | '/privacy-policy'
     | '/profile'
@@ -1481,8 +1481,6 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DestinationWeddingShillongRoute: typeof DestinationWeddingShillongRoute
   FaqRoute: typeof FaqRoute
-  MerchRoute: typeof MerchRoute
-  PlanTripWithAiRoute: typeof PlanTripWithAiRoute
   FemaleTravellersRoute: typeof FemaleTravellersRoute
   GalleryRoute: typeof GalleryRoute
   GroupBookingsMeghalayaRoute: typeof GroupBookingsMeghalayaRoute
@@ -1501,9 +1499,11 @@ export interface RootRouteChildren {
   MeghalayaViewpointsRoute: typeof MeghalayaViewpointsRoute
   MeghalayaVillagesRoute: typeof MeghalayaVillagesRoute
   MeghalayaWaterfallsRoute: typeof MeghalayaWaterfallsRoute
+  MerchRoute: typeof MerchRoute
   MotorbikeExpeditionNortheastIndiaRoute: typeof MotorbikeExpeditionNortheastIndiaRoute
   PetFriendlyRoute: typeof PetFriendlyRoute
   PlacesToVisitInMeghalayaRoute: typeof PlacesToVisitInMeghalayaRoute
+  PlanTripWithAiRoute: typeof PlanTripWithAiRoute
   PricingCancellationPolicyRoute: typeof PricingCancellationPolicyRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ProfileRoute: typeof ProfileRoute
@@ -1729,20 +1729,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/merch': {
-      id: '/merch'
-      path: '/merch'
-      fullPath: '/merch'
-      preLoaderRoute: typeof MerchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/plan-trip-with-ai': {
-      id: '/plan-trip-with-ai'
-      path: '/plan-trip-with-ai'
-      fullPath: '/plan-trip-with-ai'
-      preLoaderRoute: typeof PlanTripWithAiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/female-travellers': {
       id: '/female-travellers'
       path: '/female-travellers'
@@ -1869,6 +1855,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MeghalayaWaterfallsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/merch': {
+      id: '/merch'
+      path: '/merch'
+      fullPath: '/merch'
+      preLoaderRoute: typeof MerchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/motorbike-expedition-northeast-india': {
       id: '/motorbike-expedition-northeast-india'
       path: '/motorbike-expedition-northeast-india'
@@ -1888,6 +1881,13 @@ declare module '@tanstack/react-router' {
       path: '/places-to-visit-in-meghalaya'
       fullPath: '/places-to-visit-in-meghalaya'
       preLoaderRoute: typeof PlacesToVisitInMeghalayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plan-trip-with-ai': {
+      id: '/plan-trip-with-ai'
+      path: '/plan-trip-with-ai'
+      fullPath: '/plan-trip-with-ai'
+      preLoaderRoute: typeof PlanTripWithAiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing-cancellation-policy': {
@@ -2433,8 +2433,6 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DestinationWeddingShillongRoute: DestinationWeddingShillongRoute,
   FaqRoute: FaqRoute,
-  MerchRoute: MerchRoute,
-  PlanTripWithAiRoute: PlanTripWithAiRoute,
   FemaleTravellersRoute: FemaleTravellersRoute,
   GalleryRoute: GalleryRoute,
   GroupBookingsMeghalayaRoute: GroupBookingsMeghalayaRoute,
@@ -2453,10 +2451,12 @@ const rootRouteChildren: RootRouteChildren = {
   MeghalayaViewpointsRoute: MeghalayaViewpointsRoute,
   MeghalayaVillagesRoute: MeghalayaVillagesRoute,
   MeghalayaWaterfallsRoute: MeghalayaWaterfallsRoute,
+  MerchRoute: MerchRoute,
   MotorbikeExpeditionNortheastIndiaRoute:
     MotorbikeExpeditionNortheastIndiaRoute,
   PetFriendlyRoute: PetFriendlyRoute,
   PlacesToVisitInMeghalayaRoute: PlacesToVisitInMeghalayaRoute,
+  PlanTripWithAiRoute: PlanTripWithAiRoute,
   PricingCancellationPolicyRoute: PricingCancellationPolicyRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   ProfileRoute: ProfileRoute,
