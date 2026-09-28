@@ -26,7 +26,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     env:
       GH_TOKEN: ${{ github.token }}
       TARGET_REF: ${{ github.event.inputs.ref || github.head_ref || github.sha }}
@@ -60,6 +60,35 @@ jobs:
           git rm -q .github/optimize-images.flag
           git add public/img/o src/data/optimizedImages.ts
           git commit -q -m "Optimised WebP images for faster loading"
+          git push -q origin "HEAD:refs/heads/${BRANCH_NAME}"
+
+      - name: Pexels candidates (only when .github/pexels-candidates.flag exists)
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: |
+          set -euo pipefail
+          if [ ! -f .github/pexels-candidates.flag ]; then echo "no flag"; exit 0; fi
+          if [ -z "${PEXELS_API_KEY:-}" ]; then echo "::warning::PEXELS_API_KEY secret is not set yet"; exit 0; fi
+          bun add --no-save sharp@0.33.5
+          bun scripts/images/pexels-candidates.ts
+          git config user.name "xtsy-ci"
+          git config user.email "ci@xtsy.one"
+          git rm -q .github/pexels-candidates.flag
+          git add scripts/images/pexels-candidates.json
+          git commit -q -m "Pexels candidates for review"
+          git push -q origin "HEAD:refs/heads/${BRANCH_NAME}"
+
+      - name: Apply reviewed Pexels photos (only when .github/pexels-apply.flag exists)
+        run: |
+          set -euo pipefail
+          if [ ! -f .github/pexels-apply.flag ]; then echo "no flag"; exit 0; fi
+          bun add --no-save sharp@0.33.5
+          bun scripts/images/pexels-apply.ts
+          git config user.name "xtsy-ci"
+          git config user.email "ci@xtsy.one"
+          git rm -q .github/pexels-apply.flag
+          git add public/img/px src/data/pexelsPhotos.ts
+          git commit -q -m "Reviewed Pexels photos for tours, routes and destination guides"
           git push -q origin "HEAD:refs/heads/${BRANCH_NAME}"
 
       - name: Self-host brand fonts (only when .github/fetch-fonts.flag exists)
@@ -123,6 +152,13 @@ jobs:
           BASE_URL: ${{ env.PROD_URL }}
           OUT_DIR: shots
 
+      - name: Full-site SEO health (every sitemap URL on this build)
+        continue-on-error: true
+        run: bun scripts/indexing/site-health.ts
+        env:
+          SITE_URL: ${{ env.PROD_URL }}
+          OUT_DIR: shots/health
+
       - name: Image + performance audit
         continue-on-error: true
         run: |
@@ -135,6 +171,13 @@ jobs:
           SKIP_IMAGES: "1"
           BASELINE_URL: https://xtsy.one
           PERF_ROUTES: /,/best-hostel-in-shillong,/cheap-hostels-shillong,/shillong-dormitory,/xtsy-270
+
+      - name: Breakpoint audit (7 screen sizes × key pages)
+        continue-on-error: true
+        run: bunx tsx scripts/ci-breakpoints.ts
+        env:
+          BASE_URL: ${{ env.PROD_URL }}
+          OUT_DIR: shots/bp
 
       - name: Publish screenshots to ci-screenshots branch
         if: always()

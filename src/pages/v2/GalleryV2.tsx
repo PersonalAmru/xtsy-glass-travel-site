@@ -58,7 +58,7 @@ export default function GalleryV2() {
     <>
       <SEOHead
         structuredDataOnly
-        title="XTSY Photo Gallery — Hostel, Experience by XTSY & Meghalaya Photos"
+        title="XTSY Gallery — Hostel, Glass Suite & Meghalaya Photos"
         description="Real photos of XTSY Travellers Hostel in New Shillong Township: Experience by XTSY, dorms, private rooms, TAB Bistro, Dawki camping and XTSY Voyage trips."
         canonicalUrl="https://xtsy.one/gallery"
       />

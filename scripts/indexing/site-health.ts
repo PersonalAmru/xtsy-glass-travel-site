@@ -9,9 +9,12 @@
 import fs from 'fs';
 
 const SITE = process.env.SITE_URL || 'https://xtsy.one';
+// Sitemaps list absolute https://xtsy.one URLs; when auditing a CI build, fetch them from SITE instead.
+const local = (u: string) => u.replace(/^https:\/\/(www\.)?xtsy\.one/, SITE);
 const OUT = process.env.OUT_DIR || 'health';
 const UA = 'Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) xtsy-health';
-const pick = (h: string, re: RegExp) => (h.match(re)?.[1] ?? '').replace(/\s+/g, ' ').trim();
+const decode = (x: string) => x.replace(/&amp;/g, '&').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+const pick = (h: string, re: RegExp) => decode((h.match(re)?.[1] ?? '').replace(/\s+/g, ' ').trim());
 
 async function get(url: string) {
   const t = Date.now();
@@ -37,7 +40,7 @@ async function main() {
   const urls: { url: string; sitemap: string }[] = [];
   const sitemapRows = [];
   for (const m of maps) {
-    const r = await get(m);
+    const r = await get(local(m));
     const locs = [...r.text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((x) => x[1]).filter((u) => !/\.(jpe?g|png|webp)$/i.test(u));
     sitemapRows.push({ sitemap: m, status: r.status, urls: locs.length });
     if (!/sitemap-images/.test(m)) locs.forEach((u) => urls.push({ url: u, sitemap: m.split('/').pop()! }));
@@ -49,7 +52,7 @@ async function main() {
   async function worker() {
     while (i < list.length) {
       const { url, sitemap } = list[i++];
-      const r = await get(url);
+      const r = await get(local(url));
       const h = r.text;
       const ld = [...h.matchAll(/<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/g)].map((m) => { try { return JSON.parse(m[1]); } catch { return { '@type': 'INVALID_JSON' }; } });
       const robots = pick(h, /<meta[^>]*name="robots"[^>]*content="([^"]*)"/);
@@ -62,7 +65,7 @@ async function main() {
       else {
         if (/noindex/i.test(robots) || /noindex/i.test(r.xrobots ?? '')) issues.push('noindex but listed in sitemap');
         if (!canonical) issues.push('no canonical'); else if (norm(canonical) !== norm(url)) issues.push(`canonical points elsewhere: ${canonical}`);
-        if (!title) issues.push('no title'); else if (title.length > 65) issues.push(`long title (${title.length})`);
+        if (!title) issues.push('no title'); else if (title.length > 60) issues.push(`long title (${title.length})`);
         if (!pick(h, /<meta[^>]*name="description"[^>]*content="([^"]*)"/)) issues.push('no meta description');
         if (!/<h1[\s>]/.test(h)) issues.push('no H1');
         if (!ld.length) issues.push('no structured data');

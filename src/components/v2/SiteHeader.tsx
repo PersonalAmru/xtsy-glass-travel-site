@@ -93,14 +93,14 @@ export default function SiteHeader() {
   return (
     <div className="xt sticky top-0 z-50">
       <div className="flex h-9 items-center justify-center gap-3 overflow-hidden bg-xt-slate px-4 text-[12px] font-semibold text-xt-paper sm:h-10 sm:text-[14px]">
-        <span className="hidden sm:inline">Book direct and save 20–30% vs OTAs</span>
+        <span className="hidden whitespace-nowrap sm:inline">Book direct and save 20–30% vs OTAs</span>
         <span aria-hidden="true" className="hidden opacity-50 sm:inline">·</span>
-        <Link to="/book" className="text-xt-paper underline-offset-2 hover:underline">Dorm beds from {inr(lowestDormPrice())}/night</Link>
-        <span aria-hidden="true" className="hidden opacity-50 md:inline">·</span>
-        <span className="hidden md:inline">New Shillong Township, near IIM &amp; NIFT Shillong</span>
+        <Link to="/book" className="flex h-full items-center whitespace-nowrap text-xt-paper underline-offset-2 hover:underline">Dorm beds from {inr(lowestDormPrice())}/night</Link>
+        <span aria-hidden="true" className="hidden opacity-50 lg:inline">·</span>
+        <span className="hidden whitespace-nowrap lg:inline">New Shillong Township, near IIM &amp; NIFT Shillong</span>
       </div>
       <header className="flex h-[68px] items-center justify-between gap-4 border-b border-xt-line bg-xt-sand/95 px-4 backdrop-blur sm:h-[84px] sm:px-8 lg:px-14">
-        <Link to="/" aria-label="XTSY home" className="flex shrink-0 items-center">
+        <Link to="/" aria-label="XTSY home" className="flex min-h-[44px] shrink-0 items-center">
           <img src={xtsyLogo} alt="XTSY" width={120} height={28} className="h-6 w-auto sm:h-7" />
         </Link>
         <nav aria-label="Main" className="hidden items-center gap-6 text-[14px] font-bold xl:flex">
@@ -126,7 +126,7 @@ export default function SiteHeader() {
             type="button"
             aria-label="Search"
             onClick={() => setSearchOpen(true)}
-            className="flex h-11 w-11 items-center justify-center rounded-full text-xt-ink hover:bg-xt-cream"
+            className="flex h-[44px] w-[44px] items-center justify-center rounded-full text-xt-ink hover:bg-xt-cream"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
           </button>
@@ -147,7 +147,7 @@ export default function SiteHeader() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg>
             <span className="max-w-[120px] truncate">{accountLabel || 'Sign in'}</span>
           </Link>
-          <Link to="/book" className="xt-btn flex h-11 items-center whitespace-nowrap rounded-full bg-xt-crimson px-5 text-[14px] font-bold text-white hover:text-white">
+          <Link to="/book" className="xt-btn flex h-[44px] items-center whitespace-nowrap rounded-full bg-xt-crimson px-5 text-[14px] font-bold text-white hover:text-white">
             Book now
           </Link>
           <button
@@ -155,7 +155,7 @@ export default function SiteHeader() {
             aria-label="Open menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(true)}
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-xt-slate text-xt-paper"
+            className="flex h-[44px] w-[44px] items-center justify-center rounded-full bg-xt-slate text-xt-paper"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
           </button>
@@ -173,7 +173,7 @@ export default function SiteHeader() {
               type="button"
               aria-label="Close menu"
               onClick={() => setMenuOpen(false)}
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-xt-paper text-xt-ink"
+              className="flex h-[44px] w-[44px] items-center justify-center rounded-full bg-xt-paper text-xt-ink"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
             </button>

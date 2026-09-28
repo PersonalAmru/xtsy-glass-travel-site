@@ -1180,7 +1180,8 @@ export default function SimplifiedBookingFlow() {
   // Don't render until dates are loaded (rooms can be empty for hero search entry)
   if (!checkIn || !checkOut) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-[hsl(220,20%,12%)] to-[hsl(220,25%,6%)] flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-[hsl(220,20%,12%)] to-[hsl(220,25%,6%)] flex flex-col items-center justify-center gap-2 px-4 text-center">
+        <h1 className="text-xl font-semibold text-white">Book your stay at XTSY Travellers Hostel</h1>
         <div className="text-white/80">Loading booking details...</div>
       </div>
     );

@@ -26,7 +26,7 @@ export function stayHubCopy(v: StayHubVariant) {
   const cheap = v === 'cheap';
   return {
     path: cheap ? '/cheap-hostels-shillong' : '/best-hostel-in-shillong',
-    title: cheap ? `Cheap Hostels in Shillong — Dorm Beds from ${dorm} | XTSY` : `Hostels in Shillong (2026): Dorms from ${dorm}, Reviews & Tips | XTSY`,
+    title: cheap ? `Cheap Hostels in Shillong — Dorm Beds from ${dorm} | XTSY` : `Hostels in Shillong 2026 — Dorms from ${dorm} | XTSY`,
     description: cheap
       ? `Cheap hostel in Shillong? XTSY dorm beds from ${dorm}, women-only dorm, lockers, Wi-Fi, TAB Bistro on site. New Shillong Township. Book direct, no OTA mark-up.`
       : `Choosing a hostel in Shillong: XTSY Travellers Hostel (4.8★, 161 Google reviews) — dorms from ${dorm}, women-only dorm, private rooms and a glass suite in New Shillong Township.`,

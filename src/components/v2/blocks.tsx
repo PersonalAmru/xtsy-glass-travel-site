@@ -251,7 +251,7 @@ export function Breadcrumbs({ items }: { items: { label: string; to?: string }[]
       <ol className="m-0 flex list-none flex-wrap items-center gap-1.5 p-0">
         {items.map((it, i) => (
           <li key={it.label} className="flex items-center gap-1.5">
-            {it.to ? <Link to={it.to} className="hover:text-xt-crimson">{it.label}</Link> : <span aria-current="page" className="text-xt-ink">{it.label}</span>}
+            {it.to ? <Link to={it.to} className="inline-block py-2 hover:text-xt-crimson">{it.label}</Link> : <span aria-current="page" className="text-xt-ink">{it.label}</span>}
             {i < items.length - 1 && <span aria-hidden="true">/</span>}
           </li>
         ))}

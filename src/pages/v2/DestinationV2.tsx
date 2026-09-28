@@ -4,6 +4,7 @@
  * schema, FAQs, booking CTAs and analytics as before.
  */
 import type { ReactNode } from 'react';
+import { photoCredit } from '@/data/tourPhotos';
 import { Helmet } from 'react-helmet-async';
 import { useParams, Link } from '@/lib/router-compat';
 import NotFound from '@/pages/NotFound';
@@ -58,6 +59,7 @@ export default function DestinationV2() {
 
   const images = getDestinationImages(destination.slug, 6);
   const realImages = images.filter((i) => !i.src.endsWith('placeholder.svg'));
+  const destCredit = photoCredit(`dest-${destination.slug}`);
   const nearby = destination.nearbyAttractions.map((name) => meghalayaDestinations.find((d) => d.name === name)).filter(Boolean) as MeghalayaDestination[];
   const showShillongHostelLink = SHILLONG_HOSTEL_LINK_SLUGS.has(destination.slug);
 
@@ -159,6 +161,7 @@ export default function DestinationV2() {
             </div>
             <div className="lg:col-span-5">
               <Photo src={realImages[0]?.src} alt={realImages[0]?.alt ?? destination.name} eager tone="pine" className="xt-in xt-d2 aspect-[520/420] rounded-[28px]" />
+              {destCredit && realImages.length > 0 && <p className="m-0 mt-1.5 text-[12px] text-[#C8D6CC]">Photo: <a href={destCredit.url} target="_blank" rel="noopener noreferrer nofollow" className="underline">{destCredit.name}</a> on <a href={destCredit.pexelsUrl} target="_blank" rel="noopener noreferrer nofollow" className="underline">Pexels</a></p>}
             </div>
           </div>
         </section>

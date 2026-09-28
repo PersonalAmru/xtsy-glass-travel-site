@@ -57,7 +57,7 @@ function PlanCard({ plan }: { plan: Plan }) {
           <div className="flex min-w-0 flex-col gap-1">
             <span className="text-[15px] font-extrabold leading-snug">{d.title}</span>
             <span className="text-[13px] leading-snug text-xt-mute">{d.stops.join(' · ')}</span>
-            <span className="flex flex-wrap gap-1.5 pt-0.5 text-[11px] font-bold">
+            <span className="flex flex-wrap gap-1.5 pt-0.5 text-[12px] font-bold">
               {d.driveHours > 0 && <span className="rounded-full bg-xt-sand px-2 py-0.5">~{d.driveHours} h on the road</span>}
               {d.overnight !== '—' && (
                 <span className={cn('rounded-full px-2 py-0.5', d.atXtsy ? 'bg-xt-blush text-xt-crimson-dark' : 'bg-[#E4EEE8] text-xt-pine')}>
@@ -233,10 +233,10 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
         {sendFor && (
           <form onSubmit={submitLead} className="grid gap-2.5 rounded-2xl bg-white p-4 text-xt-ink sm:grid-cols-2">
             <p className="m-0 text-[14px] font-bold sm:col-span-2">Send this {sendFor.input.days}-day plan to the XTSY desk. We’ll confirm stays, cabs and prices on WhatsApp.</p>
-            <label className="flex flex-col gap-1 text-[11px] font-extrabold tracking-wide text-xt-mute">NAME<input required value={lead.name} onChange={(e) => setLead({ ...lead, name: e.target.value })} className={field} autoComplete="name" /></label>
-            <label className="flex flex-col gap-1 text-[11px] font-extrabold tracking-wide text-xt-mute">WHATSAPP<input required type="tel" inputMode="tel" value={lead.phone} onChange={(e) => setLead({ ...lead, phone: e.target.value })} className={field} autoComplete="tel" /></label>
-            <label className="flex flex-col gap-1 text-[11px] font-extrabold tracking-wide text-xt-mute">EMAIL<input required type="email" value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })} className={field} autoComplete="email" /></label>
-            <label className="flex flex-col gap-1 text-[11px] font-extrabold tracking-wide text-xt-mute">DATES<input value={lead.dates} placeholder="e.g. 12–16 Dec" onChange={(e) => setLead({ ...lead, dates: e.target.value })} className={field} /></label>
+            <label className="flex flex-col gap-1 text-[12px] font-extrabold tracking-wide text-xt-mute">NAME<input required value={lead.name} onChange={(e) => setLead({ ...lead, name: e.target.value })} className={field} autoComplete="name" /></label>
+            <label className="flex flex-col gap-1 text-[12px] font-extrabold tracking-wide text-xt-mute">WHATSAPP<input required type="tel" inputMode="tel" value={lead.phone} onChange={(e) => setLead({ ...lead, phone: e.target.value })} className={field} autoComplete="tel" /></label>
+            <label className="flex flex-col gap-1 text-[12px] font-extrabold tracking-wide text-xt-mute">EMAIL<input required type="email" value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })} className={field} autoComplete="email" /></label>
+            <label className="flex flex-col gap-1 text-[12px] font-extrabold tracking-wide text-xt-mute">DATES<input value={lead.dates} placeholder="e.g. 12–16 Dec" onChange={(e) => setLead({ ...lead, dates: e.target.value })} className={field} /></label>
             <div className="flex gap-2 sm:col-span-2">
               <button type="submit" disabled={sending} className="xt-btn h-11 flex-1 rounded-full bg-xt-crimson text-[14px] font-extrabold text-white disabled:opacity-60">{sending ? 'Sending…' : 'Send to the XTSY desk'}</button>
               <button type="button" onClick={() => setSendFor(null)} className="h-11 rounded-full border-[1.5px] border-xt-line px-4 text-[14px] font-bold">Cancel</button>
@@ -259,7 +259,7 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
         </button>
       </form>
-      <p className="m-0 px-5 pb-3 text-[11px] text-[#8D94AA]">
+      <p className="m-0 px-5 pb-3 text-[12px] text-[#8D94AA]">
         Drive times are estimates; the XTSY desk confirms every plan before you pay. XTSY’s own stay is in New Shillong Township — elsewhere we book trusted partners. <Link to="/plan-trip-with-ai" className="font-bold text-xt-fog underline">How it works</Link>
       </p>
     </section>

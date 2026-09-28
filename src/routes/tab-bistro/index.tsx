@@ -7,7 +7,7 @@ export const Route = createFileRoute("/tab-bistro/")({
   head: () =>
     buildRouteHead({
       path: "/tab-bistro",
-      title: "TAB Bistro Shillong — Multi-Cuisine Restaurant, Catering & Café",
+      title: "TAB Bistro Shillong — Restaurant, Café & Catering",
       description:
         "TAB Bistro by XTSY — multi-cuisine restaurant in Shillong. North Indian, Chinese, Thai, Continental & Italian, breakfast, rooftop café, wedding catering. Open 9 AM–10:30 PM.",
       keywords:

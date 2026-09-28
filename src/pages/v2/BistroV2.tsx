@@ -31,7 +31,7 @@ export default function BistroV2() {
     <>
       <SEOHead
         structuredDataOnly
-        title="TAB Bistro Shillong — Multi-Cuisine Restaurant, Catering & Café"
+        title="TAB Bistro Shillong — Restaurant, Café & Catering"
         description="TAB Bistro by XTSY — multi-cuisine restaurant in New Shillong Township: North Indian, Chinese, Thai, Continental, Italian, breakfast and café, catering and bulk orders. Open 9 AM–10:30 PM."
         canonicalUrl="https://xtsy.one/tab-bistro"
       />
