@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import { Link } from '@/lib/router-compat';
 import { COVERS, IMG, first } from '@/data/v2Images';
+import { ROOM_IMAGES } from '@/config/roomTypes';
 import { inr } from '@/components/v2/pricing';
 import { rooms, stayHubCopy, stayHubFaqs, type StayHubVariant } from '@/data/stayHub';
 import { fromXtsy } from '@/lib/travel/routing';
@@ -26,9 +27,10 @@ function Faq({ q, a }: { q: string; a: string }) {
   );
 }
 
+// Card photo = the first photo of each room's own set (see ROOM_IMAGES ordering).
 const ROOM_IMG: Record<string, string> = {
-  '8-bed-mixed-dorm': first(IMG.mixedDorm),
-  '6-bed-mixed-dorm': IMG.mixedDorm[2] ?? first(IMG.mixedDorm),
+  '8-bed-mixed-dorm': first(ROOM_IMAGES['8-bed-mixed-dorm'] ?? IMG.mixedDorm),
+  '6-bed-mixed-dorm': first(IMG.mixedDorm),
   '4-bed-female-only-dorm': COVERS.women,
   'king-double-room': first(IMG.king),
   'xtsy-270': first(IMG.suite),
@@ -72,7 +74,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {list.map((r) => (
             <Link key={r.id} to={r.id === 'xtsy-270' ? '/xtsy-270' : '/book'} className="xt-lift flex flex-col overflow-hidden rounded-3xl bg-white text-xt-ink hover:text-xt-ink">
-              <Photo src={ROOM_IMG[r.id]} alt={r.name} tone="sand" sizes="(max-width: 640px) 100vw, 20vw" className="aspect-[4/3]" />
+              <Photo src={ROOM_IMG[r.id]} alt={r.id === '8-bed-mixed-dorm' ? 'Bunks with curtains in an XTSY mixed dorm' : r.name} tone="sand" sizes="(max-width: 640px) 100vw, 20vw" className="aspect-[4/3]" />
               <div className="flex flex-col gap-1.5 p-5">
                 <span className="text-[16px] font-extrabold">{r.name}</span>
                 <span className="text-[20px] font-extrabold text-xt-crimson">{inr(r.price)}<span className="text-[12px] font-semibold text-xt-mute"> / night</span></span>

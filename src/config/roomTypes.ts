@@ -56,26 +56,28 @@ export interface RoomTypeConfig {
  * - 8-bed-mixed-economy-dorm
  */
  // Room images — uploaded to storage, rehosted on the Lovable CDN.
+// Order matters: [0] is the card photo. Each set starts with photos of the room
+// itself (beds/bunks), then views and balconies, with bathrooms last.
 // Resolved by "bucket/Filename" key via the CDN image map.
 
 export const ROOM_IMAGES: Record<string, string[]> = {
   'xtsy-270': cdnMany([
     'xtsy-270/XTSY270.JPG',
+    'xtsy-270/XTSY270 6.JPG',
     'xtsy-270/XTSY270 2.JPG',
     'xtsy-270/XTSY270 3.JPG',
     'xtsy-270/XTSY270 4.JPG',
     'xtsy-270/XTSY270 5.JPG',
-    'xtsy-270/XTSY270 6.JPG',
     'xtsy-270/XTSY270 7.JPG',
   ]),
   '4-bed-female-only-dorm': cdnMany([
     'xtsy/4 Bed Female Dormitory.jpg',
     'xtsy/4 Bed Female Dormitory 2.jpg',
     'xtsy/4 Bed Female Dormitory 3.jpg',
+    'xtsy/4 Bed Female Dormitory 7.JPG',
+    'xtsy/4 Bed Female Dormitory 6.JPG',
     'xtsy/4 Bed Female Dormitory 4.JPG',
     'xtsy/4 Bed Female Dormitory 5.JPG',
-    'xtsy/4 Bed Female Dormitory 6.JPG',
-    'xtsy/4 Bed Female Dormitory 7.JPG',
     'xtsy/4 Bed Female Dormitory 8.jpg',
   ]),
   '4-bed-mixed-female-dorm': cdnMany([
@@ -97,10 +99,12 @@ export const ROOM_IMAGES: Record<string, string[]> = {
   '6-bed-mixed-dorm': cdnMany([
     'xtsy/6 Bed Mixed Dormitory 1.JPG',
     'xtsy/6 Bed Mixed Dormitory 3.jpg',
-    'xtsy/6 Bed Mixed Dormitory 8.jpg',
-    'xtsy/6 Bed Mixed Dormitory 7.jpg',
-    'xtsy/6 Bed Mixed Dormitory 9.jpg',
     'xtsy/6 Bed Mixed Dormitory 2.JPG',
+    'xtsy/6 Bed Mixed Dormitory 4.jpg',
+    'xtsy/6 Bed Mixed Dormitory 7.jpg',
+    'xtsy/6 Bed Mixed Dormitory 6.JPG',
+    'xtsy/6 Bed Mixed Dormitory 8.jpg',
+    'xtsy/6 Bed Mixed Dormitory 9.jpg',
   ]),
   'king-double-room': cdnMany([
     'xtsy/King Double Room.jpg',
@@ -108,14 +112,15 @@ export const ROOM_IMAGES: Record<string, string[]> = {
     'xtsy/King Double Room 3.JPG',
     'xtsy/King Double Room 4.jpg',
   ]),
-  // No dedicated 8-bed photos were uploaded — reuse the 6-bed mixed dorm set.
+  // No dedicated 8-bed photos exist yet (same bunks as the 6-bed dorm): lead with a
+  // different bunk shot than the 6-bed card so the two cards never show the same photo.
   '8-bed-mixed-dorm': cdnMany([
     'xtsy/6 Bed Mixed Dormitory 2.JPG',
-    'xtsy/6 Bed Mixed Dormitory 1.JPG',
     'xtsy/6 Bed Mixed Dormitory 3.jpg',
-    'xtsy/6 Bed Mixed Dormitory 8.jpg',
+    'xtsy/6 Bed Mixed Dormitory 1.JPG',
     'xtsy/6 Bed Mixed Dormitory 7.jpg',
-    'xtsy/6 Bed Mixed Dormitory 9.jpg',
+    'xtsy/6 Bed Mixed Dormitory 5.JPG',
+    'xtsy/6 Bed Mixed Dormitory 8.jpg',
   ]),
 };
 

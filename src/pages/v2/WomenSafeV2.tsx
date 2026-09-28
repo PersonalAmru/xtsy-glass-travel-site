@@ -49,7 +49,7 @@ export default function WomenSafeV2() {
           <CheckPanel icon="heart" bg="#F3E3E6" color="#8A1D3A" title="Comfort & care" items={['Individual bed curtains', 'Hair dryers and mirrors', 'Hygiene products on hand', 'Reading corners', 'Quiet wellness space', 'Safety guidance and local tips']} />
         </section>
 
-        <SplitFeature media={<Photo src={IMG.femaleDorm[2] ?? first(IMG.femaleDorm)} alt="Inside the female dorm" tone="pine" className="aspect-[628/440] rounded-[28px]" />}>
+        <SplitFeature media={<Photo src={IMG.femaleDorm[1] ?? first(IMG.femaleDorm)} alt="Bunks inside the 4-bed female-only dorm" tone="pine" className="aspect-[628/440] rounded-[28px]" />}>
           <Eyebrow>Community</Eyebrow>
           <h2 className="xt-display m-0 text-[44px] leading-[0.95] sm:text-[64px]">Join our community of women explorers</h2>
           <p className="m-0 text-[17px] leading-relaxed text-xt-mute">Meet other women on the road, share a cab to Cherrapunji, and get local tips from our female staff before you head out.</p>
