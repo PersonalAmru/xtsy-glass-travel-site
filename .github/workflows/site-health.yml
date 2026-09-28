@@ -1,0 +1,56 @@
+name: Site health report (manual)
+
+# On-demand only — no schedule. Crawls every sitemap URL on the live site the way
+# a search engine does and saves the report to the ci-screenshots branch (site-health/).
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${GITHUB_REF_NAME}"
+          git checkout -q FETCH_HEAD
+
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+
+      - name: Crawl live site
+        run: bun scripts/indexing/site-health.ts
+        env:
+          OUT_DIR: health
+
+      - name: Publish report
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/pub && cd /tmp/pub
+          git init -q .
+          git config user.name "xtsy-ci"
+          git config user.email "ci@xtsy.one"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git fetch --depth=1 origin ci-screenshots 2>/dev/null; then git checkout -q FETCH_HEAD; else git checkout -q --orphan ci-screenshots; fi
+          rm -rf site-health && mkdir -p site-health
+          cp -r "$GITHUB_WORKSPACE/health/." site-health/
+          git add -A
+          git commit -q -m "Site health report @ $(date -u +%FT%TZ)" || exit 0
+          for i in 1 2 3 4 5; do
+            git push -q origin HEAD:ci-screenshots && exit 0
+            git fetch -q --depth=1 origin ci-screenshots && git rebase -q FETCH_HEAD || true
+            sleep 5
+          done
+          exit 1

@@ -23,7 +23,7 @@ interface SearchResult {
 
 const SEARCH_INDEX: SearchResult[] = [
   // Rooms & Booking
-  { title: '8-Bed Mixed Dorm', description: 'Bestseller · From ₹399/night', icon: '🛏️', path: '/book', keywords: ['dorm', 'dormitory', 'bed', 'mixed', 'cheap', 'budget', '399', 'hostel', 'backpacker', 'bestseller', '8 bed'], tags: ['budget', 'explore'] },
+  { title: '8-Bed Mixed Dorm', description: 'Bestseller · From ₹389/night', icon: '🛏️', path: '/book', keywords: ['dorm', 'dormitory', 'bed', 'mixed', 'cheap', 'budget', '389', '399', 'hostel', 'backpacker', 'bestseller', '8 bed'], tags: ['budget', 'explore'] },
   { title: '6-Bed Mixed Dorm', description: 'Recommended · From ₹499/night', icon: '🛏️', path: '/book', keywords: ['dorm', '6 bed', 'mixed', 'recommended', '499'], tags: ['budget', 'explore'] },
   { title: '4-Bed Female Dorm', description: 'Women only · From ₹599/night', icon: '👩', path: '/book', keywords: ['female', 'women', '4 bed', '599', 'ladies'], tags: ['female', 'budget'] },
   { title: 'King Double Room', description: 'Couple favourite · From ₹2,200/night', icon: '👫', path: '/book', keywords: ['king', 'double', 'couple', 'private', 'room', '2200', 'luxury'], tags: ['couples', 'luxury'] },
@@ -50,7 +50,7 @@ const SEARCH_INDEX: SearchResult[] = [
 ];
 
 const PLACEHOLDER_HINTS = [
-  { text: 'Book dorm from ₹399/night', icon: '🛏️' },
+  { text: 'Book dorm from ₹389/night', icon: '🛏️' },
   { text: 'Explore Meghalaya', icon: '🏔️' },
   { text: 'Search North East India', icon: '🌿' },
   { text: 'XTSY Experience by XTSY', icon: '✨' },

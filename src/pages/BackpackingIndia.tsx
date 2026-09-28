@@ -30,7 +30,7 @@ const itinerary = [
   },
   {
     label: 'Days 14–19 · Meghalaya (Shillong base)',
-    detail: 'Base at XTSY Travellers Hostel in Shillong from ₹399/night. Day trips: Dawki’s clear Umngot river, Nohkalikai Falls, Krang Suri, Mawlynnong, Umiam Lake, living root bridges at Nongriat.',
+    detail: 'Base at XTSY Travellers Hostel in Shillong from ₹389/night. Day trips: Dawki’s clear Umngot river, Nohkalikai Falls, Krang Suri, Mawlynnong, Umiam Lake, living root bridges at Nongriat.',
   },
   {
     label: 'Days 20–25 · Meghalaya → Assam / Arunachal',
@@ -43,7 +43,7 @@ const itinerary = [
 ];
 
 const budget = [
-  { item: 'Hostel dorm bed', cost: '₹350–₹700 / night', note: 'XTSY dorms from ₹399 in Shillong' },
+  { item: 'Hostel dorm bed', cost: '₹350–₹700 / night', note: 'XTSY dorms from ₹389 in Shillong' },
   { item: 'Street & local food', cost: '₹250–₹500 / day', note: 'Thalis, momos, chai' },
   { item: 'Sleeper trains', cost: '₹350–₹900 / leg', note: 'Book on IRCTC 30–60 days out' },
   { item: 'Shared Sumo / bus (Northeast)', cost: '₹300–₹700 / leg', note: 'Leaves when full, go early' },
@@ -67,7 +67,7 @@ const BackpackingIndia = memo(() => {
     '@id': `${CANONICAL}#article`,
     headline: 'Backpacking India: 30-Day Itinerary, Daily Budget & Hostel Guide',
     description:
-      'A practical backpacking India guide — a 30-day route from Delhi to Meghalaya, real daily budgets in rupees, transport costs, and where to sleep from ₹399 a night.',
+      'A practical backpacking India guide — a 30-day route from Delhi to Meghalaya, real daily budgets in rupees, transport costs, and where to sleep from ₹389 a night.',
     url: CANONICAL,
     inLanguage: 'en-IN',
     about: ['Backpacking India', 'Budget travel India', 'Hostels in India', 'Northeast India travel'],
@@ -109,7 +109,7 @@ const BackpackingIndia = memo(() => {
         name: 'How much does backpacking India cost per day?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Budget ₹1,200–₹1,800 (about $15–$22) per day for a hostel dorm bed, three local meals, shared transport and one paid activity. Northeast India, including Meghalaya, sits at the lower end — dorm beds start at ₹399 a night in Shillong.',
+          text: 'Budget ₹1,200–₹1,800 (about $15–$22) per day for a hostel dorm bed, three local meals, shared transport and one paid activity. Northeast India, including Meghalaya, sits at the lower end — dorm beds start at ₹389 a night in Shillong.',
         },
       },
       {
@@ -138,12 +138,12 @@ const BackpackingIndia = memo(() => {
         <title>Backpacking India: 30-Day Itinerary, Budget & Hostels | XTSY</title>
         <meta
           name="description"
-          content="Backpacking India guide: a 30-day route from Delhi to Meghalaya, real daily budgets in rupees, train and Sumo costs, safety tips, and hostel beds from ₹399 a night."
+          content="Backpacking India guide: a 30-day route from Delhi to Meghalaya, real daily budgets in rupees, train and Sumo costs, safety tips, and hostel beds from ₹389 a night."
         />
         <meta name="keywords" content="backpacking india, backpacking india itinerary, budget travel india, india backpacker hostels, northeast india backpacking, backpacking meghalaya" />
         <link rel="canonical" href={CANONICAL} />
         <meta property="og:title" content="Backpacking India: 30-Day Itinerary, Budget & Hostels" />
-        <meta property="og:description" content="A practical backpacking India route, real daily costs in rupees, and where to sleep from ₹399 a night." />
+        <meta property="og:description" content="A practical backpacking India route, real daily costs in rupees, and where to sleep from ₹389 a night." />
         <meta property="og:url" content={CANONICAL} />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -171,11 +171,11 @@ const BackpackingIndia = memo(() => {
             <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
               A route that actually works: Delhi to Rajasthan, east to Varanasi, then the part most travellers
               miss — Meghalaya and the Northeast. Honest rupee costs, transport that exists, and hostel beds
-              from ₹399 a night.
+              from ₹389 a night.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                <Link to="/book"><CalendarCheck className="w-5 h-5 mr-2" aria-hidden="true" /> Book a Dorm Bed from ₹399</Link>
+                <Link to="/book"><CalendarCheck className="w-5 h-5 mr-2" aria-hidden="true" /> Book a Dorm Bed from ₹389</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link to="/best-hostel-in-shillong">See the Shillong Hostel</Link>
@@ -278,7 +278,7 @@ const BackpackingIndia = memo(() => {
             </p>
             <div className="mt-8 grid sm:grid-cols-2 gap-4">
               {[
-                { name: '8-Bed Mixed Dorm', price: '₹399', note: 'Cheapest bed, best for long stays' },
+                { name: '8-Bed Mixed Dorm', price: '₹389', note: 'Cheapest bed, best for long stays' },
                 { name: '6-Bed Mixed Dorm', price: '₹469', note: 'More space, most popular with backpackers' },
                 { name: 'Female-only Dorm', price: '₹550', note: 'Privacy curtains, keycard access' },
                 { name: 'Private Double Room', price: '₹2,500', note: 'For couples and rest days' },

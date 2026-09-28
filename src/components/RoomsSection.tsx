@@ -91,8 +91,8 @@ const RoomsSection = () => {
     {
       id: "8-bed-mixed-dorm",
       name: "Bed in 8-Bed Mixed Dormitory",
-      price: 399,
-      originalPrice: 399,
+      price: 389,
+      originalPrice: 550,
       description: "Best value mixed dormitory for budget-conscious backpackers",
       features: generateFeatures('hostel', 'Bed in 8-Bed Mixed Dormitory', 'dorm'),
       maxGuests: 8,

@@ -32,8 +32,8 @@ const DEFAULT_DESCRIPTION = "India's biggest hostel in Shillong, Meghalaya. Budg
 const DEFAULT_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png";
 const SEO_CONFIG: Record<string, { title: string; description: string; keywords?: string }> = {
   home: {
-    title: "Best Hostel in Shillong from ₹399/night | XTSY",
-    description: "India's biggest hostel in Shillong. Dorms from ₹399, Experience by XTSY ₹5,399, curated Meghalaya tours from ₹7,999. Book direct — save 20-30% vs Booking.com.",
+    title: "Best Hostel in Shillong from ₹389/night | XTSY",
+    description: "India's biggest hostel in Shillong. Dorms from ₹389, Experience by XTSY ₹5,399, curated Meghalaya tours from ₹7,999. Book direct — save 20-30% vs Booking.com.",
     keywords: "best hostel Shillong, biggest hostel northeast India, Shillong hostel, Meghalaya accommodation, budget stay Shillong",
   },
   travel: {
@@ -52,8 +52,8 @@ const SEO_CONFIG: Record<string, { title: string; description: string; keywords?
     keywords: "XTSY about, biggest hostel northeast, Shillong hostel story, NEITA 2025",
   },
   booking: {
-    title: "Book Shillong Hostel — Dorms ₹399+ | XTSY",
-    description: "Book dorms from ₹399, King Double rooms from ₹2,399, Experience by XTSY at ₹5,399. Best price guaranteed at XTSY Shillong.",
+    title: "Book Shillong Hostel — Dorms ₹389+ | XTSY",
+    description: "Book dorms from ₹389, King Double rooms from ₹2,399, Experience by XTSY at ₹5,399. Best price guaranteed at XTSY Shillong.",
     keywords: "book hostel Shillong, hostel booking Meghalaya, Shillong room booking",
   },
   search: {

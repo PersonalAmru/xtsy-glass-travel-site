@@ -54,7 +54,7 @@ const buildSchema = (page: SEOPageData) => {
     Object.assign(base, {
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
       telephone: '+91-8837317070',
-      priceRange: '₹399 - ₹4,999',
+      priceRange: '₹389 - ₹4,999',
       geo: { '@type': 'GeoCoordinates', latitude: 25.6025457, longitude: 91.9448902 },
       amenityFeature: [
         { '@type': 'LocationFeatureSpecification', name: 'Free WiFi', value: true },
@@ -67,14 +67,14 @@ const buildSchema = (page: SEOPageData) => {
           '@type': 'Offer',
           name: 'Dorm Bed (8-Bed Mixed)',
           priceCurrency: 'INR',
-          price: '399',
+          price: '389',
           priceValidUntil: '2026-12-31',
           availability: 'https://schema.org/InStock',
           validFrom: todayISO,
           url: 'https://xtsy.one/book',
           priceSpecification: {
             '@type': 'UnitPriceSpecification',
-            price: '399',
+            price: '389',
             priceCurrency: 'INR',
             unitText: 'night',
           },

@@ -1,6 +1,6 @@
 name: Search indexing (IndexNow + Google Search Console)
 
-# Run after publishing the site (Lovable → Publish), or weekly.
+# Run manually after publishing the site (Lovable → Publish). No automatic schedule.
 # No third-party actions (org policy).
 #  - IndexNow: submits every sitemap URL (Bing, Yandex, Seznam, Naver, Yep).
 #  - Google Search Console API: resubmits sitemaps and checks index status of
@@ -12,8 +12,6 @@ on:
       paths:
         description: "Optional space-separated paths to submit (default: every sitemap URL)"
         required: false
-  schedule:
-    - cron: "17 3 * * 1"
 
 permissions:
   contents: read

@@ -115,7 +115,7 @@ export const PROPERTIES: Record<string, Property> = {
     heroImage: hostelHero,
     images: cdnMany(PROPERTY_IMAGE_KEYS),
     amenities: ['Free WiFi', 'Common Area', 'Games Room', 'Hot Water', 'Lockers'],
-    priceRange: { min: 399, max: 2200 },
+    priceRange: { min: 389, max: 2200 },
     rating: 4.8,
     reviewCount: 161,
     category: 'hostel',
