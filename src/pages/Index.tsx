@@ -21,7 +21,7 @@ const Index = memo(() => {
 
   // Individual Review schema items built from real Google Business Profile
   // reviews so the homepage Hostel entity is eligible for review rich results
-  // (the aggregateRating below already summarises all 161 verified reviews).
+  // (the aggregateRating below already summarises all 161 Google reviews).
   const reviewSchemaItems = googleReviews
     .filter((r) => r.comment && r.comment.length > 40)
     .slice(0, 6)
@@ -56,7 +56,6 @@ const Index = memo(() => {
     },
     geo: { '@type': 'GeoCoordinates', latitude: 25.6025457, longitude: 91.9448902 },
     priceRange: '₹389 - ₹5,799',
-    starRating: { '@type': 'Rating', ratingValue: '4.8' },
     aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', reviewCount: '161', bestRating: '5' },
     review: reviewSchemaItems,
     checkinTime: '11:00',

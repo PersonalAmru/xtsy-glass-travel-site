@@ -5,6 +5,9 @@ import { fitTitle } from "@/lib/seo/fitTitle";
 import { getStateBySlug, getCityBySlug } from "@/data/neTaxonomy";
 import { NEARBY_ADVENTURES } from "@/data/nearbyAdventures";
 
+/** Meta descriptions end on a whole word, at most 155 characters. */
+const clip = (d: string) => (d.length <= 155 ? d.trim() : d.slice(0, 155).replace(/\s+\S*$/, ''));
+
 export const Route = createFileRoute("/destinations/$state/$city/")({
   head: ({ params }) => {
     const state = getStateBySlug(params.state);
@@ -22,7 +25,7 @@ export const Route = createFileRoute("/destinations/$state/$city/")({
       path: `/destinations/${params.state}/${params.city}`,
       title,
       description:
-        city ? `${city.blurb} ${hasNearby ? `Explore nearby adventure activities from ${city.name}.` : ""}`.slice(0, 155) :
+        city ? clip(`${city.blurb} ${hasNearby ? `Explore nearby adventure activities from ${city.name}.` : `Permits, routes and trips arranged by XTSY with trusted partners.`}`) :
         "Attractions, viewpoints and day trips around Northeast India base towns.",
       keywords: hasNearby ? `adventure activities near ${city?.name}, adventures near me ${city?.name}, ${city?.name} day trips` : undefined,
       noIndex: !city,

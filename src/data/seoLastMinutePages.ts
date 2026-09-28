@@ -76,7 +76,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
       },
       {
         heading: 'What\'s Nearby',
-        content: `XTSY is on Mawdiangdiang Road in New Shillong Township, near NIFT Shillong, IIM Shillong and NEIGRIMS. TAB Bistro is on site, and Police Bazaar is a cab ride away.`,
+        content: `XTSY is on Mawdiangdiang Road in New Shillong Township, near NIFT Shillong, IIM Shillong and NEIGRIHMS. TAB Bistro is on site, and Police Bazaar is a cab ride away.`,
       },
     ],
     faqs: [
@@ -185,7 +185,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
       },
       {
         heading: 'Guest Reviews',
-        content: `Rated 4.8/5 by 161 verified guests. XTSY is the biggest and highest-rated hostel in Northeast India. Guests love our rooftop views, clean facilities, and friendly staff.`,
+        content: `Rated 4.8/5 from 161 Google reviews. XTSY is the biggest and highest-rated hostel in Northeast India. Guests love our rooftop views, clean facilities, and friendly staff.`,
       },
     ],
     faqs: [

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/about")({
       path: "/about",
       title: "About XTSY — India's Biggest Hostel in Northeast India",
       description:
-        "XTSY Travellers Hostel, Shillong: Experience by XTSY, India's first stargaze glamp, NEITA 2025 nominated, 2.5 hrs from Guwahati airport. Read the story behind XTSY.",
+        "The story of XTSY Travellers Hostel, New Shillong Township: Experience by XTSY, India's first stargaze glamp, and a NEITA 2025 nomination.",
       keywords: "XTSY about, biggest hostel northeast, Shillong hostel story, NEITA 2025",
     }),
   component: AboutV2,

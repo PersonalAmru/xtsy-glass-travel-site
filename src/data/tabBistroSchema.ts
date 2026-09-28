@@ -97,8 +97,10 @@ export function buildRestaurantSchema(opts: {
     acceptsReservations: "True",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "Mawdiangdiang Road, New Shillong Township",
       addressLocality: "Shillong",
       addressRegion: "Meghalaya",
+      postalCode: "793018",
       addressCountry: "IN",
     },
     openingHoursSpecification: [

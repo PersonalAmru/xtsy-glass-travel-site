@@ -5,6 +5,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Star, Heart, Mountain, Sparkles, MessageCircle, Camera, Moon, Sun, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
+const GLAMP_NIGHT = `₹${PANORAMA_STAY_ONLY.toLocaleString('en-IN')}`;
 
 const LuxuryGlampingShillong = memo(() => {
   const structuredData = {
@@ -16,12 +18,14 @@ const LuxuryGlampingShillong = memo(() => {
     telephone: '+918837317070',
     address: {
       '@type': 'PostalAddress',
+      streetAddress: 'Mawdiangdiang Road, New Shillong Township',
       addressLocality: 'Shillong',
       addressRegion: 'Meghalaya',
+      postalCode: '793018',
       addressCountry: 'IN',
     },
-    priceRange: '₹4,999/night',
-    starRating: { '@type': 'Rating', ratingValue: '4.8' },
+    geo: { '@type': 'GeoCoordinates', latitude: 25.6025457, longitude: 91.9448902 },
+    priceRange: `${GLAMP_NIGHT}/night`,
     amenityFeature: [
       { '@type': 'LocationFeatureSpecification', name: '270° Panoramic Glass Walls', value: true },
       { '@type': 'LocationFeatureSpecification', name: 'Stargazing', value: true },
@@ -68,7 +72,7 @@ const LuxuryGlampingShillong = memo(() => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Luxury Glamping in Shillong — Experience by XTSY | XTSY Meghalaya</title>
-        <meta name="description" content="India's first 270° panoramic glass suite in Shillong. Luxury glamping with stargazing, mountain views, sunrise from bed. Perfect for couples, anniversaries, proposals. ₹4,999/night." />
+        <meta name="description" content={`India's first 270° panoramic glass suite in Shillong. Luxury glamping with stargazing, mountain views, sunrise from bed. Perfect for couples, anniversaries, proposals. From ${GLAMP_NIGHT}/night.`} />
         <meta name="keywords" content="glamping in Shillong, luxury glamping Meghalaya, glass suite Shillong, stargazing room India, romantic stay Shillong, luxury stay Meghalaya, couple friendly hotel Shillong, honeymoon Shillong, unique stays India" />
         <link rel="canonical" href="https://xtsy.one/luxury-glamping-shillong" />
         <meta property="og:title" content="Experience by XTSY — Luxury Glamping in Shillong" />
@@ -128,7 +132,7 @@ const LuxuryGlampingShillong = memo(() => {
 
           {/* What's Included */}
           <section>
-            <h2 className="text-2xl font-bold text-foreground">What's Included at ₹4,999/night</h2>
+            <h2 className="text-2xl font-bold text-foreground">What's Included at {GLAMP_NIGHT}/night</h2>
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 '270° panoramic glass walls',

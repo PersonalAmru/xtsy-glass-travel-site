@@ -350,7 +350,7 @@ export function Reviews() {
 export const HOME_FAQS: [string, string][] = [
   ['What is the best time to visit Shillong, Meghalaya?', 'October to May brings clear skies and pleasant weather. June to September is monsoon, when Cherrapunji’s waterfalls are at full force. XTSY is open all year.'],
   ['How do I reach Shillong from Guwahati?', 'Shillong is about 100 km from Guwahati Airport (GAU), roughly 2.5–3 hours by road via NH6. Shared taxis leave ISBT Guwahati regularly, and XTSY can arrange airport transfers.'],
-  ['Where exactly is XTSY?', 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018, near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. It’s a calm, green part of Shillong, away from the city centre.'],
+  ['Where exactly is XTSY?', 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It’s a calm, green part of Shillong, away from the city centre.'],
   ['Can I bring my pet?', 'Yes. Cats and birds are most welcome; dogs depending on breed and size. Please contact the XTSY desk about any additional charges.'],
   ['Does XTSY have stays in other towns?', 'XTSY’s own property is only in New Shillong Township. In other places, XTSY arranges stays, transport and travel help through trusted travel partners.'],
   ['Does XTSY offer Meghalaya tour packages?', 'Yes. 30+ curated packages including living root bridge treks, Dawki river trips, caving and multi-day Meghalaya and Northeast itineraries.'],

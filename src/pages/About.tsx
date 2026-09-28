@@ -144,7 +144,7 @@ const About = () => {
                 </ul>
                 <div className="pt-2">
                   <p className="text-xs text-muted-foreground">
-                    <span className="font-medium">Nearby Landmarks:</span> NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH, Martin Luther Christian University
+                    <span className="font-medium">Nearby Landmarks:</span> NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH, Martin Luther Christian University
                   </p>
                 </div>
               </div>

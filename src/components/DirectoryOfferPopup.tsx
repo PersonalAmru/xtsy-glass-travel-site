@@ -80,7 +80,7 @@ const DirectoryOfferPopup = memo(() => {
           </h3>
           <div className="mt-2 flex items-center gap-3 text-xs text-muted-foreground">
             <span className="inline-flex items-center gap-1">
-              <Star className="h-3.5 w-3.5 text-primary fill-primary" /> 4.8 · 161 verified reviews
+              <Star className="h-3.5 w-3.5 text-primary fill-primary" /> 4.8 · 161 Google reviews
             </span>
             <span className="inline-flex items-center gap-1">
               <Clock className="h-3.5 w-3.5" /> Slots filling fast

@@ -1,5 +1,5 @@
 /**
- * Auto-generated SEO pages for institutions (NEIGRIMS, IIM, NIFT, hospitals, AIIMS) — 54 pages.
+ * Auto-generated SEO pages for institutions (NEIGRIHMS, IIM, NIFT, hospitals, AIIMS) — 54 pages.
  */
 import type { SEOPageData } from './seoPages';
 import { buildInstitutionPage } from './seoPageFactory';

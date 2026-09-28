@@ -11,7 +11,7 @@ export const Route = createFileRoute("/travel-guide/meghalaya-for-international-
       path: PATH,
       title: "Meghalaya for International Tourists: Visa & Permits",
       description:
-        "Indian e-Visa rules, which Northeast states need permits, SIM cards, money, solo-traveller safety and Guwahati airport to Shillong transfers for foreign visitors.",
+        "For foreign visitors: Indian e-Visa rules, which Northeast states need permits, SIM cards, money, safety and Guwahati airport to Shillong transfers.",
       keywords:
         "meghalaya for international tourists, india e-visa meghalaya, inner line permit northeast india, is meghalaya safe for solo travellers, shillong foreign tourists",
       ogType: "article",
