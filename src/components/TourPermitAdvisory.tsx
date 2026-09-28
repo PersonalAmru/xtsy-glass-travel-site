@@ -73,7 +73,7 @@ const TourPermitAdvisory = ({ location, title }: { location?: string; title?: st
             </div>
           );
         })}
-        <p className="flex items-start gap-2 text-xs text-white/55">
+        <p className="flex items-start gap-2 text-[12px] text-white/70">
           <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden />
           Permit rules and pass openings change. Confirm current requirements with the relevant state
           authority before you travel.

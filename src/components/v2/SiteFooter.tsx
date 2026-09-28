@@ -105,7 +105,7 @@ export default function SiteFooter() {
             <nav key={col.title} aria-label={col.title} className="flex flex-col gap-2.5">
               <div className="font-display text-[17px] tracking-[0.18em] text-xt-rose">{col.title}</div>
               {col.links.map((l) => (
-                <Link key={l.to + l.label} to={l.to} className="text-[14px] text-[#E4D9C8] hover:text-white">
+                <Link key={l.to + l.label} to={l.to} className="inline-block py-1.5 text-[14px] text-[#E4D9C8] hover:text-white">
                   {l.label}
                 </Link>
               ))}

@@ -54,11 +54,12 @@ async function main() {
         await page.waitForTimeout(1200);
         const name = `${vp.name}-${route === '/' ? 'home' : route.slice(1).replace(/\//g, '_')}`;
         await page.screenshot({ path: `${OUT}/${name}.jpg`, type: 'jpeg', quality: 60 });
-        // Scroll so lazy content renders, then measure.
+        const firstView = await page.evaluate(() => ({ cls: Number(((window as unknown as { __cls: number }).__cls).toFixed(3)), lcp: (window as unknown as { __lcp: unknown }).__lcp }));
+        // Scroll so lazy content renders, then measure layout.
         await page.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 600) { window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); } window.scrollTo(0, 0); });
         await page.waitForTimeout(600);
-        const m = await page.evaluate(({ touch }) => {
-          const W = document.documentElement.clientWidth;
+        const m = await page.evaluate(({ touch, vw }) => {
+          const W = vw;
           const vis = (el: Element) => { const s = getComputedStyle(el); const r = el.getBoundingClientRect(); return s.display !== 'none' && s.visibility !== 'hidden' && Number(s.opacity) > 0 && r.width > 0 && r.height > 0; };
           const label = (el: Element) => `${el.tagName.toLowerCase()}${el.id ? '#' + el.id : ''}.${String((el as HTMLElement).className ?? '').split(' ').slice(0, 3).join('.')}`.slice(0, 90);
           const overflowers: string[] = [];
@@ -69,14 +70,16 @@ async function main() {
               // Skip children of horizontally scrolling containers and fixed decorations.
               let p: Element | null = el.parentElement, clipped = false;
               while (p) { const s = getComputedStyle(p); if (/(auto|scroll|hidden|clip)/.test(s.overflowX)) { clipped = true; break; } p = p.parentElement; }
-              if (!clipped && getComputedStyle(el).position !== 'fixed') overflowers.push(label(el));
+              if (!clipped) overflowers.push(`${label(el)} right=${Math.round(r.right)}${getComputedStyle(el).position === 'fixed' ? ' (fixed)' : ''}`);
             }
           }
           const small: string[] = [];
+          const tooSmall: string[] = [];
           if (touch) for (const el of Array.from(document.querySelectorAll('a[href], button, [role="button"], input, select, textarea'))) {
-            if (!vis(el)) continue;
+            if (!vis(el) || el.closest('.sr-only') || el.classList.contains('sr-only')) continue;
             const r = el.getBoundingClientRect();
             if ((r.width < 44 || r.height < 44) && (r.width * r.height) > 0) {
+              if (r.width < 24 || r.height < 24) tooSmall.push(`${label(el)} ${Math.round(r.width)}x${Math.round(r.height)} "${(el.textContent ?? '').trim().slice(0, 24)}"`);
               // Inline text links inside paragraphs are exempt (WCAG 2.5.8 inline exception).
               if (el.tagName === 'A' && el.closest('p, li') && getComputedStyle(el).display === 'inline') continue;
               small.push(`${label(el)} ${Math.round(r.width)}x${Math.round(r.height)} "${(el.textContent ?? '').trim().slice(0, 24)}"`);
@@ -97,17 +100,16 @@ async function main() {
           const ld = Array.from(document.querySelectorAll('script[type="application/ld+json"]')).length;
           return {
             scrollW: document.documentElement.scrollWidth, W,
-            overflow: document.documentElement.scrollWidth > W + 1,
+            overflow: document.documentElement.scrollWidth > W + 1 || overflowers.length > 0,
             overflowers: [...new Set(overflowers)].slice(0, 8),
-            smallTargets: small.length, smallEx: small.slice(0, 8),
+            smallTargets: small.length, smallEx: small.slice(0, 8), under24: tooSmall.length, under24Ex: tooSmall.slice(0, 8),
             tinyText, tinyEx,
             images: imgs.length, broken, noAlt, stretched,
             h1: document.querySelectorAll('h1').length, jsonLd: ld, quickAnswer: !!document.querySelector('[data-quick-answer]'),
-            cls: Number(((window as unknown as { __cls: number }).__cls).toFixed(3)), lcp: (window as unknown as { __lcp: unknown }).__lcp,
           };
-        }, { touch: vp.touch });
-        rows.push({ viewport: vp.name, width: vp.width, route, status, shot: `${name}.jpg`, ...m });
-        console.log(`${vp.name.padEnd(8)} ${route.padEnd(45)} ${status} overflow=${m.overflow} small=${m.smallTargets} tiny=${m.tinyText} broken=${m.broken.length} cls=${m.cls} lcp=${(m.lcp as { t?: number } | undefined)?.t}`);
+        }, { touch: vp.touch, vw: vp.width });
+        rows.push({ viewport: vp.name, width: vp.width, route, status, shot: `${name}.jpg`, ...m, ...firstView });
+        console.log(`${vp.name.padEnd(8)} ${route.padEnd(45)} ${status} overflow=${m.overflow} under24=${m.under24} under44=${m.smallTargets} tiny=${m.tinyText} broken=${m.broken.length} cls=${firstView.cls} lcp=${(firstView.lcp as { t?: number } | undefined)?.t}`);
       } catch (e) {
         rows.push({ viewport: vp.name, width: vp.width, route, status, error: String(e).slice(0, 200) });
       }
