@@ -34,6 +34,8 @@ async function main() {
     await ctx.route('**/__l5e/**', async (route) => {
       try { const u = new URL(route.request().url()); await route.fulfill({ response: await route.fetch({ url: `https://xtsy.one${u.pathname}` }) }); } catch { await route.continue(); }
     });
+    // tsx/esbuild wraps named helpers in __name(); define it inside the page too.
+    await ctx.addInitScript({ content: 'window.__name = (f) => f;' });
     await ctx.addInitScript(() => {
       try {
         localStorage.setItem('xtsy_consent_v2', JSON.stringify({ necessary: true, analytics: true, marketing: false, personalization: false, timestamp: new Date().toISOString(), version: '2.0' }));

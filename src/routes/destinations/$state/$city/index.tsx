@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import CityHub from "@/pages/destinations/CityHub";
 import { buildRouteHead } from "@/lib/seo-head";
+import { fitTitle } from "@/lib/seo/fitTitle";
 import { getStateBySlug, getCityBySlug } from "@/data/neTaxonomy";
 import { NEARBY_ADVENTURES } from "@/data/nearbyAdventures";
 
@@ -9,12 +10,17 @@ export const Route = createFileRoute("/destinations/$state/$city/")({
     const state = getStateBySlug(params.state);
     const city = getCityBySlug(params.state, params.city);
     const hasNearby = (params.state === "assam" || params.state === "meghalaya") && Boolean(NEARBY_ADVENTURES[params.city]);
+    const short = city?.name.replace(/\s*\(.*?\)\s*/g, "").trim();
     const title = city
-      ? `Places to Visit in ${city.name}, ${state?.name} | XTSY`
+      ? fitTitle([
+          `Places to Visit in ${city.name}, ${state?.name} | XTSY`,
+          `Places to Visit in ${short}, ${state?.name} | XTSY`,
+          `Places to Visit in ${short} | XTSY`,
+        ])
       : "Places to Visit in Northeast India | XTSY";
     return buildRouteHead({
       path: `/destinations/${params.state}/${params.city}`,
-      title: title.slice(0, 65),
+      title,
       description:
         city ? `${city.blurb} ${hasNearby ? `Explore nearby adventure activities from ${city.name}.` : ""}`.slice(0, 155) :
         "Attractions, viewpoints and day trips around Northeast India base towns.",
