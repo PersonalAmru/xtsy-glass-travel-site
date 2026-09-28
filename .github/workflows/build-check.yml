@@ -125,7 +125,7 @@ jobs:
         env:
           BASE_URL: http://localhost:8080
           OUT_DIR: shots
-          ROUTES: /tours,/tours/tawang-monastery-exploration,/tours/bhutan-mindful-kingdom-journey,/expeditions,/destinations/meghalaya/dawki/shnongpdeng,/tours/6d-meghalaya-honeymoon-package
+          ROUTES: /best-hostel-in-shillong,/cheap-hostels-shillong,/female-travellers,/xtsy-270,/tours/6d-meghalaya-honeymoon-package,/
 
       - name: Trip assistant check
         continue-on-error: true
