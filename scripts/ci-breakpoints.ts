@@ -69,7 +69,7 @@ async function main() {
             if (r.right > W + 2 || r.left < -2) {
               // Skip children of horizontally scrolling containers and fixed decorations.
               let p: Element | null = el.parentElement, clipped = false;
-              while (p) { const s = getComputedStyle(p); if (/(auto|scroll|hidden|clip)/.test(s.overflowX)) { clipped = true; break; } p = p.parentElement; }
+              while (p && p !== document.body && p !== document.documentElement) { const s = getComputedStyle(p); if (/(auto|scroll|hidden|clip)/.test(s.overflowX)) { clipped = true; break; } p = p.parentElement; }
               if (!clipped) overflowers.push(`${label(el)} right=${Math.round(r.right)}${getComputedStyle(el).position === 'fixed' ? ' (fixed)' : ''}`);
             }
           }

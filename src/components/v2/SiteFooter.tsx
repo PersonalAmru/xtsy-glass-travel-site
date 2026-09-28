@@ -90,15 +90,15 @@ export default function SiteFooter() {
               This is XTSY’s only property. Everywhere else, XTSY arranges stays, transport and travel help through trusted travel partners.
             </p>
             <p className="m-0 text-[14px] leading-loose">
-              <a href="tel:+918837317070" className="text-xt-paper hover:text-xt-rose">{WHATSAPP_DISPLAY}</a>
+              <a href="tel:+918837317070" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">{WHATSAPP_DISPLAY}</a>
               {' · '}
-              <a href="mailto:admin@xtsy.one" className="text-xt-paper hover:text-xt-rose">admin@xtsy.one</a>
+              <a href="mailto:admin@xtsy.one" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">admin@xtsy.one</a>
               <br />
-              <a href="https://www.instagram.com/xtsyhostel" target="_blank" rel="noopener noreferrer" className="text-xt-paper hover:text-xt-rose">Instagram</a>
+              <a href="https://www.instagram.com/xtsyhostel" target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">Instagram</a>
               {' · '}
-              <a href="https://www.youtube.com/@xtsyhostel" target="_blank" rel="noopener noreferrer" className="text-xt-paper hover:text-xt-rose">YouTube</a>
+              <a href="https://www.youtube.com/@xtsyhostel" target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">YouTube</a>
               {' · '}
-              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="text-xt-paper hover:text-xt-rose">Get directions</a>
+              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">Get directions</a>
             </p>
           </div>
           {COLS.map((col) => (
