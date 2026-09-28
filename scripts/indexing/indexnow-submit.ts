@@ -33,8 +33,11 @@ async function main() {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       body: JSON.stringify({ host: HOST, key: KEY, keyLocation: `https://${HOST}/${KEY}.txt`, urlList: batch }),
     });
-    console.log(`batch ${i / 10000 + 1}: HTTP ${res.status} ${await res.text()}`);
-    if (res.status >= 400 && res.status !== 422) process.exitCode = 1;
+    const body = (await res.text()).slice(0, 300);
+    const msg = `IndexNow batch ${i / 10000 + 1} (${batch.length} URLs): HTTP ${res.status} ${body}`;
+    // 200 = accepted, 202 = accepted (key validation pending). Anything else is surfaced as an annotation.
+    if (res.status === 200 || res.status === 202) console.log(`::notice::${msg}`);
+    else { console.log(`::error::${msg}`); process.exitCode = 1; }
   }
 }
 main();
