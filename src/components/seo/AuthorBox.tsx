@@ -33,7 +33,7 @@ const AuthorBox = () => (
           <div className="flex flex-wrap gap-3 mt-2 text-xs text-muted-foreground">
             <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Based in Shillong since 2024</span>
             <span className="flex items-center gap-1"><Star className="h-3 w-3" /> 4.8★ Google Rating (161 verified reviews)</span>
-            <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> 5,000+ guests hosted</span>
+            <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> 10,786+ guests hosted</span>
           </div>
           <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
             Our team lives and breathes Meghalaya travel. Every guide is written from first-hand experience exploring the region's waterfalls, caves, living root bridges, and hidden villages.

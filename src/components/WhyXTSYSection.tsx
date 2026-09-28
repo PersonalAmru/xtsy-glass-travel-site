@@ -59,7 +59,7 @@ const features = [
 const stats = [
   { value: '3000+', label: 'Happy Travelers', icon: Users },
   { value: '30+', label: 'Tour Packages', icon: MapPin },
-  { value: '4.9', label: 'Average Rating', icon: Star },
+  { value: '4.8', label: 'Average Rating', icon: Star },
   { value: '100%', label: 'Verified Reviews', icon: Shield },
 ];
 

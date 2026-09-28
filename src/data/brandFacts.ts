@@ -98,7 +98,7 @@ export const PARTNER_NETWORK_NOTE =
 export const whyXTSYSection = (): SEOSection => ({
   heading: 'Why Travellers Pick XTSY',
   content:
-    "XTSY is Northeast India's highest-rated independent hospitality brand — Shillong-born, traveller-built, and now serving 50,000+ guests a year through owned properties, curated tours, weddings, catering and rentals.",
+    "XTSY is Northeast India's highest-rated independent hospitality brand — Shillong-born, traveller-built, and having hosted 10,786+ guests through owned properties, curated tours, weddings, catering and rentals.",
   listItems: [
     'NEITA 2025 — Best Budget Accommodation in Northeast India',
     "Experience by XTSY — India's first stargaze glamp",

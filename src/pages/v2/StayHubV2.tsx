@@ -10,6 +10,7 @@ import { inr } from '@/components/v2/pricing';
 import { rooms, stayHubCopy, stayHubFaqs, type StayHubVariant } from '@/data/stayHub';
 import { fromXtsy } from '@/lib/travel/routing';
 import { openTripChat } from '@/components/v2/tripChatEvents';
+import { XTSY_MAPS_URL } from '@/data/siteSchemas';
 import { PageShell, Breadcrumbs, PAD } from '@/components/v2/blocks';
 import { Photo, waLink } from '@/components/v2/primitives';
 
@@ -102,7 +103,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
               </div>
             ))}
           </dl>
-          <a href="https://www.google.com/maps/search/?api=1&query=XTSY+Travellers+Hostel+New+Shillong+Township" target="_blank" rel="noopener noreferrer" className="self-start text-[14px] font-bold text-xt-crimson">Open in Google Maps →</a>
+          <a href={XTSY_MAPS_URL} target="_blank" rel="noopener noreferrer" className="self-start text-[14px] font-bold text-xt-crimson">Open in Google Maps →</a>
         </div>
       </section>
 

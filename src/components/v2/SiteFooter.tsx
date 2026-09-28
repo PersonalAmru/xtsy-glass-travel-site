@@ -62,7 +62,7 @@ const COLS = [
   },
 ];
 
-const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=XTSY+Travellers+Hostel+Mawdiangdiang+New+Shillong+Township';
+const MAPS_URL = 'https://maps.app.goo.gl/UnP9PfbSJdafMFMM6';
 
 export default function SiteFooter() {
   return (

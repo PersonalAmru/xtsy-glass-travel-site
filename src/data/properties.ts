@@ -99,7 +99,7 @@ export const PROPERTIES: Record<string, Property> = {
     // Note: New local images (stargazing, aerial, milkyway, interior) used on /xtsy-270 page
     amenities: ['270° Mountain Views', 'Breakfast Package Available', 'Luxury Ensuite', 'Air Conditioning', '4K QLED TV'],
     priceRange: { min: 5399, max: 5799 },
-    rating: 4.9,
+    rating: 4.8,
     reviewCount: 86,
     category: 'luxury',
     roomTypeIds: ['xtsy-270'],
@@ -116,7 +116,7 @@ export const PROPERTIES: Record<string, Property> = {
     images: cdnMany(PROPERTY_IMAGE_KEYS),
     amenities: ['Free WiFi', 'Common Area', 'Games Room', 'Hot Water', 'Lockers'],
     priceRange: { min: 399, max: 2200 },
-    rating: 4.7,
+    rating: 4.8,
     reviewCount: 161,
     category: 'hostel',
     roomTypeIds: [

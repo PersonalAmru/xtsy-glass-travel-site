@@ -33,7 +33,7 @@ const xtsyPrimeOfferings = [
       "Sunrise & stargazing experience"
     ],
     category: "Xperiential + Romantic Getaway",
-    rating: 4.9,
+    rating: 4.8,
     path: "/xtsy-270",
   },
   {
@@ -96,7 +96,7 @@ const xtsyPrimeOfferings = [
       "Travel safety guidance"
     ],
     category: "Women Safety",
-    rating: 4.9,
+    rating: 4.8,
     path: "/female-travellers",
   },
   {
@@ -117,7 +117,7 @@ const xtsyPrimeOfferings = [
       "Community of remote workers"
     ],
     category: "Digital Nomad",
-    rating: 4.7,
+    rating: 4.8,
     path: "/work-from-home",
   },
   {

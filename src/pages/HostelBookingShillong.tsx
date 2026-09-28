@@ -19,7 +19,7 @@ const HostelBookingShillong = memo(() => {
     '@id': 'https://xtsy.one/hostel-booking#hostel',
     name: 'XTSY Travellers Hostel — Online Hostel Booking, Shillong',
     description:
-      'Direct online hostel booking in Shillong, Meghalaya. Instant confirmation, no OTA commission, free cancellation up to 48 hours. Dorm beds from ₹399, private rooms from ₹2,500. 4.8★ from 161 verified guests.',
+      'Direct online hostel booking in Shillong, Meghalaya. Instant confirmation, no OTA commission, one free date change. Dorm beds from ₹399, private rooms from ₹2,500. 4.8★ from 161 verified guests.',
     url: 'https://xtsy.one/hostel-booking',
     telephone: '+918837317070',
     email: 'booking@xtsy.one',
@@ -93,7 +93,7 @@ const HostelBookingShillong = memo(() => {
     },
     {
       q: 'Can I cancel or modify my booking?',
-      a: 'Free cancellation up to 48 hours before check-in for dorm beds and private rooms. Within 48 hours: first night charged. Experience by XTSY and tours are non-refundable but modifiable once within 90 days.',
+      a: 'The booking amount is non-refundable — there is no free cancellation. Bookings can be modified once within 90 days of the original check-in (request at least 48 hours before), subject to availability and any rate difference.',
     },
     ...hostelDealFaqs,
   ];
@@ -121,7 +121,7 @@ const HostelBookingShillong = memo(() => {
       <Helmet>
         <meta
           name="description"
-          content="Online hostel booking in Shillong, Meghalaya. Instant confirmation, free cancellation, dorm beds from ₹399. Book direct — cheaper than Hostelworld & Booking.com. 4.8★ from 161 verified guests."
+          content="Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹399. Book direct — cheaper than Hostelworld & Booking.com. 4.8★ from 161 verified guests."
         />
         <script type="application/ld+json">{JSON.stringify(hostelSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
@@ -145,7 +145,7 @@ const HostelBookingShillong = memo(() => {
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
               Book XTSY Travellers Hostel direct and skip the OTA commission. Instant WhatsApp confirmation,
-              free cancellation up to 48 hours, 4.8★ from 161 verified guests.
+              one free date change, 4.8★ from 161 verified guests.
             </p>
             <div className="flex items-center justify-center gap-1 mb-6">
               {[1,2,3,4,5].map(i => <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />)}
@@ -177,7 +177,7 @@ const HostelBookingShillong = memo(() => {
               {[
                 { icon: IndianRupee, title: 'Cheaper than OTAs', desc: 'No commission markup vs Hostelworld / Booking.com.' },
                 { icon: Clock, title: 'Instant Confirmation', desc: 'WhatsApp confirmation within minutes.' },
-                { icon: Shield, title: 'Free Cancellation', desc: 'Full refund up to 48 hours before check-in.' },
+                { icon: Shield, title: 'One Free Date Change', desc: 'Booking amount is non-refundable; change dates once within 90 days.' },
                 { icon: CreditCard, title: 'Flexible Payment', desc: 'UPI, cards, net banking, cash on arrival.' },
               ].map((f) => (
                 <Card key={f.title} className="border-border/50">
@@ -284,7 +284,7 @@ const HostelBookingShillong = memo(() => {
               Ready to Book Your Bed in Shillong?
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              Instant confirmation. Free cancellation. Cheaper than any OTA.
+              Instant confirmation. Cheaper than any OTA.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90">

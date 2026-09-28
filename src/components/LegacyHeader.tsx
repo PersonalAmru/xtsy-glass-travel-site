@@ -318,7 +318,7 @@ const Header = () => {
                   </a>
 
                   <a
-                    href="https://maps.app.goo.gl/6WaBkJmkb1NjEB2i9"
+                    href="https://maps.app.goo.gl/UnP9PfbSJdafMFMM6"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 px-5 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors text-sm font-medium"

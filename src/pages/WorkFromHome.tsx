@@ -422,7 +422,7 @@ const WorkFromHome = () => {
                   <Phone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   Contact Us
                 </Button>
-                <Button size="lg" variant="outline" className="rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg font-medium border-2 hover:bg-transparent hover:text-foreground" onClick={() => window.open('https://www.google.com/maps/place/XTSY+Travellers+Hostel', '_blank')}>
+                <Button size="lg" variant="outline" className="rounded-full px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg font-medium border-2 hover:bg-transparent hover:text-foreground" onClick={() => window.open('https://maps.app.goo.gl/UnP9PfbSJdafMFMM6', '_blank')}>
                   View Location
                 </Button>
               </div>

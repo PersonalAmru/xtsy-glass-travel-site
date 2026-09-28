@@ -488,7 +488,7 @@ const TourDetail = () => {
 
                 {/* Trust signals */}
                 <div className="mt-5 pt-4 border-t border-border/30 space-y-2">
-                  {["Instant confirmation", "Free cancellation up to 48hrs", "Best price guarantee"].map(signal => (
+                  {["Instant confirmation", "One free date change (non-refundable)", "Best price guarantee"].map(signal => (
                     <div key={signal} className="flex items-center gap-2 text-xs text-muted-foreground">
                       <CheckCircle2 className="h-3 w-3 text-emerald-500" />
                       <span>{signal}</span>

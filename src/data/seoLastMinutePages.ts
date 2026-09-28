@@ -32,7 +32,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
         listItems: [
           'Lowest price guarantee — beat any OTA rate',
           'Instant WhatsApp confirmation',
-          'Free cancellation up to 24 hours before check-in',
+          'Booking amount is non-refundable; one date change allowed (subject to availability)',
           'Real-time availability — no overbooking risk',
         ],
       },

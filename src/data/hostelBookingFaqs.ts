@@ -19,7 +19,7 @@ export const hostelDealFaqs: HostelFaq[] = [
   },
   {
     q: 'Is it cheaper to book a hostel direct or on Hostelworld / Booking.com?',
-    a: 'Direct is cheaper. OTAs charge the property a 15–18% commission that is built into the displayed rate, plus a booking deposit. Booking direct at xtsy.one gives you the same bed at the base rate, free cancellation up to 48 hours, no prepayment on most dorms, and free extras (late checkout on request, luggage storage, TAB Bistro breakfast discount) that OTA bookings do not include.',
+    a: 'Direct is cheaper. OTAs charge the property a 15–18% commission that is built into the displayed rate, plus a booking deposit. Booking direct at xtsy.one gives you the same bed at the base rate, direct support from the XTSY desk, and free extras (late checkout on request, luggage storage, TAB Bistro breakfast discount) that OTA bookings do not include.',
   },
   {
     q: 'Are there group, long-stay or student discounts?',
@@ -27,7 +27,7 @@ export const hostelDealFaqs: HostelFaq[] = [
   },
   {
     q: 'What happens if I need to cancel or change my dates?',
-    a: 'Free cancellation up to 48 hours before check-in on dorm beds and private rooms booked direct. Inside 48 hours, the first night is charged. Date changes are free once, subject to availability — just WhatsApp us. OTA bookings are governed by that OTA’s policy, which is usually stricter.',
+    a: 'The booking amount is non-refundable — there is no free cancellation. You can change your dates once within 90 days of the original check-in (ask at least 48 hours before), subject to availability and any rate difference — just WhatsApp us. OTA bookings follow that OTA’s policy.',
   },
   {
     q: 'Do I pay upfront when I book?',
