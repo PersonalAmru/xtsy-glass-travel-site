@@ -61,4 +61,9 @@ export const HERO_IMAGE = {
   src: COVERS.home,
   alt: 'XTSY Travellers Hostel among the pines of New Shillong Township',
   position: '50% 40%',
+  /** Phones: a portrait crop of the same framing (about half the bytes of the landscape 1280). */
+  mobile: {
+    src: '/img/o/xtsy-property-images-8-portrait-828.webp',
+    srcSet: '/img/o/xtsy-property-images-8-portrait-828.webp 828w, /img/o/xtsy-property-images-8-portrait-1080.webp 1080w',
+  },
 };

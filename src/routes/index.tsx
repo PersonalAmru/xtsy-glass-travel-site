@@ -20,6 +20,7 @@ export const Route = createFileRoute("/")({
       preloadImage: hero?.src ?? HERO_IMAGE.src,
       preloadImageSrcSet: hero?.srcSet,
       preloadImageSizes: hero ? "100vw" : undefined,
+      preloadMobile: { href: HERO_IMAGE.mobile.src, srcSet: HERO_IMAGE.mobile.srcSet, sizes: "100vw" },
       jsonLd: [HOSTEL_SCHEMA],
     }),
   component: Index,

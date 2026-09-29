@@ -217,13 +217,9 @@ function reportFailure(reason: string, extra?: Record<string, unknown>) {
   } catch { /* noop */ }
 
   try {
-    import('@sentry/react')
-      .then((Sentry) => {
-        Sentry.captureMessage(`[CS-Loader] ${reason}`, {
-          level: 'warning',
-          tags: { component: 'contentsquare-loader' },
-          extra: payload,
-        });
+    import('@/lib/sentryInit')
+      .then(({ captureWarning }) => {
+        captureWarning(`[CS-Loader] ${reason}`, { component: 'contentsquare-loader' }, payload as Record<string, unknown>);
       })
       .catch(() => { /* Sentry not available — non-fatal */ });
   } catch { /* noop */ }

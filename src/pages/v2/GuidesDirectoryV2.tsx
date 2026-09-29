@@ -3,13 +3,16 @@
  * grouped by topic. Linked from the footer so no guide is more than two clicks from home.
  */
 import { Link } from '@/lib/router-compat';
-import { guideDirectory } from '@/lib/seo/programmaticSeo';
+import { getRouteApi } from '@tanstack/react-router';
+
+// The directory arrives from the route loader (server function); no guide data is bundled.
+const route = getRouteApi('/guides');
 import { PageShell, PageHero, Breadcrumbs, PAD } from '@/components/v2/blocks';
 
 const idOf = (label: string) => label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 export default function GuidesDirectoryV2() {
-  const groups = guideDirectory();
+  const groups = route.useLoaderData()?.groups ?? [];
   const total = groups.reduce((a, g) => a + g.pages.length, 0);
   return (
     <PageShell cta={{ title: 'Found your plan?', sub: 'Base yourself at XTSY in New Shillong Township.' }}>

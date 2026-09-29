@@ -82,13 +82,17 @@ export default function HomeHero() {
   return (
     <>
       <section className="relative isolate flex h-[640px] flex-col justify-end overflow-hidden bg-xt-ink px-5 py-12 text-xt-paper sm:h-[max(600px,68vh)] sm:px-8 lg:px-14">
-        <img src={hero?.src ?? HERO_IMAGE.src} srcSet={hero?.srcSet} sizes="100vw" width={hero?.w} height={hero?.h} alt={HERO_IMAGE.alt} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: HERO_IMAGE.position }} fetchPriority="high" decoding="async" />
+        <picture>
+          {/* Phones get a portrait crop of the same framing — lighter and sharper than a cropped landscape. */}
+          <source media="(max-width: 767px)" srcSet={HERO_IMAGE.mobile.srcSet} sizes="100vw" />
+          <img src={hero?.src ?? HERO_IMAGE.src} srcSet={hero?.srcSet} sizes="100vw" width={hero?.w} height={hero?.h} alt={HERO_IMAGE.alt} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: HERO_IMAGE.position }} fetchPriority="high" decoding="async" />
+        </picture>
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-xt-ink via-xt-ink/60 to-xt-ink/20" />
         <div className="max-w-5xl">
           <p className="xt-eyebrow mb-4 text-sm uppercase text-[#F2B8C2]!">Best hostel in Shillong · New Shillong Township</p>
           {/* Fixed two-line box: the headline never changes the hero's height while the font loads (no layout shift). */}
           <h1 className="xt-display m-0 h-[2em] text-6xl leading-none sm:text-8xl lg:text-9xl">XTSY Travellers Hostel</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed">Dorms from ₹389 · King Double ₹2,200 · Panorama stay only ₹5,399 or with breakfast for two ₹5,799 per night.</p>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed">Dorms from ₹389 · King Double ₹2,200 · Experience by XTSY ₹5,399 (₹5,799 with breakfast for two) per night.</p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link to="/book" className="xt-btn flex h-14 items-center rounded-full bg-xt-crimson px-7 text-[16px] font-extrabold text-white hover:text-white">Book a stay</Link>
             <a href="#planner" onClick={goPlanner} className="xt-btn flex h-14 items-center gap-2.5 rounded-full bg-xt-paper pl-4 pr-6 text-[16px] font-extrabold text-xt-ink hover:text-xt-ink">

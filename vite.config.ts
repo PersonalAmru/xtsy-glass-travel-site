@@ -12,4 +12,9 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // CI only: hidden source maps so the bundle report can attribute bytes to modules.
+  // Normal (Lovable) builds are unchanged.
+  vite: {
+    build: { sourcemap: process.env.ANALYZE_BUNDLE === "1" ? "hidden" : false },
+  },
 });

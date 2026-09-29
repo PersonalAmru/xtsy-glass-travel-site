@@ -870,7 +870,11 @@ img.lazy-below-fold {
 @keyframes xtPeek { 0%,12% { transform: translateX(70px); } 22%,78% { transform: translateX(0); } 88%,100% { transform: translateX(70px); } }
 @keyframes xtBlink { 0%,44%,50%,100% { transform: scaleY(1); } 47% { transform: scaleY(.1); } }
 
-.xt-in { animation: xtRise .9s cubic-bezier(.2,.7,.2,1) both; }
+/* Above-the-fold entrance: slide only, never start invisible. An element that starts at
+   opacity 0 is not an LCP candidate until a later frame reveals it, and on a busy phone that
+   frame can land seconds after the text arrived (measured: 10–15 s LCP on hero headings). */
+@keyframes xtRiseIn { from { transform: translateY(28px); } to { transform: none; } }
+.xt-in { animation: xtRiseIn .9s cubic-bezier(.2,.7,.2,1) both; }
 .xt-d1 { animation-delay: .12s; } .xt-d2 { animation-delay: .24s; } .xt-d3 { animation-delay: .36s; } .xt-d4 { animation-delay: .5s; }
 .xt-reveal { animation: xtRise .9s cubic-bezier(.2,.7,.2,1) both; }
 @supports (animation-timeline: view()) { .xt-reveal { animation-timeline: view(); animation-range: entry 0% entry 60%; } }

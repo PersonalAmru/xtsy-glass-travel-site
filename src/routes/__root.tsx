@@ -47,6 +47,9 @@ const ConsentDebugPanel = lazy(() => import("@/components/debug/ConsentDebugPane
 // Inline head scripts ported verbatim from index.html
 // ---------------------------------------------------------------------------
 
+/** Loads the legacy Google Fonts stylesheet after first paint (it used to block every page). */
+const LEGACY_FONTS_SCRIPT = `(function(){function add(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap';document.head.appendChild(l);}if(document.readyState==='complete')add();else window.addEventListener('load',add,{once:true});})();`;
+
 const HYDRATED_CLASS_SCRIPT = `document.documentElement.classList.add('hydrated');`;
 
 const DATALAYER_INIT_SCRIPT = `
@@ -116,11 +119,17 @@ const GTM_GATED_LOADER_SCRIPT = `
     j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
     f.parentNode.insertBefore(j,f);
   }
-  var events = ['pointerdown','touchstart','keydown','scroll','mousemove','visibilitychange'];
+  var events = ['pointerdown','touchstart','keydown','mousemove','visibilitychange'];
   var opts = { once: true, passive: true, capture: true };
-  function cleanup(){ events.forEach(function(e){ try { w.removeEventListener(e, loadGTM, opts); } catch(_){} }); }
+  // Page scroll only: element scrolls (e.g. a chat list auto-scrolling on mount) are not the
+  // visitor engaging, and loading tags during page load slowed the hero image (LCP).
+  var scrollOpts = { once: true, passive: true };
+  function cleanup(){ events.forEach(function(e){ try { w.removeEventListener(e, loadGTM, opts); } catch(_){} }); try { w.removeEventListener('scroll', loadGTM, scrollOpts); } catch(_){} }
   events.forEach(function(e){ w.addEventListener(e, loadGTM, opts); });
-  setTimeout(loadGTM, 10000);
+  w.addEventListener('scroll', loadGTM, scrollOpts);
+  // Fallback: 10 s after the page has loaded (not from navigation start).
+  function fallback(){ setTimeout(loadGTM, 10000); }
+  if (d.readyState === 'complete') fallback(); else w.addEventListener('load', fallback, { once: true });
 })(window,document,'script','dataLayer');
 `;
 
@@ -193,11 +202,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/manrope-latin-ext.woff2", crossOrigin: "anonymous" },
       { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/staatliches-latin-ext.woff2", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "/fonts/fonts.css" },
-      // Legacy fonts still used by older admin screens.
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
-      },
+      // Legacy Playfair/Josefin fonts (older pages only) load after the page, not render-blocking:
+      // see LEGACY_FONTS_SCRIPT.
       {
         rel: "icon",
         type: "image/png",
@@ -213,6 +219,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     scripts: [
       { children: HYDRATED_CLASS_SCRIPT },
+      { children: LEGACY_FONTS_SCRIPT },
       { children: DATALAYER_INIT_SCRIPT },
       { children: GTM_GATED_LOADER_SCRIPT },
       { type: "application/ld+json", children: JSONLD_WEBSITE },
@@ -259,38 +266,21 @@ function RootShell({ children }: { children: ReactNode }) {
 
 // ported from main.tsx — deferred non-critical init (Sentry, Contentsquare, perf)
 function initializeNonCritical() {
-  const scheduleIdleTask = (callback: () => void, timeout = 2000) => {
-    if (typeof requestIdleCallback !== "undefined") {
-      requestIdleCallback(callback, { timeout });
-    } else {
-      setTimeout(callback, 50);
-    }
+  // Non-critical work waits for the page's load event, then a delay, then an idle moment.
+  // (A bare requestIdleCallback fires almost immediately on a slow connection — the main thread
+  // is idle while images download — so this work used to compete with the hero image / LCP.)
+  const scheduleIdleTask = (callback: () => void, delayAfterLoad = 2000) => {
+    const idle = () =>
+      typeof requestIdleCallback !== "undefined" ? requestIdleCallback(() => callback(), { timeout: 3000 }) : callback();
+    const start = () => window.setTimeout(idle, delayAfterLoad);
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
   };
 
   const initSentry = async () => {
     if (import.meta.env.PROD) {
-      const Sentry = await import("@sentry/react");
-      const SENTRY_DSN =
-        import.meta.env.VITE_SENTRY_DSN ||
-        "https://de60ec1c757d6d0b6fd991d42d4b8e06@o4510659453911040.ingest.us.sentry.io/4510659499982848";
-      Sentry.init({
-        dsn: SENTRY_DSN,
-        environment: import.meta.env.MODE,
-        integrations: [Sentry.browserTracingIntegration()],
-        tracesSampleRate: 0.05,
-        replaysSessionSampleRate: 0,
-        replaysOnErrorSampleRate: 0.5,
-        sendDefaultPii: false,
-        ignoreErrors: [
-          "ResizeObserver loop limit exceeded",
-          "ResizeObserver loop completed with undelivered notifications",
-          "Failed to fetch",
-          "Load failed",
-          "NetworkError",
-          /^chrome-extension:\/\//,
-          /^moz-extension:\/\//,
-        ],
-      });
+      const { initSentry: start } = await import("@/lib/sentryInit");
+      start();
     }
   };
 
