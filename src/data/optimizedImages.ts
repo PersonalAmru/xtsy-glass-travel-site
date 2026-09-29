@@ -6,6 +6,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1280,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-adventure-campsite-dawki-campsite-1-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-adventure-campsite-dawki-campsite-1-640.webp"
    ],
@@ -19,6 +23,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 960,
   "h": 1280,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-adventure-campsite-dawki-campsite-2-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-adventure-campsite-dawki-campsite-2-640.webp"
@@ -34,6 +42,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1280,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-adventure-campsite-dawki-campsite-3-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-adventure-campsite-dawki-campsite-3-640.webp"
    ],
@@ -48,6 +60,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1220,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-adventure-campsite-dawki-campsite-4-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-adventure-campsite-dawki-campsite-4-640.webp"
    ],
@@ -61,6 +77,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 1280,
   "h": 960,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-adventure-campsite-dawki-campsite-5-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-adventure-campsite-dawki-campsite-5-640.webp"
@@ -80,6 +100,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1200,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-adventure-campsite-dawki-campsite-6-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-adventure-campsite-dawki-campsite-6-640.webp"
    ],
@@ -98,6 +122,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1600,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-270-xtsy270-2-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-270-xtsy270-2-640.webp"
    ],
@@ -111,6 +139,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 1600,
   "h": 1230,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-270-xtsy270-3-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-270-xtsy270-3-640.webp"
@@ -130,6 +162,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1078,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-270-xtsy270-4-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-270-xtsy270-4-640.webp"
    ],
@@ -148,6 +184,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1280,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-270-xtsy270-5-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-270-xtsy270-5-640.webp"
    ],
@@ -161,6 +201,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 1600,
   "h": 900,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-270-xtsy270-6-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-270-xtsy270-6-640.webp"
@@ -180,6 +224,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1280,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-270-xtsy270-7-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-270-xtsy270-7-640.webp"
    ],
@@ -194,6 +242,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1600,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-270-xtsy270-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-270-xtsy270-640.webp"
    ],
@@ -207,6 +259,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 3341,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-4-bed-female-dormitory-2-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-4-bed-female-dormitory-2-640.webp"
@@ -226,6 +282,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-4-bed-female-dormitory-3-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-4-bed-female-dormitory-3-640.webp"
    ],
@@ -244,6 +304,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 2208,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-4-bed-female-dormitory-4-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-4-bed-female-dormitory-4-640.webp"
    ],
@@ -257,6 +321,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 1242,
   "h": 2073,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-4-bed-female-dormitory-5-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-4-bed-female-dormitory-5-640.webp"
@@ -272,6 +340,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 2208,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-4-bed-female-dormitory-6-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-4-bed-female-dormitory-6-640.webp"
    ],
@@ -286,6 +358,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 2208,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-4-bed-female-dormitory-7-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-4-bed-female-dormitory-7-640.webp"
    ],
@@ -299,6 +375,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 2102,
   "h": 3736,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-4-bed-female-dormitory-8-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-4-bed-female-dormitory-8-640.webp"
@@ -318,6 +398,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-4-bed-female-dormitory-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-4-bed-female-dormitory-640.webp"
    ],
@@ -335,6 +419,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3951,
   "h": 3003,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-4-bed-mixed-dormitory-1-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-4-bed-mixed-dormitory-1-640.webp"
@@ -354,6 +442,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 3448,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-4-bed-mixed-dormitory-2-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-4-bed-mixed-dormitory-2-640.webp"
    ],
@@ -371,6 +463,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-4-bed-mixed-dormitory-3-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-4-bed-mixed-dormitory-3-640.webp"
@@ -390,6 +486,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 3448,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-4-bed-mixed-dormitory-4-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-4-bed-mixed-dormitory-4-640.webp"
    ],
@@ -407,6 +507,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-4-bed-mixed-dormitory-5-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-4-bed-mixed-dormitory-5-640.webp"
@@ -426,6 +530,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 3736,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-4-bed-mixed-dormitory-7-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-4-bed-mixed-dormitory-7-640.webp"
    ],
@@ -443,6 +551,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 4592,
   "h": 3448,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-6-bed-mixed-dormitory-1-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-6-bed-mixed-dormitory-1-640.webp"
@@ -462,6 +574,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 3448,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-6-bed-mixed-dormitory-2-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-6-bed-mixed-dormitory-2-640.webp"
    ],
@@ -479,6 +595,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-6-bed-mixed-dormitory-3-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-6-bed-mixed-dormitory-3-640.webp"
@@ -498,6 +618,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-6-bed-mixed-dormitory-4-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-6-bed-mixed-dormitory-4-640.webp"
    ],
@@ -515,6 +639,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 4592,
   "h": 3448,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-6-bed-mixed-dormitory-5-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-6-bed-mixed-dormitory-5-640.webp"
@@ -534,6 +662,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 3448,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-6-bed-mixed-dormitory-6-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-6-bed-mixed-dormitory-6-640.webp"
    ],
@@ -551,6 +683,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-6-bed-mixed-dormitory-7-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-6-bed-mixed-dormitory-7-640.webp"
@@ -570,6 +706,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 3823,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-6-bed-mixed-dormitory-8-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-6-bed-mixed-dormitory-8-640.webp"
    ],
@@ -587,6 +727,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-6-bed-mixed-dormitory-9-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-6-bed-mixed-dormitory-9-640.webp"
@@ -606,6 +750,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-king-double-room-2-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-king-double-room-2-640.webp"
    ],
@@ -623,6 +771,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 4032,
   "h": 3024,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-king-double-room-3-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-king-double-room-3-640.webp"
@@ -642,6 +794,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-king-double-room-4-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-king-double-room-4-640.webp"
    ],
@@ -659,6 +815,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 4032,
   "h": 3024,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-king-double-room-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-king-double-room-640.webp"
@@ -678,6 +838,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-image-1-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-image-1-640.webp"
    ],
@@ -695,6 +859,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-10-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-10-640.webp"
@@ -714,6 +882,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-11-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-11-640.webp"
    ],
@@ -731,6 +903,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 4032,
   "h": 3024,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-12-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-12-640.webp"
@@ -750,6 +926,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-13-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-13-640.webp"
    ],
@@ -767,6 +947,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-15-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-15-640.webp"
@@ -786,6 +970,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-16-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-16-640.webp"
    ],
@@ -803,6 +991,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-17-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-17-640.webp"
@@ -822,6 +1014,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-18-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-18-640.webp"
    ],
@@ -839,6 +1035,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-19-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-19-640.webp"
@@ -858,6 +1058,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-2-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-2-640.webp"
    ],
@@ -875,6 +1079,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-20-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-20-640.webp"
@@ -894,6 +1102,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-21-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-21-640.webp"
    ],
@@ -911,6 +1123,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-22-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-22-640.webp"
@@ -930,6 +1146,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-23-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-23-640.webp"
    ],
@@ -947,6 +1167,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-24-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-24-640.webp"
@@ -966,6 +1190,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 2208,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-25-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-25-640.webp"
    ],
@@ -979,6 +1207,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 1242,
   "h": 2208,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-27-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-27-640.webp"
@@ -994,6 +1226,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 2208,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-28-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-28-640.webp"
    ],
@@ -1008,6 +1244,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 2208,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-29-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-29-640.webp"
    ],
@@ -1021,6 +1261,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3024,
   "h": 4032,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-3-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-3-640.webp"
@@ -1040,6 +1284,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-4-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-4-640.webp"
    ],
@@ -1058,6 +1306,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-5-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-5-640.webp"
    ],
@@ -1075,6 +1327,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 4032,
   "h": 3024,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-6-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-6-640.webp"
@@ -1098,6 +1354,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-7-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-7-640.webp"
    ],
@@ -1115,6 +1375,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 4032,
   "h": 3024,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-property-images-8-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-property-images-8-640.webp"
@@ -1138,6 +1402,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 4032,
   "srcs": [
    [
+    480,
+    "/img/o/xtsy-property-images-9-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsy-property-images-9-640.webp"
    ],
@@ -1155,6 +1423,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 3008,
   "h": 2103,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-tab-bistro-by-xtsy-1-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-tab-bistro-by-xtsy-1-640.webp"
@@ -1177,6 +1449,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 5712,
   "h": 3213,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsy-tab-bistro-by-xtsy-480.webp"
+   ],
    [
     640,
     "/img/o/xtsy-tab-bistro-by-xtsy-640.webp"
@@ -1206,6 +1482,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 902,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-arunachal-winter-cultural-festival-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-arunachal-winter-cultural-festival-640.webp"
    ],
@@ -1219,6 +1499,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 736,
   "h": 905,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsyvoyage-assam-cover-image-480.webp"
+   ],
    [
     640,
     "/img/o/xtsyvoyage-assam-cover-image-640.webp"
@@ -1234,6 +1518,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 920,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-bhutan-mindful-kingdom-journey-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-bhutan-mindful-kingdom-journey-640.webp"
    ],
@@ -1247,6 +1535,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 736,
   "h": 981,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsyvoyage-bumla-pass-bike-expedition-480.webp"
+   ],
    [
     640,
     "/img/o/xtsyvoyage-bumla-pass-bike-expedition-640.webp"
@@ -1262,6 +1554,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1023,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-dawki-river-2-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-dawki-river-2-640.webp"
    ],
@@ -1275,6 +1571,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 720,
   "h": 886,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsyvoyage-dawki-river-3-480.webp"
+   ],
    [
     640,
     "/img/o/xtsyvoyage-dawki-river-3-640.webp"
@@ -1290,6 +1590,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 921,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-dawki-river-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-dawki-river-640.webp"
    ],
@@ -1303,6 +1607,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 736,
   "h": 920,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsyvoyage-dravidian-architecture-masterclass-480.webp"
+   ],
    [
     640,
     "/img/o/xtsyvoyage-dravidian-architecture-masterclass-640.webp"
@@ -1318,6 +1626,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 981,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-elephant-falls-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-elephant-falls-640.webp"
    ],
@@ -1331,6 +1643,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 736,
   "h": 920,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsyvoyage-himachal-yoga-retreat-program-480.webp"
+   ],
    [
     640,
     "/img/o/xtsyvoyage-himachal-yoga-retreat-program-640.webp"
@@ -1346,6 +1662,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 552,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-krang-shuri-waterfall-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-krang-shuri-waterfall-640.webp"
    ],
@@ -1359,6 +1679,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 736,
   "h": 736,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsyvoyage-laitlum-canyons-480.webp"
+   ],
    [
     640,
     "/img/o/xtsyvoyage-laitlum-canyons-640.webp"
@@ -1374,6 +1698,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 981,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-mawlynnong-2-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-mawlynnong-2-640.webp"
    ],
@@ -1387,6 +1715,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 736,
   "h": 1104,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsyvoyage-mawlynnong-480.webp"
+   ],
    [
     640,
     "/img/o/xtsyvoyage-mawlynnong-640.webp"
@@ -1422,6 +1754,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 981,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-meghalaya-cover-image-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-meghalaya-cover-image-640.webp"
    ],
@@ -1435,6 +1771,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 736,
   "h": 920,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsyvoyage-nagaland-cover-image-480.webp"
+   ],
    [
     640,
     "/img/o/xtsyvoyage-nagaland-cover-image-640.webp"
@@ -1450,6 +1790,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 900,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-nohkalikai-falls-2-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-nohkalikai-falls-2-640.webp"
    ],
@@ -1463,6 +1807,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 736,
   "h": 981,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsyvoyage-nohkalikai-falls-480.webp"
+   ],
    [
     640,
     "/img/o/xtsyvoyage-nohkalikai-falls-640.webp"
@@ -1478,6 +1826,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1605,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-and-rainbow-waterfall-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-and-rainbow-waterfall-640.webp"
    ],
@@ -1492,6 +1844,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 981,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-640.webp"
    ],
@@ -1505,6 +1861,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 736,
   "h": 1308,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsyvoyage-northeast-ecological-immersion-480.webp"
+   ],
    [
     640,
     "/img/o/xtsyvoyage-northeast-ecological-immersion-640.webp"
@@ -1530,6 +1890,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 1104,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-sikkim-cover-image-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-sikkim-cover-image-640.webp"
    ],
@@ -1544,6 +1908,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "h": 907,
   "srcs": [
    [
+    480,
+    "/img/o/xtsyvoyage-umiam-lake-2-480.webp"
+   ],
+   [
     640,
     "/img/o/xtsyvoyage-umiam-lake-2-640.webp"
    ],
@@ -1557,6 +1925,10 @@ export const OPTIMIZED_IMAGES: Record<string, { w: number; h: number; srcs: [num
   "w": 736,
   "h": 736,
   "srcs": [
+   [
+    480,
+    "/img/o/xtsyvoyage-umiam-lake-480.webp"
+   ],
    [
     640,
     "/img/o/xtsyvoyage-umiam-lake-640.webp"

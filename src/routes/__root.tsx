@@ -119,11 +119,17 @@ const GTM_GATED_LOADER_SCRIPT = `
     j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
     f.parentNode.insertBefore(j,f);
   }
-  var events = ['pointerdown','touchstart','keydown','scroll','mousemove','visibilitychange'];
+  var events = ['pointerdown','touchstart','keydown','mousemove','visibilitychange'];
   var opts = { once: true, passive: true, capture: true };
-  function cleanup(){ events.forEach(function(e){ try { w.removeEventListener(e, loadGTM, opts); } catch(_){} }); }
+  // Page scroll only: element scrolls (e.g. a chat list auto-scrolling on mount) are not the
+  // visitor engaging, and loading tags during page load slowed the hero image (LCP).
+  var scrollOpts = { once: true, passive: true };
+  function cleanup(){ events.forEach(function(e){ try { w.removeEventListener(e, loadGTM, opts); } catch(_){} }); try { w.removeEventListener('scroll', loadGTM, scrollOpts); } catch(_){} }
   events.forEach(function(e){ w.addEventListener(e, loadGTM, opts); });
-  setTimeout(loadGTM, 10000);
+  w.addEventListener('scroll', loadGTM, scrollOpts);
+  // Fallback: 10 s after the page has loaded (not from navigation start).
+  function fallback(){ setTimeout(loadGTM, 10000); }
+  if (d.readyState === 'complete') fallback(); else w.addEventListener('load', fallback, { once: true });
 })(window,document,'script','dataLayer');
 `;
 

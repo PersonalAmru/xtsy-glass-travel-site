@@ -65,7 +65,7 @@ export function Trending() {
       <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 lg:grid-cols-6">
         {TRENDING.map((t) => (
           <Link key={t.n} to={t.to} className="xt-reveal xt-lift flex w-[62vw] shrink-0 snap-start flex-col gap-2.5 rounded-[20px] text-xt-ink hover:text-xt-ink sm:w-auto">
-            <Photo src={t.img} alt={t.n} className="aspect-[208/280] rounded-[20px]" tone="pine" />
+            <Photo src={t.img} alt={t.n} className="aspect-[208/280] rounded-[20px]" tone="pine" sizes="(max-width: 639px) 62vw, (max-width: 1023px) 33vw, 16vw" />
             <span className="px-1 text-[17px] font-extrabold">{t.n}</span>
             <span className="px-1 text-[13px] text-xt-mute">{t.r}</span>
           </Link>
@@ -93,7 +93,7 @@ export function Stays() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {stays.map((s) => (
           <Link key={s.title} to={s.to} className="xt-reveal xt-lift flex flex-col gap-3 rounded-[20px] pb-2 text-xt-ink hover:text-xt-ink">
-            <Photo src={s.img} alt={s.title} tone={s.tone} className="aspect-[314/236] rounded-[20px]">
+            <Photo src={s.img} alt={s.title} tone={s.tone} className="aspect-[314/236] rounded-[20px]" sizes="(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 23vw">
               <span className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1.5 text-[12px] font-extrabold text-xt-ink">
                 <span className="h-[7px] w-[7px] rounded-full bg-xt-leaf" />Live availability
               </span>
@@ -182,7 +182,7 @@ export function PrimeRail() {
         <div className="xt-rail flex w-max gap-5 pl-4 sm:pl-8 lg:pl-14">
           {doubled.map((p, i) => (
             <Link key={`${p.t}-${i}`} to={p.to} aria-hidden={i >= prime.length ? true : undefined} tabIndex={i >= prime.length ? -1 : undefined} className="xt-lift flex w-[300px] flex-col overflow-hidden rounded-3xl bg-[#2A2F42] text-xt-paper hover:text-xt-paper sm:w-[340px]">
-              <Photo src={p.img} alt={p.t} tone={p.tone} className="h-[200px] sm:h-[220px]" />
+              <Photo src={p.img} alt={p.t} tone={p.tone} className="h-[200px] sm:h-[220px]" sizes="300px" />
               <div className="flex flex-col gap-2 p-[22px]">
                 <span className="text-[12px] font-extrabold tracking-wider text-xt-rose">{p.cat}</span>
                 <span className="text-[21px] font-extrabold">{p.t}</span>
@@ -261,7 +261,7 @@ export function ToursRow() {
       <div className="grid gap-6 md:grid-cols-3">
         {picks.map((p) => (
           <Link key={p.slug} to={`/tours/${p.slug}`} className="xt-reveal xt-lift flex flex-col overflow-hidden rounded-3xl bg-white text-xt-ink hover:text-xt-ink">
-            <Photo src={photos[p.slug]} alt={p.title} tone="pine" className="aspect-[426/250]" />
+            <Photo src={photos[p.slug]} alt={p.title} tone="pine" className="aspect-[426/250]" sizes="(max-width: 767px) 92vw, 31vw" />
             <div className="flex flex-col gap-2.5 p-6">
               <span className="self-start rounded-full bg-xt-sand px-3 py-1.5 text-[13px] font-extrabold">{p.duration}</span>
               <h3 className="m-0 text-[21px] font-extrabold leading-tight">{p.title}</h3>
@@ -295,7 +295,7 @@ export function TonightDeals() {
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {deals.map((d) => (
           <div key={d.n} className="xt-reveal xt-lift flex items-center gap-4 rounded-[22px] bg-white p-5">
-            <Photo src={d.img} alt={d.n} tone={d.tone} className="h-24 w-24 shrink-0 rounded-2xl" />
+            <Photo src={d.img} alt={d.n} tone={d.tone} className="h-24 w-24 shrink-0 rounded-2xl" sizes="96px" />
             <div className="flex min-w-0 flex-grow flex-col gap-1">
               <span className="text-[17px] font-extrabold">{d.n}</span>
               <span className="text-[20px] font-extrabold text-xt-crimson">{d.price} <span className="text-[13px] font-semibold text-xt-mute">{d.was}</span></span>

@@ -7,6 +7,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 960,
   "srcs": [
    [
+    480,
+    "/img/px/tour-203-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-203-640.webp"
    ],
@@ -29,6 +33,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-201-480.webp"
+   ],
    [
     640,
     "/img/px/tour-201-640.webp"
@@ -53,6 +61,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 851,
   "srcs": [
    [
+    480,
+    "/img/px/tour-202-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-202-640.webp"
    ],
@@ -75,6 +87,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 852,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-206-480.webp"
+   ],
    [
     640,
     "/img/px/tour-206-640.webp"
@@ -99,6 +115,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/tour-205-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-205-640.webp"
    ],
@@ -121,6 +141,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-701-480.webp"
+   ],
    [
     640,
     "/img/px/tour-701-640.webp"
@@ -145,6 +169,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 852,
   "srcs": [
    [
+    480,
+    "/img/px/tour-702-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-702-640.webp"
    ],
@@ -167,6 +195,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-703-480.webp"
+   ],
    [
     640,
     "/img/px/tour-703-640.webp"
@@ -191,6 +223,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 964,
   "srcs": [
    [
+    480,
+    "/img/px/tour-4-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-4-640.webp"
    ],
@@ -213,6 +249,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 964,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-1-480.webp"
+   ],
    [
     640,
     "/img/px/tour-1-640.webp"
@@ -237,6 +277,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/tour-5-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-5-640.webp"
    ],
@@ -259,6 +303,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-6-480.webp"
+   ],
    [
     640,
     "/img/px/tour-6-640.webp"
@@ -283,6 +331,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/tour-8-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-8-640.webp"
    ],
@@ -305,6 +357,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 960,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-21-480.webp"
+   ],
    [
     640,
     "/img/px/tour-21-640.webp"
@@ -329,6 +385,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 960,
   "srcs": [
    [
+    480,
+    "/img/px/tour-29-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-29-640.webp"
    ],
@@ -351,6 +411,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 852,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-28-480.webp"
+   ],
    [
     640,
     "/img/px/tour-28-640.webp"
@@ -375,6 +439,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 960,
   "srcs": [
    [
+    480,
+    "/img/px/tour-22-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-22-640.webp"
    ],
@@ -397,6 +465,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 751,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-23-480.webp"
+   ],
    [
     640,
     "/img/px/tour-23-640.webp"
@@ -421,6 +493,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/tour-230-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-230-640.webp"
    ],
@@ -443,6 +519,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 852,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-24-480.webp"
+   ],
    [
     640,
     "/img/px/tour-24-640.webp"
@@ -467,6 +547,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/tour-26-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-26-640.webp"
    ],
@@ -489,6 +573,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 914,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-53-480.webp"
+   ],
    [
     640,
     "/img/px/tour-53-640.webp"
@@ -513,6 +601,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 871,
   "srcs": [
    [
+    480,
+    "/img/px/tour-55-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-55-640.webp"
    ],
@@ -535,6 +627,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 720,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-52-480.webp"
+   ],
    [
     640,
     "/img/px/tour-52-640.webp"
@@ -559,6 +655,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/tour-64-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-64-640.webp"
    ],
@@ -581,6 +681,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 960,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-63-480.webp"
+   ],
    [
     640,
     "/img/px/tour-63-640.webp"
@@ -605,6 +709,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/tour-33-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-33-640.webp"
    ],
@@ -627,6 +735,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-31-480.webp"
+   ],
    [
     640,
     "/img/px/tour-31-640.webp"
@@ -651,6 +763,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 853,
   "srcs": [
    [
+    480,
+    "/img/px/tour-81-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-81-640.webp"
    ],
@@ -673,6 +789,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 851,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-82-480.webp"
+   ],
    [
     640,
     "/img/px/tour-82-640.webp"
@@ -697,6 +817,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/tour-84-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-84-640.webp"
    ],
@@ -719,6 +843,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-83-480.webp"
+   ],
    [
     640,
     "/img/px/tour-83-640.webp"
@@ -743,6 +871,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 855,
   "srcs": [
    [
+    480,
+    "/img/px/tour-71-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-71-640.webp"
    ],
@@ -765,6 +897,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 920,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-73-480.webp"
+   ],
    [
     640,
     "/img/px/tour-73-640.webp"
@@ -789,6 +925,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/tour-301-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-301-640.webp"
    ],
@@ -811,6 +951,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 852,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-302-480.webp"
+   ],
    [
     640,
     "/img/px/tour-302-640.webp"
@@ -835,6 +979,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 720,
   "srcs": [
    [
+    480,
+    "/img/px/tour-303-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-303-640.webp"
    ],
@@ -857,6 +1005,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-304-480.webp"
+   ],
    [
     640,
     "/img/px/tour-304-640.webp"
@@ -881,6 +1033,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/tour-305-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-305-640.webp"
    ],
@@ -903,6 +1059,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 850,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-306-480.webp"
+   ],
    [
     640,
     "/img/px/tour-306-640.webp"
@@ -927,6 +1087,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 676,
   "srcs": [
    [
+    480,
+    "/img/px/tour-307-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-307-640.webp"
    ],
@@ -949,6 +1113,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-308-480.webp"
+   ],
    [
     640,
     "/img/px/tour-308-640.webp"
@@ -973,6 +1141,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/tour-309-480.webp"
+   ],
+   [
     640,
     "/img/px/tour-309-640.webp"
    ],
@@ -995,6 +1167,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/tour-500-480.webp"
+   ],
    [
     640,
     "/img/px/tour-500-640.webp"
@@ -1019,6 +1195,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 960,
   "srcs": [
    [
+    480,
+    "/img/px/sig-4n-5d-shillong-meghalaya-tour-480.webp"
+   ],
+   [
     640,
     "/img/px/sig-4n-5d-shillong-meghalaya-tour-640.webp"
    ],
@@ -1041,6 +1221,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 823,
   "srcs": [
+   [
+    480,
+    "/img/px/sig-6n-7d-meghalaya-tour-480.webp"
+   ],
    [
     640,
     "/img/px/sig-6n-7d-meghalaya-tour-640.webp"
@@ -1065,6 +1249,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 852,
   "srcs": [
    [
+    480,
+    "/img/px/sig-6d-shillong-meghalaya-tour-480.webp"
+   ],
+   [
     640,
     "/img/px/sig-6d-shillong-meghalaya-tour-640.webp"
    ],
@@ -1087,6 +1275,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/sig-5n-6d-meghalaya-holiday-package-480.webp"
+   ],
    [
     640,
     "/img/px/sig-5n-6d-meghalaya-holiday-package-640.webp"
@@ -1111,6 +1303,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/sig-7n-guwahati-shillong-kaziranga-tour-480.webp"
+   ],
+   [
     640,
     "/img/px/sig-7n-guwahati-shillong-kaziranga-tour-640.webp"
    ],
@@ -1133,6 +1329,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/sig-5n-6d-tawang-tour-480.webp"
+   ],
    [
     640,
     "/img/px/sig-5n-6d-tawang-tour-640.webp"
@@ -1157,6 +1357,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 638,
   "srcs": [
    [
+    480,
+    "/img/px/sig-6n-7d-arunachal-pradesh-tour-480.webp"
+   ],
+   [
     640,
     "/img/px/sig-6n-7d-arunachal-pradesh-tour-640.webp"
    ],
@@ -1179,6 +1383,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 960,
   "srcs": [
+   [
+    480,
+    "/img/px/sig-7n-8d-tawang-tour-480.webp"
+   ],
    [
     640,
     "/img/px/sig-7n-8d-tawang-tour-640.webp"
@@ -1203,6 +1411,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/exp-guwahati-to-shillong-480.webp"
+   ],
+   [
     640,
     "/img/px/exp-guwahati-to-shillong-640.webp"
    ],
@@ -1225,6 +1437,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 854,
   "srcs": [
+   [
+    480,
+    "/img/px/exp-guwahati-to-tawang-480.webp"
+   ],
    [
     640,
     "/img/px/exp-guwahati-to-tawang-640.webp"
@@ -1249,6 +1465,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 801,
   "srcs": [
    [
+    480,
+    "/img/px/exp-guwahati-to-kohima-480.webp"
+   ],
+   [
     640,
     "/img/px/exp-guwahati-to-kohima-640.webp"
    ],
@@ -1272,6 +1492,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "h": 854,
   "srcs": [
    [
+    480,
+    "/img/px/exp-meghalaya-loop-480.webp"
+   ],
+   [
     640,
     "/img/px/exp-meghalaya-loop-640.webp"
    ],
@@ -1294,6 +1518,10 @@ export const PEXELS_PHOTOS: Record<string, PexelsPhoto> = {
   "w": 1280,
   "h": 960,
   "srcs": [
+   [
+    480,
+    "/img/px/dest-shnongpdeng-480.webp"
+   ],
    [
     640,
     "/img/px/dest-shnongpdeng-640.webp"
