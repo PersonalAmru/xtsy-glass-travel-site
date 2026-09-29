@@ -1,0 +1,703 @@
+{
+ "base": "https://xtsy.one",
+ "profile": "Slow 4G (150ms, 1.6Mbps) + 4x CPU, 412x823 @1.75x, cold cache",
+ "routes": [
+  {
+   "route": "/",
+   "lcp": 7360,
+   "fcp": 2960,
+   "cls": 0,
+   "el": "IMG xtsy-property-images-8-1280.webp",
+   "breakdown": {
+    "ttfb": 351,
+    "loadDelay": 37,
+    "loadDuration": 6933,
+    "renderDelay": 39
+   },
+   "image": {
+    "file": "xtsy-property-images-8-1280.webp",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 698,
+   "before": {
+    "jsKb": 678,
+    "cssKb": 50,
+    "imgKb": 809,
+    "thirdPartyKb": 1,
+    "requests": 60
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 598
+    },
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2800
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 663
+    }
+   ]
+  },
+  {
+   "route": "/best-hostel-in-shillong",
+   "lcp": 2844,
+   "fcp": 2844,
+   "cls": 0,
+   "el": "P \"For most travellers the best-rated hostel in Shillong is XTS\"",
+   "breakdown": {
+    "ttfb": 261,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 2583
+   },
+   "image": null,
+   "longTasks": 0,
+   "before": {
+    "jsKb": 661,
+    "cssKb": 50,
+    "imgKb": 569,
+    "thirdPartyKb": 1,
+    "requests": 58
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 491
+    },
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2637
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 699
+    }
+   ]
+  },
+  {
+   "route": "/xtsy-270",
+   "lcp": 13168,
+   "fcp": 2756,
+   "cls": 0,
+   "el": "H1 \"Experience by XTSY\"",
+   "breakdown": {
+    "ttfb": 84,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 13084
+   },
+   "image": null,
+   "longTasks": 2319,
+   "before": {
+    "jsKb": 976,
+    "cssKb": 50,
+    "imgKb": 601,
+    "thirdPartyKb": 163,
+    "requests": 95
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2517
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 443
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 750
+    }
+   ]
+  },
+  {
+   "route": "/tab-bistro",
+   "lcp": 11828,
+   "fcp": 3056,
+   "cls": 0,
+   "el": "H1 \"Forest dining under the pines.\"",
+   "breakdown": {
+    "ttfb": 445,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 11383
+   },
+   "image": null,
+   "longTasks": 2329,
+   "before": {
+    "jsKb": 984,
+    "cssKb": 50,
+    "imgKb": 291,
+    "thirdPartyKb": 163,
+    "requests": 96
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2823
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 663
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 1042
+    }
+   ]
+  },
+  {
+   "route": "/tours",
+   "lcp": 15492,
+   "fcp": 2620,
+   "cls": 0,
+   "el": "P \"Root bridges, caves, Dawki’s clear river, Tawang’s monasteri\"",
+   "breakdown": {
+    "ttfb": 103,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 15389
+   },
+   "image": null,
+   "longTasks": 2525,
+   "before": {
+    "jsKb": 979,
+    "cssKb": 50,
+    "imgKb": 1047,
+    "thirdPartyKb": 163,
+    "requests": 102
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2283
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 410
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 683
+    }
+   ]
+  },
+  {
+   "route": "/tours/5n-6d-tawang-tour",
+   "lcp": 5408,
+   "fcp": 3184,
+   "cls": 0,
+   "el": "IMG sig-5n-6d-tawang-tour-1280.webp",
+   "breakdown": {
+    "ttfb": 69,
+    "loadDelay": 126,
+    "loadDuration": 5182,
+    "renderDelay": 31
+   },
+   "image": {
+    "file": "sig-5n-6d-tawang-tour-1280.webp",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 0,
+   "before": {
+    "jsKb": 696,
+    "cssKb": 50,
+    "imgKb": 271,
+    "thirdPartyKb": 1,
+    "requests": 72
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2959
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 364
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 779
+    }
+   ]
+  },
+  {
+   "route": "/destinations/meghalaya",
+   "lcp": 2468,
+   "fcp": 2468,
+   "cls": 0,
+   "el": "P \"Meghalaya is best visited between September and April, enter\"",
+   "breakdown": {
+    "ttfb": 82,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 2386
+   },
+   "image": null,
+   "longTasks": 85,
+   "before": {
+    "jsKb": 665,
+    "cssKb": 50,
+    "imgKb": 23,
+    "thirdPartyKb": 1,
+    "requests": 51
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2292
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 383
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 734
+    }
+   ]
+  },
+  {
+   "route": "/destinations/meghalaya/shillong",
+   "lcp": 2516,
+   "fcp": 2516,
+   "cls": 0,
+   "el": "P \"Searching for adventures near me while in Shillong? These ne\"",
+   "breakdown": {
+    "ttfb": 137,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 2379
+   },
+   "image": null,
+   "longTasks": 0,
+   "before": {
+    "jsKb": 660,
+    "cssKb": 50,
+    "imgKb": 277,
+    "thirdPartyKb": 1,
+    "requests": 55
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2323
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 672
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 414
+    }
+   ]
+  },
+  {
+   "route": "/destinations/meghalaya/cherrapunji/nohkalikai-falls",
+   "lcp": 3132,
+   "fcp": 2816,
+   "cls": 0,
+   "el": "IMG xtsyvoyage-nohkalikai-falls-736.webp",
+   "breakdown": {
+    "ttfb": 83,
+    "loadDelay": 124,
+    "loadDuration": 2892,
+    "renderDelay": 33
+   },
+   "image": {
+    "file": "xtsyvoyage-nohkalikai-falls-736.webp",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 0,
+   "before": {
+    "jsKb": 663,
+    "cssKb": 50,
+    "imgKb": 110,
+    "thirdPartyKb": 1,
+    "requests": 53
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2563
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 418
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 768
+    }
+   ]
+  },
+  {
+   "route": "/living-root-bridges-meghalaya",
+   "lcp": 2796,
+   "fcp": 2796,
+   "cls": 0,
+   "el": "P \"Backed by XTSY — Northeast India's NEITA 2025-nominated hosp\"",
+   "breakdown": {
+    "ttfb": 89,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 2707
+   },
+   "image": null,
+   "longTasks": 0,
+   "before": {
+    "jsKb": 664,
+    "cssKb": 50,
+    "imgKb": 228,
+    "thirdPartyKb": 1,
+    "requests": 53
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 375
+    },
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2556
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 562
+    }
+   ]
+  },
+  {
+   "route": "/cheap-hostels-shillong",
+   "lcp": 2752,
+   "fcp": 2752,
+   "cls": 0,
+   "el": "P \"The cheapest good bed in Shillong at XTSY Travellers Hostel \"",
+   "breakdown": {
+    "ttfb": 82,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 2670
+   },
+   "image": null,
+   "longTasks": 123,
+   "before": {
+    "jsKb": 661,
+    "cssKb": 50,
+    "imgKb": 569,
+    "thirdPartyKb": 1,
+    "requests": 58
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2542
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 426
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 706
+    }
+   ]
+  },
+  {
+   "route": "/travel-guide/how-to-reach-meghalaya",
+   "lcp": 2484,
+   "fcp": 2484,
+   "cls": 0,
+   "el": "P \"Fly into Guwahati Airport (GAU) in Assam, then travel 100 km\"",
+   "breakdown": {
+    "ttfb": 112,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 2372
+   },
+   "image": null,
+   "longTasks": 0,
+   "before": {
+    "jsKb": 656,
+    "cssKb": 50,
+    "imgKb": 23,
+    "thirdPartyKb": 1,
+    "requests": 51
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2285
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 383
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 669
+    }
+   ]
+  },
+  {
+   "route": "/female-travellers",
+   "lcp": 3308,
+   "fcp": 2772,
+   "cls": 0,
+   "el": "IMG xtsy-4-bed-female-dormitory-1280.webp",
+   "breakdown": {
+    "ttfb": 73,
+    "loadDelay": 130,
+    "loadDuration": 3071,
+    "renderDelay": 34
+   },
+   "image": {
+    "file": "xtsy-4-bed-female-dormitory-1280.webp",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 0,
+   "before": {
+    "jsKb": 668,
+    "cssKb": 50,
+    "imgKb": 252,
+    "thirdPartyKb": 1,
+    "requests": 54
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2566
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 542
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 628
+    }
+   ]
+  },
+  {
+   "route": "/xtsy-adventure-campsite-dawki",
+   "lcp": 15252,
+   "fcp": 2744,
+   "cls": 0,
+   "el": "H1 \"Sleep beside the clearest river.\"",
+   "breakdown": {
+    "ttfb": 78,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 15174
+   },
+   "image": null,
+   "longTasks": 2354,
+   "before": {
+    "jsKb": 979,
+    "cssKb": 50,
+    "imgKb": 1080,
+    "thirdPartyKb": 163,
+    "requests": 99
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2530
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 421
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 736
+    }
+   ]
+  },
+  {
+   "route": "/guides",
+   "lcp": 10528,
+   "fcp": 2472,
+   "cls": 0,
+   "el": "P \"484 guides to stays, trips, food and places across Shillong,\"",
+   "breakdown": {
+    "ttfb": 128,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 10400
+   },
+   "image": null,
+   "longTasks": 2484,
+   "before": {
+    "jsKb": 977,
+    "cssKb": 50,
+    "imgKb": 23,
+    "thirdPartyKb": 163,
+    "requests": 92
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2265
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 413
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 741
+    }
+   ]
+  },
+  {
+   "route": "/faq",
+   "lcp": 10168,
+   "fcp": 2484,
+   "cls": 0,
+   "el": "H1 \"Questions, answered.\"",
+   "breakdown": {
+    "ttfb": 90,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 10078
+   },
+   "image": null,
+   "longTasks": 2312,
+   "before": {
+    "jsKb": 976,
+    "cssKb": 50,
+    "imgKb": 23,
+    "thirdPartyKb": 163,
+    "requests": 91
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2308
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 592
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 571
+    }
+   ]
+  },
+  {
+   "route": "/book",
+   "lcp": 10288,
+   "fcp": 2608,
+   "cls": 0,
+   "el": "P \"By using this site, you agree to our Privacy Policy and Term\"",
+   "breakdown": {
+    "ttfb": 69,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 10219
+   },
+   "image": null,
+   "longTasks": 2206,
+   "before": {
+    "jsKb": 1037,
+    "cssKb": 50,
+    "imgKb": 0,
+    "thirdPartyKb": 163,
+    "requests": 108
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-CE93_xAC.css",
+     "kb": 49,
+     "end": 2501
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 371
+    },
+    {
+     "url": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
+     "kb": 1,
+     "end": 757
+    }
+   ]
+  }
+ ],
+ "pageSpeed": {
+  "/": {
+   "error": 429,
+   "message": "Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'."
+  },
+  "/best-hostel-in-shillong": {
+   "error": 429,
+   "message": "Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'."
+  },
+  "/xtsy-270": {
+   "error": 429,
+   "message": "Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'."
+  },
+  "/tours/5n-6d-tawang-tour": {
+   "error": 429,
+   "message": "Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351490'."
+  }
+ }
+}
