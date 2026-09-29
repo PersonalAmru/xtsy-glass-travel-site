@@ -912,7 +912,11 @@ export default function SimplifiedBookingFlow() {
   const { user } = useOptionalAuth();
 
   // State
-  const [currentStep, setCurrentStep] = useState<BookingStep>('summary');
+  // Without dates in the URL the first screen is the date picker — decide it up front so the
+  // server renders it (fast first paint, crawlable) instead of a loading state.
+  const [currentStep, setCurrentStep] = useState<BookingStep>(() =>
+    searchParams.get('checkIn') && searchParams.get('checkOut') ? 'summary' : 'dates',
+  );
   const [direction, setDirection] = useState(1);
   const [checkIn, setCheckIn] = useState<Date | undefined>();
   const [checkOut, setCheckOut] = useState<Date | undefined>();
@@ -956,6 +960,8 @@ export default function SimplifiedBookingFlow() {
             .filter(Boolean) as SelectedRoom[];
           setSelectedRooms(rooms);
         }
+        // A saved booking continues at the summary (the default step is the date picker).
+        if (data.checkIn && data.checkOut) setCurrentStep('summary');
       } else {
         // Fallback: try URL search params from hero search
         const urlCheckIn = searchParams.get('checkIn');

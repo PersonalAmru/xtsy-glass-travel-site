@@ -106,7 +106,18 @@ jobs:
       - name: Production build
         run: |
           set -o pipefail
-          bun run build 2>&1 | tee build.log || { grep -iE "error|failed" build.log | tail -15 | sed 's/^/::error::/'; exit 1; }
+          ANALYZE_BUNDLE=1 bun run build 2>&1 | tee build.log || { grep -iE "error|failed" build.log | tail -15 | sed 's/^/::error::/'; exit 1; }
+
+      - name: Bundle report (what is inside the biggest client chunks)
+        continue-on-error: true
+        run: |
+          mkdir -p shots/bundle
+          ls -S .output/public/assets/*.js | head -6 > shots/bundle/chunks.txt
+          for f in $(head -4 shots/bundle/chunks.txt); do
+            n=$(basename "$f" .js)
+            bunx source-map-explorer@2.5.3 "$f" "$f.map" --json --no-border-checks > "shots/bundle/$n.json" 2>/dev/null || true
+          done
+          ls -la shots/bundle
 
       - name: Install Playwright Chromium
         run: bunx playwright install --with-deps chromium

@@ -4,6 +4,16 @@ import { buildRouteHead } from "@/lib/seo-head";
 import { fitTitle } from "@/lib/seo/fitTitle";
 import { getAllTours, mergeItinerary } from "@/data/travelData";
 import { getSignaturePackageBySlug, signaturePackageToTourPackage } from "@/data/signaturePackages";
+import { reviewedPhoto } from "@/data/tourPhotos";
+import { photoFor } from "@/data/v2TourImages";
+import { responsiveImage } from "@/data/cdnImages";
+
+/** The hero photo exactly as TourDetailV2 renders it, so the preload fetches the same file. */
+function heroPhoto(slug: string, tour: { id: string | number; title: string; location?: string }) {
+  const key = getSignaturePackageBySlug(slug) ? `sig-${slug}` : `tour-${tour.id}`;
+  const src = reviewedPhoto(key) || photoFor(tour.title, tour.location);
+  return { src, responsive: responsiveImage(src) };
+}
 
 const toSlug = (title: string) =>
   title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -93,7 +103,13 @@ export const Route = createFileRoute("/tours/$slug")({
         description: String(tour.description).slice(0, 155),
         keywords: `${tour.title}, ${tour.location} tour, ${tour.category} tour, ${tour.duration} Meghalaya package, XTSY Travel`,
         image: tour.image,
-        preloadImage: tour.image,
+        // Same file, srcset and sizes as the page's <Photo> (default sizes), or phones download it twice.
+        ...(() => {
+          const h = heroPhoto(slug, tour);
+          return h.responsive
+            ? { preloadImage: h.responsive.src, preloadImageSrcSet: h.responsive.srcSet, preloadImageSizes: "(max-width: 768px) 100vw, 50vw" }
+            : { preloadImage: h.src };
+        })(),
         ogType: "product",
         jsonLd: [tourSchema, breadcrumb],
       });

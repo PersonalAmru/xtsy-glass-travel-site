@@ -47,6 +47,9 @@ const ConsentDebugPanel = lazy(() => import("@/components/debug/ConsentDebugPane
 // Inline head scripts ported verbatim from index.html
 // ---------------------------------------------------------------------------
 
+/** Loads the legacy Google Fonts stylesheet after first paint (it used to block every page). */
+const LEGACY_FONTS_SCRIPT = `(function(){function add(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap';document.head.appendChild(l);}if(document.readyState==='complete')add();else window.addEventListener('load',add,{once:true});})();`;
+
 const HYDRATED_CLASS_SCRIPT = `document.documentElement.classList.add('hydrated');`;
 
 const DATALAYER_INIT_SCRIPT = `
@@ -193,11 +196,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/manrope-latin-ext.woff2", crossOrigin: "anonymous" },
       { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/staatliches-latin-ext.woff2", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "/fonts/fonts.css" },
-      // Legacy fonts still used by older admin screens.
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap",
-      },
+      // Legacy Playfair/Josefin fonts (older pages only) load after the page, not render-blocking:
+      // see LEGACY_FONTS_SCRIPT.
       {
         rel: "icon",
         type: "image/png",
@@ -213,6 +213,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     scripts: [
       { children: HYDRATED_CLASS_SCRIPT },
+      { children: LEGACY_FONTS_SCRIPT },
       { children: DATALAYER_INIT_SCRIPT },
       { children: GTM_GATED_LOADER_SCRIPT },
       { type: "application/ld+json", children: JSONLD_WEBSITE },

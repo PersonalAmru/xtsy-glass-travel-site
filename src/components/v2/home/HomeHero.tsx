@@ -82,7 +82,11 @@ export default function HomeHero() {
   return (
     <>
       <section className="relative isolate flex h-[640px] flex-col justify-end overflow-hidden bg-xt-ink px-5 py-12 text-xt-paper sm:h-[max(600px,68vh)] sm:px-8 lg:px-14">
-        <img src={hero?.src ?? HERO_IMAGE.src} srcSet={hero?.srcSet} sizes="100vw" width={hero?.w} height={hero?.h} alt={HERO_IMAGE.alt} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: HERO_IMAGE.position }} fetchPriority="high" decoding="async" />
+        <picture>
+          {/* Phones get a portrait crop of the same framing — lighter and sharper than a cropped landscape. */}
+          <source media="(max-width: 767px)" srcSet={HERO_IMAGE.mobile.srcSet} sizes="100vw" />
+          <img src={hero?.src ?? HERO_IMAGE.src} srcSet={hero?.srcSet} sizes="100vw" width={hero?.w} height={hero?.h} alt={HERO_IMAGE.alt} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: HERO_IMAGE.position }} fetchPriority="high" decoding="async" />
+        </picture>
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-xt-ink via-xt-ink/60 to-xt-ink/20" />
         <div className="max-w-5xl">
           <p className="xt-eyebrow mb-4 text-sm uppercase text-[#F2B8C2]!">Best hostel in Shillong · New Shillong Township</p>
