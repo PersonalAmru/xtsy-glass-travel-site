@@ -2,7 +2,7 @@
  {
   "url": "/",
   "status": 200,
-  "words": 1709,
+  "words": 1706,
   "findings": [
    {
     "rule": "price:female dorm",
@@ -43,7 +43,7 @@
    ],
    "faqSchemaQuestions": 6,
    "questionHeadings": 2,
-   "firstParagraphWords": 20,
+   "firstParagraphWords": 19,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": false

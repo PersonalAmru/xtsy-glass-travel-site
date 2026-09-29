@@ -1,5 +1,5 @@
 .output/public/assets/seoPages-Cu78F3gc.js
-.output/public/assets/index-ZKUEthkV.js
+.output/public/assets/index-BqNb8Ufd.js
 .output/public/assets/generateCategoricalChart-DkbXbkj8.js
 .output/public/assets/client-kMGS092h.js
 .output/public/assets/sentryInit-s9KH_vqE.js
