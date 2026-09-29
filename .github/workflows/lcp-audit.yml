@@ -52,6 +52,9 @@ jobs:
           OUT_DIR: health
           LCP_ROUTES: ${{ inputs.routes }}
           PSI: ${{ inputs.psi }}
+          # Optional: add a free PageSpeed Insights API key as the repo secret PSI_KEY for real-user
+          # (CrUX) data — the shared anonymous quota is usually exhausted.
+          PSI_KEY: ${{ secrets.PSI_KEY }}
 
       - name: Publish report
         if: always()
