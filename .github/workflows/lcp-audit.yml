@@ -1,0 +1,75 @@
+name: LCP audit — live site (manual)
+
+# On-demand only — no schedule. Measures LCP (and its four sub-parts) on the LIVE site for one
+# route per template on an emulated mid-range phone, plus PageSpeed field data (real users).
+# Saves the report to the ci-screenshots branch (lcp-live/).
+
+on:
+  workflow_dispatch:
+    inputs:
+      routes:
+        description: 'Comma-separated paths (blank = one per template)'
+        required: false
+        default: ''
+      psi:
+        description: 'Also fetch PageSpeed Insights field + lab data (1/0)'
+        required: false
+        default: '1'
+
+permissions:
+  contents: write
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${GITHUB_REF_NAME}"
+          git checkout -q FETCH_HEAD
+
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile || bun install
+
+      - name: Install Playwright Chromium
+        run: bunx playwright install --with-deps chromium
+
+      - name: LCP audit on the live site
+        run: bunx tsx scripts/audit/lcp-audit.ts
+        env:
+          BASE_URL: https://xtsy.one
+          OUT_DIR: health
+          LCP_ROUTES: ${{ inputs.routes }}
+          PSI: ${{ inputs.psi }}
+
+      - name: Publish report
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/pub && cd /tmp/pub
+          git init -q .
+          git config user.name "xtsy-ci"
+          git config user.email "ci@xtsy.one"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git fetch --depth=1 origin ci-screenshots 2>/dev/null; then git checkout -q FETCH_HEAD; else git checkout -q --orphan ci-screenshots; fi
+          rm -rf lcp-live && mkdir -p lcp-live
+          cp -r "$GITHUB_WORKSPACE/health/." lcp-live/
+          git add -A
+          git commit -q -m "LCP live audit @ $(date -u +%FT%TZ)" || exit 0
+          for i in 1 2 3 4 5; do
+            git push -q origin HEAD:ci-screenshots && exit 0
+            git fetch -q --depth=1 origin ci-screenshots && git rebase -q FETCH_HEAD || true
+            sleep 5
+          done
+          exit 1

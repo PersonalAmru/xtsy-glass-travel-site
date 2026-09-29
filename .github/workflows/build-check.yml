@@ -172,6 +172,14 @@ jobs:
           BASELINE_URL: https://xtsy.one
           PERF_ROUTES: /,/best-hostel-in-shillong,/cheap-hostels-shillong,/shillong-dormitory,/xtsy-270
 
+      - name: LCP audit (one route per key template, mobile throttled)
+        continue-on-error: true
+        run: bunx tsx scripts/audit/lcp-audit.ts
+        env:
+          BASE_URL: ${{ env.PROD_URL }}
+          OUT_DIR: shots/lcp
+          LCP_ROUTES: /,/best-hostel-in-shillong,/xtsy-270,/tours/5n-6d-tawang-tour,/destinations/meghalaya/shillong,/living-root-bridges-meghalaya,/tab-bistro,/faq
+
       - name: Whole-site navigation crawl (links, orphans, depth, duplicates, design)
         continue-on-error: true
         run: bun scripts/audit/site-crawl.ts
