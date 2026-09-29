@@ -29,7 +29,7 @@ const HostelNearMe = memo(() => {
       'Backpacker hostel on Mawdiangdiang Road, New Shillong Township, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University — dorm beds from ₹389, 4.8★ from 161 Google reviews.',
     url: 'https://xtsy.one/hostel-near-me',
     telephone: '+918837317070',
-    email: 'stay@xtsy.one',
+    email: 'booking@xtsy.one',
     priceRange: '₹389 - ₹9,999',
     currenciesAccepted: 'INR',
     paymentAccepted: 'Cash, UPI, Credit Card, Debit Card, Net Banking',

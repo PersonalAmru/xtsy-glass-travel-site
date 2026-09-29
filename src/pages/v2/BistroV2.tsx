@@ -60,7 +60,7 @@ export default function BistroV2() {
           media={
             <div className="relative">
               <Photo src={first(IMG.bistro)} alt="TAB Bistro by XTSY" eager tone="sand" className="aspect-[628/600] rounded-[32px]" />
-              <div className="xt-float absolute right-6 top-6 rounded-xl bg-xt-ink px-4 py-3 font-display text-[18px] tracking-[0.1em] text-xt-paper">Rooftop deck · coming soon</div>
+              <div className="xt-float absolute right-6 top-6 rounded-xl bg-xt-ink px-4 py-3 font-display text-[18px] tracking-[0.1em] text-xt-paper">Rooftop terrace · café coming soon</div>
             </div>
           }
         />

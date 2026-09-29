@@ -8,7 +8,7 @@ export const tabBistroFaqs = [
   },
   {
     q: "Is TAB Bistro a rooftop restaurant in Shillong?",
-    a: "TAB Bistro is launching a rooftop dining deck with panoramic pine-valley views, alongside its forest dining and BBQ experiences. It is one of the newest rooftop restaurant and café experiences in Shillong.",
+    a: "TAB Bistro is launching a rooftop dining deck with panoramic pine-valley views, alongside its forest dining and BBQ experiences.",
   },
   {
     q: "What are the opening hours of TAB Bistro?",

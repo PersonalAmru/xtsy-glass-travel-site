@@ -37,7 +37,7 @@ const StayEatExplore = ({
     {
       icon: UtensilsCrossed,
       title: 'Where to Eat',
-      desc: 'Refuel at TAB Bistro by XTSY — multi-cuisine dining, breakfast, rooftop seating, and the best café experience in Shillong.',
+      desc: 'Refuel at TAB Bistro by XTSY — multi-cuisine dining, breakfast and café favourites, with a rooftop terrace café coming soon.',
       to: '/tab-bistro',
       cta: 'Explore the Menu',
     },

@@ -49,7 +49,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
           "Zion offers basic internet suitable for light browsing.",
           "Dedicated workstations are a standard feature at XTSY.",
           "Zion focuses on essential bedding and shared lockers.",
-          "XTSY features a rooftop space for dining and relaxing."
+          "XTSY has a rooftop terrace for relaxing; a rooftop café is coming soon."
         ],
         "heading": "Amenities and Connectivity",
         "content": "Modern travellers often prioritise connectivity and comfort features when choosing their Shillong base."
@@ -90,7 +90,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "What are the main amenities at XTSY vs Zion?",
-        "answer": "XTSY offers high-speed Wi-Fi, dedicated workstations, a rooftop cafe, and a travel desk for booking Meghalaya tour packages. Zion Backpackers provides basic communal kitchens, bonfire areas, and shared lounge spaces for socialising."
+        "answer": "XTSY offers high-speed Wi-Fi, dedicated workstations, a rooftop terrace, and a travel desk for booking Meghalaya tour packages. Zion Backpackers provides basic communal kitchens, bonfire areas, and shared lounge spaces for socialising."
       },
       {
         "answer": "Yes, XTSY is highly rated for digital nomads due to its stable internet and ergonomic seating. Zion is better suited for traditional backpackers who prioritse offline social interaction and a slower pace of life.",

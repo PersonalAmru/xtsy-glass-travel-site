@@ -1,5 +1,5 @@
-# XTSY ONE Ventures Pvt Ltd — Vulnerability Disclosure
-Contact: mailto:security@xtsy.one
+# XTSY Ventures Private Limited — Vulnerability Disclosure
+Contact: mailto:admin@xtsy.one
 Contact: tel:+91-8837317070
 Expires: 2027-12-31T23:59:59Z
 Preferred-Languages: en

@@ -93,7 +93,7 @@ export default function SiteFooter() {
             <p className="m-0 text-[14px] leading-loose">
               <a href="tel:+918837317070" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">{WHATSAPP_DISPLAY}</a>
               {' · '}
-              <a href="mailto:admin@xtsy.one" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">admin@xtsy.one</a>
+              <a href="mailto:booking@xtsy.one" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">booking@xtsy.one</a>
               <br />
               <a href="https://www.instagram.com/xtsyhostel" target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">Instagram</a>
               {' · '}
@@ -114,7 +114,7 @@ export default function SiteFooter() {
           ))}
         </div>
         <div className="mt-12 flex flex-col gap-3 border-t border-[#383D52] pt-5 text-[13px] text-[#A3ABC2] md:flex-row md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} XTSY · XTSY Travellers Hostel · Experience by XTSY · TAB Bistro by XTSY · XTSY Voyage</span>
+          <span>© {new Date().getFullYear()} XTSY Ventures Private Limited. XTSY is a trademark of XTSY Ventures Private Limited. XTSY Travellers Hostel · Experience by XTSY · TAB Bistro by XTSY · XTSY Voyage</span>
           <span className="font-display text-[20px] tracking-[0.25em] text-xt-rose">Travel.Sleep.Binge</span>
         </div>
       </footer>

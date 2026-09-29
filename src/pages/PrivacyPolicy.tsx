@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet-async';
  * Google OAuth compliant privacy policy with comprehensive data protection information
  */
 export const PrivacyPolicy: React.FC = () => {
-  const lastUpdated = "January 5, 2025";
+  const lastUpdated = "September 29, 2026";
   
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -28,7 +28,7 @@ export const PrivacyPolicy: React.FC = () => {
             <section>
               <h2 className="text-2xl font-semibold mb-4 text-foreground">1. Introduction</h2>
               <p>
-                Welcome to XTSY ("Company", "we", "our", or "us"). XTSY is a hospitality and tourism 
+                Welcome to XTSY, operated by XTSY Ventures Private Limited ("XTSY", "Company", "we", "our", or "us"). XTSY is a hospitality and tourism 
                 company operating traveller hostels, luxury accommodations, and curated travel experiences 
                 in Northeast India. We are committed to protecting your personal information and your 
                 right to privacy.

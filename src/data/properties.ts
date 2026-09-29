@@ -141,7 +141,7 @@ export const PROPERTIES: Record<string, Property> = {
     amenities: ['Riverside Pitches', 'Shared Washrooms', 'Bonfire (chargeable)', 'Water Activities (chargeable)', 'Dinner On Request'],
     priceRange: { min: 800, max: 1000 },
     rating: 4.8,
-    reviewCount: 24,
+    reviewCount: 161, // XTSY Google reviews (campsite is booked via XTSY)
     category: 'budget',
     roomTypeIds: [], // experience-based; no room cards
     isActive: true,

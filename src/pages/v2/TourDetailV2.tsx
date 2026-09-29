@@ -15,6 +15,7 @@ import { photoFor } from '@/data/v2TourImages';
 import { reviewedPhoto, reviewedAlt, photoCredit } from '@/data/tourPhotos';
 import { PageShell, Breadcrumbs, PAD } from '@/components/v2/blocks';
 import { Photo, waLink } from '@/components/v2/primitives';
+import { GOOGLE_RATING } from '@/data/brandFacts';
 
 const toSlug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 type Tab = 'overview' | 'itinerary' | 'inclusions' | 'faqs';
@@ -139,7 +140,7 @@ export default function TourDetailV2() {
             </div>
             <h1 className="xt-in xt-d1 xt-display m-0 text-[52px] leading-[0.9] sm:text-[80px]">{tour.title}</h1>
             <div className="xt-in xt-d2 flex flex-wrap gap-x-5 gap-y-2 text-[15px] font-bold text-xt-mute">
-              <span>★ {tour.rating}</span>
+              <span title="XTSY's rating on Google">★ {GOOGLE_RATING.label}</span>
               <span>{tour.location}</span>
               <span>{tour.duration}</span>
               {tour.groupSize && <span>{tour.groupSize}</span>}

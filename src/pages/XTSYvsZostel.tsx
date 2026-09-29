@@ -48,7 +48,7 @@ const XTSYvsZostel = () => {
     {
       brand: "XTSY Travel",
       tagline: "Self-Sustaining Ecosystem — No Franchise Model",
-      model: "No franchise model. Curated private tours from solo to groups of 50+. XTSY One — single, accountable entity.",
+      model: "No franchise model. Curated private tours from solo to groups of 50+. XTSY Ventures Private Limited — single, accountable entity.",
       nePresence: "8 NE states — HQ in Shillong, govt partnerships, Experience by XTSY",
       pricing: "Transparent pricing, custom itineraries, year-round availability",
       segments: "Solo, couples, families, corporates, schools, groups 50+, pets",
@@ -116,7 +116,7 @@ const XTSYvsZostel = () => {
     },
     {
       icon: Shield,
-      title: "Powered by XTSY One",
+      title: "Powered by XTSY Ventures Private Limited",
       description: "Professionally registered & managed hospitality brand",
       detail: "Corporate backing ensures quality, reliability, and accountability — not just a hostel name",
     },
@@ -143,7 +143,7 @@ const XTSYvsZostel = () => {
     { feature: "Corporate Retreats", xtsy: true, zostel: false, xtsyNote: "8+ Retreats" },
     { feature: "International Tours", xtsy: true, zostel: false, xtsyNote: "Cross-border" },
     { feature: "Pet-Friendly Stays", xtsy: true, zostel: false },
-    { feature: "No Franchise Model", xtsy: true, zostel: false, xtsyNote: "XTSY One", zostelNote: "Franchise model" },
+    { feature: "No Franchise Model", xtsy: true, zostel: false, xtsyNote: "XTSY Ventures Private Limited", zostelNote: "Franchise model" },
     { feature: "Government Tourism Partner", xtsy: true, zostel: false, xtsyNote: "Arunachal Pradesh" },
     { feature: "Award Recognition", xtsy: true, zostel: false, xtsyNote: "NEITA 2025 nominee" },
     { feature: "NE States Coverage", xtsy: "8 States", zostel: "3–4 Franchises" },
@@ -153,12 +153,12 @@ const XTSYvsZostel = () => {
     { feature: "Price Transparency", xtsy: true, zostel: false, xtsyNote: "Clear pricing", zostelNote: "Hidden add-ons" },
     { feature: "Tour Package Ecosystem", xtsy: true, zostel: false, xtsyNote: "40+ Packages" },
     { feature: "Female-Only Dorms", xtsy: true, zostel: true },
-    { feature: "Professional Management (LLP)", xtsy: true, zostel: true, xtsyNote: "XTSY One" },
+    { feature: "Professional Management (Private Limited)", xtsy: true, zostel: true, xtsyNote: "XTSY Ventures Private Limited" },
   ];
 
   // Business model comparison data
   const businessModelData = [
-    { aspect: "Ownership", xtsy: "Self-sustaining ecosystem by XTSY One — single, accountable entity", zostel: "Franchise/aggregator — Zostel Plus, Homes, Selections are partner-operated properties" },
+    { aspect: "Ownership", xtsy: "Self-sustaining ecosystem by XTSY Ventures Private Limited — single, accountable entity", zostel: "Franchise/aggregator — Zostel Plus, Homes, Selections are partner-operated properties" },
     { aspect: "Quality Control", xtsy: "Direct control over every guest experience, staff training, and maintenance", zostel: "Varies by franchise partner — inconsistent quality across locations" },
     { aspect: "NE Tour Model", xtsy: "Local infrastructure + govt partnerships + year-round packages", zostel: "Zo Trips: outsourced group bus tours — pre-packaged, fixed dates, third-party logistics" },
     { aspect: "Revenue Model", xtsy: "Direct hospitality revenue — aligned with guest satisfaction", zostel: "Franchise fees + commission — incentive is scale, not quality" },
@@ -209,7 +209,7 @@ const XTSYvsZostel = () => {
     },
     {
       question: "Is Zostel a franchise? Does that affect quality?",
-      answer: "Yes. Zostel operates multiple tiers — Zostel (hostels), Zostel Plus (premium partner properties), Zostel Homes (homestays), and Zo Trips (outsourced group tours). Each is run by a different franchise partner, meaning quality, cleanliness, and service vary location to location. XTSY is directly owned and operated by XTSY One — one team, one standard, consistently high quality.",
+      answer: "Yes. Zostel operates multiple tiers — Zostel (hostels), Zostel Plus (premium partner properties), Zostel Homes (homestays), and Zo Trips (outsourced group tours). Each is run by a different franchise partner, meaning quality, cleanliness, and service vary location to location. XTSY is directly owned and operated by XTSY Ventures Private Limited — one team, one standard, consistently high quality.",
     },
     {
       question: "Does Zostel operate across all 8 Northeast states like XTSY?",
@@ -322,7 +322,7 @@ const XTSYvsZostel = () => {
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Zostel runs 5 sub-brands (Zostel, Plus, Homes, Trips, House) through franchise partners. 
-              XTSY is one brand, one team, one standard — directly operated by XTSY One.
+              XTSY is one brand, one team, one standard — directly operated by XTSY Ventures Private Limited.
             </p>
           </div>
 
@@ -335,7 +335,7 @@ const XTSYvsZostel = () => {
                     <Shield className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <CardTitle className="text-xl text-foreground">XTSY One</CardTitle>
+                    <CardTitle className="text-xl text-foreground">XTSY Ventures Private Limited</CardTitle>
                     <CardDescription>Self-Sustaining Ecosystem</CardDescription>
                   </div>
                 </div>
@@ -878,7 +878,7 @@ const XTSYvsZostel = () => {
             Ready for the XTSY Difference?
           </h2>
           <p className="text-lg text-primary-foreground/90 mb-8 max-w-3xl mx-auto">
-            Join thousands of guests who chose XTSY One's self-sustaining ecosystem over franchise stays for their Northeast India journey — 
+            Join thousands of guests who chose XTSY Ventures Private Limited's self-sustaining ecosystem over franchise stays for their Northeast India journey — 
             from solo backpackers to 50-person corporate teams.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

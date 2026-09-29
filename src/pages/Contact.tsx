@@ -15,8 +15,8 @@ import { Phone, Mail, MapPin, MessageCircle, Clock, Building2, Globe, ShieldChec
 const Contact: React.FC = () => {
   const phone = '+91 8837317070';
   const phoneTel = '+918837317070';
-  const email = 'hello@xtsy.one';
-  const supportEmail = 'support@xtsy.one';
+  const email = 'booking@xtsy.one';
+  const supportEmail = 'admin@xtsy.one';
   const whatsappUrl = `https://wa.me/${phoneTel.replace('+', '')}?text=${encodeURIComponent("Hi XTSY! I'd like to get in touch.")}`;
 
   return (
@@ -25,7 +25,7 @@ const Contact: React.FC = () => {
         <title>Contact Us — XTSY | Support, Bookings & Enquiries</title>
         <meta
           name="description"
-          content="Contact XTSY for bookings, support, partnerships and tour enquiries. Call +91 8837317070, WhatsApp us, or email hello@xtsy.one. Based in Shillong, Meghalaya."
+          content="Contact XTSY for bookings, support, partnerships and tour enquiries. Call +91 8837317070, WhatsApp us, or email booking@xtsy.one. Based in Shillong, Meghalaya."
         />
         <link rel="canonical" href="https://xtsy.one/contact" />
         <meta property="og:title" content="Contact XTSY — Bookings & Support" />

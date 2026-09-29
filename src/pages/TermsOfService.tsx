@@ -8,8 +8,8 @@ import { Helmet } from 'react-helmet-async';
  * Comprehensive terms covering accommodation bookings and user agreements
  */
 export const TermsOfService: React.FC = () => {
-  const lastUpdated = "January 5, 2025";
-  const effectiveDate = "January 5, 2025";
+  const lastUpdated = "September 29, 2026";
+  const effectiveDate = "September 29, 2026";
   
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -31,7 +31,7 @@ export const TermsOfService: React.FC = () => {
               <h2 className="text-2xl font-semibold mb-4 text-foreground">1. Agreement to Terms</h2>
               <p>
                 These Terms of Service ("Terms") constitute a legally binding agreement between you 
-                ("User", "you", or "your") and XTSY ("Company", "we", "our", or "us") governing your 
+                ("User", "you", or "your") and XTSY Ventures Private Limited ("XTSY", "Company", "we", "our", or "us") governing your 
                 access to and use of the xtsy.one website and all related services, including accommodation 
                 bookings, travel packages, and any other services we offer.
               </p>
@@ -223,7 +223,7 @@ export const TermsOfService: React.FC = () => {
               <h2 className="text-2xl font-semibold mb-4 text-foreground">8. Intellectual Property</h2>
               <p>
                 All content on our website, including text, images, logos, and software, is owned by 
-                or licensed to XTSY and protected by intellectual property laws. You may not:
+                or licensed to XTSY Ventures Private Limited and protected by intellectual property laws. XTSY is a trademark of XTSY Ventures Private Limited. You may not:
               </p>
               <ul className="list-disc pl-6 space-y-2 mt-3">
                 <li>Copy, modify, or distribute our content without written permission</li>

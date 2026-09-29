@@ -9,7 +9,7 @@ import { CreditCard, XCircle, Calendar, Shield, AlertTriangle, FileText, IndianR
  * Comprehensive pricing, GST information, and cancellation policies for accommodation and tourism services
  */
 export const PricingCancellationPolicy: React.FC = () => {
-  const lastUpdated = "January 18, 2025";
+  const lastUpdated = "September 29, 2026";
   
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -309,7 +309,7 @@ export const PricingCancellationPolicy: React.FC = () => {
               
               <p className="mb-4">To modify your booking, contact us with your booking reference:</p>
               <div className="bg-muted p-6 rounded-lg space-y-3">
-                <p><strong>Email:</strong> <a href="mailto:booking@xtsy.one" className="text-primary hover:underline">booking@xtsy.one</a></p>
+                <p><strong>Email:</strong> <a href="mailto:admin@xtsy.one" className="text-primary hover:underline">admin@xtsy.one</a></p>
                 <p><strong>Response Time:</strong> Within 24 hours (typically 2-4 hours)</p>
               </div>
               

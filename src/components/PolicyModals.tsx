@@ -102,7 +102,7 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
           </h4>
           <p className="text-sm text-gray-700 mb-3">To modify your booking, contact us with:</p>
           <ul className="text-sm text-gray-700 space-y-1">
-            <li>• <strong>Email:</strong> booking@xtsy.one</li>
+            <li>• <strong>Email:</strong> admin@xtsy.one</li>
           </ul>
           <p className="text-sm text-gray-700 mt-3">Please include:</p>
           <ul className="text-xs text-gray-600 space-y-1 mt-1">
@@ -407,7 +407,7 @@ const PolicyModal = ({ isOpen, onClose, type }: PolicyModalProps) => {
           <p>Last updated: December 2024</p>
           <p className="mt-1">
             For questions about these policies, contact us at{" "}
-            <span className="text-orange-600 font-medium">booking@xtsy.one</span>
+            <span className="text-orange-600 font-medium">admin@xtsy.one</span>
           </p>
         </div>
       </DialogContent>

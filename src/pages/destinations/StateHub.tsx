@@ -38,7 +38,7 @@ const StateHub = () => {
     about: { '@type': 'Place', name: state.name, address: { '@type': 'PostalAddress', addressRegion: state.name, addressCountry: 'IN' } },
     publisher: {
       '@type': 'Organization',
-      name: 'XTSY ONE Ventures Pvt Ltd',
+      name: 'XTSY Ventures Private Limited',
       url: 'https://xtsy.one',
       logo: { '@type': 'ImageObject', url: 'https://xtsy.one/xtsy-logo.png' },
     },

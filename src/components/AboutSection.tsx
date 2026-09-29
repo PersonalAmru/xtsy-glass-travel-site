@@ -20,7 +20,7 @@ const AboutSection = () => {
     }
 
     const metaKeywords = document.querySelector('meta[name="keywords"]');
-    const keywordsContent = 'XTSY, travel brand India, 270 glass suite, biggest hostel northeast India, luxury stargazing India, XTSY ONE LLP, Shillong hostel, Northeast tourism, award-nominated hospitality, best honeymoon stay India, backpacker hostel, group travel India';
+    const keywordsContent = 'XTSY, travel brand India, 270 glass suite, biggest hostel northeast India, luxury stargazing India, XTSY Ventures Private Limited, Shillong hostel, Northeast tourism, award-nominated hospitality, best honeymoon stay India, backpacker hostel, group travel India';
     if (metaKeywords) {
       metaKeywords.setAttribute('content', keywordsContent);
     } else {
@@ -176,7 +176,7 @@ const AboutSection = () => {
             About XTSY Travellers Hostel & Luxury
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
-            <strong className="text-slate-800">XTSY is where innovation meets exploration.</strong> Based in Shillong and powered by <strong className="text-slate-800">XTSY ONE LLP</strong>, we are redefining how India travels — with experiences that feel personal, architectural, immersive, and unforgettable.
+            <strong className="text-slate-800">XTSY is where innovation meets exploration.</strong> Based in Shillong and powered by <strong className="text-slate-800">XTSY Ventures Private Limited</strong>, we are redefining how India travels — with experiences that feel personal, architectural, immersive, and unforgettable.
           </p>
           <div className="mt-6 flex flex-wrap gap-3 justify-center">
             <span className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full text-sm font-medium">Northeast India</span>

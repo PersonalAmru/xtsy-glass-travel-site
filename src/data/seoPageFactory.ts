@@ -195,7 +195,7 @@ const buildPage = (params: {
   // Phase 2 brand rewrite: prepend the canonical brand opener (only if not
   // already present) and append Why-XTSY + About-Group sections to every
   // programmatic page. Single source of truth: src/data/brandFacts.ts.
-  const introHasBrand = /NEITA|270°|XTSY ONE Ventures/i.test(params.intro);
+  const introHasBrand = /NEITA|270°|XTSY (ONE )?Ventures/i.test(params.intro);
   const intro = introHasBrand ? params.intro : `${BRAND_OPENER} ${params.intro}`;
   const sections = [...params.sections, whyXTSYSection()];
   return {

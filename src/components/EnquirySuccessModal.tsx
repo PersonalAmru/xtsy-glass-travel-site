@@ -139,7 +139,7 @@ const EnquirySuccessModal = ({
       <h1>XTSY Travellers Hostel</h1>
       <p>Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018</p>
       <p>GSTIN: 17QSKPK1714H1ZE &nbsp;|&nbsp; PAN: QSKPK1714H</p>
-      <p>Email: hello@xtsy.in &nbsp;|&nbsp; Web: xtsy.in</p>
+      <p>Email: admin@xtsy.one &nbsp;|&nbsp; Web: xtsy.one</p>
     </div>
     <div style="text-align:right">
       <div class="badge">⏳ Quotation / Pro-forma</div>

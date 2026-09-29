@@ -1,4 +1,4 @@
 # Moved — see /.well-known/security.txt (RFC 9116)
-Contact: mailto:security@xtsy.one
+Contact: mailto:admin@xtsy.one
 Expires: 2027-12-31T23:59:59Z
 Canonical: https://xtsy.one/.well-known/security.txt

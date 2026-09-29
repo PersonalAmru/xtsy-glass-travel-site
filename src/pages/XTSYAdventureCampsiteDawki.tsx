@@ -22,6 +22,7 @@ import UnifiedImage from "@/components/UnifiedImage";
 import InstagramPreviewModal from "@/components/InstagramPreviewModal";
 
 import { DAWKI_CAMPING_IMAGES, getPropertyById } from "@/data/properties";
+import { GOOGLE_RATING } from '@/data/brandFacts';
 
 const WHATSAPP_BASE = "https://wa.me/918837317070";
 const wa = (msg: string) => `${WHATSAPP_BASE}?text=${encodeURIComponent(msg)}`;
@@ -99,7 +100,7 @@ const CampsiteSEO = {
     { "@type": "LocationFeatureSpecification", name: "Water Activities", value: true },
     { "@type": "LocationFeatureSpecification", name: "Shared Washrooms", value: true },
   ],
-  aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "24", bestRating: "5" },
+  aggregateRating: { "@type": "AggregateRating", ratingValue: GOOGLE_RATING.value, reviewCount: String(GOOGLE_RATING.count), bestRating: "5" },
 };
 
 const XTSYAdventureCampsiteDawki = memo(() => {
@@ -162,7 +163,7 @@ const XTSYAdventureCampsiteDawki = memo(() => {
               </Button>
             </div>
             <div className="mt-6 flex items-center gap-4 text-sm text-white/80">
-              <span className="inline-flex items-center gap-1"><Star className="w-4 h-4 fill-yellow-400 text-yellow-400" /> 4.8 · 24 reviews</span>
+              <span className="inline-flex items-center gap-1"><Star className="w-4 h-4 fill-yellow-400 text-yellow-400" /> {GOOGLE_RATING.label} (XTSY)</span>
               <span className="inline-flex items-center gap-1"><MapPin className="w-4 h-4" /> Dawki, Meghalaya</span>
               <span className="inline-flex items-center gap-1"><Users className="w-4 h-4" /> 80+ guests</span>
             </div>

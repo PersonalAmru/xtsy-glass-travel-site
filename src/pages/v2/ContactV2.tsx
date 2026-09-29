@@ -10,14 +10,14 @@ import { SpinningMark, waLink, WHATSAPP_DISPLAY } from '@/components/v2/primitiv
 
 const PHONE = '+91 8837317070';
 const PHONE_TEL = '+918837317070';
-const EMAIL = 'hello@xtsy.one';
-const SUPPORT = 'support@xtsy.one';
+const EMAIL = 'booking@xtsy.one';
+const SUPPORT = 'admin@xtsy.one';
 const ADDRESS = 'XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018, India';
 
 const TOPICS = ['A room or dorm bed', 'Experience by XTSY', 'A tour package', 'Bike or car rental', 'Workation', 'TAB Bistro or catering', 'Something else'];
 
 const CONTACT_FAQS = [
-  { q: 'What is the fastest way to reach XTSY?', a: 'WhatsApp the XTSY desk on +91 88373 17070 — it is answered day and night. You can also email hello@xtsy.one for bookings and partnerships, or support@xtsy.one for billing.' },
+  { q: 'What is the fastest way to reach XTSY?', a: 'WhatsApp the XTSY desk on +91 88373 17070 — it is answered day and night. You can also email booking@xtsy.one for bookings and enquiries, or admin@xtsy.one for billing, invoices and policies.' },
   { q: 'What are the check-in and check-out times?', a: 'Check-in is from 11 AM and check-out is at 10 AM. Arriving late? Message the desk on WhatsApp so we can plan your arrival.' },
   { q: 'Can I cancel my booking?', a: 'There is no free cancellation: the booking amount is non-refundable. You can change your dates once within 90 days of the original check-in (ask at least 48 hours before), subject to availability.' },
   { q: 'Can I bring my pet?', a: 'Cats and birds are most welcome. Dogs are accepted depending on breed and size. Contact the XTSY desk before booking for any additional charges.' },
@@ -41,7 +41,7 @@ export default function ContactV2() {
     <>
       <Helmet>
         <title>Contact Us — XTSY | Support, Bookings & Enquiries</title>
-        <meta name="description" content="Contact XTSY for bookings, support, partnerships and tour enquiries. Call or WhatsApp +91 8837317070, or email hello@xtsy.one. XTSY Travellers Hostel, New Shillong Township, Meghalaya." />
+        <meta name="description" content="Contact XTSY for bookings, support, partnerships and tour enquiries. Call or WhatsApp +91 8837317070, or email booking@xtsy.one. XTSY Travellers Hostel, New Shillong Township, Meghalaya." />
         <link rel="canonical" href="https://xtsy.one/contact" />
         <script type="application/ld+json">{JSON.stringify({
           '@context': 'https://schema.org',
@@ -110,7 +110,7 @@ export default function ContactV2() {
               <div><dt className="font-extrabold">GSTIN</dt><dd className="m-0 text-xt-mute">17QSKPK1714H1ZE</dd></div>
               <div><dt className="font-extrabold">Support hours</dt><dd className="m-0 text-xt-mute">Monday – Sunday, 8:00 AM – 10:00 PM IST (WhatsApp 24/7)</dd></div>
               <div><dt className="font-extrabold">Bookings & partnerships</dt><dd className="m-0"><a href={`mailto:${EMAIL}`} className="text-xt-crimson">{EMAIL}</a></dd></div>
-              <div><dt className="font-extrabold">Support, billing & invoices</dt><dd className="m-0"><a href={`mailto:${SUPPORT}`} className="text-xt-crimson">{SUPPORT}</a></dd></div>
+              <div><dt className="font-extrabold">Admin, billing, invoices & policies</dt><dd className="m-0"><a href={`mailto:${SUPPORT}`} className="text-xt-crimson">{SUPPORT}</a></dd></div>
               <div><dt className="font-extrabold">Policies</dt><dd className="m-0 flex flex-wrap gap-x-4 gap-y-1 font-bold">
                 <Link to="/terms-of-service" className="inline-block py-1 text-xt-crimson">Terms of Service</Link>
                 <Link to="/privacy-policy" className="inline-block py-1 text-xt-crimson">Privacy Policy</Link>
