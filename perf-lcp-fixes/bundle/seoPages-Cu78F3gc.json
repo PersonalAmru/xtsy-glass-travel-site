@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/seoPages-CVZXPd5o.js",
-      "totalBytes": 863871,
-      "mappedBytes": 863812,
+      "bundleName": ".output/public/assets/seoPages-Cu78F3gc.js",
+      "totalBytes": 863998,
+      "mappedBytes": 863939,
       "unmappedBytes": 59,
       "eolBytes": 0,
       "sourceMapCommentBytes": 0,
@@ -75,7 +75,7 @@
           "size": 10456
         },
         "../../../src/data/seoPages.ts": {
-          "size": 110697
+          "size": 110824
         },
         "[sourceMappingURL]": {
           "size": 0

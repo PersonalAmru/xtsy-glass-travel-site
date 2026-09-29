@@ -18,7 +18,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -40,7 +43,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -62,7 +68,11 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
   ]
  },
  {
@@ -82,6 +92,10 @@
    "bookAboveFold": false
   },
   "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
   ]
  },
@@ -104,7 +118,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -126,7 +143,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -148,7 +168,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -170,7 +193,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -192,7 +218,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -214,7 +243,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -236,7 +268,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -258,7 +293,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -280,7 +318,11 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header"
   ]
  },
  {
@@ -302,7 +344,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -324,7 +369,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -346,7 +394,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -368,7 +419,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -390,7 +444,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -412,7 +469,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -434,7 +494,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -456,7 +519,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -478,7 +544,11 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header"
   ]
  },
  {
@@ -500,7 +570,11 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
   ]
  },
  {
@@ -522,7 +596,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -544,7 +621,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -566,7 +646,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -588,7 +671,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -610,6 +696,10 @@
    "bookAboveFold": true
   },
   "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
   ]
  },
@@ -632,7 +722,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -654,7 +747,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -688,7 +784,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -710,7 +809,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -732,7 +834,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -754,7 +859,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -776,6 +884,9 @@
    "bookAboveFold": true
   },
   "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
   ]
  },
@@ -798,7 +909,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -818,6 +932,10 @@
    "bookAboveFold": false
   },
   "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
   ]
  },
@@ -840,7 +958,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -862,7 +983,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -884,7 +1008,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -906,7 +1033,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -928,7 +1058,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -950,7 +1083,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -972,7 +1108,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -994,7 +1133,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1016,7 +1158,11 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header"
   ]
  },
  {
@@ -1038,7 +1184,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1060,7 +1209,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1082,7 +1234,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1104,7 +1259,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1126,7 +1284,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1148,7 +1309,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1170,7 +1334,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1192,7 +1359,11 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
   ]
  },
  {
@@ -1214,7 +1385,11 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header"
   ]
  },
  {
@@ -1236,7 +1411,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1258,7 +1436,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1280,7 +1461,11 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0"
   ]
  },
  {
@@ -1302,7 +1487,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1324,7 +1512,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1346,6 +1537,10 @@
    "bookAboveFold": true
   },
   "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
    "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
   ]
  },
@@ -1368,7 +1563,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1390,7 +1588,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1424,7 +1625,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1446,7 +1650,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1468,7 +1675,10 @@
    "bookAboveFold": true
   },
   "errors": [
-   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/track-analytics' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' header",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  }
 ]

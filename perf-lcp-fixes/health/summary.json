@@ -1,6 +1,6 @@
 {
- "checkedAt": "2026-09-29T13:13:09.408Z",
- "site": "http://localhost:8080",
+ "checkedAt": "2026-09-29T13:47:11.625Z",
+ "site": "http://localhost:4174",
  "sitemaps": [
   {
    "sitemap": "https://xtsy.one/sitemap-static.xml",
@@ -54,13 +54,11 @@
   }
  ],
  "urlsChecked": 668,
- "healthy": 667,
- "withIssues": 1,
- "byIssue": {
-  "slow response": 1
- },
- "medianMs": 102,
- "p95Ms": 454,
+ "healthy": 668,
+ "withIssues": 0,
+ "byIssue": {},
+ "medianMs": 58,
+ "p95Ms": 123,
  "withStructuredData": 668,
  "withQuickAnswer": 482,
  "extra": {

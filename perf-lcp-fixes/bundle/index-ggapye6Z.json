@@ -1,10 +1,10 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-BTGZXKa2.js",
-      "totalBytes": 737858,
-      "mappedBytes": 720964,
-      "unmappedBytes": 16716,
+      "bundleName": ".output/public/assets/index-ggapye6Z.js",
+      "totalBytes": 733998,
+      "mappedBytes": 716964,
+      "unmappedBytes": 16856,
       "eolBytes": 178,
       "sourceMapCommentBytes": 0,
       "files": {
@@ -15,7 +15,7 @@
           "size": 28
         },
         "../../../node_modules/react-dom/cjs/react-dom-client.production.js": {
-          "size": 174849
+          "size": 174804
         },
         "../../../node_modules/react-dom/client.js": {
           "size": 217
@@ -72,7 +72,7 @@
           "size": 1309
         },
         "../../../node_modules/seroval/dist/index.js": {
-          "size": 21916
+          "size": 21914
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/ssr/serializer/transformer.js": {
           "size": 346
@@ -102,13 +102,7 @@
           "size": 158
         },
         "../../../node_modules/@tanstack/start-client-core/dist/esm/client/ServerFunctionSerializationAdapter.js": {
-          "size": 181
-        },
-        "../../../node_modules/cookie-es/dist/index.mjs": {
-          "size": 470
-        },
-        "../../../node_modules/@tanstack/router-core/dist/esm/ssr/headers.js": {
-          "size": 314
+          "size": 199
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/awaited.js": {
           "size": 319
@@ -117,10 +111,10 @@
           "size": 1316
         },
         "../../../node_modules/@tanstack/store/dist/esm/alien.js": {
-          "size": 2093
+          "size": 2091
         },
         "../../../node_modules/@tanstack/store/dist/esm/atom.js": {
-          "size": 2078
+          "size": 2055
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/useLoaderData.js": {
           "size": 149
@@ -153,13 +147,13 @@
           "size": 205
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/Match.js": {
-          "size": 2215
+          "size": 2221
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/Transitioner.js": {
-          "size": 772
+          "size": 769
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/Matches.js": {
-          "size": 586
+          "size": 584
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/routerStores.js": {
           "size": 68
@@ -168,7 +162,7 @@
           "size": 65
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/RouterProvider.js": {
-          "size": 325
+          "size": 324
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/Asset.js": {
           "size": 2023
@@ -181,15 +175,6 @@
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/Scripts.js": {
           "size": 626
-        },
-        "../../../node_modules/@tanstack/start-client-core/dist/esm/safeObjectMerge.js": {
-          "size": 380
-        },
-        "../../../node_modules/@tanstack/start-client-core/dist/esm/getStartContextServerOnly.js": {
-          "size": 93
-        },
-        "../../../node_modules/@tanstack/start-client-core/dist/esm/createServerFn.js": {
-          "size": 3115
         },
         "../../../node_modules/@tanstack/start-client-core/dist/esm/createMiddleware.js": {
           "size": 297
@@ -210,7 +195,7 @@
           "size": 403
         },
         "../../../node_modules/@tanstack/query-core/build/modern/utils.js": {
-          "size": 2882
+          "size": 2883
         },
         "../../../node_modules/@tanstack/query-core/build/modern/environmentManager.js": {
           "size": 81
@@ -234,7 +219,7 @@
           "size": 1216
         },
         "../../../node_modules/@tanstack/query-core/build/modern/query.js": {
-          "size": 6269
+          "size": 6268
         },
         "../../../node_modules/@tanstack/query-core/build/modern/mutation.js": {
           "size": 3305
@@ -249,7 +234,7 @@
           "size": 4023
         },
         "../../../src/utils/aiReferralTracking.ts": {
-          "size": 1677
+          "size": 1678
         },
         "../../../src/utils/chunkRecovery.ts": {
           "size": 1082
@@ -261,7 +246,7 @@
           "size": 1167
         },
         "../../../node_modules/@radix-ui/react-toast/dist/index.mjs": {
-          "size": 10908
+          "size": 10933
         },
         "../../../node_modules/lucide-react/dist/esm/icons/bath.js": {
           "size": 267
@@ -462,79 +447,76 @@
           "size": 486
         },
         "../../../src/routes/__root.tsx": {
-          "size": 10657
+          "size": 10658
         },
         "../../../src/lib/seo-head.ts": {
           "size": 1592
         },
         "../../../src/data/siteSchemas.ts": {
-          "size": 3113
+          "size": 3116
         },
         "../../../src/routes/index.tsx": {
           "size": 660
         },
-        "../../../src/lib/seo/pageData.functions.ts": {
-          "size": 306
-        },
         "../../../src/routes/$slug.tsx": {
-          "size": 525
+          "size": 710
         },
         "../../../src/routes/3-day-meghalaya-itinerary.tsx": {
-          "size": 488
+          "size": 491
         },
         "../../../src/routes/4x4-expedition-meghalaya.tsx": {
-          "size": 460
+          "size": 463
         },
         "../../../src/routes/5-day-meghalaya-itinerary.tsx": {
-          "size": 501
+          "size": 504
         },
         "../../../src/routes/about.tsx": {
-          "size": 461
+          "size": 464
         },
         "../../../src/routes/admin-login.tsx": {
           "size": 288
         },
         "../../../src/routes/adventure-tours-northeast-india.tsx": {
-          "size": 481
+          "size": 484
         },
         "../../../src/routes/auth.tsx": {
           "size": 337
         },
         "../../../src/routes/backpacking-india.tsx": {
-          "size": 451
+          "size": 454
         },
         "../../../src/data/stayHub.ts": {
-          "size": 7017
+          "size": 7020
         },
         "../../../src/routes/best-hostel-in-shillong.tsx": {
           "size": 363
         },
         "../../../src/routes/best-time-to-visit-meghalaya.tsx": {
-          "size": 512
+          "size": 515
         },
         "../../../src/routes/book-hostel-shillong.tsx": {
           "size": 353
         },
         "../../../src/routes/budget-trip-to-meghalaya.tsx": {
-          "size": 483
+          "size": 486
         },
         "../../../src/routes/catering-shillong.tsx": {
-          "size": 439
+          "size": 436
         },
         "../../../src/routes/cheap-hostel-in-shillong.tsx": {
           "size": 110
         },
         "../../../src/routes/cheap-hostel-shillong.tsx": {
-          "size": 220
+          "size": 223
         },
         "../../../src/routes/cheap-hostels-shillong.tsx": {
           "size": 358
         },
         "../../../src/routes/contact.tsx": {
-          "size": 385
+          "size": 382
         },
         "../../../src/routes/destination-wedding-shillong.tsx": {
-          "size": 461
+          "size": 458
         },
         "../../../src/components/v2/blocks.tsx": {
           "size": 8239
@@ -546,79 +528,79 @@
           "size": 438
         },
         "../../../src/routes/female-travellers.tsx": {
-          "size": 422
+          "size": 425
         },
         "../../../src/routes/gallery.tsx": {
-          "size": 475
-        },
-        "../../../src/routes/group-bookings-meghalaya.tsx": {
-          "size": 456
-        },
-        "../../../src/routes/guides.tsx": {
-          "size": 838
-        },
-        "../../../src/routes/hidden-places-in-meghalaya.tsx": {
-          "size": 500
-        },
-        "../../../src/routes/homestays-in-shillong.tsx": {
-          "size": 452
-        },
-        "../../../src/routes/hostel-booking.tsx": {
-          "size": 568
-        },
-        "../../../src/routes/hostel-near-me.tsx": {
-          "size": 554
-        },
-        "../../../src/routes/hotels-in-shillong.tsx": {
-          "size": 437
-        },
-        "../../../src/routes/install.tsx": {
-          "size": 373
-        },
-        "../../../src/routes/luxury-glamping-shillong.tsx": {
           "size": 472
         },
-        "../../../src/routes/meghalaya-adventure-tour.tsx": {
-          "size": 478
-        },
-        "../../../src/routes/meghalaya-caves.tsx": {
-          "size": 431
-        },
-        "../../../src/routes/meghalaya-couple-tour-package.tsx": {
-          "size": 481
-        },
-        "../../../src/routes/meghalaya-photo-gallery.tsx": {
-          "size": 475
-        },
-        "../../../src/routes/meghalaya-tour-packages.tsx": {
-          "size": 613
-        },
-        "../../../src/routes/meghalaya-viewpoints.tsx": {
-          "size": 435
-        },
-        "../../../src/routes/meghalaya-villages.tsx": {
-          "size": 430
-        },
-        "../../../src/routes/meghalaya-waterfalls.tsx": {
-          "size": 439
-        },
-        "../../../src/routes/merch.tsx": {
+        "../../../src/routes/group-bookings-meghalaya.tsx": {
           "size": 453
         },
+        "../../../src/routes/guides.tsx": {
+          "size": 1017
+        },
+        "../../../src/routes/hidden-places-in-meghalaya.tsx": {
+          "size": 503
+        },
+        "../../../src/routes/homestays-in-shillong.tsx": {
+          "size": 455
+        },
+        "../../../src/routes/hostel-booking.tsx": {
+          "size": 571
+        },
+        "../../../src/routes/hostel-near-me.tsx": {
+          "size": 557
+        },
+        "../../../src/routes/hotels-in-shillong.tsx": {
+          "size": 440
+        },
+        "../../../src/routes/install.tsx": {
+          "size": 376
+        },
+        "../../../src/routes/luxury-glamping-shillong.tsx": {
+          "size": 477
+        },
+        "../../../src/routes/meghalaya-adventure-tour.tsx": {
+          "size": 481
+        },
+        "../../../src/routes/meghalaya-caves.tsx": {
+          "size": 434
+        },
+        "../../../src/routes/meghalaya-couple-tour-package.tsx": {
+          "size": 485
+        },
+        "../../../src/routes/meghalaya-photo-gallery.tsx": {
+          "size": 478
+        },
+        "../../../src/routes/meghalaya-tour-packages.tsx": {
+          "size": 616
+        },
+        "../../../src/routes/meghalaya-viewpoints.tsx": {
+          "size": 438
+        },
+        "../../../src/routes/meghalaya-villages.tsx": {
+          "size": 433
+        },
+        "../../../src/routes/meghalaya-waterfalls.tsx": {
+          "size": 442
+        },
+        "../../../src/routes/merch.tsx": {
+          "size": 450
+        },
         "../../../src/routes/motorbike-expedition-northeast-india.tsx": {
-          "size": 502
+          "size": 505
         },
         "../../../src/routes/pet-friendly.tsx": {
-          "size": 460
+          "size": 457
         },
         "../../../src/routes/places-to-visit-in-meghalaya.tsx": {
-          "size": 499
+          "size": 502
         },
         "../../../src/lib/travel/planner.ts": {
-          "size": 11326
+          "size": 11347
         },
         "../../../src/lib/travel/assistant.ts": {
-          "size": 15593
+          "size": 15598
         },
         "../../../src/components/v2/TripChat.tsx": {
           "size": 12505
@@ -630,34 +612,34 @@
           "size": 501
         },
         "../../../src/routes/pricing-cancellation-policy.tsx": {
-          "size": 464
+          "size": 467
         },
         "../../../src/routes/privacy-policy.tsx": {
-          "size": 486
+          "size": 489
         },
         "../../../src/routes/profile.tsx": {
-          "size": 414
+          "size": 415
         },
         "../../../src/routes/restaurant-in-shillong.tsx": {
-          "size": 508
+          "size": 512
         },
         "../../../src/routes/shillong-tour-package.tsx": {
-          "size": 469
+          "size": 472
         },
         "../../../src/routes/terms.tsx": {
           "size": 81
         },
         "../../../src/routes/terms-of-service.tsx": {
-          "size": 507
+          "size": 510
         },
         "../../../src/routes/things-to-do-in-meghalaya.tsx": {
-          "size": 653
+          "size": 656
         },
         "../../../src/routes/unsubscribe.tsx": {
-          "size": 386
+          "size": 389
         },
         "../../../src/routes/work-from-home.tsx": {
-          "size": 401
+          "size": 398
         },
         "../../../src/assets/xtsy-270-stargazing.jpeg": {
           "size": 47
@@ -723,130 +705,130 @@
           "size": 397
         },
         "../../../src/routes/xtsy-adventure-campsite-dawki.tsx": {
-          "size": 452
+          "size": 448
         },
         "../../../src/routes/xtsy-rentals.tsx": {
-          "size": 397
+          "size": 400
         },
         "../../../src/routes/xtsy-vs-zostel.tsx": {
-          "size": 386
-        },
-        "../../../src/routes/admin/index.tsx": {
-          "size": 386
-        },
-        "../../../src/routes/admin/activity.tsx": {
-          "size": 391
-        },
-        "../../../src/routes/admin/audit.tsx": {
-          "size": 380
-        },
-        "../../../src/routes/admin/bookings.tsx": {
-          "size": 470
-        },
-        "../../../src/routes/admin/channels.tsx": {
-          "size": 409
-        },
-        "../../../src/routes/admin/chats.tsx": {
-          "size": 393
-        },
-        "../../../src/routes/admin/dashboard.tsx": {
-          "size": 422
-        },
-        "../../../src/routes/admin/datalayer.tsx": {
-          "size": 431
-        },
-        "../../../src/routes/admin/demand.tsx": {
-          "size": 404
-        },
-        "../../../src/routes/admin/enquiries.tsx": {
-          "size": 408
-        },
-        "../../../src/routes/admin/finance.tsx": {
-          "size": 420
-        },
-        "../../../src/routes/admin/franchise-permissions.tsx": {
-          "size": 452
-        },
-        "../../../src/routes/admin/franchises.tsx": {
-          "size": 389
-        },
-        "../../../src/routes/admin/gst.tsx": {
-          "size": 393
-        },
-        "../../../src/routes/admin/install.tsx": {
-          "size": 297
-        },
-        "../../../src/routes/admin/inventory.tsx": {
-          "size": 451
-        },
-        "../../../src/routes/admin/otas.tsx": {
           "size": 383
         },
-        "../../../src/routes/admin/properties.tsx": {
-          "size": 386
+        "../../../src/routes/admin/index.tsx": {
+          "size": 387
         },
-        "../../../src/routes/admin/reviews.tsx": {
-          "size": 389
+        "../../../src/routes/admin/activity.tsx": {
+          "size": 392
         },
-        "../../../src/routes/admin/search.tsx": {
-          "size": 420
+        "../../../src/routes/admin/audit.tsx": {
+          "size": 381
         },
-        "../../../src/routes/admin/security.tsx": {
+        "../../../src/routes/admin/bookings.tsx": {
+          "size": 471
+        },
+        "../../../src/routes/admin/channels.tsx": {
           "size": 410
         },
+        "../../../src/routes/admin/chats.tsx": {
+          "size": 394
+        },
+        "../../../src/routes/admin/dashboard.tsx": {
+          "size": 423
+        },
+        "../../../src/routes/admin/datalayer.tsx": {
+          "size": 432
+        },
+        "../../../src/routes/admin/demand.tsx": {
+          "size": 405
+        },
+        "../../../src/routes/admin/enquiries.tsx": {
+          "size": 409
+        },
+        "../../../src/routes/admin/finance.tsx": {
+          "size": 421
+        },
+        "../../../src/routes/admin/franchise-permissions.tsx": {
+          "size": 453
+        },
+        "../../../src/routes/admin/franchises.tsx": {
+          "size": 390
+        },
+        "../../../src/routes/admin/gst.tsx": {
+          "size": 394
+        },
+        "../../../src/routes/admin/install.tsx": {
+          "size": 300
+        },
+        "../../../src/routes/admin/inventory.tsx": {
+          "size": 452
+        },
+        "../../../src/routes/admin/otas.tsx": {
+          "size": 384
+        },
+        "../../../src/routes/admin/properties.tsx": {
+          "size": 387
+        },
+        "../../../src/routes/admin/reviews.tsx": {
+          "size": 390
+        },
+        "../../../src/routes/admin/search.tsx": {
+          "size": 421
+        },
+        "../../../src/routes/admin/security.tsx": {
+          "size": 411
+        },
         "../../../src/routes/admin/tour-pricing.tsx": {
-          "size": 417
+          "size": 418
         },
         "../../../src/routes/admin/tours.tsx": {
-          "size": 379
+          "size": 380
         },
         "../../../src/routes/admin/traffic.tsx": {
-          "size": 441
+          "size": 442
         },
         "../../../src/routes/admin/whatsapp.tsx": {
-          "size": 426
+          "size": 427
         },
         "../../../src/routes/book/index.tsx": {
-          "size": 584
+          "size": 586
         },
         "../../../src/routes/book/campsite.tsx": {
-          "size": 435
+          "size": 438
         },
         "../../../src/routes/book/select.tsx": {
-          "size": 406
+          "size": 409
         },
         "../../../src/routes/destinations/index.tsx": {
-          "size": 425
+          "size": 428
         },
         "../../../src/routes/expeditions/index.tsx": {
-          "size": 533
+          "size": 535
         },
         "../../../src/routes/franchise/index.tsx": {
-          "size": 424
+          "size": 425
         },
         "../../../src/routes/franchise/install.tsx": {
-          "size": 389
+          "size": 392
         },
         "../../../src/routes/franchise/login.tsx": {
           "size": 344
         },
         "../../../src/routes/places-to-visit/$slug.tsx": {
-          "size": 623
+          "size": 626
         },
         "../../../src/routes/tab-bistro/index.tsx": {
-          "size": 579
+          "size": 576
         },
         "../../../src/routes/tab-bistro/catering.tsx": {
-          "size": 421
+          "size": 418
         },
         "../../../src/routes/tours/index.tsx": {
-          "size": 543
+          "size": 539
         },
         "../../../src/routes/tours/$slug.tsx": {
-          "size": 547
+          "size": 688
         },
         "../../../src/routes/travel-guide/guwahati-to-shillong-transport.tsx": {
-          "size": 488
+          "size": 491
         },
         "../../../src/pages/HowToReachMeghalaya.tsx": {
           "size": 14330
@@ -864,64 +846,64 @@
           "size": 158
         },
         "../../../src/routes/admin/analytics/index.tsx": {
-          "size": 485
+          "size": 486
         },
         "../../../src/routes/admin/analytics/loader-events.tsx": {
-          "size": 435
+          "size": 436
         },
         "../../../src/routes/admin/analytics/rum-compare.tsx": {
           "size": 340
         },
         "../../../src/routes/admin/analytics/search.tsx": {
-          "size": 448
+          "size": 449
         },
         "../../../src/routes/admin/seo/index.tsx": {
-          "size": 402
+          "size": 401
         },
         "../../../src/routes/admin/seo/competitors.tsx": {
-          "size": 420
+          "size": 421
         },
         "../../../src/routes/admin/seo/funnel.tsx": {
-          "size": 411
+          "size": 412
         },
         "../../../src/routes/admin/seo/gsc-errors.tsx": {
-          "size": 448
+          "size": 447
         },
         "../../../src/routes/admin/seo/hero-manager.tsx": {
-          "size": 438
-        },
-        "../../../src/routes/admin/seo/priority.tsx": {
           "size": 437
         },
+        "../../../src/routes/admin/seo/priority.tsx": {
+          "size": 436
+        },
         "../../../src/routes/admin/seo/recovery.tsx": {
-          "size": 442
+          "size": 441
         },
         "../../../src/routes/admin/seo/schema-results.tsx": {
           "size": 332
         },
         "../../../src/routes/admin/seo/tracking.tsx": {
-          "size": 417
+          "size": 418
         },
         "../../../src/routes/admin/seo/workflow.tsx": {
-          "size": 417
+          "size": 418
         },
         "../../../src/lib/seo/fitTitle.ts": {
           "size": 265
         },
         "../../../src/routes/destinations/$state/index.tsx": {
-          "size": 534
+          "size": 537
         },
         "../../../src/routes/expeditions/$type/$route.tsx": {
-          "size": 1818
+          "size": 1820
         },
         "../../../src/data/nearbyAdventures.ts": {
-          "size": 3576
+          "size": 3579
         },
         "../../../src/routes/destinations/$state/$city/index.tsx": {
           "size": 896
         },
         "../../../src/routes/destinations/$state/$city/$attraction.tsx": {
-          "size": 1325
+          "size": 1328
         },
         "../../../src/routeTree.gen.ts": {
           "size": 13488
@@ -939,13 +921,13 @@
           "size": 115
         },
         "../../../node_modules/@tanstack/react-start/dist/plugin/default-entry/client.tsx": {
-          "size": 1117
+          "size": 1153
         },
         "[sourceMappingURL]": {
           "size": 0
         },
         "[unmapped]": {
-          "size": 16716
+          "size": 16856
         },
         "[EOLs]": {
           "size": 178

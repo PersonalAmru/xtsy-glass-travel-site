@@ -1,5 +1,5 @@
 {
- "site": "http://localhost:8080",
+ "site": "http://localhost:4174",
  "pages": 671,
  "pagesWithFindings": 556,
  "siteFiles": {
@@ -37,10 +37,10 @@
     "/xtsy-rentals — 2025 — \"al 7 seats ₹4,000 /day Book on WhatsApp Top End 2025 Premium SUV Mahindra XUV \"",
     "/privacy-policy — 2023 — \"nt with the Digital Personal Data Protection Act, 2023 (DPDP Act) of India, Gene\"",
     "/cheap-hostels-shillong — 2025 — \"ick XTSY ✓ 4.8★ on Google (161 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\"",
-    "/shillong-dormitory — 2025 — \"hillong Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
-    "/shillong-dormitory — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
     "/budget-stay-shillong — 2025 — \"t Rooms Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
-    "/budget-stay-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
+    "/budget-stay-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
+    "/shillong-dormitory — 2025 — \"hillong Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
+    "/shillong-dormitory — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
    ]
   },
   "placeholder:coming soon": {
@@ -52,12 +52,12 @@
     "/destinations/meghalaya/cherrapunji/nohkalikai-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/jowai/krang-suri-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/cherrapunji/wei-sawdong-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/mawlynnong/mawlynnong-village — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/dawki/dawki-umngot-river — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/shillong/laitlum-canyons — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/shillong/mawphlang-sacred-forest — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/dawki/shnongpdeng — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event"
+    "/destinations/meghalaya/dawki/shnongpdeng — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/shillong/umiam-lake — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/mawlynnong/mawlynnong-village — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event"
    ]
   },
   "aeo:no concise answer paragraph under H1": {
@@ -69,29 +69,29 @@
     "/xtsy-rentals — 144",
     "/expeditions — 187",
     "/budget-stay-shillong — 171",
-    "/hostel-near-police-bazar-shillong — 140",
     "/couples-hostel-shillong — 121",
     "/group-stay-shillong — 183",
+    "/hostel-near-police-bazar-shillong — 140",
     "/solo-travel-hostel-shillong — 124",
-    "/isabella-hostel-vs-xtsy — 187",
-    "/stargaze-hostel-vs-xtsy — 180"
+    "/stargaze-hostel-vs-xtsy — 180",
+    "/zion-backpackers-vs-xtsy — 188"
    ]
   },
   "aeo:no FAQ or question headings": {
    "pages": 19,
    "examples": [
     "/xtsy-vs-zostel — ",
+    "/pricing-cancellation-policy — ",
     "/privacy-policy — ",
     "/terms-of-service — ",
-    "/pricing-cancellation-policy — ",
     "/book — ",
+    "/motorbike-expedition-northeast-india — ",
     "/expeditions — ",
     "/meghalaya-adventure-tour — ",
-    "/motorbike-expedition-northeast-india — ",
-    "/4x4-expedition-meghalaya — ",
     "/merch — ",
+    "/4x4-expedition-meghalaya — ",
     "/meghalaya-couple-tour-package — ",
-    "/shillong-tour-package — "
+    "/5-day-meghalaya-itinerary — "
    ]
   },
   "price:8-bed dorm": {
@@ -107,10 +107,10 @@
   "price:dorm \"from\" price": {
    "pages": 4,
    "examples": [
-    "/hostel-booking — ₹430 — \" at XTSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission adde\"",
-    "/hostel-booking — ₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission added to \"",
     "/hostel-near-me — ₹430 — \" at XTSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission adde\"",
-    "/hostel-near-me — ₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission added to \""
+    "/hostel-near-me — ₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission added to \"",
+    "/hostel-booking — ₹430 — \" at XTSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission adde\"",
+    "/hostel-booking — ₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission added to \""
    ]
   },
   "seo:thin (<300 words)": {
@@ -124,8 +124,8 @@
   "policy:cancellation/refund claim": {
    "pages": 3,
    "examples": [
-    "/terms-of-service — e modification, OR Alternate equivalent accommodation, OR Full refund (only if accommodation canno",
     "/pricing-cancellation-policy — nate room or equivalent property accommodation • Option 3: Full refund (only if accommodation canno",
+    "/terms-of-service — e modification, OR Alternate equivalent accommodation, OR Full refund (only if accommodation canno",
     "/car-rental-guwahati —  Aadhaar/passport for ID, and a security deposit of ₹5,000 (refundable). Credit card preferred for d"
    ]
   },

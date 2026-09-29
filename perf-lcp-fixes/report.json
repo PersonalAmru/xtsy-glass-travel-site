@@ -11,10 +11,7 @@
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
       "Failed to load resource: the server responded with a status of 401 ()",
-      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-      "Failed to load resource: the server responded with a status of 404 ()",
-      "Failed to load resource: the server responded with a status of 401 ()"
+      "Failed to load resource: the server responded with a status of 404 ()"
     ]
   },
   {
@@ -43,8 +40,7 @@
       "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-      "Failed to load resource: the server responded with a status of 401 ()",
-      "Failed to load resource: the server responded with a status of 404 ()"
+      "Failed to load resource: the server responded with a status of 401 ()"
     ]
   },
   {
@@ -58,8 +54,7 @@
       "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-      "Failed to load resource: the server responded with a status of 401 ()",
-      "Failed to load resource: the server responded with a status of 404 ()"
+      "Failed to load resource: the server responded with a status of 401 ()"
     ]
   },
   {
@@ -73,8 +68,7 @@
       "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-      "Failed to load resource: the server responded with a status of 401 ()",
-      "Failed to load resource: the server responded with a status of 404 ()"
+      "Failed to load resource: the server responded with a status of 401 ()"
     ]
   },
   {
@@ -133,8 +127,7 @@
       "Failed to load resource: the server responded with a status of 401 ()",
       "Failed to load resource: the server responded with a status of 401 ()",
       "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
-      "Failed to load resource: the server responded with a status of 401 ()",
-      "Failed to load resource: the server responded with a status of 404 ()"
+      "Failed to load resource: the server responded with a status of 401 ()"
     ]
   },
   {
