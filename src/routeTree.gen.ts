@@ -32,8 +32,8 @@ import { Route as DestinationWeddingShillongRouteImport } from './routes/destina
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as FemaleTravellersRouteImport } from './routes/female-travellers'
 import { Route as GalleryRouteImport } from './routes/gallery'
-import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as GroupBookingsMeghalayaRouteImport } from './routes/group-bookings-meghalaya'
+import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as HiddenPlacesInMeghalayaRouteImport } from './routes/hidden-places-in-meghalaya'
 import { Route as HomestaysInShillongRouteImport } from './routes/homestays-in-shillong'
 import { Route as HostelBookingRouteImport } from './routes/hostel-booking'
@@ -247,14 +247,14 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GuidesRoute = GuidesRouteImport.update({
-  id: '/guides',
-  path: '/guides',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const GroupBookingsMeghalayaRoute = GroupBookingsMeghalayaRouteImport.update({
   id: '/group-bookings-meghalaya',
   path: '/group-bookings-meghalaya',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesRoute = GuidesRouteImport.update({
+  id: '/guides',
+  path: '/guides',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HiddenPlacesInMeghalayaRoute = HiddenPlacesInMeghalayaRouteImport.update({
@@ -765,8 +765,8 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
-  '/guides': typeof GuidesRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
+  '/guides': typeof GuidesRoute
   '/hidden-places-in-meghalaya': typeof HiddenPlacesInMeghalayaRoute
   '/homestays-in-shillong': typeof HomestaysInShillongRoute
   '/hostel-booking': typeof HostelBookingRoute
@@ -886,8 +886,8 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
-  '/guides': typeof GuidesRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
+  '/guides': typeof GuidesRoute
   '/hidden-places-in-meghalaya': typeof HiddenPlacesInMeghalayaRoute
   '/homestays-in-shillong': typeof HomestaysInShillongRoute
   '/hostel-booking': typeof HostelBookingRoute
@@ -1008,8 +1008,8 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/female-travellers': typeof FemaleTravellersRoute
   '/gallery': typeof GalleryRoute
-  '/guides': typeof GuidesRoute
   '/group-bookings-meghalaya': typeof GroupBookingsMeghalayaRoute
+  '/guides': typeof GuidesRoute
   '/hidden-places-in-meghalaya': typeof HiddenPlacesInMeghalayaRoute
   '/homestays-in-shillong': typeof HomestaysInShillongRoute
   '/hostel-booking': typeof HostelBookingRoute
@@ -1131,8 +1131,8 @@ export interface FileRouteTypes {
     | '/faq'
     | '/female-travellers'
     | '/gallery'
-    | '/guides'
     | '/group-bookings-meghalaya'
+    | '/guides'
     | '/hidden-places-in-meghalaya'
     | '/homestays-in-shillong'
     | '/hostel-booking'
@@ -1252,8 +1252,8 @@ export interface FileRouteTypes {
     | '/faq'
     | '/female-travellers'
     | '/gallery'
-    | '/guides'
     | '/group-bookings-meghalaya'
+    | '/guides'
     | '/hidden-places-in-meghalaya'
     | '/homestays-in-shillong'
     | '/hostel-booking'
@@ -1373,8 +1373,8 @@ export interface FileRouteTypes {
     | '/faq'
     | '/female-travellers'
     | '/gallery'
-    | '/guides'
     | '/group-bookings-meghalaya'
+    | '/guides'
     | '/hidden-places-in-meghalaya'
     | '/homestays-in-shillong'
     | '/hostel-booking'
@@ -1495,8 +1495,8 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   FemaleTravellersRoute: typeof FemaleTravellersRoute
   GalleryRoute: typeof GalleryRoute
-  GuidesRoute: typeof GuidesRoute
   GroupBookingsMeghalayaRoute: typeof GroupBookingsMeghalayaRoute
+  GuidesRoute: typeof GuidesRoute
   HiddenPlacesInMeghalayaRoute: typeof HiddenPlacesInMeghalayaRoute
   HomestaysInShillongRoute: typeof HomestaysInShillongRoute
   HostelBookingRoute: typeof HostelBookingRoute
@@ -1756,18 +1756,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/guides': {
-      id: '/guides'
-      path: '/guides'
-      fullPath: '/guides'
-      preLoaderRoute: typeof GuidesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/group-bookings-meghalaya': {
       id: '/group-bookings-meghalaya'
       path: '/group-bookings-meghalaya'
       fullPath: '/group-bookings-meghalaya'
       preLoaderRoute: typeof GroupBookingsMeghalayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides': {
+      id: '/guides'
+      path: '/guides'
+      fullPath: '/guides'
+      preLoaderRoute: typeof GuidesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/hidden-places-in-meghalaya': {
@@ -2455,8 +2455,8 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   FemaleTravellersRoute: FemaleTravellersRoute,
   GalleryRoute: GalleryRoute,
-  GuidesRoute: GuidesRoute,
   GroupBookingsMeghalayaRoute: GroupBookingsMeghalayaRoute,
+  GuidesRoute: GuidesRoute,
   HiddenPlacesInMeghalayaRoute: HiddenPlacesInMeghalayaRoute,
   HomestaysInShillongRoute: HomestaysInShillongRoute,
   HostelBookingRoute: HostelBookingRoute,
