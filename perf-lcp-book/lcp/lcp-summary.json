@@ -1,0 +1,458 @@
+{
+ "base": "http://localhost:4174",
+ "profile": "Slow 4G (150ms, 1.6Mbps) + 4x CPU, 412x823 @1.75x, cold cache",
+ "routes": [
+  {
+   "route": "/",
+   "lcp": 1496,
+   "fcp": 1496,
+   "cls": 0.104,
+   "el": "H1 \"XTSY Travellers Hostel\"",
+   "breakdown": {
+    "ttfb": 45,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1451
+   },
+   "image": null,
+   "longTasks": 289,
+   "before": {
+    "jsKb": 393,
+    "cssKb": 43,
+    "imgKb": 383,
+    "thirdPartyKb": 0,
+    "requests": 57,
+    "images": [
+     {
+      "url": "/img/o/xtsy-property-images-8-portrait-828.webp",
+      "kb": 125,
+      "start": 205
+     },
+     {
+      "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-480.webp",
+      "kb": 85,
+      "start": 1474
+     },
+     {
+      "url": "/img/o/xtsyvoyage-dawki-river-480.webp",
+      "kb": 49,
+      "start": 1473
+     },
+     {
+      "url": "/img/o/xtsyvoyage-nohkalikai-falls-480.webp",
+      "kb": 34,
+      "start": 1472
+     },
+     {
+      "url": "/img/o/xtsyvoyage-umiam-lake-480.webp",
+      "kb": 30,
+      "start": 1476
+     },
+     {
+      "url": "/img/o/xtsyvoyage-krang-shuri-waterfall-480.webp",
+      "kb": 25,
+      "start": 1477
+     },
+     {
+      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+      "kb": 23,
+      "start": 181
+     },
+     {
+      "url": "/img/o/xtsyvoyage-laitlum-canyons-480.webp",
+      "kb": 11,
+      "start": 1475
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 348
+    },
+    {
+     "url": "/assets/styles-DrWbQjE6.css",
+     "kb": 43,
+     "end": 1085
+    }
+   ]
+  },
+  {
+   "route": "/best-hostel-in-shillong",
+   "lcp": 1548,
+   "fcp": 1548,
+   "cls": 0.019,
+   "el": "P \"For most travellers the best-rated hostel in Shillong is XTS\"",
+   "breakdown": {
+    "ttfb": 14,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1534
+   },
+   "image": null,
+   "longTasks": 83,
+   "before": {
+    "jsKb": 377,
+    "cssKb": 43,
+    "imgKb": 363,
+    "thirdPartyKb": 0,
+    "requests": 56,
+    "images": [
+     {
+      "url": "/img/o/xtsy-270-xtsy270-900.webp",
+      "kb": 150,
+      "start": 1523
+     },
+     {
+      "url": "/img/o/xtsy-property-images-8-828.webp",
+      "kb": 91,
+      "start": 189
+     },
+     {
+      "url": "/img/o/xtsy-4-bed-female-dormitory-828.webp",
+      "kb": 43,
+      "start": 1522
+     },
+     {
+      "url": "/img/o/xtsy-king-double-room-828.webp",
+      "kb": 25,
+      "start": 1522
+     },
+     {
+      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+      "kb": 23,
+      "start": 188
+     },
+     {
+      "url": "/img/o/xtsy-6-bed-mixed-dormitory-1-828.webp",
+      "kb": 17,
+      "start": 1522
+     },
+     {
+      "url": "/img/o/xtsy-6-bed-mixed-dormitory-2-828.webp",
+      "kb": 15,
+      "start": 1522
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-DrWbQjE6.css",
+     "kb": 43,
+     "end": 1300
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 364
+    }
+   ]
+  },
+  {
+   "route": "/xtsy-270",
+   "lcp": 1568,
+   "fcp": 1568,
+   "cls": 0.011,
+   "el": "H1 \"Experience by XTSY\"",
+   "breakdown": {
+    "ttfb": 22,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1546
+   },
+   "image": null,
+   "longTasks": 95,
+   "before": {
+    "jsKb": 373,
+    "cssKb": 43,
+    "imgKb": 435,
+    "thirdPartyKb": 0,
+    "requests": 54,
+    "images": [
+     {
+      "url": "/img/o/xtsy-270-xtsy270-900.webp",
+      "kb": 150,
+      "start": 186
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-2-900.webp",
+      "kb": 80,
+      "start": 1529
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-3-828.webp",
+      "kb": 69,
+      "start": 1529
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-6-828.webp",
+      "kb": 60,
+      "start": 1529
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-4-828.webp",
+      "kb": 53,
+      "start": 1530
+     },
+     {
+      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+      "kb": 23,
+      "start": 185
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-DrWbQjE6.css",
+     "kb": 43,
+     "end": 1296
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 360
+    }
+   ]
+  },
+  {
+   "route": "/tours/5n-6d-tawang-tour",
+   "lcp": 1876,
+   "fcp": 1540,
+   "cls": 0.148,
+   "el": "IMG sig-5n-6d-tawang-tour-828.webp",
+   "breakdown": {
+    "ttfb": 14,
+    "loadDelay": 166,
+    "loadDuration": 1678,
+    "renderDelay": 18
+   },
+   "image": {
+    "file": "sig-5n-6d-tawang-tour-828.webp",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 85,
+   "before": {
+    "jsKb": 445,
+    "cssKb": 43,
+    "imgKb": 106,
+    "thirdPartyKb": 0,
+    "requests": 72,
+    "images": [
+     {
+      "url": "/img/px/sig-5n-6d-tawang-tour-828.webp",
+      "kb": 83,
+      "start": 180
+     },
+     {
+      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+      "kb": 23,
+      "start": 178
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-DrWbQjE6.css",
+     "kb": 43,
+     "end": 1292
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 350
+    }
+   ]
+  },
+  {
+   "route": "/destinations/meghalaya/shillong",
+   "lcp": 1328,
+   "fcp": 1328,
+   "cls": 0.243,
+   "el": "P \"Searching for adventures near me while in Shillong? These ne\"",
+   "breakdown": {
+    "ttfb": 12,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1316
+   },
+   "image": null,
+   "longTasks": 72,
+   "before": {
+    "jsKb": 376,
+    "cssKb": 43,
+    "imgKb": 277,
+    "thirdPartyKb": 0,
+    "requests": 53,
+    "images": [
+     {
+      "url": "/img/o/xtsyvoyage-elephant-falls-736.webp",
+      "kb": 154,
+      "start": 1305
+     },
+     {
+      "url": "/img/o/xtsyvoyage-umiam-lake-736.webp",
+      "kb": 71,
+      "start": 1305
+     },
+     {
+      "url": "/img/o/xtsyvoyage-laitlum-canyons-736.webp",
+      "kb": 29,
+      "start": 1305
+     },
+     {
+      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+      "kb": 23,
+      "start": 185
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-DrWbQjE6.css",
+     "kb": 43,
+     "end": 1089
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 348
+    }
+   ]
+  },
+  {
+   "route": "/living-root-bridges-meghalaya",
+   "lcp": 1524,
+   "fcp": 1524,
+   "cls": 0.035,
+   "el": "P \"Backed by XTSY — Northeast India's NEITA 2025-nominated hosp\"",
+   "breakdown": {
+    "ttfb": 21,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1503
+   },
+   "image": null,
+   "longTasks": 98,
+   "before": {
+    "jsKb": 379,
+    "cssKb": 43,
+    "imgKb": 228,
+    "thirdPartyKb": 0,
+    "requests": 51,
+    "images": [
+     {
+      "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
+      "kb": 206,
+      "start": 179
+     },
+     {
+      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+      "kb": 23,
+      "start": 179
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-DrWbQjE6.css",
+     "kb": 43,
+     "end": 1258
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 364
+    }
+   ]
+  },
+  {
+   "route": "/tab-bistro",
+   "lcp": 1560,
+   "fcp": 1560,
+   "cls": 0.116,
+   "el": "H1 \"Forest dining under the pines.\"",
+   "breakdown": {
+    "ttfb": 15,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1545
+   },
+   "image": null,
+   "longTasks": 101,
+   "before": {
+    "jsKb": 382,
+    "cssKb": 43,
+    "imgKb": 71,
+    "thirdPartyKb": 0,
+    "requests": 51,
+    "images": [
+     {
+      "url": "/img/o/xtsy-tab-bistro-by-xtsy-1-828.webp",
+      "kb": 48,
+      "start": 180
+     },
+     {
+      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+      "kb": 23,
+      "start": 180
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-DrWbQjE6.css",
+     "kb": 43,
+     "end": 1299
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 356
+    }
+   ]
+  },
+  {
+   "route": "/faq",
+   "lcp": 1316,
+   "fcp": 1316,
+   "cls": 0.014,
+   "el": "H1 \"Questions, answered.\"",
+   "breakdown": {
+    "ttfb": 12,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1304
+   },
+   "image": null,
+   "longTasks": 65,
+   "before": {
+    "jsKb": 373,
+    "cssKb": 43,
+    "imgKb": 23,
+    "thirdPartyKb": 0,
+    "requests": 49,
+    "images": [
+     {
+      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+      "kb": 23,
+      "start": 181
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-DrWbQjE6.css",
+     "kb": 43,
+     "end": 1084
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 348
+    }
+   ]
+  }
+ ]
+}

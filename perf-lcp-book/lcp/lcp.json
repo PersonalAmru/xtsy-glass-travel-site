@@ -1,0 +1,981 @@
+[
+ {
+  "route": "/",
+  "lcpRuns": [
+   1532,
+   1496,
+   1320
+  ],
+  "ttfb": 45,
+  "htmlKb": 22,
+  "domInteractive": 1173,
+  "fcp": 1496,
+  "lcp": {
+   "t": 1496,
+   "size": 38540,
+   "url": "",
+   "tag": "H1",
+   "cls": "xt-display m-0 h-[2em] text-6xl leading-none sm:text-8xl lg:text-9xl",
+   "text": "XTSY Travellers Hostel",
+   "lazy": null,
+   "fp": null,
+   "sizes": null,
+   "natural": null,
+   "shown": "377x105",
+   "bg": null
+  },
+  "cls": 0.104,
+  "lcpRes": null,
+  "blocking": [
+   {
+    "url": "/fonts/fonts.css",
+    "kb": 1,
+    "end": 348
+   },
+   {
+    "url": "/assets/styles-DrWbQjE6.css",
+    "kb": 43,
+    "end": 1085
+   }
+  ],
+  "longTaskMsBeforeLcp": 289,
+  "beforeLcp": {
+   "jsKb": 393,
+   "cssKb": 43,
+   "imgKb": 383,
+   "thirdPartyKb": 0,
+   "requests": 57,
+   "images": [
+    {
+     "url": "/img/o/xtsy-property-images-8-portrait-828.webp",
+     "kb": 125,
+     "start": 205
+    },
+    {
+     "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-480.webp",
+     "kb": 85,
+     "start": 1474
+    },
+    {
+     "url": "/img/o/xtsyvoyage-dawki-river-480.webp",
+     "kb": 49,
+     "start": 1473
+    },
+    {
+     "url": "/img/o/xtsyvoyage-nohkalikai-falls-480.webp",
+     "kb": 34,
+     "start": 1472
+    },
+    {
+     "url": "/img/o/xtsyvoyage-umiam-lake-480.webp",
+     "kb": 30,
+     "start": 1476
+    },
+    {
+     "url": "/img/o/xtsyvoyage-krang-shuri-waterfall-480.webp",
+     "kb": 25,
+     "start": 1477
+    },
+    {
+     "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+     "kb": 23,
+     "start": 181
+    },
+    {
+     "url": "/img/o/xtsyvoyage-laitlum-canyons-480.webp",
+     "kb": 11,
+     "start": 1475
+    }
+   ]
+  },
+  "thirdParty": [
+   {
+    "host": "t.contentsquare.net",
+    "kb": 162
+   },
+   {
+    "host": "googleads.g.doubleclick.net",
+    "kb": 3
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "kb": 1
+   },
+   {
+    "host": "www.googletagmanager.com",
+    "kb": 0
+   },
+   {
+    "host": "kzhsxemkntfwsakhkylt.supabase.co",
+    "kb": 0
+   },
+   {
+    "host": "ipapi.co",
+    "kb": 0
+   },
+   {
+    "host": "static.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "www.google.com",
+    "kb": 0
+   }
+  ],
+  "preloads": [
+   "image:/assets/xtsy-color-logo-D0pKAWTY.webp",
+   "font:/fonts/staatliches-latin.woff2",
+   "font:/fonts/manrope-latin.woff2",
+   "font:/fonts/manrope-latin-ext.woff2",
+   "font:/fonts/staatliches-latin-ext.woff2",
+   "image:/img/o/xtsy-property-images-8-1280.webp fp=high",
+   "image:/img/o/xtsy-property-images-8-portrait-828.webp fp=high",
+   "null:/placeholder.svg"
+  ],
+  "lcpMs": 1496,
+  "breakdown": {
+   "ttfb": 45,
+   "loadDelay": 0,
+   "loadDuration": 0,
+   "renderDelay": 1451
+  },
+  "lcpImage": null
+ },
+ {
+  "route": "/best-hostel-in-shillong",
+  "lcpRuns": [
+   1548,
+   1568,
+   1500
+  ],
+  "ttfb": 14,
+  "htmlKb": 15,
+  "domInteractive": 1355,
+  "fcp": 1548,
+  "lcp": {
+   "t": 1548,
+   "size": 78315,
+   "url": "",
+   "tag": "P",
+   "cls": "m-0 text-[16px] leading-relaxed",
+   "text": "For most travellers the best-rated hostel in Shillong is XTS",
+   "lazy": null,
+   "fp": null,
+   "sizes": null,
+   "natural": null,
+   "shown": "349x234",
+   "bg": null
+  },
+  "cls": 0.019,
+  "lcpRes": null,
+  "blocking": [
+   {
+    "url": "/assets/styles-DrWbQjE6.css",
+    "kb": 43,
+    "end": 1300
+   },
+   {
+    "url": "/fonts/fonts.css",
+    "kb": 1,
+    "end": 364
+   }
+  ],
+  "longTaskMsBeforeLcp": 83,
+  "beforeLcp": {
+   "jsKb": 377,
+   "cssKb": 43,
+   "imgKb": 363,
+   "thirdPartyKb": 0,
+   "requests": 56,
+   "images": [
+    {
+     "url": "/img/o/xtsy-270-xtsy270-900.webp",
+     "kb": 150,
+     "start": 1523
+    },
+    {
+     "url": "/img/o/xtsy-property-images-8-828.webp",
+     "kb": 91,
+     "start": 189
+    },
+    {
+     "url": "/img/o/xtsy-4-bed-female-dormitory-828.webp",
+     "kb": 43,
+     "start": 1522
+    },
+    {
+     "url": "/img/o/xtsy-king-double-room-828.webp",
+     "kb": 25,
+     "start": 1522
+    },
+    {
+     "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+     "kb": 23,
+     "start": 188
+    },
+    {
+     "url": "/img/o/xtsy-6-bed-mixed-dormitory-1-828.webp",
+     "kb": 17,
+     "start": 1522
+    },
+    {
+     "url": "/img/o/xtsy-6-bed-mixed-dormitory-2-828.webp",
+     "kb": 15,
+     "start": 1522
+    }
+   ]
+  },
+  "thirdParty": [
+   {
+    "host": "t.contentsquare.net",
+    "kb": 162
+   },
+   {
+    "host": "googleads.g.doubleclick.net",
+    "kb": 3
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "kb": 1
+   },
+   {
+    "host": "www.googletagmanager.com",
+    "kb": 0
+   },
+   {
+    "host": "static.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "www.google.com",
+    "kb": 0
+   },
+   {
+    "host": "ad.doubleclick.net",
+    "kb": 0
+   },
+   {
+    "host": "kzhsxemkntfwsakhkylt.supabase.co",
+    "kb": 0
+   }
+  ],
+  "preloads": [
+   "image:/assets/xtsy-color-logo-D0pKAWTY.webp",
+   "image:/img/o/xtsy-property-images-8-480.webp 480w, /img/o/xtsy-property-images-8-640.webp 640w,  fp=high",
+   "font:/fonts/staatliches-latin.woff2",
+   "font:/fonts/manrope-latin.woff2",
+   "font:/fonts/manrope-latin-ext.woff2",
+   "font:/fonts/staatliches-latin-ext.woff2",
+   "image:/img/o/xtsy-property-images-8-1280.webp fp=high",
+   "null:/placeholder.svg"
+  ],
+  "lcpMs": 1548,
+  "breakdown": {
+   "ttfb": 14,
+   "loadDelay": 0,
+   "loadDuration": 0,
+   "renderDelay": 1534
+  },
+  "lcpImage": null
+ },
+ {
+  "route": "/xtsy-270",
+  "lcpRuns": [
+   1568,
+   1560,
+   1568
+  ],
+  "ttfb": 22,
+  "htmlKb": 14,
+  "domInteractive": 1348,
+  "fcp": 1568,
+  "lcp": {
+   "t": 1568,
+   "size": 48927,
+   "url": "",
+   "tag": "H1",
+   "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:text-[136px]",
+   "text": "Experience by XTSY",
+   "lazy": null,
+   "fp": null,
+   "sizes": null,
+   "natural": null,
+   "shown": "384x129",
+   "bg": null
+  },
+  "cls": 0.011,
+  "lcpRes": null,
+  "blocking": [
+   {
+    "url": "/assets/styles-DrWbQjE6.css",
+    "kb": 43,
+    "end": 1296
+   },
+   {
+    "url": "/fonts/fonts.css",
+    "kb": 1,
+    "end": 360
+   }
+  ],
+  "longTaskMsBeforeLcp": 95,
+  "beforeLcp": {
+   "jsKb": 373,
+   "cssKb": 43,
+   "imgKb": 435,
+   "thirdPartyKb": 0,
+   "requests": 54,
+   "images": [
+    {
+     "url": "/img/o/xtsy-270-xtsy270-900.webp",
+     "kb": 150,
+     "start": 186
+    },
+    {
+     "url": "/img/o/xtsy-270-xtsy270-2-900.webp",
+     "kb": 80,
+     "start": 1529
+    },
+    {
+     "url": "/img/o/xtsy-270-xtsy270-3-828.webp",
+     "kb": 69,
+     "start": 1529
+    },
+    {
+     "url": "/img/o/xtsy-270-xtsy270-6-828.webp",
+     "kb": 60,
+     "start": 1529
+    },
+    {
+     "url": "/img/o/xtsy-270-xtsy270-4-828.webp",
+     "kb": 53,
+     "start": 1530
+    },
+    {
+     "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+     "kb": 23,
+     "start": 185
+    }
+   ]
+  },
+  "thirdParty": [
+   {
+    "host": "t.contentsquare.net",
+    "kb": 162
+   },
+   {
+    "host": "googleads.g.doubleclick.net",
+    "kb": 3
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "kb": 1
+   },
+   {
+    "host": "www.googletagmanager.com",
+    "kb": 0
+   },
+   {
+    "host": "kzhsxemkntfwsakhkylt.supabase.co",
+    "kb": 0
+   },
+   {
+    "host": "static.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "www.google.com",
+    "kb": 0
+   },
+   {
+    "host": "ad.doubleclick.net",
+    "kb": 0
+   }
+  ],
+  "preloads": [
+   "image:/assets/xtsy-color-logo-D0pKAWTY.webp",
+   "image:/img/o/xtsy-270-xtsy270-480.webp 480w, /img/o/xtsy-270-xtsy270-640.webp 640w, /img/o/xtsy- fp=high",
+   "font:/fonts/staatliches-latin.woff2",
+   "font:/fonts/manrope-latin.woff2",
+   "font:/fonts/manrope-latin-ext.woff2",
+   "font:/fonts/staatliches-latin-ext.woff2",
+   "null:/placeholder.svg"
+  ],
+  "lcpMs": 1568,
+  "breakdown": {
+   "ttfb": 22,
+   "loadDelay": 0,
+   "loadDuration": 0,
+   "renderDelay": 1546
+  },
+  "lcpImage": null
+ },
+ {
+  "route": "/tours/5n-6d-tawang-tour",
+  "lcpRuns": [
+   1884,
+   1876,
+   1844
+  ],
+  "ttfb": 14,
+  "htmlKb": 16,
+  "domInteractive": 1340,
+  "fcp": 1540,
+  "lcp": {
+   "t": 1876,
+   "size": 100056,
+   "url": "http://localhost:4174/img/px/sig-5n-6d-tawang-tour-828.webp",
+   "tag": "IMG",
+   "cls": "absolute inset-0 h-full w-full object-cover",
+   "text": "",
+   "lazy": "eager",
+   "fp": "high",
+   "sizes": "(max-width: 768px) 100vw, 50vw",
+   "natural": "412x274",
+   "shown": "384x261",
+   "bg": null
+  },
+  "cls": 0.148,
+  "lcpRes": {
+   "start": 180,
+   "end": 1858,
+   "kb": 83,
+   "initiator": "link"
+  },
+  "blocking": [
+   {
+    "url": "/assets/styles-DrWbQjE6.css",
+    "kb": 43,
+    "end": 1292
+   },
+   {
+    "url": "/fonts/fonts.css",
+    "kb": 1,
+    "end": 350
+   }
+  ],
+  "longTaskMsBeforeLcp": 85,
+  "beforeLcp": {
+   "jsKb": 445,
+   "cssKb": 43,
+   "imgKb": 106,
+   "thirdPartyKb": 0,
+   "requests": 72,
+   "images": [
+    {
+     "url": "/img/px/sig-5n-6d-tawang-tour-828.webp",
+     "kb": 83,
+     "start": 180
+    },
+    {
+     "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+     "kb": 23,
+     "start": 178
+    }
+   ]
+  },
+  "thirdParty": [
+   {
+    "host": "t.contentsquare.net",
+    "kb": 162
+   },
+   {
+    "host": "googleads.g.doubleclick.net",
+    "kb": 3
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "kb": 1
+   },
+   {
+    "host": "www.googletagmanager.com",
+    "kb": 0
+   },
+   {
+    "host": "static.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "www.google.com",
+    "kb": 0
+   },
+   {
+    "host": "ad.doubleclick.net",
+    "kb": 0
+   },
+   {
+    "host": "kzhsxemkntfwsakhkylt.supabase.co",
+    "kb": 0
+   }
+  ],
+  "preloads": [
+   "image:/assets/xtsy-color-logo-D0pKAWTY.webp",
+   "image:/img/px/sig-5n-6d-tawang-tour-480.webp 480w, /img/px/sig-5n-6d-tawang-tour-640.webp 640w,  fp=high",
+   "font:/fonts/staatliches-latin.woff2",
+   "font:/fonts/manrope-latin.woff2",
+   "font:/fonts/manrope-latin-ext.woff2",
+   "font:/fonts/staatliches-latin-ext.woff2",
+   "image:/img/px/sig-5n-6d-tawang-tour-1280.webp fp=high",
+   "null:/placeholder.svg"
+  ],
+  "lcpMs": 1876,
+  "breakdown": {
+   "ttfb": 14,
+   "loadDelay": 166,
+   "loadDuration": 1678,
+   "renderDelay": 18
+  },
+  "lcpImage": {
+   "file": "sig-5n-6d-tawang-tour-828.webp",
+   "inServerHtml": true,
+   "preloaded": true
+  }
+ },
+ {
+  "route": "/destinations/meghalaya/shillong",
+  "lcpRuns": [
+   1328,
+   1312,
+   1332
+  ],
+  "ttfb": 12,
+  "htmlKb": 12,
+  "domInteractive": 1151,
+  "fcp": 1328,
+  "lcp": {
+   "t": 1328,
+   "size": 30461,
+   "url": "",
+   "tag": "P",
+   "cls": "text-muted-foreground mb-5 max-w-3xl",
+   "text": "Searching for adventures near me while in Shillong? These ne",
+   "lazy": null,
+   "fp": null,
+   "sizes": null,
+   "natural": null,
+   "shown": "384x90",
+   "bg": null
+  },
+  "cls": 0.243,
+  "lcpRes": null,
+  "blocking": [
+   {
+    "url": "/assets/styles-DrWbQjE6.css",
+    "kb": 43,
+    "end": 1089
+   },
+   {
+    "url": "/fonts/fonts.css",
+    "kb": 1,
+    "end": 348
+   }
+  ],
+  "longTaskMsBeforeLcp": 72,
+  "beforeLcp": {
+   "jsKb": 376,
+   "cssKb": 43,
+   "imgKb": 277,
+   "thirdPartyKb": 0,
+   "requests": 53,
+   "images": [
+    {
+     "url": "/img/o/xtsyvoyage-elephant-falls-736.webp",
+     "kb": 154,
+     "start": 1305
+    },
+    {
+     "url": "/img/o/xtsyvoyage-umiam-lake-736.webp",
+     "kb": 71,
+     "start": 1305
+    },
+    {
+     "url": "/img/o/xtsyvoyage-laitlum-canyons-736.webp",
+     "kb": 29,
+     "start": 1305
+    },
+    {
+     "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+     "kb": 23,
+     "start": 185
+    }
+   ]
+  },
+  "thirdParty": [
+   {
+    "host": "t.contentsquare.net",
+    "kb": 162
+   },
+   {
+    "host": "googleads.g.doubleclick.net",
+    "kb": 3
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "kb": 1
+   },
+   {
+    "host": "www.googletagmanager.com",
+    "kb": 0
+   },
+   {
+    "host": "static.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "www.google.com",
+    "kb": 0
+   },
+   {
+    "host": "ad.doubleclick.net",
+    "kb": 0
+   },
+   {
+    "host": "kzhsxemkntfwsakhkylt.supabase.co",
+    "kb": 0
+   }
+  ],
+  "preloads": [
+   "image:/assets/xtsy-color-logo-D0pKAWTY.webp",
+   "font:/fonts/staatliches-latin.woff2",
+   "font:/fonts/manrope-latin.woff2",
+   "font:/fonts/manrope-latin-ext.woff2",
+   "font:/fonts/staatliches-latin-ext.woff2",
+   "null:/placeholder.svg"
+  ],
+  "lcpMs": 1328,
+  "breakdown": {
+   "ttfb": 12,
+   "loadDelay": 0,
+   "loadDuration": 0,
+   "renderDelay": 1316
+  },
+  "lcpImage": null
+ },
+ {
+  "route": "/living-root-bridges-meghalaya",
+  "lcpRuns": [
+   1560,
+   1468,
+   1524
+  ],
+  "ttfb": 21,
+  "htmlKb": 20,
+  "domInteractive": 1319,
+  "fcp": 1524,
+  "lcp": {
+   "t": 1524,
+   "size": 155904,
+   "url": "",
+   "tag": "P",
+   "cls": "m-0 max-w-[720px] text-[17px] leading-relaxed text-xt-mute",
+   "text": "Backed by XTSY — Northeast India's NEITA 2025-nominated hosp",
+   "lazy": null,
+   "fp": null,
+   "sizes": null,
+   "natural": null,
+   "shown": "384x525",
+   "bg": null
+  },
+  "cls": 0.035,
+  "lcpRes": null,
+  "blocking": [
+   {
+    "url": "/assets/styles-DrWbQjE6.css",
+    "kb": 43,
+    "end": 1258
+   },
+   {
+    "url": "/fonts/fonts.css",
+    "kb": 1,
+    "end": 364
+   }
+  ],
+  "longTaskMsBeforeLcp": 98,
+  "beforeLcp": {
+   "jsKb": 379,
+   "cssKb": 43,
+   "imgKb": 228,
+   "thirdPartyKb": 0,
+   "requests": 51,
+   "images": [
+    {
+     "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
+     "kb": 206,
+     "start": 179
+    },
+    {
+     "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+     "kb": 23,
+     "start": 179
+    }
+   ]
+  },
+  "thirdParty": [
+   {
+    "host": "t.contentsquare.net",
+    "kb": 162
+   },
+   {
+    "host": "googleads.g.doubleclick.net",
+    "kb": 3
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "kb": 1
+   },
+   {
+    "host": "www.googletagmanager.com",
+    "kb": 0
+   },
+   {
+    "host": "static.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "www.google.com",
+    "kb": 0
+   },
+   {
+    "host": "ad.doubleclick.net",
+    "kb": 0
+   },
+   {
+    "host": "kzhsxemkntfwsakhkylt.supabase.co",
+    "kb": 0
+   }
+  ],
+  "preloads": [
+   "image:/assets/xtsy-color-logo-D0pKAWTY.webp",
+   "image:/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-480.webp 480w, /img/o/xtsyvoyage-nong fp=high",
+   "font:/fonts/staatliches-latin.woff2",
+   "font:/fonts/manrope-latin.woff2",
+   "font:/fonts/manrope-latin-ext.woff2",
+   "font:/fonts/staatliches-latin-ext.woff2",
+   "image:/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp fp=high",
+   "null:/placeholder.svg"
+  ],
+  "lcpMs": 1524,
+  "breakdown": {
+   "ttfb": 21,
+   "loadDelay": 0,
+   "loadDuration": 0,
+   "renderDelay": 1503
+  },
+  "lcpImage": null
+ },
+ {
+  "route": "/tab-bistro",
+  "lcpRuns": [
+   1560,
+   1560,
+   1536
+  ],
+  "ttfb": 15,
+  "htmlKb": 16,
+  "domInteractive": 1356,
+  "fcp": 1560,
+  "lcp": {
+   "t": 1560,
+   "size": 78515,
+   "url": "",
+   "tag": "H1",
+   "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:text-[136px]",
+   "text": "Forest dining under the pines.",
+   "lazy": null,
+   "fp": null,
+   "sizes": null,
+   "natural": null,
+   "shown": "384x194",
+   "bg": null
+  },
+  "cls": 0.116,
+  "lcpRes": null,
+  "blocking": [
+   {
+    "url": "/assets/styles-DrWbQjE6.css",
+    "kb": 43,
+    "end": 1299
+   },
+   {
+    "url": "/fonts/fonts.css",
+    "kb": 1,
+    "end": 356
+   }
+  ],
+  "longTaskMsBeforeLcp": 101,
+  "beforeLcp": {
+   "jsKb": 382,
+   "cssKb": 43,
+   "imgKb": 71,
+   "thirdPartyKb": 0,
+   "requests": 51,
+   "images": [
+    {
+     "url": "/img/o/xtsy-tab-bistro-by-xtsy-1-828.webp",
+     "kb": 48,
+     "start": 180
+    },
+    {
+     "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+     "kb": 23,
+     "start": 180
+    }
+   ]
+  },
+  "thirdParty": [
+   {
+    "host": "t.contentsquare.net",
+    "kb": 162
+   },
+   {
+    "host": "googleads.g.doubleclick.net",
+    "kb": 3
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "kb": 1
+   },
+   {
+    "host": "www.googletagmanager.com",
+    "kb": 0
+   },
+   {
+    "host": "static.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "www.google.com",
+    "kb": 0
+   },
+   {
+    "host": "ad.doubleclick.net",
+    "kb": 0
+   },
+   {
+    "host": "kzhsxemkntfwsakhkylt.supabase.co",
+    "kb": 0
+   }
+  ],
+  "preloads": [
+   "image:/assets/xtsy-color-logo-D0pKAWTY.webp",
+   "image:/img/o/xtsy-tab-bistro-by-xtsy-1-480.webp 480w, /img/o/xtsy-tab-bistro-by-xtsy-1-640.webp  fp=high",
+   "font:/fonts/staatliches-latin.woff2",
+   "font:/fonts/manrope-latin.woff2",
+   "font:/fonts/manrope-latin-ext.woff2",
+   "font:/fonts/staatliches-latin-ext.woff2",
+   "null:/placeholder.svg"
+  ],
+  "lcpMs": 1560,
+  "breakdown": {
+   "ttfb": 15,
+   "loadDelay": 0,
+   "loadDuration": 0,
+   "renderDelay": 1545
+  },
+  "lcpImage": null
+ },
+ {
+  "route": "/faq",
+  "lcpRuns": [
+   1316,
+   1324,
+   1296
+  ],
+  "ttfb": 12,
+  "htmlKb": 13,
+  "domInteractive": 1141,
+  "fcp": 1316,
+  "lcp": {
+   "t": 1316,
+   "size": 39751,
+   "url": "",
+   "tag": "H1",
+   "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:text-[112px]",
+   "text": "Questions, answered.",
+   "lazy": null,
+   "fp": null,
+   "sizes": null,
+   "natural": null,
+   "shown": "384x110",
+   "bg": null
+  },
+  "cls": 0.014,
+  "lcpRes": null,
+  "blocking": [
+   {
+    "url": "/assets/styles-DrWbQjE6.css",
+    "kb": 43,
+    "end": 1084
+   },
+   {
+    "url": "/fonts/fonts.css",
+    "kb": 1,
+    "end": 348
+   }
+  ],
+  "longTaskMsBeforeLcp": 65,
+  "beforeLcp": {
+   "jsKb": 373,
+   "cssKb": 43,
+   "imgKb": 23,
+   "thirdPartyKb": 0,
+   "requests": 49,
+   "images": [
+    {
+     "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+     "kb": 23,
+     "start": 181
+    }
+   ]
+  },
+  "thirdParty": [
+   {
+    "host": "t.contentsquare.net",
+    "kb": 162
+   },
+   {
+    "host": "googleads.g.doubleclick.net",
+    "kb": 3
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "kb": 1
+   },
+   {
+    "host": "www.googletagmanager.com",
+    "kb": 0
+   },
+   {
+    "host": "static.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "www.google.com",
+    "kb": 0
+   },
+   {
+    "host": "ad.doubleclick.net",
+    "kb": 0
+   },
+   {
+    "host": "kzhsxemkntfwsakhkylt.supabase.co",
+    "kb": 0
+   }
+  ],
+  "preloads": [
+   "image:/assets/xtsy-color-logo-D0pKAWTY.webp",
+   "font:/fonts/staatliches-latin.woff2",
+   "font:/fonts/manrope-latin.woff2",
+   "font:/fonts/manrope-latin-ext.woff2",
+   "font:/fonts/staatliches-latin-ext.woff2",
+   "null:/placeholder.svg"
+  ],
+  "lcpMs": 1316,
+  "breakdown": {
+   "ttfb": 12,
+   "loadDelay": 0,
+   "loadDuration": 0,
+   "renderDelay": 1304
+  },
+  "lcpImage": null
+ }
+]
