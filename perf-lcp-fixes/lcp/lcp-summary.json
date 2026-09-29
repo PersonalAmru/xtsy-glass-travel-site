@@ -1,0 +1,286 @@
+{
+ "base": "http://localhost:4174",
+ "profile": "Slow 4G (150ms, 1.6Mbps) + 4x CPU, 412x823 @1.75x, cold cache",
+ "routes": [
+  {
+   "route": "/",
+   "lcp": 8872,
+   "fcp": 1508,
+   "cls": 0.104,
+   "el": "IMG xtsy-property-images-8-portrait-1080.webp",
+   "breakdown": {
+    "ttfb": 23,
+    "loadDelay": 193,
+    "loadDuration": 8613,
+    "renderDelay": 43
+   },
+   "image": {
+    "file": "xtsy-property-images-8-portrait-1080.webp",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 613,
+   "before": {
+    "jsKb": 771,
+    "cssKb": 43,
+    "imgKb": 777,
+    "thirdPartyKb": 154,
+    "requests": 65
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Kt1_AHIV.css",
+     "kb": 43,
+     "end": 1084
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 355
+    }
+   ]
+  },
+  {
+   "route": "/best-hostel-in-shillong",
+   "lcp": 1536,
+   "fcp": 1536,
+   "cls": 0.019,
+   "el": "P \"For most travellers the best-rated hostel in Shillong is XTS\"",
+   "breakdown": {
+    "ttfb": 28,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1508
+   },
+   "image": null,
+   "longTasks": 82,
+   "before": {
+    "jsKb": 601,
+    "cssKb": 43,
+    "imgKb": 363,
+    "thirdPartyKb": 0,
+    "requests": 57
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 389
+    },
+    {
+     "url": "/assets/styles-Kt1_AHIV.css",
+     "kb": 43,
+     "end": 1276
+    }
+   ]
+  },
+  {
+   "route": "/xtsy-270",
+   "lcp": 1568,
+   "fcp": 1568,
+   "cls": 0.003,
+   "el": "H1 \"Experience by XTSY\"",
+   "breakdown": {
+    "ttfb": 17,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1551
+   },
+   "image": null,
+   "longTasks": 91,
+   "before": {
+    "jsKb": 598,
+    "cssKb": 43,
+    "imgKb": 435,
+    "thirdPartyKb": 0,
+    "requests": 55
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 364
+    },
+    {
+     "url": "/assets/styles-Kt1_AHIV.css",
+     "kb": 43,
+     "end": 1300
+    }
+   ]
+  },
+  {
+   "route": "/tours/5n-6d-tawang-tour",
+   "lcp": 1880,
+   "fcp": 1556,
+   "cls": 0.148,
+   "el": "IMG sig-5n-6d-tawang-tour-828.webp",
+   "breakdown": {
+    "ttfb": 18,
+    "loadDelay": 167,
+    "loadDuration": 1665,
+    "renderDelay": 30
+   },
+   "image": {
+    "file": "sig-5n-6d-tawang-tour-828.webp",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 90,
+   "before": {
+    "jsKb": 635,
+    "cssKb": 43,
+    "imgKb": 106,
+    "thirdPartyKb": 0,
+    "requests": 69
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 355
+    },
+    {
+     "url": "/assets/styles-Kt1_AHIV.css",
+     "kb": 43,
+     "end": 1299
+    }
+   ]
+  },
+  {
+   "route": "/destinations/meghalaya/shillong",
+   "lcp": 1324,
+   "fcp": 1324,
+   "cls": 0.243,
+   "el": "P \"Searching for adventures near me while in Shillong? These ne\"",
+   "breakdown": {
+    "ttfb": 26,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1298
+   },
+   "image": null,
+   "longTasks": 77,
+   "before": {
+    "jsKb": 601,
+    "cssKb": 43,
+    "imgKb": 277,
+    "thirdPartyKb": 0,
+    "requests": 54
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 341
+    },
+    {
+     "url": "/assets/styles-Kt1_AHIV.css",
+     "kb": 43,
+     "end": 1084
+    }
+   ]
+  },
+  {
+   "route": "/living-root-bridges-meghalaya",
+   "lcp": 1576,
+   "fcp": 1576,
+   "cls": 0.035,
+   "el": "P \"Backed by XTSY — Northeast India's NEITA 2025-nominated hosp\"",
+   "breakdown": {
+    "ttfb": 23,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1553
+   },
+   "image": null,
+   "longTasks": 107,
+   "before": {
+    "jsKb": 604,
+    "cssKb": 43,
+    "imgKb": 228,
+    "thirdPartyKb": 0,
+    "requests": 52
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Kt1_AHIV.css",
+     "kb": 43,
+     "end": 1297
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 355
+    }
+   ]
+  },
+  {
+   "route": "/tab-bistro",
+   "lcp": 1568,
+   "fcp": 1568,
+   "cls": 0.116,
+   "el": "H1 \"Forest dining under the pines.\"",
+   "breakdown": {
+    "ttfb": 15,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1553
+   },
+   "image": null,
+   "longTasks": 105,
+   "before": {
+    "jsKb": 606,
+    "cssKb": 43,
+    "imgKb": 71,
+    "thirdPartyKb": 0,
+    "requests": 52
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Kt1_AHIV.css",
+     "kb": 43,
+     "end": 1300
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 370
+    }
+   ]
+  },
+  {
+   "route": "/faq",
+   "lcp": 1340,
+   "fcp": 1340,
+   "cls": 0.014,
+   "el": "H1 \"Questions, answered.\"",
+   "breakdown": {
+    "ttfb": 22,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1318
+   },
+   "image": null,
+   "longTasks": 70,
+   "before": {
+    "jsKb": 598,
+    "cssKb": 43,
+    "imgKb": 23,
+    "thirdPartyKb": 0,
+    "requests": 50
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Kt1_AHIV.css",
+     "kb": 43,
+     "end": 1091
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 356
+    }
+   ]
+  }
+ ]
+}
