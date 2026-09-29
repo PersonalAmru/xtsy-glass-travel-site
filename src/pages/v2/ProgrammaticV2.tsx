@@ -10,14 +10,13 @@
  *  4. Dense, relevant internal links (hub, wheel, same-category, related)
  */
 import { useState } from 'react';
-import { useParams, Link, Navigate } from '@/lib/router-compat';
+import { getRouteApi } from '@tanstack/react-router';
+import { Link } from '@/lib/router-compat';
 import NotFound from '@/pages/NotFound';
 import StayEatExplore from '@/components/seo/StayEatExplore';
 import TopicalClusterNav from '@/components/seo/TopicalClusterNav';
-import { getRelatedPages, getPagesByCategory } from '@/data/seoPages';
-import { RECOVERY_REDIRECTS } from '@/data/seoAffectedSlugs';
-import { getWheelLinks } from '@/data/seoLinkingWheel';
-import { programmaticModel, goesBeyondShillong, CATEGORY_LABELS, SEO_CONTENT_UPDATED, townOf } from '@/lib/seo/programmaticSeo';
+// Page data arrives from the route loader (server function), so no guide text is bundled here.
+const route = getRouteApi('/$slug');
 import { openTripChat } from '@/components/v2/tripChatEvents';
 import { inr, lowestDormPrice, roomPrice } from '@/components/v2/pricing';
 import { PageShell, Breadcrumbs, PAD } from '@/components/v2/blocks';
@@ -46,22 +45,12 @@ function Faq({ q, a }: { q: string; a: string }) {
 }
 
 export default function ProgrammaticV2() {
-  const { slug } = useParams<{ slug: string }>();
-  const model = slug ? programmaticModel(slug) : null;
-
-  if (!model && slug && RECOVERY_REDIRECTS[slug]) return <Navigate to={RECOVERY_REDIRECTS[slug]} replace />;
-  if (!model) return <NotFound />;
+  const data = route.useLoaderData();
+  // The loader already 404s/redirects missing and thin pages; this only guards odd states.
+  if (!data || data.status !== 'ok') return <NotFound />;
+  const { model, label, town, related, sameCat, wheel, beyond } = data;
   const { page, hero, hub, quickAnswer, facts } = model;
-  const bodyLen = (page.intro?.length || 0) + page.sections.reduce((a, s) => a + (s.content?.length || 0), 0);
-  if (page.sections.length < 3 || bodyLen < 600) return <NotFound />;
-
-  const label = CATEGORY_LABELS[page.category] ?? 'Guides';
-  const town = townOf(page);
-  const related = getRelatedPages(page.slug);
-  const sameCat = getPagesByCategory(page.category).filter((p) => p.slug !== page.slug).slice(0, 9);
-  const wheel = getWheelLinks(page.slug);
-  const beyond = goesBeyondShillong(page);
-  const updated = new Date(SEO_CONTENT_UPDATED).toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+  const updated = new Date(data.updated).toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
 
   return (
     <PageShell cta={{ title: town ? `Travelling to ${town}?` : 'Stay with us in the pines.', sub: town ? 'The XTSY desk books trusted partner stays, cabs and guides — and your Shillong nights at XTSY.' : `Dorm beds from ${inr(lowestDormPrice())}, King Double ${inr(roomPrice('king-double-room').now)}, TAB Bistro on site.`, bookTo: '/book', bookLabel: 'Check availability' }}>

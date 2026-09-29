@@ -79,6 +79,9 @@ async function measure(page: Page, url: string): Promise<Run> {
         imgKb: kb(pre.filter((r) => r.initiatorType === 'img' || /\.(webp|avif|jpe?g|png)(\?|$)/.test(r.name))),
         thirdPartyKb: kb(pre.filter((r) => !r.name.includes(host))),
         requests: pre.length,
+        images: pre.filter((r) => r.initiatorType === 'img' || /\.(webp|avif|jpe?g|png)(\?|$)/.test(r.name))
+          .map((r) => ({ url: r.name.replace(location.origin, '').slice(-70), kb: Math.round((r.transferSize || r.encodedBodySize) / 1024), start: Math.round(r.startTime) }))
+          .sort((a, b) => b.kb - a.kb).slice(0, 10),
       },
       thirdParty: Object.entries(res.filter((r) => !r.name.includes(host)).reduce((m, r) => { const h = new URL(r.name).host; m[h] = (m[h] ?? 0) + (r.transferSize || r.encodedBodySize || 0); return m; }, {} as Record<string, number>))
         .map(([h, b]) => ({ host: h, kb: Math.round(b / 1024) })).sort((a, b) => b.kb - a.kb).slice(0, 8),

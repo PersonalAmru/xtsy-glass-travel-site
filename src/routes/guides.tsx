@@ -1,12 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import GuidesDirectoryV2 from "@/pages/v2/GuidesDirectoryV2";
 import { buildRouteHead } from "@/lib/seo-head";
-import { guideDirectory } from "@/lib/seo/programmaticSeo";
+import { fetchGuideDirectory } from "@/lib/seo/pageData.functions";
 
 export const Route = createFileRoute("/guides")({
-  head: () => {
-    let items: { slug: string; label: string }[] = [];
-    try { items = guideDirectory().flatMap((g) => g.pages); } catch (err) { console.error("[head] guides.tsx", err); }
+  // The directory is built on the server so the guide data stays out of the JavaScript bundle.
+  loader: () => fetchGuideDirectory(),
+  head: ({ loaderData }) => {
+    const items = loaderData?.groups.flatMap((g) => g.pages) ?? [];
     return buildRouteHead({
       path: "/guides",
       title: "All Shillong & Meghalaya Travel Guides A–Z | XTSY",

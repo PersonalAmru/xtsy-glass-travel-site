@@ -260,38 +260,21 @@ function RootShell({ children }: { children: ReactNode }) {
 
 // ported from main.tsx — deferred non-critical init (Sentry, Contentsquare, perf)
 function initializeNonCritical() {
-  const scheduleIdleTask = (callback: () => void, timeout = 2000) => {
-    if (typeof requestIdleCallback !== "undefined") {
-      requestIdleCallback(callback, { timeout });
-    } else {
-      setTimeout(callback, 50);
-    }
+  // Non-critical work waits for the page's load event, then a delay, then an idle moment.
+  // (A bare requestIdleCallback fires almost immediately on a slow connection — the main thread
+  // is idle while images download — so this work used to compete with the hero image / LCP.)
+  const scheduleIdleTask = (callback: () => void, delayAfterLoad = 2000) => {
+    const idle = () =>
+      typeof requestIdleCallback !== "undefined" ? requestIdleCallback(() => callback(), { timeout: 3000 }) : callback();
+    const start = () => window.setTimeout(idle, delayAfterLoad);
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
   };
 
   const initSentry = async () => {
     if (import.meta.env.PROD) {
-      const Sentry = await import("@sentry/react");
-      const SENTRY_DSN =
-        import.meta.env.VITE_SENTRY_DSN ||
-        "https://de60ec1c757d6d0b6fd991d42d4b8e06@o4510659453911040.ingest.us.sentry.io/4510659499982848";
-      Sentry.init({
-        dsn: SENTRY_DSN,
-        environment: import.meta.env.MODE,
-        integrations: [Sentry.browserTracingIntegration()],
-        tracesSampleRate: 0.05,
-        replaysSessionSampleRate: 0,
-        replaysOnErrorSampleRate: 0.5,
-        sendDefaultPii: false,
-        ignoreErrors: [
-          "ResizeObserver loop limit exceeded",
-          "ResizeObserver loop completed with undelivered notifications",
-          "Failed to fetch",
-          "Load failed",
-          "NetworkError",
-          /^chrome-extension:\/\//,
-          /^moz-extension:\/\//,
-        ],
-      });
+      const { initSentry: start } = await import("@/lib/sentry.client");
+      start();
     }
   };
 

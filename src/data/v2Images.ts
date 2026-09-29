@@ -63,7 +63,7 @@ export const HERO_IMAGE = {
   position: '50% 40%',
   /** Phones: a portrait crop of the same framing (about half the bytes of the landscape 1280). */
   mobile: {
-    src: '/img/o/xtsy-property-images-8-portrait-720.webp',
-    srcSet: '/img/o/xtsy-property-images-8-portrait-720.webp 720w, /img/o/xtsy-property-images-8-portrait-1080.webp 1080w',
+    src: '/img/o/xtsy-property-images-8-portrait-828.webp',
+    srcSet: '/img/o/xtsy-property-images-8-portrait-828.webp 828w, /img/o/xtsy-property-images-8-portrait-1080.webp 1080w',
   },
 };
