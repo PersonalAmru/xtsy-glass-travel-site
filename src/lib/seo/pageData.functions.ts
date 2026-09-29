@@ -8,7 +8,7 @@ import { createServerFn } from '@tanstack/react-start';
 const slugInput = (input: unknown) => String(input ?? '').slice(0, 160);
 
 export const fetchProgrammaticPage = createServerFn({ method: 'GET' })
-  .inputValidator(slugInput)
+  .validator(slugInput)
   .handler(async ({ data }) => {
     const { programmaticPayload } = await import('./pageHeads');
     return programmaticPayload(data);
@@ -20,7 +20,7 @@ export const fetchGuideDirectory = createServerFn({ method: 'GET' }).handler(asy
 });
 
 export const fetchTourHead = createServerFn({ method: 'GET' })
-  .inputValidator(slugInput)
+  .validator(slugInput)
   .handler(async ({ data }) => {
     const { tourHead } = await import('./pageHeads');
     return tourHead(data);

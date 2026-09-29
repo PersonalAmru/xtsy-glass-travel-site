@@ -217,7 +217,7 @@ function reportFailure(reason: string, extra?: Record<string, unknown>) {
   } catch { /* noop */ }
 
   try {
-    import('@/lib/sentry.client')
+    import('@/lib/sentryInit')
       .then(({ captureWarning }) => {
         captureWarning(`[CS-Loader] ${reason}`, { component: 'contentsquare-loader' }, payload as Record<string, unknown>);
       })

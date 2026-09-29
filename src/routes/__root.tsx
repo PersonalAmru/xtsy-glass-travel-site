@@ -273,7 +273,7 @@ function initializeNonCritical() {
 
   const initSentry = async () => {
     if (import.meta.env.PROD) {
-      const { initSentry: start } = await import("@/lib/sentry.client");
+      const { initSentry: start } = await import("@/lib/sentryInit");
       start();
     }
   };
