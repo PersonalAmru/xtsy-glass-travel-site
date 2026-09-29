@@ -85,8 +85,8 @@ function DateStep({ initialProperty, onSubmit }: { initialProperty: 'xtsy-hostel
         <a href="/" className="text-sm text-white/70 hover:text-white">← XTSY home</a>
         <div>
           <p className="text-xs uppercase tracking-widest text-white/70">Step 1</p>
-          <h1 className="mt-1 text-2xl font-semibold">Book your stay at XTSY Travellers Hostel</h1>
-          <p className="mt-1 text-sm text-white/80">Pick your dates to see live rooms and prices. Check-in 11 AM · check-out 10 AM.</p>
+          <h1 className="mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font-normal leading-[0.95] sm:text-[52px]">Book your stay at XTSY Travellers Hostel</h1>
+          <p className="mt-3 text-base text-white/80">Pick your dates to see live rooms and prices. Check-in 11 AM · check-out 10 AM.</p>
         </div>
         <form className="flex flex-col gap-4" onSubmit={(e) => { e.preventDefault(); if (valid) onSubmit(ci, co, property); }}>
           <fieldset className="grid grid-cols-2 gap-2">
