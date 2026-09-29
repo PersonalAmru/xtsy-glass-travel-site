@@ -358,7 +358,7 @@ computing gzip size...
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 6.82s[39m
+[32m✓ built in 3.87s[39m
 [36mvite v8.2.1 [32mbuilding ssr environment for production...[36m[39m
 [2Ktransforming...[33m[plugin tanstack-start-core::server-fn:ssr] /home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/src/lib/seo/pageData.functions.ts?tss-serverfn-split:10:38 createServerFn().inputValidator() is deprecated. Use createServerFn().validator() instead.[39m
 [33m[plugin tanstack-start-core::server-fn:ssr] /home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/src/lib/seo/pageData.functions.ts?tss-serverfn-split:22:30 createServerFn().inputValidator() is deprecated. Use createServerFn().validator() instead.[39m
@@ -366,14 +366,7 @@ computing gzip size...
 [33m[plugin tanstack-start-core::server-fn:ssr] /home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/src/lib/seo/pageData.functions.ts:22:30 createServerFn().inputValidator() is deprecated. Use createServerFn().validator() instead.[39m
 ✓ 656 modules transformed.
 rendering chunks...
-[31m✗[39m Build failed in 3.92s
-[33m[33m[PLUGIN_TIMINGS] [0mYour build spent 92% of 3.9s inside plugin hooks (3.6s).
-Not measurable — 3 hooks whose calls overlap, so elapsed time covers work other calls were doing. Profile with `node --cpu-prof`:
-  - tanstack-start-core:import-protection resolveId (2565 calls)
-  - vite:asset load (30 calls)
-  - tanstack-start-core::server-fn:ssr transform (17 calls)
-See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
-[39m
+[31m✗[39m Build failed in 1.74s
 [31merror during build:
 [31mBuild failed with 1 error:
 
