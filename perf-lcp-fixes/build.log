@@ -346,7 +346,7 @@ computing gzip size...
 .output/public/assets/sentry.client-s9KH_vqE.js                                144.37 kB │ gzip:  48.64 kB │ map: 1,003.59 kB
 .output/public/assets/client-kMGS092h.js                                       208.98 kB │ gzip:  54.21 kB │ map: 1,141.78 kB
 .output/public/assets/generateCategoricalChart-DkbXbkj8.js                     368.68 kB │ gzip:  98.19 kB │ map: 1,546.53 kB
-.output/public/assets/index-e7KtpDf1.js                                        737.86 kB │ gzip: 226.10 kB │ map: 2,503.40 kB
+.output/public/assets/index-e7KtpDf1.js                                        737.86 kB │ gzip: 226.10 kB │ map: 2,503.39 kB
 .output/public/assets/seoPages-CVZXPd5o.js                                     863.87 kB │ gzip: 219.44 kB │ map: 1,213.27 kB
 
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/components/v2/TripChat.tsx is dynamically imported by src/components/v2/ChatLauncher.tsx but also statically imported by src/components/v2/home/HomeHero.tsx, src/pages/v2/PlanTripV2.tsx, dynamic import will not move module into another chunk.
@@ -358,7 +358,7 @@ computing gzip size...
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 6.14s[39m
+[32m✓ built in 6.82s[39m
 [36mvite v8.2.1 [32mbuilding ssr environment for production...[36m[39m
 [2Ktransforming...[33m[plugin tanstack-start-core::server-fn:ssr] /home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/src/lib/seo/pageData.functions.ts?tss-serverfn-split:10:38 createServerFn().inputValidator() is deprecated. Use createServerFn().validator() instead.[39m
 [33m[plugin tanstack-start-core::server-fn:ssr] /home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/src/lib/seo/pageData.functions.ts?tss-serverfn-split:22:30 createServerFn().inputValidator() is deprecated. Use createServerFn().validator() instead.[39m
@@ -366,11 +366,8 @@ computing gzip size...
 [33m[plugin tanstack-start-core::server-fn:ssr] /home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/src/lib/seo/pageData.functions.ts:22:30 createServerFn().inputValidator() is deprecated. Use createServerFn().validator() instead.[39m
 ✓ 656 modules transformed.
 rendering chunks...
-[31m✗[39m Build failed in 3.23s
-[33m[33m[PLUGIN_TIMINGS] [0mYour build spent 91% of 3.2s inside plugin hooks (2.9s).
-Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
-  - @tailwindcss/vite:generate:build transform (43%, 1.4s, 1 call)
-Those rows are 43% of the build; the rest of the 91% is below.
+[31m✗[39m Build failed in 3.92s
+[33m[33m[PLUGIN_TIMINGS] [0mYour build spent 92% of 3.9s inside plugin hooks (3.6s).
 Not measurable — 3 hooks whose calls overlap, so elapsed time covers work other calls were doing. Profile with `node --cpu-prof`:
   - tanstack-start-core:import-protection resolveId (2565 calls)
   - vite:asset load (30 calls)
