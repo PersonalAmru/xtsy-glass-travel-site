@@ -1,6 +1,0 @@
-.output/public/assets/index-CW_3pdDR.js
-.output/public/assets/esm-YspT_man.js
-.output/public/assets/generateCategoricalChart-DkbXbkj8.js
-.output/public/assets/client-kMGS092h.js
-.output/public/assets/proxy-CfOVWsUd.js
-.output/public/assets/pet-friendly-BQSjI5lL.js
