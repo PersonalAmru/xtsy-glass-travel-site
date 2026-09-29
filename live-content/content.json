@@ -2,7 +2,7 @@
  {
   "url": "/",
   "status": 200,
-  "words": 1709,
+  "words": 1706,
   "findings": [
    {
     "rule": "price:female dorm",
@@ -43,7 +43,7 @@
    ],
    "faqSchemaQuestions": 6,
    "questionHeadings": 2,
-   "firstParagraphWords": 20,
+   "firstParagraphWords": 19,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": false
@@ -4838,11 +4838,11 @@
  {
   "url": "/book",
   "status": 200,
-  "words": 18,
+  "words": 60,
   "findings": [
    {
     "rule": "seo:thin (<300 words)",
-    "detail": "18"
+    "detail": "60"
    },
    {
     "rule": "aeo:no FAQ or question headings",
@@ -4851,10 +4851,6 @@
    {
     "rule": "aeo:no \"New Shillong Township\" entity mention",
     "detail": ""
-   },
-   {
-    "rule": "aeo:no concise answer paragraph under H1",
-    "detail": "0"
    }
   ],
   "seo": {
@@ -4880,12 +4876,20 @@
    ],
    "faqSchemaQuestions": 0,
    "questionHeadings": 0,
-   "firstParagraphWords": 0,
+   "firstParagraphWords": 16,
    "mentionsBrand": true,
    "mentionsLocation": false,
    "updatedDate": false
   },
   "info": [
+   {
+    "rule": "info:check-in time seen",
+    "detail": "11a"
+   },
+   {
+    "rule": "info:check-out time seen",
+    "detail": "10a"
+   },
    {
     "rule": "info:check-in time seen",
     "detail": "11a"
