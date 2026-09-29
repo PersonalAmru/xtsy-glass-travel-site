@@ -1,0 +1,181 @@
+➜ Listening on: http://localhost:4173/ (all interfaces)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)
+TypeError: createCsrfMiddleware is not a function
+    at file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/server-C7PKPCk12.mjs:1316:29
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async Object.fetch (file:///home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/.output/server/_ssr/ssr.mjs:120:56)

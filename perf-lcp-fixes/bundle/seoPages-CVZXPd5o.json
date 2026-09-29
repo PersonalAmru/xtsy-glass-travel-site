@@ -1,0 +1,89 @@
+{
+  "results": [
+    {
+      "bundleName": ".output/public/assets/seoPages-CVZXPd5o.js",
+      "totalBytes": 863871,
+      "mappedBytes": 863812,
+      "unmappedBytes": 59,
+      "eolBytes": 0,
+      "sourceMapCommentBytes": 0,
+      "files": {
+        "../../../src/data/seoPagesExpansion.ts": {
+          "size": 89565
+        },
+        "../../../src/data/seoPillarPages.ts": {
+          "size": 57143
+        },
+        "../../../src/data/seoDestinationPages.ts": {
+          "size": 39438
+        },
+        "../../../src/data/seoLastMinutePages.ts": {
+          "size": 11373
+        },
+        "../../../src/utils/seoDate.ts": {
+          "size": 79
+        },
+        "../../../src/data/seoPageFactory.ts": {
+          "size": 33293
+        },
+        "../../../scripts/generate-seo-slugs.ts": {
+          "size": 6297
+        },
+        "../../../src/data/seoPagesRoutes.ts": {
+          "size": 20
+        },
+        "../../../src/data/seoPagesIntent.ts": {
+          "size": 16
+        },
+        "../../../src/data/seoPagesInstitutions.ts": {
+          "size": 144
+        },
+        "../../../src/data/seoPagesActivities.ts": {
+          "size": 16
+        },
+        "../../../src/data/seoPagesDurations.ts": {
+          "size": 16
+        },
+        "../../../src/data/seoPagesGlobalNE.ts": {
+          "size": 16
+        },
+        "../../../src/data/seoPagesNortheastExpansion.ts": {
+          "size": 246
+        },
+        "../../../src/data/seoPagesDining.ts": {
+          "size": 21070
+        },
+        "../../../src/data/seoPagesDiningExpansion.ts": {
+          "size": 66936
+        },
+        "../../../src/data/seoPagesDiningSpokes.ts": {
+          "size": 28141
+        },
+        "../../../src/data/seoAffectedSlugs.ts": {
+          "size": 5484
+        },
+        "../../../src/data/seoQualityFilter.ts": {
+          "size": 1019
+        },
+        "../../../src/data/seoPagesOverridesBottom50.ts": {
+          "size": 217488
+        },
+        "../../../src/data/seoPagesOverrides.ts": {
+          "size": 164859
+        },
+        "../../../src/data/seoNormalize.ts": {
+          "size": 10456
+        },
+        "../../../src/data/seoPages.ts": {
+          "size": 110697
+        },
+        "[sourceMappingURL]": {
+          "size": 0
+        },
+        "[unmapped]": {
+          "size": 59
+        }
+      }
+    }
+  ]
+}
