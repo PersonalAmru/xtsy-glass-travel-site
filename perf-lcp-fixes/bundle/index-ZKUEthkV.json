@@ -1,11 +1,11 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-ggapye6Z.js",
-      "totalBytes": 733998,
+      "bundleName": ".output/public/assets/index-ZKUEthkV.js",
+      "totalBytes": 734549,
       "mappedBytes": 716964,
-      "unmappedBytes": 16856,
-      "eolBytes": 178,
+      "unmappedBytes": 17401,
+      "eolBytes": 184,
       "sourceMapCommentBytes": 0,
       "files": {
         "../../../node_modules/scheduler/cjs/scheduler.production.js": {
@@ -927,10 +927,10 @@
           "size": 0
         },
         "[unmapped]": {
-          "size": 16856
+          "size": 17401
         },
         "[EOLs]": {
-          "size": 178
+          "size": 184
         }
       }
     }
