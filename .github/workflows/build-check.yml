@@ -106,7 +106,7 @@ jobs:
       - name: Production build
         run: |
           set -o pipefail
-          ANALYZE_BUNDLE=1 bun run build 2>&1 | tee build.log || { grep -iE "error|failed" build.log | tail -15 | sed 's/^/::error::/'; exit 1; }
+          ANALYZE_BUNDLE=1 bun run build 2>&1 | tee build.log || { grep -iE -A6 "error|failed|✗" build.log | grep -v "^\s*at " | tail -40 | sed 's/^/::error::/'; exit 1; }
 
       - name: Bundle report (what is inside the biggest client chunks)
         continue-on-error: true
