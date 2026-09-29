@@ -44,7 +44,7 @@ export default function AboutV2() {
     <>
       <SEOHead structuredDataOnly title={seo.title} description={seo.description} keywords={seo.keywords} canonicalUrl="https://xtsy.one/about" />
       <Helmet>
-        <script type="application/ld+json">{JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'XTSY Travellers Hostel', url: 'https://xtsy.one', telephone: '+918837317070', email: 'admin@xtsy.one', address: ADDRESS, sameAs: ['https://www.instagram.com/xtsyhostel', 'https://www.youtube.com/@xtsyhostel'] })}</script>
+        <script type="application/ld+json">{JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'XTSY Travellers Hostel', url: 'https://xtsy.one', telephone: '+918837317070', email: 'booking@xtsy.one', address: ADDRESS, sameAs: ['https://www.instagram.com/xtsyhostel', 'https://www.youtube.com/@xtsyhostel'] })}</script>
         <script type="application/ld+json">{JSON.stringify({ '@context': 'https://schema.org', '@type': 'Hostel', name: 'XTSY Travellers Hostel', url: 'https://xtsy.one/about', telephone: '+918837317070', address: ADDRESS, petsAllowed: true })}</script>
       </Helmet>
       <PageShell>
@@ -102,7 +102,7 @@ export default function AboutV2() {
               <address className="text-[16px] not-italic leading-relaxed text-xt-fog">
                 Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018, India
                 <br />Near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University
-                <br />+91 88373 17070 · admin@xtsy.one · Reception 24/7
+                <br />+91 88373 17070 · booking@xtsy.one · Reception 24/7
               </address>
               <p className="m-0 text-[14px] text-[#9EA6B8]">This is XTSY’s only property. Everywhere else, XTSY arranges stays, transport and travel help through trusted travel partners.</p>
             </div>

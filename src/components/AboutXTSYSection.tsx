@@ -33,7 +33,7 @@ const AboutXTSYSection: React.FC = () => {
 
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
               <strong className="text-foreground">XTSY is where innovation meets exploration.</strong> Based in Shillong and powered by{" "}
-              <strong className="text-foreground">XTSY ONE</strong>, we are redefining how India travels — 
+              <strong className="text-foreground">XTSY Ventures Private Limited</strong>, we are redefining how India travels — 
               with experiences that feel personal, architectural, immersive, and unforgettable.
             </p>
 

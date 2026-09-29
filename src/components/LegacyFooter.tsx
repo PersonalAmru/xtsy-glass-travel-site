@@ -55,7 +55,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                <a href="mailto:admin@xtsy.one" className="hover:text-primary transition-colors">admin@xtsy.one</a>
+                <a href="mailto:booking@xtsy.one" className="hover:text-primary transition-colors">booking@xtsy.one</a>
               </li>
             </ul>
             <div className="flex items-center gap-3 mt-3">
@@ -89,9 +89,9 @@ const Footer = () => {
         </Suspense>
 
         <p className="text-muted-foreground text-[10px] sm:text-xs text-center mt-6">
-          © 2025 XTSY One. All rights reserved. Experience the XTSY Vibe.
+          © {new Date().getFullYear()} XTSY Ventures Private Limited. All rights reserved. XTSY is a trademark of XTSY Ventures Private Limited.
           <br className="sm:hidden" />
-          <span className="sm:ml-1">Powered by XTSY ONE Ventures Pvt Ltd</span>
+          <span className="sm:ml-1">Powered by XTSY Ventures Private Limited</span>
         </p>
       </div>
 

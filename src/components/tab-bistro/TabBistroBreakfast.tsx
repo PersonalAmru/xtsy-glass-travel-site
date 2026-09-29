@@ -15,7 +15,7 @@ const highlights = [
   },
   {
     title: "All-Day Café",
-    desc: "A relaxed rooftop cafe in Shillong vibe for remote workers and travellers — espresso, cold brew, fast WiFi corners and light bites through the day.",
+    desc: "A relaxed café for remote workers and travellers — espresso, cold brew, fast WiFi corners and light bites through the day.",
     icon: <Coffee className="w-5 h-5" />,
   },
   {

@@ -14,7 +14,7 @@ const experiences = [
   },
   {
     title: "Rooftop Dining",
-    desc: "Sunset rooftop dining with panoramic views and curated menus.",
+    desc: "A rooftop terrace with panoramic views — the rooftop café is coming soon.",
     icon: <Sunset className="w-5 h-5" />,
     badge: "Upcoming",
   },

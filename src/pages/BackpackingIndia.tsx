@@ -74,7 +74,7 @@ const BackpackingIndia = memo(() => {
     author: { '@type': 'Organization', name: 'XTSY Travellers Hostel' },
     publisher: {
       '@type': 'Organization',
-      name: 'XTSY ONE Ventures Pvt Ltd',
+      name: 'XTSY Ventures Private Limited',
       url: 'https://xtsy.one/',
     },
   };

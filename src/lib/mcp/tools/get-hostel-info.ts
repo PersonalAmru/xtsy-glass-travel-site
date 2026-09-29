@@ -2,7 +2,7 @@ import { defineTool } from "@lovable.dev/mcp-js";
 
 const HOSTEL_INFO = {
   brand: "XTSY",
-  poweredBy: "Powered by XTSY ONE Ventures Pvt Ltd",
+  poweredBy: "Powered by XTSY Ventures Private Limited",
   location: "Shillong, Meghalaya, Northeast India",
   whatsapp: "+91 88373 17070",
   bookingUrl: "https://xtsy.one/book",

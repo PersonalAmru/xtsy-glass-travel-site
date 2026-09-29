@@ -7,6 +7,7 @@ import SEOHead from '@/components/SEOHead';
 import { DAWKI_CAMPING_IMAGES } from '@/data/properties';
 import { PageShell, PageHero, Btn, Section, H2, PriceCards, FaqList, PAD } from '@/components/v2/blocks';
 import { Photo, waLink } from '@/components/v2/primitives';
+import { GOOGLE_RATING } from '@/data/brandFacts';
 
 const FAQS = [
   { q: 'Where is the campsite?', a: 'On the banks of the Umngot River at Dawki, Meghalaya — about 85 km (around 3 hours by road) from XTSY in New Shillong Township.' },
@@ -46,7 +47,7 @@ export default function CampsiteV2() {
           fg="#EAF0EA"
           muted="#C8D6CC"
           eyebrowColor="#F2B8C2"
-          eyebrow="Dawki riverside camping · arranged by XTSY with a trusted partner"
+          eyebrow={`Dawki riverside camping · booked via XTSY · ${GOOGLE_RATING.label}`}
           title="Sleep beside the clearest river."
           text="Pre-pitched tents on the banks of the Umngot, welcome chai, bonfire nights under a starlit sky, and a 2-minute walk to the India–Bangladesh border viewpoint. The camp is run by our trusted partner; the XTSY desk books it, arranges your transfer from New Shillong and stays your contact throughout."
           actions={<><Btn to={wa}>Book a tent on WhatsApp</Btn><Btn to="#packages" kind="outline-light">See packages</Btn></>}

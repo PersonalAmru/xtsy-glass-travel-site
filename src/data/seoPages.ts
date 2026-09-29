@@ -1160,10 +1160,10 @@ const clampDesc = (desc: string): string => {
 
 // Phase 2 brand-rewrite enforcer: every published page receives the
 // canonical brand opener + Why-XTSY + About-Group sections. Idempotent —
-// pages that already mention NEITA/270°/XTSY ONE Ventures keep their
+// pages that already mention NEITA/270°/XTSY Ventures keep their
 // intro untouched, and the trust sections are deduped by heading.
 const enforceBrandFacts = (pages: SEOPageData[]): SEOPageData[] => {
-  const introHasBrand = (s: string) => /NEITA|270°|XTSY ONE Ventures/i.test(s);
+  const introHasBrand = (s: string) => /NEITA|270°|XTSY (ONE )?Ventures/i.test(s);
   const why = whyXTSYSection();
   return pages.map(p => {
     const intro = introHasBrand(p.intro) ? p.intro : `${BRAND_OPENER} ${p.intro}`;

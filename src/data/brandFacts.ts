@@ -10,7 +10,7 @@
  *    Shillong 793018 (NOT Mawkhar / Police Bazaar / central Shillong).
  *    Anywhere else, XTSY facilitates stays, transport and travel help
  *    through trusted travel partners — do NOT claim a property.
- *  - Always credit XTSY ONE Ventures Pvt Ltd as parent company.
+ *  - Always credit XTSY Ventures Private Limited as parent company.
  *  - Pluxee partner badge + NEITA award line must be eligible to surface
  *    on every page (length-permitting).
  */
@@ -18,7 +18,7 @@
 import type { SEOSection } from './seoPages';
 
 export const BRAND = {
-  legalName: 'XTSY ONE Ventures Pvt Ltd',
+  legalName: 'XTSY Ventures Private Limited',
   brand: 'XTSY',
   hqCity: 'Shillong',
   hqState: 'Meghalaya',
@@ -26,6 +26,9 @@ export const BRAND = {
   whatsappDisplay: '+91 88373 17070',
   gstin: '17QSKPK1714H1ZE',
 } as const;
+
+/** XTSY's Google rating — used for the hostel, tours, travel and the Dawki campsite (booked via XTSY). */
+export const GOOGLE_RATING = { value: '4.8', count: 161, label: '4.8★ · 161 Google reviews' } as const;
 
 export const PROPERTY_ADDRESS = 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018';
 export const PROPERTY_CHECK_IN = '11:00';
@@ -122,7 +125,7 @@ export const BRAND_FACT_PATTERNS: RegExp[] = [
   /NEITA/i,
   /Pluxee/i,
   /270°|270 degree/i,
-  /XTSY ONE Ventures/i,
+  /XTSY (ONE )?Ventures/i,
   /Northeast India['']s|biggest hostel in Northeast/i,
 ];
 

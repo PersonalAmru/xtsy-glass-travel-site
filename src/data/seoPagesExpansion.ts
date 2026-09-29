@@ -363,7 +363,7 @@ const experiencePages: SEOPageData[] = [
     'Luxury Resorts for Couples in Shillong | Experience by XTSY', 'Romantic luxury stays in Shillong for couples. Experience by XTSY, a 270° panoramic glass suite, with forest views. Perfect for honeymoons & anniversaries.',
     'Luxury Resorts for Couples in Shillong', 'Looking for a romantic luxury stay in Shillong? XTSY\'s 270° panoramic glasshouse offers couples an unforgettable experience — wake up to forest views in a glass-walled room.',
     [
-      { heading: 'Experience by XTSY', content: 'The ultimate romantic stay:', listItems: ['270° panoramic glass walls', 'Surrounded by pine forests', 'King-size bed with premium linen', 'Private bathroom with hot shower', 'Star-gazing from your bed', 'Starting at ₹5,399/night'] },
+      { heading: 'Experience by XTSY', content: 'The ultimate romantic stay:', listItems: ['270° panoramic glass walls', 'Surrounded by pine forests', 'Queen-size bed with premium linen', 'Private bathroom with hot shower', 'Star-gazing from your bed', 'Starting at ₹5,399/night'] },
       { heading: 'Romantic Experiences', content: 'Make your stay special:', listItems: ['Candlelit dinner at TAB Bistro', 'Sunrise view from the glasshouse', 'Couple\'s day trip to Dawki', 'Cherry blossom walks (March-April)', 'Bonfire under the stars'] },
     ],
     [
@@ -379,7 +379,7 @@ const experiencePages: SEOPageData[] = [
     'Unique Luxury Stay in India — Experience by XTSY', 'Looking for a truly unique luxury stay in India? Experience by XTSY in Shillong offers a one-of-a-kind experience — sleep in a glass room surrounded by pine forests.',
     [
       { heading: 'Why It\'s Unique', content: 'What makes XTSY 270° special:', listItems: ['India\'s only 270° panoramic glass room', 'Located in Meghalaya\'s pine forests', 'Unobstructed views of hills & sky', 'Star-gazing from bed', 'Instagram-worthy design'] },
-      { heading: 'The Experience', content: 'A stay at XTSY 270° includes:', listItems: ['Premium king-size bed', 'Private bathroom with hot shower', 'Complimentary breakfast at TAB Bistro', 'Access to all XTSY amenities', 'Guided nature walk on request'] },
+      { heading: 'The Experience', content: 'A stay at XTSY 270° includes:', listItems: ['Premium queen-size bed', 'Private bathroom with hot shower', 'Complimentary breakfast at TAB Bistro', 'Access to all XTSY amenities', 'Guided nature walk on request'] },
     ],
     [
       { question: 'Where is Experience by XTSY?', answer: 'On Mawdiangdiang Road, New Shillong Township, Meghalaya (793018), surrounded by pine forests — at the same address as XTSY Travellers Hostel.' },

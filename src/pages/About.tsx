@@ -41,7 +41,7 @@ const hostelSchema = {
   image: 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png',
   description: 'India\'s biggest hostel in Shillong, Meghalaya — budget dorms, private rooms, and Experience by XTSY, India\'s first stargaze glamp. NEITA 2025 nominated.',
   telephone: '+918837317070',
-  email: 'admin@xtsy.one',
+  email: 'booking@xtsy.one',
   priceRange: '₹325 - ₹9,999',
   currenciesAccepted: 'INR',
   address: {
@@ -120,8 +120,8 @@ const About = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                  <a href="mailto:admin@xtsy.one" className="text-muted-foreground hover:text-primary text-sm transition-colors">
-                    admin@xtsy.one
+                  <a href="mailto:booking@xtsy.one" className="text-muted-foreground hover:text-primary text-sm transition-colors">
+                    booking@xtsy.one
                   </a>
                 </div>
                 <div className="flex items-start gap-3">
