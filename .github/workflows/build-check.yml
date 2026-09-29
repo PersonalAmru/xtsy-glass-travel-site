@@ -106,7 +106,7 @@ jobs:
       - name: Production build
         run: |
           set -o pipefail
-          ANALYZE_BUNDLE=1 bun run build 2>&1 | tee build.log || { grep -iE -A6 "error|failed|✗" build.log | grep -v "^\s*at " | tail -40 | sed 's/^/::error::/'; exit 1; }
+          ANALYZE_BUNDLE=1 bun run build 2>&1 | tee build.log || { echo "::error::$(sed 's/\x1b\[[0-9;]*m//g' build.log | grep -v '^\s*at ' | grep -iE -B3 -A12 'error during build|RolldownError|\[plugin|Error:' | head -60 | tr '\n' ' ' | cut -c1-3500)"; exit 1; }
 
       - name: Bundle report (what is inside the biggest client chunks)
         continue-on-error: true
