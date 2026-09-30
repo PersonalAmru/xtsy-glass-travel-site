@@ -25,6 +25,8 @@ const TRACKING = /^(utm_[a-z]+|gclid|fbclid|gbraid|wbraid|msclkid|ref|mc_[a-z]+|
 
 type Entry = { t: number; status: number; headers: [string, string][]; body: ArrayBuffer };
 const memory = new Map<string, Entry>();
+/** Last shared-cache outcome, reported in the x-xtsy-edge header for diagnosis. */
+let edgeState = 'unknown';
 const inflight = new Map<string, Promise<Response>>();
 
 export function cacheKey(request: Request): string | null {
@@ -34,7 +36,8 @@ export function cacheKey(request: Request): string | null {
   if (BYPASS.test(url.pathname)) return null;
   const params = [...url.searchParams.entries()].filter(([k]) => !TRACKING.test(k)).sort(([a], [b]) => a.localeCompare(b));
   const q = params.length ? `?${new URLSearchParams(params).toString()}` : '';
-  return `https://page-cache.xtsy.internal/${BUILD}${url.pathname.replace(/\/+$/, '') || '/'}${q}`;
+  // Same-origin key: Cloudflare's cache only accepts keys on the site's own hostname in some setups.
+  return `${url.origin}/__page-cache/${BUILD}${url.pathname.replace(/\/+$/, '') || '/'}${q}`;
 }
 
 function storable(res: Response): boolean {
@@ -57,14 +60,16 @@ async function read(key: string): Promise<Entry | null> {
   if (!edge) return null;
   try {
     const hit = await edge.match(key);
-    if (!hit) return null;
+    if (!hit) { edgeState = 'miss'; return null; }
+    edgeState = 'hit';
     const t = Number(hit.headers.get('x-xtsy-stored-at')) || 0;
     const headers = [...hit.headers.entries()].filter(([k]) => !/^(x-xtsy-stored-at|cache-control|age|cf-cache-status)$/i.test(k));
     const orig = hit.headers.get('x-xtsy-orig-cache-control');
     const entry: Entry = { t, status: hit.status, headers: headers.filter(([k]) => k !== 'x-xtsy-orig-cache-control').concat(orig ? [['cache-control', orig]] : []), body: await hit.arrayBuffer() };
     remember(key, entry);
     return entry;
-  } catch {
+  } catch (e) {
+    edgeState = `match-error:${String(e).slice(0, 60)}`;
     return null;
   }
 }
@@ -78,7 +83,7 @@ function remember(key: string, entry: Entry) {
 async function write(key: string, entry: Entry) {
   remember(key, entry);
   const edge = edgeCache();
-  if (!edge) return;
+  if (!edge) { edgeState = 'unavailable'; return; }
   try {
     const h = new Headers(entry.headers);
     const orig = h.get('cache-control');
@@ -86,14 +91,16 @@ async function write(key: string, entry: Entry) {
     h.set('cache-control', `public, max-age=${Math.round(STALE_MS / 1000)}`);
     h.set('x-xtsy-stored-at', String(entry.t));
     await edge.put(key, new Response(entry.body, { status: entry.status, headers: h }));
-  } catch {
-    /* edge cache unavailable — memory cache still works */
+    edgeState = 'stored';
+  } catch (e) {
+    edgeState = `put-error:${String(e).slice(0, 60)}`; // memory cache still works
   }
 }
 
 function respond(entry: Entry, state: string): Response {
   const h = new Headers(entry.headers);
   h.set('x-xtsy-cache', state);
+  h.set('x-xtsy-edge', edgeState.replace(/[^\x20-\x7e]/g, '').slice(0, 80));
   h.delete('content-length');
   h.delete('content-encoding');
   return new Response(entry.body, { status: entry.status, headers: h });

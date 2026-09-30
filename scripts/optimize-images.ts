@@ -40,6 +40,8 @@ async function main() {
       for (const w of [...new Set(widths)]) {
         const file = `${slug(key)}-${w}.webp`;
         const out = await sharp(buf).rotate().resize({ width: w, withoutEnlargement: true }).webp({ quality: 68, effort: 5 }).toBuffer();
+        // AVIF twin — <Photo> serves it first; CI (scripts/audit/check-avif.sh) requires it.
+        fs.writeFileSync(path.join(OUT, file.replace(/\.webp$/, '.avif')), await sharp(buf).rotate().resize({ width: w, withoutEnlargement: true }).avif({ quality: 50, effort: 4 }).toBuffer());
         fs.writeFileSync(path.join(OUT, file), out);
         after += out.length;
         srcs.push([w, `/img/o/${file}`]);

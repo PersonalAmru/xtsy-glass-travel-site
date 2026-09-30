@@ -108,6 +108,9 @@ jobs:
           set -o pipefail
           ANALYZE_BUNDLE=1 bun run build 2>&1 | tee build.log || { echo "::error::$(sed 's/\x1b\[[0-9;]*m//g; s/\r/\n/g' build.log | grep -vE '^\s*at |\.output/|^\s*$|computing gzip|transforming|rendering chunks' | tail -45 | tr '\n' ' ' | cut -c1-3800)"; exit 1; }
 
+      - name: Every optimised photo has its AVIF twin
+        run: bash scripts/audit/check-avif.sh
+
       - name: Bundle report (what is inside the biggest client chunks)
         continue-on-error: true
         run: |

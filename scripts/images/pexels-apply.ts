@@ -29,6 +29,8 @@ async function main() {
     for (const w of WIDTHS) {
       const file = `${OUT}/${key}-${w}.webp`;
       await sharp(buf).rotate().resize({ width: w, withoutEnlargement: true }).webp({ quality: 74 }).toFile(file);
+      // AVIF twin — <Photo> serves it first; CI (scripts/audit/check-avif.sh) requires it.
+      await sharp(buf).rotate().resize({ width: w, withoutEnlargement: true }).avif({ quality: 50, effort: 4 }).toFile(file.replace(/\.webp$/, '.avif'));
       srcs.push([w, `/img/px/${key}-${w}.webp`]);
     }
     const ratio = (meta.height ?? 1) / (meta.width ?? 1);

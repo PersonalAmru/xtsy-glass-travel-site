@@ -21,6 +21,7 @@ import { openTripChat } from '@/components/v2/tripChatEvents';
 import { inr, lowestDormPrice, roomPrice } from '@/components/v2/pricing';
 import { PageShell, Breadcrumbs, PAD } from '@/components/v2/blocks';
 import { waLink } from '@/components/v2/primitives';
+import { avifSrcSet } from '@/data/cdnImages';
 
 const NE_STATES = [
   { to: '/destinations/meghalaya', t: 'Meghalaya', d: 'Root bridges, Dawki, Cherrapunji — base yourself at XTSY.' },
@@ -63,7 +64,10 @@ export default function ProgrammaticV2() {
             <p className="m-0 max-w-[720px] text-[17px] leading-relaxed text-xt-mute">{page.intro}</p>
           </div>
           <div className="relative overflow-hidden rounded-[28px] bg-xt-slate lg:col-span-5">
-            <img src={hero.src} srcSet={hero.srcSet} sizes="(max-width: 1024px) 100vw, 40vw" width={hero.w} height={hero.h} alt={hero.alt} fetchPriority="high" decoding="async" className="aspect-[16/11] h-auto w-full object-cover" />
+            <picture>
+              {avifSrcSet(hero.srcSet) && <source type="image/avif" srcSet={avifSrcSet(hero.srcSet)!} sizes="(max-width: 1024px) 100vw, 40vw" />}
+              <img src={hero.src} srcSet={hero.srcSet} sizes="(max-width: 1024px) 100vw, 40vw" width={hero.w} height={hero.h} alt={hero.alt} fetchPriority="high" decoding="async" className="aspect-[16/11] h-auto w-full object-cover" />
+            </picture>
           </div>
         </header>
 

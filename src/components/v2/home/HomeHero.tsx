@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import TripChat from '../TripChat';
 import { HERO_IMAGE } from '@/data/v2Images';
 import { responsive } from '../primitives';
+import { avifSrcSet } from '@/data/cdnImages';
 
 const addDays = (iso: string, n: number) => {
   const d = new Date(`${iso}T00:00:00`);
@@ -86,6 +87,7 @@ export default function HomeHero() {
           {/* Phones get a portrait crop of the same framing — lighter and sharper than a cropped landscape. */}
           <source media="(max-width: 767px)" type="image/avif" srcSet={HERO_IMAGE.mobile.avifSrcSet} sizes="100vw" />
           <source media="(max-width: 767px)" srcSet={HERO_IMAGE.mobile.srcSet} sizes="100vw" />
+          {avifSrcSet(hero?.srcSet) && <source type="image/avif" srcSet={avifSrcSet(hero?.srcSet)!} sizes="100vw" />}
           <img src={hero?.src ?? HERO_IMAGE.src} srcSet={hero?.srcSet} sizes="100vw" width={hero?.w} height={hero?.h} alt={HERO_IMAGE.alt} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: HERO_IMAGE.position }} fetchPriority="high" decoding="async" />
         </picture>
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-xt-ink via-xt-ink/60 to-xt-ink/20" />
