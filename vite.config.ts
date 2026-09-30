@@ -16,5 +16,7 @@ export default defineConfig({
   // Normal (Lovable) builds are unchanged.
   vite: {
     build: { sourcemap: process.env.ANALYZE_BUNDLE === "1" ? "hidden" : false },
+    // Unique per build: the server page cache keys on it, so a new publish never serves old pages.
+    define: { __XTSY_BUILD_ID__: JSON.stringify(Date.now().toString(36)) },
   },
 });

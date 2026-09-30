@@ -170,6 +170,11 @@ jobs:
           SITE_URL: ${{ env.PROD_URL }}
           OUT_DIR: shots/health
 
+      - name: Page cache check (HIT on repeat, identical HTML, booking/404 never cached)
+        run: bash scripts/audit/cache-check.sh
+        env:
+          BASE_URL: ${{ env.PROD_URL }}
+
       - name: Image + performance audit
         continue-on-error: true
         run: |

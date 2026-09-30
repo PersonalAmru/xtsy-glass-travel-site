@@ -2,6 +2,7 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+import { withPageCache } from "./lib/pageCache";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -48,8 +49,10 @@ export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const handler = await getServerEntry();
-      const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      // Public pages are served from the page cache when possible (see src/lib/pageCache.ts).
+      return await withPageCache(request, ctx, async () =>
+        normalizeCatastrophicSsrResponse(await handler.fetch(request.clone(), env, ctx)),
+      );
     } catch (error) {
       console.error(error);
       return new Response(renderErrorPage(), {
