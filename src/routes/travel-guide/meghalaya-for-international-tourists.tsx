@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import MeghalayaForInternationalTourists, { internationalFaqs } from "@/pages/MeghalayaForInternationalTourists";
+import MeghalayaForInternationalTourists from "@/pages/MeghalayaForInternationalTourists";
+import { internationalFaqs } from "@/pages/internationalFaqs";
 import { buildRouteHead } from "@/lib/seo-head";
 
 const PATH = "/travel-guide/meghalaya-for-international-tourists";

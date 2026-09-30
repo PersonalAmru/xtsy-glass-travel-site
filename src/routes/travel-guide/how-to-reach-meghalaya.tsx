@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import HowToReachMeghalaya, { howToReachFaqs } from "@/pages/HowToReachMeghalaya";
+import HowToReachMeghalaya from "@/pages/HowToReachMeghalaya";
+import { howToReachFaqs } from "@/pages/howToReachFaqs";
 import { buildRouteHead } from "@/lib/seo-head";
 
 const PATH = "/travel-guide/how-to-reach-meghalaya";
