@@ -1,0 +1,1670 @@
+{
+ "base": "http://localhost:4174",
+ "profile": "Slow 4G (150ms, 1.6Mbps) + 4x CPU, 412x823 @1.75x, cold cache",
+ "routes": [
+  {
+   "route": "/",
+   "lcp": 1468,
+   "fcp": 1376,
+   "cls": 0.009,
+   "el": "IMG xtsy-property-images-8-portrait-828.avif",
+   "breakdown": {
+    "ttfb": 11,
+    "loadDelay": 185,
+    "loadDuration": 1210,
+    "renderDelay": 62
+   },
+   "image": {
+    "file": "xtsy-property-images-8-portrait-828.avif",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 353,
+   "before": {
+    "jsKb": 354,
+    "cssKb": 26,
+    "imgKb": 63,
+    "thirdPartyKb": 0,
+    "requests": 34,
+    "images": [
+     {
+      "url": "/img/o/xtsy-property-images-8-portrait-828.avif",
+      "kb": 58,
+      "start": 196
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 197
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-zkR4jwV4.js",
+      "kb": 176,
+      "start": 198,
+      "end": 3522
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 198,
+      "end": 512
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 198,
+      "end": 590
+     },
+     {
+      "url": "/assets/router-compat-YYGWFevl.js",
+      "kb": 17,
+      "start": 199,
+      "end": 998
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 199,
+      "end": 698
+     },
+     {
+      "url": "/assets/index.esm-BzBdSul0.js",
+      "kb": 6,
+      "start": 199,
+      "end": 884
+     },
+     {
+      "url": "/assets/AppContext-BD2b9rKv.js",
+      "kb": 15,
+      "start": 199,
+      "end": 1163
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 199,
+      "end": 1084
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 199,
+      "end": 1098
+     },
+     {
+      "url": "/assets/createLucideIcon-C0ROPDb9.js",
+      "kb": 1,
+      "start": 199,
+      "end": 1177
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 199,
+      "end": 1255
+     },
+     {
+      "url": "/assets/client-kMGS092h.js",
+      "kb": 49,
+      "start": 199,
+      "end": 2386
+     },
+     {
+      "url": "/assets/UserAuthContext-KZCH6ZtH.js",
+      "kb": 3,
+      "start": 207,
+      "end": 1413
+     },
+     {
+      "url": "/assets/roomTypes-CO7T6bEK.js",
+      "kb": 12,
+      "start": 208,
+      "end": 1627
+     },
+     {
+      "url": "/assets/roomInventory-Dwp5PZBg.js",
+      "kb": 2,
+      "start": 208,
+      "end": 1470
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 209,
+      "end": 1595
+     },
+     {
+      "url": "/assets/v2Images-B4aq4211.js",
+      "kb": 1,
+      "start": 210,
+      "end": 1607
+     },
+     {
+      "url": "/assets/meghalayaDestinations-Cay0frVH.js",
+      "kb": 19,
+      "start": 210,
+      "end": 2113
+     },
+     {
+      "url": "/assets/deferUntilIdle-CW-5KZfc.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1779
+     },
+     {
+      "url": "/assets/routing-BilBYjWo.js",
+      "kb": 6,
+      "start": 210,
+      "end": 1928
+     },
+     {
+      "url": "/assets/routes-CJ_7Wl17.js",
+      "kb": 12,
+      "start": 212,
+      "end": 2163
+     },
+     {
+      "url": "/assets/TripChat-Bs60dv9S.js",
+      "kb": 11,
+      "start": 214,
+      "end": 2264
+     },
+     {
+      "url": "/assets/signaturePackages-M-7b9iiz.js",
+      "kb": 5,
+      "start": 214,
+      "end": 2242
+     },
+     {
+      "url": "/assets/CtaBand-BQO0RRmF.js",
+      "kb": 1,
+      "start": 214,
+      "end": 2294
+     },
+     {
+      "url": "/assets/googleReviews-BSA2Fz9e.js",
+      "kb": 8,
+      "start": 214,
+      "end": 2500
+     },
+     {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+      "kb": 0,
+      "start": 1288,
+      "end": 3752
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-BOqHFsSG.css",
+     "kb": 25,
+     "end": 898
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 383
+    }
+   ]
+  },
+  {
+   "route": "/best-hostel-in-shillong",
+   "lcp": 1196,
+   "fcp": 1196,
+   "cls": 0.062,
+   "el": "P \"For most travellers the best-rated hostel in Shillong is XTS\"",
+   "breakdown": {
+    "ttfb": 12,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1184
+   },
+   "image": null,
+   "longTasks": 134,
+   "before": {
+    "jsKb": 320,
+    "cssKb": 26,
+    "imgKb": 236,
+    "thirdPartyKb": 0,
+    "requests": 36,
+    "images": [
+     {
+      "url": "/img/o/xtsy-270-xtsy270-900.avif",
+      "kb": 94,
+      "start": 1165
+     },
+     {
+      "url": "/img/o/xtsy-property-images-8-828.avif",
+      "kb": 55,
+      "start": 188
+     },
+     {
+      "url": "/img/o/xtsy-4-bed-female-dormitory-828.avif",
+      "kb": 34,
+      "start": 1165
+     },
+     {
+      "url": "/img/o/xtsy-king-double-room-828.avif",
+      "kb": 18,
+      "start": 1165
+     },
+     {
+      "url": "/img/o/xtsy-6-bed-mixed-dormitory-1-828.avif",
+      "kb": 15,
+      "start": 1164
+     },
+     {
+      "url": "/img/o/xtsy-6-bed-mixed-dormitory-2-828.avif",
+      "kb": 14,
+      "start": 1163
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 188
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-zkR4jwV4.js",
+      "kb": 176,
+      "start": 189,
+      "end": 4058
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 190,
+      "end": 482
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 190,
+      "end": 568
+     },
+     {
+      "url": "/assets/router-compat-YYGWFevl.js",
+      "kb": 17,
+      "start": 190,
+      "end": 1003
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 190,
+      "end": 668
+     },
+     {
+      "url": "/assets/index.esm-BzBdSul0.js",
+      "kb": 6,
+      "start": 190,
+      "end": 869
+     },
+     {
+      "url": "/assets/AppContext-BD2b9rKv.js",
+      "kb": 15,
+      "start": 190,
+      "end": 1147
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 193,
+      "end": 1082
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 193,
+      "end": 1075
+     },
+     {
+      "url": "/assets/createLucideIcon-C0ROPDb9.js",
+      "kb": 1,
+      "start": 193,
+      "end": 1176
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 199,
+      "end": 1247
+     },
+     {
+      "url": "/assets/client-kMGS092h.js",
+      "kb": 49,
+      "start": 199,
+      "end": 2463
+     },
+     {
+      "url": "/assets/UserAuthContext-KZCH6ZtH.js",
+      "kb": 3,
+      "start": 200,
+      "end": 1404
+     },
+     {
+      "url": "/assets/roomTypes-CO7T6bEK.js",
+      "kb": 12,
+      "start": 205,
+      "end": 1633
+     },
+     {
+      "url": "/assets/roomInventory-Dwp5PZBg.js",
+      "kb": 2,
+      "start": 207,
+      "end": 1475
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 211,
+      "end": 1541
+     },
+     {
+      "url": "/assets/v2Images-B4aq4211.js",
+      "kb": 1,
+      "start": 214,
+      "end": 1591
+     },
+     {
+      "url": "/assets/meghalayaDestinations-Cay0frVH.js",
+      "kb": 19,
+      "start": 215,
+      "end": 2092
+     },
+     {
+      "url": "/assets/deferUntilIdle-CW-5KZfc.js",
+      "kb": 0,
+      "start": 218,
+      "end": 1727
+     },
+     {
+      "url": "/assets/routing-BilBYjWo.js",
+      "kb": 6,
+      "start": 219,
+      "end": 1891
+     },
+     {
+      "url": "/assets/best-hostel-in-shillong-DprC-Ckg.js",
+      "kb": 0,
+      "start": 221,
+      "end": 1826
+     },
+     {
+      "url": "/assets/StayHubV2-By5nMBID.js",
+      "kb": 3,
+      "start": 224,
+      "end": 1991
+     },
+     {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+      "kb": 0,
+      "start": 1142,
+      "end": 4422
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 360
+    },
+    {
+     "url": "/assets/styles-BOqHFsSG.css",
+     "kb": 25,
+     "end": 890
+    }
+   ]
+  },
+  {
+   "route": "/xtsy-270",
+   "lcp": 1368,
+   "fcp": 1256,
+   "cls": 0.076,
+   "el": "IMG xtsy-270-xtsy270-640.avif",
+   "breakdown": {
+    "ttfb": 9,
+    "loadDelay": 182,
+    "loadDuration": 1141,
+    "renderDelay": 36
+   },
+   "image": {
+    "file": "xtsy-270-xtsy270-640.avif",
+    "inServerHtml": true,
+    "preloaded": false
+   },
+   "longTasks": 175,
+   "before": {
+    "jsKb": 351,
+    "cssKb": 26,
+    "imgKb": 226,
+    "thirdPartyKb": 0,
+    "requests": 43,
+    "images": [
+     {
+      "url": "/img/o/xtsy-270-xtsy270-2-900.avif",
+      "kb": 57,
+      "start": 1225
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-640.avif",
+      "kb": 56,
+      "start": 191
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-3-828.avif",
+      "kb": 38,
+      "start": 1225
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-6-828.avif",
+      "kb": 36,
+      "start": 1225
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-4-828.avif",
+      "kb": 33,
+      "start": 1225
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 192
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-zkR4jwV4.js",
+      "kb": 176,
+      "start": 192,
+      "end": 4293
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 193,
+      "end": 481
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 193,
+      "end": 602
+     },
+     {
+      "url": "/assets/router-compat-YYGWFevl.js",
+      "kb": 17,
+      "start": 193,
+      "end": 974
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 193,
+      "end": 667
+     },
+     {
+      "url": "/assets/index.esm-BzBdSul0.js",
+      "kb": 6,
+      "start": 193,
+      "end": 896
+     },
+     {
+      "url": "/assets/AppContext-BD2b9rKv.js",
+      "kb": 15,
+      "start": 193,
+      "end": 1153
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 193,
+      "end": 1096
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 193,
+      "end": 1111
+     },
+     {
+      "url": "/assets/createLucideIcon-C0ROPDb9.js",
+      "kb": 1,
+      "start": 193,
+      "end": 1148
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 193,
+      "end": 1268
+     },
+     {
+      "url": "/assets/client-kMGS092h.js",
+      "kb": 49,
+      "start": 197,
+      "end": 2419
+     },
+     {
+      "url": "/assets/UserAuthContext-KZCH6ZtH.js",
+      "kb": 3,
+      "start": 197,
+      "end": 1397
+     },
+     {
+      "url": "/assets/roomTypes-CO7T6bEK.js",
+      "kb": 12,
+      "start": 198,
+      "end": 1605
+     },
+     {
+      "url": "/assets/roomInventory-Dwp5PZBg.js",
+      "kb": 2,
+      "start": 198,
+      "end": 1490
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 199,
+      "end": 1526
+     },
+     {
+      "url": "/assets/v2Images-B4aq4211.js",
+      "kb": 1,
+      "start": 199,
+      "end": 1585
+     },
+     {
+      "url": "/assets/meghalayaDestinations-Cay0frVH.js",
+      "kb": 19,
+      "start": 199,
+      "end": 2098
+     },
+     {
+      "url": "/assets/deferUntilIdle-CW-5KZfc.js",
+      "kb": 0,
+      "start": 201,
+      "end": 1711
+     },
+     {
+      "url": "/assets/routing-BilBYjWo.js",
+      "kb": 6,
+      "start": 201,
+      "end": 1898
+     },
+     {
+      "url": "/assets/xtsy-270-Be3IiK-W.js",
+      "kb": 7,
+      "start": 201,
+      "end": 1969
+     },
+     {
+      "url": "/assets/building-2-Bq8f7Fhg.js",
+      "kb": 1,
+      "start": 202,
+      "end": 1912
+     },
+     {
+      "url": "/assets/dialog-Cerh6-5_.js",
+      "kb": 8,
+      "start": 202,
+      "end": 2276
+     },
+     {
+      "url": "/assets/FoodAddonsSection-jVYMwRkI.js",
+      "kb": 9,
+      "start": 202,
+      "end": 2334
+     },
+     {
+      "url": "/assets/plus-C7nEC4Rk.js",
+      "kb": 0,
+      "start": 202,
+      "end": 2162
+     },
+     {
+      "url": "/assets/signaturePackages-M-7b9iiz.js",
+      "kb": 5,
+      "start": 202,
+      "end": 2405
+     },
+     {
+      "url": "/assets/blocks-C1hbkb8Z.js",
+      "kb": 3,
+      "start": 202,
+      "end": 2426
+     },
+     {
+      "url": "/assets/label-CIti2Huu.js",
+      "kb": 1,
+      "start": 202,
+      "end": 2449
+     },
+     {
+      "url": "/assets/card-wC21DNta.js",
+      "kb": 1,
+      "start": 205,
+      "end": 2505
+     },
+     {
+      "url": "/assets/textarea-DyCIkmFw.js",
+      "kb": 1,
+      "start": 206,
+      "end": 2577
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-BOqHFsSG.css",
+     "kb": 25,
+     "end": 911
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 396
+    }
+   ]
+  },
+  {
+   "route": "/tours/5n-6d-tawang-tour",
+   "lcp": 1292,
+   "fcp": 1220,
+   "cls": 0.001,
+   "el": "IMG sig-5n-6d-tawang-tour-828.avif",
+   "breakdown": {
+    "ttfb": 15,
+    "loadDelay": 170,
+    "loadDuration": 1058,
+    "renderDelay": 49
+   },
+   "image": {
+    "file": "sig-5n-6d-tawang-tour-828.avif",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 149,
+   "before": {
+    "jsKb": 405,
+    "cssKb": 26,
+    "imgKb": 57,
+    "thirdPartyKb": 0,
+    "requests": 55,
+    "images": [
+     {
+      "url": "/img/px/sig-5n-6d-tawang-tour-828.avif",
+      "kb": 52,
+      "start": 185
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 187
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 188,
+      "end": 428
+     },
+     {
+      "url": "/assets/index-zkR4jwV4.js",
+      "kb": 176,
+      "start": 188,
+      "end": 3832
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 188,
+      "end": 457
+     },
+     {
+      "url": "/assets/router-compat-YYGWFevl.js",
+      "kb": 17,
+      "start": 188,
+      "end": 914
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 191,
+      "end": 614
+     },
+     {
+      "url": "/assets/index.esm-BzBdSul0.js",
+      "kb": 6,
+      "start": 191,
+      "end": 750
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 191,
+      "end": 964
+     },
+     {
+      "url": "/assets/AppContext-BD2b9rKv.js",
+      "kb": 15,
+      "start": 191,
+      "end": 1088
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 191,
+      "end": 1080
+     },
+     {
+      "url": "/assets/createLucideIcon-C0ROPDb9.js",
+      "kb": 1,
+      "start": 191,
+      "end": 1101
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 191,
+      "end": 1136
+     },
+     {
+      "url": "/assets/client-kMGS092h.js",
+      "kb": 49,
+      "start": 191,
+      "end": 2373
+     },
+     {
+      "url": "/assets/UserAuthContext-KZCH6ZtH.js",
+      "kb": 3,
+      "start": 192,
+      "end": 1329
+     },
+     {
+      "url": "/assets/roomInventory-Dwp5PZBg.js",
+      "kb": 2,
+      "start": 192,
+      "end": 1350
+     },
+     {
+      "url": "/assets/roomTypes-CO7T6bEK.js",
+      "kb": 12,
+      "start": 192,
+      "end": 1530
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 192,
+      "end": 1423
+     },
+     {
+      "url": "/assets/v2Images-B4aq4211.js",
+      "kb": 1,
+      "start": 192,
+      "end": 1508
+     },
+     {
+      "url": "/assets/meghalayaDestinations-Cay0frVH.js",
+      "kb": 19,
+      "start": 192,
+      "end": 1980
+     },
+     {
+      "url": "/assets/deferUntilIdle-CW-5KZfc.js",
+      "kb": 0,
+      "start": 192,
+      "end": 1609
+     },
+     {
+      "url": "/assets/routing-BilBYjWo.js",
+      "kb": 6,
+      "start": 192,
+      "end": 1830
+     },
+     {
+      "url": "/assets/_slug-CfFq8s67.js",
+      "kb": 25,
+      "start": 192,
+      "end": 2323
+     },
+     {
+      "url": "/assets/calendar-8Ev014iE.js",
+      "kb": 0,
+      "start": 193,
+      "end": 1810
+     },
+     {
+      "url": "/assets/chevron-right-CDYpdrZf.js",
+      "kb": 0,
+      "start": 196,
+      "end": 2003
+     },
+     {
+      "url": "/assets/dialog-Cerh6-5_.js",
+      "kb": 8,
+      "start": 196,
+      "end": 2216
+     },
+     {
+      "url": "/assets/circle-check-BUGHfu73.js",
+      "kb": 0,
+      "start": 196,
+      "end": 2174
+     },
+     {
+      "url": "/assets/clock-CJsq-177.js",
+      "kb": 0,
+      "start": 197,
+      "end": 2202
+     },
+     {
+      "url": "/assets/loader-circle-BqNfCVc-.js",
+      "kb": 0,
+      "start": 198,
+      "end": 2353
+     },
+     {
+      "url": "/assets/mail-CkrbTzkX.js",
+      "kb": 0,
+      "start": 199,
+      "end": 2381
+     },
+     {
+      "url": "/assets/message-square-rufI0WId.js",
+      "kb": 0,
+      "start": 200,
+      "end": 2402
+     },
+     {
+      "url": "/assets/mountain-y-7MVFrQ.js",
+      "kb": 0,
+      "start": 200,
+      "end": 2495
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 357
+    },
+    {
+     "url": "/assets/styles-BOqHFsSG.css",
+     "kb": 25,
+     "end": 900
+    }
+   ]
+  },
+  {
+   "route": "/destinations/meghalaya/shillong",
+   "lcp": 1080,
+   "fcp": 1080,
+   "cls": 0.218,
+   "el": "P \"Searching for adventures near me while in Shillong? These ne\"",
+   "breakdown": {
+    "ttfb": 27,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1053
+   },
+   "image": null,
+   "longTasks": 104,
+   "before": {
+    "jsKb": 319,
+    "cssKb": 26,
+    "imgKb": 260,
+    "thirdPartyKb": 0,
+    "requests": 33,
+    "images": [
+     {
+      "url": "/img/o/xtsyvoyage-elephant-falls-736.webp",
+      "kb": 154,
+      "start": 1065
+     },
+     {
+      "url": "/img/o/xtsyvoyage-umiam-lake-736.webp",
+      "kb": 71,
+      "start": 1064
+     },
+     {
+      "url": "/img/o/xtsyvoyage-laitlum-canyons-736.webp",
+      "kb": 29,
+      "start": 1065
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 189
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-zkR4jwV4.js",
+      "kb": 176,
+      "start": 193,
+      "end": 3867
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 193,
+      "end": 456
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 193,
+      "end": 442
+     },
+     {
+      "url": "/assets/router-compat-YYGWFevl.js",
+      "kb": 17,
+      "start": 193,
+      "end": 856
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 194,
+      "end": 620
+     },
+     {
+      "url": "/assets/index.esm-BzBdSul0.js",
+      "kb": 6,
+      "start": 195,
+      "end": 741
+     },
+     {
+      "url": "/assets/AppContext-BD2b9rKv.js",
+      "kb": 15,
+      "start": 195,
+      "end": 920
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 195,
+      "end": 842
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 195,
+      "end": 907
+     },
+     {
+      "url": "/assets/createLucideIcon-C0ROPDb9.js",
+      "kb": 1,
+      "start": 195,
+      "end": 987
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 196,
+      "end": 1008
+     },
+     {
+      "url": "/assets/UserAuthContext-KZCH6ZtH.js",
+      "kb": 3,
+      "start": 196,
+      "end": 1135
+     },
+     {
+      "url": "/assets/client-kMGS092h.js",
+      "kb": 49,
+      "start": 196,
+      "end": 2115
+     },
+     {
+      "url": "/assets/roomTypes-CO7T6bEK.js",
+      "kb": 12,
+      "start": 199,
+      "end": 1342
+     },
+     {
+      "url": "/assets/roomInventory-Dwp5PZBg.js",
+      "kb": 2,
+      "start": 199,
+      "end": 1200
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 199,
+      "end": 1193
+     },
+     {
+      "url": "/assets/v2Images-B4aq4211.js",
+      "kb": 1,
+      "start": 201,
+      "end": 1322
+     },
+     {
+      "url": "/assets/meghalayaDestinations-Cay0frVH.js",
+      "kb": 19,
+      "start": 201,
+      "end": 1787
+     },
+     {
+      "url": "/assets/deferUntilIdle-CW-5KZfc.js",
+      "kb": 0,
+      "start": 201,
+      "end": 1386
+     },
+     {
+      "url": "/assets/routing-BilBYjWo.js",
+      "kb": 6,
+      "start": 202,
+      "end": 1636
+     },
+     {
+      "url": "/assets/_city-DFr56V6X.js",
+      "kb": 2,
+      "start": 203,
+      "end": 1578
+     },
+     {
+      "url": "/assets/DestinationCard-q-f1USXx.js",
+      "kb": 1,
+      "start": 203,
+      "end": 1587
+     },
+     {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+      "kb": 0,
+      "start": 1041,
+      "end": 4333
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 357
+    },
+    {
+     "url": "/assets/styles-BOqHFsSG.css",
+     "kb": 25,
+     "end": 821
+    }
+   ]
+  },
+  {
+   "route": "/living-root-bridges-meghalaya",
+   "lcp": 1252,
+   "fcp": 1252,
+   "cls": 0.034,
+   "el": "P \"Backed by XTSY — Northeast India's NEITA 2025-nominated hosp\"",
+   "breakdown": {
+    "ttfb": 8,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1244
+   },
+   "image": null,
+   "longTasks": 172,
+   "before": {
+    "jsKb": 325,
+    "cssKb": 26,
+    "imgKb": 131,
+    "thirdPartyKb": 0,
+    "requests": 32,
+    "images": [
+     {
+      "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.avif",
+      "kb": 125,
+      "start": 200
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 201
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-zkR4jwV4.js",
+      "kb": 176,
+      "start": 203,
+      "end": 3735
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 203,
+      "end": 510
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 203,
+      "end": 610
+     },
+     {
+      "url": "/assets/router-compat-YYGWFevl.js",
+      "kb": 17,
+      "start": 203,
+      "end": 1004
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 204,
+      "end": 697
+     },
+     {
+      "url": "/assets/index.esm-BzBdSul0.js",
+      "kb": 6,
+      "start": 206,
+      "end": 904
+     },
+     {
+      "url": "/assets/AppContext-BD2b9rKv.js",
+      "kb": 15,
+      "start": 206,
+      "end": 1168
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 206,
+      "end": 1118
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 206,
+      "end": 1105
+     },
+     {
+      "url": "/assets/createLucideIcon-C0ROPDb9.js",
+      "kb": 1,
+      "start": 207,
+      "end": 1183
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 208,
+      "end": 1275
+     },
+     {
+      "url": "/assets/client-kMGS092h.js",
+      "kb": 49,
+      "start": 209,
+      "end": 2548
+     },
+     {
+      "url": "/assets/UserAuthContext-KZCH6ZtH.js",
+      "kb": 3,
+      "start": 210,
+      "end": 1412
+     },
+     {
+      "url": "/assets/roomTypes-CO7T6bEK.js",
+      "kb": 12,
+      "start": 210,
+      "end": 1684
+     },
+     {
+      "url": "/assets/roomInventory-Dwp5PZBg.js",
+      "kb": 2,
+      "start": 210,
+      "end": 1504
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 211,
+      "end": 1605
+     },
+     {
+      "url": "/assets/v2Images-B4aq4211.js",
+      "kb": 1,
+      "start": 212,
+      "end": 1698
+     },
+     {
+      "url": "/assets/meghalayaDestinations-Cay0frVH.js",
+      "kb": 19,
+      "start": 212,
+      "end": 2291
+     },
+     {
+      "url": "/assets/deferUntilIdle-CW-5KZfc.js",
+      "kb": 0,
+      "start": 213,
+      "end": 1877
+     },
+     {
+      "url": "/assets/routing-BilBYjWo.js",
+      "kb": 6,
+      "start": 213,
+      "end": 2026
+     },
+     {
+      "url": "/assets/_slug-DltykJ_9.js",
+      "kb": 4,
+      "start": 214,
+      "end": 2156
+     },
+     {
+      "url": "/assets/StayEatExplore-DlWZRtee.js",
+      "kb": 2,
+      "start": 214,
+      "end": 2263
+     },
+     {
+      "url": "/assets/blocks-C1hbkb8Z.js",
+      "kb": 3,
+      "start": 215,
+      "end": 2412
+     },
+     {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+      "kb": 0,
+      "start": 1209,
+      "end": 3929
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-BOqHFsSG.css",
+     "kb": 25,
+     "end": 918
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 404
+    }
+   ]
+  },
+  {
+   "route": "/tab-bistro",
+   "lcp": 1228,
+   "fcp": 1228,
+   "cls": 0.028,
+   "el": "H1 \"Forest dining under the pines.\"",
+   "breakdown": {
+    "ttfb": 23,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1205
+   },
+   "image": null,
+   "longTasks": 148,
+   "before": {
+    "jsKb": 328,
+    "cssKb": 26,
+    "imgKb": 35,
+    "thirdPartyKb": 0,
+    "requests": 32,
+    "images": [
+     {
+      "url": "/img/o/xtsy-tab-bistro-by-xtsy-1-828.avif",
+      "kb": 30,
+      "start": 197
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 199
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-zkR4jwV4.js",
+      "kb": 176,
+      "start": 200,
+      "end": 3458
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 200,
+      "end": 447
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 201,
+      "end": 462
+     },
+     {
+      "url": "/assets/router-compat-YYGWFevl.js",
+      "kb": 17,
+      "start": 201,
+      "end": 926
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 201,
+      "end": 627
+     },
+     {
+      "url": "/assets/index.esm-BzBdSul0.js",
+      "kb": 6,
+      "start": 201,
+      "end": 762
+     },
+     {
+      "url": "/assets/AppContext-BD2b9rKv.js",
+      "kb": 15,
+      "start": 201,
+      "end": 1055
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 201,
+      "end": 977
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 202,
+      "end": 1077
+     },
+     {
+      "url": "/assets/createLucideIcon-C0ROPDb9.js",
+      "kb": 1,
+      "start": 202,
+      "end": 1093
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 202,
+      "end": 1135
+     },
+     {
+      "url": "/assets/UserAuthContext-KZCH6ZtH.js",
+      "kb": 3,
+      "start": 202,
+      "end": 1270
+     },
+     {
+      "url": "/assets/client-kMGS092h.js",
+      "kb": 49,
+      "start": 202,
+      "end": 2179
+     },
+     {
+      "url": "/assets/roomTypes-CO7T6bEK.js",
+      "kb": 12,
+      "start": 202,
+      "end": 1506
+     },
+     {
+      "url": "/assets/roomInventory-Dwp5PZBg.js",
+      "kb": 2,
+      "start": 205,
+      "end": 1306
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 206,
+      "end": 1321
+     },
+     {
+      "url": "/assets/v2Images-B4aq4211.js",
+      "kb": 1,
+      "start": 207,
+      "end": 1457
+     },
+     {
+      "url": "/assets/meghalayaDestinations-Cay0frVH.js",
+      "kb": 19,
+      "start": 209,
+      "end": 1920
+     },
+     {
+      "url": "/assets/deferUntilIdle-CW-5KZfc.js",
+      "kb": 0,
+      "start": 211,
+      "end": 1515
+     },
+     {
+      "url": "/assets/routing-BilBYjWo.js",
+      "kb": 6,
+      "start": 211,
+      "end": 1778
+     },
+     {
+      "url": "/assets/tab-bistro-C-oS2_7d.js",
+      "kb": 3,
+      "start": 221,
+      "end": 1800
+     },
+     {
+      "url": "/assets/blocks-C1hbkb8Z.js",
+      "kb": 3,
+      "start": 221,
+      "end": 1814
+     },
+     {
+      "url": "/assets/useRestaurantReviews-QWxYftOs.js",
+      "kb": 5,
+      "start": 221,
+      "end": 2078
+     },
+     {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+      "kb": 0,
+      "start": 1169,
+      "end": 3695
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-BOqHFsSG.css",
+     "kb": 25,
+     "end": 912
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 369
+    }
+   ]
+  },
+  {
+   "route": "/faq",
+   "lcp": 1100,
+   "fcp": 1100,
+   "cls": 0.009,
+   "el": "H1 \"Questions, answered.\"",
+   "breakdown": {
+    "ttfb": 13,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1087
+   },
+   "image": null,
+   "longTasks": 100,
+   "before": {
+    "jsKb": 321,
+    "cssKb": 26,
+    "imgKb": 6,
+    "thirdPartyKb": 0,
+    "requests": 30,
+    "images": [
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 196
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-zkR4jwV4.js",
+      "kb": 176,
+      "start": 197,
+      "end": 3056
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 197,
+      "end": 453
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 197,
+      "end": 432
+     },
+     {
+      "url": "/assets/router-compat-YYGWFevl.js",
+      "kb": 17,
+      "start": 200,
+      "end": 724
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 200,
+      "end": 541
+     },
+     {
+      "url": "/assets/index.esm-BzBdSul0.js",
+      "kb": 6,
+      "start": 201,
+      "end": 717
+     },
+     {
+      "url": "/assets/AppContext-BD2b9rKv.js",
+      "kb": 15,
+      "start": 201,
+      "end": 896
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 202,
+      "end": 761
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 202,
+      "end": 890
+     },
+     {
+      "url": "/assets/createLucideIcon-C0ROPDb9.js",
+      "kb": 1,
+      "start": 203,
+      "end": 904
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 203,
+      "end": 926
+     },
+     {
+      "url": "/assets/client-kMGS092h.js",
+      "kb": 49,
+      "start": 204,
+      "end": 2069
+     },
+     {
+      "url": "/assets/UserAuthContext-KZCH6ZtH.js",
+      "kb": 3,
+      "start": 204,
+      "end": 1140
+     },
+     {
+      "url": "/assets/roomTypes-CO7T6bEK.js",
+      "kb": 12,
+      "start": 204,
+      "end": 1297
+     },
+     {
+      "url": "/assets/roomInventory-Dwp5PZBg.js",
+      "kb": 2,
+      "start": 205,
+      "end": 1132
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 205,
+      "end": 1119
+     },
+     {
+      "url": "/assets/v2Images-B4aq4211.js",
+      "kb": 1,
+      "start": 205,
+      "end": 1304
+     },
+     {
+      "url": "/assets/meghalayaDestinations-Cay0frVH.js",
+      "kb": 19,
+      "start": 205,
+      "end": 1748
+     },
+     {
+      "url": "/assets/deferUntilIdle-CW-5KZfc.js",
+      "kb": 0,
+      "start": 205,
+      "end": 1340
+     },
+     {
+      "url": "/assets/routing-BilBYjWo.js",
+      "kb": 6,
+      "start": 205,
+      "end": 1620
+     },
+     {
+      "url": "/assets/faq-Bx58hTK1.js",
+      "kb": 2,
+      "start": 206,
+      "end": 1547
+     },
+     {
+      "url": "/assets/blocks-C1hbkb8Z.js",
+      "kb": 3,
+      "start": 206,
+      "end": 1626
+     },
+     {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
+      "kb": 0,
+      "start": 1058,
+      "end": 3307
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-BOqHFsSG.css",
+     "kb": 25,
+     "end": 833
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 361
+    }
+   ]
+  }
+ ]
+}
