@@ -1,0 +1,43 @@
+url	try	status	ttfb_s	total_s	bytes	cache-control	cf-cache-status	age	server	x-xtsy-cache	link
+/	1	200	1.571181	1.576345	24946	no-cache, must-revalidate, max-age=0			cloudflare		
+/	2	200	1.042426	1.049315	25270	no-cache, must-revalidate, max-age=0			cloudflare		
+/	3	200	0.757252	0.762759	24981	no-cache, must-revalidate, max-age=0			cloudflare		
+/best-hostel-in-shillong	1	200	1.085087	1.088356	16113	no-cache, must-revalidate, max-age=0			cloudflare		
+/best-hostel-in-shillong	2	200	0.933820	0.939330	16079	no-cache, must-revalidate, max-age=0			cloudflare		
+/best-hostel-in-shillong	3	200	0.317421	0.320883	16086	no-cache, must-revalidate, max-age=0			cloudflare		
+/xtsy-270	1	200	0.597641	0.608953	15733	no-cache, must-revalidate, max-age=0			cloudflare		
+/xtsy-270	2	200	0.835715	0.841349	15738	no-cache, must-revalidate, max-age=0			cloudflare		
+/xtsy-270	3	200	1.002966	1.013101	15686	no-cache, must-revalidate, max-age=0			cloudflare		
+/tours	1	200	0.682318	0.688972	24659	no-cache, must-revalidate, max-age=0			cloudflare		
+/tours	2	200	1.091079	1.097120	24714	no-cache, must-revalidate, max-age=0			cloudflare		
+/tours	3	200	0.334554	0.340306	24590	no-cache, must-revalidate, max-age=0			cloudflare		
+/tours/5n-6d-tawang-tour	1	200	1.338475	1.355707	17533	no-cache, must-revalidate, max-age=0			cloudflare		
+/tours/5n-6d-tawang-tour	2	200	0.176987	0.181456	17558	no-cache, must-revalidate, max-age=0			cloudflare		
+/tours/5n-6d-tawang-tour	3	200	0.334049	0.337926	17492	no-cache, must-revalidate, max-age=0			cloudflare		
+/living-root-bridges-meghalaya	1	200	0.276742	0.280667	25761	no-cache, must-revalidate, max-age=0			cloudflare		
+/living-root-bridges-meghalaya	2	200	0.976682	0.995393	25673	no-cache, must-revalidate, max-age=0			cloudflare		
+/living-root-bridges-meghalaya	3	200	1.248821	1.268736	25712	no-cache, must-revalidate, max-age=0			cloudflare		
+/faq	1	200	0.922043	0.927260	14952	no-cache, must-revalidate, max-age=0			cloudflare		
+/faq	2	200	0.853479	0.858794	14935	no-cache, must-revalidate, max-age=0			cloudflare		
+/faq	3	200	0.854674	0.860676	14895	no-cache, must-revalidate, max-age=0			cloudflare		
+/book	1	200	0.227382	0.230320	8930	no-cache, must-revalidate, max-age=0			cloudflare		
+/book	2	200	0.571895	0.576135	8916	no-cache, must-revalidate, max-age=0			cloudflare		
+/book	3	200	0.097317	0.098580	8913	no-cache, must-revalidate, max-age=0			cloudflare		
+/guides	1	200	1.339229	1.367650	35221	no-cache, must-revalidate, max-age=0			cloudflare		
+/guides	2	200	0.378640	0.388813	35155	no-cache, must-revalidate, max-age=0			cloudflare		
+/guides	3	200	0.840218	0.871948	35286	no-cache, must-revalidate, max-age=0			cloudflare		
+/destinations/meghalaya/shillong	1	200	0.963288	0.966702	14069	no-cache, must-revalidate, max-age=0			cloudflare		
+/destinations/meghalaya/shillong	2	200	0.536343	0.540597	14022	no-cache, must-revalidate, max-age=0			cloudflare		
+/destinations/meghalaya/shillong	3	200	1.768712	1.773838	13997	no-cache, must-revalidate, max-age=0			cloudflare		
+/assets/styles-DzzR5Awc.css	1	200	0.365982	0.377009	47561	public, max-age=31536000, immutable			cloudflare		
+/assets/styles-DzzR5Awc.css	2	200	0.334727	0.342289	47561	public, max-age=31536000, immutable			cloudflare		
+/assets/styles-DzzR5Awc.css	3	200	0.382269	0.385016	47561	public, max-age=31536000, immutable			cloudflare		
+/assets/index-BIJ-zLvv.js	1	200	0.429498	0.558189	215950	public, max-age=31536000, immutable			cloudflare		
+/assets/index-BIJ-zLvv.js	2	200	0.560114	0.888599	216134	public, max-age=31536000, immutable			cloudflare		
+/assets/index-BIJ-zLvv.js	3	200	0.227636	0.299465	216134	public, max-age=31536000, immutable			cloudflare		
+/img/o/xtsy-property-images-8-portrait-828.webp	1	200	0.520089	0.688487	127832				cloudflare		
+/img/o/xtsy-property-images-8-portrait-828.webp	2	200	0.567267	0.641686	127832				cloudflare		
+/img/o/xtsy-property-images-8-portrait-828.webp	3	200	0.158164	0.178151	127832				cloudflare		
+/fonts/manrope-latin.woff2	1	200	0.306534	0.310766	24836				cloudflare		
+/fonts/manrope-latin.woff2	2	200	0.401218	0.402706	24836				cloudflare		
+/fonts/manrope-latin.woff2	3	200	0.302996	0.306752	24836				cloudflare		
