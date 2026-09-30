@@ -117,6 +117,7 @@ jobs:
             n=$(basename "$f" .js)
             bunx source-map-explorer@2.5.3 "$f" "$f.map" --json --no-border-checks > "shots/bundle/$n.json" 2>/dev/null || true
           done
+          cp .output/public/assets/styles-*.css shots/bundle/ 2>/dev/null || true
           ls -la shots/bundle
 
       - name: Install Playwright Chromium

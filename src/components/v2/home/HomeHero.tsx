@@ -84,6 +84,7 @@ export default function HomeHero() {
       <section className="relative isolate flex h-[640px] flex-col justify-end overflow-hidden bg-xt-ink px-5 py-12 text-xt-paper sm:h-[max(600px,68vh)] sm:px-8 lg:px-14">
         <picture>
           {/* Phones get a portrait crop of the same framing — lighter and sharper than a cropped landscape. */}
+          <source media="(max-width: 767px)" type="image/avif" srcSet={HERO_IMAGE.mobile.avifSrcSet} sizes="100vw" />
           <source media="(max-width: 767px)" srcSet={HERO_IMAGE.mobile.srcSet} sizes="100vw" />
           <img src={hero?.src ?? HERO_IMAGE.src} srcSet={hero?.srcSet} sizes="100vw" width={hero?.w} height={hero?.h} alt={HERO_IMAGE.alt} className="absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: HERO_IMAGE.position }} fetchPriority="high" decoding="async" />
         </picture>

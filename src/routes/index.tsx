@@ -20,7 +20,8 @@ export const Route = createFileRoute("/")({
       preloadImage: hero?.src ?? HERO_IMAGE.src,
       preloadImageSrcSet: hero?.srcSet,
       preloadImageSizes: hero ? "100vw" : undefined,
-      preloadMobile: { href: HERO_IMAGE.mobile.src, srcSet: HERO_IMAGE.mobile.srcSet, sizes: "100vw" },
+      // Typed AVIF preload: browsers without AVIF skip it and use the WebP <source>.
+      preloadMobile: { href: HERO_IMAGE.mobile.avifSrc, srcSet: HERO_IMAGE.mobile.avifSrcSet, sizes: "100vw", type: "image/avif" },
       jsonLd: [HOSTEL_SCHEMA],
     }),
   component: Index,

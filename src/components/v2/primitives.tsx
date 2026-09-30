@@ -1,7 +1,7 @@
 /**
  * Shared building blocks for the 2026 redesign (v2).
  */
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { responsiveImage } from '@/data/cdnImages';
 
@@ -80,6 +80,7 @@ export function Photo({
   children,
   sizes = '(max-width: 768px) 100vw, 50vw',
   position,
+  afterLoad,
 }: {
   src?: string;
   alt: string;
@@ -91,14 +92,27 @@ export function Photo({
   sizes?: string;
   /** CSS object-position, e.g. "50% 30%". */
   position?: string;
+  /**
+   * Start downloading only after the page has loaded — for photos just below the fold that
+   * would otherwise compete with the hero image (LCP). The slot keeps its size and colour.
+   */
+  afterLoad?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
+  const [ready, setReady] = useState(!afterLoad);
+  useEffect(() => {
+    if (!afterLoad) return;
+    const go = () => setReady(true);
+    if (document.readyState === 'complete') { go(); return; }
+    window.addEventListener('load', go, { once: true });
+    return () => window.removeEventListener('load', go);
+  }, [afterLoad]);
   const opt = responsive(src);
   const bg = { sand: '#E6DACA', slate: '#45506A', crimson: '#8A1D3A', pine: '#2F4A3F', night: '#1F2438' }[tone];
   return (
     <div className={cn('relative overflow-hidden', className)} style={{ background: bg }}>
       <XtsyMark className="absolute -right-[12%] -top-[14%] h-[70%] w-[70%] opacity-[0.12]" fill="#F4EFE8" />
-      {src && !failed && (
+      {src && !failed && ready && (
         <img
           src={opt?.src ?? src}
           srcSet={opt?.srcSet}
