@@ -53,7 +53,7 @@
    "BreadcrumbList"
   ],
   "words": 1204,
-  "preload": 3
+  "preload": 2
  },
  {
   "route": "/cheap-hostels-shillong",
@@ -80,7 +80,7 @@
    "BreadcrumbList"
   ],
   "words": 1217,
-  "preload": 3
+  "preload": 2
  },
  {
   "route": "/xtsy-270",
@@ -106,7 +106,7 @@
    "Answer"
   ],
   "words": 638,
-  "preload": 2
+  "preload": 1
  },
  {
   "route": "/faq",
@@ -179,7 +179,7 @@
    "Answer"
   ],
   "words": 1175,
-  "preload": 3
+  "preload": 2
  },
  {
   "route": "/shillong-dormitory",
@@ -208,7 +208,7 @@
    "Answer"
   ],
   "words": 1102,
-  "preload": 3
+  "preload": 2
  },
  {
   "route": "/3-day-meghalaya-itinerary",
@@ -255,7 +255,7 @@
    "Answer"
   ],
   "words": 1268,
-  "preload": 3
+  "preload": 2
  },
  {
   "route": "/guwahati-to-tawang",
@@ -282,6 +282,6 @@
    "Answer"
   ],
   "words": 1529,
-  "preload": 3
+  "preload": 2
  }
 ]

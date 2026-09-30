@@ -1,21 +1,21 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-DLBmKDiI.js",
-      "totalBytes": 708397,
-      "mappedBytes": 694334,
-      "unmappedBytes": 13879,
+      "bundleName": ".output/public/assets/index-DJ2b2_nz.js",
+      "totalBytes": 708603,
+      "mappedBytes": 694519,
+      "unmappedBytes": 13900,
       "eolBytes": 184,
       "sourceMapCommentBytes": 0,
       "files": {
         "../../../node_modules/scheduler/cjs/scheduler.production.js": {
-          "size": 3492
+          "size": 3485
         },
         "../../../node_modules/scheduler/index.js": {
           "size": 28
         },
         "../../../node_modules/react-dom/cjs/react-dom-client.production.js": {
-          "size": 174812
+          "size": 174775
         },
         "../../../node_modules/react-dom/client.js": {
           "size": 217
@@ -57,7 +57,7 @@
           "size": 4112
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/router.js": {
-          "size": 16087
+          "size": 16081
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/load-client.js": {
           "size": 19040
@@ -72,7 +72,7 @@
           "size": 1310
         },
         "../../../node_modules/seroval/dist/index.js": {
-          "size": 21892
+          "size": 21919
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/ssr/serializer/transformer.js": {
           "size": 346
@@ -114,7 +114,7 @@
           "size": 2093
         },
         "../../../node_modules/@tanstack/store/dist/esm/atom.js": {
-          "size": 2078
+          "size": 2067
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/useLoaderData.js": {
           "size": 149
@@ -153,16 +153,16 @@
           "size": 774
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/Matches.js": {
-          "size": 587
+          "size": 584
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/routerStores.js": {
           "size": 67
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/router.js": {
-          "size": 62
+          "size": 61
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/RouterProvider.js": {
-          "size": 321
+          "size": 323
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/Asset.js": {
           "size": 2023
@@ -219,7 +219,7 @@
           "size": 1217
         },
         "../../../node_modules/@tanstack/query-core/build/modern/query.js": {
-          "size": 6266
+          "size": 6267
         },
         "../../../node_modules/@tanstack/query-core/build/modern/mutation.js": {
           "size": 3305
@@ -243,16 +243,16 @@
           "size": 37
         },
         "../../../src/hooks/use-toast.ts": {
-          "size": 1148
+          "size": 1150
         },
         "../../../node_modules/@radix-ui/react-collection/dist/index.mjs": {
-          "size": 7030
+          "size": 7029
         },
         "../../../node_modules/@radix-ui/react-visually-hidden/dist/index.mjs": {
           "size": 378
         },
         "../../../node_modules/@radix-ui/react-toast/dist/index.mjs": {
-          "size": 10919
+          "size": 10941
         },
         "../../../node_modules/lucide-react/dist/esm/icons/bath.js": {
           "size": 267
@@ -456,7 +456,7 @@
           "size": 10659
         },
         "../../../src/lib/seo-head.ts": {
-          "size": 1647
+          "size": 1829
         },
         "../../../src/data/siteSchemas.ts": {
           "size": 3113
@@ -600,10 +600,10 @@
           "size": 499
         },
         "../../../src/lib/travel/planner.ts": {
-          "size": 11326
+          "size": 11347
         },
         "../../../src/lib/travel/assistant.ts": {
-          "size": 15600
+          "size": 15605
         },
         "../../../src/components/v2/TripChat.tsx": {
           "size": 12510
@@ -684,7 +684,7 @@
           "size": 274
         },
         "../../../node_modules/@radix-ui/react-select/dist/index.mjs": {
-          "size": 18540
+          "size": 18529
         },
         "../../../src/components/ui/select.tsx": {
           "size": 2811
@@ -789,7 +789,7 @@
           "size": 9161
         },
         "../../../src/router.tsx": {
-          "size": 350
+          "size": 349
         },
         "../../../node_modules/@tanstack/start-client-core/dist/esm/client/hydrateStart.js": {
           "size": 475
@@ -798,7 +798,7 @@
           "size": 57
         },
         "../../../node_modules/@tanstack/react-start-client/dist/esm/StartClient.js": {
-          "size": 114
+          "size": 115
         },
         "../../../node_modules/@tanstack/react-start/dist/plugin/default-entry/client.tsx": {
           "size": 982
@@ -807,7 +807,7 @@
           "size": 0
         },
         "[unmapped]": {
-          "size": 13879
+          "size": 13900
         },
         "[EOLs]": {
           "size": 184
