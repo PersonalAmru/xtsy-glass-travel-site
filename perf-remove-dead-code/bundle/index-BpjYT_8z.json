@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-D6aDKSyo.js",
-      "totalBytes": 708603,
-      "mappedBytes": 694519,
+      "bundleName": ".output/public/assets/index-BpjYT_8z.js",
+      "totalBytes": 708656,
+      "mappedBytes": 694572,
       "unmappedBytes": 13900,
       "eolBytes": 184,
       "sourceMapCommentBytes": 0,
@@ -696,7 +696,7 @@
           "size": 9404
         },
         "../../../src/pages/v2/ExperienceByXtsy.tsx": {
-          "size": 7883
+          "size": 7936
         },
         "../../../src/routes/xtsy-270.tsx": {
           "size": 397
