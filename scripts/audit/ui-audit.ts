@@ -91,7 +91,7 @@ async function main() {
         const axe = await page.evaluate(async () => {
           // @ts-expect-error injected
           const r = await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] }, resultTypes: ['violations'] });
-          return r.violations.map((v: { id: string; impact: string; help: string; nodes: { target: string[] }[] }) => ({ id: v.id, impact: v.impact, help: v.help, count: v.nodes.length, examples: v.nodes.slice(0, 3).map((n) => n.target.join(' ')) }));
+          return r.violations.map((v: { id: string; impact: string; help: string; nodes: { target: string[]; failureSummary?: string }[] }) => ({ id: v.id, impact: v.impact, help: v.help, count: v.nodes.length, examples: v.nodes.slice(0, 3).map((n) => n.target.join(' ')), detail: v.nodes.slice(0, 3).map((n) => (n.failureSummary || '').slice(0, 240)) }));
         });
         row.axe = axe;
         row.ui = await interactions(page, vp.mobile);
