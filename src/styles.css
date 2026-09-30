@@ -833,7 +833,7 @@ img.lazy-below-fold {
    Pages opt in by wrapping content in .xt (see src/components/v2). */
 @theme inline {
   --font-display: "Staatliches", Impact, sans-serif;
-  --font-manrope: "Manrope", system-ui, sans-serif;
+  --font-manrope: "Manrope", "Manrope Fallback", system-ui, sans-serif;
   --color-xt-crimson: #A12444;
   --color-xt-crimson-dark: #8A1D3A;
   --color-xt-rose: #E07A8B;
@@ -854,7 +854,7 @@ img.lazy-below-fold {
   --color-xt-paper: #F4EFE8;
 }
 
-.xt { background: #F6F1EA; color: #1F2230; font-family: "Manrope", system-ui, sans-serif; }
+.xt { background: #F6F1EA; color: #1F2230; font-family: "Manrope", "Manrope Fallback", system-ui, sans-serif; }
 .xt a:not([class*="text-"]) { color: inherit; }
 .xt-display { font-family: "Staatliches", Impact, sans-serif; font-weight: 400; letter-spacing: 0.01em; }
 .xt-eyebrow { font-family: "Staatliches", Impact, sans-serif; letter-spacing: 0.22em; color: #A12444; }
@@ -933,7 +933,7 @@ img.lazy-below-fold {
   min-height: 100vh;
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: "Manrope", system-ui, sans-serif;
+  font-family: "Manrope", "Manrope Fallback", system-ui, sans-serif;
 }
 .public-design :where(h1, h2):not(.xt *) { font-family: "Staatliches", Impact, sans-serif; font-weight: 400; letter-spacing: 0; }
 .public-design :where(main > section, article > section) { scroll-margin-top: 7rem; }

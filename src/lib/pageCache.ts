@@ -108,31 +108,71 @@ function respond(entry: Entry, state: string): Response {
 
 const decode = (v: string) => v.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'");
 
+const attrOf = (tag: string, name: string) => {
+  const r = new RegExp(`\\s${name}="([^"]*)"`, 'i').exec(tag);
+  return r ? decode(r[1]) : null;
+};
+
+const safe = (v: string | null) => !!v && !/["<>\r\n]/.test(v);
+
+function linkValue(href: string, extra: Record<string, string | null>): string {
+  const parts = [`<${href}>`, 'rel=preload', 'as=image', 'fetchpriority=high'];
+  for (const [k, v] of Object.entries(extra)) if (v && safe(v)) parts.push(`${k}="${v}"`);
+  return parts.join('; ');
+}
+
+/**
+ * Pages without a hero preload in <head> (most templates with an eager photo): preload the
+ * first high-priority <img> in the body, using its AVIF <source> when the <picture> has one.
+ * Pictures with media-specific sources are skipped — the right file depends on the viewport.
+ */
+function bodyHeroLink(html: string, headEnd: number): string | null {
+  const body = html.slice(headEnd);
+  const m = /<img\b[^>]*\sfetchpriority="high"[^>]*>/i.exec(body);
+  if (!m) return null;
+  const img = m[0];
+  const before = body.slice(0, m.index);
+  const pic = before.lastIndexOf('<picture');
+  const inPicture = pic >= 0 && before.indexOf('</picture>', pic) < 0;
+  if (inPicture) {
+    const sources = [...before.slice(pic).matchAll(/<source\b[^>]*>/gi)].map((x) => x[0]);
+    if (sources.some((t) => attrOf(t, 'media'))) return null;
+    const avif = sources.find((t) => (attrOf(t, 'type') ?? '').toLowerCase() === 'image/avif');
+    const set = avif ? attrOf(avif, 'srcset') : null;
+    if (avif && set) {
+      const first = set.split(',')[0].trim().split(/\s+/)[0];
+      if (!safe(first)) return null;
+      return linkValue(first, { imagesrcset: set, imagesizes: attrOf(avif, 'sizes'), type: 'image/avif' });
+    }
+  }
+  const src = attrOf(img, 'src');
+  if (!src || !safe(src) || src.startsWith('data:')) return null;
+  const set = attrOf(img, 'srcset');
+  return linkValue(src, set ? { imagesrcset: set, imagesizes: attrOf(img, 'sizes') } : {});
+}
+
 /**
  * Turn the page's own high-priority image preloads (the hero) into an HTTP Link header, so the
  * browser starts the hero as soon as the response headers arrive — ahead of the ~30 script
  * preloads that come first in <head>. (Hosts that support 103 Early Hints can send it even earlier.)
  */
 export function heroLinkHeader(html: string): string | null {
-  const head = html.slice(0, html.indexOf('</head>') > 0 ? html.indexOf('</head>') : 20000);
+  const headEnd = html.indexOf('</head>') > 0 ? html.indexOf('</head>') : 20000;
+  const head = html.slice(0, headEnd);
   const out: string[] = [];
   for (const m of head.matchAll(/<link\b[^>]*>/gi)) {
     const tag = m[0];
-    const attr = (name: string) => {
-      const r = new RegExp(`\\s${name}="([^"]*)"`, 'i').exec(tag);
-      return r ? decode(r[1]) : null;
-    };
+    const attr = (name: string) => attrOf(tag, name);
     if (attr('rel')?.toLowerCase() !== 'preload' || attr('as')?.toLowerCase() !== 'image') continue;
     if ((attr('fetchpriority') ?? '').toLowerCase() !== 'high') continue;
     const href = attr('href');
     if (!href || /[<>\r\n]/.test(href)) continue;
-    const parts = [`<${href}>`, 'rel=preload', 'as=image', 'fetchpriority=high'];
-    for (const k of ['imagesrcset', 'imagesizes', 'media', 'type']) {
-      const v = attr(k);
-      if (v && !/["\r\n]/.test(v)) parts.push(`${k}="${v}"`);
-    }
-    out.push(parts.join('; '));
+    out.push(linkValue(href, { imagesrcset: attr('imagesrcset'), imagesizes: attr('imagesizes'), media: attr('media'), type: attr('type') }));
     if (out.length >= 3) break;
+  }
+  if (!out.length && html.indexOf('</head>') > 0) {
+    const body = bodyHeroLink(html, headEnd);
+    if (body) out.push(body);
   }
   const value = out.join(', ');
   return value && value.length < 4000 ? value : null;
@@ -148,7 +188,7 @@ async function renderAndStore(key: string, render: () => Promise<Response>): Pro
     const body = await res.arrayBuffer();
     const headers = [...res.headers.entries()].filter(([k]) => !/^(content-length|content-encoding)$/i.test(k));
     try {
-      const link = heroLinkHeader(new TextDecoder().decode(body.slice(0, 60000)));
+      const link = heroLinkHeader(new TextDecoder().decode(body.slice(0, 200000)));
       if (link && !res.headers.has('link')) headers.push(['link', link]);
     } catch {
       /* no hint — page still works */

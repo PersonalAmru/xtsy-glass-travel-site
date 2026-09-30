@@ -25,8 +25,17 @@ async function main() {
     out += block.replace(url, `/fonts/${file}`).trim() + '\n';
     console.log(family, subset, file);
   }
-  // Body font: optional (no late swap → no CLS). Display font keeps swap.
-  out = out.replace(/(font-family: 'Manrope';[^}]*?)font-display: swap;/g, '$1font-display: optional;');
+  // Body font swaps in over a metric-matched local fallback (see src/styles.css:
+  // "Manrope", "Manrope Fallback"), so the brand font always shows without layout shift.
+  out += `@font-face {
+  font-family: 'Manrope Fallback';
+  src: local('Arial'), local('Helvetica'), local('Roboto'), local('Liberation Sans');
+  size-adjust: 100.6%;
+  ascent-override: 106%;
+  descent-override: 29.8%;
+  line-gap-override: 0%;
+}
+`;
   fs.writeFileSync('public/fonts/fonts.css', out);
 }
 main().catch((e) => { console.error(e); process.exit(1); });

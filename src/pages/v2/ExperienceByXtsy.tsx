@@ -119,7 +119,7 @@ export default function ExperienceByXtsy() {
           }
           media={
             <div className="relative flex justify-end">
-              <Photo src={IMG.suite[0]} alt="Experience by XTSY, the glass suite" eager tone="slate" className="aspect-[600/640] w-full max-w-[600px] rounded-[300px]" />
+              <Photo src={IMG.suite[0]} alt="Experience by XTSY, the glass suite" eager tone="slate" sizes="(max-width: 640px) calc(100vw - 48px), 600px" className="aspect-[600/640] w-full max-w-[600px] rounded-[300px]" />
               <div className="xt-float absolute bottom-12 left-2 rounded-2xl bg-xt-paper px-5 py-4 text-[15px] font-extrabold text-xt-ink sm:left-5">Booked direct only · 1 suite a night</div>
             </div>
           }
