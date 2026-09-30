@@ -42,7 +42,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 540,
+   "t": 528,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-640.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -60,14 +60,14 @@
   "overflowers": [],
   "smallTargets": 44,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x34 \"Home\"",
-   "a.xt-btn.flex.h-12 227x42 \"Check live availability\"",
-   "a.xt-btn.flex.h-12 204x42 \"Book on WhatsApp\"",
-   "a.self-start.py-2.text-[14px] 184x35 \"Open in Google Maps →\"",
-   "button.xt-btn.h-12.rounded-full 212x42 \"✦ Plan a trip with AI\"",
-   "a.xt-btn.flex.h-12 166x42 \"Tour packages\"",
-   "a.xt-btn.flex.h-12 264x42 \"Cheapest beds in Shillon\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x34 \"Home\"",
+   "a.xt-btn.flex.h-12 202x42 \"Check live availability\"",
+   "a.xt-btn.flex.h-12 182x42 \"Book on WhatsApp\"",
+   "a.self-start.py-2.text-[14px] 162x35 \"Open in Google Maps →\"",
+   "button.xt-btn.h-12.rounded-full 185x42 \"✦ Plan a trip with AI\"",
+   "a.xt-btn.flex.h-12 150x42 \"Tour packages\"",
+   "a.xt-btn.flex.h-12 234x42 \"Cheapest beds in Shillon\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -100,14 +100,14 @@
   "overflowers": [],
   "smallTargets": 44,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x34 \"Home\"",
-   "a.xt-btn.flex.h-12 227x42 \"Check live availability\"",
-   "a.xt-btn.flex.h-12 204x42 \"Book on WhatsApp\"",
-   "a.self-start.py-2.text-[14px] 184x35 \"Open in Google Maps →\"",
-   "button.xt-btn.h-12.rounded-full 212x42 \"✦ Plan a trip with AI\"",
-   "a.xt-btn.flex.h-12 166x42 \"Tour packages\"",
-   "a.xt-btn.flex.h-12 255x42 \"Hostels in Shillong guid\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x34 \"Home\"",
+   "a.xt-btn.flex.h-12 202x42 \"Check live availability\"",
+   "a.xt-btn.flex.h-12 182x42 \"Book on WhatsApp\"",
+   "a.self-start.py-2.text-[14px] 162x35 \"Open in Google Maps →\"",
+   "button.xt-btn.h-12.rounded-full 185x42 \"✦ Plan a trip with AI\"",
+   "a.xt-btn.flex.h-12 150x42 \"Tour packages\"",
+   "a.xt-btn.flex.h-12 224x42 \"Hostels in Shillong guid\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -122,7 +122,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 336,
+   "t": 332,
    "tag": "P",
    "url": "",
    "cls": "m-0 text-[16px] leading-relaxed"
@@ -140,18 +140,18 @@
   "overflowers": [],
   "smallTargets": 38,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "button.font-extrabold.text-xt-crimson.underline 129x21 \"Send an enquiry\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "button.font-extrabold.text-xt-crimson.underline 113x21 \"Send an enquiry\"",
    "a.text-[16px].font-extrabold.hover:text-xt-crimson 332x24 \"All tour packages →\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x39 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x39 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x39 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x39 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x39 \"Get directions\""
+   "a.inline-block.py-1.5.text-xt-paper 104x39 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x39 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x39 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x39 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x39 \"Get directions\""
   ],
   "under24": 1,
   "under24Ex": [
-   "button.font-extrabold.text-xt-crimson.underline 129x21 \"Send an enquiry\""
+   "button.font-extrabold.text-xt-crimson.underline 113x21 \"Send an enquiry\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -164,7 +164,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 300,
+   "t": 308,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
@@ -180,16 +180,16 @@
   "W": 360,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 165,
+  "smallTargets": 170,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.xt-btn.flex.h-11 99x39 \"Itinerary\"",
-   "a.xt-btn.flex.h-11 89x39 \"Enquire\"",
-   "a.xt-btn.flex.h-11 99x39 \"Itinerary\"",
-   "a.xt-btn.flex.h-11 89x39 \"Enquire\"",
-   "a.xt-btn.flex.h-11 99x39 \"Itinerary\"",
-   "a.xt-btn.flex.h-11 89x39 \"Enquire\"",
-   "a.xt-btn.flex.h-11 99x39 \"Itinerary\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.xt-btn.flex.h-11 90x39 \"Itinerary\"",
+   "a.xt-btn.flex.h-11 82x39 \"Enquire\"",
+   "a.xt-btn.flex.h-11 90x39 \"Itinerary\"",
+   "a.xt-btn.flex.h-11 82x39 \"Enquire\"",
+   "a.xt-btn.flex.h-11 90x39 \"Itinerary\"",
+   "a.xt-btn.flex.h-11 82x39 \"Enquire\"",
+   "a.xt-btn.flex.h-11 90x39 \"Itinerary\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -204,7 +204,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 360,
+   "t": 316,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
@@ -222,20 +222,20 @@
   "overflowers": [],
   "smallTargets": 45,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x34 \"Home\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 39x34 \"Tours\"",
-   "a.underline 85x14 \"Saakshi Yadav\"",
-   "a.underline 38x14 \"Pexels\"",
-   "button#tab-overview.xt-chip.h-11.shrink-0 116x39 \"Overview\"",
-   "button#tab-itinerary.xt-chip.h-11.shrink-0 110x39 \"Itinerary\"",
-   "button#tab-inclusions.xt-chip.h-11.shrink-0 122x39 \"Inclusions\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x34 \"Home\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 35x34 \"Tours\"",
+   "a.underline 78x17 \"Saakshi Yadav\"",
+   "a.underline 36x17 \"Pexels\"",
+   "button#tab-overview.xt-chip.h-11.shrink-0 106x39 \"Overview\"",
+   "button#tab-itinerary.xt-chip.h-11.shrink-0 101x39 \"Itinerary\"",
+   "button#tab-inclusions.xt-chip.h-11.shrink-0 113x39 \"Inclusions\""
   ],
   "under24": 3,
   "under24Ex": [
-   "a.underline 85x14 \"Saakshi Yadav\"",
-   "a.underline 38x14 \"Pexels\"",
-   "a.font-bold.text-xt-crimson.active 62x15 \"All tours\""
+   "a.underline 78x17 \"Saakshi Yadav\"",
+   "a.underline 36x17 \"Pexels\"",
+   "a.font-bold.text-xt-crimson.active 54x18 \"All tours\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -248,7 +248,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 384,
+   "t": 344,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -266,20 +266,18 @@
   "overflowers": [],
   "smallTargets": 36,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x39 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x39 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x39 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x39 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x39 \"Get directions\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x39 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x39 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x39 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x39 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x39 \"Get directions\"",
    "a.inline-block.py-1.5.text-[14px] 332x32 \"Book a room\"",
    "a.inline-block.py-1.5.text-[14px] 332x32 \"Experience by XTSY\""
   ],
-  "under24": 3,
+  "under24": 1,
   "under24Ex": [
-   "a.font-bold.text-xt-crimson 139x18 \"motorbike guide\"",
-   "a.font-bold.text-xt-crimson 199x18 \"Meghalaya guided trips\"",
-   "a.font-bold.text-xt-crimson 267x18 \"treks, caves and river a\""
+   "a.font-bold.text-xt-crimson 117x21 \"motorbike guide\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -292,7 +290,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 272,
+   "t": 328,
    "tag": "DIV",
    "url": "",
    "cls": "xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm"
@@ -310,9 +308,9 @@
   "overflowers": [],
   "smallTargets": 55,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x34 \"Home\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 91x34 \"Things to do\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x34 \"Home\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 79x34 \"Things to do\"",
    "a.xt-in.text-[15px].font-bold 332x23 \"← Waterfalls in Meghalay\"",
    "a.xt-btn.flex.h-12 283x42 \"Book hostel online\"",
    "a.xt-btn.flex.h-12 283x42 \"View hostel & rooms\"",
@@ -334,7 +332,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 332,
+   "t": 336,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -350,14 +348,14 @@
   "W": 360,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 61,
+  "smallTargets": 62,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x34 \"Home\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 55x34 \"Hostels\"",
-   "a.xt-btn.flex.h-11 174x39 \"Ask on WhatsApp\"",
-   "button.xt-btn.flex.h-11 181x39 \"✦ Plan this with AI\"",
-   "a.xt-btn.flex.h-11 122x39 \"Book XTSY\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x34 \"Home\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 49x34 \"Hostels\"",
+   "a.xt-btn.flex.h-11 158x39 \"Ask on WhatsApp\"",
+   "button.xt-btn.flex.h-11 160x39 \"✦ Plan this with AI\"",
+   "a.xt-btn.flex.h-11 112x39 \"Book XTSY\"",
    "a.xt-btn.flex.h-12 290x42 \"Check availability\"",
    "a.text-center.text-[13px].font-bold 290x20 \"Why guests pick XTSY\""
   ],
@@ -376,7 +374,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 312,
+   "t": 300,
    "tag": "P",
    "url": "",
    "cls": "m-0 max-w-[720px] text-[17px] leading-relaxed text-xt-mute"
@@ -394,19 +392,19 @@
   "overflowers": [],
   "smallTargets": 44,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "button.h-9.rounded-full.px-3 55x32 \"Start over\"",
-   "button.xt-chip.h-9.rounded-full 176x32 \"5 days in Meghalaya\"",
-   "button.xt-chip.h-9.rounded-full 268x32 \"Weekend in Shillong for \"",
-   "button.xt-chip.h-9.rounded-full 252x32 \"Dawki + Cherrapunji, 4 f\"",
-   "button.xt-chip.h-9.rounded-full 152x32 \"Tawang in 7 days\"",
-   "button.xt-chip.h-9.rounded-full 262x32 \"Where should I stay in S\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "button.h-9.rounded-full.px-3 53x32 \"Start over\"",
+   "button.xt-chip.h-9.rounded-full 152x32 \"5 days in Meghalaya\"",
+   "button.xt-chip.h-9.rounded-full 234x32 \"Weekend in Shillong for \"",
+   "button.xt-chip.h-9.rounded-full 215x32 \"Dawki + Cherrapunji, 4 f\"",
+   "button.xt-chip.h-9.rounded-full 131x32 \"Tawang in 7 days\"",
+   "button.xt-chip.h-9.rounded-full 230x32 \"Where should I stay in S\"",
    "input#trip-chat-input-embedded.h-12.min-w-0.flex-1 262x42 \"\""
   ],
   "under24": 2,
   "under24Ex": [
-   "a.font-bold.text-xt-fog.underline 88x14 \"How it works\"",
-   "a.font-bold.text-xt-crimson 104x15 \"tour packages\""
+   "a.font-bold.text-xt-fog.underline 73x17 \"How it works\"",
+   "a.font-bold.text-xt-crimson 89x18 \"tour packages\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -419,7 +417,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 284,
+   "t": 312,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 m-0 text-[17px] leading-relaxed text-xt-mute"
@@ -435,20 +433,20 @@
   "W": 360,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 46,
+  "smallTargets": 47,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "button.xt-chip.h-11.shrink-0 126x39 \"Beverages\"",
-   "button.xt-chip.h-11.shrink-0 119x39 \"Breakfast\"",
-   "button.xt-chip.h-11.shrink-0 88x39 \"Soups\"",
-   "button.xt-chip.h-11.shrink-0 128x39 \"Appetizers\"",
-   "button.xt-chip.h-11.shrink-0 87x39 \"Mains\"",
-   "button.xt-chip.h-11.shrink-0 155x39 \"Rice & Breads\"",
-   "button.xt-chip.h-11.shrink-0 205x39 \"Specials & Desserts\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "button.xt-chip.h-11.shrink-0 113x39 \"Beverages\"",
+   "button.xt-chip.h-11.shrink-0 108x39 \"Breakfast\"",
+   "button.xt-chip.h-11.shrink-0 82x39 \"Soups\"",
+   "button.xt-chip.h-11.shrink-0 115x39 \"Appetizers\"",
+   "button.xt-chip.h-11.shrink-0 80x39 \"Mains\"",
+   "button.xt-chip.h-11.shrink-0 135x39 \"Rice & Breads\"",
+   "button.xt-chip.h-11.shrink-0 181x39 \"Specials & Desserts\""
   ],
   "under24": 2,
   "under24Ex": [
-   "a.font-bold.text-xt-crimson 168x20 \"+91 88373 17070\"",
+   "a.font-bold.text-xt-crimson 130x23 \"+91 88373 17070\"",
    "a.text-[15px].font-extrabold.text-xt-crimson 276x23 \"Get directions →\""
   ],
   "tinyText": 0,
@@ -462,7 +460,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 296,
+   "t": 308,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
@@ -478,22 +476,22 @@
   "W": 360,
   "overflow": true,
   "overflowers": [
-   "div.flex.flex-col.gap-4 right=752",
-   "div.flex.gap-2.overflow-x-auto right=752",
-   "div.lg:col-span-8 right=752",
-   "div#faq-stay.flex.flex-col.gap-2.5 right=752",
-   "div.xt-pop.overflow-hidden.rounded-[18px] right=752"
+   "div.flex.flex-col.gap-4 right=702",
+   "div.flex.gap-2.overflow-x-auto right=702",
+   "div.lg:col-span-8 right=702",
+   "div#faq-stay.flex.flex-col.gap-2.5 right=702",
+   "div.xt-pop.overflow-hidden.rounded-[18px] right=702"
   ],
   "smallTargets": 43,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "button#faq-tab-stay.xt-chip.shrink-0.rounded-full 170x44 \"Staying at XTSY\"",
-   "button#faq-tab-suite.xt-chip.shrink-0.rounded-full 203x44 \"Experience by XTSY\"",
-   "button#faq-tab-tours.xt-chip.shrink-0.rounded-full 164x44 \"Tours & rentals\"",
-   "button#faq-tab-booking.xt-chip.shrink-0.rounded-full 210x44 \"Booking & payments\"",
-   "button#faq-tab-food.xt-chip.shrink-0.rounded-full 123x44 \"TAB Bistro\"",
-   "button#faq-tab-pets.xt-chip.shrink-0.rounded-full 72x44 \"Pets\"",
-   "button#faq-tab-travel.xt-chip.shrink-0.rounded-full 142x44 \"Getting here\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "button#faq-tab-stay.xt-chip.shrink-0.rounded-full 154x44 \"Staying at XTSY\"",
+   "button#faq-tab-suite.xt-chip.shrink-0.rounded-full 179x44 \"Experience by XTSY\"",
+   "button#faq-tab-tours.xt-chip.shrink-0.rounded-full 145x44 \"Tours & rentals\"",
+   "button#faq-tab-booking.xt-chip.shrink-0.rounded-full 185x44 \"Booking & payments\"",
+   "button#faq-tab-food.xt-chip.shrink-0.rounded-full 111x44 \"TAB Bistro\"",
+   "button#faq-tab-pets.xt-chip.shrink-0.rounded-full 69x44 \"Pets\"",
+   "button#faq-tab-travel.xt-chip.shrink-0.rounded-full 127x44 \"Getting here\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -508,7 +506,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 272,
+   "t": 320,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -548,7 +546,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 340,
+   "t": 296,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -566,14 +564,14 @@
   "overflowers": [],
   "smallTargets": 43,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "button.xt-chip.h-11.shrink-0 59x39 \"All\"",
-   "button.xt-chip.h-11.shrink-0 205x39 \"Experience by XTSY\"",
-   "button.xt-chip.h-11.shrink-0 170x39 \"Rooms & dorms\"",
-   "button.xt-chip.h-11.shrink-0 126x39 \"The hostel\"",
-   "button.xt-chip.h-11.shrink-0 125x39 \"TAB Bistro\"",
-   "button.xt-chip.h-11.shrink-0 166x39 \"Dawki camping\"",
-   "button.xt-chip.h-11.shrink-0 192x39 \"XTSY Voyage trips\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "button.xt-chip.h-11.shrink-0 55x39 \"All\"",
+   "button.xt-chip.h-11.shrink-0 179x39 \"Experience by XTSY\"",
+   "button.xt-chip.h-11.shrink-0 147x39 \"Rooms & dorms\"",
+   "button.xt-chip.h-11.shrink-0 113x39 \"The hostel\"",
+   "button.xt-chip.h-11.shrink-0 111x39 \"TAB Bistro\"",
+   "button.xt-chip.h-11.shrink-0 146x39 \"Dawki camping\"",
+   "button.xt-chip.h-11.shrink-0 168x39 \"XTSY Voyage trips\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -588,7 +586,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 296,
+   "t": 304,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -637,7 +635,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 320,
+   "t": 344,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-640.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -655,14 +653,14 @@
   "overflowers": [],
   "smallTargets": 44,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x34 \"Home\"",
-   "a.xt-btn.flex.h-12 227x42 \"Check live availability\"",
-   "a.xt-btn.flex.h-12 204x42 \"Book on WhatsApp\"",
-   "a.self-start.py-2.text-[14px] 184x35 \"Open in Google Maps →\"",
-   "button.xt-btn.h-12.rounded-full 212x42 \"✦ Plan a trip with AI\"",
-   "a.xt-btn.flex.h-12 166x42 \"Tour packages\"",
-   "a.xt-btn.flex.h-12 264x42 \"Cheapest beds in Shillon\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x34 \"Home\"",
+   "a.xt-btn.flex.h-12 202x42 \"Check live availability\"",
+   "a.xt-btn.flex.h-12 182x42 \"Book on WhatsApp\"",
+   "a.self-start.py-2.text-[14px] 162x35 \"Open in Google Maps →\"",
+   "button.xt-btn.h-12.rounded-full 185x42 \"✦ Plan a trip with AI\"",
+   "a.xt-btn.flex.h-12 150x42 \"Tour packages\"",
+   "a.xt-btn.flex.h-12 234x42 \"Cheapest beds in Shillon\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -677,7 +675,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 336,
+   "t": 324,
    "tag": "P",
    "url": "",
    "cls": "m-0 text-[16px] leading-relaxed"
@@ -695,14 +693,14 @@
   "overflowers": [],
   "smallTargets": 44,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x34 \"Home\"",
-   "a.xt-btn.flex.h-12 227x42 \"Check live availability\"",
-   "a.xt-btn.flex.h-12 204x42 \"Book on WhatsApp\"",
-   "a.self-start.py-2.text-[14px] 184x35 \"Open in Google Maps →\"",
-   "button.xt-btn.h-12.rounded-full 212x42 \"✦ Plan a trip with AI\"",
-   "a.xt-btn.flex.h-12 166x42 \"Tour packages\"",
-   "a.xt-btn.flex.h-12 255x42 \"Hostels in Shillong guid\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x34 \"Home\"",
+   "a.xt-btn.flex.h-12 202x42 \"Check live availability\"",
+   "a.xt-btn.flex.h-12 182x42 \"Book on WhatsApp\"",
+   "a.self-start.py-2.text-[14px] 162x35 \"Open in Google Maps →\"",
+   "button.xt-btn.h-12.rounded-full 185x42 \"✦ Plan a trip with AI\"",
+   "a.xt-btn.flex.h-12 150x42 \"Tour packages\"",
+   "a.xt-btn.flex.h-12 224x42 \"Hostels in Shillong guid\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -717,7 +715,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 332,
+   "t": 292,
    "tag": "P",
    "url": "",
    "cls": "m-0 text-[16px] leading-relaxed"
@@ -735,18 +733,18 @@
   "overflowers": [],
   "smallTargets": 38,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "button.font-extrabold.text-xt-crimson.underline 129x21 \"Send an enquiry\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "button.font-extrabold.text-xt-crimson.underline 113x21 \"Send an enquiry\"",
    "a.text-[16px].font-extrabold.hover:text-xt-crimson 362x24 \"All tour packages →\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x39 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x39 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x39 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x39 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x39 \"Get directions\""
+   "a.inline-block.py-1.5.text-xt-paper 104x39 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x39 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x39 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x39 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x39 \"Get directions\""
   ],
   "under24": 1,
   "under24Ex": [
-   "button.font-extrabold.text-xt-crimson.underline 129x21 \"Send an enquiry\""
+   "button.font-extrabold.text-xt-crimson.underline 113x21 \"Send an enquiry\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -759,10 +757,10 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 276,
-   "tag": "H1",
-   "url": "",
-   "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
+   "t": 352,
+   "tag": "IMG",
+   "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-480.avif",
+   "cls": "absolute inset-0 h-full w-full object-cover"
   }
  },
  {
@@ -775,16 +773,16 @@
   "W": 390,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 166,
+  "smallTargets": 183,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.xt-btn.flex.h-11 99x39 \"Itinerary\"",
-   "a.xt-btn.flex.h-11 89x39 \"Enquire\"",
-   "a.xt-btn.flex.h-11 99x39 \"Itinerary\"",
-   "a.xt-btn.flex.h-11 89x39 \"Enquire\"",
-   "a.xt-btn.flex.h-11 99x39 \"Itinerary\"",
-   "a.xt-btn.flex.h-11 89x39 \"Enquire\"",
-   "a.xt-btn.flex.h-11 99x39 \"Itinerary\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.xt-btn.flex.h-11 90x39 \"Itinerary\"",
+   "a.xt-btn.flex.h-11 82x39 \"Enquire\"",
+   "a.text-xt-ink.hover:text-xt-crimson 306x27 \"6 Nights 7 Days Meghalay\"",
+   "a.xt-btn.flex.h-11 90x39 \"Itinerary\"",
+   "a.xt-btn.flex.h-11 82x39 \"Enquire\"",
+   "a.text-xt-ink.hover:text-xt-crimson 307x27 \"6 Days Shillong Meghalay\"",
+   "a.xt-btn.flex.h-11 90x39 \"Itinerary\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -817,20 +815,20 @@
   "overflowers": [],
   "smallTargets": 45,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x34 \"Home\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 39x34 \"Tours\"",
-   "a.underline 85x14 \"Saakshi Yadav\"",
-   "a.underline 38x14 \"Pexels\"",
-   "button#tab-overview.xt-chip.h-11.shrink-0 116x39 \"Overview\"",
-   "button#tab-itinerary.xt-chip.h-11.shrink-0 110x39 \"Itinerary\"",
-   "button#tab-inclusions.xt-chip.h-11.shrink-0 122x39 \"Inclusions\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x34 \"Home\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 35x34 \"Tours\"",
+   "a.underline 78x17 \"Saakshi Yadav\"",
+   "a.underline 36x17 \"Pexels\"",
+   "button#tab-overview.xt-chip.h-11.shrink-0 106x39 \"Overview\"",
+   "button#tab-itinerary.xt-chip.h-11.shrink-0 101x39 \"Itinerary\"",
+   "button#tab-inclusions.xt-chip.h-11.shrink-0 113x39 \"Inclusions\""
   ],
   "under24": 3,
   "under24Ex": [
-   "a.underline 85x14 \"Saakshi Yadav\"",
-   "a.underline 38x14 \"Pexels\"",
-   "a.font-bold.text-xt-crimson.active 62x15 \"All tours\""
+   "a.underline 78x17 \"Saakshi Yadav\"",
+   "a.underline 36x17 \"Pexels\"",
+   "a.font-bold.text-xt-crimson.active 54x18 \"All tours\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -843,7 +841,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 356,
+   "t": 344,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -861,18 +859,19 @@
   "overflowers": [],
   "smallTargets": 36,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x39 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x39 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x39 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x39 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x39 \"Get directions\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x39 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x39 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x39 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x39 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x39 \"Get directions\"",
    "a.inline-block.py-1.5.text-[14px] 362x32 \"Book a room\"",
    "a.inline-block.py-1.5.text-[14px] 362x32 \"Experience by XTSY\""
   ],
-  "under24": 1,
+  "under24": 2,
   "under24Ex": [
-   "a.font-bold.text-xt-crimson 139x18 \"motorbike guide\""
+   "a.font-bold.text-xt-crimson 336x21 \"Shillong–Dawki–Mawlynnon\"",
+   "a.font-bold.text-xt-crimson 117x21 \"motorbike guide\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -885,7 +884,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 272,
+   "t": 284,
    "tag": "DIV",
    "url": "",
    "cls": "xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm"
@@ -903,7 +902,7 @@
   "overflowers": [],
   "smallTargets": 55,
   "smallEx": [
-   "a.flex.h-full.items-center 154x32 \"Dorm beds from ₹389/nigh\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
    "a.inline-block.py-2.hover:text-xt-crimson 37x34 \"Home\"",
    "a.inline-block.py-2.hover:text-xt-crimson 79x34 \"Things to do\"",
    "a.xt-in.text-[15px].font-bold 362x23 \"← Waterfalls in Meghalay\"",
@@ -927,7 +926,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 320,
+   "t": 312,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -943,14 +942,14 @@
   "W": 390,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 62,
+  "smallTargets": 64,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x34 \"Home\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 55x34 \"Hostels\"",
-   "a.xt-btn.flex.h-11 174x39 \"Ask on WhatsApp\"",
-   "button.xt-btn.flex.h-11 181x39 \"✦ Plan this with AI\"",
-   "a.xt-btn.flex.h-11 122x39 \"Book XTSY\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x34 \"Home\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 49x34 \"Hostels\"",
+   "a.xt-btn.flex.h-11 158x39 \"Ask on WhatsApp\"",
+   "button.xt-btn.flex.h-11 160x39 \"✦ Plan this with AI\"",
+   "a.xt-btn.flex.h-11 112x39 \"Book XTSY\"",
    "a.xt-btn.flex.h-12 320x42 \"Check availability\"",
    "a.text-center.text-[13px].font-bold 320x20 \"Why guests pick XTSY\""
   ],
@@ -969,7 +968,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 316,
+   "t": 332,
    "tag": "P",
    "url": "",
    "cls": "m-0 max-w-[720px] text-[17px] leading-relaxed text-xt-mute"
@@ -987,19 +986,19 @@
   "overflowers": [],
   "smallTargets": 44,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "button.h-9.rounded-full.px-3 55x32 \"Start over\"",
-   "button.xt-chip.h-9.rounded-full 176x32 \"5 days in Meghalaya\"",
-   "button.xt-chip.h-9.rounded-full 268x32 \"Weekend in Shillong for \"",
-   "button.xt-chip.h-9.rounded-full 252x32 \"Dawki + Cherrapunji, 4 f\"",
-   "button.xt-chip.h-9.rounded-full 152x32 \"Tawang in 7 days\"",
-   "button.xt-chip.h-9.rounded-full 262x32 \"Where should I stay in S\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "button.h-9.rounded-full.px-3 58x32 \"Start over\"",
+   "button.xt-chip.h-9.rounded-full 152x32 \"5 days in Meghalaya\"",
+   "button.xt-chip.h-9.rounded-full 234x32 \"Weekend in Shillong for \"",
+   "button.xt-chip.h-9.rounded-full 215x32 \"Dawki + Cherrapunji, 4 f\"",
+   "button.xt-chip.h-9.rounded-full 131x32 \"Tawang in 7 days\"",
+   "button.xt-chip.h-9.rounded-full 230x32 \"Where should I stay in S\"",
    "input#trip-chat-input-embedded.h-12.min-w-0.flex-1 292x42 \"\""
   ],
   "under24": 2,
   "under24Ex": [
-   "a.font-bold.text-xt-fog.underline 88x14 \"How it works\"",
-   "a.font-bold.text-xt-crimson 104x15 \"tour packages\""
+   "a.font-bold.text-xt-crimson 89x18 \"tour packages\"",
+   "a.font-bold.text-xt-crimson 157x18 \"where to stay in Shillon\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -1012,7 +1011,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 292,
+   "t": 284,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 m-0 text-[17px] leading-relaxed text-xt-mute"
@@ -1055,7 +1054,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 288,
+   "t": 316,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
@@ -1071,22 +1070,22 @@
   "W": 390,
   "overflow": true,
   "overflowers": [
-   "div.flex.flex-col.gap-4 right=752",
-   "div.flex.gap-2.overflow-x-auto right=752",
-   "div.lg:col-span-8 right=752",
-   "div#faq-stay.flex.flex-col.gap-2.5 right=752",
-   "div.xt-pop.overflow-hidden.rounded-[18px] right=752"
+   "div.flex.flex-col.gap-4 right=702",
+   "div.flex.gap-2.overflow-x-auto right=702",
+   "div.lg:col-span-8 right=702",
+   "div#faq-stay.flex.flex-col.gap-2.5 right=702",
+   "div.xt-pop.overflow-hidden.rounded-[18px] right=702"
   ],
   "smallTargets": 43,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "button#faq-tab-stay.xt-chip.shrink-0.rounded-full 170x44 \"Staying at XTSY\"",
-   "button#faq-tab-suite.xt-chip.shrink-0.rounded-full 203x44 \"Experience by XTSY\"",
-   "button#faq-tab-tours.xt-chip.shrink-0.rounded-full 164x44 \"Tours & rentals\"",
-   "button#faq-tab-booking.xt-chip.shrink-0.rounded-full 210x44 \"Booking & payments\"",
-   "button#faq-tab-food.xt-chip.shrink-0.rounded-full 123x44 \"TAB Bistro\"",
-   "button#faq-tab-pets.xt-chip.shrink-0.rounded-full 72x44 \"Pets\"",
-   "button#faq-tab-travel.xt-chip.shrink-0.rounded-full 142x44 \"Getting here\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "button#faq-tab-stay.xt-chip.shrink-0.rounded-full 154x44 \"Staying at XTSY\"",
+   "button#faq-tab-suite.xt-chip.shrink-0.rounded-full 179x44 \"Experience by XTSY\"",
+   "button#faq-tab-tours.xt-chip.shrink-0.rounded-full 145x44 \"Tours & rentals\"",
+   "button#faq-tab-booking.xt-chip.shrink-0.rounded-full 185x44 \"Booking & payments\"",
+   "button#faq-tab-food.xt-chip.shrink-0.rounded-full 111x44 \"TAB Bistro\"",
+   "button#faq-tab-pets.xt-chip.shrink-0.rounded-full 69x44 \"Pets\"",
+   "button#faq-tab-travel.xt-chip.shrink-0.rounded-full 127x44 \"Getting here\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -1101,7 +1100,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 280,
+   "t": 272,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -1141,7 +1140,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 300,
+   "t": 292,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -1159,14 +1158,14 @@
   "overflowers": [],
   "smallTargets": 43,
   "smallEx": [
-   "a.flex.h-full.items-center 187x32 \"Dorm beds from ₹389/nigh\"",
-   "button.xt-chip.h-11.shrink-0 59x39 \"All\"",
-   "button.xt-chip.h-11.shrink-0 205x39 \"Experience by XTSY\"",
-   "button.xt-chip.h-11.shrink-0 170x39 \"Rooms & dorms\"",
-   "button.xt-chip.h-11.shrink-0 126x39 \"The hostel\"",
-   "button.xt-chip.h-11.shrink-0 125x39 \"TAB Bistro\"",
-   "button.xt-chip.h-11.shrink-0 166x39 \"Dawki camping\"",
-   "button.xt-chip.h-11.shrink-0 192x39 \"XTSY Voyage trips\""
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹389/nigh\"",
+   "button.xt-chip.h-11.shrink-0 55x39 \"All\"",
+   "button.xt-chip.h-11.shrink-0 179x39 \"Experience by XTSY\"",
+   "button.xt-chip.h-11.shrink-0 147x39 \"Rooms & dorms\"",
+   "button.xt-chip.h-11.shrink-0 113x39 \"The hostel\"",
+   "button.xt-chip.h-11.shrink-0 111x39 \"TAB Bistro\"",
+   "button.xt-chip.h-11.shrink-0 146x39 \"Dawki camping\"",
+   "button.xt-chip.h-11.shrink-0 168x39 \"XTSY Voyage trips\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -1181,7 +1180,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 304,
+   "t": 300,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -1206,7 +1205,7 @@
    "button.xt-chip.h-9.rounded-full 218x36 \"Dawki + Cherrapunji, 4 f\"",
    "button.xt-chip.h-9.rounded-full 134x36 \"Tawang in 7 days\"",
    "button.xt-chip.h-9.rounded-full 233x36 \"Where should I stay in S\"",
-   "a.text-[16px].font-extrabold.hover:text-xt-crimson 123x24 \"See all rooms →\""
+   "a.text-[16px].font-extrabold.hover:text-xt-crimson 126x24 \"See all rooms →\""
   ],
   "under24": 27,
   "under24Ex": [
@@ -1230,7 +1229,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 352,
+   "t": 384,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -1248,14 +1247,14 @@
   "overflowers": [],
   "smallTargets": 38,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x36 \"Home\"",
-   "a.self-start.py-2.text-[14px] 184x37 \"Open in Google Maps →\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\""
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x36 \"Home\"",
+   "a.self-start.py-2.text-[14px] 162x37 \"Open in Google Maps →\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -1270,7 +1269,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 332,
+   "t": 324,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1288,14 +1287,14 @@
   "overflowers": [],
   "smallTargets": 38,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x36 \"Home\"",
-   "a.self-start.py-2.text-[14px] 184x37 \"Open in Google Maps →\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\""
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x36 \"Home\"",
+   "a.self-start.py-2.text-[14px] 162x37 \"Open in Google Maps →\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -1310,7 +1309,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 340,
+   "t": 320,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1326,20 +1325,20 @@
   "W": 768,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 37,
+  "smallTargets": 38,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "button.font-extrabold.text-xt-crimson.underline 129x21 \"Send an enquiry\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\"",
-   "a.inline-block.py-1.5.text-[14px] 208x33 \"Book a room\""
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "button.font-extrabold.text-xt-crimson.underline 113x21 \"Send an enquiry\"",
+   "a.text-[16px].font-extrabold.hover:text-xt-crimson 155x24 \"All tour packages →\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\""
   ],
   "under24": 1,
   "under24Ex": [
-   "button.font-extrabold.text-xt-crimson.underline 129x21 \"Send an enquiry\""
+   "button.font-extrabold.text-xt-crimson.underline 113x21 \"Send an enquiry\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -1352,10 +1351,10 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 312,
-   "tag": "H1",
-   "url": "",
-   "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
+   "t": 352,
+   "tag": "IMG",
+   "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-900.avif",
+   "cls": "absolute inset-0 h-full w-full object-cover"
   }
  },
  {
@@ -1368,16 +1367,16 @@
   "W": 768,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 37,
+  "smallTargets": 43,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.text-xt-ink.hover:text-xt-crimson 267x24 \"Vietnam Discovery Trail\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\"",
-   "a.inline-block.py-1.5.text-[14px] 208x33 \"Book a room\""
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.text-xt-ink.hover:text-xt-crimson 276x27 \"5 Nights 6 Days Tawang T\"",
+   "a.text-xt-ink.hover:text-xt-crimson 275x27 \"7 Nights 8 Days Tawang T\"",
+   "a.text-xt-ink.hover:text-xt-crimson 270x27 \"Bumla Pass Bike Expediti\"",
+   "a.text-xt-ink.hover:text-xt-crimson 292x27 \"Assam Wildlife & Tea Her\"",
+   "a.text-xt-ink.hover:text-xt-crimson 280x27 \"Tripura Heritage & Craft\"",
+   "a.text-xt-ink.hover:text-xt-crimson 288x27 \"Nainital Winter Lake Ser\"",
+   "a.text-xt-ink.hover:text-xt-crimson 232x27 \"Vietnam Discovery Trail\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -1392,7 +1391,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 372,
+   "t": 432,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[72px] leading-[0.86] sm:tex"
@@ -1410,20 +1409,20 @@
   "overflowers": [],
   "smallTargets": 40,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x36 \"Home\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 39x36 \"Tours\"",
-   "a.underline 85x14 \"Saakshi Yadav\"",
-   "a.underline 38x14 \"Pexels\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\""
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x36 \"Home\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 35x36 \"Tours\"",
+   "a.underline 78x17 \"Saakshi Yadav\"",
+   "a.underline 36x17 \"Pexels\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\""
   ],
   "under24": 3,
   "under24Ex": [
-   "a.underline 85x14 \"Saakshi Yadav\"",
-   "a.underline 38x14 \"Pexels\"",
-   "a.font-bold.text-xt-crimson.active 62x15 \"All tours\""
+   "a.underline 78x17 \"Saakshi Yadav\"",
+   "a.underline 36x17 \"Pexels\"",
+   "a.font-bold.text-xt-crimson.active 54x18 \"All tours\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -1436,7 +1435,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 340,
+   "t": 352,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1454,19 +1453,20 @@
   "overflowers": [],
   "smallTargets": 36,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\"",
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\"",
    "a.inline-block.py-1.5.text-[14px] 208x33 \"Book a room\"",
    "a.inline-block.py-1.5.text-[14px] 208x33 \"Experience by XTSY\""
   ],
-  "under24": 2,
+  "under24": 3,
   "under24Ex": [
-   "a.font-bold.text-xt-crimson 139x18 \"motorbike guide\"",
-   "a.font-bold.text-xt-crimson 199x18 \"Meghalaya guided trips\""
+   "a.font-bold.text-xt-crimson 336x21 \"Shillong–Dawki–Mawlynnon\"",
+   "a.font-bold.text-xt-crimson 117x21 \"motorbike guide\"",
+   "a.font-bold.text-xt-crimson 168x21 \"Meghalaya guided trips\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -1479,7 +1479,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 296,
+   "t": 372,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1521,7 +1521,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 328,
+   "t": 360,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1539,9 +1539,9 @@
   "overflowers": [],
   "smallTargets": 65,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x36 \"Home\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 55x36 \"Hostels\"",
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x36 \"Home\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 49x36 \"Hostels\"",
    "a.text-center.text-[13px].font-bold 656x20 \"Why guests pick XTSY\"",
    "a.block.text-sm.px-3 662x32 \"★ Best Hostel in Shillon\"",
    "a.block.text-sm.px-3 650x32 \"→ Backpacker Hostel\"",
@@ -1581,19 +1581,20 @@
   "overflowers": [],
   "smallTargets": 42,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "button.h-9.rounded-full.px-3 92x36 \"Start over\"",
-   "button.xt-chip.h-9.rounded-full 179x36 \"5 days in Meghalaya\"",
-   "button.xt-chip.h-9.rounded-full 271x36 \"Weekend in Shillong for \"",
-   "button.xt-chip.h-9.rounded-full 255x36 \"Dawki + Cherrapunji, 4 f\"",
-   "button.xt-chip.h-9.rounded-full 156x36 \"Tawang in 7 days\"",
-   "button.xt-chip.h-9.rounded-full 266x36 \"Where should I stay in S\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\""
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "button.h-9.rounded-full.px-3 82x36 \"Start over\"",
+   "button.xt-chip.h-9.rounded-full 155x36 \"5 days in Meghalaya\"",
+   "button.xt-chip.h-9.rounded-full 237x36 \"Weekend in Shillong for \"",
+   "button.xt-chip.h-9.rounded-full 218x36 \"Dawki + Cherrapunji, 4 f\"",
+   "button.xt-chip.h-9.rounded-full 134x36 \"Tawang in 7 days\"",
+   "button.xt-chip.h-9.rounded-full 233x36 \"Where should I stay in S\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\""
   ],
-  "under24": 2,
+  "under24": 3,
   "under24Ex": [
-   "a.font-bold.text-xt-fog.underline 88x14 \"How it works\"",
-   "a.font-bold.text-xt-crimson 104x15 \"tour packages\""
+   "a.font-bold.text-xt-fog.underline 73x17 \"How it works\"",
+   "a.font-bold.text-xt-crimson 89x18 \"tour packages\"",
+   "a.font-bold.text-xt-crimson 157x18 \"where to stay in Shillon\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -1606,7 +1607,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 332,
+   "t": 304,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -1622,20 +1623,20 @@
   "W": 768,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 39,
+  "smallTargets": 40,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
    "a.text-[15px].font-extrabold.text-xt-crimson 260x23 \"Get directions →\"",
    "a.text-[16px].font-extrabold.hover:text-xt-crimson 260x24 \"Catering & bulk orders →\"",
+   "a.text-[16px].font-extrabold.hover:text-xt-crimson 260x24 \"Restaurant in Shillong g\"",
    "a.text-[16px].font-extrabold.hover:text-xt-crimson 260x24 \"Destination weddings →\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\""
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\""
   ],
   "under24": 2,
   "under24Ex": [
-   "a.font-bold.text-xt-crimson 168x20 \"+91 88373 17070\"",
+   "a.font-bold.text-xt-crimson 130x23 \"+91 88373 17070\"",
    "a.text-[15px].font-extrabold.text-xt-crimson 260x23 \"Get directions →\""
   ],
   "tinyText": 0,
@@ -1649,7 +1650,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 384,
+   "t": 344,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1661,27 +1662,18 @@
   "route": "/faq",
   "status": 200,
   "shot": "tablet-faq.jpg",
-  "scrollW": 811,
+  "scrollW": 768,
   "W": 768,
-  "overflow": true,
-  "overflowers": [
-   "ol.fixed.top-0.z-[100] right=811 (fixed)",
-   "div.flex.flex-col.gap-4 right=811",
-   "div.flex.gap-2.overflow-x-auto right=811",
-   "div.lg:col-span-8 right=811",
-   "div#faq-stay.flex.flex-col.gap-2.5 right=811",
-   "div.xt-pop.overflow-hidden.rounded-[18px] right=811",
-   "a.fixed.bottom-20.md:bottom-6 right=795 (fixed)",
-   "img.w-8.h-8 right=783"
-  ],
+  "overflow": false,
+  "overflowers": [],
   "smallTargets": 36,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\"",
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\"",
    "a.inline-block.py-1.5.text-[14px] 208x33 \"Book a room\"",
    "a.inline-block.py-1.5.text-[14px] 208x33 \"Experience by XTSY\""
   ],
@@ -1698,7 +1690,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 308,
+   "t": 300,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -1733,7 +1725,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 324,
+   "t": 300,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -1751,12 +1743,12 @@
   "overflowers": [],
   "smallTargets": 36,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\"",
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\"",
    "a.inline-block.py-1.5.text-[14px] 208x33 \"Book a room\"",
    "a.inline-block.py-1.5.text-[14px] 208x33 \"Experience by XTSY\""
   ],
@@ -1773,7 +1765,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 360,
+   "t": 340,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -1798,7 +1790,7 @@
    "button.xt-chip.h-9.rounded-full 218x36 \"Dawki + Cherrapunji, 4 f\"",
    "button.xt-chip.h-9.rounded-full 134x36 \"Tawang in 7 days\"",
    "button.xt-chip.h-9.rounded-full 233x36 \"Where should I stay in S\"",
-   "a.text-[16px].font-extrabold.hover:text-xt-crimson 123x24 \"See all rooms →\""
+   "a.text-[16px].font-extrabold.hover:text-xt-crimson 126x24 \"See all rooms →\""
   ],
   "under24": 21,
   "under24Ex": [
@@ -1822,7 +1814,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 376,
+   "t": 436,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -1838,16 +1830,16 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 20,
+  "smallTargets": 26,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x36 \"Home\"",
-   "a.self-start.py-2.text-[14px] 184x37 \"Open in Google Maps →\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\""
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x36 \"Home\"",
+   "a.self-start.py-2.text-[14px] 162x37 \"Open in Google Maps →\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -1860,9 +1852,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.001,
+  "cls": 0.005,
   "lcp": {
-   "t": 308,
+   "t": 356,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1878,16 +1870,16 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 20,
+  "smallTargets": 26,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x36 \"Home\"",
-   "a.self-start.py-2.text-[14px] 184x37 \"Open in Google Maps →\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\""
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x36 \"Home\"",
+   "a.self-start.py-2.text-[14px] 162x37 \"Open in Google Maps →\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -1900,9 +1892,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0,
+  "cls": 0.045,
   "lcp": {
-   "t": 344,
+   "t": 316,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1922,7 +1914,7 @@
   "smallEx": [
    "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
    "button.font-extrabold.text-xt-crimson.underline 113x21 \"Send an enquiry\"",
-   "a.text-[16px].font-extrabold.hover:text-xt-crimson 152x24 \"All tour packages →\"",
+   "a.text-[16px].font-extrabold.hover:text-xt-crimson 155x24 \"All tour packages →\"",
    "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
    "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
    "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
@@ -1942,9 +1934,9 @@
   "h1": 1,
   "jsonLd": 4,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.002,
   "lcp": {
-   "t": 320,
+   "t": 336,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1960,16 +1952,16 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 18,
+  "smallTargets": 25,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\"",
-   "a.inline-block.py-1.5.text-[14px] 96x33 \"Book a room\"",
-   "a.inline-block.py-1.5.text-[14px] 96x33 \"Workation\""
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.text-xt-ink.hover:text-xt-crimson 232x27 \"Vietnam Discovery Trail\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\"",
+   "a.inline-block.py-1.5.text-[14px] 96x33 \"Book a room\""
   ],
   "under24": 0,
   "under24Ex": [],
@@ -1982,9 +1974,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0.013,
+  "cls": 0,
   "lcp": {
-   "t": 376,
+   "t": 384,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[72px] leading-[0.86] sm:tex"
@@ -2000,22 +1992,21 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 22,
+  "smallTargets": 28,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x36 \"Home\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 39x36 \"Tours\"",
-   "a.underline 85x14 \"Saakshi Yadav\"",
-   "a.underline 38x14 \"Pexels\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\""
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x36 \"Home\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 35x36 \"Tours\"",
+   "a.underline 78x17 \"Saakshi Yadav\"",
+   "a.underline 36x17 \"Pexels\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\""
   ],
-  "under24": 3,
+  "under24": 2,
   "under24Ex": [
-   "a.underline 85x14 \"Saakshi Yadav\"",
-   "a.underline 38x14 \"Pexels\"",
-   "a.font-bold.text-xt-crimson.active 62x15 \"All tours\""
+   "a.underline 78x17 \"Saakshi Yadav\"",
+   "a.underline 36x17 \"Pexels\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -2026,9 +2017,9 @@
   "h1": 1,
   "jsonLd": 7,
   "quickAnswer": false,
-  "cls": 0.006,
+  "cls": 0.01,
   "lcp": {
-   "t": 352,
+   "t": 364,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[52px] leading-[0.9] sm:text"
@@ -2044,23 +2035,23 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 18,
+  "smallTargets": 24,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\"",
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\"",
    "a.inline-block.py-1.5.text-[14px] 96x33 \"Book a room\"",
    "a.inline-block.py-1.5.text-[14px] 96x33 \"Workation\""
   ],
   "under24": 4,
   "under24Ex": [
-   "a.font-bold.text-xt-crimson 390x18 \"Shillong–Dawki–Mawlynnon\"",
-   "a.font-bold.text-xt-crimson 139x18 \"motorbike guide\"",
-   "a.font-bold.text-xt-crimson 199x18 \"Meghalaya guided trips\"",
-   "a.font-bold.text-xt-crimson 267x18 \"treks, caves and river a\""
+   "a.font-bold.text-xt-crimson 336x21 \"Shillong–Dawki–Mawlynnon\"",
+   "a.font-bold.text-xt-crimson 117x21 \"motorbike guide\"",
+   "a.font-bold.text-xt-crimson 168x21 \"Meghalaya guided trips\"",
+   "a.font-bold.text-xt-crimson 227x21 \"treks, caves and river a\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -2071,9 +2062,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.015,
+  "cls": 0.013,
   "lcp": {
-   "t": 308,
+   "t": 356,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
@@ -2089,16 +2080,16 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 30,
+  "smallTargets": 36,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x36 \"Home\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 91x36 \"Things to do\"",
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x36 \"Home\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 79x36 \"Things to do\"",
    "a.xt-in.text-[15px].font-bold 509x23 \"← Waterfalls in Meghalay\"",
-   "a.rounded-full.border-[1.5px].border-xt-stone 225x39 \"Waterfalls in Meghalaya\"",
-   "a.rounded-full.border-[1.5px].border-xt-stone 244x39 \"Things to Do in Meghalay\"",
-   "a.rounded-full.border-[1.5px].border-xt-stone 237x39 \"Meghalaya Tour Packages\"",
-   "a.rounded-full.border-[1.5px].border-xt-stone 208x39 \"Shillong Tour Package\""
+   "a.rounded-full.border-[1.5px].border-xt-stone 197x39 \"Waterfalls in Meghalaya\"",
+   "a.rounded-full.border-[1.5px].border-xt-stone 214x39 \"Things to Do in Meghalay\"",
+   "a.rounded-full.border-[1.5px].border-xt-stone 211x39 \"Meghalaya Tour Packages\"",
+   "a.rounded-full.border-[1.5px].border-xt-stone 186x39 \"Shillong Tour Package\""
   ],
   "under24": 1,
   "under24Ex": [
@@ -2113,9 +2104,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.007,
+  "cls": 0.01,
   "lcp": {
-   "t": 328,
+   "t": 320,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -2131,11 +2122,11 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 47,
+  "smallTargets": 53,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 42x36 \"Home\"",
-   "a.inline-block.py-2.hover:text-xt-crimson 55x36 \"Hostels\"",
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 37x36 \"Home\"",
+   "a.inline-block.py-2.hover:text-xt-crimson 49x36 \"Hostels\"",
    "a.text-center.text-[13px].font-bold 224x20 \"Why guests pick XTSY\"",
    "a.block.text-sm.px-3 854x32 \"★ Best Hostel in Shillon\"",
    "a.block.text-sm.px-3 842x32 \"→ Backpacker Hostel\"",
@@ -2155,9 +2146,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.003,
+  "cls": 0.012,
   "lcp": {
-   "t": 344,
+   "t": 324,
    "tag": "H1",
    "url": "",
    "cls": "xt-display m-0 text-[44px] leading-[0.92] sm:text-[68px]"
@@ -2173,22 +2164,22 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 24,
+  "smallTargets": 30,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "button.h-9.rounded-full.px-3 92x36 \"Start over\"",
-   "button.xt-chip.h-9.rounded-full 179x36 \"5 days in Meghalaya\"",
-   "button.xt-chip.h-9.rounded-full 271x36 \"Weekend in Shillong for \"",
-   "button.xt-chip.h-9.rounded-full 255x36 \"Dawki + Cherrapunji, 4 f\"",
-   "button.xt-chip.h-9.rounded-full 156x36 \"Tawang in 7 days\"",
-   "button.xt-chip.h-9.rounded-full 266x36 \"Where should I stay in S\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\""
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "button.h-9.rounded-full.px-3 82x36 \"Start over\"",
+   "button.xt-chip.h-9.rounded-full 155x36 \"5 days in Meghalaya\"",
+   "button.xt-chip.h-9.rounded-full 237x36 \"Weekend in Shillong for \"",
+   "button.xt-chip.h-9.rounded-full 218x36 \"Dawki + Cherrapunji, 4 f\"",
+   "button.xt-chip.h-9.rounded-full 134x36 \"Tawang in 7 days\"",
+   "button.xt-chip.h-9.rounded-full 233x36 \"Where should I stay in S\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\""
   ],
   "under24": 3,
   "under24Ex": [
-   "a.font-bold.text-xt-fog.underline 88x14 \"How it works\"",
-   "a.font-bold.text-xt-crimson 104x15 \"tour packages\"",
-   "a.font-bold.text-xt-crimson 183x15 \"where to stay in Shillon\""
+   "a.font-bold.text-xt-fog.underline 73x17 \"How it works\"",
+   "a.font-bold.text-xt-crimson 89x18 \"tour packages\"",
+   "a.font-bold.text-xt-crimson 157x18 \"where to stay in Shillon\""
   ],
   "tinyText": 0,
   "tinyEx": [],
@@ -2199,9 +2190,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.001,
+  "cls": 0,
   "lcp": {
-   "t": 332,
+   "t": 292,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -2217,20 +2208,20 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 22,
+  "smallTargets": 28,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
    "a.text-[15px].font-extrabold.text-xt-crimson 356x23 \"Get directions →\"",
    "a.text-[16px].font-extrabold.hover:text-xt-crimson 356x24 \"Catering & bulk orders →\"",
    "a.text-[16px].font-extrabold.hover:text-xt-crimson 356x24 \"Restaurant in Shillong g\"",
    "a.text-[16px].font-extrabold.hover:text-xt-crimson 356x24 \"Destination weddings →\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\""
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\""
   ],
   "under24": 2,
   "under24Ex": [
-   "a.font-bold.text-xt-crimson 168x20 \"+91 88373 17070\"",
+   "a.font-bold.text-xt-crimson 130x23 \"+91 88373 17070\"",
    "a.text-[15px].font-extrabold.text-xt-crimson 356x23 \"Get directions →\""
   ],
   "tinyText": 0,
@@ -2242,7 +2233,7 @@
   "h1": 1,
   "jsonLd": 6,
   "quickAnswer": false,
-  "cls": 0.011,
+  "cls": 0.018,
   "lcp": {
    "t": 308,
    "tag": "H1",
@@ -2260,14 +2251,14 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 18,
+  "smallTargets": 24,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\"",
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\"",
    "a.inline-block.py-1.5.text-[14px] 96x33 \"Book a room\"",
    "a.inline-block.py-1.5.text-[14px] 96x33 \"Workation\""
   ],
@@ -2282,9 +2273,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0.002,
+  "cls": 0.005,
   "lcp": {
-   "t": 296,
+   "t": 292,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -2317,9 +2308,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.017,
+  "cls": 0.02,
   "lcp": {
-   "t": 328,
+   "t": 304,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -2335,14 +2326,14 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 18,
+  "smallTargets": 24,
   "smallEx": [
-   "a.flex.h-full.items-center 218x40 \"Dorm beds from ₹389/nigh\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"+91 88373 17070\"",
-   "a.inline-block.py-1.5.text-xt-paper 128x40 \"booking@xtsy.one\"",
-   "a.inline-block.py-1.5.text-xt-paper 71x40 \"Instagram\"",
-   "a.inline-block.py-1.5.text-xt-paper 57x40 \"YouTube\"",
-   "a.inline-block.py-1.5.text-xt-paper 98x40 \"Get directions\"",
+   "a.flex.h-full.items-center 187x40 \"Dorm beds from ₹389/nigh\"",
+   "a.inline-block.py-1.5.text-xt-paper 104x40 \"+91 88373 17070\"",
+   "a.inline-block.py-1.5.text-xt-paper 117x40 \"booking@xtsy.one\"",
+   "a.inline-block.py-1.5.text-xt-paper 65x40 \"Instagram\"",
+   "a.inline-block.py-1.5.text-xt-paper 54x40 \"YouTube\"",
+   "a.inline-block.py-1.5.text-xt-paper 91x40 \"Get directions\"",
    "a.inline-block.py-1.5.text-[14px] 96x33 \"Book a room\"",
    "a.inline-block.py-1.5.text-[14px] 96x33 \"Workation\""
   ],
@@ -2357,9 +2348,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.051,
+  "cls": 0,
   "lcp": {
-   "t": 320,
+   "t": 352,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -2390,7 +2381,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 416,
+   "t": 396,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -2419,9 +2410,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.038,
+  "cls": 0.043,
   "lcp": {
-   "t": 384,
+   "t": 336,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2450,9 +2441,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0,
+  "cls": 0.005,
   "lcp": {
-   "t": 324,
+   "t": 388,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2481,9 +2472,9 @@
   "h1": 1,
   "jsonLd": 4,
   "quickAnswer": false,
-  "cls": 0.007,
+  "cls": 0.01,
   "lcp": {
-   "t": 396,
+   "t": 356,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2512,9 +2503,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.002,
   "lcp": {
-   "t": 360,
+   "t": 420,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[72px] leading-[0.86] sm:tex"
@@ -2543,9 +2534,9 @@
   "h1": 1,
   "jsonLd": 7,
   "quickAnswer": false,
-  "cls": 0.013,
+  "cls": 0.018,
   "lcp": {
-   "t": 408,
+   "t": 396,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2574,9 +2565,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.002,
+  "cls": 0.009,
   "lcp": {
-   "t": 380,
+   "t": 372,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2605,9 +2596,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.001,
+  "cls": 0.005,
   "lcp": {
-   "t": 348,
+   "t": 404,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2636,9 +2627,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.002,
+  "cls": 0.004,
   "lcp": {
-   "t": 356,
+   "t": 336,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "aspect-[16/11] h-auto w-full object-cover"
@@ -2667,9 +2658,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.005,
+  "cls": 0.002,
   "lcp": {
-   "t": 308,
+   "t": 312,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -2698,9 +2689,9 @@
   "h1": 1,
   "jsonLd": 6,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.002,
   "lcp": {
-   "t": 316,
+   "t": 352,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
@@ -2729,9 +2720,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0.001,
+  "cls": 0.005,
   "lcp": {
-   "t": 308,
+   "t": 348,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -2760,9 +2751,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.011,
+  "cls": 0.012,
   "lcp": {
-   "t": 332,
+   "t": 356,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -2791,9 +2782,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.003,
   "lcp": {
-   "t": 368,
+   "t": 336,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -2824,7 +2815,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 388,
+   "t": 408,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1920.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -2853,9 +2844,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.001,
+  "cls": 0.003,
   "lcp": {
-   "t": 336,
+   "t": 364,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2884,9 +2875,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.001,
+  "cls": 0.004,
   "lcp": {
-   "t": 340,
+   "t": 412,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2915,9 +2906,9 @@
   "h1": 1,
   "jsonLd": 4,
   "quickAnswer": false,
-  "cls": 0.005,
+  "cls": 0.007,
   "lcp": {
-   "t": 372,
+   "t": 384,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-900.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2948,7 +2939,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 404,
+   "t": 352,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[72px] leading-[0.86] sm:tex"
@@ -2977,9 +2968,9 @@
   "h1": 1,
   "jsonLd": 7,
   "quickAnswer": false,
-  "cls": 0.007,
+  "cls": 0.011,
   "lcp": {
-   "t": 520,
+   "t": 360,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3010,7 +3001,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 364,
+   "t": 344,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3039,9 +3030,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.003,
   "lcp": {
-   "t": 328,
+   "t": 376,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3070,9 +3061,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.022,
+  "cls": 0.023,
   "lcp": {
-   "t": 348,
+   "t": 376,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "aspect-[16/11] h-auto w-full object-cover"
@@ -3103,7 +3094,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 336,
+   "t": 324,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -3132,9 +3123,9 @@
   "h1": 1,
   "jsonLd": 6,
   "quickAnswer": false,
-  "cls": 0.008,
+  "cls": 0.001,
   "lcp": {
-   "t": 440,
+   "t": 356,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3163,7 +3154,7 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0.001,
+  "cls": 0.003,
   "lcp": {
    "t": 312,
    "tag": "H1",
@@ -3194,7 +3185,7 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.008,
+  "cls": 0.009,
   "lcp": {
    "t": 320,
    "tag": "H1",
@@ -3225,9 +3216,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.035,
+  "cls": 0.038,
   "lcp": {
-   "t": 372,
+   "t": 464,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -3258,7 +3249,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 400,
+   "t": 436,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1920.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -3287,9 +3278,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0,
+  "cls": 0.001,
   "lcp": {
-   "t": 376,
+   "t": 424,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3318,9 +3309,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0,
+  "cls": 0.002,
   "lcp": {
-   "t": 364,
+   "t": 404,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3349,9 +3340,9 @@
   "h1": 1,
   "jsonLd": 4,
   "quickAnswer": false,
-  "cls": 0.003,
+  "cls": 0.001,
   "lcp": {
-   "t": 420,
+   "t": 568,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-900.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3380,9 +3371,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.049,
   "lcp": {
-   "t": 472,
+   "t": 512,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/sig-6n-7d-meghalaya-tour-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3411,7 +3402,7 @@
   "h1": 1,
   "jsonLd": 7,
   "quickAnswer": false,
-  "cls": 0.006,
+  "cls": 0.008,
   "lcp": {
    "t": 396,
    "tag": "IMG",
@@ -3442,9 +3433,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.001,
+  "cls": 0.004,
   "lcp": {
-   "t": 404,
+   "t": 452,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3473,9 +3464,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.002,
+  "cls": 0.003,
   "lcp": {
-   "t": 468,
+   "t": 456,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3504,9 +3495,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.005,
+  "cls": 0.007,
   "lcp": {
-   "t": 368,
+   "t": 428,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "aspect-[16/11] h-auto w-full object-cover"
@@ -3535,9 +3526,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.004,
   "lcp": {
-   "t": 356,
+   "t": 360,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -3568,7 +3559,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 384,
+   "t": 356,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3630,7 +3621,7 @@
   "quickAnswer": false,
   "cls": 0.004,
   "lcp": {
-   "t": 332,
+   "t": 368,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -3659,9 +3650,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.028,
+  "cls": 0,
   "lcp": {
-   "t": 392,
+   "t": 396,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"

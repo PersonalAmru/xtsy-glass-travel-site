@@ -1,9 +1,11 @@
 $ vite dev
 [33mThe plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the [1mresolve.tsconfigPaths[22m option. You can remove the plugin and set [1mresolve.tsconfigPaths: true[22m in your Vite config instead.[39m
 
-  [32m[1mVITE[22m v8.2.1[39m  [2mready in [0m[1m1498[22m[2m[0m ms[22m
+  [32m[1mVITE[22m v8.2.1[39m  [2mready in [0m[1m1550[22m[2m[0m ms[22m
 
   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m8080[22m/[39m
-  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.1.0.188:[1m8080[22m/[39m  [2meth0[22m
-[2m9:46:29 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m connected.
-[2m9:48:29 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2m.output/public/google26fc7f8979f6290c.html[22m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.1.0.245:[1m8080[22m/[39m  [2meth0[22m
+[2m10:15:01 AM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m connected.
+[2m10:15:02 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] scanning dependencies...
+[2m10:15:03 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [optimizer] bundling dependencies...
+[2m10:17:10 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2m.output/public/google26fc7f8979f6290c.html[22m
