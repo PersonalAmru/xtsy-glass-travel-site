@@ -37,10 +37,10 @@
     "/xtsy-vs-zostel — 2025 — \"9.4 Booking.com rating 50+ Guests at once NEITA 2025 Nominated, Best Budget-Fr\"",
     "/privacy-policy — 2023 — \"nt with the Digital Personal Data Protection Act, 2023 (DPDP Act) of India, Gene\"",
     "/cheap-hostels-shillong — 2025 — \"ick XTSY ✓ 4.8★ on Google (161 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\"",
-    "/shillong-dormitory — 2025 — \"hillong Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
-    "/shillong-dormitory — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
     "/budget-stay-shillong — 2025 — \"t Rooms Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
-    "/budget-stay-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
+    "/budget-stay-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
+    "/hostel-near-police-bazar-shillong — 2025 — \"hillong Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
+    "/hostel-near-police-bazar-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
    ]
   },
   "placeholder:coming soon": {
@@ -50,13 +50,13 @@
     "/restaurant-in-shillong —  Dining A rooftop terrace with panoramic views — the rooftop café is coming soon. Traveller's Feast Multi-cuisine din",
     "/zion-backpackers-vs-xtsy — ockers. ✓ XTSY has a rooftop terrace for relaxing; a rooftop café is coming soon. Tour and Travel Services Both hoste",
     "/destinations/meghalaya/cherrapunji/nohkalikai-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/jowai/krang-suri-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/cherrapunji/wei-sawdong-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/mawlynnong/mawlynnong-village — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/dawki/dawki-umngot-river — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/shillong/laitlum-canyons — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/shillong/mawphlang-sacred-forest — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/cherrapunji/mawsmai-cave — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/jowai/krang-suri-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/shillong/umiam-lake — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event"
    ]
   },
@@ -65,13 +65,13 @@
    "examples": [
     "/about — 166",
     "/work-from-home — 153",
-    "/female-travellers — 84",
     "/xtsy-rentals — 144",
+    "/female-travellers — 84",
     "/expeditions — 187",
     "/budget-stay-shillong — 171",
     "/hostel-near-police-bazar-shillong — 140",
-    "/group-stay-shillong — 183",
     "/solo-travel-hostel-shillong — 124",
+    "/group-stay-shillong — 183",
     "/couples-hostel-shillong — 121",
     "/isabella-hostel-vs-xtsy — 187",
     "/stargaze-hostel-vs-xtsy — 180"
@@ -81,14 +81,14 @@
    "pages": 19,
    "examples": [
     "/xtsy-vs-zostel — ",
-    "/terms-of-service — ",
     "/pricing-cancellation-policy — ",
     "/privacy-policy — ",
+    "/terms-of-service — ",
     "/book — ",
     "/meghalaya-adventure-tour — ",
-    "/4x4-expedition-meghalaya — ",
     "/motorbike-expedition-northeast-india — ",
     "/merch — ",
+    "/4x4-expedition-meghalaya — ",
     "/expeditions — ",
     "/meghalaya-couple-tour-package — ",
     "/shillong-tour-package — "
@@ -124,8 +124,8 @@
   "policy:cancellation/refund claim": {
    "pages": 3,
    "examples": [
-    "/terms-of-service — e modification, OR Alternate equivalent accommodation, OR Full refund (only if accommodation canno",
     "/pricing-cancellation-policy — nate room or equivalent property accommodation • Option 3: Full refund (only if accommodation canno",
+    "/terms-of-service — e modification, OR Alternate equivalent accommodation, OR Full refund (only if accommodation canno",
     "/car-rental-guwahati —  Aadhaar/passport for ID, and a security deposit of ₹5,000 (refundable). Credit card preferred for d"
    ]
   },

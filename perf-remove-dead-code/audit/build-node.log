@@ -257,7 +257,7 @@ computing gzip size...
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 4.10s[39m
+[32m✓ built in 4.37s[39m
 [36mvite v8.2.1 [32mbuilding ssr environment for production...[36m[39m
 [2Ktransforming...✓ 500 modules transformed.
 rendering chunks...
@@ -388,7 +388,6 @@ node_modules/.nitro/vite/services/ssr/assets/destination-wedding-shillong-5NGGRc
 node_modules/.nitro/vite/services/ssr/assets/SEOHead-lMnENDOX.js                                       10.51 kB │ gzip:   3.30 kB
 node_modules/.nitro/vite/services/ssr/assets/franchise-BZyqcD7F.js                                     10.54 kB │ gzip:   2.98 kB
 node_modules/.nitro/vite/services/ssr/assets/about-Dd97Uxh5.js                                         10.87 kB │ gzip:   3.68 kB
-node_modules/.nitro/vite/services/ssr/index.js                                                         11.08 kB │ gzip:   4.34 kB
 node_modules/.nitro/vite/services/ssr/assets/select-Cyla-Fme.js                                        11.12 kB │ gzip:   2.99 kB
 node_modules/.nitro/vite/services/ssr/assets/group-bookings-meghalaya-Bt1F8bxP.js                      11.13 kB │ gzip:   3.85 kB
 node_modules/.nitro/vite/services/ssr/assets/contentsquareLoader-BFrtEd3j.js                           11.23 kB │ gzip:   4.00 kB
@@ -397,6 +396,7 @@ node_modules/.nitro/vite/services/ssr/assets/install-BL9hPaoz.js                
 node_modules/.nitro/vite/services/ssr/assets/blocks-BExIHh-i.js                                        12.10 kB │ gzip:   3.66 kB
 node_modules/.nitro/vite/services/ssr/assets/install-R3ART3R8.js                                       12.35 kB │ gzip:   3.04 kB
 node_modules/.nitro/vite/services/ssr/assets/gtmEventRouter-s3rEtk29.js                                12.39 kB │ gzip:   2.23 kB
+node_modules/.nitro/vite/services/ssr/index.js                                                         12.80 kB │ gzip:   4.97 kB
 node_modules/.nitro/vite/services/ssr/assets/tab-bistro-DVzvXxNt.js                                    12.86 kB │ gzip:   3.98 kB
 node_modules/.nitro/vite/services/ssr/assets/StayHubV2-Dxkwhml5.js                                     13.38 kB │ gzip:   3.90 kB
 node_modules/.nitro/vite/services/ssr/assets/contact-CAawyw_d.js                                       13.55 kB │ gzip:   3.96 kB
@@ -444,14 +444,14 @@ node_modules/.nitro/vite/services/ssr/assets/guidePageData-De-KsHLL.js          
 
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 1.89s[39m
+[32m✓ built in 1.73s[39m
 [start] [nitro] Building [[35mNitro[39m] [2m(preset: `node-server`, compatibility: `2026-09-30`)[22m
 [success] [nitro] Generated public [36m.output/public[39m
 [36mvite v8.2.1 [32mbuilding nitro environment for production...[36m[39m
 [2Ktransforming...✓ 3904 modules transformed.
 [info] Tracing dependencies:
 - `tslib` (2.8.1)
-[success] Traced 1 dependencies (4 files) in 86ms.
+[success] Traced 1 dependencies (4 files) in 107ms.
 [info] Ensure your production environment matches the builder OS and architecture (`linux-x64`) to avoid native module issues.
 rendering chunks...
 computing gzip size...
@@ -556,7 +556,6 @@ computing gzip size...
 .output/server/_ssr/xtsy-rentals-BUUo5q3g.mjs                           10.43 kB │ gzip:   3.57 kB
 .output/server/_ssr/useAnalytics-BqYkhr--.mjs                           10.65 kB │ gzip:   2.96 kB
 .output/server/_ssr/CateringV2-DbphJT2Y.mjs                             10.89 kB │ gzip:   3.21 kB
-.output/server/_ssr/ssr.mjs                                             10.97 kB │ gzip:   4.33 kB
 .output/server/_ssr/destination-wedding-shillong-5NGGRcDI.mjs           11.04 kB │ gzip:   3.75 kB
 .output/server/_ssr/contentsquareLoader-BFrtEd3j.mjs                    11.29 kB │ gzip:   4.03 kB
 .output/server/_ssr/places-to-visit-in-meghalaya-DekeUzE2.mjs           11.32 kB │ gzip:   3.19 kB
@@ -570,6 +569,7 @@ computing gzip size...
 .output/server/_ssr/gtmEventRouter-s3rEtk29.mjs                         12.44 kB │ gzip:   2.26 kB
 .output/server/_libs/supabase__functions-js.mjs                         12.51 kB │ gzip:   3.45 kB
 .output/server/_libs/input-otp.mjs                                      12.63 kB │ gzip:   4.46 kB
+.output/server/_ssr/ssr.mjs                                             12.69 kB │ gzip:   4.97 kB
 .output/server/_libs/radix-ui__react-tooltip.mjs                        12.74 kB │ gzip:   3.20 kB
 .output/server/_ssr/CategoryV2-BxBcCb-g.mjs                             12.79 kB │ gzip:   3.75 kB
 .output/server/_ssr/select-Cyla-Fme.mjs                                 12.89 kB │ gzip:   3.14 kB
@@ -645,12 +645,12 @@ computing gzip size...
 .output/server/_ssr/travelData-i_4JIb_e.mjs                            138.18 kB │ gzip:  35.75 kB
 .output/server/_libs/supabase__auth-js.mjs                             312.44 kB │ gzip:  63.67 kB
 .output/server/_libs/@sentry/browser+[...].mjs                         335.44 kB │ gzip:  79.58 kB
-.output/server/index.mjs                                               345.88 kB │ gzip:  63.69 kB
+.output/server/index.mjs                                               345.88 kB │ gzip:  63.73 kB
 .output/server/_libs/framer-motion.mjs                                 352.31 kB │ gzip:  92.36 kB
 .output/server/_ssr/router-DVmyNGN7.mjs                                375.42 kB │ gzip:  88.82 kB
 .output/server/_libs/@tanstack/react-router+[...].mjs                  656.49 kB │ gzip: 137.77 kB
 .output/server/_ssr/guidePageData-De-KsHLL.mjs                         991.44 kB │ gzip: 239.31 kB
 
-[32m✓ built in 2.12s[39m
+[32m✓ built in 2.16s[39m
 [info] Generated [36m.output/nitro.json[39m
 [success] [nitro] You can preview this build using `npx vite preview`
