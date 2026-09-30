@@ -1,115 +1,17 @@
 [
  {
-  "route": "/book",
-  "lcpRuns": [
-   4980,
-   3232,
-   2664
-  ],
-  "ttfb": 841,
-  "htmlKb": 9,
-  "domInteractive": 3244,
-  "fcp": 3232,
-  "lcp": {
-   "t": 3232,
-   "size": 32046,
-   "url": "",
-   "tag": "H1",
-   "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font-normal leading-[0.95] sm:text-[52px]",
-   "text": "Book your stay at XTSY Travellers Hostel",
-   "lazy": null,
-   "fp": null,
-   "sizes": null,
-   "natural": null,
-   "shown": "384x96",
-   "bg": null
-  },
-  "cls": 0,
-  "lcpRes": null,
-  "blocking": [
-   {
-    "url": "/assets/styles-DrWbQjE6.css",
-    "kb": 49,
-    "end": 3126
-   },
-   {
-    "url": "/fonts/fonts.css",
-    "kb": 1,
-    "end": 1031
-   }
-  ],
-  "longTaskMsBeforeLcp": 0,
-  "beforeLcp": {
-   "jsKb": 472,
-   "cssKb": 50,
-   "imgKb": 0,
-   "thirdPartyKb": 0,
-   "requests": 64,
-   "images": []
-  },
-  "thirdParty": [
-   {
-    "host": "t.contentsquare.net",
-    "kb": 162
-   },
-   {
-    "host": "fonts.googleapis.com",
-    "kb": 1
-   },
-   {
-    "host": "www.googletagmanager.com",
-    "kb": 0
-   },
-   {
-    "host": "static.hotjar.com",
-    "kb": 0
-   },
-   {
-    "host": "ad.doubleclick.net",
-    "kb": 0
-   },
-   {
-    "host": "script.hotjar.com",
-    "kb": 0
-   },
-   {
-    "host": "kzhsxemkntfwsakhkylt.supabase.co",
-    "kb": 0
-   },
-   {
-    "host": "ipapi.co",
-    "kb": 0
-   }
-  ],
-  "preloads": [
-   "font:/fonts/staatliches-latin.woff2",
-   "font:/fonts/manrope-latin.woff2",
-   "font:/fonts/manrope-latin-ext.woff2",
-   "font:/fonts/staatliches-latin-ext.woff2",
-   "null:/placeholder.svg"
-  ],
-  "lcpMs": 3232,
-  "breakdown": {
-   "ttfb": 841,
-   "loadDelay": 0,
-   "loadDuration": 0,
-   "renderDelay": 2391
-  },
-  "lcpImage": null
- },
- {
   "route": "/",
   "lcpRuns": [
-   4688,
-   6596,
-   7360
+   6292,
+   5564,
+   5432
   ],
-  "ttfb": 1882,
+  "ttfb": 970,
   "htmlKb": 25,
-  "domInteractive": 4599,
-  "fcp": 4396,
+  "domInteractive": 3787,
+  "fcp": 3436,
   "lcp": {
-   "t": 6596,
+   "t": 5564,
    "size": 263680,
    "url": "https://xtsy.one/img/o/xtsy-property-images-8-portrait-828.webp",
    "tag": "IMG",
@@ -124,75 +26,75 @@
   },
   "cls": 0,
   "lcpRes": {
-   "start": 1930,
-   "end": 6562,
+   "start": 1031,
+   "end": 5517,
    "kb": 125,
    "initiator": "link"
   },
   "blocking": [
    {
-    "url": "/assets/styles-DrWbQjE6.css",
-    "kb": 49,
-    "end": 4273
+    "url": "/assets/styles-DzzR5Awc.css",
+    "kb": 47,
+    "end": 3257
    },
    {
     "url": "/fonts/fonts.css",
     "kb": 1,
-    "end": 2093
+    "end": 1184
    }
   ],
-  "longTaskMsBeforeLcp": 59,
+  "longTaskMsBeforeLcp": 173,
   "beforeLcp": {
-   "jsKb": 429,
-   "cssKb": 50,
+   "jsKb": 417,
+   "cssKb": 48,
    "imgKb": 401,
    "thirdPartyKb": 0,
-   "requests": 59,
+   "requests": 48,
    "images": [
     {
      "url": "/img/o/xtsy-property-images-8-portrait-828.webp",
      "kb": 125,
-     "start": 1930
+     "start": 1031
     },
     {
      "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-480.webp",
      "kb": 85,
-     "start": 4477
+     "start": 3521
     },
     {
      "url": "/img/o/xtsyvoyage-dawki-river-480.webp",
      "kb": 49,
-     "start": 4477
+     "start": 3515
     },
     {
      "url": "/img/o/xtsyvoyage-nohkalikai-falls-480.webp",
      "kb": 34,
-     "start": 4477
+     "start": 3514
     },
     {
      "url": "/img/o/xtsyvoyage-umiam-lake-480.webp",
      "kb": 30,
-     "start": 4477
+     "start": 3523
     },
     {
      "url": "/img/o/xtsyvoyage-krang-shuri-waterfall-480.webp",
      "kb": 25,
-     "start": 4477
+     "start": 3526
     },
     {
      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
      "kb": 23,
-     "start": 1914
+     "start": 1013
     },
     {
      "url": "/img/o/xtsy-6-bed-mixed-dormitory-1-828.webp",
      "kb": 17,
-     "start": 4477
+     "start": 3527
     },
     {
      "url": "/img/o/xtsyvoyage-laitlum-canyons-480.webp",
      "kb": 11,
-     "start": 4477
+     "start": 3522
     }
    ]
   },
@@ -240,12 +142,12 @@
    "image:/img/o/xtsy-property-images-8-portrait-828.webp fp=high",
    "null:/placeholder.svg"
   ],
-  "lcpMs": 6596,
+  "lcpMs": 5564,
   "breakdown": {
-   "ttfb": 1882,
-   "loadDelay": 48,
-   "loadDuration": 4632,
-   "renderDelay": 34
+   "ttfb": 970,
+   "loadDelay": 61,
+   "loadDuration": 4486,
+   "renderDelay": 47
   },
   "lcpImage": {
    "file": "xtsy-property-images-8-portrait-828.webp",
@@ -254,18 +156,155 @@
   }
  },
  {
+  "route": "/best-hostel-in-shillong",
+  "lcpRuns": [
+   2388,
+   3196,
+   2928
+  ],
+  "ttfb": 452,
+  "htmlKb": 16,
+  "domInteractive": 2907,
+  "fcp": 2928,
+  "lcp": {
+   "t": 2928,
+   "size": 78430,
+   "url": "",
+   "tag": "P",
+   "cls": "m-0 text-[16px] leading-relaxed",
+   "text": "For most travellers the best-rated hostel in Shillong is XTS",
+   "lazy": null,
+   "fp": null,
+   "sizes": null,
+   "natural": null,
+   "shown": "349x234",
+   "bg": null
+  },
+  "cls": 0,
+  "lcpRes": null,
+  "blocking": [
+   {
+    "url": "/fonts/fonts.css",
+    "kb": 1,
+    "end": 660
+   },
+   {
+    "url": "/assets/styles-DzzR5Awc.css",
+    "kb": 47,
+    "end": 2689
+   }
+  ],
+  "longTaskMsBeforeLcp": 0,
+  "beforeLcp": {
+   "jsKb": 400,
+   "cssKb": 48,
+   "imgKb": 363,
+   "thirdPartyKb": 0,
+   "requests": 46,
+   "images": [
+    {
+     "url": "/img/o/xtsy-270-xtsy270-900.webp",
+     "kb": 150,
+     "start": 2894
+    },
+    {
+     "url": "/img/o/xtsy-property-images-8-828.webp",
+     "kb": 91,
+     "start": 492
+    },
+    {
+     "url": "/img/o/xtsy-4-bed-female-dormitory-828.webp",
+     "kb": 43,
+     "start": 2891
+    },
+    {
+     "url": "/img/o/xtsy-king-double-room-828.webp",
+     "kb": 25,
+     "start": 2893
+    },
+    {
+     "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+     "kb": 23,
+     "start": 489
+    },
+    {
+     "url": "/img/o/xtsy-6-bed-mixed-dormitory-1-828.webp",
+     "kb": 17,
+     "start": 2891
+    },
+    {
+     "url": "/img/o/xtsy-6-bed-mixed-dormitory-2-828.webp",
+     "kb": 15,
+     "start": 2891
+    }
+   ]
+  },
+  "thirdParty": [
+   {
+    "host": "t.contentsquare.net",
+    "kb": 162
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "kb": 1
+   },
+   {
+    "host": "www.googletagmanager.com",
+    "kb": 0
+   },
+   {
+    "host": "static.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "ad.doubleclick.net",
+    "kb": 0
+   },
+   {
+    "host": "script.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "kzhsxemkntfwsakhkylt.supabase.co",
+    "kb": 0
+   },
+   {
+    "host": "ipapi.co",
+    "kb": 0
+   }
+  ],
+  "preloads": [
+   "image:/assets/xtsy-color-logo-D0pKAWTY.webp",
+   "image:/img/o/xtsy-property-images-8-480.webp 480w, /img/o/xtsy-property-images-8-640.webp 640w,  fp=high",
+   "font:/fonts/staatliches-latin.woff2",
+   "font:/fonts/manrope-latin.woff2",
+   "font:/fonts/manrope-latin-ext.woff2",
+   "font:/fonts/staatliches-latin-ext.woff2",
+   "image:/img/o/xtsy-property-images-8-1280.webp fp=high",
+   "null:/placeholder.svg"
+  ],
+  "lcpMs": 2928,
+  "breakdown": {
+   "ttfb": 452,
+   "loadDelay": 0,
+   "loadDuration": 0,
+   "renderDelay": 2476
+  },
+  "lcpImage": null
+ },
+ {
   "route": "/xtsy-270",
   "lcpRuns": [
-   2924,
-   2764,
-   2728
+   3112,
+   2812,
+   2640
   ],
-  "ttfb": 170,
+  "ttfb": 306,
   "htmlKb": 16,
-  "domInteractive": 2760,
-  "fcp": 2764,
+  "domInteractive": 2818,
+  "fcp": 2812,
   "lcp": {
-   "t": 2764,
+   "t": 2812,
    "size": 54000,
    "url": "",
    "tag": "H1",
@@ -282,53 +321,53 @@
   "lcpRes": null,
   "blocking": [
    {
-    "url": "/fonts/fonts.css",
-    "kb": 1,
-    "end": 413
+    "url": "/assets/styles-DzzR5Awc.css",
+    "kb": 47,
+    "end": 2548
    },
    {
-    "url": "/assets/styles-DrWbQjE6.css",
-    "kb": 49,
-    "end": 2580
+    "url": "/fonts/fonts.css",
+    "kb": 1,
+    "end": 512
    }
   ],
-  "longTaskMsBeforeLcp": 101,
+  "longTaskMsBeforeLcp": 0,
   "beforeLcp": {
-   "jsKb": 408,
-   "cssKb": 50,
+   "jsKb": 396,
+   "cssKb": 48,
    "imgKb": 435,
    "thirdPartyKb": 0,
-   "requests": 55,
+   "requests": 44,
    "images": [
     {
      "url": "/img/o/xtsy-270-xtsy270-900.webp",
      "kb": 150,
-     "start": 235
+     "start": 342
     },
     {
      "url": "/img/o/xtsy-270-xtsy270-2-900.webp",
      "kb": 80,
-     "start": 2728
+     "start": 2770
     },
     {
      "url": "/img/o/xtsy-270-xtsy270-3-828.webp",
      "kb": 69,
-     "start": 2728
+     "start": 2775
     },
     {
      "url": "/img/o/xtsy-270-xtsy270-6-828.webp",
      "kb": 60,
-     "start": 2728
+     "start": 2770
     },
     {
      "url": "/img/o/xtsy-270-xtsy270-4-828.webp",
      "kb": 53,
-     "start": 2729
+     "start": 2778
     },
     {
      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
      "kb": 23,
-     "start": 234
+     "start": 342
     }
    ]
   },
@@ -375,101 +414,76 @@
    "font:/fonts/staatliches-latin-ext.woff2",
    "null:/placeholder.svg"
   ],
-  "lcpMs": 2764,
+  "lcpMs": 2812,
   "breakdown": {
-   "ttfb": 170,
+   "ttfb": 306,
    "loadDelay": 0,
    "loadDuration": 0,
-   "renderDelay": 2594
+   "renderDelay": 2506
   },
   "lcpImage": null
  },
  {
-  "route": "/tours",
+  "route": "/tours/5n-6d-tawang-tour",
   "lcpRuns": [
-   3884,
-   2708,
-   2964
+   3368,
+   3320,
+   3836
   ],
-  "ttfb": 537,
-  "htmlKb": 25,
-  "domInteractive": 3061,
-  "fcp": 2964,
+  "ttfb": 114,
+  "htmlKb": 17,
+  "domInteractive": 2991,
+  "fcp": 2996,
   "lcp": {
-   "t": 2964,
-   "size": 72387,
-   "url": "",
-   "tag": "P",
-   "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[20px]",
-   "text": "Root bridges, caves, Dawki’s clear river, Tawang’s monasteri",
-   "lazy": null,
-   "fp": null,
-   "sizes": null,
-   "natural": null,
-   "shown": "384x193",
+   "t": 3368,
+   "size": 99840,
+   "url": "https://xtsy.one/img/px/sig-5n-6d-tawang-tour-828.webp",
+   "tag": "IMG",
+   "cls": "absolute inset-0 h-full w-full object-cover",
+   "text": "",
+   "lazy": "eager",
+   "fp": "high",
+   "sizes": "(max-width: 768px) 100vw, 50vw",
+   "natural": "412x274",
+   "shown": "384x261",
    "bg": null
   },
   "cls": 0,
-  "lcpRes": null,
+  "lcpRes": {
+   "start": 198,
+   "end": 3337,
+   "kb": 83,
+   "initiator": "link"
+  },
   "blocking": [
    {
-    "url": "/assets/styles-DrWbQjE6.css",
-    "kb": 49,
-    "end": 2772
+    "url": "/assets/styles-DzzR5Awc.css",
+    "kb": 47,
+    "end": 2765
    },
    {
     "url": "/fonts/fonts.css",
     "kb": 1,
-    "end": 726
+    "end": 376
    }
   ],
-  "longTaskMsBeforeLcp": 126,
+  "longTaskMsBeforeLcp": 129,
   "beforeLcp": {
-   "jsKb": 446,
-   "cssKb": 50,
-   "imgKb": 559,
+   "jsKb": 468,
+   "cssKb": 48,
+   "imgKb": 106,
    "thirdPartyKb": 0,
-   "requests": 60,
+   "requests": 57,
    "images": [
     {
-     "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
-     "kb": 206,
-     "start": 2948
-    },
-    {
-     "url": "/img/px/sig-4n-5d-shillong-meghalaya-tour-828.webp",
-     "kb": 97,
-     "start": 2947
-    },
-    {
-     "url": "/img/px/sig-5n-6d-meghalaya-holiday-package-828.webp",
-     "kb": 65,
-     "start": 2948
-    },
-    {
-     "url": "/img/px/sig-7n-guwahati-shillong-kaziranga-tour-828.webp",
-     "kb": 55,
-     "start": 2948
-    },
-    {
-     "url": "/img/o/xtsy-270-xtsy270-4-828.webp",
-     "kb": 53,
-     "start": 2948
-    },
-    {
-     "url": "/img/px/sig-6d-shillong-meghalaya-tour-828.webp",
-     "kb": 31,
-     "start": 2948
-    },
-    {
-     "url": "/img/px/sig-6n-7d-meghalaya-tour-828.webp",
-     "kb": 29,
-     "start": 2948
+     "url": "/img/px/sig-5n-6d-tawang-tour-828.webp",
+     "kb": 83,
+     "start": 198
     },
     {
      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
      "kb": 23,
-     "start": 567
+     "start": 197
     }
    ]
   },
@@ -495,11 +509,11 @@
     "kb": 0
    },
    {
-    "host": "kzhsxemkntfwsakhkylt.supabase.co",
+    "host": "script.hotjar.com",
     "kb": 0
    },
    {
-    "host": "script.hotjar.com",
+    "host": "kzhsxemkntfwsakhkylt.supabase.co",
     "kb": 0
    },
    {
@@ -509,18 +523,122 @@
   ],
   "preloads": [
    "image:/assets/xtsy-color-logo-D0pKAWTY.webp",
+   "image:/img/px/sig-5n-6d-tawang-tour-480.webp 480w, /img/px/sig-5n-6d-tawang-tour-640.webp 640w,  fp=high",
+   "font:/fonts/staatliches-latin.woff2",
+   "font:/fonts/manrope-latin.woff2",
+   "font:/fonts/manrope-latin-ext.woff2",
+   "font:/fonts/staatliches-latin-ext.woff2",
+   "image:/img/px/sig-5n-6d-tawang-tour-1280.webp fp=high",
+   "null:/placeholder.svg"
+  ],
+  "lcpMs": 3368,
+  "breakdown": {
+   "ttfb": 114,
+   "loadDelay": 84,
+   "loadDuration": 3139,
+   "renderDelay": 31
+  },
+  "lcpImage": {
+   "file": "sig-5n-6d-tawang-tour-828.webp",
+   "inServerHtml": true,
+   "preloaded": true
+  }
+ },
+ {
+  "route": "/book",
+  "lcpRuns": [
+   2496,
+   2856,
+   2520
+  ],
+  "ttfb": 63,
+  "htmlKb": 9,
+  "domInteractive": 2524,
+  "fcp": 2520,
+  "lcp": {
+   "t": 2520,
+   "size": 32046,
+   "url": "",
+   "tag": "H1",
+   "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font-normal leading-[0.95] sm:text-[52px]",
+   "text": "Book your stay at XTSY Travellers Hostel",
+   "lazy": null,
+   "fp": null,
+   "sizes": null,
+   "natural": null,
+   "shown": "384x96",
+   "bg": null
+  },
+  "cls": 0,
+  "lcpRes": null,
+  "blocking": [
+   {
+    "url": "/assets/styles-DzzR5Awc.css",
+    "kb": 47,
+    "end": 2391
+   },
+   {
+    "url": "/fonts/fonts.css",
+    "kb": 1,
+    "end": 362
+   }
+  ],
+  "longTaskMsBeforeLcp": 0,
+  "beforeLcp": {
+   "jsKb": 459,
+   "cssKb": 48,
+   "imgKb": 0,
+   "thirdPartyKb": 0,
+   "requests": 52,
+   "images": []
+  },
+  "thirdParty": [
+   {
+    "host": "t.contentsquare.net",
+    "kb": 162
+   },
+   {
+    "host": "fonts.googleapis.com",
+    "kb": 1
+   },
+   {
+    "host": "www.googletagmanager.com",
+    "kb": 0
+   },
+   {
+    "host": "static.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "ad.doubleclick.net",
+    "kb": 0
+   },
+   {
+    "host": "script.hotjar.com",
+    "kb": 0
+   },
+   {
+    "host": "kzhsxemkntfwsakhkylt.supabase.co",
+    "kb": 0
+   },
+   {
+    "host": "ipapi.co",
+    "kb": 0
+   }
+  ],
+  "preloads": [
    "font:/fonts/staatliches-latin.woff2",
    "font:/fonts/manrope-latin.woff2",
    "font:/fonts/manrope-latin-ext.woff2",
    "font:/fonts/staatliches-latin-ext.woff2",
    "null:/placeholder.svg"
   ],
-  "lcpMs": 2964,
+  "lcpMs": 2520,
   "breakdown": {
-   "ttfb": 537,
+   "ttfb": 63,
    "loadDelay": 0,
    "loadDuration": 0,
-   "renderDelay": 2427
+   "renderDelay": 2457
   },
   "lcpImage": null
  }

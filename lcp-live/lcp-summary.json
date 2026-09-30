@@ -3,266 +3,629 @@
  "profile": "Slow 4G (150ms, 1.6Mbps) + 4x CPU, 412x823 @1.75x, cold cache",
  "routes": [
   {
-   "route": "/book",
-   "lcp": 3232,
-   "fcp": 3232,
-   "cls": 0,
-   "el": "H1 \"Book your stay at XTSY Travellers Hostel\"",
-   "breakdown": {
-    "ttfb": 841,
-    "loadDelay": 0,
-    "loadDuration": 0,
-    "renderDelay": 2391
-   },
-   "image": null,
-   "longTasks": 0,
-   "before": {
-    "jsKb": 472,
-    "cssKb": 50,
-    "imgKb": 0,
-    "thirdPartyKb": 0,
-    "requests": 64,
-    "images": []
-   },
-   "blocking": [
-    {
-     "url": "/assets/styles-DrWbQjE6.css",
-     "kb": 49,
-     "end": 3126
-    },
-    {
-     "url": "/fonts/fonts.css",
-     "kb": 1,
-     "end": 1031
-    }
-   ]
-  },
-  {
    "route": "/",
-   "lcp": 6596,
-   "fcp": 4396,
+   "lcp": 5564,
+   "fcp": 3436,
    "cls": 0,
    "el": "IMG xtsy-property-images-8-portrait-828.webp",
    "breakdown": {
-    "ttfb": 1882,
-    "loadDelay": 48,
-    "loadDuration": 4632,
-    "renderDelay": 34
+    "ttfb": 970,
+    "loadDelay": 61,
+    "loadDuration": 4486,
+    "renderDelay": 47
    },
    "image": {
     "file": "xtsy-property-images-8-portrait-828.webp",
     "inServerHtml": true,
     "preloaded": true
    },
-   "longTasks": 59,
+   "longTasks": 173,
    "before": {
-    "jsKb": 429,
-    "cssKb": 50,
+    "jsKb": 417,
+    "cssKb": 48,
     "imgKb": 401,
     "thirdPartyKb": 0,
-    "requests": 59,
+    "requests": 48,
     "images": [
      {
       "url": "/img/o/xtsy-property-images-8-portrait-828.webp",
       "kb": 125,
-      "start": 1930
+      "start": 1031
      },
      {
       "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-480.webp",
       "kb": 85,
-      "start": 4477
+      "start": 3521
      },
      {
       "url": "/img/o/xtsyvoyage-dawki-river-480.webp",
       "kb": 49,
-      "start": 4477
+      "start": 3515
      },
      {
       "url": "/img/o/xtsyvoyage-nohkalikai-falls-480.webp",
       "kb": 34,
-      "start": 4477
+      "start": 3514
      },
      {
       "url": "/img/o/xtsyvoyage-umiam-lake-480.webp",
       "kb": 30,
-      "start": 4477
+      "start": 3523
      },
      {
       "url": "/img/o/xtsyvoyage-krang-shuri-waterfall-480.webp",
       "kb": 25,
-      "start": 4477
+      "start": 3526
      },
      {
       "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
       "kb": 23,
-      "start": 1914
+      "start": 1013
      },
      {
       "url": "/img/o/xtsy-6-bed-mixed-dormitory-1-828.webp",
       "kb": 17,
-      "start": 4477
+      "start": 3527
      },
      {
       "url": "/img/o/xtsyvoyage-laitlum-canyons-480.webp",
       "kb": 11,
-      "start": 4477
+      "start": 3522
      }
     ]
    },
    "blocking": [
     {
-     "url": "/assets/styles-DrWbQjE6.css",
-     "kb": 49,
-     "end": 4273
+     "url": "/assets/styles-DzzR5Awc.css",
+     "kb": 47,
+     "end": 3257
     },
     {
      "url": "/fonts/fonts.css",
      "kb": 1,
-     "end": 2093
+     "end": 1184
+    }
+   ]
+  },
+  {
+   "route": "/best-hostel-in-shillong",
+   "lcp": 2928,
+   "fcp": 2928,
+   "cls": 0,
+   "el": "P \"For most travellers the best-rated hostel in Shillong is XTS\"",
+   "breakdown": {
+    "ttfb": 452,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 2476
+   },
+   "image": null,
+   "longTasks": 0,
+   "before": {
+    "jsKb": 400,
+    "cssKb": 48,
+    "imgKb": 363,
+    "thirdPartyKb": 0,
+    "requests": 46,
+    "images": [
+     {
+      "url": "/img/o/xtsy-270-xtsy270-900.webp",
+      "kb": 150,
+      "start": 2894
+     },
+     {
+      "url": "/img/o/xtsy-property-images-8-828.webp",
+      "kb": 91,
+      "start": 492
+     },
+     {
+      "url": "/img/o/xtsy-4-bed-female-dormitory-828.webp",
+      "kb": 43,
+      "start": 2891
+     },
+     {
+      "url": "/img/o/xtsy-king-double-room-828.webp",
+      "kb": 25,
+      "start": 2893
+     },
+     {
+      "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
+      "kb": 23,
+      "start": 489
+     },
+     {
+      "url": "/img/o/xtsy-6-bed-mixed-dormitory-1-828.webp",
+      "kb": 17,
+      "start": 2891
+     },
+     {
+      "url": "/img/o/xtsy-6-bed-mixed-dormitory-2-828.webp",
+      "kb": 15,
+      "start": 2891
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 660
+    },
+    {
+     "url": "/assets/styles-DzzR5Awc.css",
+     "kb": 47,
+     "end": 2689
     }
    ]
   },
   {
    "route": "/xtsy-270",
-   "lcp": 2764,
-   "fcp": 2764,
+   "lcp": 2812,
+   "fcp": 2812,
    "cls": 0,
    "el": "H1 \"Experience by XTSY\"",
    "breakdown": {
-    "ttfb": 170,
+    "ttfb": 306,
     "loadDelay": 0,
     "loadDuration": 0,
-    "renderDelay": 2594
+    "renderDelay": 2506
    },
    "image": null,
-   "longTasks": 101,
+   "longTasks": 0,
    "before": {
-    "jsKb": 408,
-    "cssKb": 50,
+    "jsKb": 396,
+    "cssKb": 48,
     "imgKb": 435,
     "thirdPartyKb": 0,
-    "requests": 55,
+    "requests": 44,
     "images": [
      {
       "url": "/img/o/xtsy-270-xtsy270-900.webp",
       "kb": 150,
-      "start": 235
+      "start": 342
      },
      {
       "url": "/img/o/xtsy-270-xtsy270-2-900.webp",
       "kb": 80,
-      "start": 2728
+      "start": 2770
      },
      {
       "url": "/img/o/xtsy-270-xtsy270-3-828.webp",
       "kb": 69,
-      "start": 2728
+      "start": 2775
      },
      {
       "url": "/img/o/xtsy-270-xtsy270-6-828.webp",
       "kb": 60,
-      "start": 2728
+      "start": 2770
      },
      {
       "url": "/img/o/xtsy-270-xtsy270-4-828.webp",
       "kb": 53,
-      "start": 2729
+      "start": 2778
      },
      {
       "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
       "kb": 23,
-      "start": 234
+      "start": 342
      }
     ]
    },
    "blocking": [
     {
-     "url": "/fonts/fonts.css",
-     "kb": 1,
-     "end": 413
+     "url": "/assets/styles-DzzR5Awc.css",
+     "kb": 47,
+     "end": 2548
     },
     {
-     "url": "/assets/styles-DrWbQjE6.css",
-     "kb": 49,
-     "end": 2580
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 512
     }
    ]
   },
   {
-   "route": "/tours",
-   "lcp": 2964,
-   "fcp": 2964,
+   "route": "/tours/5n-6d-tawang-tour",
+   "lcp": 3368,
+   "fcp": 2996,
    "cls": 0,
-   "el": "P \"Root bridges, caves, Dawki’s clear river, Tawang’s monasteri\"",
+   "el": "IMG sig-5n-6d-tawang-tour-828.webp",
    "breakdown": {
-    "ttfb": 537,
-    "loadDelay": 0,
-    "loadDuration": 0,
-    "renderDelay": 2427
+    "ttfb": 114,
+    "loadDelay": 84,
+    "loadDuration": 3139,
+    "renderDelay": 31
    },
-   "image": null,
-   "longTasks": 126,
+   "image": {
+    "file": "sig-5n-6d-tawang-tour-828.webp",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 129,
    "before": {
-    "jsKb": 446,
-    "cssKb": 50,
-    "imgKb": 559,
+    "jsKb": 468,
+    "cssKb": 48,
+    "imgKb": 106,
     "thirdPartyKb": 0,
-    "requests": 60,
+    "requests": 57,
     "images": [
      {
-      "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
-      "kb": 206,
-      "start": 2948
-     },
-     {
-      "url": "/img/px/sig-4n-5d-shillong-meghalaya-tour-828.webp",
-      "kb": 97,
-      "start": 2947
-     },
-     {
-      "url": "/img/px/sig-5n-6d-meghalaya-holiday-package-828.webp",
-      "kb": 65,
-      "start": 2948
-     },
-     {
-      "url": "/img/px/sig-7n-guwahati-shillong-kaziranga-tour-828.webp",
-      "kb": 55,
-      "start": 2948
-     },
-     {
-      "url": "/img/o/xtsy-270-xtsy270-4-828.webp",
-      "kb": 53,
-      "start": 2948
-     },
-     {
-      "url": "/img/px/sig-6d-shillong-meghalaya-tour-828.webp",
-      "kb": 31,
-      "start": 2948
-     },
-     {
-      "url": "/img/px/sig-6n-7d-meghalaya-tour-828.webp",
-      "kb": 29,
-      "start": 2948
+      "url": "/img/px/sig-5n-6d-tawang-tour-828.webp",
+      "kb": 83,
+      "start": 198
      },
      {
       "url": "/assets/xtsy-color-logo-D0pKAWTY.webp",
       "kb": 23,
-      "start": 567
+      "start": 197
      }
     ]
    },
    "blocking": [
     {
-     "url": "/assets/styles-DrWbQjE6.css",
-     "kb": 49,
-     "end": 2772
+     "url": "/assets/styles-DzzR5Awc.css",
+     "kb": 47,
+     "end": 2765
     },
     {
      "url": "/fonts/fonts.css",
      "kb": 1,
-     "end": 726
+     "end": 376
+    }
+   ]
+  },
+  {
+   "route": "/book",
+   "lcp": 2520,
+   "fcp": 2520,
+   "cls": 0,
+   "el": "H1 \"Book your stay at XTSY Travellers Hostel\"",
+   "breakdown": {
+    "ttfb": 63,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 2457
+   },
+   "image": null,
+   "longTasks": 0,
+   "before": {
+    "jsKb": 459,
+    "cssKb": 48,
+    "imgKb": 0,
+    "thirdPartyKb": 0,
+    "requests": 52,
+    "images": []
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-DzzR5Awc.css",
+     "kb": 47,
+     "end": 2391
+    },
+    {
+     "url": "/fonts/fonts.css",
+     "kb": 1,
+     "end": 362
     }
    ]
   }
- ]
+ ],
+ "pageSpeed": {
+  "/": {
+   "field": {
+    "lcp": 6015,
+    "lcpCategory": "SLOW",
+    "cls": 2,
+    "ttfb": 4207,
+    "fcp": 5607,
+    "overall": "SLOW"
+   },
+   "originField": {
+    "lcp": 6015,
+    "lcpCategory": "SLOW",
+    "cls": 2,
+    "ttfb": 4207,
+    "fcp": 5607,
+    "overall": "SLOW"
+   },
+   "lab": {
+    "score": 83,
+    "lcp": "3.5 s",
+    "fcp": "2.3 s",
+    "tbt": "0 ms",
+    "si": "6.1 s",
+    "cls": "0"
+   },
+   "lcpBreakdown": [
+    {
+     "headings": [
+      {
+       "valueType": "text",
+       "label": "Subpart",
+       "key": "label"
+      },
+      {
+       "label": "Duration",
+       "valueType": "ms",
+       "key": "duration"
+      }
+     ],
+     "items": [
+      {
+       "label": "Time to first byte",
+       "subpart": "timeToFirstByte",
+       "duration": 6.19
+      },
+      {
+       "duration": 1620.459,
+       "label": "Resource load delay",
+       "subpart": "resourceLoadDelay"
+      },
+      {
+       "subpart": "resourceLoadDuration",
+       "duration": 483.153,
+       "label": "Resource load duration"
+      },
+      {
+       "label": "Element render delay",
+       "duration": 531.923,
+       "subpart": "elementRenderDelay"
+      }
+     ],
+     "type": "table"
+    },
+    {
+     "selector": "main > section.relative > picture > img.absolute",
+     "nodeLabel": "XTSY Travellers Hostel among the pines of New Shillong Township",
+     "snippet": "<img src=\"https://xtsy.one/img/o/xtsy-property-images-8-portrait-828.webp\" srcset=\"/img/o/xtsy-property-images-8-480.webp 480w, /img/o/xtsy-property-images-8…\" sizes=\"100vw\" width=\"4032\" height=\"3024\" alt=\"XTSY Travellers Hostel among the pines of New Shillong Township\" class=\"absolute inset-0 -z-20 h-full w-full object-cover\" style=\"object-position:50% 40%\" fetchpriority=\"high\" decoding=\"async\">",
+     "boundingRect": {
+      "width": 412,
+      "right": 412,
+      "top": 160,
+      "left": 0,
+      "bottom": 800,
+      "height": 640
+     },
+     "lhId": "page-1-IMG",
+     "path": "1,HTML,1,BODY,2,DIV,5,DIV,3,DIV,2,MAIN,0,SECTION,0,PICTURE,1,IMG",
+     "type": "node"
+    }
+   ],
+   "opportunities": [
+    "Reduce unused JavaScript: Est savings of 172 KiB"
+   ]
+  },
+  "/best-hostel-in-shillong": {
+   "field": {
+    "lcp": 6015,
+    "lcpCategory": "SLOW",
+    "cls": 2,
+    "ttfb": 4207,
+    "fcp": 5607,
+    "overall": "SLOW"
+   },
+   "originField": {
+    "lcp": 6015,
+    "lcpCategory": "SLOW",
+    "cls": 2,
+    "ttfb": 4207,
+    "fcp": 5607,
+    "overall": "SLOW"
+   },
+   "lab": {
+    "score": 82,
+    "lcp": "3.8 s",
+    "fcp": "3.0 s",
+    "tbt": "0 ms",
+    "si": "3.6 s",
+    "cls": "0"
+   },
+   "lcpBreakdown": [
+    {
+     "type": "table",
+     "headings": [
+      {
+       "label": "Subpart",
+       "valueType": "text",
+       "key": "label"
+      },
+      {
+       "label": "Duration",
+       "valueType": "ms",
+       "key": "duration"
+      }
+     ],
+     "items": [
+      {
+       "label": "Time to first byte",
+       "subpart": "timeToFirstByte",
+       "duration": 5.109
+      },
+      {
+       "duration": 937.71,
+       "label": "Element render delay",
+       "subpart": "elementRenderDelay"
+      }
+     ]
+    },
+    {
+     "nodeLabel": "For most travellers the best-rated hostel in Shillong is XTSY Travellers Hostel…",
+     "boundingRect": {
+      "left": 32,
+      "width": 349,
+      "height": 234,
+      "top": 379,
+      "right": 381,
+      "bottom": 613
+     },
+     "type": "node",
+     "lhId": "page-6-P",
+     "snippet": "<p class=\"m-0 text-[16px] leading-relaxed\">",
+     "selector": "section.px-4 > div.flex > div.rounded-[22px] > p.m-0",
+     "path": "1,HTML,1,BODY,2,DIV,5,DIV,1,DIV,1,MAIN,1,SECTION,0,DIV,2,DIV,1,P"
+    }
+   ],
+   "opportunities": [
+    "Reduce unused JavaScript: Est savings of 150 KiB"
+   ]
+  },
+  "/xtsy-270": {
+   "field": {
+    "lcp": 6015,
+    "lcpCategory": "SLOW",
+    "cls": 2,
+    "ttfb": 4207,
+    "fcp": 5607,
+    "overall": "SLOW"
+   },
+   "originField": {
+    "lcp": 6015,
+    "lcpCategory": "SLOW",
+    "cls": 2,
+    "ttfb": 4207,
+    "fcp": 5607,
+    "overall": "SLOW"
+   },
+   "lab": {
+    "score": 64,
+    "lcp": "6.6 s",
+    "fcp": "4.4 s",
+    "tbt": "0 ms",
+    "si": "5.6 s",
+    "cls": "0"
+   },
+   "lcpBreakdown": [
+    {
+     "type": "table",
+     "headings": [
+      {
+       "label": "Subpart",
+       "valueType": "text",
+       "key": "label"
+      },
+      {
+       "label": "Duration",
+       "valueType": "ms",
+       "key": "duration"
+      }
+     ],
+     "items": [
+      {
+       "label": "Time to first byte",
+       "subpart": "timeToFirstByte",
+       "duration": 9.111
+      },
+      {
+       "subpart": "elementRenderDelay",
+       "duration": 2591.323,
+       "label": "Element render delay"
+      }
+     ]
+    },
+    {
+     "path": "1,HTML,1,BODY,2,DIV,5,DIV,1,DIV,1,MAIN,0,SECTION,1,DIV,1,H1",
+     "snippet": "<h1 class=\"xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:text-[136px]\">",
+     "selector": "main > section.relative > div.relative > h1.xt-in",
+     "nodeLabel": "Experience by XTSY",
+     "type": "node",
+     "lhId": "page-6-H1",
+     "boundingRect": {
+      "right": 398,
+      "width": 384,
+      "left": 14,
+      "height": 129,
+      "bottom": 344,
+      "top": 215
+     }
+    }
+   ],
+   "opportunities": [
+    "Reduce unused JavaScript: Est savings of 170 KiB"
+   ]
+  },
+  "/tours/5n-6d-tawang-tour": {
+   "field": {
+    "lcp": 6015,
+    "lcpCategory": "SLOW",
+    "cls": 2,
+    "ttfb": 4207,
+    "fcp": 5607,
+    "overall": "SLOW"
+   },
+   "originField": {
+    "lcp": 6015,
+    "lcpCategory": "SLOW",
+    "cls": 2,
+    "ttfb": 4207,
+    "fcp": 5607,
+    "overall": "SLOW"
+   },
+   "lab": {
+    "score": 63,
+    "lcp": "6.8 s",
+    "fcp": "5.0 s",
+    "tbt": "40 ms",
+    "si": "5.4 s",
+    "cls": "0"
+   },
+   "lcpBreakdown": [
+    {
+     "type": "table",
+     "items": [
+      {
+       "label": "Time to first byte",
+       "subpart": "timeToFirstByte",
+       "duration": 7.233
+      },
+      {
+       "subpart": "resourceLoadDelay",
+       "label": "Resource load delay",
+       "duration": 108.643
+      },
+      {
+       "duration": 206.398,
+       "label": "Resource load duration",
+       "subpart": "resourceLoadDuration"
+      },
+      {
+       "duration": 2008.337,
+       "subpart": "elementRenderDelay",
+       "label": "Element render delay"
+      }
+     ],
+     "headings": [
+      {
+       "label": "Subpart",
+       "key": "label",
+       "valueType": "text"
+      },
+      {
+       "label": "Duration",
+       "valueType": "ms",
+       "key": "duration"
+      }
+     ]
+    },
+    {
+     "type": "node",
+     "snippet": "<img src=\"https://xtsy.one/img/px/sig-5n-6d-tawang-tour-828.webp\" srcset=\"/img/px/sig-5n-6d-tawang-tour-480.webp 480w, /img/px/sig-5n-6d-tawang-tour…\" sizes=\"(max-width: 768px) 100vw, 50vw\" width=\"1280\" height=\"854\" alt=\"A breathtaking view of snow-covered mountains in Tawang on a sunny winter …\" loading=\"eager\" fetchpriority=\"high\" decoding=\"async\" class=\"absolute inset-0 h-full w-full object-cover\">",
+     "lhId": "page-0-IMG",
+     "path": "1,HTML,1,BODY,2,DIV,5,DIV,4,DIV,1,MAIN,1,SECTION,1,FIGURE,0,DIV,1,IMG",
+     "boundingRect": {
+      "top": 424,
+      "left": 14,
+      "width": 384,
+      "bottom": 685,
+      "right": 398,
+      "height": 261
+     },
+     "nodeLabel": "A breathtaking view of snow-covered mountains in Tawang on a sunny winter day.",
+     "selector": "section.px-4 > figure.m-0 > div.relative > img.absolute"
+    }
+   ],
+   "opportunities": [
+    "Reduce unused JavaScript: Est savings of 174 KiB"
+   ]
+  }
+ }
 }
