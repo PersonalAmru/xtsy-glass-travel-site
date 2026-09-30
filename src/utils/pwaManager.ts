@@ -2,20 +2,17 @@
  * PWA Manager - Handles manifest switching and install prompts for different app contexts
  * User App: /
  * Franchise App: /franchise
- * Admin App: /admin
  */
 
-type AppType = 'user' | 'franchise' | 'admin';
+type AppType = 'user' | 'franchise';
 
 const MANIFEST_MAP: Record<AppType, string> = {
   user: '/manifest-user.json',
   franchise: '/manifest-franchise.json',
-  admin: '/manifest-admin.json',
 };
 
 export function getAppType(): AppType {
   const path = window.location.pathname;
-  if (path.startsWith('/admin')) return 'admin';
   if (path.startsWith('/franchise')) return 'franchise';
   return 'user';
 }
@@ -46,7 +43,6 @@ export function updateManifestLink(): void {
   const themeColors: Record<AppType, string> = {
     user: '#f97316',
     franchise: '#3b82f6',
-    admin: '#6366f1',
   };
   
   let themeMetaTag = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;

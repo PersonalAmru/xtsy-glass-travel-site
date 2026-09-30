@@ -15,7 +15,6 @@ import { Route as R3DayMeghalayaItineraryRouteImport } from './routes/3-day-megh
 import { Route as R4x4ExpeditionMeghalayaRouteImport } from './routes/4x4-expedition-meghalaya'
 import { Route as R5DayMeghalayaItineraryRouteImport } from './routes/5-day-meghalaya-itinerary'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as AdminLoginRouteImport } from './routes/admin-login'
 import { Route as AdventureToursNortheastIndiaRouteImport } from './routes/adventure-tours-northeast-india'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BackpackingIndiaRouteImport } from './routes/backpacking-india'
@@ -68,31 +67,6 @@ import { Route as Xtsy270RouteImport } from './routes/xtsy-270'
 import { Route as XtsyAdventureCampsiteDawkiRouteImport } from './routes/xtsy-adventure-campsite-dawki'
 import { Route as XtsyRentalsRouteImport } from './routes/xtsy-rentals'
 import { Route as XtsyVsZostelRouteImport } from './routes/xtsy-vs-zostel'
-import { Route as AdminIndexRouteImport } from './routes/admin/index'
-import { Route as AdminActivityRouteImport } from './routes/admin/activity'
-import { Route as AdminAuditRouteImport } from './routes/admin/audit'
-import { Route as AdminBookingsRouteImport } from './routes/admin/bookings'
-import { Route as AdminChannelsRouteImport } from './routes/admin/channels'
-import { Route as AdminChatsRouteImport } from './routes/admin/chats'
-import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
-import { Route as AdminDatalayerRouteImport } from './routes/admin/datalayer'
-import { Route as AdminDemandRouteImport } from './routes/admin/demand'
-import { Route as AdminEnquiriesRouteImport } from './routes/admin/enquiries'
-import { Route as AdminFinanceRouteImport } from './routes/admin/finance'
-import { Route as AdminFranchisePermissionsRouteImport } from './routes/admin/franchise-permissions'
-import { Route as AdminFranchisesRouteImport } from './routes/admin/franchises'
-import { Route as AdminGstRouteImport } from './routes/admin/gst'
-import { Route as AdminInstallRouteImport } from './routes/admin/install'
-import { Route as AdminInventoryRouteImport } from './routes/admin/inventory'
-import { Route as AdminOtasRouteImport } from './routes/admin/otas'
-import { Route as AdminPropertiesRouteImport } from './routes/admin/properties'
-import { Route as AdminReviewsRouteImport } from './routes/admin/reviews'
-import { Route as AdminSearchRouteImport } from './routes/admin/search'
-import { Route as AdminSecurityRouteImport } from './routes/admin/security'
-import { Route as AdminTourPricingRouteImport } from './routes/admin/tour-pricing'
-import { Route as AdminToursRouteImport } from './routes/admin/tours'
-import { Route as AdminTrafficRouteImport } from './routes/admin/traffic'
-import { Route as AdminWhatsappRouteImport } from './routes/admin/whatsapp'
 import { Route as BookIndexRouteImport } from './routes/book/index'
 import { Route as BookCampsiteRouteImport } from './routes/book/campsite'
 import { Route as BookSelectRouteImport } from './routes/book/select'
@@ -110,20 +84,6 @@ import { Route as TravelGuideGuwahatiToShillongTransportRouteImport } from './ro
 import { Route as TravelGuideHowToReachMeghalayaRouteImport } from './routes/travel-guide/how-to-reach-meghalaya'
 import { Route as TravelGuideMeghalayaForInternationalTouristsRouteImport } from './routes/travel-guide/meghalaya-for-international-tourists'
 import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
-import { Route as AdminAnalyticsIndexRouteImport } from './routes/admin/analytics/index'
-import { Route as AdminAnalyticsLoaderEventsRouteImport } from './routes/admin/analytics/loader-events'
-import { Route as AdminAnalyticsRumCompareRouteImport } from './routes/admin/analytics/rum-compare'
-import { Route as AdminAnalyticsSearchRouteImport } from './routes/admin/analytics/search'
-import { Route as AdminSeoIndexRouteImport } from './routes/admin/seo/index'
-import { Route as AdminSeoCompetitorsRouteImport } from './routes/admin/seo/competitors'
-import { Route as AdminSeoFunnelRouteImport } from './routes/admin/seo/funnel'
-import { Route as AdminSeoGscErrorsRouteImport } from './routes/admin/seo/gsc-errors'
-import { Route as AdminSeoHeroManagerRouteImport } from './routes/admin/seo/hero-manager'
-import { Route as AdminSeoPriorityRouteImport } from './routes/admin/seo/priority'
-import { Route as AdminSeoRecoveryRouteImport } from './routes/admin/seo/recovery'
-import { Route as AdminSeoSchemaResultsRouteImport } from './routes/admin/seo/schema-results'
-import { Route as AdminSeoTrackingRouteImport } from './routes/admin/seo/tracking'
-import { Route as AdminSeoWorkflowRouteImport } from './routes/admin/seo/workflow'
 import { Route as DestinationsStateIndexRouteImport } from './routes/destinations/$state/index'
 import { Route as ExpeditionsTypeRouteRouteImport } from './routes/expeditions/$type/$route'
 import { Route as DestinationsStateCityIndexRouteImport } from './routes/destinations/$state/$city/index'
@@ -157,11 +117,6 @@ const R5DayMeghalayaItineraryRoute = R5DayMeghalayaItineraryRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/admin-login',
-  path: '/admin-login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdventureToursNortheastIndiaRoute =
@@ -432,132 +387,6 @@ const XtsyVsZostelRoute = XtsyVsZostelRouteImport.update({
   path: '/xtsy-vs-zostel',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminIndexRoute = AdminIndexRouteImport.update({
-  id: '/admin/',
-  path: '/admin/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminActivityRoute = AdminActivityRouteImport.update({
-  id: '/admin/activity',
-  path: '/admin/activity',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminAuditRoute = AdminAuditRouteImport.update({
-  id: '/admin/audit',
-  path: '/admin/audit',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminBookingsRoute = AdminBookingsRouteImport.update({
-  id: '/admin/bookings',
-  path: '/admin/bookings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminChannelsRoute = AdminChannelsRouteImport.update({
-  id: '/admin/channels',
-  path: '/admin/channels',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminChatsRoute = AdminChatsRouteImport.update({
-  id: '/admin/chats',
-  path: '/admin/chats',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminDashboardRoute = AdminDashboardRouteImport.update({
-  id: '/admin/dashboard',
-  path: '/admin/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminDatalayerRoute = AdminDatalayerRouteImport.update({
-  id: '/admin/datalayer',
-  path: '/admin/datalayer',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminDemandRoute = AdminDemandRouteImport.update({
-  id: '/admin/demand',
-  path: '/admin/demand',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminEnquiriesRoute = AdminEnquiriesRouteImport.update({
-  id: '/admin/enquiries',
-  path: '/admin/enquiries',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminFinanceRoute = AdminFinanceRouteImport.update({
-  id: '/admin/finance',
-  path: '/admin/finance',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminFranchisePermissionsRoute =
-  AdminFranchisePermissionsRouteImport.update({
-    id: '/admin/franchise-permissions',
-    path: '/admin/franchise-permissions',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const AdminFranchisesRoute = AdminFranchisesRouteImport.update({
-  id: '/admin/franchises',
-  path: '/admin/franchises',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminGstRoute = AdminGstRouteImport.update({
-  id: '/admin/gst',
-  path: '/admin/gst',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminInstallRoute = AdminInstallRouteImport.update({
-  id: '/admin/install',
-  path: '/admin/install',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminInventoryRoute = AdminInventoryRouteImport.update({
-  id: '/admin/inventory',
-  path: '/admin/inventory',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminOtasRoute = AdminOtasRouteImport.update({
-  id: '/admin/otas',
-  path: '/admin/otas',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminPropertiesRoute = AdminPropertiesRouteImport.update({
-  id: '/admin/properties',
-  path: '/admin/properties',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminReviewsRoute = AdminReviewsRouteImport.update({
-  id: '/admin/reviews',
-  path: '/admin/reviews',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSearchRoute = AdminSearchRouteImport.update({
-  id: '/admin/search',
-  path: '/admin/search',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSecurityRoute = AdminSecurityRouteImport.update({
-  id: '/admin/security',
-  path: '/admin/security',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminTourPricingRoute = AdminTourPricingRouteImport.update({
-  id: '/admin/tour-pricing',
-  path: '/admin/tour-pricing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminToursRoute = AdminToursRouteImport.update({
-  id: '/admin/tours',
-  path: '/admin/tours',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminTrafficRoute = AdminTrafficRouteImport.update({
-  id: '/admin/traffic',
-  path: '/admin/traffic',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminWhatsappRoute = AdminWhatsappRouteImport.update({
-  id: '/admin/whatsapp',
-  path: '/admin/whatsapp',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const BookIndexRoute = BookIndexRouteImport.update({
   id: '/book/',
   path: '/book/',
@@ -646,78 +475,6 @@ const DotlovableOauthConsentRoute = DotlovableOauthConsentRouteImport.update({
   path: '/.lovable/oauth/consent',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminAnalyticsIndexRoute = AdminAnalyticsIndexRouteImport.update({
-  id: '/admin/analytics/',
-  path: '/admin/analytics/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminAnalyticsLoaderEventsRoute =
-  AdminAnalyticsLoaderEventsRouteImport.update({
-    id: '/admin/analytics/loader-events',
-    path: '/admin/analytics/loader-events',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const AdminAnalyticsRumCompareRoute =
-  AdminAnalyticsRumCompareRouteImport.update({
-    id: '/admin/analytics/rum-compare',
-    path: '/admin/analytics/rum-compare',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const AdminAnalyticsSearchRoute = AdminAnalyticsSearchRouteImport.update({
-  id: '/admin/analytics/search',
-  path: '/admin/analytics/search',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSeoIndexRoute = AdminSeoIndexRouteImport.update({
-  id: '/admin/seo/',
-  path: '/admin/seo/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSeoCompetitorsRoute = AdminSeoCompetitorsRouteImport.update({
-  id: '/admin/seo/competitors',
-  path: '/admin/seo/competitors',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSeoFunnelRoute = AdminSeoFunnelRouteImport.update({
-  id: '/admin/seo/funnel',
-  path: '/admin/seo/funnel',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSeoGscErrorsRoute = AdminSeoGscErrorsRouteImport.update({
-  id: '/admin/seo/gsc-errors',
-  path: '/admin/seo/gsc-errors',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSeoHeroManagerRoute = AdminSeoHeroManagerRouteImport.update({
-  id: '/admin/seo/hero-manager',
-  path: '/admin/seo/hero-manager',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSeoPriorityRoute = AdminSeoPriorityRouteImport.update({
-  id: '/admin/seo/priority',
-  path: '/admin/seo/priority',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSeoRecoveryRoute = AdminSeoRecoveryRouteImport.update({
-  id: '/admin/seo/recovery',
-  path: '/admin/seo/recovery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSeoSchemaResultsRoute = AdminSeoSchemaResultsRouteImport.update({
-  id: '/admin/seo/schema-results',
-  path: '/admin/seo/schema-results',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSeoTrackingRoute = AdminSeoTrackingRouteImport.update({
-  id: '/admin/seo/tracking',
-  path: '/admin/seo/tracking',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSeoWorkflowRoute = AdminSeoWorkflowRouteImport.update({
-  id: '/admin/seo/workflow',
-  path: '/admin/seo/workflow',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DestinationsStateIndexRoute = DestinationsStateIndexRouteImport.update({
   id: '/destinations/$state/',
   path: '/destinations/$state/',
@@ -748,7 +505,6 @@ export interface FileRoutesByFullPath {
   '/4x4-expedition-meghalaya': typeof R4x4ExpeditionMeghalayaRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
-  '/admin-login': typeof AdminLoginRoute
   '/adventure-tours-northeast-india': typeof AdventureToursNortheastIndiaRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
@@ -801,30 +557,6 @@ export interface FileRoutesByFullPath {
   '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
-  '/admin/activity': typeof AdminActivityRoute
-  '/admin/audit': typeof AdminAuditRoute
-  '/admin/bookings': typeof AdminBookingsRoute
-  '/admin/channels': typeof AdminChannelsRoute
-  '/admin/chats': typeof AdminChatsRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/admin/datalayer': typeof AdminDatalayerRoute
-  '/admin/demand': typeof AdminDemandRoute
-  '/admin/enquiries': typeof AdminEnquiriesRoute
-  '/admin/finance': typeof AdminFinanceRoute
-  '/admin/franchise-permissions': typeof AdminFranchisePermissionsRoute
-  '/admin/franchises': typeof AdminFranchisesRoute
-  '/admin/gst': typeof AdminGstRoute
-  '/admin/install': typeof AdminInstallRoute
-  '/admin/inventory': typeof AdminInventoryRoute
-  '/admin/otas': typeof AdminOtasRoute
-  '/admin/properties': typeof AdminPropertiesRoute
-  '/admin/reviews': typeof AdminReviewsRoute
-  '/admin/search': typeof AdminSearchRoute
-  '/admin/security': typeof AdminSecurityRoute
-  '/admin/tour-pricing': typeof AdminTourPricingRoute
-  '/admin/tours': typeof AdminToursRoute
-  '/admin/traffic': typeof AdminTrafficRoute
-  '/admin/whatsapp': typeof AdminWhatsappRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -835,7 +567,6 @@ export interface FileRoutesByFullPath {
   '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
   '/travel-guide/how-to-reach-meghalaya': typeof TravelGuideHowToReachMeghalayaRoute
   '/travel-guide/meghalaya-for-international-tourists': typeof TravelGuideMeghalayaForInternationalTouristsRoute
-  '/admin/': typeof AdminIndexRoute
   '/book/': typeof BookIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
   '/expeditions/': typeof ExpeditionsIndexRoute
@@ -843,21 +574,7 @@ export interface FileRoutesByFullPath {
   '/tab-bistro/': typeof TabBistroIndexRoute
   '/tours/': typeof ToursIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
-  '/admin/analytics/loader-events': typeof AdminAnalyticsLoaderEventsRoute
-  '/admin/analytics/rum-compare': typeof AdminAnalyticsRumCompareRoute
-  '/admin/analytics/search': typeof AdminAnalyticsSearchRoute
-  '/admin/seo/competitors': typeof AdminSeoCompetitorsRoute
-  '/admin/seo/funnel': typeof AdminSeoFunnelRoute
-  '/admin/seo/gsc-errors': typeof AdminSeoGscErrorsRoute
-  '/admin/seo/hero-manager': typeof AdminSeoHeroManagerRoute
-  '/admin/seo/priority': typeof AdminSeoPriorityRoute
-  '/admin/seo/recovery': typeof AdminSeoRecoveryRoute
-  '/admin/seo/schema-results': typeof AdminSeoSchemaResultsRoute
-  '/admin/seo/tracking': typeof AdminSeoTrackingRoute
-  '/admin/seo/workflow': typeof AdminSeoWorkflowRoute
   '/expeditions/$type/$route': typeof ExpeditionsTypeRouteRoute
-  '/admin/analytics/': typeof AdminAnalyticsIndexRoute
-  '/admin/seo/': typeof AdminSeoIndexRoute
   '/destinations/$state/': typeof DestinationsStateIndexRoute
   '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
   '/destinations/$state/$city/': typeof DestinationsStateCityIndexRoute
@@ -869,7 +586,6 @@ export interface FileRoutesByTo {
   '/4x4-expedition-meghalaya': typeof R4x4ExpeditionMeghalayaRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
-  '/admin-login': typeof AdminLoginRoute
   '/adventure-tours-northeast-india': typeof AdventureToursNortheastIndiaRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
@@ -922,30 +638,6 @@ export interface FileRoutesByTo {
   '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
-  '/admin/activity': typeof AdminActivityRoute
-  '/admin/audit': typeof AdminAuditRoute
-  '/admin/bookings': typeof AdminBookingsRoute
-  '/admin/channels': typeof AdminChannelsRoute
-  '/admin/chats': typeof AdminChatsRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/admin/datalayer': typeof AdminDatalayerRoute
-  '/admin/demand': typeof AdminDemandRoute
-  '/admin/enquiries': typeof AdminEnquiriesRoute
-  '/admin/finance': typeof AdminFinanceRoute
-  '/admin/franchise-permissions': typeof AdminFranchisePermissionsRoute
-  '/admin/franchises': typeof AdminFranchisesRoute
-  '/admin/gst': typeof AdminGstRoute
-  '/admin/install': typeof AdminInstallRoute
-  '/admin/inventory': typeof AdminInventoryRoute
-  '/admin/otas': typeof AdminOtasRoute
-  '/admin/properties': typeof AdminPropertiesRoute
-  '/admin/reviews': typeof AdminReviewsRoute
-  '/admin/search': typeof AdminSearchRoute
-  '/admin/security': typeof AdminSecurityRoute
-  '/admin/tour-pricing': typeof AdminTourPricingRoute
-  '/admin/tours': typeof AdminToursRoute
-  '/admin/traffic': typeof AdminTrafficRoute
-  '/admin/whatsapp': typeof AdminWhatsappRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -956,7 +648,6 @@ export interface FileRoutesByTo {
   '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
   '/travel-guide/how-to-reach-meghalaya': typeof TravelGuideHowToReachMeghalayaRoute
   '/travel-guide/meghalaya-for-international-tourists': typeof TravelGuideMeghalayaForInternationalTouristsRoute
-  '/admin': typeof AdminIndexRoute
   '/book': typeof BookIndexRoute
   '/destinations': typeof DestinationsIndexRoute
   '/expeditions': typeof ExpeditionsIndexRoute
@@ -964,21 +655,7 @@ export interface FileRoutesByTo {
   '/tab-bistro': typeof TabBistroIndexRoute
   '/tours': typeof ToursIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
-  '/admin/analytics/loader-events': typeof AdminAnalyticsLoaderEventsRoute
-  '/admin/analytics/rum-compare': typeof AdminAnalyticsRumCompareRoute
-  '/admin/analytics/search': typeof AdminAnalyticsSearchRoute
-  '/admin/seo/competitors': typeof AdminSeoCompetitorsRoute
-  '/admin/seo/funnel': typeof AdminSeoFunnelRoute
-  '/admin/seo/gsc-errors': typeof AdminSeoGscErrorsRoute
-  '/admin/seo/hero-manager': typeof AdminSeoHeroManagerRoute
-  '/admin/seo/priority': typeof AdminSeoPriorityRoute
-  '/admin/seo/recovery': typeof AdminSeoRecoveryRoute
-  '/admin/seo/schema-results': typeof AdminSeoSchemaResultsRoute
-  '/admin/seo/tracking': typeof AdminSeoTrackingRoute
-  '/admin/seo/workflow': typeof AdminSeoWorkflowRoute
   '/expeditions/$type/$route': typeof ExpeditionsTypeRouteRoute
-  '/admin/analytics': typeof AdminAnalyticsIndexRoute
-  '/admin/seo': typeof AdminSeoIndexRoute
   '/destinations/$state': typeof DestinationsStateIndexRoute
   '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
   '/destinations/$state/$city': typeof DestinationsStateCityIndexRoute
@@ -991,7 +668,6 @@ export interface FileRoutesById {
   '/4x4-expedition-meghalaya': typeof R4x4ExpeditionMeghalayaRoute
   '/5-day-meghalaya-itinerary': typeof R5DayMeghalayaItineraryRoute
   '/about': typeof AboutRoute
-  '/admin-login': typeof AdminLoginRoute
   '/adventure-tours-northeast-india': typeof AdventureToursNortheastIndiaRoute
   '/auth': typeof AuthRoute
   '/backpacking-india': typeof BackpackingIndiaRoute
@@ -1044,30 +720,6 @@ export interface FileRoutesById {
   '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
-  '/admin/activity': typeof AdminActivityRoute
-  '/admin/audit': typeof AdminAuditRoute
-  '/admin/bookings': typeof AdminBookingsRoute
-  '/admin/channels': typeof AdminChannelsRoute
-  '/admin/chats': typeof AdminChatsRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
-  '/admin/datalayer': typeof AdminDatalayerRoute
-  '/admin/demand': typeof AdminDemandRoute
-  '/admin/enquiries': typeof AdminEnquiriesRoute
-  '/admin/finance': typeof AdminFinanceRoute
-  '/admin/franchise-permissions': typeof AdminFranchisePermissionsRoute
-  '/admin/franchises': typeof AdminFranchisesRoute
-  '/admin/gst': typeof AdminGstRoute
-  '/admin/install': typeof AdminInstallRoute
-  '/admin/inventory': typeof AdminInventoryRoute
-  '/admin/otas': typeof AdminOtasRoute
-  '/admin/properties': typeof AdminPropertiesRoute
-  '/admin/reviews': typeof AdminReviewsRoute
-  '/admin/search': typeof AdminSearchRoute
-  '/admin/security': typeof AdminSecurityRoute
-  '/admin/tour-pricing': typeof AdminTourPricingRoute
-  '/admin/tours': typeof AdminToursRoute
-  '/admin/traffic': typeof AdminTrafficRoute
-  '/admin/whatsapp': typeof AdminWhatsappRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -1078,7 +730,6 @@ export interface FileRoutesById {
   '/travel-guide/guwahati-to-shillong-transport': typeof TravelGuideGuwahatiToShillongTransportRoute
   '/travel-guide/how-to-reach-meghalaya': typeof TravelGuideHowToReachMeghalayaRoute
   '/travel-guide/meghalaya-for-international-tourists': typeof TravelGuideMeghalayaForInternationalTouristsRoute
-  '/admin/': typeof AdminIndexRoute
   '/book/': typeof BookIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
   '/expeditions/': typeof ExpeditionsIndexRoute
@@ -1086,21 +737,7 @@ export interface FileRoutesById {
   '/tab-bistro/': typeof TabBistroIndexRoute
   '/tours/': typeof ToursIndexRoute
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
-  '/admin/analytics/loader-events': typeof AdminAnalyticsLoaderEventsRoute
-  '/admin/analytics/rum-compare': typeof AdminAnalyticsRumCompareRoute
-  '/admin/analytics/search': typeof AdminAnalyticsSearchRoute
-  '/admin/seo/competitors': typeof AdminSeoCompetitorsRoute
-  '/admin/seo/funnel': typeof AdminSeoFunnelRoute
-  '/admin/seo/gsc-errors': typeof AdminSeoGscErrorsRoute
-  '/admin/seo/hero-manager': typeof AdminSeoHeroManagerRoute
-  '/admin/seo/priority': typeof AdminSeoPriorityRoute
-  '/admin/seo/recovery': typeof AdminSeoRecoveryRoute
-  '/admin/seo/schema-results': typeof AdminSeoSchemaResultsRoute
-  '/admin/seo/tracking': typeof AdminSeoTrackingRoute
-  '/admin/seo/workflow': typeof AdminSeoWorkflowRoute
   '/expeditions/$type/$route': typeof ExpeditionsTypeRouteRoute
-  '/admin/analytics/': typeof AdminAnalyticsIndexRoute
-  '/admin/seo/': typeof AdminSeoIndexRoute
   '/destinations/$state/': typeof DestinationsStateIndexRoute
   '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
   '/destinations/$state/$city/': typeof DestinationsStateCityIndexRoute
@@ -1114,7 +751,6 @@ export interface FileRouteTypes {
     | '/4x4-expedition-meghalaya'
     | '/5-day-meghalaya-itinerary'
     | '/about'
-    | '/admin-login'
     | '/adventure-tours-northeast-india'
     | '/auth'
     | '/backpacking-india'
@@ -1167,30 +803,6 @@ export interface FileRouteTypes {
     | '/xtsy-adventure-campsite-dawki'
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
-    | '/admin/activity'
-    | '/admin/audit'
-    | '/admin/bookings'
-    | '/admin/channels'
-    | '/admin/chats'
-    | '/admin/dashboard'
-    | '/admin/datalayer'
-    | '/admin/demand'
-    | '/admin/enquiries'
-    | '/admin/finance'
-    | '/admin/franchise-permissions'
-    | '/admin/franchises'
-    | '/admin/gst'
-    | '/admin/install'
-    | '/admin/inventory'
-    | '/admin/otas'
-    | '/admin/properties'
-    | '/admin/reviews'
-    | '/admin/search'
-    | '/admin/security'
-    | '/admin/tour-pricing'
-    | '/admin/tours'
-    | '/admin/traffic'
-    | '/admin/whatsapp'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -1201,7 +813,6 @@ export interface FileRouteTypes {
     | '/travel-guide/guwahati-to-shillong-transport'
     | '/travel-guide/how-to-reach-meghalaya'
     | '/travel-guide/meghalaya-for-international-tourists'
-    | '/admin/'
     | '/book/'
     | '/destinations/'
     | '/expeditions/'
@@ -1209,21 +820,7 @@ export interface FileRouteTypes {
     | '/tab-bistro/'
     | '/tours/'
     | '/.lovable/oauth/consent'
-    | '/admin/analytics/loader-events'
-    | '/admin/analytics/rum-compare'
-    | '/admin/analytics/search'
-    | '/admin/seo/competitors'
-    | '/admin/seo/funnel'
-    | '/admin/seo/gsc-errors'
-    | '/admin/seo/hero-manager'
-    | '/admin/seo/priority'
-    | '/admin/seo/recovery'
-    | '/admin/seo/schema-results'
-    | '/admin/seo/tracking'
-    | '/admin/seo/workflow'
     | '/expeditions/$type/$route'
-    | '/admin/analytics/'
-    | '/admin/seo/'
     | '/destinations/$state/'
     | '/destinations/$state/$city/$attraction'
     | '/destinations/$state/$city/'
@@ -1235,7 +832,6 @@ export interface FileRouteTypes {
     | '/4x4-expedition-meghalaya'
     | '/5-day-meghalaya-itinerary'
     | '/about'
-    | '/admin-login'
     | '/adventure-tours-northeast-india'
     | '/auth'
     | '/backpacking-india'
@@ -1288,30 +884,6 @@ export interface FileRouteTypes {
     | '/xtsy-adventure-campsite-dawki'
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
-    | '/admin/activity'
-    | '/admin/audit'
-    | '/admin/bookings'
-    | '/admin/channels'
-    | '/admin/chats'
-    | '/admin/dashboard'
-    | '/admin/datalayer'
-    | '/admin/demand'
-    | '/admin/enquiries'
-    | '/admin/finance'
-    | '/admin/franchise-permissions'
-    | '/admin/franchises'
-    | '/admin/gst'
-    | '/admin/install'
-    | '/admin/inventory'
-    | '/admin/otas'
-    | '/admin/properties'
-    | '/admin/reviews'
-    | '/admin/search'
-    | '/admin/security'
-    | '/admin/tour-pricing'
-    | '/admin/tours'
-    | '/admin/traffic'
-    | '/admin/whatsapp'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -1322,7 +894,6 @@ export interface FileRouteTypes {
     | '/travel-guide/guwahati-to-shillong-transport'
     | '/travel-guide/how-to-reach-meghalaya'
     | '/travel-guide/meghalaya-for-international-tourists'
-    | '/admin'
     | '/book'
     | '/destinations'
     | '/expeditions'
@@ -1330,21 +901,7 @@ export interface FileRouteTypes {
     | '/tab-bistro'
     | '/tours'
     | '/.lovable/oauth/consent'
-    | '/admin/analytics/loader-events'
-    | '/admin/analytics/rum-compare'
-    | '/admin/analytics/search'
-    | '/admin/seo/competitors'
-    | '/admin/seo/funnel'
-    | '/admin/seo/gsc-errors'
-    | '/admin/seo/hero-manager'
-    | '/admin/seo/priority'
-    | '/admin/seo/recovery'
-    | '/admin/seo/schema-results'
-    | '/admin/seo/tracking'
-    | '/admin/seo/workflow'
     | '/expeditions/$type/$route'
-    | '/admin/analytics'
-    | '/admin/seo'
     | '/destinations/$state'
     | '/destinations/$state/$city/$attraction'
     | '/destinations/$state/$city'
@@ -1356,7 +913,6 @@ export interface FileRouteTypes {
     | '/4x4-expedition-meghalaya'
     | '/5-day-meghalaya-itinerary'
     | '/about'
-    | '/admin-login'
     | '/adventure-tours-northeast-india'
     | '/auth'
     | '/backpacking-india'
@@ -1409,30 +965,6 @@ export interface FileRouteTypes {
     | '/xtsy-adventure-campsite-dawki'
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
-    | '/admin/activity'
-    | '/admin/audit'
-    | '/admin/bookings'
-    | '/admin/channels'
-    | '/admin/chats'
-    | '/admin/dashboard'
-    | '/admin/datalayer'
-    | '/admin/demand'
-    | '/admin/enquiries'
-    | '/admin/finance'
-    | '/admin/franchise-permissions'
-    | '/admin/franchises'
-    | '/admin/gst'
-    | '/admin/install'
-    | '/admin/inventory'
-    | '/admin/otas'
-    | '/admin/properties'
-    | '/admin/reviews'
-    | '/admin/search'
-    | '/admin/security'
-    | '/admin/tour-pricing'
-    | '/admin/tours'
-    | '/admin/traffic'
-    | '/admin/whatsapp'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -1443,7 +975,6 @@ export interface FileRouteTypes {
     | '/travel-guide/guwahati-to-shillong-transport'
     | '/travel-guide/how-to-reach-meghalaya'
     | '/travel-guide/meghalaya-for-international-tourists'
-    | '/admin/'
     | '/book/'
     | '/destinations/'
     | '/expeditions/'
@@ -1451,21 +982,7 @@ export interface FileRouteTypes {
     | '/tab-bistro/'
     | '/tours/'
     | '/.lovable/oauth/consent'
-    | '/admin/analytics/loader-events'
-    | '/admin/analytics/rum-compare'
-    | '/admin/analytics/search'
-    | '/admin/seo/competitors'
-    | '/admin/seo/funnel'
-    | '/admin/seo/gsc-errors'
-    | '/admin/seo/hero-manager'
-    | '/admin/seo/priority'
-    | '/admin/seo/recovery'
-    | '/admin/seo/schema-results'
-    | '/admin/seo/tracking'
-    | '/admin/seo/workflow'
     | '/expeditions/$type/$route'
-    | '/admin/analytics/'
-    | '/admin/seo/'
     | '/destinations/$state/'
     | '/destinations/$state/$city/$attraction'
     | '/destinations/$state/$city/'
@@ -1478,7 +995,6 @@ export interface RootRouteChildren {
   R4x4ExpeditionMeghalayaRoute: typeof R4x4ExpeditionMeghalayaRoute
   R5DayMeghalayaItineraryRoute: typeof R5DayMeghalayaItineraryRoute
   AboutRoute: typeof AboutRoute
-  AdminLoginRoute: typeof AdminLoginRoute
   AdventureToursNortheastIndiaRoute: typeof AdventureToursNortheastIndiaRoute
   AuthRoute: typeof AuthRoute
   BackpackingIndiaRoute: typeof BackpackingIndiaRoute
@@ -1531,30 +1047,6 @@ export interface RootRouteChildren {
   XtsyAdventureCampsiteDawkiRoute: typeof XtsyAdventureCampsiteDawkiRoute
   XtsyRentalsRoute: typeof XtsyRentalsRoute
   XtsyVsZostelRoute: typeof XtsyVsZostelRoute
-  AdminActivityRoute: typeof AdminActivityRoute
-  AdminAuditRoute: typeof AdminAuditRoute
-  AdminBookingsRoute: typeof AdminBookingsRoute
-  AdminChannelsRoute: typeof AdminChannelsRoute
-  AdminChatsRoute: typeof AdminChatsRoute
-  AdminDashboardRoute: typeof AdminDashboardRoute
-  AdminDatalayerRoute: typeof AdminDatalayerRoute
-  AdminDemandRoute: typeof AdminDemandRoute
-  AdminEnquiriesRoute: typeof AdminEnquiriesRoute
-  AdminFinanceRoute: typeof AdminFinanceRoute
-  AdminFranchisePermissionsRoute: typeof AdminFranchisePermissionsRoute
-  AdminFranchisesRoute: typeof AdminFranchisesRoute
-  AdminGstRoute: typeof AdminGstRoute
-  AdminInstallRoute: typeof AdminInstallRoute
-  AdminInventoryRoute: typeof AdminInventoryRoute
-  AdminOtasRoute: typeof AdminOtasRoute
-  AdminPropertiesRoute: typeof AdminPropertiesRoute
-  AdminReviewsRoute: typeof AdminReviewsRoute
-  AdminSearchRoute: typeof AdminSearchRoute
-  AdminSecurityRoute: typeof AdminSecurityRoute
-  AdminTourPricingRoute: typeof AdminTourPricingRoute
-  AdminToursRoute: typeof AdminToursRoute
-  AdminTrafficRoute: typeof AdminTrafficRoute
-  AdminWhatsappRoute: typeof AdminWhatsappRoute
   BookCampsiteRoute: typeof BookCampsiteRoute
   BookSelectRoute: typeof BookSelectRoute
   FranchiseInstallRoute: typeof FranchiseInstallRoute
@@ -1565,7 +1057,6 @@ export interface RootRouteChildren {
   TravelGuideGuwahatiToShillongTransportRoute: typeof TravelGuideGuwahatiToShillongTransportRoute
   TravelGuideHowToReachMeghalayaRoute: typeof TravelGuideHowToReachMeghalayaRoute
   TravelGuideMeghalayaForInternationalTouristsRoute: typeof TravelGuideMeghalayaForInternationalTouristsRoute
-  AdminIndexRoute: typeof AdminIndexRoute
   BookIndexRoute: typeof BookIndexRoute
   DestinationsIndexRoute: typeof DestinationsIndexRoute
   ExpeditionsIndexRoute: typeof ExpeditionsIndexRoute
@@ -1573,21 +1064,7 @@ export interface RootRouteChildren {
   TabBistroIndexRoute: typeof TabBistroIndexRoute
   ToursIndexRoute: typeof ToursIndexRoute
   DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
-  AdminAnalyticsLoaderEventsRoute: typeof AdminAnalyticsLoaderEventsRoute
-  AdminAnalyticsRumCompareRoute: typeof AdminAnalyticsRumCompareRoute
-  AdminAnalyticsSearchRoute: typeof AdminAnalyticsSearchRoute
-  AdminSeoCompetitorsRoute: typeof AdminSeoCompetitorsRoute
-  AdminSeoFunnelRoute: typeof AdminSeoFunnelRoute
-  AdminSeoGscErrorsRoute: typeof AdminSeoGscErrorsRoute
-  AdminSeoHeroManagerRoute: typeof AdminSeoHeroManagerRoute
-  AdminSeoPriorityRoute: typeof AdminSeoPriorityRoute
-  AdminSeoRecoveryRoute: typeof AdminSeoRecoveryRoute
-  AdminSeoSchemaResultsRoute: typeof AdminSeoSchemaResultsRoute
-  AdminSeoTrackingRoute: typeof AdminSeoTrackingRoute
-  AdminSeoWorkflowRoute: typeof AdminSeoWorkflowRoute
   ExpeditionsTypeRouteRoute: typeof ExpeditionsTypeRouteRoute
-  AdminAnalyticsIndexRoute: typeof AdminAnalyticsIndexRoute
-  AdminSeoIndexRoute: typeof AdminSeoIndexRoute
   DestinationsStateIndexRoute: typeof DestinationsStateIndexRoute
   DestinationsStateCityAttractionRoute: typeof DestinationsStateCityAttractionRoute
   DestinationsStateCityIndexRoute: typeof DestinationsStateCityIndexRoute
@@ -1635,13 +1112,6 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin-login': {
-      id: '/admin-login'
-      path: '/admin-login'
-      fullPath: '/admin-login'
-      preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/adventure-tours-northeast-india': {
@@ -2008,181 +1478,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof XtsyVsZostelRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/': {
-      id: '/admin/'
-      path: '/admin'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/activity': {
-      id: '/admin/activity'
-      path: '/admin/activity'
-      fullPath: '/admin/activity'
-      preLoaderRoute: typeof AdminActivityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/audit': {
-      id: '/admin/audit'
-      path: '/admin/audit'
-      fullPath: '/admin/audit'
-      preLoaderRoute: typeof AdminAuditRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/bookings': {
-      id: '/admin/bookings'
-      path: '/admin/bookings'
-      fullPath: '/admin/bookings'
-      preLoaderRoute: typeof AdminBookingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/channels': {
-      id: '/admin/channels'
-      path: '/admin/channels'
-      fullPath: '/admin/channels'
-      preLoaderRoute: typeof AdminChannelsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/chats': {
-      id: '/admin/chats'
-      path: '/admin/chats'
-      fullPath: '/admin/chats'
-      preLoaderRoute: typeof AdminChatsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/dashboard': {
-      id: '/admin/dashboard'
-      path: '/admin/dashboard'
-      fullPath: '/admin/dashboard'
-      preLoaderRoute: typeof AdminDashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/datalayer': {
-      id: '/admin/datalayer'
-      path: '/admin/datalayer'
-      fullPath: '/admin/datalayer'
-      preLoaderRoute: typeof AdminDatalayerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/demand': {
-      id: '/admin/demand'
-      path: '/admin/demand'
-      fullPath: '/admin/demand'
-      preLoaderRoute: typeof AdminDemandRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/enquiries': {
-      id: '/admin/enquiries'
-      path: '/admin/enquiries'
-      fullPath: '/admin/enquiries'
-      preLoaderRoute: typeof AdminEnquiriesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/finance': {
-      id: '/admin/finance'
-      path: '/admin/finance'
-      fullPath: '/admin/finance'
-      preLoaderRoute: typeof AdminFinanceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/franchise-permissions': {
-      id: '/admin/franchise-permissions'
-      path: '/admin/franchise-permissions'
-      fullPath: '/admin/franchise-permissions'
-      preLoaderRoute: typeof AdminFranchisePermissionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/franchises': {
-      id: '/admin/franchises'
-      path: '/admin/franchises'
-      fullPath: '/admin/franchises'
-      preLoaderRoute: typeof AdminFranchisesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/gst': {
-      id: '/admin/gst'
-      path: '/admin/gst'
-      fullPath: '/admin/gst'
-      preLoaderRoute: typeof AdminGstRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/install': {
-      id: '/admin/install'
-      path: '/admin/install'
-      fullPath: '/admin/install'
-      preLoaderRoute: typeof AdminInstallRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/inventory': {
-      id: '/admin/inventory'
-      path: '/admin/inventory'
-      fullPath: '/admin/inventory'
-      preLoaderRoute: typeof AdminInventoryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/otas': {
-      id: '/admin/otas'
-      path: '/admin/otas'
-      fullPath: '/admin/otas'
-      preLoaderRoute: typeof AdminOtasRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/properties': {
-      id: '/admin/properties'
-      path: '/admin/properties'
-      fullPath: '/admin/properties'
-      preLoaderRoute: typeof AdminPropertiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/reviews': {
-      id: '/admin/reviews'
-      path: '/admin/reviews'
-      fullPath: '/admin/reviews'
-      preLoaderRoute: typeof AdminReviewsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/search': {
-      id: '/admin/search'
-      path: '/admin/search'
-      fullPath: '/admin/search'
-      preLoaderRoute: typeof AdminSearchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/security': {
-      id: '/admin/security'
-      path: '/admin/security'
-      fullPath: '/admin/security'
-      preLoaderRoute: typeof AdminSecurityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/tour-pricing': {
-      id: '/admin/tour-pricing'
-      path: '/admin/tour-pricing'
-      fullPath: '/admin/tour-pricing'
-      preLoaderRoute: typeof AdminTourPricingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/tours': {
-      id: '/admin/tours'
-      path: '/admin/tours'
-      fullPath: '/admin/tours'
-      preLoaderRoute: typeof AdminToursRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/traffic': {
-      id: '/admin/traffic'
-      path: '/admin/traffic'
-      fullPath: '/admin/traffic'
-      preLoaderRoute: typeof AdminTrafficRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/whatsapp': {
-      id: '/admin/whatsapp'
-      path: '/admin/whatsapp'
-      fullPath: '/admin/whatsapp'
-      preLoaderRoute: typeof AdminWhatsappRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/book/': {
       id: '/book/'
       path: '/book'
@@ -2302,104 +1597,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DotlovableOauthConsentRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/analytics/': {
-      id: '/admin/analytics/'
-      path: '/admin/analytics'
-      fullPath: '/admin/analytics/'
-      preLoaderRoute: typeof AdminAnalyticsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/analytics/loader-events': {
-      id: '/admin/analytics/loader-events'
-      path: '/admin/analytics/loader-events'
-      fullPath: '/admin/analytics/loader-events'
-      preLoaderRoute: typeof AdminAnalyticsLoaderEventsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/analytics/rum-compare': {
-      id: '/admin/analytics/rum-compare'
-      path: '/admin/analytics/rum-compare'
-      fullPath: '/admin/analytics/rum-compare'
-      preLoaderRoute: typeof AdminAnalyticsRumCompareRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/analytics/search': {
-      id: '/admin/analytics/search'
-      path: '/admin/analytics/search'
-      fullPath: '/admin/analytics/search'
-      preLoaderRoute: typeof AdminAnalyticsSearchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/seo/': {
-      id: '/admin/seo/'
-      path: '/admin/seo'
-      fullPath: '/admin/seo/'
-      preLoaderRoute: typeof AdminSeoIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/seo/competitors': {
-      id: '/admin/seo/competitors'
-      path: '/admin/seo/competitors'
-      fullPath: '/admin/seo/competitors'
-      preLoaderRoute: typeof AdminSeoCompetitorsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/seo/funnel': {
-      id: '/admin/seo/funnel'
-      path: '/admin/seo/funnel'
-      fullPath: '/admin/seo/funnel'
-      preLoaderRoute: typeof AdminSeoFunnelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/seo/gsc-errors': {
-      id: '/admin/seo/gsc-errors'
-      path: '/admin/seo/gsc-errors'
-      fullPath: '/admin/seo/gsc-errors'
-      preLoaderRoute: typeof AdminSeoGscErrorsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/seo/hero-manager': {
-      id: '/admin/seo/hero-manager'
-      path: '/admin/seo/hero-manager'
-      fullPath: '/admin/seo/hero-manager'
-      preLoaderRoute: typeof AdminSeoHeroManagerRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/seo/priority': {
-      id: '/admin/seo/priority'
-      path: '/admin/seo/priority'
-      fullPath: '/admin/seo/priority'
-      preLoaderRoute: typeof AdminSeoPriorityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/seo/recovery': {
-      id: '/admin/seo/recovery'
-      path: '/admin/seo/recovery'
-      fullPath: '/admin/seo/recovery'
-      preLoaderRoute: typeof AdminSeoRecoveryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/seo/schema-results': {
-      id: '/admin/seo/schema-results'
-      path: '/admin/seo/schema-results'
-      fullPath: '/admin/seo/schema-results'
-      preLoaderRoute: typeof AdminSeoSchemaResultsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/seo/tracking': {
-      id: '/admin/seo/tracking'
-      path: '/admin/seo/tracking'
-      fullPath: '/admin/seo/tracking'
-      preLoaderRoute: typeof AdminSeoTrackingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/seo/workflow': {
-      id: '/admin/seo/workflow'
-      path: '/admin/seo/workflow'
-      fullPath: '/admin/seo/workflow'
-      preLoaderRoute: typeof AdminSeoWorkflowRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/destinations/$state/': {
       id: '/destinations/$state/'
       path: '/destinations/$state'
@@ -2438,7 +1635,6 @@ const rootRouteChildren: RootRouteChildren = {
   R4x4ExpeditionMeghalayaRoute: R4x4ExpeditionMeghalayaRoute,
   R5DayMeghalayaItineraryRoute: R5DayMeghalayaItineraryRoute,
   AboutRoute: AboutRoute,
-  AdminLoginRoute: AdminLoginRoute,
   AdventureToursNortheastIndiaRoute: AdventureToursNortheastIndiaRoute,
   AuthRoute: AuthRoute,
   BackpackingIndiaRoute: BackpackingIndiaRoute,
@@ -2492,30 +1688,6 @@ const rootRouteChildren: RootRouteChildren = {
   XtsyAdventureCampsiteDawkiRoute: XtsyAdventureCampsiteDawkiRoute,
   XtsyRentalsRoute: XtsyRentalsRoute,
   XtsyVsZostelRoute: XtsyVsZostelRoute,
-  AdminActivityRoute: AdminActivityRoute,
-  AdminAuditRoute: AdminAuditRoute,
-  AdminBookingsRoute: AdminBookingsRoute,
-  AdminChannelsRoute: AdminChannelsRoute,
-  AdminChatsRoute: AdminChatsRoute,
-  AdminDashboardRoute: AdminDashboardRoute,
-  AdminDatalayerRoute: AdminDatalayerRoute,
-  AdminDemandRoute: AdminDemandRoute,
-  AdminEnquiriesRoute: AdminEnquiriesRoute,
-  AdminFinanceRoute: AdminFinanceRoute,
-  AdminFranchisePermissionsRoute: AdminFranchisePermissionsRoute,
-  AdminFranchisesRoute: AdminFranchisesRoute,
-  AdminGstRoute: AdminGstRoute,
-  AdminInstallRoute: AdminInstallRoute,
-  AdminInventoryRoute: AdminInventoryRoute,
-  AdminOtasRoute: AdminOtasRoute,
-  AdminPropertiesRoute: AdminPropertiesRoute,
-  AdminReviewsRoute: AdminReviewsRoute,
-  AdminSearchRoute: AdminSearchRoute,
-  AdminSecurityRoute: AdminSecurityRoute,
-  AdminTourPricingRoute: AdminTourPricingRoute,
-  AdminToursRoute: AdminToursRoute,
-  AdminTrafficRoute: AdminTrafficRoute,
-  AdminWhatsappRoute: AdminWhatsappRoute,
   BookCampsiteRoute: BookCampsiteRoute,
   BookSelectRoute: BookSelectRoute,
   FranchiseInstallRoute: FranchiseInstallRoute,
@@ -2528,7 +1700,6 @@ const rootRouteChildren: RootRouteChildren = {
   TravelGuideHowToReachMeghalayaRoute: TravelGuideHowToReachMeghalayaRoute,
   TravelGuideMeghalayaForInternationalTouristsRoute:
     TravelGuideMeghalayaForInternationalTouristsRoute,
-  AdminIndexRoute: AdminIndexRoute,
   BookIndexRoute: BookIndexRoute,
   DestinationsIndexRoute: DestinationsIndexRoute,
   ExpeditionsIndexRoute: ExpeditionsIndexRoute,
@@ -2536,21 +1707,7 @@ const rootRouteChildren: RootRouteChildren = {
   TabBistroIndexRoute: TabBistroIndexRoute,
   ToursIndexRoute: ToursIndexRoute,
   DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
-  AdminAnalyticsLoaderEventsRoute: AdminAnalyticsLoaderEventsRoute,
-  AdminAnalyticsRumCompareRoute: AdminAnalyticsRumCompareRoute,
-  AdminAnalyticsSearchRoute: AdminAnalyticsSearchRoute,
-  AdminSeoCompetitorsRoute: AdminSeoCompetitorsRoute,
-  AdminSeoFunnelRoute: AdminSeoFunnelRoute,
-  AdminSeoGscErrorsRoute: AdminSeoGscErrorsRoute,
-  AdminSeoHeroManagerRoute: AdminSeoHeroManagerRoute,
-  AdminSeoPriorityRoute: AdminSeoPriorityRoute,
-  AdminSeoRecoveryRoute: AdminSeoRecoveryRoute,
-  AdminSeoSchemaResultsRoute: AdminSeoSchemaResultsRoute,
-  AdminSeoTrackingRoute: AdminSeoTrackingRoute,
-  AdminSeoWorkflowRoute: AdminSeoWorkflowRoute,
   ExpeditionsTypeRouteRoute: ExpeditionsTypeRouteRoute,
-  AdminAnalyticsIndexRoute: AdminAnalyticsIndexRoute,
-  AdminSeoIndexRoute: AdminSeoIndexRoute,
   DestinationsStateIndexRoute: DestinationsStateIndexRoute,
   DestinationsStateCityAttractionRoute: DestinationsStateCityAttractionRoute,
   DestinationsStateCityIndexRoute: DestinationsStateCityIndexRoute,
