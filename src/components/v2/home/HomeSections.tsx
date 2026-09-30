@@ -65,7 +65,7 @@ export function Trending() {
       <div className="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 lg:grid-cols-6">
         {TRENDING.map((t) => (
           <Link key={t.n} to={t.to} className="xt-reveal xt-lift flex w-[62vw] shrink-0 snap-start flex-col gap-2.5 rounded-[20px] text-xt-ink hover:text-xt-ink sm:w-auto">
-            <Photo src={t.img} alt={t.n} className="aspect-[208/280] rounded-[20px]" tone="pine" sizes="(max-width: 639px) 62vw, (max-width: 1023px) 33vw, 16vw" />
+            <Photo afterLoad src={t.img} alt={t.n} className="aspect-[208/280] rounded-[20px]" tone="pine" sizes="(max-width: 639px) 62vw, (max-width: 1023px) 33vw, 16vw" />
             <span className="px-1 text-[17px] font-extrabold">{t.n}</span>
             <span className="px-1 text-[13px] text-xt-mute">{t.r}</span>
           </Link>
@@ -93,7 +93,7 @@ export function Stays() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {stays.map((s) => (
           <Link key={s.title} to={s.to} className="xt-reveal xt-lift flex flex-col gap-3 rounded-[20px] pb-2 text-xt-ink hover:text-xt-ink">
-            <Photo src={s.img} alt={s.title} tone={s.tone} className="aspect-[314/236] rounded-[20px]" sizes="(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 23vw">
+            <Photo afterLoad src={s.img} alt={s.title} tone={s.tone} className="aspect-[314/236] rounded-[20px]" sizes="(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 23vw">
               <span className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1.5 text-[12px] font-extrabold text-xt-ink">
                 <span className="h-[7px] w-[7px] rounded-full bg-xt-leaf" />Live availability
               </span>
@@ -114,7 +114,7 @@ export function CampsiteBanner() {
   return (
     <section className={`${PAD} pb-20 pt-10`}>
       <Link to="/xtsy-adventure-campsite-dawki" className="xt-reveal xt-lift grid overflow-hidden rounded-[32px] bg-xt-pine text-[#EAF0EA] hover:text-[#EAF0EA] lg:grid-cols-2">
-        <Photo src={first(IMG.campsite)} alt="Tents beside the Umngot river at the Dawki partner campsite" tone="slate" className="aspect-[664/440] lg:aspect-auto lg:min-h-[440px]" />
+        <Photo afterLoad src={first(IMG.campsite)} alt="Tents beside the Umngot river at the Dawki partner campsite" tone="slate" className="aspect-[664/440] lg:aspect-auto lg:min-h-[440px]" />
         <div className="flex flex-col justify-center gap-4 p-7 sm:p-[52px]">
           <span className="xt-eyebrow text-[15px] text-[#F2B8C2]! sm:text-[18px]">New · Dawki riverside camping, via a trusted partner</span>
           <h2 className="xt-display m-0 text-[44px] leading-[0.95] sm:text-[64px]">Sleep beside the clearest river.</h2>
@@ -182,7 +182,7 @@ export function PrimeRail() {
         <div className="xt-rail flex w-max gap-5 pl-4 sm:pl-8 lg:pl-14">
           {doubled.map((p, i) => (
             <Link key={`${p.t}-${i}`} to={p.to} aria-hidden={i >= prime.length ? true : undefined} tabIndex={i >= prime.length ? -1 : undefined} className="xt-lift flex w-[300px] flex-col overflow-hidden rounded-3xl bg-[#2A2F42] text-xt-paper hover:text-xt-paper sm:w-[340px]">
-              <Photo src={p.img} alt={p.t} tone={p.tone} className="h-[200px] sm:h-[220px]" sizes="300px" />
+              <Photo afterLoad src={p.img} alt={p.t} tone={p.tone} className="h-[200px] sm:h-[220px]" sizes="300px" />
               <div className="flex flex-col gap-2 p-[22px]">
                 <span className="text-[12px] font-extrabold tracking-wider text-xt-rose">{p.cat}</span>
                 <span className="text-[21px] font-extrabold">{p.t}</span>
@@ -201,7 +201,7 @@ export function GlampFeature() {
   const suite = roomPrice('xtsy-270');
   return (
     <section className={`relative grid items-center gap-12 overflow-hidden bg-xt-night pb-24 pt-4 text-xt-paper lg:grid-cols-2 lg:gap-16 ${PAD}`}>
-      <Photo src={IMG.suite[2] ?? first(IMG.suite)} alt="Experience by XTSY, the 270° panoramic glass suite" tone="slate" className="xt-reveal aspect-[632/520] rounded-[28px]" />
+      <Photo afterLoad src={IMG.suite[2] ?? first(IMG.suite)} alt="Experience by XTSY, the 270° panoramic glass suite" tone="slate" className="xt-reveal aspect-[632/520] rounded-[28px]" />
       <div className="xt-reveal flex flex-col gap-5">
         <Eyebrow light>India’s First Stargaze Glamp</Eyebrow>
         <h2 className="xt-display m-0 text-[60px] leading-[0.92] sm:text-[84px]">Experience by XTSY</h2>
@@ -239,7 +239,7 @@ export function BistroFeature() {
         </div>
       </div>
       <div className="xt-reveal relative">
-        <Photo src={first(IMG.bistro)} alt="TAB Bistro by XTSY" tone="pine" className="aspect-[632/500] rounded-[28px]" />
+        <Photo afterLoad src={first(IMG.bistro)} alt="TAB Bistro by XTSY" tone="pine" className="aspect-[632/500] rounded-[28px]" />
         <div className="xt-float absolute -left-2 bottom-10 rounded-2xl bg-white px-5 py-4 text-[15px] font-extrabold shadow-lg sm:-left-6">Open daily · 9 AM – 10:30 PM</div>
       </div>
     </section>
@@ -261,7 +261,7 @@ export function ToursRow() {
       <div className="grid gap-6 md:grid-cols-3">
         {picks.map((p) => (
           <Link key={p.slug} to={`/tours/${p.slug}`} className="xt-reveal xt-lift flex flex-col overflow-hidden rounded-3xl bg-white text-xt-ink hover:text-xt-ink">
-            <Photo src={photos[p.slug]} alt={p.title} tone="pine" className="aspect-[426/250]" sizes="(max-width: 767px) 92vw, 31vw" />
+            <Photo afterLoad src={photos[p.slug]} alt={p.title} tone="pine" className="aspect-[426/250]" sizes="(max-width: 767px) 92vw, 31vw" />
             <div className="flex flex-col gap-2.5 p-6">
               <span className="self-start rounded-full bg-xt-sand px-3 py-1.5 text-[13px] font-extrabold">{p.duration}</span>
               <h3 className="m-0 text-[21px] font-extrabold leading-tight">{p.title}</h3>
@@ -295,7 +295,7 @@ export function TonightDeals() {
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {deals.map((d) => (
           <div key={d.n} className="xt-reveal xt-lift flex items-center gap-4 rounded-[22px] bg-white p-5">
-            <Photo src={d.img} alt={d.n} tone={d.tone} className="h-24 w-24 shrink-0 rounded-2xl" sizes="96px" />
+            <Photo afterLoad src={d.img} alt={d.n} tone={d.tone} className="h-24 w-24 shrink-0 rounded-2xl" sizes="96px" />
             <div className="flex min-w-0 flex-grow flex-col gap-1">
               <span className="text-[17px] font-extrabold">{d.n}</span>
               <span className="text-[20px] font-extrabold text-xt-crimson">{d.price} <span className="text-[13px] font-semibold text-xt-mute">{d.was}</span></span>

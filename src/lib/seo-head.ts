@@ -31,7 +31,7 @@ export interface RouteHeadInput {
   preloadImageSrcSet?: string;
   preloadImageSizes?: string;
   /** Optional phone-specific hero (e.g. a portrait crop): preloaded below 768px, the main one above. */
-  preloadMobile?: { href: string; srcSet: string; sizes?: string };
+  preloadMobile?: { href: string; srcSet: string; sizes?: string; type?: string };
   /** JSON-LD objects rendered as <script type="application/ld+json"> */
   jsonLd?: Array<Record<string, unknown>>;
 }
@@ -93,6 +93,7 @@ export function buildRouteHead(input: RouteHeadInput) {
                     href: input.preloadMobile.href,
                     imageSrcSet: input.preloadMobile.srcSet,
                     imageSizes: input.preloadMobile.sizes || "100vw",
+                    ...(input.preloadMobile.type ? { type: input.preloadMobile.type } : {}),
                     fetchPriority: "high" as const,
                     media: "(max-width: 767px)",
                   },
