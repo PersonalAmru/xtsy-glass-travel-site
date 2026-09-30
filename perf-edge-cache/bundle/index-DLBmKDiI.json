@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-BjEutlDF.js",
-      "totalBytes": 708316,
-      "mappedBytes": 694253,
+      "bundleName": ".output/public/assets/index-DLBmKDiI.js",
+      "totalBytes": 708397,
+      "mappedBytes": 694334,
       "unmappedBytes": 13879,
       "eolBytes": 184,
       "sourceMapCommentBytes": 0,
@@ -456,13 +456,13 @@
           "size": 10659
         },
         "../../../src/lib/seo-head.ts": {
-          "size": 1592
+          "size": 1647
         },
         "../../../src/data/siteSchemas.ts": {
           "size": 3113
         },
         "../../../src/routes/index.tsx": {
-          "size": 660
+          "size": 686
         },
         "../../../src/routes/$slug.tsx": {
           "size": 704
