@@ -7,15 +7,26 @@ import os, sys
 from concurrent.futures import ThreadPoolExecutor
 from PIL import Image
 
-QUALITY = 50
+# q38 at speed 5 is visually indistinguishable from q50 on our photos and ~40% smaller
+# (checked side by side on the home hero and tour heroes). --force re-encodes existing files,
+# keeping the new one only when it is smaller.
+QUALITY = 38
+SPEED = 5
+FORCE = '--force' in sys.argv
 
 def convert(path):
     out = path[:-5] + '.avif'
-    if os.path.exists(out) and os.path.getmtime(out) >= os.path.getmtime(path):
+    exists = os.path.exists(out)
+    if exists and not FORCE and os.path.getmtime(out) >= os.path.getmtime(path):
         return 0
     im = Image.open(path)
     im = im.convert('RGBA' if im.mode in ('RGBA', 'LA') else 'RGB')
-    im.save(out, 'AVIF', quality=QUALITY, speed=6)
+    tmp = out + '.tmp'
+    im.save(tmp, 'AVIF', quality=QUALITY, speed=SPEED)
+    if exists and os.path.getsize(tmp) >= os.path.getsize(out):
+        os.remove(tmp)
+        return 0
+    os.replace(tmp, out)
     return 1
 
 files = [os.path.join(d, f) for d in ('public/img/o', 'public/img/px') for f in sorted(os.listdir(d)) if f.endswith('.webp')]
