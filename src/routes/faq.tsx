@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import FaqV2, { faqSchema } from "@/pages/v2/FaqV2";
+import FaqV2 from "@/pages/v2/FaqV2";
+import { faqSchema } from "@/pages/v2/faqData";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/faq")({

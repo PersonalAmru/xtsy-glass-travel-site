@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import PlanTripV2, { planTripSchema } from "@/pages/v2/PlanTripV2";
+import PlanTripV2 from "@/pages/v2/PlanTripV2";
+import { planTripSchema } from "@/pages/v2/planTripData";
 import { buildRouteHead } from "@/lib/seo-head";
 
 export const Route = createFileRoute("/plan-trip-with-ai")({

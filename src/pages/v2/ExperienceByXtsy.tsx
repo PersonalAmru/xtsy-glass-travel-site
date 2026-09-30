@@ -11,7 +11,7 @@ import { IMG } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FeatureCards, PriceCards, FaqList, PAD } from '@/components/v2/blocks';
 import { Photo, waLink } from '@/components/v2/primitives';
 import { inr, roomPrice } from '@/components/v2/pricing';
-import { PANORAMA_WITH_BREAKFAST, PANORAMA_DECORATION, PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
+import { PANORAMA_WITH_BREAKFAST, PANORAMA_DECORATION } from '@/data/panoramaPricing';
 
 const STARS = [
   [80, 60, 1.6, 0], [210, 140, 1.2, 1], [330, 40, 2, 2], [470, 110, 1.4, 1], [560, 30, 1.1, 0], [640, 170, 1.7, 2],
@@ -37,39 +37,6 @@ const FAQS = [
   { q: 'Does the glass suite get hot in the day?', a: 'Daytime sun can warm any glass structure. The suite has climate control, blackout shades and cross ventilation to keep it comfortable.' },
   { q: 'How do I book?', a: 'Experience by XTSY is booked direct only. Reserve on WhatsApp or through the XTSY booking page; the team confirms availability for your date.' },
 ];
-
-/** JSON-LD for the suite — rendered server-side by the /xtsy-270 route head. */
-export function experienceSchema() {
-  const now = roomPrice('xtsy-270').now || XTSY270_DATA.price;
-  return {
-    '@context': 'https://schema.org',
-    '@type': ['LodgingBusiness', 'Accommodation'],
-    '@id': 'https://xtsy.one/xtsy-270#suite',
-    containedInPlace: { '@id': 'https://xtsy.one/#hostel' },
-    geo: { '@type': 'GeoCoordinates', latitude: 25.6025457, longitude: 91.9448902 },
-    telephone: '+918837317070',
-    checkinTime: '11:00',
-    checkoutTime: '10:00',
-    name: "Experience by XTSY – India's First Stargaze Glamp",
-    description: 'A 270° panoramic glass suite for couples at XTSY Travellers Hostel, New Shillong Township, Meghalaya.',
-    url: XTSY270_DATA.canonicalUrl,
-    image: IMG.suite.slice(0, 4).map((p) => `https://xtsy.one${p}`),
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Mawdiangdiang Road, New Shillong Township',
-      addressLocality: 'Shillong',
-      addressRegion: 'Meghalaya',
-      postalCode: '793018',
-      addressCountry: 'IN',
-    },
-    amenityFeature: XTSY270_DATA.features.map((f) => ({ '@type': 'LocationFeatureSpecification', name: f, value: true })),
-    offers: { '@type': 'Offer', priceCurrency: 'INR', price: String(now), availability: 'https://schema.org/LimitedAvailability', url: 'https://xtsy.one/xtsy-270' },
-    makesOffer: [
-      { '@type': 'Offer', name: 'Stay only', price: String(PANORAMA_STAY_ONLY), priceCurrency: 'INR' },
-      { '@type': 'Offer', name: 'Stay with breakfast for two', price: String(PANORAMA_WITH_BREAKFAST), priceCurrency: 'INR' },
-    ],
-  };
-}
 
 export default function ExperienceByXtsy() {
   const [b2bOpen, setB2bOpen] = useState(false);
