@@ -1,0 +1,57 @@
+name: Live server probe (manual)
+
+# On-demand only. Requests key pages and assets on the LIVE site three times each and records
+# status, time to first byte and caching headers. Saves to ci-screenshots (live-probe/).
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'Space-separated paths (blank = key pages)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${GITHUB_REF_NAME}"
+          git checkout -q FETCH_HEAD
+
+      - name: Probe live site
+        run: bash scripts/audit/live-probe.sh
+        env:
+          OUT_DIR: health
+          PROBE_URLS: ${{ inputs.urls }}
+
+      - name: Publish report
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/pub && cd /tmp/pub
+          git init -q .
+          git config user.name "xtsy-ci"
+          git config user.email "ci@xtsy.one"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git fetch --depth=1 origin ci-screenshots 2>/dev/null; then git checkout -q FETCH_HEAD; else git checkout -q --orphan ci-screenshots; fi
+          rm -rf live-probe && mkdir -p live-probe
+          cp -r "$GITHUB_WORKSPACE/health/." live-probe/
+          git add -A
+          git commit -q -m "Live probe @ $(date -u +%FT%TZ)" || exit 0
+          for i in 1 2 3 4 5; do
+            git push -q origin HEAD:ci-screenshots && exit 0
+            git fetch -q --depth=1 origin ci-screenshots && git rebase -q FETCH_HEAD || true
+            sleep 5
+          done
+          exit 1
