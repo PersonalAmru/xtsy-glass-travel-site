@@ -170,7 +170,8 @@ function priceAnswer(): string {
 
 function distanceAnswer(places: Place[], t: string): string | null {
   if (!/how far|distance|how long|hours from|km from|drive (time|from)|travel time/.test(t)) return null;
-  let [a, b] = places;
+  let a: Place | undefined = places[0];
+  let b: Place | undefined = places[1];
   if (!a) return 'Tell me the place and I’ll give you the drive time — for example “How far is Dawki from Shillong?”';
   // "from Shillong" / "from XTSY" means from our hostel.
   const isShillong = (p?: Place) => !!p && (p.id === 'shillong' || p.cluster === 'shillong' && p.id !== 'laitlum' && p.id !== 'mawphlang');
