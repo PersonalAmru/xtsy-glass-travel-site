@@ -2,11 +2,11 @@
  {
   "route": "/",
   "status": 200,
-  "wallMs": 14756,
-  "ttfb": 19,
-  "fcp": 1832,
+  "wallMs": 14492,
+  "ttfb": 34,
+  "fcp": 1768,
   "lcp": {
-   "t": 4188,
+   "t": 4204,
    "size": 249600,
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-828.avif",
    "tag": "IMG",
@@ -15,7 +15,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1832,
+    "t": 1768,
     "size": 38540,
     "url": "",
     "tag": "H1",
@@ -23,7 +23,7 @@
     "text": "XTSY Travellers Hostel"
    },
    {
-    "t": 4188,
+    "t": 4204,
     "size": 249600,
     "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-828.avif",
     "tag": "IMG",
@@ -35,7 +35,7 @@
   "shifts": [
    {
     "v": 0.0099,
-    "t": 3035,
+    "t": 2942,
     "nodes": [
      "DIV.max-w-5xl"
     ],
@@ -47,7 +47,7 @@
     ]
    }
   ],
-  "requests": 91,
+  "requests": 90,
   "byType": {
    "document": {
     "n": 1,
@@ -78,7 +78,7 @@
     "kb": 15
    },
    "ping": {
-    "n": 2,
+    "n": 1,
     "kb": 0
    },
    "other": {
@@ -114,7 +114,7 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69s1",
     "type": "script",
-    "bytes": 198652,
+    "bytes": 198650,
     "kb": 194
    },
    {
@@ -164,11 +164,11 @@
  {
   "route": "/best-hostel-in-shillong",
   "status": 200,
-  "wallMs": 15454,
-  "ttfb": 13,
-  "fcp": 1648,
+  "wallMs": 15114,
+  "ttfb": 14,
+  "fcp": 1516,
   "lcp": {
-   "t": 1648,
+   "t": 1516,
    "size": 82984,
    "url": "",
    "tag": "P",
@@ -177,7 +177,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1648,
+    "t": 1516,
     "size": 82984,
     "url": "",
     "tag": "P",
@@ -185,21 +185,34 @@
     "text": "For most travellers the best-rated hostel in Shillong is XTS"
    }
   ],
-  "cls": 0.02,
+  "cls": 0.018,
   "shifts": [
    {
-    "v": 0.0197,
-    "t": 3433,
+    "v": 0.0005,
+    "t": 3256,
+    "nodes": [
+     "#text."
+    ],
+    "rects": [
+     "14,232 362x120 -> 14,229 362x120"
+    ],
+    "text": [
+     "Hostels in Shillong"
+    ]
+   },
+   {
+    "v": 0.0172,
+    "t": 3316,
     "nodes": [
      "DIV.rounded-[22px] bg-xt-blush p-5",
-     "#text.",
+     "H1.xt-display m-0 text-[56px] leading-[0.9] sm:text-[88px]",
      "DIV.flex flex-wrap gap-2",
      "IMG.absolute inset-0 h-full w-full object-cover",
      "svg.[object SVGAnimatedString]"
     ],
     "rects": [
      "14,357 362x322 -> 14,336 362x322",
-     "14,232 362x120 -> 14,208 362x120",
+     "14,229 362x120 -> 14,208 362x120",
      "14,696 362x91 -> 14,675 362x91",
      "14,815 362x29 -> 14,794 362x50",
      "166,794 210x50 -> 166,794 210x50"
@@ -213,19 +226,19 @@
     ]
    }
   ],
-  "requests": 89,
+  "requests": 90,
   "byType": {
    "document": {
     "n": 1,
     "kb": 73
    },
-   "image": {
-    "n": 8,
-    "kb": 361
-   },
    "stylesheet": {
     "n": 3,
     "kb": 397
+   },
+   "image": {
+    "n": 8,
+    "kb": 361
    },
    "script": {
     "n": 45,
@@ -244,7 +257,7 @@
     "kb": 15
    },
    "ping": {
-    "n": 1,
+    "n": 2,
     "kb": 0
    },
    "other": {
@@ -280,7 +293,7 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69s1",
     "type": "script",
-    "bytes": 198652,
+    "bytes": 198650,
     "kb": 194
    },
    {
@@ -330,11 +343,11 @@
  {
   "route": "/cheap-hostels-shillong",
   "status": 200,
-  "wallMs": 15459,
-  "ttfb": 50,
-  "fcp": 1660,
+  "wallMs": 15276,
+  "ttfb": 26,
+  "fcp": 1628,
   "lcp": {
-   "t": 1660,
+   "t": 1628,
    "size": 65727,
    "url": "",
    "tag": "P",
@@ -343,7 +356,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1660,
+    "t": 1628,
     "size": 65727,
     "url": "",
     "tag": "P",
@@ -355,7 +368,7 @@
   "shifts": [
    {
     "v": 0.0423,
-    "t": 3445,
+    "t": 3377,
     "nodes": [
      "DIV.rounded-[22px] bg-xt-blush p-5",
      "DIV.flex flex-wrap gap-2",
@@ -379,7 +392,7 @@
     ]
    }
   ],
-  "requests": 90,
+  "requests": 91,
   "byType": {
    "document": {
     "n": 1,
@@ -402,15 +415,15 @@
     "kb": 92
    },
    "fetch": {
-    "n": 16,
+    "n": 17,
     "kb": 2
    },
    "xhr": {
-    "n": 7,
+    "n": 8,
     "kb": 15
    },
    "ping": {
-    "n": 2,
+    "n": 1,
     "kb": 0
    },
    "other": {
@@ -446,7 +459,7 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69s1",
     "type": "script",
-    "bytes": 198652,
+    "bytes": 198650,
     "kb": 194
    },
    {
@@ -496,11 +509,11 @@
  {
   "route": "/shillong-dormitory",
   "status": 200,
-  "wallMs": 14311,
-  "ttfb": 29,
-  "fcp": 1660,
+  "wallMs": 14132,
+  "ttfb": 33,
+  "fcp": 1576,
   "lcp": {
-   "t": 1660,
+   "t": 1576,
    "size": 94068,
    "url": "",
    "tag": "P",
@@ -509,7 +522,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1660,
+    "t": 1576,
     "size": 94068,
     "url": "",
     "tag": "P",
@@ -521,7 +534,7 @@
   "shifts": [
    {
     "v": 0.0041,
-    "t": 3374,
+    "t": 3280,
     "nodes": [
      "#text.",
      "#text."
@@ -536,7 +549,7 @@
     ]
    }
   ],
-  "requests": 87,
+  "requests": 90,
   "byType": {
    "document": {
     "n": 1,
@@ -567,7 +580,7 @@
     "kb": 15
    },
    "ping": {
-    "n": 1,
+    "n": 4,
     "kb": 0
    },
    "other": {
@@ -603,13 +616,13 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69s1",
     "type": "script",
-    "bytes": 198652,
+    "bytes": 198650,
     "kb": 194
    },
    {
     "url": "https://www.googletagmanager.com/gtm.js?id=GTM-5FXJ9QBK",
     "type": "script",
-    "bytes": 163583,
+    "bytes": 163568,
     "kb": 160
    },
    {
@@ -653,11 +666,11 @@
  {
   "route": "/xtsy-270",
   "status": 200,
-  "wallMs": 16146,
-  "ttfb": 14,
-  "fcp": 1676,
+  "wallMs": 15740,
+  "ttfb": 10,
+  "fcp": 1668,
   "lcp": {
-   "t": 1676,
+   "t": 1668,
    "size": 48927,
    "url": "",
    "tag": "H1",
@@ -666,7 +679,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1676,
+    "t": 1668,
     "size": 48927,
     "url": "",
     "tag": "H1",
@@ -678,7 +691,7 @@
   "shifts": [
    {
     "v": 0.0096,
-    "t": 3592,
+    "t": 3540,
     "nodes": [
      "#text.",
      "#text.",
@@ -696,7 +709,7 @@
     ]
    }
   ],
-  "requests": 88,
+  "requests": 87,
   "byType": {
    "document": {
     "n": 1,
@@ -727,7 +740,7 @@
     "kb": 15
    },
    "ping": {
-    "n": 2,
+    "n": 1,
     "kb": 0
    },
    "other": {
@@ -763,7 +776,7 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69s1",
     "type": "script",
-    "bytes": 198652,
+    "bytes": 198650,
     "kb": 194
    },
    {
@@ -813,11 +826,11 @@
  {
   "route": "https://xtsy.one/",
   "status": 200,
-  "wallMs": 18821,
-  "ttfb": 1871,
-  "fcp": 4564,
+  "wallMs": 18932,
+  "ttfb": 2174,
+  "fcp": 4692,
   "lcp": {
-   "t": 6708,
+   "t": 7424,
    "size": 249600,
    "url": "https://xtsy.one/img/o/xtsy-property-images-8-portrait-828.webp",
    "tag": "IMG",
@@ -826,7 +839,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 4564,
+    "t": 4692,
     "size": 38556,
     "url": "",
     "tag": "H1",
@@ -834,7 +847,7 @@
     "text": "XTSY Travellers Hostel"
    },
    {
-    "t": 6708,
+    "t": 7424,
     "size": 249600,
     "url": "https://xtsy.one/img/o/xtsy-property-images-8-portrait-828.webp",
     "tag": "IMG",
@@ -844,27 +857,27 @@
   ],
   "cls": 0,
   "shifts": [],
-  "requests": 95,
+  "requests": 93,
   "byType": {
    "document": {
     "n": 1,
     "kb": 147
    },
-   "script": {
-    "n": 46,
-    "kb": 2454
-   },
    "image": {
     "n": 10,
     "kb": 582
    },
+   "script": {
+    "n": 46,
+    "kb": 2454
+   },
    "stylesheet": {
     "n": 3,
-    "kb": 397
+    "kb": 398
    },
    "font": {
     "n": 5,
-    "kb": 92
+    "kb": 86
    },
    "fetch": {
     "n": 19,
@@ -879,7 +892,7 @@
     "kb": 0
    },
    "other": {
-    "n": 3,
+    "n": 1,
     "kb": 0
    }
   },
@@ -911,7 +924,7 @@
    {
     "url": "https://www.googletagmanager.com/gtag/js?id=AW-17456979648&cx=c&gtm=4e69s1",
     "type": "script",
-    "bytes": 198652,
+    "bytes": 198650,
     "kb": 194
    },
    {

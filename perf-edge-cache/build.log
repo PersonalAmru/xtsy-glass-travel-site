@@ -257,7 +257,7 @@ computing gzip size...
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 4.90s[39m
+[32m✓ built in 4.71s[39m
 [36mvite v8.2.1 [32mbuilding ssr environment for production...[36m[39m
 [2Ktransforming...✓ 500 modules transformed.
 rendering chunks...
@@ -444,7 +444,7 @@ node_modules/.nitro/vite/services/ssr/assets/guidePageData-CXDoPR8Y.js          
 
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 1.99s[39m
+[32m✓ built in 1.85s[39m
 [start] [nitro] Building [[35mNitro[39m] [2m(preset: `cloudflare-module`, compatibility: `2026-09-30`)[22m
 [success] [nitro] Generated public [36m.output/public[39m
 [36mvite v8.2.1 [32mbuilding nitro environment for production...[36m[39m
@@ -640,7 +640,7 @@ computing gzip size...
 .output/server/_libs/@tanstack/router-core+[...].mjs                   122.26 kB │ gzip:  25.84 kB
 .output/server/_libs/react-day-picker.mjs                              135.54 kB │ gzip:  26.54 kB
 .output/server/_ssr/travelData-i_4JIb_e.mjs                            138.18 kB │ gzip:  35.75 kB
-.output/server/index.mjs                                               253.41 kB │ gzip:  47.70 kB
+.output/server/index.mjs                                               253.41 kB │ gzip:  47.29 kB
 .output/server/_libs/supabase__auth-js.mjs                             312.48 kB │ gzip:  63.71 kB
 .output/server/_libs/@sentry/browser+[...].mjs                         346.93 kB │ gzip:  82.23 kB
 .output/server/_libs/framer-motion.mjs                                 352.40 kB │ gzip:  92.38 kB
@@ -648,7 +648,7 @@ computing gzip size...
 .output/server/_libs/@tanstack/react-router+[...].mjs                  648.93 kB │ gzip: 136.97 kB
 .output/server/_ssr/guidePageData-CXDoPR8Y.mjs                         991.44 kB │ gzip: 239.31 kB
 
-[32m✓ built in 2.49s[39m
+[32m✓ built in 2.24s[39m
 [info] [nitro] Using auto generated worker name: `personalamru-xtsy-glass-travel-site`
 [info] Generated [36m.output/server/wrangler.json[39m
 [info] Generated [36m.wrangler/deploy/config.json[39m
