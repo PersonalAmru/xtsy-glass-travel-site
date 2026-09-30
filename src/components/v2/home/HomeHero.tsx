@@ -2,15 +2,18 @@
  * Homepage hero (v2): photographic headline, live booking search, the
  * "Plan a trip with AI" assistant (embedded) and the pet-friendly promo.
  */
-import { useEffect, useState, type FormEvent, type MouseEvent as ReactMouseEvent } from 'react';
+import { lazy, Suspense, useEffect, useState, type FormEvent, type MouseEvent as ReactMouseEvent } from 'react';
 import { Link, useNavigate } from '@/lib/router-compat';
 import { formatLocalDateString } from '@/lib/date-utils';
 import { useComponentTracking } from '@/hooks/useComponentTracking';
 import { Button } from '@/components/ui/button';
-import TripChat from '../TripChat';
 import { HERO_IMAGE } from '@/data/v2Images';
 import { responsive } from '../primitives';
 import { avifSrcSet } from '@/data/cdnImages';
+
+// The trip planner sits below the fold: its code (assistant, places, routes) loads in its own
+// chunk instead of competing with the hero photo. It is still server-rendered.
+const TripChat = lazy(() => import('../TripChat'));
 
 const addDays = (iso: string, n: number) => {
   const d = new Date(`${iso}T00:00:00`);
@@ -132,7 +135,9 @@ export default function HomeHero() {
             <PeekingCat />
           </Link>
         </div>
-        <TripChat className="lg:col-span-8" />
+        <Suspense fallback={<div className="min-h-[560px] lg:col-span-8" />}>
+          <TripChat className="lg:col-span-8" />
+        </Suspense>
       </section>
     </>
   );
