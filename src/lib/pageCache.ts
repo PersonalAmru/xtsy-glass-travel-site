@@ -99,6 +99,38 @@ function respond(entry: Entry, state: string): Response {
   return new Response(entry.body, { status: entry.status, headers: h });
 }
 
+const decode = (v: string) => v.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'");
+
+/**
+ * Turn the page's own high-priority image preloads (the hero) into an HTTP Link header, so the
+ * browser starts the hero as soon as the response headers arrive — ahead of the ~30 script
+ * preloads that come first in <head>. (Hosts that support 103 Early Hints can send it even earlier.)
+ */
+export function heroLinkHeader(html: string): string | null {
+  const head = html.slice(0, html.indexOf('</head>') > 0 ? html.indexOf('</head>') : 20000);
+  const out: string[] = [];
+  for (const m of head.matchAll(/<link\b[^>]*>/gi)) {
+    const tag = m[0];
+    const attr = (name: string) => {
+      const r = new RegExp(`\\s${name}="([^"]*)"`, 'i').exec(tag);
+      return r ? decode(r[1]) : null;
+    };
+    if (attr('rel')?.toLowerCase() !== 'preload' || attr('as')?.toLowerCase() !== 'image') continue;
+    if ((attr('fetchpriority') ?? '').toLowerCase() !== 'high') continue;
+    const href = attr('href');
+    if (!href || /[<>\r\n]/.test(href)) continue;
+    const parts = [`<${href}>`, 'rel=preload', 'as=image', 'fetchpriority=high'];
+    for (const k of ['imagesrcset', 'imagesizes', 'media', 'type']) {
+      const v = attr(k);
+      if (v && !/["\r\n]/.test(v)) parts.push(`${k}="${v}"`);
+    }
+    out.push(parts.join('; '));
+    if (out.length >= 3) break;
+  }
+  const value = out.join(', ');
+  return value && value.length < 4000 ? value : null;
+}
+
 /** Render, store if cacheable, and return a fresh response. Concurrent requests share one render. */
 async function renderAndStore(key: string, render: () => Promise<Response>): Promise<Response> {
   const running = inflight.get(key);
@@ -108,6 +140,12 @@ async function renderAndStore(key: string, render: () => Promise<Response>): Pro
     if (!storable(res)) return res;
     const body = await res.arrayBuffer();
     const headers = [...res.headers.entries()].filter(([k]) => !/^(content-length|content-encoding)$/i.test(k));
+    try {
+      const link = heroLinkHeader(new TextDecoder().decode(body.slice(0, 60000)));
+      if (link && !res.headers.has('link')) headers.push(['link', link]);
+    } catch {
+      /* no hint — page still works */
+    }
     const entry: Entry = { t: Date.now(), status: res.status, headers, body };
     await write(key, entry);
     return respond(entry, 'MISS');
