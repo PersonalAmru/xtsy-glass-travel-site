@@ -50,3 +50,16 @@ export function hasCdn(key: string): boolean {
 }
 
 export { CDN_IMAGE_MAP };
+
+const OURS = /^\/img\/(?:o|px)\/[^\s,]+\.webp$/;
+/**
+ * AVIF twin of one of our optimised WebP srcsets (every /img/o and /img/px WebP has an .avif
+ * next to it — enforced in CI by scripts/audit/check-avif.sh). Null when any entry isn't ours.
+ */
+export function avifSrcSet(srcSet?: string | null): string | null {
+  if (!srcSet) return null;
+  const parts = srcSet.split(',').map((p) => p.trim()).filter(Boolean);
+  if (!parts.length || !parts.every((p) => OURS.test(p.split(/\s+/)[0]))) return null;
+  return parts.map((p) => p.replace(/\.webp(?=\s|$)/, '.avif')).join(', ');
+}
+export const avifUrl = (src?: string | null): string | null => (src && OURS.test(src) ? src.replace(/\.webp$/, '.avif') : null);

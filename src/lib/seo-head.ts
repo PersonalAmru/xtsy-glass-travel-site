@@ -1,3 +1,4 @@
+import { avifSrcSet, avifUrl } from "@/data/cdnImages";
 /**
  * TanStack-native head() builder.
  *
@@ -43,7 +44,15 @@ export function canonicalFor(path: string): string {
   return `${SITE_URL}${clean.replace(/\/+$/, "")}`;
 }
 
+/** Our optimised photos have AVIF twins; preload those (typed, so non-AVIF browsers skip it). */
+function avifPreload(href?: string, srcSet?: string) {
+  const set = avifSrcSet(srcSet);
+  const url = avifUrl(href);
+  return set && url ? { href: url, srcSet: set } : null;
+}
+
 export function buildRouteHead(input: RouteHeadInput) {
+  const av = input.preloadImage ? avifPreload(input.preloadImage, input.preloadImageSrcSet) : null;
   const url = canonicalFor(input.path);
   const image = input.image || DEFAULT_OG_IMAGE;
 
@@ -75,10 +84,11 @@ export function buildRouteHead(input: RouteHeadInput) {
             {
               rel: "preload",
               as: "image",
-              href: input.preloadImage,
+              href: av ? av.href : input.preloadImage,
+              ...(av ? { type: "image/avif" } : {}),
               ...(input.preloadImageSrcSet
                 ? {
-                    imageSrcSet: input.preloadImageSrcSet,
+                    imageSrcSet: av ? av.srcSet : input.preloadImageSrcSet,
                     imageSizes: input.preloadImageSizes || "100vw",
                   }
                 : {}),
