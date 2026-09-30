@@ -121,6 +121,7 @@ async function psi() {
       if (!r.ok) { out[p] = { error: r.status, message: j?.error?.message?.slice(0, 160) }; continue; }
       const f = (x: any) => x ? { lcp: x.metrics?.LARGEST_CONTENTFUL_PAINT_MS?.percentile, lcpCategory: x.metrics?.LARGEST_CONTENTFUL_PAINT_MS?.category, inp: x.metrics?.INTERACTION_TO_NEXT_PAINT?.percentile, cls: x.metrics?.CUMULATIVE_LAYOUT_SHIFT_SCORE?.percentile, ttfb: x.metrics?.EXPERIMENTAL_TIME_TO_FIRST_BYTE?.percentile, fcp: x.metrics?.FIRST_CONTENTFUL_PAINT_MS?.percentile, overall: x.overall_category } : null;
       const a = j.lighthouseResult?.audits ?? {};
+      try { fs.writeFileSync(`${OUT}/psi${p.replace(/\//g, '_') || '_home'}.json`, JSON.stringify(j.lighthouseResult ?? {})); } catch { /* ignore */ }
       out[p] = {
         field: f(j.loadingExperience), originField: f(j.originLoadingExperience),
         lab: { score: Math.round((j.lighthouseResult?.categories?.performance?.score ?? 0) * 100), lcp: a['largest-contentful-paint']?.displayValue, fcp: a['first-contentful-paint']?.displayValue, tbt: a['total-blocking-time']?.displayValue, si: a['speed-index']?.displayValue, cls: a['cumulative-layout-shift']?.displayValue },
