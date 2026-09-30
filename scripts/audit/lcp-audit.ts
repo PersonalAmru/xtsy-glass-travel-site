@@ -82,7 +82,12 @@ async function measure(page: Page, url: string): Promise<Run> {
         images: pre.filter((r) => r.initiatorType === 'img' || /\.(webp|avif|jpe?g|png)(\?|$)/.test(r.name))
           .map((r) => ({ url: r.name.replace(location.origin, '').slice(-70), kb: Math.round((r.transferSize || r.encodedBodySize) / 1024), start: Math.round(r.startTime) }))
           .sort((a, b) => b.kb - a.kb).slice(0, 10),
+        scripts: pre.filter((r) => r.initiatorType === 'script' || r.initiatorType === 'link' && /\.m?js(\?|$)/.test(r.name) || /\.m?js(\?|$)/.test(r.name))
+          .map((r) => ({ url: r.name.replace(location.origin, '').slice(-60), kb: Math.round((r.transferSize || r.encodedBodySize) / 1024), start: Math.round(r.startTime), end: Math.round(r.responseEnd) }))
+          .sort((a, b) => a.start - b.start).slice(0, 30),
       },
+      headOrder: [...document.head.querySelectorAll('link[rel=preload],link[rel=modulepreload],link[rel=stylesheet],script[src]')].slice(0, 40)
+        .map((l) => `${l.tagName === 'SCRIPT' ? 'script' : l.getAttribute('rel')}${l.getAttribute('as') ? ':' + l.getAttribute('as') : ''} ${(l.getAttribute('href') || l.getAttribute('src') || l.getAttribute('imagesrcset') || '').slice(-50)}`),
       thirdParty: Object.entries(res.filter((r) => !r.name.includes(host)).reduce((m, r) => { const h = new URL(r.name).host; m[h] = (m[h] ?? 0) + (r.transferSize || r.encodedBodySize || 0); return m; }, {} as Record<string, number>))
         .map(([h, b]) => ({ host: h, kb: Math.round(b / 1024) })).sort((a, b) => b.kb - a.kb).slice(0, 8),
       preloads: [...document.querySelectorAll('link[rel="preload"]')].map((l) => `${l.getAttribute('as')}:${(l.getAttribute('href') || l.getAttribute('imagesrcset') || '').slice(0, 90)}${l.getAttribute('fetchpriority') ? ' fp=' + l.getAttribute('fetchpriority') : ''}`),
