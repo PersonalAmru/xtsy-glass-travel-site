@@ -1,5 +1,4 @@
 import { Link } from '@/lib/router-compat';
-import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -8,11 +7,6 @@ import { Calendar } from 'lucide-react';
 
 const BlogItinerary3Day = () => (
   <div className="min-h-screen bg-background">
-    <Helmet>
-      <title>3-Day Meghalaya Itinerary 2026 — Weekend Trip Guide</title>
-      <meta name="description" content="Perfect 3-day Meghalaya itinerary for a weekend trip. Shillong, Elephant Falls, Laitlum Canyons, and more. Day-by-day plan with tips." />
-      <link rel="canonical" href="https://xtsy.one/3-day-meghalaya-itinerary" />
-    </Helmet>
     <Header />
     <main className="pt-20">
       <div className="container mx-auto px-4 max-w-4xl py-12">
