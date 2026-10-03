@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-10-03T07:51:19.785Z",
+ "checkedAt": "2026-10-03T08:00:55.732Z",
  "site": "https://xtsy.one",
  "sitemaps": [
   {
@@ -57,8 +57,8 @@
  "healthy": 668,
  "withIssues": 0,
  "byIssue": {},
- "medianMs": 51,
- "p95Ms": 652,
+ "medianMs": 41,
+ "p95Ms": 100,
  "withStructuredData": 668,
  "withQuickAnswer": 482,
  "extra": {
