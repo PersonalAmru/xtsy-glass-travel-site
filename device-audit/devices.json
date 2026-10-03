@@ -1,0 +1,3034 @@
+[
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/",
+  "status": 200,
+  "loadMs": 3254,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 1502,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 849,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 780,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 545,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 504,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 2418,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 661,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 1291,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 503,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 690,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 1388,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 946,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 720,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/",
+  "status": 200,
+  "loadMs": 1497,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 679,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 1164,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 862,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 510,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 853,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 1666,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 541,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 394,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 495,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 1742,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 2464,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 1101,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-se",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 865,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/",
+  "status": 200,
+  "loadMs": 1405,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 779,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 1445,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 708,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 1571,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 853,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 2186,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 587,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 554,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 585,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 646,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 1316,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 626,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "iphone-15-pro-max",
+  "group": "iOS phone",
+  "engine": "webkit",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 595,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/",
+  "status": 200,
+  "loadMs": 923,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 804,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 871,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 1204,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 449,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 579,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 2212,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 510,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 1460,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 475,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 611,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 2633,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 597,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-mini",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 482,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/",
+  "status": 200,
+  "loadMs": 891,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 1033,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 898,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 1168,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 1320,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 1256,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 2655,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 956,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 469,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 969,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 533,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 982,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 864,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 553,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/",
+  "status": 200,
+  "loadMs": 624,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 708,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 1086,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 651,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 494,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 551,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 2634,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 611,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 1077,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 668,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 396,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 853,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 759,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "ipad-pro-11-landscape",
+  "group": "iPad",
+  "engine": "webkit",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 458,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/",
+  "status": 200,
+  "loadMs": 1033,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 569,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 737,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 438,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 436,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 511,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 1790,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 520,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 444,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 431,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 476,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 7129,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 837,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-safari-1440",
+  "group": "Desktop",
+  "engine": "webkit",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 501,
+  "error": "Error: page.evaluate: ReferenceError: Can't find variable: __name",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
+   "Failed to load resource: the server responded with a status of 429 (Unknown Error)",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/",
+  "status": 200,
+  "loadMs": 457,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": [
+   "404 /travel"
+  ]
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 335,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 309,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 378,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 270,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 322,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 360,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": [
+   "404 /travel"
+  ]
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 284,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 319,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 207,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 226,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 335,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 845,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "pixel-7",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 363,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/",
+  "status": 200,
+  "loadMs": 618,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": [
+   "404 /travel"
+  ]
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 262,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 317,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 217,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 226,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 224,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 319,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": [
+   "404 /travel"
+  ]
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 509,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 189,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 286,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 271,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 356,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 620,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-s24-ultra",
+  "group": "Android phone",
+  "engine": "chromium",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 219,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/",
+  "status": 200,
+  "loadMs": 942,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 289,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 281,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 439,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Failed to load resource: the server responded with a status of 429 ()",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}",
+   "Failed to load resource: the server responded with a status of 401 ()"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 257,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 280,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 337,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 313,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 563,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 660,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 257,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 939,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 368,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "galaxy-tab-s9",
+  "group": "Android tablet",
+  "engine": "chromium",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 265,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/",
+  "status": 200,
+  "loadMs": 1462,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 307,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 402,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 524,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 255,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 286,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 396,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 332,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 251,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 274,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 262,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 757,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 370,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "desktop-chrome-1920",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 316,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/",
+  "status": 200,
+  "loadMs": 1098,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "loadMs": 352,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/xtsy-270",
+  "status": 200,
+  "loadMs": 380,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "loadMs": 913,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/book",
+  "status": 200,
+  "loadMs": 332,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/tab-bistro",
+  "status": 200,
+  "loadMs": 312,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/tours",
+  "status": 200,
+  "loadMs": 408,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "loadMs": 348,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "loadMs": 288,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/contact",
+  "status": 200,
+  "loadMs": 302,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/faq",
+  "status": 200,
+  "loadMs": 283,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/gallery",
+  "status": 200,
+  "loadMs": 443,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/female-travellers",
+  "status": 200,
+  "loadMs": 295,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ },
+ {
+  "device": "laptop-chrome-1366",
+  "group": "Desktop",
+  "engine": "chromium",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "loadMs": 265,
+  "error": "Error: page.evaluate: ReferenceError: __name is not defined\n    at eval (eval at evaluate (:290:30), <anonymous>:1:52)\n    at UtilityScript.evaluate (<anonymous>:292:16)\n    at UtilityScript.<anonymou",
+  "errors": [
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
+   "Access to fetch at 'https://ipapi.co/json/' from origin 'https://xtsy.one' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present o",
+   "Failed to load resource: net::ERR_FAILED",
+   "Failed to load resource: the server responded with a status of 401 ()",
+   "[Analytics] Session init error: {code: 42501, details: null, hint: null, message: permission denied for table traffic_visitor_history}"
+  ],
+  "failed": []
+ }
+]
