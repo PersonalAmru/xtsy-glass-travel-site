@@ -29,12 +29,12 @@ export function stayHubCopy(v: StayHubVariant) {
     title: cheap ? `Cheap Hostels in Shillong — Dorm Beds from ${dorm} | XTSY` : `Hostels in Shillong 2026 — Dorms from ${dorm} | XTSY`,
     description: cheap
       ? `Cheap hostel in Shillong? XTSY dorm beds from ${dorm}, women-only dorm, lockers, Wi-Fi, TAB Bistro on site. New Shillong Township. Book direct, no OTA mark-up.`
-      : `XTSY Travellers Hostel, New Shillong Township (4.8★, 161 Google reviews): dorms from ${dorm}, a women-only dorm, private rooms and a glass suite.`,
+      : `XTSY Travellers Hostel, New Shillong Township (4.7★, 237 Google reviews): dorms from ${dorm}, a women-only dorm, private rooms and a glass suite.`,
     h1: cheap ? 'Cheap hostels in Shillong' : 'Hostels in Shillong',
     eyebrow: cheap ? `Budget beds from ${dorm} · book direct` : 'The 2026 guide · by the team that runs XTSY',
     quick: cheap
       ? `The cheapest good bed in Shillong at XTSY Travellers Hostel is an 8-bed dorm bunk at ${dorm} a night, with a curtain, locker and charging point. Women can pick the women-only dorm at ${inr(roomPrice('4-bed-female-only-dorm').now)}. You save more by booking direct on xtsy.one or WhatsApp (+91 88373 17070), staying midweek and staying 3+ nights.`
-      : `For most travellers the best-rated hostel in Shillong is XTSY Travellers Hostel in New Shillong Township (4.8★ from 161 Google reviews): dorms from ${dorm}, a women-only dorm, King Double rooms at ${inr(roomPrice('king-double-room').now)} and the Experience by XTSY glass suite. It’s quieter and greener than central Shillong, about 30 minutes by road from Police Bazaar, with TAB Bistro on site.`,
+      : `For most travellers a top pick in Shillong is XTSY Travellers Hostel in New Shillong Township (4.7★ from 237 Google reviews): dorms from ${dorm}, a women-only dorm, King Double rooms at ${inr(roomPrice('king-double-room').now)} and the Experience by XTSY glass suite. It’s quieter and greener than central Shillong, about 30 minutes by road from Police Bazaar, with TAB Bistro on site.`,
     keywords: cheap
       ? 'cheap hostel in shillong, cheap hostels shillong, budget hostel shillong, dorm bed shillong price, affordable stay shillong'
       : 'hostels in shillong, hostel in shillong, best hostels in shillong, backpacker hostel shillong, female dorm shillong, hostel near iim shillong',
@@ -44,7 +44,7 @@ export function stayHubCopy(v: StayHubVariant) {
 export function stayHubFaqs(v: StayHubVariant): { q: string; a: string }[] {
   const dorm = inr(lowestDormPrice());
   const base = [
-    { q: 'Which is the best hostel in Shillong?', a: `XTSY Travellers Hostel in New Shillong Township is one of the best-rated hostels in Shillong (4.8★ from 161 Google reviews). Dorms start at ${dorm}, there is a women-only dorm, private King Double rooms and the Experience by XTSY glass suite, and TAB Bistro is on site.` },
+    { q: 'Which is the best hostel in Shillong?', a: `XTSY Travellers Hostel in New Shillong Township is one of the best-rated hostels in Shillong (4.7★ from 237 Google reviews). Dorms start at ${dorm}, there is a women-only dorm, private King Double rooms and the Experience by XTSY glass suite, and TAB Bistro is on site.` },
     { q: 'How much is a hostel in Shillong per night?', a: `At XTSY, dorm beds are ${dorm} (8-bed) and ${inr(roomPrice('6-bed-mixed-dorm').now)} (6-bed), the women-only dorm is ${inr(roomPrice('4-bed-female-only-dorm').now)}, the King Double room ${inr(roomPrice('king-double-room').now)}, and Experience by XTSY ${inr(PANORAMA_STAY_ONLY)} (${inr(PANORAMA_WITH_BREAKFAST)} with breakfast for two).` },
     { q: 'Where is XTSY Travellers Hostel?', a: 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018 — near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is not in Police Bazaar or central Shillong; the drive to Police Bazaar takes about 30 minutes.' },
     { q: 'Is there a women-only dorm in Shillong?', a: `Yes. XTSY has a 4-bed women-only dorm (${inr(roomPrice('4-bed-female-only-dorm').now)} a night) with female staff on call, lockers and 24/7 arrival support.` },

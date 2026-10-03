@@ -3,7 +3,7 @@ import { Shield, Award, MapPin, Users } from 'lucide-react';
 const TrustSignals = () => (
   <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
     {[
-      { icon: Award, label: '4.8★ Google Rating', sub: '161 Google reviews' },
+      { icon: Award, label: '4.7★ Google Rating', sub: '237 Google reviews' },
       { icon: Users, label: '10,786+ Guests', sub: 'Hosted since 2024' },
       { icon: MapPin, label: 'Local Experts', sub: 'Based in Shillong' },
       { icon: Shield, label: 'Verified Business', sub: 'GST registered' },

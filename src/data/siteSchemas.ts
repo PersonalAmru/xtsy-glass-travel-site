@@ -50,9 +50,9 @@ export const HOSTEL_SCHEMA: Record<string, unknown> = {
   geo: { "@type": "GeoCoordinates", latitude: 25.6025457, longitude: 91.9448902 },
   aggregateRating: {
     "@type": "AggregateRating",
-    ratingValue: "4.8",
-    ratingCount: "161",
-    reviewCount: "161",
+    ratingValue: "4.7",
+    ratingCount: "237",
+    reviewCount: "237",
     bestRating: "5",
   },
 };

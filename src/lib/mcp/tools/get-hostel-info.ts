@@ -22,7 +22,7 @@ const HOSTEL_INFO = {
   ],
   awards: [
     "Nominated: Best Budget-Friendly Accommodation, Northeast India Tourism Awards (NEITA 2025)",
-    "Highest-rated hostel in Northeast India on Google (4.8★, 161 Google reviews)",
+    "Rated 4.7★ on Google from 237 reviews",
     "India's first 270° stargaze glamping ensuite (Experience by XTSY)",
   ],
 };

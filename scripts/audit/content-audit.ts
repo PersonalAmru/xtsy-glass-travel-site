@@ -2,7 +2,7 @@
  * Content + facts audit over every page's server HTML (what Google and AI crawlers read).
  *
  * Checks each page against the owner-confirmed facts:
- *  - prices (per room type), rating 4.8 / 161 reviews (TAB Bistro 4.7 / 142), 10,786+ guests
+ *  - prices (per room type), rating 4.7 / 237 reviews (TAB Bistro 4.7 / 142), 10,786+ guests
  *  - location (New Shillong Township, Mawdiangdiang Road, 793018), phone, email
  *  - no free cancellation / booking amount non-refundable, pet policy, check-in/out
  * plus placeholders, stale years, JSON-LD validity and facts, SEO and AEO signals.
@@ -23,7 +23,7 @@ const PRICES: { key: string; re: RegExp; ok: number[] }[] = [
   { key: 'Experience by XTSY', re: /270|panorama|glass (suite|room|ensuite|house)|experience by xtsy|stargaze/i, ok: [5399, 5799, 2500, 11999] },
   { key: 'dorm "from" price', re: /(dorm|bed)s?\s*(beds?\s*)?(from|starting|start at|at just|for just|only)/i, ok: [389] },
 ];
-const RATING = { hostel: ['4.8', '161'], bistro: ['4.7', '142'] };
+const RATING = { hostel: ['4.7', '237'], bistro: ['4.7', '142'] };
 const PHONE_OK = /8837317070/;
 const EMAIL_OK = /^(admin|info|hello|bookings?|support)@xtsy\.one$/i;
 /** Own properties only: partner stays (e.g. the Dawki campsite) have their own address. */
@@ -69,7 +69,7 @@ function factChecks(url: string, text: string, f: Finding[]) {
   for (const m of text.matchAll(/([\d,]{2,6})\+?\s*(?:google\s+|verified\s+|guest\s+|5-star\s+)?reviews/gi)) {
     const v = m[1].replace(/,/g, '');
     const around = ctx(text, m.index!, 90, 40);
-    if (!['161', '142'].includes(v) && !/zostel|hosteller|oyo|vs\b|other/i.test(around)) f.push({ rule: 'rating:review count', detail: `${v} — "${around}"` });
+    if (!['237', '142'].includes(v) && !/zostel|hosteller|oyo|vs\b|other/i.test(around)) f.push({ rule: 'rating:review count', detail: `${v} — "${around}"` });
   }
   for (const m of text.matchAll(/([\d,]{3,7})\+?\s*(?:happy\s+|global\s+|satisfied\s+)?(?:guests|travell?ers|backpackers|visitors)\b/gi)) {
     const v = num(m[1]);

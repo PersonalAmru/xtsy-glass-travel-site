@@ -34,7 +34,7 @@ export default function ZostelV2() {
 
         <section className={`${PAD} pb-16`}>
           <div className="xt-reveal grid grid-cols-2 gap-6 rounded-[28px] bg-xt-ink p-8 text-xt-paper sm:p-10 lg:grid-cols-4">
-            {[{ v: '4.8', l: 'Google rating (161 reviews)' }, { v: '9.4', l: 'Booking.com rating' }, { v: '50+', l: 'Guests at once' }, { v: 'NEITA 2025', l: 'Nominated, Best Budget-Friendly Accommodation' }].map((s) => (
+            {[{ v: '4.7', l: 'Google rating (237 reviews)' }, { v: '9.4', l: 'Booking.com rating' }, { v: '50+', l: 'Guests at once' }, { v: 'NEITA 2025', l: 'Nominated, Best Budget-Friendly Accommodation' }].map((s) => (
               <div key={s.l} className="flex flex-col gap-1.5 border-l-2 border-xt-crimson pl-4">
                 <span className="font-display text-[36px] leading-none sm:text-[48px]">{s.v}</span>
                 <span className="text-[14px] text-xt-fog">{s.l}</span>

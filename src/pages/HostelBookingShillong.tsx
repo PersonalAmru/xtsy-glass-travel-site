@@ -19,7 +19,7 @@ const HostelBookingShillong = memo(() => {
     '@id': 'https://xtsy.one/hostel-booking#hostel',
     name: 'XTSY Travellers Hostel — Online Hostel Booking, Shillong',
     description:
-      'Direct online hostel booking in Shillong, Meghalaya. Instant confirmation, no OTA commission, one free date change. Dorm beds from ₹389, private rooms from ₹2,500. 4.8★ from 161 Google reviews.',
+      'Direct online hostel booking in Shillong, Meghalaya. Instant confirmation, no OTA commission, one free date change. Dorm beds from ₹389, private rooms from ₹2,500. 4.7★ from 237 Google reviews.',
     url: 'https://xtsy.one/hostel-booking',
     telephone: '+918837317070',
     email: 'booking@xtsy.one',
@@ -39,8 +39,8 @@ const HostelBookingShillong = memo(() => {
     checkoutTime: '10:00',
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '161',
+      ratingValue: '4.7',
+      reviewCount: '237',
       bestRating: '5',
     },
     makesOffer: [
@@ -81,7 +81,7 @@ const HostelBookingShillong = memo(() => {
     },
     {
       q: 'What is the cheapest hostel booking in Shillong?',
-      a: 'XTSY 8-bed mixed dorm beds start at ₹389/night — one of the cheapest verified hostel booking rates in Shillong with 4.8★ reviews, WiFi, hot shower and 24/7 security included.',
+      a: 'XTSY 8-bed mixed dorm beds start at ₹389/night — one of the cheapest verified hostel booking rates in Shillong with 4.7★ reviews, WiFi, hot shower and 24/7 security included.',
     },
     {
       q: 'Is same-day hostel booking possible?',
@@ -121,7 +121,7 @@ const HostelBookingShillong = memo(() => {
       <Helmet>
         <meta
           name="description"
-          content="Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹389. Book direct — cheaper than Hostelworld & Booking.com. 4.8★ from 161 Google reviews."
+          content="Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹389. Book direct — cheaper than Hostelworld & Booking.com. 4.7★ from 237 Google reviews."
         />
         <script type="application/ld+json">{JSON.stringify(hostelSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
@@ -145,11 +145,11 @@ const HostelBookingShillong = memo(() => {
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
               Book XTSY Travellers Hostel direct and skip the OTA commission. Instant WhatsApp confirmation,
-              one free date change, 4.8★ from 161 Google reviews.
+              one free date change, 4.7★ from 237 Google reviews.
             </p>
             <div className="flex items-center justify-center gap-1 mb-6">
               {[1,2,3,4,5].map(i => <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />)}
-              <span className="ml-2 text-sm text-muted-foreground">4.8 / 5 · 161 Google reviews</span>
+              <span className="ml-2 text-sm text-muted-foreground">4.7 / 5 · 237 Google reviews</span>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90">

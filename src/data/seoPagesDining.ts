@@ -102,7 +102,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Want a reliably good meal in Shillong? These restaurants consistently deliver on taste, service and ambiance — led by TAB Bistro by XTSY, a multi-cuisine forest-dining favourite.',
     [
       { heading: 'Good Restaurants to Try', content: 'Dependable picks across the city:', listItems: ['TAB Bistro by XTSY — multi-cuisine & barbecue', 'Chinese & Indo-Chinese specialists', 'Pure-veg & thali restaurants', 'Cafés with continental menus', 'Family-friendly dining spots'] },
-      { heading: 'What Makes a Restaurant Good Here', content: 'TAB Bistro ticks every box:', listItems: ['Fresh ingredients & live grill', 'Wide multi-cuisine menu', 'Clean, scenic forest setting', '4.8★ XTSY hospitality standard', 'Easy reservations & catering'] },
+      { heading: 'What Makes a Restaurant Good Here', content: 'TAB Bistro ticks every box:', listItems: ['Fresh ingredients & live grill', 'Wide multi-cuisine menu', 'Clean, scenic forest setting', '4.7★ XTSY hospitality standard', 'Easy reservations & catering'] },
     ],
     [tabFaq],
     ['best-restaurants-shillong', 'restaurant-in-shillong', 'best-place-to-eat-in-shillong'],

@@ -28,7 +28,7 @@ export const BRAND = {
 } as const;
 
 /** XTSY's Google rating — used for the hostel, tours, travel and the Dawki campsite (booked via XTSY). */
-export const GOOGLE_RATING = { value: '4.8', count: 161, label: '4.8★ · 161 Google reviews' } as const;
+export const GOOGLE_RATING = { value: '4.7', count: 237, label: '4.7★ · 237 Google reviews' } as const;
 
 export const PROPERTY_ADDRESS = 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018';
 export const PROPERTY_CHECK_IN = '11:00';
@@ -53,7 +53,7 @@ export const OWN_PROPERTIES = [
 
 export const AWARDS = [
   'Nominated: Best Budget-Friendly Accommodation, Northeast India Tourism Awards (NEITA 2025)',
-  "Highest-rated hostel in Northeast India on Google (4.8★, 161 Google reviews)",
+  "Rated 4.7★ on Google from 237 reviews",
   "Experience by XTSY — India's first stargaze glamp",
 ] as const;
 
@@ -101,11 +101,11 @@ export const PARTNER_NETWORK_NOTE =
 export const whyXTSYSection = (): SEOSection => ({
   heading: 'Why Travellers Pick XTSY',
   content:
-    "XTSY is Northeast India's highest-rated independent hospitality brand — Shillong-born, traveller-built, and having hosted 10,786+ guests through owned properties, curated tours, weddings, catering and rentals.",
+    "XTSY is a Northeast Indian independent hospitality brand — Shillong-born, traveller-built, and having hosted 10,786+ guests through owned properties, curated tours, weddings, catering and rentals.",
   listItems: [
     'NEITA 2025 nominee — Best Budget-Friendly Accommodation in Northeast India',
     "Experience by XTSY — India's first stargaze glamp",
-    'Highest-rated hostel in Northeast on Google (4.8★, 161 Google reviews)',
+    'Rated 4.7★ on Google from 237 reviews',
     'Pluxee India partner — corporate stays via employee-benefit vouchers accepted',
     `24/7 WhatsApp booking & on-trip support — ${BRAND.whatsappDisplay}`,
     'Owned operations in Shillong + vetted partner network across NE India and Sikkim',

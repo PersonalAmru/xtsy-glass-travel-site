@@ -29,7 +29,7 @@ const ShillongHostelLinkBlock = ({
             <BedDouble className="h-5 w-5 text-primary" /> Need a base? Book a hostel in Shillong
           </h2>
           <p className="mt-2 max-w-2xl text-muted-foreground">
-            XTSY Travellers Hostel is the best-rated, cheapest backpacker base for exploring {nearName}
+            XTSY Travellers Hostel is one of the best-rated, most affordable backpacker bases for exploring {nearName}
             {' '}— dorm beds from {inr(lowestDormPrice())}, female-only dorms and private rooms in New Shillong Township.
           </p>
         </div>

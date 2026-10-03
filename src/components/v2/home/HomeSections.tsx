@@ -24,7 +24,7 @@ export function LastMinuteBar() {
 export function StatsStrip() {
   const stats = [
     { value: '10,786+', label: 'Happy guests' },
-    { value: '4.8', label: 'Google rating' },
+    { value: '4.7', label: 'Google rating' },
     { value: '30+', label: 'Tour packages' },
     { value: '24/7', label: 'Travel support' },
   ];
@@ -333,7 +333,7 @@ export function Reviews() {
     <section className={`${PAD} grid gap-5 pb-20 md:grid-cols-2 lg:grid-cols-4`}>
       <div className="xt-reveal flex flex-col gap-3.5">
         <Eyebrow>Guest reviews</Eyebrow>
-        <h2 className="xt-display m-0 text-[48px] leading-[0.95] sm:text-[60px]">4.8 on Google from 161 reviews</h2>
+        <h2 className="xt-display m-0 text-[48px] leading-[0.95] sm:text-[60px]">4.7 on Google from 237 reviews</h2>
         <span className="text-[15px] font-bold text-xt-mute">9.4 on Booking.com</span>
       </div>
       {picked.map((r) => (
