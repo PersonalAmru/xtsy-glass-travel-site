@@ -107,6 +107,8 @@ async function measure(page: Page) {
 async function runDevice(browser: Browser, d: Device) {
   const rows: Record<string, unknown>[] = [];
   const ctx = await browser.newContext({ ...d.opts, locale: 'en-IN', timezoneId: 'Asia/Kolkata' });
+  // tsx/esbuild wraps functions in a __name() helper that does not exist inside the page.
+  await ctx.addInitScript('globalThis.__name = (f) => f;');
   for (const route of ROUTES) {
     const page = await ctx.newPage();
     const errors: string[] = [];
