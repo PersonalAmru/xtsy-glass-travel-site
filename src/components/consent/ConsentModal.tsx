@@ -324,7 +324,7 @@ export function ConsentModal() {
 
         {/* Footer - Global compliance */}
         <div className="px-5 pb-4">
-          <p className="text-[10px] text-muted-foreground text-center leading-relaxed">
+          <p className="text-xs text-muted-foreground text-center leading-relaxed">
             By using this site, you agree to our{' '}
             <a href="/privacy-policy" className="underline hover:text-foreground" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
             {' '}and{' '}
