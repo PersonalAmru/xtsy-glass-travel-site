@@ -198,7 +198,7 @@ const hostelPages: SEOPageData[] = [
     ],
     [
       { question: 'Are there hostels in Cherrapunji?', answer: 'Currently, Shillong has the best hostel infrastructure. XTSY in Shillong serves as the ideal base for Cherrapunji day trips (2 hours away).' },
-      { question: 'What is the best hostel in Meghalaya?', answer: 'XTSY Travellers Hostel in Shillong is consistently rated as the best hostel in Meghalaya with 4.8 stars on Google.' },
+      { question: 'What is the best hostel in Meghalaya?', answer: 'XTSY Travellers Hostel in New Shillong Township is one of the highest-rated hostels in Meghalaya, with 4.7 stars from 237 Google reviews.' },
     ],
     ['backpacker-hostel-shillong', 'cheap-hostel-shillong', 'budget-stay-shillong'],
     ['hostels in meghalaya', 'best hostels meghalaya', 'meghalaya hostel', 'backpacker hostel meghalaya']
@@ -336,7 +336,7 @@ const hotelPages: SEOPageData[] = [
 
   hotel('oyo-rooms-shillong-alternative', 'Better Than OYO Rooms in Shillong — XTSY Hostel', 'Looking for OYO rooms in Shillong? Try XTSY instead. Better rooms, lower prices, real reviews. Private rooms from ₹2,200. No hidden fees.', 'OYO Alternative in Shillong — Why XTSY is Better', 'Searching for OYO rooms in Shillong? XTSY Travellers Hostel offers a superior experience with verified quality, no hidden charges, and real guest reviews. Private rooms from ₹2,200 with all amenities included.',
     [
-      { heading: 'XTSY vs OYO Rooms', content: 'Why travelers prefer XTSY:', listItems: ['No hidden charges — price you see is what you pay', 'Real, verified Google reviews (4.8 stars)', 'In-house restaurant (TAB Bistro)', 'Community atmosphere & social events', 'Consistent quality — not a franchise model', 'Direct booking = best price guaranteed'] },
+      { heading: 'XTSY vs OYO Rooms', content: 'Why travelers prefer XTSY:', listItems: ['No hidden charges — price you see is what you pay', 'Real, verified Google reviews (4.7 stars from 237)', 'In-house restaurant (TAB Bistro)', 'Community atmosphere & social events', 'Consistent quality — not a franchise model', 'Direct booking = best price guaranteed'] },
     ],
     [
       { question: 'Is XTSY better than OYO in Shillong?', answer: 'XTSY consistently outperforms OYO properties in Shillong based on Google reviews, with better amenities, transparent pricing, and an in-house restaurant.' },

@@ -116,8 +116,8 @@ export const PROPERTIES: Record<string, Property> = {
     images: cdnMany(PROPERTY_IMAGE_KEYS),
     amenities: ['Free WiFi', 'Common Area', 'Games Room', 'Hot Water', 'Lockers'],
     priceRange: { min: 389, max: 2200 },
-    rating: 4.8,
-    reviewCount: 161,
+    rating: 4.7,
+    reviewCount: 237,
     category: 'hostel',
     roomTypeIds: [
       'king-double-room',
@@ -140,8 +140,8 @@ export const PROPERTIES: Record<string, Property> = {
     images: DAWKI_CAMPING_IMAGES.slice(0, 8),
     amenities: ['Riverside Pitches', 'Shared Washrooms', 'Bonfire (chargeable)', 'Water Activities (chargeable)', 'Dinner On Request'],
     priceRange: { min: 800, max: 1000 },
-    rating: 4.8,
-    reviewCount: 161, // XTSY Google reviews (campsite is booked via XTSY)
+    rating: 4.7,
+    reviewCount: 237, // XTSY Google reviews (campsite is booked via XTSY)
     category: 'budget',
     roomTypeIds: [], // experience-based; no room cards
     isActive: true,

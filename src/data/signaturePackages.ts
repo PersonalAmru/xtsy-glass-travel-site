@@ -1022,7 +1022,7 @@ export const signaturePackageToTourPackage = (p: SignaturePackage): TourPackage 
     price: formatPackagePrice(p.pricePerPerson),
     image: imgs[0],
     images: imgs,
-    rating: 4.8,
+    rating: 4.7,
     category: "leisure",
     location: p.region,
     region: p.region,

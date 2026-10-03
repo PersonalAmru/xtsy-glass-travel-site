@@ -32,7 +32,7 @@ const AuthorBox = () => (
           <p className="text-xs text-muted-foreground mt-0.5" itemProp="description">Local travel experts based in Shillong, Meghalaya</p>
           <div className="flex flex-wrap gap-3 mt-2 text-xs text-muted-foreground">
             <span className="flex items-center gap-1"><MapPin className="h-3 w-3" /> Based in Shillong since 2024</span>
-            <span className="flex items-center gap-1"><Star className="h-3 w-3" /> 4.8★ Google Rating (161 Google reviews)</span>
+            <span className="flex items-center gap-1"><Star className="h-3 w-3" /> 4.7★ Google Rating (237 Google reviews)</span>
             <span className="flex items-center gap-1"><Calendar className="h-3 w-3" /> 10,786+ guests hosted</span>
           </div>
           <p className="text-xs text-muted-foreground mt-2 leading-relaxed">

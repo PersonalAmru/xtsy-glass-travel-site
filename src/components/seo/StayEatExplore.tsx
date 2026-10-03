@@ -30,7 +30,7 @@ const StayEatExplore = ({
     {
       icon: BedDouble,
       title: 'Where to Stay',
-      desc: `Book a bed, private room, or glamping stay at XTSY — the best-rated hostel in Shillong, your base for exploring${place || ' Meghalaya'}.`,
+      desc: `Book a bed, private room, or glamping stay at XTSY — one of the best-rated hostels in Shillong, your base for exploring${place || ' Meghalaya'}.`,
       to: '/best-hostel-in-shillong',
       cta: 'View Hostel & Book',
     },

@@ -26,7 +26,7 @@ const HostelNearMe = memo(() => {
     name: 'XTSY Travellers Hostel — New Shillong Township',
     alternateName: ['XTSY Hostel Shillong', 'XTSY New Shillong Township'],
     description:
-      'Backpacker hostel on Mawdiangdiang Road, New Shillong Township, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University — dorm beds from ₹389, 4.8★ from 161 Google reviews.',
+      'Backpacker hostel on Mawdiangdiang Road, New Shillong Township, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University — dorm beds from ₹389, 4.7★ from 237 Google reviews.',
     url: 'https://xtsy.one/hostel-near-me',
     telephone: '+918837317070',
     email: 'booking@xtsy.one',
@@ -63,8 +63,8 @@ const HostelNearMe = memo(() => {
     checkoutTime: '10:00',
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '161',
+      ratingValue: '4.7',
+      reviewCount: '237',
       bestRating: '5',
     },
     amenityFeature: [
@@ -120,7 +120,7 @@ const HostelNearMe = memo(() => {
     },
     {
       q: 'Are there other hostels near me in Shillong worth comparing?',
-      a: 'Shillong has ~6 verified hostels. XTSY is the largest (India\'s biggest hostel in the northeast), highest rated (4.8★, 161 Google reviews) and sits in quiet New Shillong Township. Compare on /xtsy-vs-zostel or /best-hostel-in-shillong.',
+      a: 'Shillong has ~6 verified hostels. XTSY is the largest (India\'s biggest hostel in the northeast), rated 4.7★ from 237 Google reviews and sits in quiet New Shillong Township. Compare on /xtsy-vs-zostel or /best-hostel-in-shillong.',
     },
     {
       q: 'Can I walk-in without booking online?',
@@ -144,7 +144,7 @@ const HostelNearMe = memo(() => {
       <Helmet>
         <meta
           name="description"
-          content="Looking for a hostel near you in Shillong? XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township, near NIFT and IIM Shillong — dorm beds from ₹389, rated 4.8★ from 161 Google reviews."
+          content="Looking for a hostel near you in Shillong? XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township, near NIFT and IIM Shillong — dorm beds from ₹389, rated 4.7★ from 237 Google reviews."
         />
         <meta
           name="keywords"
@@ -170,7 +170,7 @@ const HostelNearMe = memo(() => {
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
               XTSY Travellers Hostel is on <strong>Mawdiangdiang Road, New Shillong Township</strong>, near
               NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University —
-              a quiet, green base with TAB Bistro on site. Dorm beds from <strong>₹389</strong>, 4.8★ from 161 Google reviews.
+              a quiet, green base with TAB Bistro on site. Dorm beds from <strong>₹389</strong>, 4.7★ from 237 Google reviews.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Button size="lg" asChild>
@@ -193,7 +193,7 @@ const HostelNearMe = memo(() => {
             </div>
             <div className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
               <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
-              <span>4.8 / 5 · 161 verified guest reviews</span>
+              <span>4.7 / 5 · 237 Google reviews</span>
             </div>
           </div>
         </section>

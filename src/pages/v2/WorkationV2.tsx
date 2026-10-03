@@ -42,7 +42,7 @@ export default function WorkationV2() {
         />
 
         <section className={`${PAD} pt-16`}>
-          <StatRow stats={[{ v: '100+ Mbps', l: 'Fibre, with backup' }, { v: '24/7', l: 'Power backup' }, { v: '15–25°C', l: 'Most of the year' }, { v: '4.8', l: 'Google rating' }]} />
+          <StatRow stats={[{ v: '100+ Mbps', l: 'Fibre, with backup' }, { v: '24/7', l: 'Power backup' }, { v: '15–25°C', l: 'Most of the year' }, { v: '4.7', l: 'Google rating' }]} />
         </section>
 
         <Section id="plans">
