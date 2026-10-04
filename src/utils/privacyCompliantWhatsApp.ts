@@ -20,6 +20,12 @@ export function openWhatsAppDirectly(
   }
 }
 
+/** Page metadata only; never forward query parameters or referrer identifiers. */
+export function bookingPageSource(): string {
+  if (typeof window === 'undefined') return 'XTSY booking';
+  return `${document.title || 'XTSY booking'} — ${window.location.origin}${window.location.pathname}`;
+}
+
 /**
  * Generate WhatsApp message for booking - privacy compliant
  */
@@ -34,20 +40,28 @@ export const generateBookingMessage = (params: {
   email?: string;
   phone?: string;
   address?: string;
+  city?: string;
+  state?: string;
+  pincode?: string;
+  specialRequests?: string;
+  reference?: string;
+  source?: string;
 }): string => {
-  return `Hello XTSY Team, I'd like to book:
+  return `Namaste XTSY Team! I'd like to enquire about a stay:
 
 🏨 *BOOKING DETAILS:*
 Room Type: ${params.roomType || "XTSY Accommodation"}
 Guests: ${params.guests}
 Dates: ${params.checkIn} – ${params.checkOut} (${params.nights} nights)
-Total: ₹${params.totalPrice?.toLocaleString() || "TBD"}
+Estimated total: ₹${params.totalPrice?.toLocaleString('en-IN') || "TBD"}
 
 👤 *MY DETAILS:*
 Name: ${params.guestName || "To be provided"}
 Email: ${params.email || "To be provided"}
 Phone: ${params.phone || "To be provided"}
 Address: ${params.address || "To be provided"}
+City / State / PIN: ${[params.city, params.state, params.pincode].filter(Boolean).join(', ') || 'Not provided'}
+${params.specialRequests ? `Requests: ${params.specialRequests}\n` : ''}${params.reference ? `Enquiry ID: ${params.reference}\n` : ''}${params.source ? `Page: ${params.source}\n` : ''}
 
 Please confirm availability and provide final booking confirmation.
 Thank you!`;
