@@ -5,7 +5,7 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 2703,
+  "loadMs": 3008,
   "vw": 393,
   "vh": 659,
   "overflowPx": 0,
@@ -62,17 +62,18 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 17830,
-  "lcp": 3495,
+  "lcp": 5174,
   "cls": null,
   "error": "Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n",
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "Refused to connect to https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
+  ]
  },
  {
   "device": "iphone-15-pro",
@@ -80,7 +81,7 @@
   "engine": "webkit",
   "route": "/tours",
   "status": 200,
-  "loadMs": 1696,
+  "loadMs": 2180,
   "vw": 393,
   "vh": 659,
   "overflowPx": 0,
@@ -133,84 +134,17 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 38873,
-  "lcp": 520,
+  "lcp": 960,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
- },
- {
-  "device": "iphone-15-pro",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 1202,
-  "vw": 393,
-  "vh": 659,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 129,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 90,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 477,
-    "h": 183,
-    "w": 393
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 393
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 393
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 533,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 462,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 11999,
-  "lcp": 1012,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "iphone-15-pro",
@@ -218,7 +152,7 @@
   "engine": "webkit",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 534,
+  "loadMs": 947,
   "vw": 393,
   "vh": 659,
   "overflowPx": 0,
@@ -277,230 +211,16 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 5469,
-  "lcp": 2407,
+  "lcp": 3066,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
-  "failed": []
- },
- {
-  "device": "iphone-15-pro",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 356,
-  "vw": 393,
-  "vh": 659,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 57,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 45,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 477,
-    "h": 183,
-    "w": 393
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 393
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 393
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2383,
-    "h": 431,
-    "w": 365
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 533,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 462,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 5463,
-  "lcp": 2288,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "iphone-15-pro",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 1432,
-  "vw": 393,
-  "vh": 659,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 60,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 112×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 46,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 477,
-    "h": 183,
-    "w": 393
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 393
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 393
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 2595,
-    "h": 432,
-    "w": 365
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 533,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 462,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 5676,
-  "lcp": 1207,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "iphone-15-pro",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 442,
-  "vw": 393,
-  "vh": 659,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 365×17",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 6,
-  "smallText": 1,
-  "smallEx": [
-   "10.5px \"Step 1\""
-  ],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 477,
-    "h": 183,
-    "w": 393
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 393
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 533,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 462,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 659,
-  "lcp": 281,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document."
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "iphone-se",
@@ -508,7 +228,7 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 609,
+  "loadMs": 622,
   "vw": 320,
   "vh": 568,
   "overflowPx": 0,
@@ -565,16 +285,18 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 18475,
-  "lcp": 721,
+  "lcp": 1083,
   "cls": null,
   "error": "Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n",
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "iphone-se",
@@ -582,7 +304,7 @@
   "engine": "webkit",
   "route": "/tours",
   "status": 200,
-  "loadMs": 1048,
+  "loadMs": 1216,
   "vw": 320,
   "vh": 568,
   "overflowPx": 0,
@@ -635,84 +357,17 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 39550,
-  "lcp": 392,
+  "lcp": 588,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
- },
- {
-  "device": "iphone-se",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 1542,
-  "vw": 320,
-  "vh": 568,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 129,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 85,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 340,
-    "h": 228,
-    "w": 320
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 320
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 320
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 442,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 371,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 12495,
-  "lcp": 977,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "iphone-se",
@@ -720,7 +375,7 @@
   "engine": "webkit",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 844,
+  "loadMs": 534,
   "vw": 320,
   "vh": 568,
   "overflowPx": 0,
@@ -779,231 +434,16 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 5742,
-  "lcp": 2446,
+  "lcp": 2293,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
   ],
-  "failed": []
- },
- {
-  "device": "iphone-se",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 341,
-  "vw": 320,
-  "vh": 568,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 57,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 45,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 340,
-    "h": 228,
-    "w": 320
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 320
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 320
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2611,
-    "h": 494,
-    "w": 292
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 442,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 371,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 5814,
-  "lcp": 332,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "iphone-se",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 379,
-  "vw": 320,
-  "vh": 568,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 60,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 112×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 46,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 340,
-    "h": 228,
-    "w": 320
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 320
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 320
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 2878,
-    "h": 432,
-    "w": 292
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 442,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 371,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 6018,
-  "lcp": 2002,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "iphone-se",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 543,
-  "vw": 320,
-  "vh": 568,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 292×17",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 6,
-  "smallText": 1,
-  "smallEx": [
-   "10.5px \"Step 1\""
-  ],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 340,
-    "h": 228,
-    "w": 320
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 320
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 442,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 371,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 625,
-  "lcp": 178,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
+  ]
  },
  {
   "device": "iphone-15-pro-max",
@@ -1011,7 +451,7 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 1242,
+  "loadMs": 1863,
   "vw": 430,
   "vh": 739,
   "overflowPx": 0,
@@ -1068,16 +508,18 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 17904,
-  "lcp": 1249,
+  "lcp": 1175,
   "cls": null,
   "error": "Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n",
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "iphone-15-pro-max",
@@ -1085,7 +527,7 @@
   "engine": "webkit",
   "route": "/tours",
   "status": 200,
-  "loadMs": 1604,
+  "loadMs": 2038,
   "vw": 430,
   "vh": 739,
   "overflowPx": 0,
@@ -1138,83 +580,17 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 39045,
-  "lcp": 676,
+  "lcp": 638,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
- },
- {
-  "device": "iphone-15-pro-max",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 827,
-  "vw": 430,
-  "vh": 739,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 129,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 91,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 579,
-    "h": 161,
-    "w": 430
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 430
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 430
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 613,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 542,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 11945,
-  "lcp": 607,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
+  ]
  },
  {
   "device": "iphone-15-pro-max",
@@ -1222,7 +598,7 @@
   "engine": "webkit",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 365,
+  "loadMs": 509,
   "vw": 430,
   "vh": 739,
   "overflowPx": 0,
@@ -1281,230 +657,16 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 5278,
-  "lcp": 419,
+  "lcp": 514,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
-  "failed": []
- },
- {
-  "device": "iphone-15-pro-max",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 1208,
-  "vw": 430,
-  "vh": 739,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 57,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 45,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 579,
-    "h": 161,
-    "w": 430
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 430
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 430
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2363,
-    "h": 410,
-    "w": 402
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 613,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 542,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 5374,
-  "lcp": 708,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "iphone-15-pro-max",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 909,
-  "vw": 430,
-  "vh": 739,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 60,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 112×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 46,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 579,
-    "h": 161,
-    "w": 430
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 430
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 430
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 2501,
-    "h": 432,
-    "w": 402
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 613,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 542,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 5534,
-  "lcp": 1106,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "iphone-15-pro-max",
-  "group": "iOS phone",
-  "engine": "webkit",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 345,
-  "vw": 430,
-  "vh": 739,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 392×17",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 6,
-  "smallText": 1,
-  "smallEx": [
-   "10.5px \"Step 1\""
-  ],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 579,
-    "h": 161,
-    "w": 430
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 430
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 613,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 542,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 739,
-  "lcp": 188,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document."
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "ipad-mini",
@@ -1512,7 +674,7 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 506,
+  "loadMs": 620,
   "vw": 768,
   "vh": 1024,
   "overflowPx": 0,
@@ -1569,15 +731,17 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 15628,
-  "lcp": 752,
+  "lcp": 988,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "ipad-mini",
@@ -1585,7 +749,7 @@
   "engine": "webkit",
   "route": "/tours",
   "status": 200,
-  "loadMs": 1684,
+  "loadMs": 2770,
   "vw": 768,
   "vh": 1024,
   "overflowPx": 0,
@@ -1638,83 +802,17 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 22666,
-  "lcp": 744,
+  "lcp": 1024,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
- },
- {
-  "device": "ipad-mini",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 971,
-  "vw": 768,
-  "vh": 1024,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 130,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 38,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 922,
-    "h": 102,
-    "w": 768
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 992,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 768
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 944,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 876,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 8084,
-  "lcp": 578,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "ipad-mini",
@@ -1722,7 +820,7 @@
   "engine": "webkit",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 399,
+  "loadMs": 632,
   "vw": 768,
   "vh": 1024,
   "overflowPx": 0,
@@ -1781,228 +879,16 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 4528,
-  "lcp": 457,
+  "lcp": 633,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
-  "failed": []
- },
- {
-  "device": "ipad-mini",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 369,
-  "vw": 768,
-  "vh": 1024,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 58,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 38,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 922,
-    "h": 102,
-    "w": 768
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 992,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 768
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2267,
-    "h": 464,
-    "w": 704
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 944,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 876,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 4546,
-  "lcp": 429,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "ipad-mini",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 597,
-  "vw": 768,
-  "vh": 1024,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 61,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 112×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 38,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 922,
-    "h": 102,
-    "w": 768
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 992,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 768
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 2518,
-    "h": 472,
-    "w": 704
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 944,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 876,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 4805,
-  "lcp": 400,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "ipad-mini",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 462,
-  "vw": 768,
-  "vh": 1024,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 448×20",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 0,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 922,
-    "h": 102,
-    "w": 768
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 992,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 944,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 876,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 1024,
-  "lcp": 180,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document."
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "ipad-pro-11",
@@ -2010,7 +896,7 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 1074,
+  "loadMs": 663,
   "vw": 834,
   "vh": 1194,
   "overflowPx": 0,
@@ -2067,15 +953,17 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 15819,
-  "lcp": 1763,
+  "lcp": 1432,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "ipad-pro-11",
@@ -2083,7 +971,7 @@
   "engine": "webkit",
   "route": "/tours",
   "status": 200,
-  "loadMs": 1570,
+  "loadMs": 2352,
   "vw": 834,
   "vh": 1194,
   "overflowPx": 0,
@@ -2136,83 +1024,17 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 22805,
-  "lcp": 988,
+  "lcp": 860,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
- },
- {
-  "device": "ipad-pro-11",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 1660,
-  "vw": 834,
-  "vh": 1194,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 130,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 41,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1092,
-    "h": 102,
-    "w": 834
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1162,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 834
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1114,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 1046,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 7951,
-  "lcp": 1495,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "ipad-pro-11",
@@ -2220,7 +1042,7 @@
   "engine": "webkit",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 443,
+  "loadMs": 606,
   "vw": 834,
   "vh": 1194,
   "overflowPx": 0,
@@ -2279,228 +1101,16 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 4474,
-  "lcp": 511,
+  "lcp": 665,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2h1"
   ],
-  "failed": []
- },
- {
-  "device": "ipad-pro-11",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 377,
-  "vw": 834,
-  "vh": 1194,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 58,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 38,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1092,
-    "h": 102,
-    "w": 834
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1162,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 834
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2312,
-    "h": 464,
-    "w": 770
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1114,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 1046,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 4522,
-  "lcp": 486,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "ipad-pro-11",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 764,
-  "vw": 834,
-  "vh": 1194,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 61,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 112×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 38,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1092,
-    "h": 102,
-    "w": 834
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1162,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 834
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 2563,
-    "h": 472,
-    "w": 770
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1114,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 1046,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 4781,
-  "lcp": 601,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "ipad-pro-11",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 653,
-  "vw": 834,
-  "vh": 1194,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 448×20",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 0,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1092,
-    "h": 102,
-    "w": 834
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1162,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1114,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 1046,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 1194,
-  "lcp": 504,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document."
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2h1"
+  ]
  },
  {
   "device": "ipad-pro-11-landscape",
@@ -2508,7 +1118,7 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 443,
+  "loadMs": 2541,
   "vw": 1194,
   "vh": 834,
   "overflowPx": 0,
@@ -2565,15 +1175,17 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 10551,
-  "lcp": 811,
+  "lcp": 2669,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "ipad-pro-11-landscape",
@@ -2581,7 +1193,7 @@
   "engine": "webkit",
   "route": "/tours",
   "status": 200,
-  "loadMs": 1846,
+  "loadMs": 2456,
   "vw": 1194,
   "vh": 834,
   "overflowPx": 0,
@@ -2634,83 +1246,17 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 16043,
-  "lcp": 864,
+  "lcp": 1156,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
- },
- {
-  "device": "ipad-pro-11-landscape",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 738,
-  "vw": 1194,
-  "vh": 834,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 130,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 33,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 755,
-    "h": 79,
-    "w": 1194
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 802,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1194
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 754,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 686,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 6126,
-  "lcp": 566,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "ipad-pro-11-landscape",
@@ -2718,7 +1264,7 @@
   "engine": "webkit",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 448,
+  "loadMs": 533,
   "vw": 1194,
   "vh": 834,
   "overflowPx": 0,
@@ -2777,228 +1323,16 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 2834,
-  "lcp": 560,
+  "lcp": 699,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
-  "failed": []
- },
- {
-  "device": "ipad-pro-11-landscape",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 721,
-  "vw": 1194,
-  "vh": 834,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 58,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 33,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 755,
-    "h": 79,
-    "w": 1194
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 802,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1194
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 702,
-    "h": 548,
-    "w": 329
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 754,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 686,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 2905,
-  "lcp": 448,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "ipad-pro-11-landscape",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 422,
-  "vw": 1194,
-  "vh": 834,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 61,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 112×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 33,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 755,
-    "h": 79,
-    "w": 1194
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 802,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1194
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 604,
-    "h": 491,
-    "w": 329
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 754,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 686,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 3106,
-  "lcp": 732,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "ipad-pro-11-landscape",
-  "group": "iPad",
-  "engine": "webkit",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 326,
-  "vw": 1194,
-  "vh": 834,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 448×20",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 0,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 755,
-    "h": 79,
-    "w": 1194
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 802,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 754,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 686,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 834,
-  "lcp": 179,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document."
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "desktop-safari-1440",
@@ -3006,7 +1340,7 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 513,
+  "loadMs": 749,
   "vw": 1440,
   "vh": 900,
   "overflowPx": 0,
@@ -3063,15 +1397,17 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 10410,
-  "lcp": 606,
+  "lcp": 1284,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "desktop-safari-1440",
@@ -3079,7 +1415,7 @@
   "engine": "webkit",
   "route": "/tours",
   "status": 200,
-  "loadMs": 1486,
+  "loadMs": 1679,
   "vw": 1440,
   "vh": 900,
   "overflowPx": 0,
@@ -3132,83 +1468,17 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 15753,
-  "lcp": 457,
+  "lcp": 713,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)",
-   "<link rel=preload> cannot have the empty string as `as` value"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
+   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
   ],
-  "failed": []
- },
- {
-  "device": "desktop-safari-1440",
-  "group": "Desktop",
-  "engine": "webkit",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 1135,
-  "vw": 1440,
-  "vh": 900,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 137,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 48,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 821,
-    "h": 79,
-    "w": 1440
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 868,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1440
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 820,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 752,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 5941,
-  "lcp": 638,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+  ]
  },
  {
   "device": "desktop-safari-1440",
@@ -3216,7 +1486,7 @@
   "engine": "webkit",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 404,
+  "loadMs": 879,
   "vw": 1440,
   "vh": 900,
   "overflowPx": 0,
@@ -3275,228 +1545,16 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 2838,
-  "lcp": 431,
+  "lcp": 933,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
   ],
-  "failed": []
- },
- {
-  "device": "desktop-safari-1440",
-  "group": "Desktop",
-  "engine": "webkit",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 379,
-  "vw": 1440,
-  "vh": 900,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 65,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 44,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 821,
-    "h": 79,
-    "w": 1440
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 868,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1440
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 649,
-    "h": 464,
-    "w": 411
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 820,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 752,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 2782,
-  "lcp": 423,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "desktop-safari-1440",
-  "group": "Desktop",
-  "engine": "webkit",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 392,
-  "vw": 1440,
-  "vh": 900,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 68,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 112×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 44,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 821,
-    "h": 79,
-    "w": 1440
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 868,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1440
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 673,
-    "h": 491,
-    "w": 411
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 820,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 752,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 3066,
-  "lcp": 455,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document.",
-   "Failed to load resource: the server responded with a status of 404 (Not Found)"
-  ],
-  "failed": []
- },
- {
-  "device": "desktop-safari-1440",
-  "group": "Desktop",
-  "engine": "webkit",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 1253,
-  "vw": 1440,
-  "vh": 900,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 448×20",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 0,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 821,
-    "h": 79,
-    "w": 1440
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 868,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 820,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 752,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 900,
-  "lcp": 1155,
-  "cls": null,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the document."
-  ],
-  "failed": []
+  "failed": [
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
+  ]
  },
  {
   "device": "pixel-7",
@@ -3504,7 +1562,7 @@
   "engine": "chromium",
   "route": "/",
   "status": 200,
-  "loadMs": 1017,
+  "loadMs": 433,
   "vw": 412,
   "vh": 839,
   "overflowPx": 0,
@@ -3561,15 +1619,15 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 17999,
-  "lcp": 992,
+  "lcp": 348,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js"
   ],
   "failed": []
  },
@@ -3579,7 +1637,7 @@
   "engine": "chromium",
   "route": "/tours",
   "status": 200,
-  "loadMs": 283,
+  "loadMs": 346,
   "vw": 412,
   "vh": 839,
   "overflowPx": 0,
@@ -3632,86 +1690,15 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 39419,
-  "lcp": 240,
+  "lcp": 284,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "pixel-7",
-  "group": "Android phone",
-  "engine": "chromium",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 237,
-  "vw": 412,
-  "vh": 839,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 129,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 91,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 678,
-    "h": 161,
-    "w": 412
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 412
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 412
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 713,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 642,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 12134,
-  "lcp": 180,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js"
   ],
   "failed": []
  },
@@ -3721,7 +1708,7 @@
   "engine": "chromium",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 208,
+  "loadMs": 360,
   "vw": 412,
   "vh": 839,
   "overflowPx": 0,
@@ -3780,237 +1767,15 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 5355,
-  "lcp": 180,
+  "lcp": 416,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "pixel-7",
-  "group": "Android phone",
-  "engine": "chromium",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 225,
-  "vw": 412,
-  "vh": 839,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 57,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 45,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 678,
-    "h": 161,
-    "w": 412
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 412
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 412
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2388,
-    "h": 433,
-    "w": 384
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 713,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 642,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 5453,
-  "lcp": 196,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "pixel-7",
-  "group": "Android phone",
-  "engine": "chromium",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 242,
-  "vw": 412,
-  "vh": 839,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 60,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 111×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 46,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 678,
-    "h": 161,
-    "w": 412
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 412
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 412
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 2563,
-    "h": 434,
-    "w": 384
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 713,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 642,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 5630,
-  "lcp": 200,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "pixel-7",
-  "group": "Android phone",
-  "engine": "chromium",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 187,
-  "vw": 412,
-  "vh": 839,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 384×18",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 6,
-  "smallText": 1,
-  "smallEx": [
-   "10.5px \"Step 1\""
-  ],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 678,
-    "h": 161,
-    "w": 412
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 412
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 713,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 642,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 839,
-  "lcp": 160,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js"
   ],
   "failed": []
  },
@@ -4020,7 +1785,7 @@
   "engine": "chromium",
   "route": "/",
   "status": 200,
-  "loadMs": 485,
+  "loadMs": 865,
   "vw": 384,
   "vh": 832,
   "overflowPx": 0,
@@ -4077,15 +1842,15 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 17965,
-  "lcp": 292,
+  "lcp": 780,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
   "failed": []
  },
@@ -4095,7 +1860,7 @@
   "engine": "chromium",
   "route": "/tours",
   "status": 200,
-  "loadMs": 974,
+  "loadMs": 417,
   "vw": 384,
   "vh": 832,
   "overflowPx": 0,
@@ -4148,86 +1913,15 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 40925,
-  "lcp": 264,
+  "lcp": 388,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "galaxy-s24-ultra",
-  "group": "Android phone",
-  "engine": "chromium",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 245,
-  "vw": 384,
-  "vh": 832,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 129,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 90,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 648,
-    "h": 184,
-    "w": 384
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 384
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 384
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 706,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 635,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 12486,
-  "lcp": 180,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js"
   ],
   "failed": []
  },
@@ -4237,7 +1931,7 @@
   "engine": "chromium",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 254,
+  "loadMs": 577,
   "vw": 384,
   "vh": 832,
   "overflowPx": 0,
@@ -4296,237 +1990,15 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 5513,
-  "lcp": 204,
+  "lcp": 308,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "galaxy-s24-ultra",
-  "group": "Android phone",
-  "engine": "chromium",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 234,
-  "vw": 384,
-  "vh": 832,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 57,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 45,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 648,
-    "h": 184,
-    "w": 384
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 384
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 384
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2425,
-    "h": 452,
-    "w": 356
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 706,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 635,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 5537,
-  "lcp": 204,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "galaxy-s24-ultra",
-  "group": "Android phone",
-  "engine": "chromium",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 241,
-  "vw": 384,
-  "vh": 832,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 60,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 111×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 46,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 648,
-    "h": 184,
-    "w": 384
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 384
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Dorm beds from ₹399/night Book now\"",
-    "top": 0,
-    "h": 100,
-    "w": 384
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 2620,
-    "h": 434,
-    "w": 356
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 706,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 635,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 5714,
-  "lcp": 200,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "galaxy-s24-ultra",
-  "group": "Android phone",
-  "engine": "chromium",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 205,
-  "vw": 384,
-  "vh": 832,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 356×18",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 6,
-  "smallText": 1,
-  "smallEx": [
-   "10.5px \"Step 1\""
-  ],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 648,
-    "h": 184,
-    "w": 384
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 0,
-    "h": 14,
-    "w": 384
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 706,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 635,
-    "h": 49,
-    "w": 49
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 832,
-  "lcp": 176,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
   "failed": []
  },
@@ -4536,7 +2008,7 @@
   "engine": "chromium",
   "route": "/",
   "status": 200,
-  "loadMs": 893,
+  "loadMs": 461,
   "vw": 800,
   "vh": 1280,
   "overflowPx": 0,
@@ -4593,15 +2065,15 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 15893,
-  "lcp": 428,
-  "cls": 0.001,
+  "lcp": 396,
+  "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
   "failed": []
  },
@@ -4611,7 +2083,7 @@
   "engine": "chromium",
   "route": "/tours",
   "status": 200,
-  "loadMs": 456,
+  "loadMs": 465,
   "vw": 800,
   "vh": 1280,
   "overflowPx": 0,
@@ -4664,86 +2136,15 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 22828,
-  "lcp": 336,
+  "lcp": 396,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "galaxy-tab-s9",
-  "group": "Android tablet",
-  "engine": "chromium",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 319,
-  "vw": 800,
-  "vh": 1280,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 130,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 41,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1178,
-    "h": 102,
-    "w": 800
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1248,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 800
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1200,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 1132,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 7945,
-  "lcp": 256,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js"
   ],
   "failed": []
  },
@@ -4753,7 +2154,7 @@
   "engine": "chromium",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 234,
+  "loadMs": 377,
   "vw": 800,
   "vh": 1280,
   "overflowPx": 0,
@@ -4793,7 +2194,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2244,
+    "top": 2232,
     "h": 466,
     "w": 736
    },
@@ -4812,235 +2213,15 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 4568,
-  "lcp": 204,
+  "lcp": 340,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "galaxy-tab-s9",
-  "group": "Android tablet",
-  "engine": "chromium",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 238,
-  "vw": 800,
-  "vh": 1280,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 58,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 38,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1178,
-    "h": 102,
-    "w": 800
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1248,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 800
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2239,
-    "h": 466,
-    "w": 736
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1200,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 1132,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 4585,
-  "lcp": 216,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "galaxy-tab-s9",
-  "group": "Android tablet",
-  "engine": "chromium",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 282,
-  "vw": 800,
-  "vh": 1280,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 61,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 111×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 38,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1178,
-    "h": 102,
-    "w": 800
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1248,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 800
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 2509,
-    "h": 474,
-    "w": 736
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1200,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 1132,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 4850,
-  "lcp": 252,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "galaxy-tab-s9",
-  "group": "Android tablet",
-  "engine": "chromium",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 213,
-  "vw": 800,
-  "vh": 1280,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 448×20",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 0,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1178,
-    "h": 102,
-    "w": 800
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1248,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1200,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 1132,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 1280,
-  "lcp": 192,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js"
   ],
   "failed": []
  },
@@ -5050,7 +2231,7 @@
   "engine": "chromium",
   "route": "/",
   "status": 200,
-  "loadMs": 1515,
+  "loadMs": 1392,
   "vw": 1920,
   "vh": 1080,
   "overflowPx": 0,
@@ -5107,13 +2288,13 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 11039,
-  "lcp": 1304,
-  "cls": 0.001,
+  "lcp": 1248,
+  "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
   "failed": []
  },
@@ -5123,7 +2304,7 @@
   "engine": "chromium",
   "route": "/tours",
   "status": 200,
-  "loadMs": 353,
+  "loadMs": 400,
   "vw": 1920,
   "vh": 1080,
   "overflowPx": 0,
@@ -5176,82 +2357,13 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 17073,
-  "lcp": 560,
+  "lcp": 448,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "desktop-chrome-1920",
-  "group": "Desktop",
-  "engine": "chromium",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 258,
-  "vw": 1920,
-  "vh": 1080,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 138,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 59,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 999,
-    "h": 81,
-    "w": 1920
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1048,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1920
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1000,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 932,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 6159,
-  "lcp": 292,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
   "failed": []
  },
@@ -5261,7 +2373,7 @@
   "engine": "chromium",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 265,
+  "loadMs": 264,
   "vw": 1920,
   "vh": 1080,
   "overflowPx": 0,
@@ -5301,7 +2413,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 735,
+    "top": 755,
     "h": 466,
     "w": 571
    },
@@ -5320,229 +2432,13 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 2903,
-  "lcp": 256,
+  "lcp": 376,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "desktop-chrome-1920",
-  "group": "Desktop",
-  "engine": "chromium",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 238,
-  "vw": 1920,
-  "vh": 1080,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 66,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 45,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 999,
-    "h": 81,
-    "w": 1920
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1048,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1920
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 783,
-    "h": 466,
-    "w": 571
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1000,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 932,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 2846,
-  "lcp": 228,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "desktop-chrome-1920",
-  "group": "Desktop",
-  "engine": "chromium",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 236,
-  "vw": 1920,
-  "vh": 1080,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 69,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 111×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 45,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 999,
-    "h": 81,
-    "w": 1920
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1048,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1920
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 727,
-    "h": 474,
-    "w": 571
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1000,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 932,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 3088,
-  "lcp": 224,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "desktop-chrome-1920",
-  "group": "Desktop",
-  "engine": "chromium",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 231,
-  "vw": 1920,
-  "vh": 1080,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 448×20",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 0,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 999,
-    "h": 81,
-    "w": 1920
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 1048,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 1000,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 932,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 1080,
-  "lcp": 220,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
   "failed": []
  },
@@ -5552,7 +2448,7 @@
   "engine": "chromium",
   "route": "/",
   "status": 200,
-  "loadMs": 302,
+  "loadMs": 440,
   "vw": 1366,
   "vh": 768,
   "overflowPx": 0,
@@ -5609,13 +2505,13 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 10391,
-  "lcp": 236,
+  "lcp": 312,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
   "failed": []
  },
@@ -5625,7 +2521,7 @@
   "engine": "chromium",
   "route": "/tours",
   "status": 200,
-  "loadMs": 273,
+  "loadMs": 370,
   "vw": 1366,
   "vh": 768,
   "overflowPx": 0,
@@ -5678,82 +2574,13 @@
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "docHeight": 15858,
-  "lcp": 204,
+  "lcp": 304,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "laptop-chrome-1366",
-  "group": "Desktop",
-  "engine": "chromium",
-  "route": "/tours?group=temples",
-  "status": 200,
-  "loadMs": 279,
-  "vw": 1366,
-  "vh": 768,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 137,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 48,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 17,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Tour packages"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 687,
-    "h": 81,
-    "w": 1366
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 736,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1366
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 688,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 620,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 6000,
-  "lcp": 224,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
   "failed": []
  },
@@ -5763,7 +2590,7 @@
   "engine": "chromium",
   "route": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "loadMs": 217,
+  "loadMs": 302,
   "vw": 1366,
   "vh": 768,
   "overflowPx": 0,
@@ -5803,7 +2630,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 625,
+    "top": 538,
     "h": 487,
     "w": 386
    },
@@ -5822,229 +2649,13 @@
   ],
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
   "docHeight": 2839,
-  "lcp": 196,
+  "lcp": 276,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "laptop-chrome-1366",
-  "group": "Desktop",
-  "engine": "chromium",
-  "route": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
-  "status": 200,
-  "loadMs": 219,
-  "vw": 1366,
-  "vh": 768,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 65,
-  "small24": 1,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
-  ],
-  "under44": 44,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 2,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Madurai, Rameswaram & Kanyakumari Temple Trail"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 687,
-    "h": 81,
-    "w": 1366
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 736,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1366
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 577,
-    "h": 487,
-    "w": 386
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 688,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 620,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
-  "docHeight": 2783,
-  "lcp": 200,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "laptop-chrome-1366",
-  "group": "Desktop",
-  "engine": "chromium",
-  "route": "/tours/5n-6d-tawang-tour",
-  "status": 200,
-  "loadMs": 223,
-  "vw": 1366,
-  "vh": 768,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 68,
-  "small24": 3,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.underline \"Arindam Chowdhury\" 111×17",
-   "a.underline \"Pexels\" 36×17"
-  ],
-  "under44": 44,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 3,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "5 Nights 6 Days Tawang Tour"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 687,
-    "h": 81,
-    "w": 1366
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 736,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "div.xt.sticky.top-0 \"Book direct and save 20–30% vs OTAs · Do\"",
-    "top": 0,
-    "h": 124,
-    "w": 1366
-   },
-   {
-    "el": "div.sticky.top-28.flex \"Starting from ₹19,000/person 5 Nights / \"",
-    "top": 585,
-    "h": 494,
-    "w": 386
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 688,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 620,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
-  "docHeight": 3093,
-  "lcp": 200,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element."
-  ],
-  "failed": []
- },
- {
-  "device": "laptop-chrome-1366",
-  "group": "Desktop",
-  "engine": "chromium",
-  "route": "/book",
-  "status": 200,
-  "loadMs": 183,
-  "vw": 1366,
-  "vh": 768,
-  "overflowPx": 0,
-  "wide": [],
-  "targets": 13,
-  "small24": 4,
-  "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
-   "a.text-sm.text-white/70.hover:text-white \"← XTSY home\" 448×20",
-   "input.sr-only 1×1",
-   "input.sr-only 1×1"
-  ],
-  "under44": 0,
-  "smallText": 0,
-  "smallEx": [],
-  "images": 1,
-  "broken": [],
-  "noAlt": 0,
-  "h1": [
-   "Book your stay at XTSY Travellers Hostel"
-  ],
-  "fixed": [
-   {
-    "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 687,
-    "h": 81,
-    "w": 1366
-   },
-   {
-    "el": "ol.fixed.top-0.z-[100]",
-    "top": 736,
-    "h": 32,
-    "w": 420
-   },
-   {
-    "el": "a.fixed.bottom-20.md:bottom-6 \"Chat on WhatsApp\"",
-    "top": 688,
-    "h": 56,
-    "w": 56
-   },
-   {
-    "el": "button.xt-btn.fixed.bottom-[148px] \"Plan a trip with AI\"",
-    "top": 620,
-    "h": 56,
-    "w": 205
-   }
-  ],
-  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
-  "docHeight": 768,
-  "lcp": 160,
-  "cls": 0,
-  "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
   "failed": []
  }
