@@ -41,10 +41,8 @@ import { useEnhancedAnalytics } from '@/hooks/useEnhancedAnalytics';
 import { ROOM_INVENTORY, RoomType } from '@/data/roomInventory';
 import { getCanonicalRate, getBreakfastInclusion } from '@/utils/rateSanityCheck';
 import { useOptionalAuth } from '@/hooks/useRequireAuth';
-import { generateInvoice, openInvoiceHTML, downloadInvoiceAsPDF } from '@/services/invoiceService';
-import { openWhatsAppDirectly, generateBookingMessage } from '@/utils/privacyCompliantWhatsApp';
-import { pushToDataLayer, trackBookingStart, trackBookingComplete } from '@/utils/dataLayerService';
-import { routeGTMEvent } from '@/utils/gtmEventRouter';
+import { openWhatsAppDirectly, generateBookingMessage, bookingPageSource } from '@/utils/privacyCompliantWhatsApp';
+import { trackBookingStart } from '@/utils/dataLayerService';
 
 type BookingStep = 'dates' | 'rooms' | 'summary' | 'details' | 'confirmation';
 
@@ -656,8 +654,7 @@ const GuestDetailsStep = ({
 
       {/* Submit Button */}
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md p-4 bg-gradient-to-t from-[hsl(220,20%,12%)] via-[hsl(220,20%,12%)] to-transparent pt-8">
-        <motion.button
-          whileTap={{ scale: 0.98 }}
+        <Button
           onClick={handleSubmit}
           disabled={isSubmitting}
           className={cn(
@@ -675,15 +672,15 @@ const GuestDetailsStep = ({
               >
                 <Sparkles className="w-5 h-5" />
               </motion.div>
-              Processing...
+              Saving enquiry...
             </>
           ) : (
             <>
-              Send Enquiry
+              <MessageCircle className="h-5 w-5" /> Send WhatsApp enquiry
               <span className="text-sm font-normal opacity-80">• ₹{total.toLocaleString()}</span>
             </>
           )}
-        </motion.button>
+        </Button>
       </div>
     </div>
   );
@@ -697,7 +694,6 @@ const ConfirmationStep = ({
   checkOut,
   selectedRooms,
   total,
-  invoiceHtml,
   onGoHome,
   onWhatsAppHost,
 }: {
@@ -707,22 +703,9 @@ const ConfirmationStep = ({
   checkOut: Date;
   selectedRooms: SelectedRoom[];
   total: number;
-  invoiceHtml?: string;
   onGoHome: () => void;
   onWhatsAppHost: () => void;
 }) => {
-  const handleViewInvoice = () => {
-    if (invoiceHtml) {
-      openInvoiceHTML(invoiceHtml);
-    }
-  };
-
-  const handleDownloadPDF = async () => {
-    if (invoiceHtml) {
-      await downloadInvoiceAsPDF(invoiceHtml, `Enquiry-${bookingId}.pdf`);
-    }
-  };
-
   return (
     <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] px-6 text-center pb-8">
       {/* Pending Animation */}
@@ -816,33 +799,6 @@ const ConfirmationStep = ({
         </div>
       </motion.div>
 
-      {/* Invoice Actions */}
-      {invoiceHtml && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="flex gap-3 w-full max-w-sm mb-4"
-        >
-          <motion.button
-            whileTap={{ scale: 0.98 }}
-            onClick={handleViewInvoice}
-            className="flex-1 h-12 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-sm flex items-center justify-center gap-2 transition-colors"
-          >
-            <FileText className="w-4 h-4" />
-            View Summary
-          </motion.button>
-          <motion.button
-            whileTap={{ scale: 0.98 }}
-            onClick={handleDownloadPDF}
-            className="flex-1 h-12 rounded-xl bg-white/10 hover:bg-white/15 text-white font-medium text-sm flex items-center justify-center gap-2 transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            Download PDF
-          </motion.button>
-        </motion.div>
-      )}
-
       {/* WhatsApp Host CTA */}
       <motion.button
         initial={{ opacity: 0, y: 20 }}
@@ -863,7 +819,7 @@ const ConfirmationStep = ({
         className="flex items-center gap-2 text-sm text-white/75 mb-6 text-center"
       >
         <Sparkles className="w-4 h-4" />
-        <span>Enquiry copy sent to your email & WhatsApp</span>
+        <span>Enquiry saved. Send the pre-filled message in WhatsApp to reach the host.</span>
       </motion.div>
 
       <motion.button
@@ -906,7 +862,6 @@ const pageTransition = {
 export default function SimplifiedBookingFlow() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { trackConversion } = useEnhancedAnalytics();
   const hasTrackedEntry = useRef(false);
   
   const { user } = useOptionalAuth();
@@ -934,10 +889,8 @@ export default function SimplifiedBookingFlow() {
     pincode: '',
     specialRequests: '',
   });
-  const [invoiceHtml, setInvoiceHtml] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingId, setBookingId] = useState('');
-  const [, setBookingUUID] = useState('');
 
   // Load booking data from sessionStorage OR URL search params (hero search)
   useEffect(() => {
@@ -1034,11 +987,7 @@ export default function SimplifiedBookingFlow() {
       selectedRooms.reduce((sum, r) => sum + r.quantity, 0)
     );
 
-    trackConversion('booking', 'booking_initiated', 0, {
-      value: 0,
-      isCompleted: false,
-    });
-  }, [selectedRooms, propertyName, trackConversion]);
+  }, [selectedRooms, propertyName]);
 
   // Calculations
   const nights = useMemo(() => {
@@ -1055,8 +1004,7 @@ export default function SimplifiedBookingFlow() {
     selectedRooms.forEach(({ room, quantity }) => {
       const roomTotal = room.discountedPrice * quantity * nights;
       sub += roomTotal;
-      // 5% GST for all hostel rooms, 0% for dorms
-      const rate = room.kind === 'dorm' ? 0 : 0.05;
+      const rate = room.discountedPrice >= 7500 ? 0.18 : 0.05;
       gst += Math.round(roomTotal * rate);
     });
     
@@ -1107,129 +1055,48 @@ export default function SimplifiedBookingFlow() {
   const handleSubmitBooking = async () => {
     if (selectedRooms.length === 0 || !checkIn || !checkOut) return;
 
+    // Open on the guest's click, before awaiting the database, to avoid popup blockers.
+    const whatsAppTab = window.open('', '_blank');
     setIsSubmitting(true);
     try {
-      // Use first room for invoice (multi-room support can be expanded)
-      const primaryRoom = selectedRooms[0];
-      const pricePerNight = primaryRoom.room.discountedPrice;
-      const roomQuantity = selectedRooms.reduce((sum, r) => sum + r.quantity, 0);
-      
-      const gstRate = primaryRoom.room.kind === 'dorm' ? 0 : 0.05;
-
-      // Get current user ID if logged in
-      const { data: { user: currentUser } } = await supabase.auth.getUser();
-
-      // Use the invoice generation system
-      const result = await generateInvoice({
-        guestName: guestDetails.name,
-        guestEmail: guestDetails.email,
-        guestPhone: guestDetails.phone,
-        guestAddress: guestDetails.address,
-        guestCity: guestDetails.city,
-        guestState: guestDetails.state,
-        guestPincode: guestDetails.pincode,
-        checkIn: format(checkIn, 'yyyy-MM-dd'),
-        checkOut: format(checkOut, 'yyyy-MM-dd'),
-        roomName: selectedRooms.map(r => `${r.quantity}× ${r.room.name}`).join(', '),
-        roomType: primaryRoom.room.kind,
-        quantity: roomQuantity,
-        nights,
-        ratePerNight: pricePerNight,
-        subtotal,
-        gstRate,
-        gstAmount,
-        totalAmount: total,
-        specialRequests: guestDetails.specialRequests,
-        userId: currentUser?.id,
+      const { data: catalogue, error: catalogueError } = await supabase.from('room_types')
+        .select('id,name,base_price,is_active').in('name', selectedRooms.map(r => r.room.name));
+      if (catalogueError) throw catalogueError;
+      const rooms = selectedRooms.map(({ room, quantity }) => {
+        const entry = catalogue?.find(item => item.name === room.name && item.is_active);
+        if (!entry || Number(entry.base_price) !== room.discountedPrice) throw new Error(`${room.name} rate or availability changed. Refresh and try again.`);
+        return { id: String(entry.id), quantity };
       });
-
-      if (result.success && result.bookingId) {
-        setBookingId(result.bookingId);
-        if (result.bookingUUID) {
-          setBookingUUID(result.bookingUUID);
-        }
-        if (result.html) {
-          setInvoiceHtml(result.html);
-        }
-
-        // =====================================================
-        // CRITICAL: Push booking_confirmed event to dataLayer for GTM
-        // This exact event name is required for GA4 and Google Ads conversion tracking
-        // The event MUST fire exactly as: { event: "booking_confirmed" }
-        // =====================================================
-        
-        // Ensure dataLayer exists BEFORE any push
-        const dataLayer = (window as any).dataLayer = (window as any).dataLayer || [];
-        
-        // Build the exact event object required by GTM
-        const gtmEvent = {
-          event: 'booking_confirmed',
-          transaction_id: result.bookingId,
-          value: total,
-          currency: 'INR',
-          room_type: primaryRoom.room.name,
-          payment_method: 'pay_at_hotel',
-          ecommerce: {
-            transaction_id: result.bookingId,
-            value: total,
-            currency: 'INR',
-            items: selectedRooms.map(r => ({
-              item_name: r.room.name,
-              item_category: r.room.kind,
-              price: r.room.discountedPrice,
-              quantity: r.quantity,
-            })),
-          },
-        };
-        
-        // IMMEDIATE push - no conditions, no delays before push
-        dataLayer.push(gtmEvent);
-        
-        // High-visibility console log for GTM Preview debugging
-        console.log('%c[GTM] booking_confirmed FIRED', 'background: #00ff00; color: #000; font-weight: bold; padding: 8px 16px; font-size: 14px;');
-        console.log('[GTM] Event payload:', gtmEvent);
-        console.log('[GTM] dataLayer length:', dataLayer.length);
-        console.log('[GTM] Full dataLayer:', JSON.stringify(dataLayer, null, 2));
-        
-        // Also use the tracking service for redundancy
-        trackBookingComplete(
-          result.bookingId,
-          primaryRoom.room.name,
-          total,
-          'pay_at_hotel'
-        );
-
-        // Track conversion
-        trackConversion('booking', 'booking_confirmed', total, {
-          value: total,
-          isCompleted: true,
-        });
-
-        // Fire booking_created GTM event (distinct from booking_confirmed)
-        routeGTMEvent({
-          eventName: 'booking_created',
-          params: {
-            transaction_id: result.bookingId,
-            property_id: 'xtsy-shillong',
-            value: total,
-            room_type: primaryRoom.room.name,
-            nights,
-            guests: selectedRooms.reduce((sum, r) => sum + (r.room.capacity * r.quantity), 0),
-            currency: 'INR',
-          },
-        });
-
-        // Small delay to ensure GTM processes the event before UI transition
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
-        goToStep('confirmation');
-        toast.success('Enquiry sent! The host will confirm on WhatsApp shortly.');
-      } else {
-        toast.error(result.error || 'Booking failed. Please try again.');
-      }
+      const guests = selectedRooms.reduce((sum, r) => sum + (r.room.kind === 'dorm' ? r.quantity : r.room.capacity * r.quantity), 0);
+      const source = bookingPageSource();
+      const requests = [`Page: ${source}`, guestDetails.specialRequests, guestDetails.address && `Address: ${guestDetails.address}`, [guestDetails.city, guestDetails.state, guestDetails.pincode].filter(Boolean).join(', ')].filter(Boolean).join(' | ').slice(0, 2000);
+      const { data, error } = await supabase.rpc('create_whatsapp_enquiry', {
+        p_guest_name: guestDetails.name.trim(), p_email: guestDetails.email.trim(), p_phone: guestDetails.phone.trim(),
+        p_check_in: format(checkIn, 'yyyy-MM-dd'), p_check_out: format(checkOut, 'yyyy-MM-dd'),
+        p_guests: guests, p_room_ids: rooms.map(r => r.id), p_quantities: rooms.map(r => r.quantity),
+        p_breakfast: false, p_decoration: false, p_subtotal: subtotal, p_taxes: gstAmount,
+        p_total: total, p_requests: requests,
+      });
+      if (error) throw error;
+      const saved = typeof data === 'string' ? JSON.parse(data) : data;
+      if (!saved?.success || !saved.enquiry_id) throw new Error(saved?.error || 'Could not save enquiry');
+      setBookingId(saved.enquiry_id);
+      const message = generateBookingMessage({
+        roomType: selectedRooms.map(r => `${r.quantity}× ${r.room.name} (₹${r.room.discountedPrice.toLocaleString('en-IN')}/night)`).join(', '),
+        guests, checkIn: format(checkIn, 'yyyy-MM-dd'), checkOut: format(checkOut, 'yyyy-MM-dd'), nights,
+        totalPrice: total, guestName: guestDetails.name, email: guestDetails.email, phone: guestDetails.phone,
+        address: guestDetails.address, city: guestDetails.city, state: guestDetails.state,
+        pincode: guestDetails.pincode, specialRequests: guestDetails.specialRequests,
+        reference: saved.enquiry_id, source,
+      });
+      const url = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
+      if (whatsAppTab && !whatsAppTab.closed) whatsAppTab.location.href = url;
+      else openWhatsAppDirectly(message);
+      goToStep('confirmation');
+      toast.success('Enquiry saved. Send your message in WhatsApp to reach the host.');
     } catch (error) {
-      console.error('Booking error:', error);
-      toast.error('An error occurred. Please try again.');
+      whatsAppTab?.close();
+      toast.error(error instanceof Error ? error.message : 'Could not save enquiry. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -1312,16 +1179,6 @@ export default function SimplifiedBookingFlow() {
                 gstAmount={gstAmount}
                 total={total}
                 onNext={() => {
-                  // Fire booking_payment_initiated when user proceeds to details
-                  routeGTMEvent({
-                    eventName: 'booking_payment_initiated',
-                    params: {
-                      estimated_revenue: total,
-                      room_type: selectedRooms[0]?.room.name || '',
-                      nights,
-                      currency: 'INR',
-                    },
-                  });
                   goToStep('details');
                 }}
               />
@@ -1345,13 +1202,12 @@ export default function SimplifiedBookingFlow() {
                 checkOut={checkOut}
                 selectedRooms={selectedRooms}
                 total={total}
-                invoiceHtml={invoiceHtml}
                 onGoHome={() => navigate('/')}
                 onWhatsAppHost={() => {
                   openWhatsAppDirectly(
                     generateBookingMessage({
                       roomType: selectedRooms.map(r => `${r.quantity}× ${r.room.name}`).join(', '),
-                      guests: selectedRooms.reduce((s, r) => s + r.quantity, 0),
+                      guests: selectedRooms.reduce((s, r) => s + (r.room.kind === 'dorm' ? r.quantity : r.room.capacity * r.quantity), 0),
                       checkIn: format(checkIn, 'yyyy-MM-dd'),
                       checkOut: format(checkOut, 'yyyy-MM-dd'),
                       nights,
@@ -1359,7 +1215,10 @@ export default function SimplifiedBookingFlow() {
                       guestName: guestDetails.name,
                       email: guestDetails.email,
                       phone: guestDetails.phone,
-                    }) + `\n\nEnquiry ID: ${bookingId}`
+                      address: guestDetails.address, city: guestDetails.city, state: guestDetails.state,
+                      pincode: guestDetails.pincode, specialRequests: guestDetails.specialRequests,
+                      reference: bookingId, source: bookingPageSource(),
+                    })
                   );
                 }}
               />
