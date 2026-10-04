@@ -62,7 +62,7 @@ export class PerformanceOptimizer {
       const link = document.createElement('link');
       link.rel = 'preload';
       
-      if (resource.includes('.jpg') || resource.includes('.png') || resource.includes('.webp')) {
+      if (/\.(jpe?g|png|webp|avif|svg)(\?|$)/.test(resource)) {
         link.as = 'image';
       } else if (resource.includes('.css')) {
         link.as = 'style';
@@ -127,11 +127,8 @@ export const initializePerformanceOptimizations = () => {
   // Start cache cleanup
   PerformanceOptimizer.startCacheCleanup();
 
-  // Preload critical resources
-  PerformanceOptimizer.preloadResources([
-    '/placeholder.svg',
-    // Add other critical assets
-  ]);
+  // No global preloads: each page preloads its own hero (see buildRouteHead). A preload of an
+  // unused placeholder only cost a request and raised a browser warning.
 
   // Disable performance monitoring to reduce overhead
   // Performance monitoring disabled for better loading speed
