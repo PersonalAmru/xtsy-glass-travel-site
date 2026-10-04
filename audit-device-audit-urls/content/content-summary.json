@@ -1,0 +1,208 @@
+{
+ "site": "http://localhost:4174",
+ "pages": 685,
+ "pagesWithFindings": 685,
+ "siteFiles": {
+  "/robots.txt": {
+   "status": 200,
+   "bytes": 2432,
+   "blocksAIBots": false
+  },
+  "/llms.txt": {
+   "status": 200,
+   "bytes": 6370
+  },
+  "/llms-full.txt": {
+   "status": 200,
+   "bytes": 10498
+  }
+ },
+ "info": {
+  "info:check-in time seen": {
+   "11a": 46
+  },
+  "info:check-out time seen": {
+   "10a": 47
+  }
+ },
+ "rules": {
+  "price:₹399 anywhere": {
+   "pages": 1766,
+   "examples": [
+    "/ — Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N",
+    "/ — 4.7 Google rating 30+ Tour packages 24/7 Travel support Dorms from ₹399 Experience by XTSY TAB Bistro Partner stays a",
+    "/ — ortheast Workation Pet-friendly Women safe stays 30+ tours Dorms from ₹399 Experience by XTSY TAB Bistro Partner stays a",
+    "/ — bed in the pines See all rooms → Live availability Dorm beds from ₹399 6 and 8-bed mixed dorms with curtains, locke",
+    "/ — s actually free tonight in our booking engine. Dorm bed tonight from ₹399 Book Female dorm tonight ₹599 Book Experi",
+    "/gallery — Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N",
+    "/about — Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N",
+    "/about — dorm with lockers and curtains. 4 Mixed dorms 6 and 8-bed dorms from ₹399 a night. Recognition Nominated at NEITA 202",
+    "/female-travellers — Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N",
+    "/work-from-home — Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N",
+    "/xtsy-rentals — Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N",
+    "/xtsy-vs-zostel — Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N"
+   ]
+  },
+  "price:dorm \"from\" price": {
+   "pages": 1598,
+   "examples": [
+    "/ — ₹399 — \"Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N\"",
+    "/ — ₹399 — \"4.7 Google rating 30+ Tour packages 24/7 Travel support Dorms from ₹399 Experience by XTSY TAB Bistro Partner stays a\"",
+    "/gallery — ₹399 — \"Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N\"",
+    "/about — ₹399 — \"Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N\"",
+    "/female-travellers — ₹399 — \"Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N\"",
+    "/work-from-home — ₹399 — \"Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N\"",
+    "/xtsy-rentals — ₹399 — \"Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N\"",
+    "/xtsy-vs-zostel — ₹399 — \"Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N\"",
+    "/privacy-policy — ₹399 — \"Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N\"",
+    "/terms-of-service — ₹399 — \"Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N\"",
+    "/tab-bistro — ₹399 — \"Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N\"",
+    "/xtsy-adventure-campsite-dawki — ₹399 — \"Skip to content Book direct and save 20–30% vs OTAs · Dorm beds from ₹399 /night · New Shillong Township, near IIM & N\""
+   ]
+  },
+  "stale:year": {
+   "pages": 1088,
+   "examples": [
+    "/about — 2025 — \"y XTSY, India's first stargaze glamp, and a NEITA 2025 nomination..\"",
+    "/about — 2025 — \"om ₹399 a night. Recognition Nominated at NEITA 2025 XTSY Traveller’s Hostel \"",
+    "/about — 2025 — \"lence Award at the Northeast India Tourism Awards 2025, an initiative of the Eme\"",
+    "/about — 2025 — \" North-East Eco Forum (ENEEF), held on 11 October 2025 in Guwahati. Location & \"",
+    "/xtsy-rentals — 2025 — \"al 7 seats ₹4,000 /day Book on WhatsApp Top End 2025 Premium SUV Mahindra XUV \"",
+    "/xtsy-vs-zostel — 2025 — \"9.4 Booking.com rating 50+ Guests at once NEITA 2025 Nominated, Best Budget-Fr\"",
+    "/privacy-policy — 2023 — \"nt with the Digital Personal Data Protection Act, 2023 (DPDP Act) of India, Gene\"",
+    "/cheap-hostels-shillong — 2025 — \"ick XTSY ✓ 4.7★ on Google (237 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\"",
+    "/budget-stay-shillong — 2025 — \"t Rooms Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
+    "/budget-stay-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
+    "/shillong-dormitory — 2025 — \"hillong Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
+    "/shillong-dormitory — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
+   ]
+  },
+  "placeholder:coming soon": {
+   "pages": 179,
+   "examples": [
+    "/tab-bistro — AM – 10:30 PM Reserve a table View the menu Rooftop terrace · café coming soon North Indian Indo-Chinese Thai Contin",
+    "/restaurant-in-shillong —  Dining A rooftop terrace with panoramic views — the rooftop café is coming soon. Traveller's Feast Multi-cuisine din",
+    "/zion-backpackers-vs-xtsy — ockers. ✓ XTSY has a rooftop terrace for relaxing; a rooftop café is coming soon. Tour and Travel Services Both hoste",
+    "/destinations/meghalaya/cherrapunji/nohkalikai-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/jowai/krang-suri-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/cherrapunji/wei-sawdong-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/mawlynnong/mawlynnong-village — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/dawki/shnongpdeng — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/shillong/umiam-lake — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/dawki/dawki-umngot-river — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/shillong/laitlum-canyons — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event"
+   ]
+  },
+  "aeo:no concise answer paragraph under H1": {
+   "pages": 51,
+   "examples": [
+    "/about — 166",
+    "/female-travellers — 84",
+    "/work-from-home — 153",
+    "/xtsy-rentals — 144",
+    "/expeditions — 187",
+    "/budget-stay-shillong — 171",
+    "/couples-hostel-shillong — 121",
+    "/group-stay-shillong — 183",
+    "/solo-travel-hostel-shillong — 124",
+    "/hostel-near-police-bazar-shillong — 140",
+    "/zion-backpackers-vs-xtsy — 188",
+    "/isabella-hostel-vs-xtsy — 187"
+   ]
+  },
+  "aeo:no FAQ or question headings": {
+   "pages": 19,
+   "examples": [
+    "/xtsy-vs-zostel — ",
+    "/privacy-policy — ",
+    "/terms-of-service — ",
+    "/book — ",
+    "/pricing-cancellation-policy — ",
+    "/meghalaya-adventure-tour — ",
+    "/expeditions — ",
+    "/motorbike-expedition-northeast-india — ",
+    "/4x4-expedition-meghalaya — ",
+    "/merch — ",
+    "/meghalaya-couple-tour-package — ",
+    "/shillong-tour-package — "
+   ]
+  },
+  "price:8-bed dorm": {
+   "pages": 11,
+   "examples": [
+    "/about — ₹399 — \"dorm with lockers and curtains. 4 Mixed dorms 6 and 8-bed dorms from ₹399 a night. Recognition Nominated at NEITA 202\"",
+    "/cheap-hostels-shillong — ₹399 — \"od bed in Shillong at XTSY Travellers Hostel is an 8-bed dorm bunk at ₹399 a night, with a curtain, locker and charging \"",
+    "/cheap-hostels-shillong — ₹399 — \" Book on WhatsApp Rooms and today’s direct prices 8-bed mixed dorm ₹399 / night Best-value bunk with curtain, locker,\"",
+    "/cheap-hostels-shillong — ₹399 — \"d in Shillong? + At XTSY the cheapest bed is the 8-bed mixed dorm at ₹399 a night, with a privacy curtain, locker and c\"",
+    "/cheap-hostels-shillong — ₹499 — \"tel in Shillong per night? + At XTSY, dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the Kin\"",
+    "/cheap-hostels-shillong — ₹599 — \", dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the King Double room ₹2,200, and Experience \"",
+    "/best-hostel-in-shillong — ₹399 — \" Book on WhatsApp Rooms and today’s direct prices 8-bed mixed dorm ₹399 / night Best-value bunk with curtain, locker,\"",
+    "/best-hostel-in-shillong — ₹499 — \"tel in Shillong per night? + At XTSY, dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the Kin\"",
+    "/best-hostel-in-shillong — ₹599 — \", dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the King Double room ₹2,200, and Experience \"",
+    "/faq — ₹399 — \"gle contact. What rooms do you have? + 6 and 8-bed mixed dorms from ₹399, a 4-bed female-only dorm (₹599), King Double\"",
+    "/faq — ₹599 — \"have? + 6 and 8-bed mixed dorms from ₹399, a 4-bed female-only dorm (₹599), King Double private rooms and Experience by\""
+   ]
+  },
+  "seo:thin (<300 words)": {
+   "pages": 3,
+   "examples": [
+    "/gallery — 288",
+    "/book — 60",
+    "/meghalaya-photo-gallery — 265"
+   ]
+  },
+  "policy:cancellation/refund claim": {
+   "pages": 3,
+   "examples": [
+    "/terms-of-service — e modification, OR Alternate equivalent accommodation, OR Full refund (only if accommodation canno",
+    "/pricing-cancellation-policy — nate room or equivalent property accommodation • Option 3: Full refund (only if accommodation canno",
+    "/car-rental-guwahati —  Aadhaar/passport for ID, and a security deposit of ₹5,000 (refundable). Credit card preferred for d"
+   ]
+  },
+  "location:\"heart of Shillong\"": {
+   "pages": 2,
+   "examples": [
+    "/shillong-travel-guide —  museum covering all NE India cultures, ₹100 entry ✓ Police Bazaar — Heart of Shillong, shopping, street food, nightlif",
+    "/restaurants-in-police-bazar-shillong — rgaze glamping ensuite, both in Shillong. Police Bazar is the beating heart of Shillong's food scene — restaurants, café"
+   ]
+  },
+  "price:king/private room": {
+   "pages": 2,
+   "examples": [
+    "/dawki-umngot-river-guide — ₹1500 — \"00-1,500/person including meals ✓ Kayaking: 1-2 hours on the Umngot, ₹1,500-2,500/person ✓ Cliff jumping: 5-15 meter j\"",
+    "/shnongpdeng-camping — ₹1500 — \"enture sports center: ✓ Kayaking: 1-2 hours on crystal-clear Umngot, ₹1,500-3,000/person ✓ Cliff jumping: 5-15 meter j\""
+   ]
+  },
+  "price:female dorm": {
+   "pages": 1,
+   "examples": [
+    "/ — ₹399 — \"ortheast Workation Pet-friendly Women safe stays 30+ tours Dorms from ₹399 Experience by XTSY TAB Bistro Partner stays a\""
+   ]
+  },
+  "aeo:no \"New Shillong Township\" entity mention": {
+   "pages": 1,
+   "examples": [
+    "/book — "
+   ]
+  },
+  "schema:offer price 0": {
+   "pages": 1,
+   "examples": [
+    "/plan-trip-with-ai — {\"@type\":\"Offer\",\"price\":0,\"priceCurrency\":\"INR\"}"
+   ]
+  },
+  "location:wrong area": {
+   "pages": 1,
+   "examples": [
+    "/dorms-in-shillong — ellow explorers. Most hostels in Shillong are strategically located near Police Bazar or Laitumkhrah, ensuring you have easy access to local"
+   ]
+  },
+  "price:Experience by XTSY": {
+   "pages": 1,
+   "examples": [
+    "/meghalaya-travel-guide — ₹5000 — \"mium experiences like Experience by XTSY or luxury resorts range from ₹5,000-15,000 per night. ✓ Budget: ₹1,500-2,500/d\""
+   ]
+  }
+ }
+}
