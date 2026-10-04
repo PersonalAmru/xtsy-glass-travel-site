@@ -1,3 +1,4 @@
+import { SELF_TRACKING_ENABLED } from '@/lib/selfTracking';
 import { useEffect, useRef } from 'react';
 import { useLocation } from '@/lib/router-compat';
 import { supabase } from '@/integrations/supabase/client';
@@ -48,6 +49,7 @@ interface VitalsSample {
 }
 
 const sendSample = async (sample: VitalsSample) => {
+  if (!SELF_TRACKING_ENABLED) return;
   try {
     // Prefer fire-and-forget insert to avoid blocking on edge cold-starts
     await supabase.from('route_performance_metrics').insert(sample as any);

@@ -1,19 +1,18 @@
 /**
- * ConsentModal - GDPR/DPDP Compliant Consent Modal
- * 
- * CRITICAL DESIGN DECISIONS:
- * 1. Analytics is ALWAYS granted (mandatory for business operations)
- * 2. Marketing & Personalization are user-choice
- * 3. Modal blocks ALL interaction until consent is saved
- * 4. No close button - user MUST make a choice
- * 5. "Reject All" opens customize with analytics locked ON
+ * ConsentModal — privacy & cookie notice as a slim bar at the bottom of the screen
+ * (GDPR / India DPDP Act 2023).
+ *
+ * - Does not cover the page or lock scrolling: visitors can read and book while it is open.
+ * - Necessary and analytics cookies are always on (business requirement, stated plainly).
+ * - Marketing and personalisation are the visitor's choice: "Reject non-essential" saves
+ *   them off in one tap; "Settings" opens the switches.
+ * - Consent is stored for 365 days under the same key and version as before, so visitors who
+ *   already chose are not asked again, and the same consent_update event goes to GTM.
  */
 
 import { useState, useEffect, useCallback } from 'react';
-import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
-import { Shield, Cookie, ChevronDown, Lock, ChevronLeft } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Lock } from 'lucide-react';
 
 interface ConsentPreferences {
   necessary: boolean;
@@ -26,79 +25,46 @@ interface ConsentPreferences {
 
 const CONSENT_KEY = 'xtsy_consent_v2';
 const CONSENT_VERSION = '2.0';
-// Consent valid for 365 days (in milliseconds) - returning users within this window skip the modal
+// Consent valid for 365 days — returning visitors within this window never see the bar.
 const CONSENT_VALIDITY_MS = 365 * 24 * 60 * 60 * 1000;
+
+function hasValidConsent(): boolean {
+  try {
+    const stored = localStorage.getItem(CONSENT_KEY);
+    if (!stored) return false;
+    const parsed = JSON.parse(stored);
+    if (parsed.version === CONSENT_VERSION && parsed.timestamp) {
+      const age = Date.now() - new Date(parsed.timestamp).getTime();
+      if (age < CONSENT_VALIDITY_MS) {
+        sessionStorage.setItem('xtsy_returning_user', 'true');
+        return true;
+      }
+    }
+    localStorage.removeItem(CONSENT_KEY);
+  } catch {
+    try { localStorage.removeItem(CONSENT_KEY); } catch { /* storage blocked */ }
+  }
+  return false;
+}
 
 export function ConsentModal() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isReady, setIsReady] = useState(false);
-  const [showCustomize, setShowCustomize] = useState(false);
-  const [preferences, setPreferences] = useState<ConsentPreferences>({
-    necessary: true,
-    analytics: true,
-    marketing: true,
-    personalization: true,
-    timestamp: '',
-    version: CONSENT_VERSION,
-  });
+  const [showSettings, setShowSettings] = useState(false);
+  const [marketing, setMarketing] = useState(true);
+  const [personalization, setPersonalization] = useState(true);
 
   useEffect(() => {
-    const checkConsent = () => {
-      try {
-        const stored = localStorage.getItem(CONSENT_KEY);
-        console.log('[ConsentModal] Checking stored consent:', stored);
-        
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          // Check for valid consent with BOTH version and timestamp
-          // Version must match current version AND consent must be within validity period (365 days)
-          if (parsed.version === CONSENT_VERSION && parsed.timestamp) {
-            const consentAge = Date.now() - new Date(parsed.timestamp).getTime();
-            
-            // If consent is still valid (within 365 days), skip modal - RETURNING USER
-            if (consentAge < CONSENT_VALIDITY_MS) {
-              console.log('[ConsentModal] Valid consent found (v' + parsed.version + '), returning user - not showing modal');
-              console.log('[ConsentModal] Consent age: ' + Math.round(consentAge / (24 * 60 * 60 * 1000)) + ' days');
-              // Ensure body scroll is enabled (in case of stuck state)
-              document.body.style.overflow = '';
-              
-              // Mark as returning user for analytics
-              sessionStorage.setItem('xtsy_returning_user', 'true');
-              return; // Valid consent exists
-            } else {
-              console.log('[ConsentModal] Consent expired after 365 days, showing modal for re-consent');
-            }
-          } else {
-            console.log('[ConsentModal] Consent version mismatch or missing timestamp, clearing');
-          }
-          localStorage.removeItem(CONSENT_KEY);
-        }
-        // No valid consent - show modal
-        console.log('[ConsentModal] No valid consent, showing modal');
-        setIsVisible(true);
-        setIsReady(true);
-        document.body.style.overflow = 'hidden';
-      } catch (e) {
-        console.log('[ConsentModal] Error parsing consent, clearing and showing modal:', e);
-        localStorage.removeItem(CONSENT_KEY);
-        setIsVisible(true);
-        setIsReady(true);
-        document.body.style.overflow = 'hidden';
-      }
-    };
-
-    // Show modal within 300ms
-    const timer = setTimeout(checkConsent, 300);
-    return () => {
-      clearTimeout(timer);
-      // Ensure body scroll is re-enabled on unmount
-      document.body.style.overflow = '';
-    };
+    // Shown after the page has painted, so it never delays the first view.
+    const timer = setTimeout(() => {
+      if (!hasValidConsent()) setIsVisible(true);
+    }, 300);
+    return () => clearTimeout(timer);
   }, []);
 
   const pushToDataLayer = useCallback((prefs: ConsentPreferences) => {
-    if (typeof window !== 'undefined' && (window as any).dataLayer) {
-      const consentConfig = {
+    const w = window as unknown as { dataLayer?: unknown[] };
+    if (typeof window !== 'undefined' && w.dataLayer) {
+      w.dataLayer.push({
         event: 'consent_update',
         analytics_storage: 'granted',
         ad_storage: prefs.marketing ? 'granted' : 'denied',
@@ -107,234 +73,97 @@ export function ConsentModal() {
         functionality_storage: 'granted',
         security_storage: 'granted',
         personalization_storage: prefs.personalization ? 'granted' : 'denied',
-      };
-      
-      (window as any).dataLayer.push(consentConfig);
-      
-      console.log('%c[CONSENT MODAL] consent_update PUSHED TO GTM', 
-        'background: #4CAF50; color: white; font-weight: bold; padding: 4px 12px; border-radius: 4px;');
-      console.log('[CONSENT MODAL] Payload:', consentConfig);
+      });
     }
   }, []);
 
-  const saveConsent = useCallback((prefs: ConsentPreferences) => {
-    const finalPrefs: ConsentPreferences = {
-      ...prefs,
+  const saveConsent = useCallback((choice: { marketing: boolean; personalization: boolean }) => {
+    const prefs: ConsentPreferences = {
       necessary: true,
       analytics: true,
+      marketing: choice.marketing,
+      personalization: choice.personalization,
       timestamp: new Date().toISOString(),
       version: CONSENT_VERSION,
     };
-
-    localStorage.setItem(CONSENT_KEY, JSON.stringify(finalPrefs));
-    pushToDataLayer(finalPrefs);
-    document.body.style.overflow = '';
+    try { localStorage.setItem(CONSENT_KEY, JSON.stringify(prefs)); } catch { /* storage blocked: ask again next visit */ }
+    pushToDataLayer(prefs);
     setIsVisible(false);
   }, [pushToDataLayer]);
 
-  const handleAcceptAll = () => {
-    saveConsent({
-      necessary: true,
-      analytics: true,
-      marketing: true,
-      personalization: true,
-      timestamp: '',
-      version: CONSENT_VERSION,
-    });
-  };
+  if (!isVisible) return null;
 
-  const handleRejectAll = () => {
-    setPreferences(prev => ({
-      ...prev,
-      marketing: false,
-      personalization: false,
-    }));
-    setShowCustomize(true);
-  };
-
-  const handleSavePreferences = () => {
-    saveConsent(preferences);
-  };
-
-  if (!isVisible || !isReady) return null;
+  const btn = 'inline-flex h-11 items-center justify-center rounded-full px-5 text-[15px] font-extrabold transition-colors';
 
   return (
-    <>
-      {/* Global style for animation */}
-      <style>{`
-        @keyframes consentFadeIn {
-          from { opacity: 0; transform: scale(0.95) translateY(10px); }
-          to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .consent-modal-backdrop {
-          position: fixed !important;
-          top: 0 !important;
-          left: 0 !important;
-          right: 0 !important;
-          bottom: 0 !important;
-          width: 100vw !important;
-          height: 100vh !important;
-          display: flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          padding: 16px !important;
-          z-index: 2147483647 !important;
-          background-color: rgba(0, 0, 0, 0.7) !important;
-          backdrop-filter: blur(8px) !important;
-          -webkit-backdrop-filter: blur(8px) !important;
-        }
-        .consent-modal-content {
-          width: 100% !important;
-          max-width: 420px !important;
-          background: linear-gradient(180deg, #2a2a4a 0%, #1e1e38 100%) !important;
-          border-radius: 16px !important;
-          border: 1px solid rgba(255, 255, 255, 0.15) !important;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.1) !important;
-          overflow: hidden !important;
-          max-height: 90vh !important;
-          overflow-y: auto !important;
-          animation: consentFadeIn 0.3s ease-out forwards !important;
-        }
-      `}</style>
-      
-      <div
-        className="consent-modal-backdrop"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="consent-title"
-      >
-        <div className="consent-modal-content">
-
-        {/* Header */}
-        <div className="p-5 pb-4 border-b border-white/10" style={{ backgroundColor: '#1f1f3a' }}>
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ backgroundColor: 'rgba(236, 72, 153, 0.2)' }}>
-              <Shield className="w-6 h-6" style={{ color: '#ec4899' }} />
+    <section
+      role="region"
+      aria-label="Privacy and cookies"
+      className="fixed inset-x-0 bottom-0 z-[2147483000] border-t border-xt-line bg-xt-paper text-xt-ink shadow-[0_-8px_24px_rgba(31,34,48,0.12)]"
+    >
+      <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4">
+        {showSettings && (
+          <div className="mb-3 grid max-h-[45vh] gap-2 overflow-y-auto sm:grid-cols-2">
+            {[
+              { name: 'Necessary', sub: 'Bookings, security, your settings', locked: true },
+              { name: 'Analytics', sub: 'How visitors use the site (always on)', locked: true },
+            ].map((row) => (
+              <div key={row.name} className="flex items-center justify-between gap-3 rounded-2xl bg-white px-4 py-3">
+                <div>
+                  <p className="m-0 flex items-center gap-1.5 text-[14px] font-extrabold">{row.name} <Lock className="h-3.5 w-3.5 text-xt-mute" aria-hidden="true" /></p>
+                  <p className="m-0 text-[13px] text-xt-mute">{row.sub}</p>
+                </div>
+                <Switch checked disabled aria-label={`${row.name} cookies always on`} />
+              </div>
+            ))}
+            <div className="flex items-center justify-between gap-3 rounded-2xl bg-white px-4 py-3">
+              <div>
+                <p className="m-0 text-[14px] font-extrabold">Marketing</p>
+                <p className="m-0 text-[13px] text-xt-mute">Relevant ads on other sites</p>
+              </div>
+              <Switch checked={marketing} onCheckedChange={setMarketing} aria-label="Marketing cookies" />
             </div>
-            <div>
-              <h2 id="consent-title" className="text-xl font-semibold" style={{ color: '#ffffff' }}>Privacy & Cookies</h2>
-              <p className="text-sm" style={{ color: '#9ca3af' }}>We value your privacy</p>
+            <div className="flex items-center justify-between gap-3 rounded-2xl bg-white px-4 py-3">
+              <div>
+                <p className="m-0 text-[14px] font-extrabold">Personalisation</p>
+                <p className="m-0 text-[13px] text-xt-mute">Remember your preferences</p>
+              </div>
+              <Switch checked={personalization} onCheckedChange={setPersonalization} aria-label="Personalisation cookies" />
             </div>
           </div>
-          <p className="text-sm leading-relaxed" style={{ color: '#d1d5db' }}>
-            We use cookies to enhance your experience and analyze site traffic. 
-            Analytics cookies are required for site functionality.
+        )}
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-6">
+          <p className="m-0 flex-1 text-[14px] leading-snug">
+            We use cookies to run the site and understand visits, and, with your OK, for ads and personalisation.{' '}
+            <a href="/privacy-policy" className="font-bold text-xt-crimson underline">Privacy Policy</a>
           </p>
-        </div>
-
-        {/* Content */}
-        <div className="p-5 space-y-4">
-          {!showCustomize ? (
-            <div className="flex flex-col gap-3">
-              <Button 
-                onClick={handleAcceptAll} 
-                className="w-full h-12 text-base font-medium"
-                size="lg"
-              >
-                <Cookie className="w-5 h-5 mr-2" />
-                Accept All
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                onClick={handleRejectAll}
-                className="w-full h-11"
-              >
-                Reject Non-Essential
-              </Button>
-              
-              <Button 
-                variant="ghost" 
-                onClick={() => setShowCustomize(true)}
-                className="w-full text-muted-foreground hover:text-foreground"
-              >
-                Customize Preferences
-                <ChevronDown className="w-4 h-4 ml-1" />
-              </Button>
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {/* Necessary - Locked ON */}
-              <div className="flex items-center justify-between p-4 bg-muted/50 rounded-xl">
-                <div className="flex-1 pr-4">
-                  <div className="flex items-center gap-2">
-                    <p className="font-medium text-foreground text-sm">Necessary</p>
-                    <Lock className="w-3.5 h-3.5 text-muted-foreground" />
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-0.5">Required for site to function</p>
-                </div>
-                <Switch checked={true} disabled className="opacity-60" aria-label="Necessary cookies always enabled" />
-              </div>
-
-              {/* Analytics - Locked ON */}
-              <div className="flex items-center justify-between p-4 bg-muted/50 rounded-xl">
-                <div className="flex-1 pr-4">
-                  <div className="flex items-center gap-2">
-                    <p className="font-medium text-foreground text-sm">Analytics</p>
-                    <Lock className="w-3.5 h-3.5 text-muted-foreground" />
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-0.5">Helps us improve your experience</p>
-                </div>
-                <Switch checked={true} disabled className="opacity-60" aria-label="Analytics cookies always enabled" />
-              </div>
-
-              {/* Marketing - User Choice */}
-              <div className="flex items-center justify-between p-4 bg-background border border-border/50 rounded-xl">
-                <div className="flex-1 pr-4">
-                  <p className="font-medium text-foreground text-sm">Marketing</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">Personalized advertisements</p>
-                </div>
-                <Switch 
-                  checked={preferences.marketing}
-                  onCheckedChange={(checked) => setPreferences(prev => ({ ...prev, marketing: checked }))}
-                />
-              </div>
-
-              {/* Personalization - User Choice */}
-              <div className="flex items-center justify-between p-4 bg-background border border-border/50 rounded-xl">
-                <div className="flex-1 pr-4">
-                  <p className="font-medium text-foreground text-sm">Personalization</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">Remember your preferences</p>
-                </div>
-                <Switch 
-                  checked={preferences.personalization}
-                  onCheckedChange={(checked) => setPreferences(prev => ({ ...prev, personalization: checked }))}
-                />
-              </div>
-
-              {/* Actions */}
-              <Button 
-                onClick={handleSavePreferences} 
-                className="w-full h-11 mt-2"
-              >
-                Save Preferences
-              </Button>
-
-              <Button 
-                variant="ghost" 
-                onClick={() => setShowCustomize(false)}
-                className="w-full text-sm text-muted-foreground"
-              >
-                <ChevronLeft className="w-4 h-4 mr-1" />
-                Back
-              </Button>
-            </div>
-          )}
-        </div>
-
-        {/* Footer - Global compliance */}
-        <div className="px-5 pb-4">
-          <p className="text-xs text-muted-foreground text-center leading-relaxed">
-            By using this site, you agree to our{' '}
-            <a href="/privacy-policy" className="underline hover:text-foreground" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
-            {' '}and{' '}
-            <a href="/terms-of-service" className="underline hover:text-foreground" target="_blank" rel="noopener noreferrer">Terms of Service</a>.
-            <br />Compliant with GDPR (EU), India DPDP Act 2023, CCPA (US), LGPD (Brazil) &amp; POPIA (South Africa).
-          </p>
+          <div className="flex flex-wrap gap-2">
+            {showSettings ? (
+              <button type="button" onClick={() => saveConsent({ marketing, personalization })} className={`${btn} bg-xt-crimson text-white hover:bg-xt-crimson-dark`}>
+                Save choices
+              </button>
+            ) : (
+              <>
+                <button type="button" onClick={() => saveConsent({ marketing: true, personalization: true })} className={`${btn} bg-xt-crimson text-white hover:bg-xt-crimson-dark`}>
+                  Accept all
+                </button>
+                <button type="button" onClick={() => saveConsent({ marketing: false, personalization: false })} className={`${btn} border-[1.5px] border-xt-ink bg-transparent text-xt-ink hover:bg-white`}>
+                  Reject non-essential
+                </button>
+              </>
+            )}
+            <button
+              type="button"
+              aria-expanded={showSettings}
+              onClick={() => setShowSettings((v) => !v)}
+              className={`${btn} px-3 text-xt-ink underline underline-offset-4 hover:text-xt-crimson`}
+            >
+              {showSettings ? 'Back' : 'Settings'}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-    </>
+    </section>
   );
 }
 

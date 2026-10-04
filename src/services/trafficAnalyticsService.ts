@@ -4,6 +4,7 @@
  * Admin dashboard is the SOURCE OF TRUTH - GA4 is downstream
  */
 
+import { SELF_TRACKING_ENABLED } from '@/lib/selfTracking';
 import { supabase } from '@/integrations/supabase/client';
 
 // =============================================
@@ -1028,9 +1029,21 @@ let _trafficAnalytics: TrafficAnalyticsService | undefined;
 
 const ssrNoop = () => undefined;
 
+// While the site's own tracking is off, every method is a cheap stub with a safe return value.
+const DISABLED: Record<string, unknown> = {
+  getSessionId: () => '',
+  getVisitorId: () => '',
+  getDeviceTier: () => 'neutral',
+  getBotLikelihood: () => 0,
+  getIntentScore: () => 0,
+  getClickQualityScore: () => 0,
+};
+const disabledAsync = () => Promise.resolve();
+
 export const trafficAnalytics = new Proxy({} as TrafficAnalyticsService, {
   get(_, prop, receiver) {
     if (typeof window === 'undefined') return ssrNoop;
+    if (!SELF_TRACKING_ENABLED) return DISABLED[String(prop)] ?? disabledAsync;
     if (!_trafficAnalytics) _trafficAnalytics = new TrafficAnalyticsService();
     const value = Reflect.get(_trafficAnalytics, prop, receiver);
     return typeof value === 'function' ? value.bind(_trafficAnalytics) : value;
@@ -1039,7 +1052,7 @@ export const trafficAnalytics = new Proxy({} as TrafficAnalyticsService, {
 
 // Export initialization function
 export const initTrafficAnalytics = async () => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !SELF_TRACKING_ENABLED) return;
   await trafficAnalytics.initSession();
   trafficAnalytics.trackPageView();
 };

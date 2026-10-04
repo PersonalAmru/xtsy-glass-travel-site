@@ -1,3 +1,4 @@
+import { SELF_TRACKING_ENABLED } from '@/lib/selfTracking';
 import { useEffect, useCallback, useRef } from 'react';
 import { useLocation } from '@/lib/router-compat';
 import { supabase } from '@/integrations/supabase/client';
@@ -145,7 +146,7 @@ const getAnalyticsContext = (): AnalyticsContext => {
 // Skips tracking entirely for Lovable admin sessions
 const sendAnalytics = async (endpoint: string, data: Record<string, unknown>) => {
   // Skip tracking for Lovable admin sessions
-  if (checkAdminSession()) {
+  if (!SELF_TRACKING_ENABLED || checkAdminSession()) {
     return;
   }
 
@@ -241,6 +242,7 @@ export const useAnalytics = () => {
   // Track exit on page unload
   useEffect(() => {
     const handleUnload = () => {
+      if (!SELF_TRACKING_ENABLED) return;
       const ctx = getAnalyticsContext();
       const timeOnPage = Math.round((Date.now() - pageStartTime.current) / 1000);
       
