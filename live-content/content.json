@@ -62,7 +62,7 @@
  {
   "url": "/10-day-meghalaya-itinerary",
   "status": 200,
-  "words": 1235,
+  "words": 1421,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -79,13 +79,17 @@
    {
     "rule": "stale:year",
     "detail": "2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
+   },
+   {
+    "rule": "aeo:no concise answer paragraph under H1",
+    "detail": "83"
    }
   ],
   "seo": {
-   "title": "10-Day Meghalaya Itinerary — Explorer's Guide",
-   "titleLen": 45,
-   "desc": "Ultimate 10-day Meghalaya itinerary for explorers. Off-beat destinations, adventure activities. Jaintia Hills, Garo Hills included.",
-   "descLen": 131,
+   "title": "10-Day Meghalaya Itinerary: Shillong to Jaintia Hills | XTSY",
+   "titleLen": 60,
+   "desc": "10 day Meghalaya itinerary: Start in Shillong, trek to Nongriat, follow the Umngot River to Dawki and finish in the Jaintia Hills.",
+   "descLen": 130,
    "canonical": "https://xtsy.one/10-day-meghalaya-itinerary",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -111,19 +115,24 @@
     "Question",
     "Answer"
    ],
-   "faqSchemaQuestions": 3,
+   "faqSchemaQuestions": 2,
    "questionHeadings": 3,
-   "firstParagraphWords": 51,
+   "firstParagraphWords": 83,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
   },
-  "info": []
+  "info": [
+   {
+    "rule": "info:check-out time seen",
+    "detail": "10a"
+   }
+  ]
  },
  {
   "url": "/2-day-arunachal-pradesh-itinerary",
   "status": 200,
-  "words": 1508,
+  "words": 1507,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -180,7 +189,7 @@
  {
   "url": "/2-day-arunachal-pradesh-trip",
   "status": 200,
-  "words": 1516,
+  "words": 1515,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -237,7 +246,7 @@
  {
   "url": "/2-day-assam-itinerary",
   "status": 200,
-  "words": 1484,
+  "words": 1483,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -294,7 +303,7 @@
  {
   "url": "/2-day-assam-trip",
   "status": 200,
-  "words": 1492,
+  "words": 1491,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -351,7 +360,7 @@
  {
   "url": "/2-day-meghalaya-itinerary",
   "status": 200,
-  "words": 1485,
+  "words": 1484,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -408,7 +417,7 @@
  {
   "url": "/2-day-meghalaya-trip",
   "status": 200,
-  "words": 1492,
+  "words": 1491,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -465,7 +474,7 @@
  {
   "url": "/2-day-mizoram-itinerary",
   "status": 200,
-  "words": 1506,
+  "words": 1505,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -522,7 +531,7 @@
  {
   "url": "/2-day-mizoram-trip",
   "status": 200,
-  "words": 1514,
+  "words": 1513,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -579,7 +588,7 @@
  {
   "url": "/2-day-nagaland-itinerary",
   "status": 200,
-  "words": 1487,
+  "words": 1486,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -636,7 +645,7 @@
  {
   "url": "/2-day-nagaland-trip",
   "status": 200,
-  "words": 1495,
+  "words": 1494,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -693,7 +702,7 @@
  {
   "url": "/2-day-shillong-itinerary",
   "status": 200,
-  "words": 1194,
+  "words": 1193,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -754,7 +763,7 @@
  {
   "url": "/2-day-sikkim-itinerary",
   "status": 200,
-  "words": 1519,
+  "words": 1518,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -811,7 +820,7 @@
  {
   "url": "/2-day-sikkim-trip",
   "status": 200,
-  "words": 1527,
+  "words": 1526,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -868,7 +877,7 @@
  {
   "url": "/3-day-arunachal-pradesh-itinerary",
   "status": 200,
-  "words": 1508,
+  "words": 1507,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -925,7 +934,7 @@
  {
   "url": "/3-day-arunachal-pradesh-trip",
   "status": 200,
-  "words": 1516,
+  "words": 1515,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -982,7 +991,7 @@
  {
   "url": "/3-day-assam-itinerary",
   "status": 200,
-  "words": 1484,
+  "words": 1483,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1039,7 +1048,7 @@
  {
   "url": "/3-day-assam-trip",
   "status": 200,
-  "words": 1492,
+  "words": 1491,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1133,7 +1142,7 @@
  {
   "url": "/3-day-meghalaya-trip",
   "status": 200,
-  "words": 1492,
+  "words": 1491,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1190,7 +1199,7 @@
  {
   "url": "/3-day-mizoram-itinerary",
   "status": 200,
-  "words": 1506,
+  "words": 1505,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1247,7 +1256,7 @@
  {
   "url": "/3-day-mizoram-trip",
   "status": 200,
-  "words": 1514,
+  "words": 1513,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1304,7 +1313,7 @@
  {
   "url": "/3-day-nagaland-itinerary",
   "status": 200,
-  "words": 1487,
+  "words": 1486,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1361,7 +1370,7 @@
  {
   "url": "/3-day-nagaland-trip",
   "status": 200,
-  "words": 1495,
+  "words": 1494,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1418,7 +1427,7 @@
  {
   "url": "/3-day-sikkim-itinerary",
   "status": 200,
-  "words": 1519,
+  "words": 1518,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1475,7 +1484,7 @@
  {
   "url": "/3-day-sikkim-trip",
   "status": 200,
-  "words": 1527,
+  "words": 1526,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1532,7 +1541,7 @@
  {
   "url": "/4-day-arunachal-pradesh-itinerary",
   "status": 200,
-  "words": 1508,
+  "words": 1507,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1589,7 +1598,7 @@
  {
   "url": "/4-day-assam-itinerary",
   "status": 200,
-  "words": 1484,
+  "words": 1483,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1646,7 +1655,7 @@
  {
   "url": "/4-day-assam-trip",
   "status": 200,
-  "words": 1492,
+  "words": 1491,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1703,7 +1712,7 @@
  {
   "url": "/4-day-meghalaya-itinerary",
   "status": 200,
-  "words": 1183,
+  "words": 1182,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1764,7 +1773,7 @@
  {
   "url": "/4-day-meghalaya-trip",
   "status": 200,
-  "words": 1492,
+  "words": 1491,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1903,7 +1912,7 @@
  {
   "url": "/6-day-meghalaya-itinerary",
   "status": 200,
-  "words": 1190,
+  "words": 1189,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -1964,7 +1973,7 @@
  {
   "url": "/7-day-meghalaya-itinerary",
   "status": 200,
-  "words": 2101,
+  "words": 2100,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -2025,7 +2034,7 @@
  {
   "url": "/8-day-meghalaya-itinerary",
   "status": 200,
-  "words": 1191,
+  "words": 1190,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -2146,7 +2155,7 @@
  {
   "url": "/accommodation-near-iim-shillong",
   "status": 200,
-  "words": 1078,
+  "words": 1075,
   "findings": [
    {
     "rule": "stale:year",
@@ -2201,7 +2210,7 @@
  {
   "url": "/accommodation-near-nehu",
   "status": 200,
-  "words": 1065,
+  "words": 1062,
   "findings": [
    {
     "rule": "stale:year",
@@ -2256,7 +2265,7 @@
  {
   "url": "/accommodation-near-nift-shillong",
   "status": 200,
-  "words": 1077,
+  "words": 1074,
   "findings": [
    {
     "rule": "stale:year",
@@ -2346,7 +2355,7 @@
  {
   "url": "/anniversary-dinner-shillong",
   "status": 200,
-  "words": 949,
+  "words": 946,
   "findings": [
    {
     "rule": "stale:year",
@@ -2399,7 +2408,7 @@
  {
   "url": "/arunachal-pradesh-tour-packages",
   "status": 200,
-  "words": 1401,
+  "words": 1398,
   "findings": [
    {
     "rule": "stale:year",
@@ -2452,7 +2461,7 @@
  {
   "url": "/assam-tour-packages",
   "status": 200,
-  "words": 1380,
+  "words": 1377,
   "findings": [
    {
     "rule": "stale:year",
@@ -2505,7 +2514,7 @@
  {
   "url": "/backpacking-northeast-india",
   "status": 200,
-  "words": 1380,
+  "words": 1379,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -2566,7 +2575,7 @@
  {
   "url": "/bakery-and-desserts-shillong",
   "status": 200,
-  "words": 967,
+  "words": 964,
   "findings": [
    {
     "rule": "stale:year",
@@ -2619,7 +2628,7 @@
  {
   "url": "/barbeque-restaurant-shillong",
   "status": 200,
-  "words": 987,
+  "words": 984,
   "findings": [
    {
     "rule": "stale:year",
@@ -2676,7 +2685,7 @@
  {
   "url": "/best-chinese-restaurant-in-shillong",
   "status": 200,
-  "words": 1162,
+  "words": 1159,
   "findings": [
    {
     "rule": "stale:year",
@@ -2729,7 +2738,7 @@
  {
   "url": "/best-chinese-restaurant-shillong",
   "status": 200,
-  "words": 1008,
+  "words": 1005,
   "findings": [
    {
     "rule": "stale:year",
@@ -2786,7 +2795,7 @@
  {
   "url": "/best-food-in-shillong",
   "status": 200,
-  "words": 963,
+  "words": 960,
   "findings": [
    {
     "rule": "stale:year",
@@ -2839,7 +2848,7 @@
  {
   "url": "/best-food-places-in-shillong",
   "status": 200,
-  "words": 961,
+  "words": 958,
   "findings": [
    {
     "rule": "stale:year",
@@ -2892,7 +2901,7 @@
  {
   "url": "/best-glamping-in-cherrapunji",
   "status": 200,
-  "words": 1167,
+  "words": 1164,
   "findings": [
    {
     "rule": "stale:year",
@@ -2945,7 +2954,7 @@
  {
   "url": "/best-glamping-in-shillong",
   "status": 200,
-  "words": 1109,
+  "words": 1106,
   "findings": [
    {
     "rule": "stale:year",
@@ -3000,7 +3009,7 @@
  {
   "url": "/best-homestay-in-cherrapunji",
   "status": 200,
-  "words": 1162,
+  "words": 1159,
   "findings": [
    {
     "rule": "stale:year",
@@ -3053,7 +3062,7 @@
  {
   "url": "/best-homestay-in-shillong",
   "status": 200,
-  "words": 1104,
+  "words": 1101,
   "findings": [
    {
     "rule": "stale:year",
@@ -3108,7 +3117,7 @@
  {
   "url": "/best-hostel-in-cherrapunji",
   "status": 200,
-  "words": 1280,
+  "words": 1277,
   "findings": [
    {
     "rule": "stale:year",
@@ -3165,7 +3174,7 @@
  {
   "url": "/best-hostel-in-gangtok",
   "status": 200,
-  "words": 1289,
+  "words": 1286,
   "findings": [
    {
     "rule": "stale:year",
@@ -3222,7 +3231,7 @@
  {
   "url": "/best-hostel-in-guwahati",
   "status": 200,
-  "words": 1268,
+  "words": 1265,
   "findings": [
    {
     "rule": "stale:year",
@@ -3291,13 +3300,13 @@
    },
    {
     "rule": "stale:year",
-    "detail": "2025 — \"ick XTSY ✓ 4.8★ on Google (161 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\""
+    "detail": "2025 — \"ick XTSY ✓ 4.7★ on Google (237 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\""
    }
   ],
   "seo": {
    "title": "Hostels in Shillong 2026 — Dorms from ₹389 | XTSY",
    "titleLen": 49,
-   "desc": "XTSY Travellers Hostel, New Shillong Township (4.8★, 161 Google reviews): dorms from ₹389, a women-only dorm, private rooms and a glass suite.",
+   "desc": "XTSY Travellers Hostel, New Shillong Township (4.7★, 237 Google reviews): dorms from ₹389, a women-only dorm, private rooms and a glass suite.",
    "descLen": 142,
    "canonical": "https://xtsy.one/best-hostel-in-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -3353,7 +3362,7 @@
  {
   "url": "/best-place-to-eat-in-shillong",
   "status": 200,
-  "words": 1029,
+  "words": 1026,
   "findings": [
    {
     "rule": "stale:year",
@@ -3406,7 +3415,7 @@
  {
   "url": "/best-restaurant-shillong",
   "status": 200,
-  "words": 1122,
+  "words": 1119,
   "findings": [
    {
     "rule": "stale:year",
@@ -3459,7 +3468,7 @@
  {
   "url": "/best-restaurants-shillong",
   "status": 200,
-  "words": 969,
+  "words": 966,
   "findings": [
    {
     "rule": "stale:year",
@@ -3558,7 +3567,7 @@
  {
   "url": "/best-veg-restaurants-shillong",
   "status": 200,
-  "words": 954,
+  "words": 951,
   "findings": [
    {
     "rule": "stale:year",
@@ -3615,7 +3624,7 @@
  {
   "url": "/bike-trip-agartala",
   "status": 200,
-  "words": 1467,
+  "words": 1464,
   "findings": [
    {
     "rule": "stale:year",
@@ -3668,7 +3677,7 @@
  {
   "url": "/bike-trip-aizawl",
   "status": 200,
-  "words": 1473,
+  "words": 1470,
   "findings": [
    {
     "rule": "stale:year",
@@ -3721,7 +3730,7 @@
  {
   "url": "/bike-trip-arunachal-pradesh",
   "status": 200,
-  "words": 1476,
+  "words": 1473,
   "findings": [
    {
     "rule": "stale:year",
@@ -3774,7 +3783,7 @@
  {
   "url": "/bike-trip-assam",
   "status": 200,
-  "words": 1451,
+  "words": 1448,
   "findings": [
    {
     "rule": "stale:year",
@@ -3827,7 +3836,7 @@
  {
   "url": "/bike-trip-cherrapunji",
   "status": 200,
-  "words": 1475,
+  "words": 1472,
   "findings": [
    {
     "rule": "stale:year",
@@ -3880,7 +3889,7 @@
  {
   "url": "/bike-trip-dawki",
   "status": 200,
-  "words": 1487,
+  "words": 1484,
   "findings": [
    {
     "rule": "stale:year",
@@ -3933,7 +3942,7 @@
  {
   "url": "/bike-trip-gangtok",
   "status": 200,
-  "words": 1486,
+  "words": 1483,
   "findings": [
    {
     "rule": "stale:year",
@@ -3986,7 +3995,7 @@
  {
   "url": "/bike-trip-guwahati",
   "status": 200,
-  "words": 1467,
+  "words": 1464,
   "findings": [
    {
     "rule": "stale:year",
@@ -4039,7 +4048,7 @@
  {
   "url": "/bike-trip-imphal",
   "status": 200,
-  "words": 1479,
+  "words": 1476,
   "findings": [
    {
     "rule": "stale:year",
@@ -4092,7 +4101,7 @@
  {
   "url": "/bike-trip-jowai",
   "status": 200,
-  "words": 1467,
+  "words": 1464,
   "findings": [
    {
     "rule": "stale:year",
@@ -4145,7 +4154,7 @@
  {
   "url": "/bike-trip-kaziranga",
   "status": 200,
-  "words": 1480,
+  "words": 1477,
   "findings": [
    {
     "rule": "stale:year",
@@ -4198,7 +4207,7 @@
  {
   "url": "/bike-trip-kohima",
   "status": 200,
-  "words": 1490,
+  "words": 1487,
   "findings": [
    {
     "rule": "stale:year",
@@ -4251,7 +4260,7 @@
  {
   "url": "/bike-trip-mawlynnong",
   "status": 200,
-  "words": 1484,
+  "words": 1481,
   "findings": [
    {
     "rule": "stale:year",
@@ -4304,7 +4313,7 @@
  {
   "url": "/bike-trip-meghalaya",
   "status": 200,
-  "words": 1451,
+  "words": 1448,
   "findings": [
    {
     "rule": "stale:year",
@@ -4357,7 +4366,7 @@
  {
   "url": "/bike-trip-nongjrong",
   "status": 200,
-  "words": 1451,
+  "words": 1448,
   "findings": [
    {
     "rule": "stale:year",
@@ -4410,7 +4419,7 @@
  {
   "url": "/bike-trip-pelling",
   "status": 200,
-  "words": 1483,
+  "words": 1480,
   "findings": [
    {
     "rule": "stale:year",
@@ -4463,7 +4472,7 @@
  {
   "url": "/bike-trip-shillong",
   "status": 200,
-  "words": 1451,
+  "words": 1448,
   "findings": [
    {
     "rule": "stale:year",
@@ -4516,7 +4525,7 @@
  {
   "url": "/bike-trip-shnongpdeng",
   "status": 200,
-  "words": 1480,
+  "words": 1477,
   "findings": [
    {
     "rule": "stale:year",
@@ -4569,7 +4578,7 @@
  {
   "url": "/bike-trip-tawang",
   "status": 200,
-  "words": 1507,
+  "words": 1504,
   "findings": [
    {
     "rule": "stale:year",
@@ -4622,7 +4631,7 @@
  {
   "url": "/bike-trip-ziro",
   "status": 200,
-  "words": 1486,
+  "words": 1483,
   "findings": [
    {
     "rule": "stale:year",
@@ -4675,7 +4684,7 @@
  {
   "url": "/birdwatching-meghalaya",
   "status": 200,
-  "words": 996,
+  "words": 993,
   "findings": [
    {
     "rule": "stale:year",
@@ -4732,7 +4741,7 @@
  {
   "url": "/birthday-party-restaurant-shillong",
   "status": 200,
-  "words": 947,
+  "words": 944,
   "findings": [
    {
     "rule": "stale:year",
@@ -4785,7 +4794,7 @@
  {
   "url": "/biryani-in-shillong",
   "status": 200,
-  "words": 953,
+  "words": 950,
   "findings": [
    {
     "rule": "stale:year",
@@ -4903,7 +4912,7 @@
  {
   "url": "/breakfast-in-shillong",
   "status": 200,
-  "words": 943,
+  "words": 940,
   "findings": [
    {
     "rule": "stale:year",
@@ -4956,7 +4965,7 @@
  {
   "url": "/brunch-in-shillong",
   "status": 200,
-  "words": 942,
+  "words": 939,
   "findings": [
    {
     "rule": "stale:year",
@@ -5009,7 +5018,7 @@
  {
   "url": "/budget-stay-shillong",
   "status": 200,
-  "words": 1548,
+  "words": 1545,
   "findings": [
    {
     "rule": "stale:year",
@@ -5068,7 +5077,7 @@
  {
   "url": "/budget-trip-meghalaya",
   "status": 200,
-  "words": 1311,
+  "words": 1310,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -5171,7 +5180,7 @@
  {
   "url": "/buffet-restaurant-shillong",
   "status": 200,
-  "words": 939,
+  "words": 936,
   "findings": [
    {
     "rule": "stale:year",
@@ -5224,7 +5233,7 @@
  {
   "url": "/bulk-food-order-shillong",
   "status": 200,
-  "words": 925,
+  "words": 922,
   "findings": [
    {
     "rule": "stale:year",
@@ -5281,7 +5290,7 @@
  {
   "url": "/burger-and-fast-food-shillong",
   "status": 200,
-  "words": 973,
+  "words": 970,
   "findings": [
    {
     "rule": "stale:year",
@@ -5334,7 +5343,7 @@
  {
   "url": "/cafe-shillong",
   "status": 200,
-  "words": 986,
+  "words": 983,
   "findings": [
    {
     "rule": "stale:year",
@@ -5391,7 +5400,7 @@
  {
   "url": "/cafes-in-shillong",
   "status": 200,
-  "words": 1173,
+  "words": 1170,
   "findings": [
    {
     "rule": "stale:year",
@@ -5448,7 +5457,7 @@
  {
   "url": "/camping-in-shnongpdeng",
   "status": 200,
-  "words": 1036,
+  "words": 1033,
   "findings": [
    {
     "rule": "stale:year",
@@ -5506,7 +5515,7 @@
  {
   "url": "/car-booking-shillong",
   "status": 200,
-  "words": 891,
+  "words": 888,
   "findings": [
    {
     "rule": "stale:year",
@@ -5563,7 +5572,7 @@
  {
   "url": "/car-rental-guwahati",
   "status": 200,
-  "words": 1067,
+  "words": 1064,
   "findings": [
    {
     "rule": "policy:cancellation/refund claim",
@@ -5624,7 +5633,7 @@
  {
   "url": "/catering-services-in-shillong",
   "status": 200,
-  "words": 1146,
+  "words": 1143,
   "findings": [
    {
     "rule": "stale:year",
@@ -5677,7 +5686,7 @@
  {
   "url": "/cheap-car-rental-shillong",
   "status": 200,
-  "words": 928,
+  "words": 925,
   "findings": [
    {
     "rule": "stale:year",
@@ -5734,7 +5743,7 @@
  {
   "url": "/cheap-glamping-in-cherrapunji",
   "status": 200,
-  "words": 1167,
+  "words": 1164,
   "findings": [
    {
     "rule": "stale:year",
@@ -5787,7 +5796,7 @@
  {
   "url": "/cheap-glamping-in-guwahati",
   "status": 200,
-  "words": 1159,
+  "words": 1156,
   "findings": [
    {
     "rule": "stale:year",
@@ -5840,7 +5849,7 @@
  {
   "url": "/cheap-glamping-in-shillong",
   "status": 200,
-  "words": 1109,
+  "words": 1106,
   "findings": [
    {
     "rule": "stale:year",
@@ -5895,7 +5904,7 @@
  {
   "url": "/cheap-homestay-in-cherrapunji",
   "status": 200,
-  "words": 1591,
+  "words": 1588,
   "findings": [
    {
     "rule": "stale:year",
@@ -5952,7 +5961,7 @@
  {
   "url": "/cheap-homestay-in-shillong",
   "status": 200,
-  "words": 1104,
+  "words": 1101,
   "findings": [
    {
     "rule": "stale:year",
@@ -6007,7 +6016,7 @@
  {
   "url": "/cheap-hostel-in-cherrapunji",
   "status": 200,
-  "words": 1280,
+  "words": 1277,
   "findings": [
    {
     "rule": "stale:year",
@@ -6064,7 +6073,7 @@
  {
   "url": "/cheap-hostel-in-gangtok",
   "status": 200,
-  "words": 1289,
+  "words": 1286,
   "findings": [
    {
     "rule": "stale:year",
@@ -6121,7 +6130,7 @@
  {
   "url": "/cheap-hostel-in-guwahati",
   "status": 200,
-  "words": 1268,
+  "words": 1265,
   "findings": [
    {
     "rule": "stale:year",
@@ -6190,7 +6199,7 @@
    },
    {
     "rule": "stale:year",
-    "detail": "2025 — \"ick XTSY ✓ 4.8★ on Google (161 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\""
+    "detail": "2025 — \"ick XTSY ✓ 4.7★ on Google (237 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\""
    }
   ],
   "seo": {
@@ -6252,7 +6261,7 @@
  {
   "url": "/cherrapunji-guide",
   "status": 200,
-  "words": 1279,
+  "words": 1278,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -6314,7 +6323,7 @@
  {
   "url": "/cherrapunji-tour-package",
   "status": 200,
-  "words": 2003,
+  "words": 2000,
   "findings": [
    {
     "rule": "stale:year",
@@ -6371,7 +6380,7 @@
  {
   "url": "/cherrapunji-travel-guide",
   "status": 200,
-  "words": 1663,
+  "words": 1662,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -6436,7 +6445,7 @@
  {
   "url": "/chinese-food-in-shillong",
   "status": 200,
-  "words": 956,
+  "words": 953,
   "findings": [
    {
     "rule": "stale:year",
@@ -6489,7 +6498,7 @@
  {
   "url": "/coffee-shop-shillong",
   "status": 200,
-  "words": 977,
+  "words": 974,
   "findings": [
    {
     "rule": "stale:year",
@@ -6590,7 +6599,7 @@
  {
   "url": "/continental-restaurant-shillong",
   "status": 200,
-  "words": 960,
+  "words": 957,
   "findings": [
    {
     "rule": "stale:year",
@@ -6643,7 +6652,7 @@
  {
   "url": "/corporate-catering-shillong",
   "status": 200,
-  "words": 930,
+  "words": 927,
   "findings": [
    {
     "rule": "stale:year",
@@ -6700,7 +6709,7 @@
  {
   "url": "/corporate-event-catering-shillong",
   "status": 200,
-  "words": 1107,
+  "words": 1104,
   "findings": [
    {
     "rule": "stale:year",
@@ -6753,7 +6762,7 @@
  {
   "url": "/corporate-retreat-agartala",
   "status": 200,
-  "words": 1465,
+  "words": 1462,
   "findings": [
    {
     "rule": "stale:year",
@@ -6806,7 +6815,7 @@
  {
   "url": "/corporate-retreat-aizawl",
   "status": 200,
-  "words": 1471,
+  "words": 1468,
   "findings": [
    {
     "rule": "stale:year",
@@ -6859,7 +6868,7 @@
  {
   "url": "/corporate-retreat-arunachal-pradesh",
   "status": 200,
-  "words": 1468,
+  "words": 1465,
   "findings": [
    {
     "rule": "stale:year",
@@ -6912,7 +6921,7 @@
  {
   "url": "/corporate-retreat-assam",
   "status": 200,
-  "words": 1362,
+  "words": 1359,
   "findings": [
    {
     "rule": "stale:year",
@@ -6965,7 +6974,7 @@
  {
   "url": "/corporate-retreat-cherrapunji",
   "status": 200,
-  "words": 1473,
+  "words": 1470,
   "findings": [
    {
     "rule": "stale:year",
@@ -7018,7 +7027,7 @@
  {
   "url": "/corporate-retreat-dawki",
   "status": 200,
-  "words": 1485,
+  "words": 1482,
   "findings": [
    {
     "rule": "stale:year",
@@ -7071,7 +7080,7 @@
  {
   "url": "/corporate-retreat-gangtok",
   "status": 200,
-  "words": 1484,
+  "words": 1481,
   "findings": [
    {
     "rule": "stale:year",
@@ -7124,7 +7133,7 @@
  {
   "url": "/corporate-retreat-guwahati",
   "status": 200,
-  "words": 1465,
+  "words": 1462,
   "findings": [
    {
     "rule": "stale:year",
@@ -7177,7 +7186,7 @@
  {
   "url": "/corporate-retreat-imphal",
   "status": 200,
-  "words": 1477,
+  "words": 1474,
   "findings": [
    {
     "rule": "stale:year",
@@ -7230,7 +7239,7 @@
  {
   "url": "/corporate-retreat-jowai",
   "status": 200,
-  "words": 1465,
+  "words": 1462,
   "findings": [
    {
     "rule": "stale:year",
@@ -7283,7 +7292,7 @@
  {
   "url": "/corporate-retreat-kaziranga",
   "status": 200,
-  "words": 1478,
+  "words": 1475,
   "findings": [
    {
     "rule": "stale:year",
@@ -7336,7 +7345,7 @@
  {
   "url": "/corporate-retreat-kohima",
   "status": 200,
-  "words": 1488,
+  "words": 1485,
   "findings": [
    {
     "rule": "stale:year",
@@ -7389,7 +7398,7 @@
  {
   "url": "/corporate-retreat-mawlynnong",
   "status": 200,
-  "words": 1482,
+  "words": 1479,
   "findings": [
    {
     "rule": "stale:year",
@@ -7442,7 +7451,7 @@
  {
   "url": "/corporate-retreat-meghalaya",
   "status": 200,
-  "words": 1362,
+  "words": 1359,
   "findings": [
    {
     "rule": "stale:year",
@@ -7495,7 +7504,7 @@
  {
   "url": "/corporate-retreat-nagaland",
   "status": 200,
-  "words": 1452,
+  "words": 1449,
   "findings": [
    {
     "rule": "stale:year",
@@ -7548,7 +7557,7 @@
  {
   "url": "/corporate-retreat-nongjrong",
   "status": 200,
-  "words": 1362,
+  "words": 1359,
   "findings": [
    {
     "rule": "stale:year",
@@ -7601,7 +7610,7 @@
  {
   "url": "/corporate-retreat-pelling",
   "status": 200,
-  "words": 1394,
+  "words": 1391,
   "findings": [
    {
     "rule": "stale:year",
@@ -7654,7 +7663,7 @@
  {
   "url": "/corporate-retreat-shillong",
   "status": 200,
-  "words": 922,
+  "words": 919,
   "findings": [
    {
     "rule": "stale:year",
@@ -7711,7 +7720,7 @@
  {
   "url": "/corporate-retreat-shnongpdeng",
   "status": 200,
-  "words": 1391,
+  "words": 1388,
   "findings": [
    {
     "rule": "stale:year",
@@ -7764,7 +7773,7 @@
  {
   "url": "/corporate-retreat-tawang",
   "status": 200,
-  "words": 1505,
+  "words": 1502,
   "findings": [
    {
     "rule": "stale:year",
@@ -7817,7 +7826,7 @@
  {
   "url": "/corporate-retreat-ziro",
   "status": 200,
-  "words": 1397,
+  "words": 1394,
   "findings": [
    {
     "rule": "stale:year",
@@ -7870,7 +7879,7 @@
  {
   "url": "/couples-hostel-shillong",
   "status": 200,
-  "words": 1961,
+  "words": 1958,
   "findings": [
    {
     "rule": "stale:year",
@@ -7929,7 +7938,7 @@
  {
   "url": "/dawki-guide",
   "status": 200,
-  "words": 1258,
+  "words": 1257,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -7991,7 +8000,7 @@
  {
   "url": "/dawki-river-boating",
   "status": 200,
-  "words": 1323,
+  "words": 1322,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -8053,7 +8062,7 @@
  {
   "url": "/dawki-river-travel-guide",
   "status": 200,
-  "words": 1337,
+  "words": 1336,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -8114,7 +8123,7 @@
  {
   "url": "/dawki-to-mawlynnong-guide",
   "status": 200,
-  "words": 1329,
+  "words": 1328,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -8175,7 +8184,7 @@
  {
   "url": "/dawki-tour-package",
   "status": 200,
-  "words": 1955,
+  "words": 1952,
   "findings": [
    {
     "rule": "stale:year",
@@ -8232,7 +8241,7 @@
  {
   "url": "/dawki-umngot-river-guide",
   "status": 200,
-  "words": 1540,
+  "words": 1539,
   "findings": [
    {
     "rule": "price:king/private room",
@@ -8977,7 +8986,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/arwah-cave",
   "status": 200,
-  "words": 973,
+  "words": 975,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9026,7 +9035,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/dainthlen-falls",
   "status": 200,
-  "words": 949,
+  "words": 951,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9075,7 +9084,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge",
   "status": 200,
-  "words": 1091,
+  "words": 1093,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9124,7 +9133,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/eco-park-sohra",
   "status": 200,
-  "words": 975,
+  "words": 977,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9173,7 +9182,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/garden-of-caves",
   "status": 200,
-  "words": 972,
+  "words": 974,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9222,7 +9231,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/krem-mawmluh",
   "status": 200,
-  "words": 948,
+  "words": 950,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9271,7 +9280,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/kynrem-falls",
   "status": 200,
-  "words": 922,
+  "words": 924,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9320,7 +9329,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/mawsmai-cave",
   "status": 200,
-  "words": 952,
+  "words": 954,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9369,7 +9378,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/nohkalikai-falls",
   "status": 200,
-  "words": 1563,
+  "words": 1568,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9418,7 +9427,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/nongriat-village",
   "status": 200,
-  "words": 963,
+  "words": 965,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9467,7 +9476,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/rainbow-falls",
   "status": 200,
-  "words": 1002,
+  "words": 1004,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9516,7 +9525,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/seven-sisters-falls",
   "status": 200,
-  "words": 975,
+  "words": 977,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9565,7 +9574,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/wei-sawdong-falls",
   "status": 200,
-  "words": 1006,
+  "words": 1008,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9649,7 +9658,7 @@
  {
   "url": "/destinations/meghalaya/dawki/dawki-suspension-bridge",
   "status": 200,
-  "words": 953,
+  "words": 955,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9698,7 +9707,7 @@
  {
   "url": "/destinations/meghalaya/dawki/dawki-umngot-river",
   "status": 200,
-  "words": 1056,
+  "words": 1061,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9747,7 +9756,7 @@
  {
   "url": "/destinations/meghalaya/dawki/shnongpdeng",
   "status": 200,
-  "words": 968,
+  "words": 970,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9831,7 +9840,7 @@
  {
   "url": "/destinations/meghalaya/jowai/krang-suri-falls",
   "status": 200,
-  "words": 980,
+  "words": 982,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9880,7 +9889,7 @@
  {
   "url": "/destinations/meghalaya/jowai/krem-liat-prah",
   "status": 200,
-  "words": 914,
+  "words": 916,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9929,7 +9938,7 @@
  {
   "url": "/destinations/meghalaya/jowai/nartiang-monoliths",
   "status": 200,
-  "words": 952,
+  "words": 954,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -9978,7 +9987,7 @@
  {
   "url": "/destinations/meghalaya/jowai/phe-phe-falls",
   "status": 200,
-  "words": 925,
+  "words": 927,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10027,7 +10036,7 @@
  {
   "url": "/destinations/meghalaya/jowai/thadlaskein-lake",
   "status": 200,
-  "words": 925,
+  "words": 927,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10111,7 +10120,7 @@
  {
   "url": "/destinations/meghalaya/mawlynnong/mawlynnong-village",
   "status": 200,
-  "words": 946,
+  "words": 948,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10195,7 +10204,7 @@
  {
   "url": "/destinations/meghalaya/mawsynram/mawjymbuin-cave",
   "status": 200,
-  "words": 905,
+  "words": 907,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10279,7 +10288,7 @@
  {
   "url": "/destinations/meghalaya/nongstoin/jakrem-hot-springs",
   "status": 200,
-  "words": 935,
+  "words": 937,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10328,7 +10337,7 @@
  {
   "url": "/destinations/meghalaya/nongstoin/langshiang-falls",
   "status": 200,
-  "words": 921,
+  "words": 923,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10377,7 +10386,7 @@
  {
   "url": "/destinations/meghalaya/nongstoin/mawthadraishan-peak",
   "status": 200,
-  "words": 934,
+  "words": 936,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10426,7 +10435,7 @@
  {
   "url": "/destinations/meghalaya/nongstoin/nongkhnum-island",
   "status": 200,
-  "words": 935,
+  "words": 937,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10475,7 +10484,7 @@
  {
   "url": "/destinations/meghalaya/nongstoin/ranikor",
   "status": 200,
-  "words": 914,
+  "words": 916,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10559,7 +10568,7 @@
  {
   "url": "/destinations/meghalaya/shillong/bishop-falls",
   "status": 200,
-  "words": 928,
+  "words": 930,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10608,7 +10617,7 @@
  {
   "url": "/destinations/meghalaya/shillong/elephant-falls",
   "status": 200,
-  "words": 1677,
+  "words": 1679,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10657,7 +10666,7 @@
  {
   "url": "/destinations/meghalaya/shillong/laitlum-canyons",
   "status": 200,
-  "words": 988,
+  "words": 990,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10706,7 +10715,7 @@
  {
   "url": "/destinations/meghalaya/shillong/mawphlang-sacred-forest",
   "status": 200,
-  "words": 965,
+  "words": 967,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10755,7 +10764,7 @@
  {
   "url": "/destinations/meghalaya/shillong/mawryngkhang-bamboo-trail",
   "status": 200,
-  "words": 972,
+  "words": 974,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10804,7 +10813,7 @@
  {
   "url": "/destinations/meghalaya/shillong/nongjrong-sunrise-viewpoint",
   "status": 200,
-  "words": 973,
+  "words": 975,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10853,7 +10862,7 @@
  {
   "url": "/destinations/meghalaya/shillong/shillong-peak",
   "status": 200,
-  "words": 992,
+  "words": 994,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10902,7 +10911,7 @@
  {
   "url": "/destinations/meghalaya/shillong/spread-eagle-falls",
   "status": 200,
-  "words": 949,
+  "words": 951,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -10951,7 +10960,7 @@
  {
   "url": "/destinations/meghalaya/shillong/sweet-falls",
   "status": 200,
-  "words": 929,
+  "words": 931,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -11000,7 +11009,7 @@
  {
   "url": "/destinations/meghalaya/shillong/umiam-lake",
   "status": 200,
-  "words": 1767,
+  "words": 1772,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -11049,7 +11058,7 @@
  {
   "url": "/destinations/meghalaya/shillong/wah-rilang-viewpoint",
   "status": 200,
-  "words": 948,
+  "words": 950,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -11133,7 +11142,7 @@
  {
   "url": "/destinations/meghalaya/tura/balpakram-national-park",
   "status": 200,
-  "words": 954,
+  "words": 956,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -11182,7 +11191,7 @@
  {
   "url": "/destinations/meghalaya/tura/nokrek-biosphere-reserve",
   "status": 200,
-  "words": 946,
+  "words": 948,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -11231,7 +11240,7 @@
  {
   "url": "/destinations/meghalaya/tura/siju-cave",
   "status": 200,
-  "words": 910,
+  "words": 912,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -11280,7 +11289,7 @@
  {
   "url": "/destinations/meghalaya/tura/tura-peak",
   "status": 200,
-  "words": 916,
+  "words": 918,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -11776,7 +11785,7 @@
  {
   "url": "/dinner-in-shillong",
   "status": 200,
-  "words": 945,
+  "words": 942,
   "findings": [
    {
     "rule": "stale:year",
@@ -11829,7 +11838,7 @@
  {
   "url": "/dorms-in-shillong",
   "status": 200,
-  "words": 1505,
+  "words": 1502,
   "findings": [
    {
     "rule": "location:wrong area",
@@ -11892,7 +11901,7 @@
  {
   "url": "/elephant-falls-guide",
   "status": 200,
-  "words": 1212,
+  "words": 1211,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -11954,7 +11963,7 @@
  {
   "url": "/elephant-falls-shillong",
   "status": 200,
-  "words": 1193,
+  "words": 1381,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -12004,7 +12013,7 @@
     "Question",
     "Answer"
    ],
-   "faqSchemaQuestions": 1,
+   "faqSchemaQuestions": 3,
    "questionHeadings": 3,
    "firstParagraphWords": 79,
    "mentionsBrand": true,
@@ -12060,7 +12069,7 @@
  {
   "url": "/family-restaurant-shillong",
   "status": 200,
-  "words": 950,
+  "words": 947,
   "findings": [
    {
     "rule": "stale:year",
@@ -12212,7 +12221,7 @@
  {
   "url": "/fine-dining-shillong",
   "status": 200,
-  "words": 935,
+  "words": 932,
   "findings": [
    {
     "rule": "stale:year",
@@ -12265,7 +12274,7 @@
  {
   "url": "/fishing-in-dawki",
   "status": 200,
-  "words": 1009,
+  "words": 1006,
   "findings": [
    {
     "rule": "stale:year",
@@ -12323,7 +12332,7 @@
  {
   "url": "/food-delivery-shillong",
   "status": 200,
-  "words": 944,
+  "words": 941,
   "findings": [
    {
     "rule": "stale:year",
@@ -12416,7 +12425,7 @@
  {
   "url": "/glamping-in-shillong-last-minute",
   "status": 200,
-  "words": 1111,
+  "words": 1108,
   "findings": [
    {
     "rule": "stale:year",
@@ -12471,7 +12480,7 @@
  {
   "url": "/glamping-in-shillong-now",
   "status": 200,
-  "words": 1109,
+  "words": 1106,
   "findings": [
    {
     "rule": "stale:year",
@@ -12526,7 +12535,7 @@
  {
   "url": "/glamping-in-shillong-this-weekend",
   "status": 200,
-  "words": 1111,
+  "words": 1108,
   "findings": [
    {
     "rule": "stale:year",
@@ -12581,7 +12590,7 @@
  {
   "url": "/glamping-in-shillong-today",
   "status": 200,
-  "words": 1109,
+  "words": 1106,
   "findings": [
    {
     "rule": "stale:year",
@@ -12636,7 +12645,7 @@
  {
   "url": "/glamping-in-shillong-tomorrow",
   "status": 200,
-  "words": 1109,
+  "words": 1106,
   "findings": [
    {
     "rule": "stale:year",
@@ -12691,7 +12700,7 @@
  {
   "url": "/glamping-in-shillong-tonight",
   "status": 200,
-  "words": 1109,
+  "words": 1106,
   "findings": [
    {
     "rule": "stale:year",
@@ -12746,7 +12755,7 @@
  {
   "url": "/glamping-near-cherrapunji-airport",
   "status": 200,
-  "words": 1167,
+  "words": 1164,
   "findings": [
    {
     "rule": "stale:year",
@@ -12799,7 +12808,7 @@
  {
   "url": "/glamping-near-shillong-airport",
   "status": 200,
-  "words": 1109,
+  "words": 1106,
   "findings": [
    {
     "rule": "stale:year",
@@ -12854,7 +12863,7 @@
  {
   "url": "/good-restaurants-in-shillong",
   "status": 200,
-  "words": 966,
+  "words": 963,
   "findings": [
    {
     "rule": "stale:year",
@@ -12911,7 +12920,7 @@
  {
   "url": "/group-booking-shillong",
   "status": 200,
-  "words": 1024,
+  "words": 1021,
   "findings": [
    {
     "rule": "stale:year",
@@ -13017,7 +13026,7 @@
  {
   "url": "/group-dining-shillong",
   "status": 200,
-  "words": 943,
+  "words": 940,
   "findings": [
    {
     "rule": "stale:year",
@@ -13070,7 +13079,7 @@
  {
   "url": "/group-stay-shillong",
   "status": 200,
-  "words": 1551,
+  "words": 1548,
   "findings": [
    {
     "rule": "stale:year",
@@ -13138,7 +13147,7 @@
  {
   "url": "/group-tour-agartala",
   "status": 200,
-  "words": 1495,
+  "words": 1492,
   "findings": [
    {
     "rule": "stale:year",
@@ -13191,7 +13200,7 @@
  {
   "url": "/group-tour-aizawl",
   "status": 200,
-  "words": 1501,
+  "words": 1498,
   "findings": [
    {
     "rule": "stale:year",
@@ -13244,7 +13253,7 @@
  {
   "url": "/group-tour-arunachal-pradesh",
   "status": 200,
-  "words": 1497,
+  "words": 1494,
   "findings": [
    {
     "rule": "stale:year",
@@ -13297,7 +13306,7 @@
  {
   "url": "/group-tour-assam",
   "status": 200,
-  "words": 1479,
+  "words": 1476,
   "findings": [
    {
     "rule": "stale:year",
@@ -13350,7 +13359,7 @@
  {
   "url": "/group-tour-cherrapunji",
   "status": 200,
-  "words": 1503,
+  "words": 1500,
   "findings": [
    {
     "rule": "stale:year",
@@ -13403,7 +13412,7 @@
  {
   "url": "/group-tour-dawki",
   "status": 200,
-  "words": 1515,
+  "words": 1512,
   "findings": [
    {
     "rule": "stale:year",
@@ -13456,7 +13465,7 @@
  {
   "url": "/group-tour-gangtok",
   "status": 200,
-  "words": 1514,
+  "words": 1511,
   "findings": [
    {
     "rule": "stale:year",
@@ -13509,7 +13518,7 @@
  {
   "url": "/group-tour-guwahati",
   "status": 200,
-  "words": 1495,
+  "words": 1492,
   "findings": [
    {
     "rule": "stale:year",
@@ -13562,7 +13571,7 @@
  {
   "url": "/group-tour-imphal",
   "status": 200,
-  "words": 1507,
+  "words": 1504,
   "findings": [
    {
     "rule": "stale:year",
@@ -13615,7 +13624,7 @@
  {
   "url": "/group-tour-jowai",
   "status": 200,
-  "words": 1495,
+  "words": 1492,
   "findings": [
    {
     "rule": "stale:year",
@@ -13668,7 +13677,7 @@
  {
   "url": "/group-tour-kaziranga",
   "status": 200,
-  "words": 1508,
+  "words": 1505,
   "findings": [
    {
     "rule": "stale:year",
@@ -13721,7 +13730,7 @@
  {
   "url": "/group-tour-kohima",
   "status": 200,
-  "words": 1518,
+  "words": 1515,
   "findings": [
    {
     "rule": "stale:year",
@@ -13774,7 +13783,7 @@
  {
   "url": "/group-tour-manipur",
   "status": 200,
-  "words": 1507,
+  "words": 1504,
   "findings": [
    {
     "rule": "stale:year",
@@ -13827,7 +13836,7 @@
  {
   "url": "/group-tour-mawlynnong",
   "status": 200,
-  "words": 1512,
+  "words": 1509,
   "findings": [
    {
     "rule": "stale:year",
@@ -13880,7 +13889,7 @@
  {
   "url": "/group-tour-meghalaya",
   "status": 200,
-  "words": 1479,
+  "words": 1476,
   "findings": [
    {
     "rule": "stale:year",
@@ -13933,7 +13942,7 @@
  {
   "url": "/group-tour-mizoram",
   "status": 200,
-  "words": 1501,
+  "words": 1498,
   "findings": [
    {
     "rule": "stale:year",
@@ -13986,7 +13995,7 @@
  {
   "url": "/group-tour-nagaland",
   "status": 200,
-  "words": 1482,
+  "words": 1479,
   "findings": [
    {
     "rule": "stale:year",
@@ -14039,7 +14048,7 @@
  {
   "url": "/group-tour-nongjrong",
   "status": 200,
-  "words": 1479,
+  "words": 1476,
   "findings": [
    {
     "rule": "stale:year",
@@ -14092,7 +14101,7 @@
  {
   "url": "/group-tour-package-cherrapunji",
   "status": 200,
-  "words": 1516,
+  "words": 1513,
   "findings": [
    {
     "rule": "stale:year",
@@ -14145,7 +14154,7 @@
  {
   "url": "/group-tour-package-dawki",
   "status": 200,
-  "words": 1528,
+  "words": 1525,
   "findings": [
    {
     "rule": "stale:year",
@@ -14198,7 +14207,7 @@
  {
   "url": "/group-tour-package-guwahati",
   "status": 200,
-  "words": 1508,
+  "words": 1505,
   "findings": [
    {
     "rule": "stale:year",
@@ -14251,7 +14260,7 @@
  {
   "url": "/group-tour-package-mawlynnong",
   "status": 200,
-  "words": 1525,
+  "words": 1522,
   "findings": [
    {
     "rule": "stale:year",
@@ -14304,7 +14313,7 @@
  {
   "url": "/group-tour-package-shillong",
   "status": 200,
-  "words": 1492,
+  "words": 1489,
   "findings": [
    {
     "rule": "stale:year",
@@ -14357,7 +14366,7 @@
  {
   "url": "/group-tour-pelling",
   "status": 200,
-  "words": 1511,
+  "words": 1508,
   "findings": [
    {
     "rule": "stale:year",
@@ -14410,7 +14419,7 @@
  {
   "url": "/group-tour-shillong",
   "status": 200,
-  "words": 1479,
+  "words": 1476,
   "findings": [
    {
     "rule": "stale:year",
@@ -14463,7 +14472,7 @@
  {
   "url": "/group-tour-shnongpdeng",
   "status": 200,
-  "words": 1508,
+  "words": 1505,
   "findings": [
    {
     "rule": "stale:year",
@@ -14516,7 +14525,7 @@
  {
   "url": "/group-tour-sikkim",
   "status": 200,
-  "words": 1514,
+  "words": 1511,
   "findings": [
    {
     "rule": "stale:year",
@@ -14569,7 +14578,7 @@
  {
   "url": "/group-tour-tawang",
   "status": 200,
-  "words": 1535,
+  "words": 1532,
   "findings": [
    {
     "rule": "stale:year",
@@ -14622,7 +14631,7 @@
  {
   "url": "/group-tour-tripura",
   "status": 200,
-  "words": 1495,
+  "words": 1492,
   "findings": [
    {
     "rule": "stale:year",
@@ -14675,7 +14684,7 @@
  {
   "url": "/group-tour-ziro",
   "status": 200,
-  "words": 1514,
+  "words": 1511,
   "findings": [
    {
     "rule": "stale:year",
@@ -14728,7 +14737,7 @@
  {
   "url": "/guest-house-shillong",
   "status": 200,
-  "words": 1013,
+  "words": 1010,
   "findings": [
    {
     "rule": "stale:year",
@@ -14830,7 +14839,7 @@
  {
   "url": "/guwahati-to-baghmara",
   "status": 200,
-  "words": 1494,
+  "words": 1493,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -14887,7 +14896,7 @@
  {
   "url": "/guwahati-to-bomdila",
   "status": 200,
-  "words": 1523,
+  "words": 1522,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -14944,7 +14953,7 @@
  {
   "url": "/guwahati-to-cherrapunji",
   "status": 200,
-  "words": 1491,
+  "words": 1490,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15001,7 +15010,7 @@
  {
   "url": "/guwahati-to-dawki",
   "status": 200,
-  "words": 1503,
+  "words": 1502,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15058,7 +15067,7 @@
  {
   "url": "/guwahati-to-dzukou-valley",
   "status": 200,
-  "words": 1527,
+  "words": 1526,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15115,7 +15124,7 @@
  {
   "url": "/guwahati-to-itanagar",
   "status": 200,
-  "words": 1470,
+  "words": 1469,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15172,7 +15181,7 @@
  {
   "url": "/guwahati-to-jorhat",
   "status": 200,
-  "words": 1470,
+  "words": 1469,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15229,7 +15238,7 @@
  {
   "url": "/guwahati-to-jowai",
   "status": 200,
-  "words": 1483,
+  "words": 1482,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15286,7 +15295,7 @@
  {
   "url": "/guwahati-to-kamakhya",
   "status": 200,
-  "words": 1470,
+  "words": 1469,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15343,7 +15352,7 @@
  {
   "url": "/guwahati-to-kaziranga",
   "status": 200,
-  "words": 1496,
+  "words": 1495,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15400,7 +15409,7 @@
  {
   "url": "/guwahati-to-kohima",
   "status": 200,
-  "words": 1506,
+  "words": 1505,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15457,7 +15466,7 @@
  {
   "url": "/guwahati-to-majuli",
   "status": 200,
-  "words": 1482,
+  "words": 1481,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15514,7 +15523,7 @@
  {
   "url": "/guwahati-to-mawlynnong",
   "status": 200,
-  "words": 1500,
+  "words": 1499,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15571,7 +15580,7 @@
  {
   "url": "/guwahati-to-mawsynram",
   "status": 200,
-  "words": 1492,
+  "words": 1491,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15628,7 +15637,7 @@
  {
   "url": "/guwahati-to-meghalaya-road-trip",
   "status": 200,
-  "words": 1304,
+  "words": 1303,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15689,7 +15698,7 @@
  {
   "url": "/guwahati-to-mon",
   "status": 200,
-  "words": 1470,
+  "words": 1469,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15746,7 +15755,7 @@
  {
   "url": "/guwahati-to-nongstoin",
   "status": 200,
-  "words": 1470,
+  "words": 1469,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15803,7 +15812,7 @@
  {
   "url": "/guwahati-to-pasighat",
   "status": 200,
-  "words": 1470,
+  "words": 1469,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15860,7 +15869,7 @@
  {
   "url": "/guwahati-to-shillong",
   "status": 200,
-  "words": 1467,
+  "words": 1466,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -15917,7 +15926,7 @@
  {
   "url": "/guwahati-to-shillong-transport",
   "status": 200,
-  "words": 1043,
+  "words": 1040,
   "findings": [
    {
     "rule": "stale:year",
@@ -15974,7 +15983,7 @@
  {
   "url": "/guwahati-to-sivasagar",
   "status": 200,
-  "words": 1470,
+  "words": 1469,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -16031,7 +16040,7 @@
  {
   "url": "/guwahati-to-tawang",
   "status": 200,
-  "words": 1523,
+  "words": 1522,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -16088,7 +16097,7 @@
  {
   "url": "/guwahati-to-tezpur",
   "status": 200,
-  "words": 1470,
+  "words": 1469,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -16145,7 +16154,7 @@
  {
   "url": "/guwahati-to-tura",
   "status": 200,
-  "words": 1497,
+  "words": 1496,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -16202,7 +16211,7 @@
  {
   "url": "/guwahati-to-williamnagar",
   "status": 200,
-  "words": 1470,
+  "words": 1469,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -16259,7 +16268,7 @@
  {
   "url": "/guwahati-to-ziro",
   "status": 200,
-  "words": 1505,
+  "words": 1504,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -16316,7 +16325,7 @@
  {
   "url": "/healthy-food-restaurant-shillong",
   "status": 200,
-  "words": 966,
+  "words": 963,
   "findings": [
    {
     "rule": "stale:year",
@@ -16411,7 +16420,7 @@
  {
   "url": "/homestay-in-cherrapunji",
   "status": 200,
-  "words": 1103,
+  "words": 1100,
   "findings": [
    {
     "rule": "stale:year",
@@ -16464,7 +16473,7 @@
  {
   "url": "/homestay-in-dawki",
   "status": 200,
-  "words": 1059,
+  "words": 1056,
   "findings": [
    {
     "rule": "stale:year",
@@ -16517,7 +16526,7 @@
  {
   "url": "/homestay-in-mawlynnong",
   "status": 200,
-  "words": 1045,
+  "words": 1042,
   "findings": [
    {
     "rule": "stale:year",
@@ -16570,7 +16579,7 @@
  {
   "url": "/homestay-in-shillong-last-minute",
   "status": 200,
-  "words": 1105,
+  "words": 1102,
   "findings": [
    {
     "rule": "stale:year",
@@ -16625,7 +16634,7 @@
  {
   "url": "/homestay-in-shillong-now",
   "status": 200,
-  "words": 1103,
+  "words": 1100,
   "findings": [
    {
     "rule": "stale:year",
@@ -16680,7 +16689,7 @@
  {
   "url": "/homestay-in-shillong-this-weekend",
   "status": 200,
-  "words": 1105,
+  "words": 1102,
   "findings": [
    {
     "rule": "stale:year",
@@ -16735,7 +16744,7 @@
  {
   "url": "/homestay-in-shillong-today",
   "status": 200,
-  "words": 1103,
+  "words": 1100,
   "findings": [
    {
     "rule": "stale:year",
@@ -16790,7 +16799,7 @@
  {
   "url": "/homestay-in-shillong-tomorrow",
   "status": 200,
-  "words": 1103,
+  "words": 1100,
   "findings": [
    {
     "rule": "stale:year",
@@ -16845,7 +16854,7 @@
  {
   "url": "/homestay-in-shillong-tonight",
   "status": 200,
-  "words": 1103,
+  "words": 1100,
   "findings": [
    {
     "rule": "stale:year",
@@ -16900,7 +16909,7 @@
  {
   "url": "/homestay-near-cherrapunji-airport",
   "status": 200,
-  "words": 1162,
+  "words": 1159,
   "findings": [
    {
     "rule": "stale:year",
@@ -16953,7 +16962,7 @@
  {
   "url": "/homestay-near-shillong-airport",
   "status": 200,
-  "words": 1104,
+  "words": 1101,
   "findings": [
    {
     "rule": "stale:year",
@@ -17008,7 +17017,7 @@
  {
   "url": "/homestay-shillong-city",
   "status": 200,
-  "words": 971,
+  "words": 968,
   "findings": [
    {
     "rule": "stale:year",
@@ -17113,7 +17122,7 @@
  {
   "url": "/honeymoon-package-agartala",
   "status": 200,
-  "words": 1464,
+  "words": 1461,
   "findings": [
    {
     "rule": "stale:year",
@@ -17166,7 +17175,7 @@
  {
   "url": "/honeymoon-package-aizawl",
   "status": 200,
-  "words": 1470,
+  "words": 1467,
   "findings": [
    {
     "rule": "stale:year",
@@ -17219,7 +17228,7 @@
  {
   "url": "/honeymoon-package-arunachal-pradesh",
   "status": 200,
-  "words": 1466,
+  "words": 1463,
   "findings": [
    {
     "rule": "stale:year",
@@ -17272,7 +17281,7 @@
  {
   "url": "/honeymoon-package-assam",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -17325,7 +17334,7 @@
  {
   "url": "/honeymoon-package-bomdila",
   "status": 200,
-  "words": 1501,
+  "words": 1498,
   "findings": [
    {
     "rule": "stale:year",
@@ -17378,7 +17387,7 @@
  {
   "url": "/honeymoon-package-champhai",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -17431,7 +17440,7 @@
  {
   "url": "/honeymoon-package-cherrapunji",
   "status": 200,
-  "words": 1472,
+  "words": 1469,
   "findings": [
    {
     "rule": "stale:year",
@@ -17484,7 +17493,7 @@
  {
   "url": "/honeymoon-package-dawki",
   "status": 200,
-  "words": 1484,
+  "words": 1481,
   "findings": [
    {
     "rule": "stale:year",
@@ -17537,7 +17546,7 @@
  {
   "url": "/honeymoon-package-dzukou-valley",
   "status": 200,
-  "words": 1498,
+  "words": 1495,
   "findings": [
    {
     "rule": "stale:year",
@@ -17590,7 +17599,7 @@
  {
   "url": "/honeymoon-package-gangtok",
   "status": 200,
-  "words": 1483,
+  "words": 1480,
   "findings": [
    {
     "rule": "stale:year",
@@ -17643,7 +17652,7 @@
  {
   "url": "/honeymoon-package-guwahati",
   "status": 200,
-  "words": 1464,
+  "words": 1461,
   "findings": [
    {
     "rule": "stale:year",
@@ -17696,7 +17705,7 @@
  {
   "url": "/honeymoon-package-haflong",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -17749,7 +17758,7 @@
  {
   "url": "/honeymoon-package-imphal",
   "status": 200,
-  "words": 1476,
+  "words": 1473,
   "findings": [
    {
     "rule": "stale:year",
@@ -17802,7 +17811,7 @@
  {
   "url": "/honeymoon-package-itanagar",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -17855,7 +17864,7 @@
  {
   "url": "/honeymoon-package-jorhat",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -17908,7 +17917,7 @@
  {
   "url": "/honeymoon-package-jowai",
   "status": 200,
-  "words": 1464,
+  "words": 1461,
   "findings": [
    {
     "rule": "stale:year",
@@ -17961,7 +17970,7 @@
  {
   "url": "/honeymoon-package-kaziranga",
   "status": 200,
-  "words": 1477,
+  "words": 1474,
   "findings": [
    {
     "rule": "stale:year",
@@ -18014,7 +18023,7 @@
  {
   "url": "/honeymoon-package-kohima",
   "status": 200,
-  "words": 1487,
+  "words": 1484,
   "findings": [
    {
     "rule": "stale:year",
@@ -18067,7 +18076,7 @@
  {
   "url": "/honeymoon-package-lachung",
   "status": 200,
-  "words": 1482,
+  "words": 1479,
   "findings": [
    {
     "rule": "stale:year",
@@ -18120,7 +18129,7 @@
  {
   "url": "/honeymoon-package-loktak-lake",
   "status": 200,
-  "words": 1489,
+  "words": 1486,
   "findings": [
    {
     "rule": "stale:year",
@@ -18173,7 +18182,7 @@
  {
   "url": "/honeymoon-package-majuli",
   "status": 200,
-  "words": 1460,
+  "words": 1457,
   "findings": [
    {
     "rule": "stale:year",
@@ -18226,7 +18235,7 @@
  {
   "url": "/honeymoon-package-manipur",
   "status": 200,
-  "words": 1476,
+  "words": 1473,
   "findings": [
    {
     "rule": "stale:year",
@@ -18279,7 +18288,7 @@
  {
   "url": "/honeymoon-package-mawlynnong",
   "status": 200,
-  "words": 1481,
+  "words": 1478,
   "findings": [
    {
     "rule": "stale:year",
@@ -18332,7 +18341,7 @@
  {
   "url": "/honeymoon-package-mawsynram",
   "status": 200,
-  "words": 1470,
+  "words": 1467,
   "findings": [
    {
     "rule": "stale:year",
@@ -18385,7 +18394,7 @@
  {
   "url": "/honeymoon-package-meghalaya",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -18438,7 +18447,7 @@
  {
   "url": "/honeymoon-package-mizoram",
   "status": 200,
-  "words": 1470,
+  "words": 1467,
   "findings": [
    {
     "rule": "stale:year",
@@ -18491,7 +18500,7 @@
  {
   "url": "/honeymoon-package-mokokchung",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -18544,7 +18553,7 @@
  {
   "url": "/honeymoon-package-nagaland",
   "status": 200,
-  "words": 1451,
+  "words": 1448,
   "findings": [
    {
     "rule": "stale:year",
@@ -18597,7 +18606,7 @@
  {
   "url": "/honeymoon-package-nongjrong",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -18650,7 +18659,7 @@
  {
   "url": "/honeymoon-package-pasighat",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -18703,7 +18712,7 @@
  {
   "url": "/honeymoon-package-pelling",
   "status": 200,
-  "words": 1480,
+  "words": 1477,
   "findings": [
    {
     "rule": "stale:year",
@@ -18756,7 +18765,7 @@
  {
   "url": "/honeymoon-package-reiek",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -18809,7 +18818,7 @@
  {
   "url": "/honeymoon-package-shillong",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -18862,7 +18871,7 @@
  {
   "url": "/honeymoon-package-shnongpdeng",
   "status": 200,
-  "words": 1477,
+  "words": 1474,
   "findings": [
    {
     "rule": "stale:year",
@@ -18915,7 +18924,7 @@
  {
   "url": "/honeymoon-package-tawang",
   "status": 200,
-  "words": 1504,
+  "words": 1501,
   "findings": [
    {
     "rule": "stale:year",
@@ -18968,7 +18977,7 @@
  {
   "url": "/honeymoon-package-tezpur",
   "status": 200,
-  "words": 1448,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -19021,7 +19030,7 @@
  {
   "url": "/honeymoon-package-tsomgo-lake",
   "status": 200,
-  "words": 1498,
+  "words": 1495,
   "findings": [
    {
     "rule": "stale:year",
@@ -19074,7 +19083,7 @@
  {
   "url": "/honeymoon-package-tura",
   "status": 200,
-  "words": 1478,
+  "words": 1475,
   "findings": [
    {
     "rule": "stale:year",
@@ -19127,7 +19136,7 @@
  {
   "url": "/honeymoon-package-unakoti",
   "status": 200,
-  "words": 1460,
+  "words": 1457,
   "findings": [
    {
     "rule": "stale:year",
@@ -19180,7 +19189,7 @@
  {
   "url": "/honeymoon-package-ziro",
   "status": 200,
-  "words": 1483,
+  "words": 1480,
   "findings": [
    {
     "rule": "stale:year",
@@ -19233,7 +19242,7 @@
  {
   "url": "/hospital-accommodation-shillong",
   "status": 200,
-  "words": 963,
+  "words": 960,
   "findings": [
    {
     "rule": "stale:year",
@@ -19351,7 +19360,7 @@
  {
   "url": "/hostel-in-shillong-last-minute",
   "status": 200,
-  "words": 1192,
+  "words": 1189,
   "findings": [
    {
     "rule": "stale:year",
@@ -19427,7 +19436,7 @@
  {
   "url": "/hostel-in-shillong-now",
   "status": 200,
-  "words": 1190,
+  "words": 1187,
   "findings": [
    {
     "rule": "stale:year",
@@ -19503,7 +19512,7 @@
  {
   "url": "/hostel-in-shillong-this-weekend",
   "status": 200,
-  "words": 1190,
+  "words": 1187,
   "findings": [
    {
     "rule": "stale:year",
@@ -19579,7 +19588,7 @@
  {
   "url": "/hostel-in-shillong-tomorrow",
   "status": 200,
-  "words": 1184,
+  "words": 1181,
   "findings": [
    {
     "rule": "stale:year",
@@ -19655,7 +19664,7 @@
  {
   "url": "/hostel-in-shillong-tonight",
   "status": 200,
-  "words": 1184,
+  "words": 1181,
   "findings": [
    {
     "rule": "stale:year",
@@ -19731,7 +19740,7 @@
  {
   "url": "/hostel-near-cherrapunji-airport",
   "status": 200,
-  "words": 1340,
+  "words": 1337,
   "findings": [
    {
     "rule": "stale:year",
@@ -19788,7 +19797,7 @@
  {
   "url": "/hostel-near-gangtok-airport",
   "status": 200,
-  "words": 1347,
+  "words": 1344,
   "findings": [
    {
     "rule": "stale:year",
@@ -19845,7 +19854,7 @@
  {
   "url": "/hostel-near-guwahati-airport",
   "status": 200,
-  "words": 1332,
+  "words": 1329,
   "findings": [
    {
     "rule": "stale:year",
@@ -19902,7 +19911,7 @@
  {
   "url": "/hostel-near-iim-shillong",
   "status": 200,
-  "words": 1078,
+  "words": 1075,
   "findings": [
    {
     "rule": "stale:year",
@@ -19957,7 +19966,7 @@
  {
   "url": "/hostel-near-iit-guwahati",
   "status": 200,
-  "words": 1127,
+  "words": 1124,
   "findings": [
    {
     "rule": "stale:year",
@@ -20010,7 +20019,7 @@
  {
   "url": "/hostel-near-me",
   "status": 200,
-  "words": 1487,
+  "words": 1486,
   "findings": [
    {
     "rule": "price:dorm \"from\" price",
@@ -20024,7 +20033,7 @@
   "seo": {
    "title": "Hostel Near Me in Shillong — XTSY, New Shillong Township",
    "titleLen": 56,
-   "desc": "Hostel near you in Shillong? XTSY is on Mawdiangdiang Road, New Shillong Township, near NIFT and IIM: dorms from ₹389, 4.8★ from 161 Google reviews.",
+   "desc": "Hostel near you in Shillong? XTSY is on Mawdiangdiang Road, New Shillong Township, near NIFT and IIM: dorms from ₹389, 4.7★ from 237 Google reviews.",
    "descLen": 148,
    "canonical": "https://xtsy.one/hostel-near-me",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -20068,7 +20077,7 @@
  {
   "url": "/hostel-near-nehu",
   "status": 200,
-  "words": 1065,
+  "words": 1062,
   "findings": [
    {
     "rule": "stale:year",
@@ -20123,7 +20132,7 @@
  {
   "url": "/hostel-near-nift-shillong",
   "status": 200,
-  "words": 1077,
+  "words": 1074,
   "findings": [
    {
     "rule": "stale:year",
@@ -20178,7 +20187,7 @@
  {
   "url": "/hostel-near-police-bazar-shillong",
   "status": 200,
-  "words": 1207,
+  "words": 1204,
   "findings": [
    {
     "rule": "stale:year",
@@ -20254,7 +20263,7 @@
  {
   "url": "/hostel-near-shillong-airport",
   "status": 200,
-  "words": 1213,
+  "words": 1210,
   "findings": [
    {
     "rule": "stale:year",
@@ -20394,7 +20403,7 @@
  {
   "url": "/hostels-in-shillong-today",
   "status": 200,
-  "words": 1166,
+  "words": 1163,
   "findings": [
    {
     "rule": "stale:year",
@@ -20470,7 +20479,7 @@
  {
   "url": "/hotel-near-iim-shillong",
   "status": 200,
-  "words": 1078,
+  "words": 1075,
   "findings": [
    {
     "rule": "stale:year",
@@ -20525,7 +20534,7 @@
  {
   "url": "/hotel-near-nehu",
   "status": 200,
-  "words": 1065,
+  "words": 1062,
   "findings": [
    {
     "rule": "stale:year",
@@ -20580,7 +20589,7 @@
  {
   "url": "/hotel-near-nift-shillong",
   "status": 200,
-  "words": 1077,
+  "words": 1074,
   "findings": [
    {
     "rule": "stale:year",
@@ -20635,7 +20644,7 @@
  {
   "url": "/hotel-near-police-bazar",
   "status": 200,
-  "words": 1005,
+  "words": 1002,
   "findings": [
    {
     "rule": "stale:year",
@@ -20740,7 +20749,7 @@
  {
   "url": "/hotels-in-shillong-available-now",
   "status": 200,
-  "words": 1059,
+  "words": 1056,
   "findings": [
    {
     "rule": "stale:year",
@@ -20804,7 +20813,7 @@
  {
   "url": "/how-to-reach-cherrapunji",
   "status": 200,
-  "words": 1297,
+  "words": 1296,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -20865,7 +20874,7 @@
  {
   "url": "/how-to-reach-dawki",
   "status": 200,
-  "words": 1303,
+  "words": 1302,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -20926,7 +20935,7 @@
  {
   "url": "/how-to-reach-meghalaya-from-bangalore",
   "status": 200,
-  "words": 1219,
+  "words": 1218,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -20987,7 +20996,7 @@
  {
   "url": "/how-to-reach-meghalaya-from-delhi",
   "status": 200,
-  "words": 1247,
+  "words": 1246,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -21048,7 +21057,7 @@
  {
   "url": "/how-to-reach-meghalaya-from-kolkata",
   "status": 200,
-  "words": 1222,
+  "words": 1221,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -21109,7 +21118,7 @@
  {
   "url": "/how-to-reach-meghalaya-from-mumbai",
   "status": 200,
-  "words": 1254,
+  "words": 1253,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -21170,7 +21179,7 @@
  {
   "url": "/how-to-reach-shillong",
   "status": 200,
-  "words": 1316,
+  "words": 1315,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -21231,7 +21240,7 @@
  {
   "url": "/indo-chinese-restaurant-shillong",
   "status": 200,
-  "words": 959,
+  "words": 956,
   "findings": [
    {
     "rule": "stale:year",
@@ -21284,7 +21293,7 @@
  {
   "url": "/isabella-hostel-vs-xtsy",
   "status": 200,
-  "words": 1591,
+  "words": 1588,
   "findings": [
    {
     "rule": "stale:year",
@@ -21343,7 +21352,7 @@
  {
   "url": "/italian-restaurant-shillong",
   "status": 200,
-  "words": 958,
+  "words": 955,
   "findings": [
    {
     "rule": "stale:year",
@@ -21396,7 +21405,7 @@
  {
   "url": "/juices-and-shakes-shillong",
   "status": 200,
-  "words": 962,
+  "words": 959,
   "findings": [
    {
     "rule": "stale:year",
@@ -21449,7 +21458,7 @@
  {
   "url": "/kayaking-in-meghalaya",
   "status": 200,
-  "words": 979,
+  "words": 976,
   "findings": [
    {
     "rule": "stale:year",
@@ -21506,7 +21515,7 @@
  {
   "url": "/khasi-food-guide",
   "status": 200,
-  "words": 969,
+  "words": 966,
   "findings": [
    {
     "rule": "stale:year",
@@ -21563,7 +21572,7 @@
  {
   "url": "/khasi-food-restaurant-shillong",
   "status": 200,
-  "words": 975,
+  "words": 972,
   "findings": [
    {
     "rule": "stale:year",
@@ -21616,7 +21625,7 @@
  {
   "url": "/kongthong-whistling-village",
   "status": 200,
-  "words": 1310,
+  "words": 1309,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -21681,7 +21690,7 @@
  {
   "url": "/krang-suri-falls-guide",
   "status": 200,
-  "words": 1230,
+  "words": 1229,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -21743,7 +21752,7 @@
  {
   "url": "/krang-suri-falls-meghalaya",
   "status": 200,
-  "words": 1374,
+  "words": 1373,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -21805,7 +21814,7 @@
  {
   "url": "/laitlum-canyons-guide",
   "status": 200,
-  "words": 1218,
+  "words": 1217,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -21867,7 +21876,7 @@
  {
   "url": "/laitlum-canyons-shillong",
   "status": 200,
-  "words": 1322,
+  "words": 1321,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -21933,7 +21942,7 @@
  {
   "url": "/late-night-food-shillong",
   "status": 200,
-  "words": 952,
+  "words": 949,
   "findings": [
    {
     "rule": "stale:year",
@@ -21986,7 +21995,7 @@
  {
   "url": "/live-music-restaurant-shillong",
   "status": 200,
-  "words": 926,
+  "words": 923,
   "findings": [
    {
     "rule": "stale:year",
@@ -22039,7 +22048,7 @@
  {
   "url": "/living-root-bridge-trek",
   "status": 200,
-  "words": 1297,
+  "words": 1296,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -22101,7 +22110,7 @@
  {
   "url": "/living-root-bridges-meghalaya",
   "status": 200,
-  "words": 2191,
+  "words": 2190,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -22162,7 +22171,7 @@
  {
   "url": "/long-stay-hostel-shillong",
   "status": 200,
-  "words": 1134,
+  "words": 1131,
   "findings": [
    {
     "rule": "stale:year",
@@ -22226,7 +22235,7 @@
  {
   "url": "/lunch-in-shillong",
   "status": 200,
-  "words": 933,
+  "words": 930,
   "findings": [
    {
     "rule": "stale:year",
@@ -22320,7 +22329,7 @@
  {
   "url": "/luxury-resorts-for-couples-shillong",
   "status": 200,
-  "words": 1019,
+  "words": 1016,
   "findings": [
    {
     "rule": "stale:year",
@@ -22380,7 +22389,7 @@
  {
   "url": "/luxury-stays-in-india",
   "status": 200,
-  "words": 1008,
+  "words": 1005,
   "findings": [
    {
     "rule": "stale:year",
@@ -22444,7 +22453,7 @@
  {
   "url": "/manipur-tour-packages",
   "status": 200,
-  "words": 1408,
+  "words": 1405,
   "findings": [
    {
     "rule": "stale:year",
@@ -22497,7 +22506,7 @@
  {
   "url": "/mawlynnong-cleanest-village",
   "status": 200,
-  "words": 1382,
+  "words": 1381,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -22563,7 +22572,7 @@
  {
   "url": "/mawlynnong-guide",
   "status": 200,
-  "words": 1257,
+  "words": 1256,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -22625,7 +22634,7 @@
  {
   "url": "/mawphlang-sacred-forest",
   "status": 200,
-  "words": 1356,
+  "words": 1355,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -22691,7 +22700,7 @@
  {
   "url": "/mawsmai-cave-cherrapunji",
   "status": 200,
-  "words": 1295,
+  "words": 1294,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -22757,7 +22766,7 @@
  {
   "url": "/meghalaya-adventure-package",
   "status": 200,
-  "words": 1117,
+  "words": 1114,
   "findings": [
    {
     "rule": "stale:year",
@@ -22854,7 +22863,7 @@
  {
   "url": "/meghalaya-backpacking-guide",
   "status": 200,
-  "words": 1387,
+  "words": 1386,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -22998,7 +23007,7 @@
  {
   "url": "/meghalaya-honeymoon-package",
   "status": 200,
-  "words": 1162,
+  "words": 1159,
   "findings": [
    {
     "rule": "stale:year",
@@ -23055,7 +23064,7 @@
  {
   "url": "/meghalaya-in-april",
   "status": 200,
-  "words": 1258,
+  "words": 1257,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23116,7 +23125,7 @@
  {
   "url": "/meghalaya-in-august",
   "status": 200,
-  "words": 1254,
+  "words": 1253,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23177,7 +23186,7 @@
  {
   "url": "/meghalaya-in-december",
   "status": 200,
-  "words": 1255,
+  "words": 1254,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23238,7 +23247,7 @@
  {
   "url": "/meghalaya-in-february",
   "status": 200,
-  "words": 1260,
+  "words": 1259,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23299,7 +23308,7 @@
  {
   "url": "/meghalaya-in-january",
   "status": 200,
-  "words": 1262,
+  "words": 1261,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23360,7 +23369,7 @@
  {
   "url": "/meghalaya-in-july",
   "status": 200,
-  "words": 1257,
+  "words": 1256,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23421,7 +23430,7 @@
  {
   "url": "/meghalaya-in-june",
   "status": 200,
-  "words": 1258,
+  "words": 1257,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23482,7 +23491,7 @@
  {
   "url": "/meghalaya-in-march",
   "status": 200,
-  "words": 1257,
+  "words": 1256,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23543,7 +23552,7 @@
  {
   "url": "/meghalaya-in-may",
   "status": 200,
-  "words": 1257,
+  "words": 1256,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23604,7 +23613,7 @@
  {
   "url": "/meghalaya-in-november",
   "status": 200,
-  "words": 1252,
+  "words": 1251,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23665,7 +23674,7 @@
  {
   "url": "/meghalaya-in-october",
   "status": 200,
-  "words": 1257,
+  "words": 1256,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23726,7 +23735,7 @@
  {
   "url": "/meghalaya-in-september",
   "status": 200,
-  "words": 1255,
+  "words": 1254,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23787,7 +23796,7 @@
  {
   "url": "/meghalaya-itinerary",
   "status": 200,
-  "words": 1573,
+  "words": 1572,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23848,7 +23857,7 @@
  {
   "url": "/meghalaya-itinerary-planning",
   "status": 200,
-  "words": 1379,
+  "words": 1378,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -23909,7 +23918,7 @@
  {
   "url": "/meghalaya-monsoon-travel-guide",
   "status": 200,
-  "words": 1303,
+  "words": 1302,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -24016,7 +24025,7 @@
  {
   "url": "/meghalaya-photography-tour",
   "status": 200,
-  "words": 1097,
+  "words": 1094,
   "findings": [
    {
     "rule": "stale:year",
@@ -24073,7 +24082,7 @@
  {
   "url": "/meghalaya-road-trip-guide",
   "status": 200,
-  "words": 1377,
+  "words": 1376,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -24134,7 +24143,7 @@
  {
   "url": "/meghalaya-tour-package-3-days",
   "status": 200,
-  "words": 1120,
+  "words": 1117,
   "findings": [
    {
     "rule": "stale:year",
@@ -24191,7 +24200,7 @@
  {
   "url": "/meghalaya-tour-package-5-days",
   "status": 200,
-  "words": 1143,
+  "words": 1140,
   "findings": [
    {
     "rule": "stale:year",
@@ -24248,7 +24257,7 @@
  {
   "url": "/meghalaya-tour-package-7-days",
   "status": 200,
-  "words": 1187,
+  "words": 1184,
   "findings": [
    {
     "rule": "stale:year",
@@ -24347,7 +24356,7 @@
  {
   "url": "/meghalaya-tour-packages-pillar",
   "status": 200,
-  "words": 1848,
+  "words": 1847,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -24408,7 +24417,7 @@
  {
   "url": "/meghalaya-travel-guide",
   "status": 200,
-  "words": 2269,
+  "words": 2268,
   "findings": [
    {
     "rule": "price:Experience by XTSY",
@@ -24477,7 +24486,7 @@
  {
   "url": "/meghalaya-trip-cost",
   "status": 200,
-  "words": 1290,
+  "words": 1289,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -24538,7 +24547,7 @@
  {
   "url": "/meghalaya-trip-today",
   "status": 200,
-  "words": 1184,
+  "words": 1366,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -24587,7 +24596,7 @@
     "Question",
     "Answer"
    ],
-   "faqSchemaQuestions": 2,
+   "faqSchemaQuestions": 4,
    "questionHeadings": 3,
    "firstParagraphWords": 63,
    "mentionsBrand": true,
@@ -24762,7 +24771,7 @@
  {
   "url": "/mizoram-tour-packages",
   "status": 200,
-  "words": 1402,
+  "words": 1399,
   "findings": [
    {
     "rule": "stale:year",
@@ -24815,7 +24824,7 @@
  {
   "url": "/momos-in-shillong",
   "status": 200,
-  "words": 972,
+  "words": 969,
   "findings": [
    {
     "rule": "stale:year",
@@ -24868,7 +24877,7 @@
  {
   "url": "/monsoon-in-agartala",
   "status": 200,
-  "words": 1390,
+  "words": 1387,
   "findings": [
    {
     "rule": "stale:year",
@@ -24921,7 +24930,7 @@
  {
   "url": "/monsoon-in-aizawl",
   "status": 200,
-  "words": 1396,
+  "words": 1393,
   "findings": [
    {
     "rule": "stale:year",
@@ -24974,7 +24983,7 @@
  {
   "url": "/monsoon-in-bomdila",
   "status": 200,
-  "words": 1427,
+  "words": 1424,
   "findings": [
    {
     "rule": "stale:year",
@@ -25027,7 +25036,7 @@
  {
   "url": "/monsoon-in-champhai",
   "status": 200,
-  "words": 1374,
+  "words": 1371,
   "findings": [
    {
     "rule": "stale:year",
@@ -25080,7 +25089,7 @@
  {
   "url": "/monsoon-in-cherrapunji",
   "status": 200,
-  "words": 1398,
+  "words": 1395,
   "findings": [
    {
     "rule": "stale:year",
@@ -25133,7 +25142,7 @@
  {
   "url": "/monsoon-in-dawki",
   "status": 200,
-  "words": 1410,
+  "words": 1407,
   "findings": [
    {
     "rule": "stale:year",
@@ -25186,7 +25195,7 @@
  {
   "url": "/monsoon-in-dzukou-valley",
   "status": 200,
-  "words": 1432,
+  "words": 1429,
   "findings": [
    {
     "rule": "stale:year",
@@ -25239,7 +25248,7 @@
  {
   "url": "/monsoon-in-guwahati",
   "status": 200,
-  "words": 1390,
+  "words": 1387,
   "findings": [
    {
     "rule": "stale:year",
@@ -25292,7 +25301,7 @@
  {
   "url": "/monsoon-in-haflong",
   "status": 200,
-  "words": 1374,
+  "words": 1371,
   "findings": [
    {
     "rule": "stale:year",
@@ -25345,7 +25354,7 @@
  {
   "url": "/monsoon-in-imphal",
   "status": 200,
-  "words": 1402,
+  "words": 1399,
   "findings": [
    {
     "rule": "stale:year",
@@ -25398,7 +25407,7 @@
  {
   "url": "/monsoon-in-itanagar",
   "status": 200,
-  "words": 1374,
+  "words": 1371,
   "findings": [
    {
     "rule": "stale:year",
@@ -25451,7 +25460,7 @@
  {
   "url": "/monsoon-in-jorhat",
   "status": 200,
-  "words": 1374,
+  "words": 1371,
   "findings": [
    {
     "rule": "stale:year",
@@ -25504,7 +25513,7 @@
  {
   "url": "/monsoon-in-jowai",
   "status": 200,
-  "words": 1390,
+  "words": 1387,
   "findings": [
    {
     "rule": "stale:year",
@@ -25557,7 +25566,7 @@
  {
   "url": "/monsoon-in-kaziranga",
   "status": 200,
-  "words": 1403,
+  "words": 1400,
   "findings": [
    {
     "rule": "stale:year",
@@ -25610,7 +25619,7 @@
  {
   "url": "/monsoon-in-kohima",
   "status": 200,
-  "words": 1413,
+  "words": 1410,
   "findings": [
    {
     "rule": "stale:year",
@@ -25663,7 +25672,7 @@
  {
   "url": "/monsoon-in-loktak-lake",
   "status": 200,
-  "words": 1423,
+  "words": 1420,
   "findings": [
    {
     "rule": "stale:year",
@@ -25716,7 +25725,7 @@
  {
   "url": "/monsoon-in-majuli",
   "status": 200,
-  "words": 1386,
+  "words": 1383,
   "findings": [
    {
     "rule": "stale:year",
@@ -25769,7 +25778,7 @@
  {
   "url": "/monsoon-in-mawlynnong",
   "status": 200,
-  "words": 1407,
+  "words": 1404,
   "findings": [
    {
     "rule": "stale:year",
@@ -25822,7 +25831,7 @@
  {
   "url": "/monsoon-in-mawsynram",
   "status": 200,
-  "words": 1396,
+  "words": 1393,
   "findings": [
    {
     "rule": "stale:year",
@@ -25875,7 +25884,7 @@
  {
   "url": "/monsoon-in-mokokchung",
   "status": 200,
-  "words": 1374,
+  "words": 1371,
   "findings": [
    {
     "rule": "stale:year",
@@ -25928,7 +25937,7 @@
  {
   "url": "/monsoon-in-nongjrong",
   "status": 200,
-  "words": 1374,
+  "words": 1371,
   "findings": [
    {
     "rule": "stale:year",
@@ -25981,7 +25990,7 @@
  {
   "url": "/monsoon-in-pasighat",
   "status": 200,
-  "words": 1374,
+  "words": 1371,
   "findings": [
    {
     "rule": "stale:year",
@@ -26034,7 +26043,7 @@
  {
   "url": "/monsoon-in-reiek",
   "status": 200,
-  "words": 1374,
+  "words": 1371,
   "findings": [
    {
     "rule": "stale:year",
@@ -26087,7 +26096,7 @@
  {
   "url": "/monsoon-in-shillong",
   "status": 200,
-  "words": 1374,
+  "words": 1371,
   "findings": [
    {
     "rule": "stale:year",
@@ -26140,7 +26149,7 @@
  {
   "url": "/monsoon-in-shnongpdeng",
   "status": 200,
-  "words": 1403,
+  "words": 1400,
   "findings": [
    {
     "rule": "stale:year",
@@ -26193,7 +26202,7 @@
  {
   "url": "/monsoon-in-tawang",
   "status": 200,
-  "words": 1430,
+  "words": 1427,
   "findings": [
    {
     "rule": "stale:year",
@@ -26246,7 +26255,7 @@
  {
   "url": "/monsoon-in-tezpur",
   "status": 200,
-  "words": 1374,
+  "words": 1371,
   "findings": [
    {
     "rule": "stale:year",
@@ -26299,7 +26308,7 @@
  {
   "url": "/monsoon-in-tura",
   "status": 200,
-  "words": 1404,
+  "words": 1401,
   "findings": [
    {
     "rule": "stale:year",
@@ -26352,7 +26361,7 @@
  {
   "url": "/monsoon-in-unakoti",
   "status": 200,
-  "words": 1386,
+  "words": 1383,
   "findings": [
    {
     "rule": "stale:year",
@@ -26405,7 +26414,7 @@
  {
   "url": "/monsoon-in-ziro",
   "status": 200,
-  "words": 1409,
+  "words": 1406,
   "findings": [
    {
     "rule": "stale:year",
@@ -26498,7 +26507,7 @@
  {
   "url": "/multi-cuisine-restaurant-shillong",
   "status": 200,
-  "words": 966,
+  "words": 963,
   "findings": [
    {
     "rule": "stale:year",
@@ -26551,7 +26560,7 @@
  {
   "url": "/nagaland-tour-packages",
   "status": 200,
-  "words": 1383,
+  "words": 1380,
   "findings": [
    {
     "rule": "stale:year",
@@ -26604,7 +26613,7 @@
  {
   "url": "/nohkalikai-falls-guide",
   "status": 200,
-  "words": 1247,
+  "words": 1246,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -26666,7 +26675,7 @@
  {
   "url": "/nohkalikai-falls-meghalaya",
   "status": 200,
-  "words": 1545,
+  "words": 1544,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -26732,7 +26741,7 @@
  {
   "url": "/nongjrong-tour-package",
   "status": 200,
-  "words": 1072,
+  "words": 1069,
   "findings": [
    {
     "rule": "stale:year",
@@ -26789,7 +26798,7 @@
  {
   "url": "/noodles-in-shillong",
   "status": 200,
-  "words": 970,
+  "words": 967,
   "findings": [
    {
     "rule": "stale:year",
@@ -26842,7 +26851,7 @@
  {
   "url": "/north-east-trip-guide",
   "status": 200,
-  "words": 1344,
+  "words": 1343,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -26903,7 +26912,7 @@
  {
   "url": "/north-indian-restaurant-shillong",
   "status": 200,
-  "words": 983,
+  "words": 980,
   "findings": [
    {
     "rule": "stale:year",
@@ -26956,7 +26965,7 @@
  {
   "url": "/offbeat-meghalaya",
   "status": 200,
-  "words": 1304,
+  "words": 1303,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -27017,7 +27026,7 @@
  {
   "url": "/online-food-order-shillong",
   "status": 200,
-  "words": 944,
+  "words": 941,
   "findings": [
    {
     "rule": "stale:year",
@@ -27070,7 +27079,7 @@
  {
   "url": "/outdoor-venue-shillong",
   "status": 200,
-  "words": 877,
+  "words": 874,
   "findings": [
    {
     "rule": "stale:year",
@@ -27127,7 +27136,7 @@
  {
   "url": "/parent-stay-near-iim-shillong",
   "status": 200,
-  "words": 1079,
+  "words": 1076,
   "findings": [
    {
     "rule": "stale:year",
@@ -27182,7 +27191,7 @@
  {
   "url": "/parent-stay-near-nehu",
   "status": 200,
-  "words": 1067,
+  "words": 1064,
   "findings": [
    {
     "rule": "stale:year",
@@ -27237,7 +27246,7 @@
  {
   "url": "/parent-stay-near-nift-shillong",
   "status": 200,
-  "words": 1079,
+  "words": 1076,
   "findings": [
    {
     "rule": "stale:year",
@@ -27292,7 +27301,7 @@
  {
   "url": "/party-catering-shillong",
   "status": 200,
-  "words": 1129,
+  "words": 1126,
   "findings": [
    {
     "rule": "stale:year",
@@ -27345,7 +27354,7 @@
  {
   "url": "/patient-attendant-stay-neigrihms",
   "status": 200,
-  "words": 952,
+  "words": 949,
   "findings": [
    {
     "rule": "stale:year",
@@ -27447,7 +27456,7 @@
  {
   "url": "/pet-friendly-restaurant-shillong",
   "status": 200,
-  "words": 937,
+  "words": 934,
   "findings": [
    {
     "rule": "stale:year",
@@ -27500,7 +27509,7 @@
  {
   "url": "/pizza-in-shillong",
   "status": 200,
-  "words": 949,
+  "words": 946,
   "findings": [
    {
     "rule": "stale:year",
@@ -27553,7 +27562,7 @@
  {
   "url": "/places-to-eat-in-shillong",
   "status": 200,
-  "words": 974,
+  "words": 971,
   "findings": [
    {
     "rule": "stale:year",
@@ -27610,7 +27619,7 @@
  {
   "url": "/places-to-visit-meghalaya",
   "status": 200,
-  "words": 1808,
+  "words": 1807,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -27716,7 +27725,7 @@
  {
   "url": "/pre-wedding-shoot-meghalaya",
   "status": 200,
-  "words": 918,
+  "words": 915,
   "findings": [
    {
     "rule": "stale:year",
@@ -27773,7 +27782,7 @@
  {
   "url": "/pre-wedding-shoot-venue-shillong",
   "status": 200,
-  "words": 961,
+  "words": 958,
   "findings": [
    {
     "rule": "stale:year",
@@ -27914,7 +27923,7 @@
  {
   "url": "/pure-veg-restaurant-shillong",
   "status": 200,
-  "words": 983,
+  "words": 980,
   "findings": [
    {
     "rule": "stale:year",
@@ -27971,7 +27980,7 @@
  {
   "url": "/pure-vegetarian-restaurant-shillong",
   "status": 200,
-  "words": 971,
+  "words": 968,
   "findings": [
    {
     "rule": "stale:year",
@@ -28024,7 +28033,7 @@
  {
   "url": "/rainbow-falls-guide",
   "status": 200,
-  "words": 1242,
+  "words": 1241,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -28086,7 +28095,7 @@
  {
   "url": "/restaurant-in-police-bazar",
   "status": 200,
-  "words": 1172,
+  "words": 1169,
   "findings": [
    {
     "rule": "stale:year",
@@ -28188,7 +28197,7 @@
  {
   "url": "/restaurants-in-laitumkhrah",
   "status": 200,
-  "words": 991,
+  "words": 988,
   "findings": [
    {
     "rule": "stale:year",
@@ -28245,7 +28254,7 @@
  {
   "url": "/restaurants-in-police-bazar-shillong",
   "status": 200,
-  "words": 1001,
+  "words": 998,
   "findings": [
    {
     "rule": "location:\"heart of Shillong\"",
@@ -28306,7 +28315,7 @@
  {
   "url": "/romantic-restaurant-shillong",
   "status": 200,
-  "words": 944,
+  "words": 941,
   "findings": [
    {
     "rule": "stale:year",
@@ -28359,7 +28368,7 @@
  {
   "url": "/rooftop-cafe-shillong",
   "status": 200,
-  "words": 939,
+  "words": 936,
   "findings": [
    {
     "rule": "stale:year",
@@ -28412,7 +28421,7 @@
  {
   "url": "/rooftop-restaurant-shillong",
   "status": 200,
-  "words": 950,
+  "words": 947,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -28469,7 +28478,7 @@
  {
   "url": "/scooty-rental-shillong",
   "status": 200,
-  "words": 948,
+  "words": 945,
   "findings": [
    {
     "rule": "stale:year",
@@ -28526,7 +28535,7 @@
  {
   "url": "/seafood-restaurant-shillong",
   "status": 200,
-  "words": 970,
+  "words": 967,
   "findings": [
    {
     "rule": "stale:year",
@@ -28579,7 +28588,7 @@
  {
   "url": "/self-drive-car-guwahati",
   "status": 200,
-  "words": 1100,
+  "words": 1097,
   "findings": [
    {
     "rule": "stale:year",
@@ -28636,7 +28645,7 @@
  {
   "url": "/shillong-dormitory",
   "status": 200,
-  "words": 1092,
+  "words": 1089,
   "findings": [
    {
     "rule": "stale:year",
@@ -28700,7 +28709,7 @@
  {
   "url": "/shillong-guide",
   "status": 200,
-  "words": 1243,
+  "words": 1242,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -28761,7 +28770,7 @@
  {
   "url": "/shillong-last-minute-stays",
   "status": 200,
-  "words": 1099,
+  "words": 1096,
   "findings": [
    {
     "rule": "stale:year",
@@ -28825,7 +28834,7 @@
  {
   "url": "/shillong-peak-viewpoint",
   "status": 200,
-  "words": 1393,
+  "words": 1392,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -28891,7 +28900,7 @@
  {
   "url": "/shillong-stay-tonight",
   "status": 200,
-  "words": 1100,
+  "words": 1097,
   "findings": [
    {
     "rule": "stale:year",
@@ -28971,7 +28980,7 @@
  {
   "url": "/shillong-to-cherrapunji-road-trip",
   "status": 200,
-  "words": 1307,
+  "words": 1306,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -29032,7 +29041,7 @@
  {
   "url": "/shillong-to-dawki-trip",
   "status": 200,
-  "words": 1306,
+  "words": 1305,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -29093,7 +29102,7 @@
  {
   "url": "/shillong-to-nongjrong",
   "status": 200,
-  "words": 1232,
+  "words": 1231,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -29196,7 +29205,7 @@
  {
   "url": "/shillong-tour-package-2-days",
   "status": 200,
-  "words": 1068,
+  "words": 1065,
   "findings": [
    {
     "rule": "stale:year",
@@ -29253,7 +29262,7 @@
  {
   "url": "/shillong-travel-guide",
   "status": 200,
-  "words": 1586,
+  "words": 1585,
   "findings": [
    {
     "rule": "location:\"heart of Shillong\"",
@@ -29322,7 +29331,7 @@
  {
   "url": "/shillong-vacation-planner",
   "status": 200,
-  "words": 1292,
+  "words": 1291,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -29383,7 +29392,7 @@
  {
   "url": "/shillong-weekend-trip",
   "status": 200,
-  "words": 1216,
+  "words": 1215,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -29444,7 +29453,7 @@
  {
   "url": "/shnongpdeng-camping",
   "status": 200,
-  "words": 1264,
+  "words": 1263,
   "findings": [
    {
     "rule": "price:king/private room",
@@ -29510,7 +29519,7 @@
  {
   "url": "/shnongpdeng-camping-guide",
   "status": 200,
-  "words": 1315,
+  "words": 1314,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -29571,7 +29580,7 @@
  {
   "url": "/sikkim-tour-packages",
   "status": 200,
-  "words": 1415,
+  "words": 1412,
   "findings": [
    {
     "rule": "stale:year",
@@ -29624,7 +29633,7 @@
  {
   "url": "/sizzlers-in-shillong",
   "status": 200,
-  "words": 959,
+  "words": 956,
   "findings": [
    {
     "rule": "stale:year",
@@ -29677,7 +29686,7 @@
  {
   "url": "/solo-travel-hostel-shillong",
   "status": 200,
-  "words": 2012,
+  "words": 2009,
   "findings": [
    {
     "rule": "stale:year",
@@ -29736,7 +29745,7 @@
  {
   "url": "/solo-trip-meghalaya",
   "status": 200,
-  "words": 1345,
+  "words": 1344,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -29797,7 +29806,7 @@
  {
   "url": "/south-indian-restaurant-shillong",
   "status": 200,
-  "words": 975,
+  "words": 972,
   "findings": [
    {
     "rule": "stale:year",
@@ -29850,7 +29859,7 @@
  {
   "url": "/stargaze-hostel-vs-xtsy",
   "status": 200,
-  "words": 1518,
+  "words": 1515,
   "findings": [
    {
     "rule": "stale:year",
@@ -29909,7 +29918,7 @@
  {
   "url": "/stay-near-iim-shillong",
   "status": 200,
-  "words": 1078,
+  "words": 1075,
   "findings": [
    {
     "rule": "stale:year",
@@ -29964,7 +29973,7 @@
  {
   "url": "/stay-near-iit-guwahati",
   "status": 200,
-  "words": 1127,
+  "words": 1124,
   "findings": [
    {
     "rule": "stale:year",
@@ -30017,7 +30026,7 @@
  {
   "url": "/stay-near-nehu",
   "status": 200,
-  "words": 1065,
+  "words": 1062,
   "findings": [
    {
     "rule": "stale:year",
@@ -30072,7 +30081,7 @@
  {
   "url": "/stay-near-nift-shillong",
   "status": 200,
-  "words": 1077,
+  "words": 1074,
   "findings": [
    {
     "rule": "stale:year",
@@ -30127,7 +30136,7 @@
  {
   "url": "/stays-in-shillong",
   "status": 200,
-  "words": 1004,
+  "words": 1001,
   "findings": [
    {
     "rule": "stale:year",
@@ -30191,7 +30200,7 @@
  {
   "url": "/street-food-police-bazar",
   "status": 200,
-  "words": 947,
+  "words": 944,
   "findings": [
    {
     "rule": "stale:year",
@@ -30248,7 +30257,7 @@
  {
   "url": "/student-accommodation-near-iim-shillong",
   "status": 200,
-  "words": 1079,
+  "words": 1076,
   "findings": [
    {
     "rule": "stale:year",
@@ -30303,7 +30312,7 @@
  {
   "url": "/student-accommodation-near-nehu",
   "status": 200,
-  "words": 1067,
+  "words": 1064,
   "findings": [
    {
     "rule": "stale:year",
@@ -30358,7 +30367,7 @@
  {
   "url": "/student-accommodation-near-nift-shillong",
   "status": 200,
-  "words": 1079,
+  "words": 1076,
   "findings": [
    {
     "rule": "stale:year",
@@ -30413,7 +30422,7 @@
  {
   "url": "/suv-rental-shillong",
   "status": 200,
-  "words": 923,
+  "words": 920,
   "findings": [
    {
     "rule": "stale:year",
@@ -30521,7 +30530,7 @@
  {
   "url": "/tab-bistro-by-xtsy-restaurant",
   "status": 200,
-  "words": 1202,
+  "words": 1199,
   "findings": [
    {
     "rule": "stale:year",
@@ -30574,7 +30583,7 @@
  {
   "url": "/tandoor-restaurant-shillong",
   "status": 200,
-  "words": 982,
+  "words": 979,
   "findings": [
    {
     "rule": "stale:year",
@@ -30680,7 +30689,7 @@
  {
   "url": "/thai-restaurant-shillong",
   "status": 200,
-  "words": 968,
+  "words": 965,
   "findings": [
    {
     "rule": "stale:year",
@@ -30733,7 +30742,7 @@
  {
   "url": "/thali-restaurant-shillong",
   "status": 200,
-  "words": 945,
+  "words": 942,
   "findings": [
    {
     "rule": "stale:year",
@@ -30827,7 +30836,7 @@
  {
   "url": "/things-to-do-meghalaya",
   "status": 200,
-  "words": 1751,
+  "words": 1750,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -30888,7 +30897,7 @@
  {
   "url": "/tour-operators-meghalaya",
   "status": 200,
-  "words": 1103,
+  "words": 1100,
   "findings": [
    {
     "rule": "stale:year",
@@ -30906,7 +30915,7 @@
   "seo": {
    "title": "Best Tour Operators in Meghalaya 2026 | XTSY",
    "titleLen": 44,
-   "desc": "Top tour operators in Meghalaya. Customized packages, local guides, transport. 4.8★ rated. Plan your Meghalaya trip with XTSY.",
+   "desc": "Top tour operators in Meghalaya. Customized packages, local guides, transport. 4.7★ rated. Plan your Meghalaya trip with XTSY.",
    "descLen": 126,
    "canonical": "https://xtsy.one/tour-operators-meghalaya",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -30945,7 +30954,7 @@
  {
   "url": "/tour-operators-shillong",
   "status": 200,
-  "words": 1069,
+  "words": 1066,
   "findings": [
    {
     "rule": "stale:year",
@@ -30963,7 +30972,7 @@
   "seo": {
    "title": "Tour Operators in Shillong 2026 — Best Rated | XTSY",
    "titleLen": 51,
-   "desc": "Find the best tour operators in Shillong. Customized packages, local expertise, 4.8★ rated. Book your Meghalaya tour with XTSY.",
+   "desc": "Find the best tour operators in Shillong. Customized packages, local expertise, 4.7★ rated. Book your Meghalaya tour with XTSY.",
    "descLen": 127,
    "canonical": "https://xtsy.one/tour-operators-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -33673,7 +33682,7 @@
  {
   "url": "/travel-agency-shillong",
   "status": 200,
-  "words": 1119,
+  "words": 1116,
   "findings": [
    {
     "rule": "stale:year",
@@ -33691,7 +33700,7 @@
   "seo": {
    "title": "Best Travel Agency in Shillong 2026 | XTSY Travel",
    "titleLen": 49,
-   "desc": "Top-rated travel agency in Shillong. Customized Meghalaya tour packages, transport, accommodation. 4.8★ rated. Plan your trip with XTSY.",
+   "desc": "Top-rated travel agency in Shillong. Customized Meghalaya tour packages, transport, accommodation. 4.7★ rated. Plan your trip with XTSY.",
    "descLen": 136,
    "canonical": "https://xtsy.one/travel-agency-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -33812,7 +33821,7 @@
  {
   "url": "/trekking-in-meghalaya",
   "status": 200,
-  "words": 1522,
+  "words": 1521,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -33873,7 +33882,7 @@
  {
   "url": "/tripura-tour-packages",
   "status": 200,
-  "words": 1396,
+  "words": 1393,
   "findings": [
    {
     "rule": "stale:year",
@@ -33926,7 +33935,7 @@
  {
   "url": "/umiam-lake-shillong",
   "status": 200,
-  "words": 1234,
+  "words": 1233,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -33988,7 +33997,7 @@
  {
   "url": "/unique-luxury-stay-india",
   "status": 200,
-  "words": 1040,
+  "words": 1037,
   "findings": [
    {
     "rule": "stale:year",
@@ -34052,7 +34061,7 @@
  {
   "url": "/vegetarian-food-in-shillong",
   "status": 200,
-  "words": 950,
+  "words": 947,
   "findings": [
    {
     "rule": "stale:year",
@@ -34105,7 +34114,7 @@
  {
   "url": "/vehicle-rental-northeast",
   "status": 200,
-  "words": 914,
+  "words": 911,
   "findings": [
    {
     "rule": "stale:year",
@@ -34162,7 +34171,7 @@
  {
   "url": "/waterfalls-in-meghalaya",
   "status": 200,
-  "words": 1778,
+  "words": 1777,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -34223,7 +34232,7 @@
  {
   "url": "/wedding-catering-services-shillong",
   "status": 200,
-  "words": 1147,
+  "words": 1144,
   "findings": [
    {
     "rule": "stale:year",
@@ -34276,7 +34285,7 @@
  {
   "url": "/wedding-catering-shillong",
   "status": 200,
-  "words": 929,
+  "words": 926,
   "findings": [
    {
     "rule": "stale:year",
@@ -34333,7 +34342,7 @@
  {
   "url": "/weekend-meghalaya-trip",
   "status": 200,
-  "words": 1172,
+  "words": 1171,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -34394,7 +34403,7 @@
  {
   "url": "/wei-sawdong-falls-guide",
   "status": 200,
-  "words": 1251,
+  "words": 1250,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -34456,7 +34465,7 @@
  {
   "url": "/wei-sawdong-falls-meghalaya",
   "status": 200,
-  "words": 1338,
+  "words": 1337,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -34565,7 +34574,7 @@
  {
   "url": "/workation-aizawl",
   "status": 200,
-  "words": 1513,
+  "words": 1510,
   "findings": [
    {
     "rule": "stale:year",
@@ -34618,7 +34627,7 @@
  {
   "url": "/workation-cherrapunji",
   "status": 200,
-  "words": 1515,
+  "words": 1512,
   "findings": [
    {
     "rule": "stale:year",
@@ -34671,7 +34680,7 @@
  {
   "url": "/workation-dawki",
   "status": 200,
-  "words": 1527,
+  "words": 1524,
   "findings": [
    {
     "rule": "stale:year",
@@ -34724,7 +34733,7 @@
  {
   "url": "/workation-gangtok",
   "status": 200,
-  "words": 1526,
+  "words": 1523,
   "findings": [
    {
     "rule": "stale:year",
@@ -34777,7 +34786,7 @@
  {
   "url": "/workation-guwahati",
   "status": 200,
-  "words": 1507,
+  "words": 1504,
   "findings": [
    {
     "rule": "stale:year",
@@ -34830,7 +34839,7 @@
  {
   "url": "/workation-kaziranga",
   "status": 200,
-  "words": 1520,
+  "words": 1517,
   "findings": [
    {
     "rule": "stale:year",
@@ -34883,7 +34892,7 @@
  {
   "url": "/workation-kohima",
   "status": 200,
-  "words": 1530,
+  "words": 1527,
   "findings": [
    {
     "rule": "stale:year",
@@ -34936,7 +34945,7 @@
  {
   "url": "/workation-mawlynnong",
   "status": 200,
-  "words": 1524,
+  "words": 1521,
   "findings": [
    {
     "rule": "stale:year",
@@ -34989,7 +34998,7 @@
  {
   "url": "/workation-pelling",
   "status": 200,
-  "words": 1467,
+  "words": 1464,
   "findings": [
    {
     "rule": "stale:year",
@@ -35044,7 +35053,7 @@
  {
   "url": "/workation-shillong",
   "status": 200,
-  "words": 1457,
+  "words": 1454,
   "findings": [
    {
     "rule": "stale:year",
@@ -35099,7 +35108,7 @@
  {
   "url": "/workation-tawang",
   "status": 200,
-  "words": 1547,
+  "words": 1544,
   "findings": [
    {
     "rule": "stale:year",
@@ -35152,7 +35161,7 @@
  {
   "url": "/workation-ziro",
   "status": 200,
-  "words": 1468,
+  "words": 1465,
   "findings": [
    {
     "rule": "stale:year",
@@ -35382,7 +35391,7 @@
  {
   "url": "/zion-backpackers-vs-xtsy",
   "status": 200,
-  "words": 1626,
+  "words": 1623,
   "findings": [
    {
     "rule": "placeholder:coming soon",
@@ -35445,7 +35454,7 @@
  {
   "url": "/zip-lining-meghalaya",
   "status": 200,
-  "words": 962,
+  "words": 959,
   "findings": [
    {
     "rule": "stale:year",
@@ -35502,7 +35511,7 @@
  {
   "url": "/zostel-vs-xtsy-shillong",
   "status": 200,
-  "words": 1022,
+  "words": 1021,
   "findings": [
    {
     "rule": "stale:year",
@@ -35547,7 +35556,7 @@
    ],
    "faqSchemaQuestions": 2,
    "questionHeadings": 1,
-   "firstParagraphWords": 53,
+   "firstParagraphWords": 55,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
