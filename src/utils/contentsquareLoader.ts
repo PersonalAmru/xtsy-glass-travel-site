@@ -18,6 +18,7 @@
  *
  * Diagnostics: every step logs to console with the [CS-Loader] prefix.
  */
+import { SELF_TRACKING_ENABLED } from '@/lib/selfTracking';
 
 const TAG_ID = '8a1781ba2e7b5';
 const CDN_URL = `https://t.contentsquare.net/uxa/${TAG_ID}.js`;
@@ -190,6 +191,7 @@ function recordEvent(status: CSLoaderStatus, blockReason: CSBlockReason) {
       error_message: state.lastError ? state.lastError.slice(0, 300) : null,
     };
 
+    if (!SELF_TRACKING_ENABLED) return;
     import('@/integrations/supabase/client')
       .then(({ supabase }) => supabase.from('analytics_loader_events').insert(payload))
       .then((res: any) => {

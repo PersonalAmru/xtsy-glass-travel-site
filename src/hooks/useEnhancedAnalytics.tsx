@@ -1,3 +1,4 @@
+import { SELF_TRACKING_ENABLED } from '@/lib/selfTracking';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation } from '@/lib/router-compat';
 import { supabase } from '@/integrations/supabase/client';
@@ -114,7 +115,7 @@ const getReferrerInfo = () => {
 // Send analytics to edge function - skip for Lovable admin sessions
 const sendAnalytics = async (endpoint: string, data: Record<string, unknown>) => {
   // Skip tracking for Lovable admin sessions
-  if (checkAdminSession()) {
+  if (!SELF_TRACKING_ENABLED || checkAdminSession()) {
     return;
   }
 
@@ -235,6 +236,7 @@ export const useEnhancedAnalytics = () => {
     if (!context) return;
 
     const handleUnload = () => {
+      if (!SELF_TRACKING_ENABLED) return;
       const timeOnPage = Math.round((Date.now() - pageStartTime.current) / 1000);
       
       // Use sendBeacon for reliable exit tracking

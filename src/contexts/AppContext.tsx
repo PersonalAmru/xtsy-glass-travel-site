@@ -1,3 +1,4 @@
+import { SELF_TRACKING_ENABLED } from '@/lib/selfTracking';
 import * as React from 'react';
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { supabase } from '@/integrations/supabase/client';
@@ -149,7 +150,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
           
           // Log anonymized location data (GDPR compliant - only country code)
           // This is completely non-blocking and failures are silently ignored
-          void supabase.from('user_location_preferences').insert({
+          if (SELF_TRACKING_ENABLED) void supabase.from('user_location_preferences').insert({
             country_code: locationData.country,
             detected_currency: locationData.currency,
             detected_at: new Date().toISOString()

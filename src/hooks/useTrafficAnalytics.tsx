@@ -3,6 +3,7 @@
  * React hook for integrating traffic analytics with 3-layer defense system
  */
 
+import { SELF_TRACKING_ENABLED } from '@/lib/selfTracking';
 import { useEffect, useCallback, useRef, useState } from 'react';
 import { useLocation } from '@/lib/router-compat';
 import { 
@@ -57,7 +58,7 @@ export const useTrafficAnalytics = () => {
   
   // Initialize analytics and defense engine on mount
   useEffect(() => {
-    if (isInitialized.current) return;
+    if (isInitialized.current || !SELF_TRACKING_ENABLED) return;
     
     const init = async () => {
       // Initialize consent management first
