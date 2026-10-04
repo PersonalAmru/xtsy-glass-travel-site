@@ -19,132 +19,132 @@
  "withIssues": 36,
  "overflow": [],
  "smallTargets": [
-  "iphone-15-pro /: 26 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 365×22)",
-  "iphone-15-pro /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "iphone-15-pro /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "iphone-se /: 26 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 292×22)",
-  "iphone-se /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "iphone-se /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "iphone-15-pro-max /: 26 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 402×22)",
-  "iphone-15-pro-max /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "iphone-15-pro-max /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "iphone-15-pro /: 27 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "iphone-15-pro /tours?group=kerala: 2 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "iphone-15-pro /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 4 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "iphone-se /: 27 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "iphone-se /tours?group=kerala: 2 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "iphone-se /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 4 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "iphone-15-pro-max /: 27 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "iphone-15-pro-max /tours?group=kerala: 2 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "iphone-15-pro-max /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 4 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
   "ipad-mini /: 26 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 704×22)",
-  "ipad-mini /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "ipad-mini /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "ipad-mini /tours?group=kerala: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "ipad-mini /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 3 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.underline \"Sayan Samanta\" 85×17)",
   "ipad-pro-11 /: 26 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 770×22)",
-  "ipad-pro-11 /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "ipad-pro-11 /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "ipad-pro-11 /tours?group=kerala: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "ipad-pro-11 /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 3 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.underline \"Sayan Samanta\" 85×17)",
   "ipad-pro-11-landscape /: 25 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 708×22)",
-  "ipad-pro-11-landscape /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "ipad-pro-11-landscape /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "ipad-pro-11-landscape /tours?group=kerala: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "ipad-pro-11-landscape /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 3 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.underline \"Sayan Samanta\" 85×17)",
   "desktop-safari-1440 /: 26 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 872×22)",
-  "desktop-safari-1440 /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "desktop-safari-1440 /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "pixel-7 /: 26 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 384×23)",
-  "pixel-7 /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "pixel-7 /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "galaxy-s24-ultra /: 26 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 356×23)",
-  "galaxy-s24-ultra /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "galaxy-s24-ultra /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "desktop-safari-1440 /tours?group=kerala: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "desktop-safari-1440 /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 3 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.underline \"Sayan Samanta\" 85×17)",
+  "pixel-7 /: 27 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "pixel-7 /tours?group=kerala: 2 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "pixel-7 /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 4 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "galaxy-s24-ultra /: 27 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "galaxy-s24-ultra /tours?group=kerala: 2 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
+  "galaxy-s24-ultra /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 4 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | button.inline-flex.min-h-6.items-center \"Settings\" 54×21)",
   "galaxy-tab-s9 /: 26 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 736×23)",
-  "galaxy-tab-s9 /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "galaxy-tab-s9 /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "galaxy-tab-s9 /tours?group=kerala: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "galaxy-tab-s9 /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 3 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.underline \"Sayan Samanta\" 86×17)",
   "desktop-chrome-1920 /: 26 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 1192×23)",
-  "desktop-chrome-1920 /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "desktop-chrome-1920 /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "desktop-chrome-1920 /tours?group=kerala: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "desktop-chrome-1920 /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 3 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.underline \"Sayan Samanta\" 86×17)",
   "laptop-chrome-1366 /: 26 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 823×23)",
-  "laptop-chrome-1366 /tours: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
-  "laptop-chrome-1366 /tours/spiti-valley-circuit-via-kinnaur: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)"
+  "laptop-chrome-1366 /tours?group=kerala: 1 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1)",
+  "laptop-chrome-1366 /tours/classic-kerala-kochi-munnar-thekkady-alleppey: 3 (a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1 | a.underline \"Sayan Samanta\" 86×17)"
  ],
  "smallText": [],
  "h1": [],
  "errors": [
-  "iphone-15-pro /: Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "iphone-15-pro /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "iphone-15-pro /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "iphone-se /: Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "iphone-se /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "iphone-se /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "iphone-15-pro-max /: Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "iphone-15-pro-max /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "iphone-15-pro-max /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "ipad-mini /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "ipad-mini /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "ipad-mini /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "ipad-pro-11 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "ipad-pro-11 /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "ipad-pro-11 /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "ipad-pro-11-landscape /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "ipad-pro-11-landscape /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "ipad-pro-11-landscape /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "desktop-safari-1440 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "desktop-safari-1440 /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "desktop-safari-1440 /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "pixel-7 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "pixel-7 /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "pixel-7 /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "galaxy-s24-ultra /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "galaxy-s24-ultra /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "galaxy-s24-ultra /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "galaxy-tab-s9 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "galaxy-tab-s9 /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "galaxy-tab-s9 /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "desktop-chrome-1920 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "desktop-chrome-1920 /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "desktop-chrome-1920 /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "laptop-chrome-1366 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "laptop-chrome-1366 /tours:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-  "laptop-chrome-1366 /tours/spiti-valley-circuit-via-kinnaur:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js"
+  "iphone-15-pro /: Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "iphone-15-pro /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "iphone-15-pro /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "iphone-se /: Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "iphone-se /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "iphone-se /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "iphone-15-pro-max /: Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "iphone-15-pro-max /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "iphone-15-pro-max /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "ipad-mini /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "ipad-mini /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "ipad-mini /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "ipad-pro-11 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "ipad-pro-11 /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "ipad-pro-11 /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "ipad-pro-11-landscape /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "ipad-pro-11-landscape /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "ipad-pro-11-landscape /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "desktop-safari-1440 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "desktop-safari-1440 /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "desktop-safari-1440 /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element. | The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "pixel-7 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "pixel-7 /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "pixel-7 /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "galaxy-s24-ultra /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "galaxy-s24-ultra /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "galaxy-s24-ultra /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "galaxy-tab-s9 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "galaxy-tab-s9 /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "galaxy-tab-s9 /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "desktop-chrome-1920 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "desktop-chrome-1920 /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "desktop-chrome-1920 /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "laptop-chrome-1366 /:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "laptop-chrome-1366 /tours?group=kerala:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+  "laptop-chrome-1366 /tours/classic-kerala-kochi-munnar-thekkady-alleppey:  The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js | X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js"
  ],
  "broken": [],
  "lcpByDevice": {
   "iphone-15-pro": {
-   "median": 3066,
-   "max": 5174
+   "median": 876,
+   "max": 4363
   },
   "iphone-se": {
-   "median": 1083,
-   "max": 2293
+   "median": 436,
+   "max": 971
   },
   "iphone-15-pro-max": {
-   "median": 638,
-   "max": 1175
+   "median": 1028,
+   "max": 2670
   },
   "ipad-mini": {
-   "median": 988,
-   "max": 1024
+   "median": 653,
+   "max": 1771
   },
   "ipad-pro-11": {
-   "median": 860,
-   "max": 1432
+   "median": 1888,
+   "max": 2310
   },
   "ipad-pro-11-landscape": {
-   "median": 1156,
-   "max": 2669
+   "median": 794,
+   "max": 1192
   },
   "pixel-7": {
-   "median": 348,
-   "max": 416
+   "median": 244,
+   "max": 920
   },
   "galaxy-s24-ultra": {
-   "median": 388,
-   "max": 780
+   "median": 292,
+   "max": 428
   },
   "galaxy-tab-s9": {
-   "median": 396,
-   "max": 396
+   "median": 260,
+   "max": 276
   },
   "desktop-chrome-1920": {
-   "median": 448,
-   "max": 1248
+   "median": 316,
+   "max": 336
   },
   "laptop-chrome-1366": {
-   "median": 304,
-   "max": 312
+   "median": 368,
+   "max": 572
   },
   "desktop-safari-1440": {
-   "median": 933,
-   "max": 1284
+   "median": 712,
+   "max": 1257
   }
  }
 }

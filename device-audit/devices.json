@@ -5,21 +5,21 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 3008,
+  "loadMs": 2468,
   "vw": 393,
   "vh": 659,
   "overflowPx": 0,
   "wide": [],
   "targets": 126,
-  "small24": 26,
+  "small24": 27,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21",
    "a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 365×22",
    "a.text-[14px].font-semibold.text-xt-ink \"Best hostel in Shillong\" 314×21",
-   "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 314×21",
-   "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 314×21"
+   "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 314×21"
   ],
-  "under44": 54,
+  "under44": 53,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -31,8 +31,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 477,
-    "h": 183,
+    "top": 538,
+    "h": 122,
     "w": 393
    },
    {
@@ -62,39 +62,39 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 17830,
-  "lcp": 5174,
+  "lcp": 4363,
   "cls": null,
   "error": "Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n",
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
-   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ]
  },
  {
   "device": "iphone-15-pro",
   "group": "iOS phone",
   "engine": "webkit",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 2180,
+  "loadMs": 1428,
   "vw": 393,
   "vh": 659,
   "overflowPx": 0,
   "wide": [],
-  "targets": 357,
-  "small24": 1,
+  "targets": 129,
+  "small24": 2,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21"
   ],
-  "under44": 224,
+  "under44": 91,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -103,8 +103,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 477,
-    "h": 183,
+    "top": 538,
+    "h": 122,
     "w": 393
    },
    {
@@ -133,14 +133,13 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 38873,
-  "lcp": 960,
+  "docHeight": 11985,
+  "lcp": 749,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
    "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
@@ -150,32 +149,35 @@
   "device": "iphone-15-pro",
   "group": "iOS phone",
   "engine": "webkit",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 947,
+  "loadMs": 1082,
   "vw": 393,
   "vh": 659,
   "overflowPx": 0,
   "wide": [],
-  "targets": 57,
-  "small24": 1,
+  "targets": 59,
+  "small24": 4,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21",
+   "a.underline \"Sayan Samanta\" 85×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 45,
+  "under44": 44,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 477,
-    "h": 183,
+    "top": 538,
+    "h": 122,
     "w": 393
    },
    {
@@ -192,7 +194,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2389,
+    "top": 2406,
     "h": 431,
     "w": 365
    },
@@ -209,17 +211,17 @@
     "w": 49
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
-  "docHeight": 5469,
-  "lcp": 3066,
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
+  "docHeight": 5486,
+  "lcp": 876,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2h1"
   ],
   "failed": [
-   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2h1"
   ]
  },
  {
@@ -228,21 +230,21 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 622,
+  "loadMs": 530,
   "vw": 320,
   "vh": 568,
   "overflowPx": 0,
   "wide": [],
   "targets": 126,
-  "small24": 26,
+  "small24": 27,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21",
    "a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 292×22",
    "a.text-[14px].font-semibold.text-xt-ink \"Best hostel in Shillong\" 240×21",
-   "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 240×21",
-   "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 240×21"
+   "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 240×21"
   ],
-  "under44": 54,
+  "under44": 53,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -254,8 +256,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 340,
-    "h": 228,
+    "top": 447,
+    "h": 122,
     "w": 320
    },
    {
@@ -285,14 +287,13 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 18475,
-  "lcp": 1083,
+  "lcp": 971,
   "cls": null,
   "error": "Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n",
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
    "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
@@ -302,22 +303,23 @@
   "device": "iphone-se",
   "group": "iOS phone",
   "engine": "webkit",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 1216,
+  "loadMs": 933,
   "vw": 320,
   "vh": 568,
   "overflowPx": 0,
   "wide": [],
-  "targets": 357,
-  "small24": 1,
+  "targets": 129,
+  "small24": 2,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21"
   ],
-  "under44": 200,
+  "under44": 84,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -326,8 +328,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 340,
-    "h": 228,
+    "top": 447,
+    "h": 122,
     "w": 320
    },
    {
@@ -356,14 +358,13 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 39550,
-  "lcp": 588,
+  "docHeight": 12417,
+  "lcp": 426,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
    "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
@@ -373,32 +374,35 @@
   "device": "iphone-se",
   "group": "iOS phone",
   "engine": "webkit",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 534,
+  "loadMs": 460,
   "vw": 320,
   "vh": 568,
   "overflowPx": 0,
   "wide": [],
-  "targets": 57,
-  "small24": 1,
+  "targets": 59,
+  "small24": 4,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21",
+   "a.underline \"Sayan Samanta\" 85×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 45,
+  "under44": 44,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 340,
-    "h": 228,
+    "top": 447,
+    "h": 122,
     "w": 320
    },
    {
@@ -415,7 +419,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2539,
+    "top": 2635,
     "h": 494,
     "w": 292
    },
@@ -432,17 +436,17 @@
     "w": 49
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
-  "docHeight": 5742,
-  "lcp": 2293,
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
+  "docHeight": 5838,
+  "lcp": 436,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
-   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ]
  },
  {
@@ -451,21 +455,21 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 1863,
+  "loadMs": 577,
   "vw": 430,
   "vh": 739,
   "overflowPx": 0,
   "wide": [],
   "targets": 126,
-  "small24": 26,
+  "small24": 27,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21",
    "a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 402×22",
    "a.text-[14px].font-semibold.text-xt-ink \"Best hostel in Shillong\" 351×21",
-   "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 351×21",
-   "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 351×21"
+   "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 351×21"
   ],
-  "under44": 54,
+  "under44": 53,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -477,8 +481,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 579,
-    "h": 161,
+    "top": 638,
+    "h": 102,
     "w": 430
    },
    {
@@ -508,14 +512,13 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 17904,
-  "lcp": 1175,
+  "lcp": 1028,
   "cls": null,
   "error": "Error: page.screenshot: Cannot take screenshot larger than 32767 pixels on any dimension\nCall log:\n  - taking page screenshot\n  - waiting for fonts to load...\n  - fonts loaded\n",
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
    "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
@@ -525,22 +528,23 @@
   "device": "iphone-15-pro-max",
   "group": "iOS phone",
   "engine": "webkit",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 2038,
+  "loadMs": 638,
   "vw": 430,
   "vh": 739,
   "overflowPx": 0,
   "wide": [],
-  "targets": 357,
-  "small24": 1,
+  "targets": 129,
+  "small24": 2,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21"
   ],
-  "under44": 242,
+  "under44": 93,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -549,8 +553,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 579,
-    "h": 161,
+    "top": 638,
+    "h": 102,
     "w": 430
    },
    {
@@ -579,14 +583,13 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 39045,
-  "lcp": 638,
+  "docHeight": 11870,
+  "lcp": 748,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
   ],
   "failed": [
    "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
@@ -596,32 +599,35 @@
   "device": "iphone-15-pro-max",
   "group": "iOS phone",
   "engine": "webkit",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 509,
+  "loadMs": 451,
   "vw": 430,
   "vh": 739,
   "overflowPx": 0,
   "wide": [],
-  "targets": 57,
-  "small24": 1,
+  "targets": 59,
+  "small24": 4,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21",
+   "a.underline \"Sayan Samanta\" 85×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 45,
+  "under44": 44,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 579,
-    "h": 161,
+    "top": 638,
+    "h": 102,
     "w": 430
    },
    {
@@ -638,7 +644,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2267,
+    "top": 2360,
     "h": 410,
     "w": 402
    },
@@ -655,13 +661,13 @@
     "w": 49
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
-  "docHeight": 5278,
-  "lcp": 514,
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
+  "docHeight": 5371,
+  "lcp": 2670,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
@@ -674,7 +680,7 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 620,
+  "loadMs": 1261,
   "vw": 768,
   "vh": 1024,
   "overflowPx": 0,
@@ -688,7 +694,7 @@
    "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 297×21",
    "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 297×21"
   ],
-  "under44": 43,
+  "under44": 44,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -700,8 +706,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 922,
-    "h": 102,
+    "top": 921,
+    "h": 103,
     "w": 768
    },
    {
@@ -731,13 +737,12 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 15628,
-  "lcp": 988,
+  "lcp": 1771,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
    "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
@@ -747,22 +752,22 @@
   "device": "ipad-mini",
   "group": "iPad",
   "engine": "webkit",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 2770,
+  "loadMs": 1377,
   "vw": 768,
   "vh": 1024,
   "overflowPx": 0,
   "wide": [],
-  "targets": 358,
+  "targets": 130,
   "small24": 1,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
   ],
-  "under44": 46,
+  "under44": 40,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -771,8 +776,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 922,
-    "h": 102,
+    "top": 921,
+    "h": 103,
     "w": 768
    },
    {
@@ -801,14 +806,13 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 22666,
-  "lcp": 1024,
+  "docHeight": 8056,
+  "lcp": 653,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
    "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
@@ -818,32 +822,34 @@
   "device": "ipad-mini",
   "group": "iPad",
   "engine": "webkit",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 632,
+  "loadMs": 526,
   "vw": 768,
   "vh": 1024,
   "overflowPx": 0,
   "wide": [],
-  "targets": 58,
-  "small24": 1,
+  "targets": 60,
+  "small24": 3,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "a.underline \"Sayan Samanta\" 85×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 38,
+  "under44": 39,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 922,
-    "h": 102,
+    "top": 921,
+    "h": 103,
     "w": 768
    },
    {
@@ -860,7 +866,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2249,
+    "top": 2291,
     "h": 464,
     "w": 704
    },
@@ -877,13 +883,13 @@
     "w": 205
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
-  "docHeight": 4528,
-  "lcp": 633,
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
+  "docHeight": 4570,
+  "lcp": 647,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
@@ -896,7 +902,7 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 663,
+  "loadMs": 1468,
   "vw": 834,
   "vh": 1194,
   "overflowPx": 0,
@@ -910,7 +916,7 @@
    "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 330×21",
    "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 330×21"
   ],
-  "under44": 44,
+  "under44": 45,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -922,8 +928,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1092,
-    "h": 102,
+    "top": 1114,
+    "h": 80,
     "w": 834
    },
    {
@@ -953,13 +959,12 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 15819,
-  "lcp": 1432,
+  "lcp": 2310,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
    "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
@@ -969,22 +974,22 @@
   "device": "ipad-pro-11",
   "group": "iPad",
   "engine": "webkit",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 2352,
+  "loadMs": 1978,
   "vw": 834,
   "vh": 1194,
   "overflowPx": 0,
   "wide": [],
-  "targets": 358,
+  "targets": 130,
   "small24": 1,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
   ],
-  "under44": 61,
+  "under44": 44,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -993,8 +998,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1092,
-    "h": 102,
+    "top": 1114,
+    "h": 80,
     "w": 834
    },
    {
@@ -1023,49 +1028,50 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 22805,
-  "lcp": 860,
+  "docHeight": 7948,
+  "lcp": 1572,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
   ],
   "failed": [
-   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
   ]
  },
  {
   "device": "ipad-pro-11",
   "group": "iPad",
   "engine": "webkit",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 606,
+  "loadMs": 1786,
   "vw": 834,
   "vh": 1194,
   "overflowPx": 0,
   "wide": [],
-  "targets": 58,
-  "small24": 1,
+  "targets": 60,
+  "small24": 3,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "a.underline \"Sayan Samanta\" 85×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 38,
+  "under44": 39,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1092,
-    "h": 102,
+    "top": 1114,
+    "h": 80,
     "w": 834
    },
    {
@@ -1082,7 +1088,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2264,
+    "top": 2336,
     "h": 464,
     "w": 770
    },
@@ -1099,17 +1105,17 @@
     "w": 205
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
-  "docHeight": 4474,
-  "lcp": 665,
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
+  "docHeight": 4546,
+  "lcp": 1888,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2h1"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
-   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2h1"
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ]
  },
  {
@@ -1118,7 +1124,7 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 2541,
+  "loadMs": 665,
   "vw": 1194,
   "vh": 834,
   "overflowPx": 0,
@@ -1132,7 +1138,7 @@
    "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 229×21",
    "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 229×21"
   ],
-  "under44": 41,
+  "under44": 42,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -1144,8 +1150,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 755,
-    "h": 79,
+    "top": 754,
+    "h": 80,
     "w": 1194
    },
    {
@@ -1175,38 +1181,37 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 10551,
-  "lcp": 2669,
+  "lcp": 1192,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2h1"
   ],
   "failed": [
-   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2h1"
   ]
  },
  {
   "device": "ipad-pro-11-landscape",
   "group": "iPad",
   "engine": "webkit",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 2456,
+  "loadMs": 1131,
   "vw": 1194,
   "vh": 834,
   "overflowPx": 0,
   "wide": [],
-  "targets": 358,
+  "targets": 130,
   "small24": 1,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
   ],
-  "under44": 41,
+  "under44": 35,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -1215,8 +1220,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 755,
-    "h": 79,
+    "top": 754,
+    "h": 80,
     "w": 1194
    },
    {
@@ -1245,14 +1250,13 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 16043,
-  "lcp": 1156,
+  "docHeight": 6098,
+  "lcp": 774,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
    "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
@@ -1262,32 +1266,34 @@
   "device": "ipad-pro-11-landscape",
   "group": "iPad",
   "engine": "webkit",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 533,
+  "loadMs": 562,
   "vw": 1194,
   "vh": 834,
   "overflowPx": 0,
   "wide": [],
-  "targets": 58,
-  "small24": 1,
+  "targets": 60,
+  "small24": 3,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "a.underline \"Sayan Samanta\" 85×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 33,
+  "under44": 34,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 755,
-    "h": 79,
+    "top": 754,
+    "h": 80,
     "w": 1194
    },
    {
@@ -1304,7 +1310,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 580,
+    "top": 702,
     "h": 548,
     "w": 329
    },
@@ -1321,13 +1327,13 @@
     "w": 205
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
-  "docHeight": 2834,
-  "lcp": 699,
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
+  "docHeight": 2905,
+  "lcp": 794,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
@@ -1340,7 +1346,7 @@
   "engine": "webkit",
   "route": "/",
   "status": 200,
-  "loadMs": 749,
+  "loadMs": 1082,
   "vw": 1440,
   "vh": 900,
   "overflowPx": 0,
@@ -1354,7 +1360,7 @@
    "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 291×21",
    "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 291×21"
   ],
-  "under44": 51,
+  "under44": 52,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -1366,8 +1372,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 821,
-    "h": 79,
+    "top": 820,
+    "h": 80,
     "w": 1440
    },
    {
@@ -1397,13 +1403,12 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 10410,
-  "lcp": 1284,
+  "lcp": 1257,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
    "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
@@ -1413,22 +1418,22 @@
   "device": "desktop-safari-1440",
   "group": "Desktop",
   "engine": "webkit",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 1679,
+  "loadMs": 1557,
   "vw": 1440,
   "vh": 900,
   "overflowPx": 0,
   "wide": [],
-  "targets": 365,
+  "targets": 137,
   "small24": 1,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
   ],
-  "under44": 89,
+  "under44": 52,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -1437,8 +1442,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 821,
-    "h": 79,
+    "top": 820,
+    "h": 80,
     "w": 1440
    },
    {
@@ -1467,14 +1472,13 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 15753,
-  "lcp": 713,
+  "docHeight": 5963,
+  "lcp": 712,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2",
-   "<link rel=preload> cannot have the empty string as `as` value @ https://xtsy.one/assets/performanceOptimizer-BikI5wIR.js"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
    "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
@@ -1484,32 +1488,34 @@
   "device": "desktop-safari-1440",
   "group": "Desktop",
   "engine": "webkit",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 879,
+  "loadMs": 599,
   "vw": 1440,
   "vh": 900,
   "overflowPx": 0,
   "wide": [],
-  "targets": 65,
-  "small24": 1,
+  "targets": 67,
+  "small24": 3,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "a.underline \"Sayan Samanta\" 85×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 44,
+  "under44": 45,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 821,
-    "h": 79,
+    "top": 820,
+    "h": 80,
     "w": 1440
    },
    {
@@ -1526,7 +1532,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 649,
+    "top": 673,
     "h": 464,
     "w": 411
    },
@@ -1543,17 +1549,17 @@
     "w": 205
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
-  "docHeight": 2838,
-  "lcp": 933,
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
+  "docHeight": 2806,
+  "lcp": 590,
   "cls": null,
   "errors": [
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via an HTML meta element.",
-   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
+   "The X-Frame-Option 'DENY' supplied in a <meta> element was ignored. X-Frame-Options may only be provided by an HTTP header sent with the doc @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "Failed to load resource: the server responded with a status of 404 (Not Found) @ https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ],
   "failed": [
-   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e6a10h2"
+   "404 https://www.googletagmanager.com/gtag/js?id=G-SJY2WX6L4B&cx=c&gtm=4e69u2"
   ]
  },
  {
@@ -1562,21 +1568,21 @@
   "engine": "chromium",
   "route": "/",
   "status": 200,
-  "loadMs": 433,
+  "loadMs": 1238,
   "vw": 412,
   "vh": 839,
   "overflowPx": 0,
   "wide": [],
   "targets": 126,
-  "small24": 26,
+  "small24": 27,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21",
    "a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 384×23",
    "a.text-[14px].font-semibold.text-xt-ink \"Best hostel in Shillong\" 333×21",
-   "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 333×21",
-   "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 333×21"
+   "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 333×21"
   ],
-  "under44": 54,
+  "under44": 53,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -1588,8 +1594,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 678,
-    "h": 161,
+    "top": 737,
+    "h": 102,
     "w": 412
    },
    {
@@ -1619,11 +1625,11 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 17999,
-  "lcp": 348,
+  "lcp": 920,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
@@ -1635,22 +1641,23 @@
   "device": "pixel-7",
   "group": "Android phone",
   "engine": "chromium",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 346,
+  "loadMs": 296,
   "vw": 412,
   "vh": 839,
   "overflowPx": 0,
   "wide": [],
-  "targets": 357,
-  "small24": 1,
+  "targets": 129,
+  "small24": 2,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21"
   ],
-  "under44": 233,
+  "under44": 92,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -1659,8 +1666,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 678,
-    "h": 161,
+    "top": 737,
+    "h": 102,
     "w": 412
    },
    {
@@ -1689,12 +1696,12 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 39419,
-  "lcp": 284,
+  "docHeight": 12120,
+  "lcp": 212,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
@@ -1706,32 +1713,35 @@
   "device": "pixel-7",
   "group": "Android phone",
   "engine": "chromium",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 360,
+  "loadMs": 293,
   "vw": 412,
   "vh": 839,
   "overflowPx": 0,
   "wide": [],
-  "targets": 57,
-  "small24": 1,
+  "targets": 59,
+  "small24": 4,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21",
+   "a.underline \"Sayan Samanta\" 86×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 45,
+  "under44": 44,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 678,
-    "h": 161,
+    "top": 737,
+    "h": 102,
     "w": 412
    },
    {
@@ -1748,7 +1758,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2290,
+    "top": 2412,
     "h": 433,
     "w": 384
    },
@@ -1765,13 +1775,13 @@
     "w": 49
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
-  "docHeight": 5355,
-  "lcp": 416,
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
+  "docHeight": 5477,
+  "lcp": 244,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
@@ -1785,21 +1795,21 @@
   "engine": "chromium",
   "route": "/",
   "status": 200,
-  "loadMs": 865,
+  "loadMs": 398,
   "vw": 384,
   "vh": 832,
   "overflowPx": 0,
   "wide": [],
   "targets": 126,
-  "small24": 26,
+  "small24": 27,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21",
    "a.mt-2.text-[15px].font-extrabold \"All FAQs →\" 356×23",
    "a.text-[14px].font-semibold.text-xt-ink \"Best hostel in Shillong\" 305×21",
-   "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 305×21",
-   "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 305×21"
+   "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 305×21"
   ],
-  "under44": 54,
+  "under44": 53,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -1811,8 +1821,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 648,
-    "h": 184,
+    "top": 709,
+    "h": 123,
     "w": 384
    },
    {
@@ -1842,15 +1852,15 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 17965,
-  "lcp": 780,
+  "lcp": 428,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js"
   ],
   "failed": []
  },
@@ -1858,22 +1868,23 @@
   "device": "galaxy-s24-ultra",
   "group": "Android phone",
   "engine": "chromium",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 417,
+  "loadMs": 352,
   "vw": 384,
   "vh": 832,
   "overflowPx": 0,
   "wide": [],
-  "targets": 357,
-  "small24": 1,
+  "targets": 129,
+  "small24": 2,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21"
   ],
-  "under44": 221,
+  "under44": 90,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -1882,8 +1893,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 648,
-    "h": 184,
+    "top": 709,
+    "h": 123,
     "w": 384
    },
    {
@@ -1912,12 +1923,12 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 40925,
-  "lcp": 388,
+  "docHeight": 12458,
+  "lcp": 276,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
@@ -1929,32 +1940,35 @@
   "device": "galaxy-s24-ultra",
   "group": "Android phone",
   "engine": "chromium",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 577,
+  "loadMs": 340,
   "vw": 384,
   "vh": 832,
   "overflowPx": 0,
   "wide": [],
-  "targets": 57,
-  "small24": 1,
+  "targets": 59,
+  "small24": 4,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "button.inline-flex.min-h-6.items-center \"Settings\" 54×21",
+   "a.underline \"Sayan Samanta\" 86×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 45,
+  "under44": 44,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 648,
-    "h": 184,
+    "top": 709,
+    "h": 123,
     "w": 384
    },
    {
@@ -1971,7 +1985,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2401,
+    "top": 2419,
     "h": 452,
     "w": 356
    },
@@ -1988,17 +2002,17 @@
     "w": 49
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
-  "docHeight": 5513,
-  "lcp": 308,
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
+  "docHeight": 5531,
+  "lcp": 292,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js"
   ],
   "failed": []
  },
@@ -2008,7 +2022,7 @@
   "engine": "chromium",
   "route": "/",
   "status": 200,
-  "loadMs": 461,
+  "loadMs": 441,
   "vw": 800,
   "vh": 1280,
   "overflowPx": 0,
@@ -2022,7 +2036,7 @@
    "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 313×21",
    "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 313×21"
   ],
-  "under44": 43,
+  "under44": 44,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -2034,8 +2048,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1178,
-    "h": 102,
+    "top": 1200,
+    "h": 80,
     "w": 800
    },
    {
@@ -2065,15 +2079,15 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 15893,
-  "lcp": 396,
+  "lcp": 276,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js"
   ],
   "failed": []
  },
@@ -2081,22 +2095,22 @@
   "device": "galaxy-tab-s9",
   "group": "Android tablet",
   "engine": "chromium",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 465,
+  "loadMs": 313,
   "vw": 800,
   "vh": 1280,
   "overflowPx": 0,
   "wide": [],
-  "targets": 358,
+  "targets": 130,
   "small24": 1,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
   ],
-  "under44": 55,
+  "under44": 43,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -2105,8 +2119,8 @@
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1178,
-    "h": 102,
+    "top": 1200,
+    "h": 80,
     "w": 800
    },
    {
@@ -2135,12 +2149,12 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 22828,
-  "lcp": 396,
+  "docHeight": 7942,
+  "lcp": 244,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
@@ -2152,32 +2166,34 @@
   "device": "galaxy-tab-s9",
   "group": "Android tablet",
   "engine": "chromium",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 377,
+  "loadMs": 291,
   "vw": 800,
   "vh": 1280,
   "overflowPx": 0,
   "wide": [],
-  "targets": 58,
-  "small24": 1,
+  "targets": 60,
+  "small24": 3,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "a.underline \"Sayan Samanta\" 86×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 38,
+  "under44": 39,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
     "el": "section.fixed.inset-x-0.bottom-0 \"We use cookies to run the site and under\"",
-    "top": 1178,
-    "h": 102,
+    "top": 1200,
+    "h": 80,
     "w": 800
    },
    {
@@ -2194,7 +2210,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 2232,
+    "top": 2085,
     "h": 466,
     "w": 736
    },
@@ -2211,13 +2227,13 @@
     "w": 205
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
-  "docHeight": 4568,
-  "lcp": 340,
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
+  "docHeight": 4609,
+  "lcp": 260,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://script.hotjar.com/modules.e762be2b6b709245aabb.js",
@@ -2231,7 +2247,7 @@
   "engine": "chromium",
   "route": "/",
   "status": 200,
-  "loadMs": 1392,
+  "loadMs": 454,
   "vw": 1920,
   "vh": 1080,
   "overflowPx": 0,
@@ -2245,7 +2261,7 @@
    "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 411×21",
    "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 411×21"
   ],
-  "under44": 52,
+  "under44": 53,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -2288,11 +2304,11 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 11039,
-  "lcp": 1248,
+  "lcp": 288,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
@@ -2302,22 +2318,22 @@
   "device": "desktop-chrome-1920",
   "group": "Desktop",
   "engine": "chromium",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 400,
+  "loadMs": 301,
   "vw": 1920,
   "vh": 1080,
   "overflowPx": 0,
   "wide": [],
-  "targets": 366,
+  "targets": 138,
   "small24": 1,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
   ],
-  "under44": 115,
+  "under44": 61,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -2356,12 +2372,12 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 17073,
-  "lcp": 448,
+  "docHeight": 6179,
+  "lcp": 336,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
@@ -2371,26 +2387,28 @@
   "device": "desktop-chrome-1920",
   "group": "Desktop",
   "engine": "chromium",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 264,
+  "loadMs": 305,
   "vw": 1920,
   "vh": 1080,
   "overflowPx": 0,
   "wide": [],
-  "targets": 66,
-  "small24": 1,
+  "targets": 68,
+  "small24": 3,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "a.underline \"Sayan Samanta\" 86×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 45,
+  "under44": 46,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
@@ -2413,7 +2431,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 755,
+    "top": 759,
     "h": 466,
     "w": 571
    },
@@ -2430,13 +2448,13 @@
     "w": 205
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
-  "docHeight": 2903,
-  "lcp": 376,
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
+  "docHeight": 2843,
+  "lcp": 316,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
@@ -2448,7 +2466,7 @@
   "engine": "chromium",
   "route": "/",
   "status": 200,
-  "loadMs": 440,
+  "loadMs": 655,
   "vw": 1366,
   "vh": 768,
   "overflowPx": 0,
@@ -2462,7 +2480,7 @@
    "a.text-[14px].font-semibold.text-xt-ink \"Cheap hostels in Shillong\" 272×21",
    "a.text-[14px].font-semibold.text-xt-ink \"Hotels in Shillong\" 272×21"
   ],
-  "under44": 51,
+  "under44": 52,
   "smallText": 0,
   "smallEx": [],
   "images": 34,
@@ -2505,11 +2523,11 @@
   ],
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
   "docHeight": 10391,
-  "lcp": 312,
+  "lcp": 572,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
@@ -2519,22 +2537,22 @@
   "device": "laptop-chrome-1366",
   "group": "Desktop",
   "engine": "chromium",
-  "route": "/tours",
+  "route": "/tours?group=kerala",
   "status": 200,
-  "loadMs": 370,
+  "loadMs": 368,
   "vw": 1366,
   "vh": 768,
   "overflowPx": 0,
   "wide": [],
-  "targets": 365,
+  "targets": 137,
   "small24": 1,
   "small24Ex": [
    "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
   ],
-  "under44": 78,
+  "under44": 51,
   "smallText": 0,
   "smallEx": [],
-  "images": 68,
+  "images": 16,
   "broken": [],
   "noAlt": 0,
   "h1": [
@@ -2573,12 +2591,12 @@
    }
   ],
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
-  "docHeight": 15858,
-  "lcp": 304,
+  "docHeight": 6063,
+  "lcp": 308,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
@@ -2588,26 +2606,28 @@
   "device": "laptop-chrome-1366",
   "group": "Desktop",
   "engine": "chromium",
-  "route": "/tours/spiti-valley-circuit-via-kinnaur",
+  "route": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "loadMs": 302,
+  "loadMs": 267,
   "vw": 1366,
   "vh": 768,
   "overflowPx": 0,
   "wide": [],
-  "targets": 65,
-  "small24": 1,
+  "targets": 67,
+  "small24": 3,
   "small24Ex": [
-   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1"
+   "a.sr-only.focus:not-sr-only.focus:fixed \"Skip to content\" 1×1",
+   "a.underline \"Sayan Samanta\" 86×17",
+   "a.underline \"Pexels\" 36×17"
   ],
-  "under44": 44,
+  "under44": 45,
   "smallText": 0,
   "smallEx": [],
-  "images": 2,
+  "images": 3,
   "broken": [],
   "noAlt": 0,
   "h1": [
-   "Spiti Valley Circuit via Kinnaur"
+   "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey"
   ],
   "fixed": [
    {
@@ -2630,7 +2650,7 @@
    },
    {
     "el": "div.sticky.top-28.flex \"Private trip Price on request Quoted for\"",
-    "top": 538,
+    "top": 613,
     "h": 487,
     "w": 386
    },
@@ -2647,13 +2667,13 @@
     "w": 205
    }
   ],
-  "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
+  "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
   "docHeight": 2839,
-  "lcp": 276,
+  "lcp": 368,
   "cls": 0,
   "errors": [
-   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-BEw37VN7.js",
-   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-BEw37VN7.js",
+   "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://xtsy.one/assets/index-CG2lvwfE.js",
+   "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>. @ https://xtsy.one/assets/index-CG2lvwfE.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js",
    "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element. @ https://t.contentsquare.net/releases/15.261.0/es2019/1300104-d4783973.js"
   ],
