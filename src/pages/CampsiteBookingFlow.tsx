@@ -24,6 +24,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
+import { bookingPageSource } from "@/utils/privacyCompliantWhatsApp";
 import { DAWKI_CAMPING_IMAGES, getPropertyById } from "@/data/properties";
 
 const PACKAGES = [
@@ -120,7 +121,7 @@ const CampsiteBookingFlow = memo(() => {
         p_room_type: 'campsite-dawki', p_room_name: `XTSY Adventure Campsite — ${selectedPkg.title}`,
         p_quantity: guests, p_nights: nights, p_rate_per_night: selectedPkg.price,
         p_subtotal: total, p_gst_rate: 0, p_gst_amount: 0, p_total_amount: total,
-        p_special_requests: notes || undefined,
+        p_special_requests: [`[WhatsApp] Page: ${bookingPageSource()}`, notes].filter(Boolean).join(' | '),
       });
       if (error || !saved?.[0]?.enquiry_id) throw error || new Error('Could not save enquiry');
       setEnquiryId(saved[0].enquiry_id);
