@@ -113,9 +113,9 @@ async function runDevice(browser: Browser, d: Device) {
     const page = await ctx.newPage();
     const errors: string[] = [];
     page.on('pageerror', (e) => errors.push(`pageerror: ${String(e.message).slice(0, 160)}`));
-    page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text().slice(0, 160)); });
+    page.on('console', (m) => { if (m.type() === 'error') { const at = m.location()?.url ? ` @ ${m.location().url.slice(0, 90)}` : ''; errors.push(`${m.text().slice(0, 140)}${at}`); } });
     const failed: string[] = [];
-    page.on('response', (r) => { if (r.status() >= 400 && r.url().startsWith(BASE)) failed.push(`${r.status()} ${r.url().replace(BASE, '')}`.slice(0, 120)); });
+    page.on('response', (r) => { if (r.status() >= 400) failed.push(`${r.status()} ${r.url().replace(BASE, '')}`.slice(0, 140)); });
     await page.addInitScript(() => {
       const w = window as unknown as { __lcp: number; __cls: number };
       w.__lcp = -1; w.__cls = 0;
