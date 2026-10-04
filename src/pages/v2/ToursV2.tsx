@@ -6,7 +6,7 @@ import { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import SEOHead from '@/components/SEOHead';
 import { Link, useSearchParams } from '@/lib/router-compat';
-import { getAllTours, type TourPackage } from '@/data/travelData';
+import { getAllTours, isTempleCircuit, type TourPackage } from '@/data/travelData';
 import { SIGNATURE_PACKAGES, formatPackagePrice } from '@/data/signaturePackages';
 import { photoFor } from '@/data/v2TourImages';
 import { reviewedPhoto } from '@/data/tourPhotos';
@@ -20,6 +20,10 @@ const GROUPS: { id: string; label: string; test: (t: TourPackage) => boolean }[]
   { id: 'all', label: 'All', test: () => true },
   { id: 'meghalaya', label: 'Meghalaya', test: (t) => t.location === 'Meghalaya' },
   { id: 'northeast', label: 'Northeast', test: (t) => NE.includes(t.location) && t.location !== 'Meghalaya' },
+  { id: 'kerala', label: 'Kerala', test: (t) => t.location === 'Kerala' },
+  { id: 'himachal', label: 'Himachal & Spiti', test: (t) => t.location === 'Himachal Pradesh' },
+  { id: 'tamil-nadu', label: 'Tamil Nadu & Kodaikanal', test: (t) => t.location === 'Tamil Nadu' },
+  { id: 'temples', label: 'Temple circuits', test: (t) => isTempleCircuit(t) },
   { id: 'india', label: 'Across India', test: (t) => !t.international && !NE.includes(t.location) },
   { id: 'international', label: 'International', test: (t) => Boolean(t.international) },
   { id: 'couples', label: 'Couples', test: (t) => /xtsy 270|honeymoon|romantic|couple/i.test(t.title) },
@@ -28,6 +32,8 @@ const GROUPS: { id: string; label: string; test: (t: TourPackage) => boolean }[]
 ];
 
 function TourCard({ to, title, duration, badge, text, price, img, enquire }: { to: string; title: string; duration: string; badge?: string; text: string; price: string; img: string; enquire: string }) {
+  // Tours without a fixed price ("On request") are quoted per trip.
+  const onRequest = !/\d/.test(price);
   return (
     <article className="xt-reveal xt-lift flex flex-col overflow-hidden rounded-3xl bg-white">
       <Link to={to} aria-label={title}><Photo src={img} alt={title} tone="pine" className="aspect-[421/220]" /></Link>
@@ -39,10 +45,12 @@ function TourCard({ to, title, duration, badge, text, price, img, enquire }: { t
         <h2 className="m-0 text-[20px] font-extrabold leading-tight"><Link to={to} className="text-xt-ink hover:text-xt-crimson">{title}</Link></h2>
         <p className="m-0 line-clamp-3 text-[15px] leading-normal text-xt-mute">{text}</p>
         <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2.5">
-          <span className="text-[19px] font-extrabold">{price} <span className="text-[13px] font-semibold text-xt-mute">/person</span></span>
+          {onRequest
+            ? <span className="text-[17px] font-extrabold">Price on request</span>
+            : <span className="text-[19px] font-extrabold">{price} <span className="text-[13px] font-semibold text-xt-mute">/person</span></span>}
           <div className="flex gap-2">
             <Link to={to} className="xt-btn flex h-11 items-center rounded-full border-[1.5px] border-xt-ink px-4 text-[14px] font-extrabold text-xt-ink hover:text-xt-ink">Itinerary</Link>
-            <a href={enquire} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-11 items-center rounded-full bg-xt-crimson px-4 text-[14px] font-extrabold text-white hover:text-white">Enquire</a>
+            <a href={enquire} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-11 items-center rounded-full bg-xt-crimson px-4 text-[14px] font-extrabold text-white hover:text-white">{onRequest ? 'Get a quote' : 'Enquire'}</a>
           </div>
         </div>
       </div>
@@ -74,7 +82,7 @@ export default function ToursV2() {
     <>
       <SEOHead
         title="Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY"
-        description="Meghalaya, Arunachal, Assam, Nagaland and Sikkim tour packages from XTSY Voyage. Trips start at XTSY in New Shillong Township; stays and transport elsewhere come from trusted travel partners."
+        description="Meghalaya, Arunachal, Assam, Nagaland and Sikkim tour packages from XTSY Voyage, plus Kerala, Himachal & Spiti, Tamil Nadu and temple circuits. Stays and transport outside New Shillong come from trusted travel partners."
         keywords="meghalaya tour packages, northeast india tour packages, shillong tour package, tawang tour, kaziranga tour, xtsy voyage"
         canonicalUrl="https://xtsy.one/tours"
       />
@@ -86,7 +94,7 @@ export default function ToursV2() {
             <div className="xt-in xt-eyebrow text-[15px] sm:text-[18px]">XTSY Voyage · {tours.length}+ journeys across the Northeast and beyond</div>
             <h1 className="xt-in xt-d1 xt-display m-0 text-[72px] leading-[0.86] sm:text-[132px]">Tour packages</h1>
           </div>
-          <p className="xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[20px]">Root bridges, caves, Dawki’s clear river, Tawang’s monasteries and a three-country ride. Planned by the team that lives here, with 24/7 support on the road. Every Meghalaya trip can start from our own hostel in New Shillong Township; stays, cabs and guides further out come from trusted travel partners we’ve vetted.</p>
+          <p className="xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[20px]">Root bridges, caves, Dawki’s clear river, Tawang’s monasteries and a three-country ride. Planned by the team that lives here, with 24/7 support on the road. Every Meghalaya trip can start from our own hostel in New Shillong Township. Beyond the Northeast we also plan Kerala, Himachal & Spiti, Tamil Nadu, Kodaikanal and South India’s temple circuits; stays, cabs and guides further out come from trusted travel partners we’ve vetted.</p>
         </section>
 
         <Section className="bg-xt-cream">

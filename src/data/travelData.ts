@@ -4,6 +4,7 @@
 // ============================================
 
 import { tourItineraries } from "./tourItineraries";
+import { indiaExpansionTours } from "./indiaExpansionTours";
 
 // Image imports — Domestic
 import meghalayaBiodiversityAuthenticImg from "@/assets/meghalaya-biodiversity-authentic.jpg";
@@ -957,11 +958,37 @@ export const reHimalayanExpedition: TourPackage = {
 // Filter Utilities
 // ============================================
 
+const NORTHEAST_LOCATIONS = ['Northeast India', 'Arunachal Pradesh', 'Assam', 'Nagaland', 'Manipur', 'Tripura', 'Mizoram', 'Sikkim'];
+/** The expansion regions, in the order the owner wants them shown after the Northeast. */
+const EXPANSION_LOCATIONS = ['Kerala', 'Himachal Pradesh', 'Tamil Nadu'];
+
+/**
+ * Listing order everywhere tours are shown: Meghalaya first, then the rest of the Northeast,
+ * then Kerala, Himachal & Spiti and Tamil Nadu (temple circuits last within them), then other
+ * Indian states, then international. The sort is stable, so each group keeps its own order.
+ */
+/** Pilgrimage-style temple circuits (not tours that merely visit a temple). */
+export const isTempleCircuit = (t: Pick<TourPackage, 'title'>): boolean =>
+  /temple (trail|circuit)|temples of|sthalam|navagraha|chola temples|char dham/i.test(t.title);
+
+const tourRank = (t: TourPackage): number => {
+  if (t.location === 'Meghalaya') return 0;
+  if (NORTHEAST_LOCATIONS.includes(t.location)) return 1;
+  const e = EXPANSION_LOCATIONS.indexOf(t.location);
+  if (e >= 0) return 2 + e * 0.1 + (isTempleCircuit(t) ? 0.05 : 0);
+  if (t.international || /,/.test(t.location)) return 4;
+  return 3;
+};
+
+export const sortToursForDisplay = (tours: TourPackage[]): TourPackage[] =>
+  tours.map((t, i) => ({ t, i })).sort((a, b) => tourRank(a.t) - tourRank(b.t) || a.i - b.i).map(({ t }) => t);
+
 export const getAllTours = (): TourPackage[] => {
   const northeast = Object.values(northeastTours).flat().map(mergeItinerary);
   const heartland = Object.values(heartlandTours).flat().map(mergeItinerary);
   const international = Object.values(internationalTours).flat().map(mergeItinerary);
-  return [...exclusiveTours, ...coupleLuxuryTours, ...soloAndBikeTours, ...northeast, ...heartland, ...international, mergeItinerary(reHimalayanExpedition)];
+  const expansion = indiaExpansionTours.map(mergeItinerary);
+  return sortToursForDisplay([...exclusiveTours, ...coupleLuxuryTours, ...soloAndBikeTours, ...northeast, ...expansion, ...heartland, ...international, mergeItinerary(reHimalayanExpedition)]);
 };
 
 export const filterTours = (tours: TourPackage[], filters: TravelFilters): TourPackage[] => {

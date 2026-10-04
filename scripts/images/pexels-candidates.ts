@@ -5,6 +5,9 @@
  *
  * Writes scripts/images/pexels-candidates.json (committed) and
  * shots/pexels/sheet-NN.jpg (published to the ci-screenshots branch).
+ *
+ * ONLY_KEYS (optional, comma-separated, e.g. "tour-65,tour-74"): search just those targets and
+ * MERGE them into the existing candidates file, so candidate numbers behind earlier picks never change.
  */
 import fs from 'fs';
 import sharp from 'sharp';
@@ -32,8 +35,12 @@ const esc = (s: string) => s.replace(/[<>&"]/g, (c) => ({ '<': '&lt;', '>': '&gt
 async function main() {
   if (!KEY) { console.log('::error::PEXELS_API_KEY secret is not set'); process.exit(1); }
   fs.mkdirSync(OUT, { recursive: true });
-  const all: Record<string, Cand[]> = {};
-  for (const tg of PHOTO_TARGETS) {
+  const only = (process.env.ONLY_KEYS || '').split(',').map((k) => k.trim()).filter(Boolean);
+  const targets = only.length ? PHOTO_TARGETS.filter((t) => only.includes(t.key)) : PHOTO_TARGETS;
+  const all: Record<string, Cand[]> = only.length && fs.existsSync('scripts/images/pexels-candidates.json')
+    ? JSON.parse(fs.readFileSync('scripts/images/pexels-candidates.json', 'utf8'))
+    : {};
+  for (const tg of targets) {
     const seen = new Set<number>();
     const list: Cand[] = [];
     for (const q of tg.queries) {
@@ -53,7 +60,7 @@ async function main() {
   fs.writeFileSync('scripts/images/pexels-candidates.json', JSON.stringify(all, null, 1));
 
   // Contact sheets: one row per target, label + numbered thumbnails.
-  const keys = PHOTO_TARGETS.map((t) => t.key);
+  const keys = targets.map((t) => t.key);
   for (let s = 0; s * ROWS < keys.length; s++) {
     const rows = keys.slice(s * ROWS, s * ROWS + ROWS);
     const W = LABEL + PER * (TW + 6), H = rows.length * (TH + 8);
