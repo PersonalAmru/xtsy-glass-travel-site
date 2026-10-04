@@ -326,7 +326,7 @@ const CampsiteBookingFlow = memo(() => {
                 Our team will WhatsApp you within 30 mins to confirm your camping dates.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                 <a href={`${WHATSAPP}?text=${encodeURIComponent(`Hi! I submitted enquiry ${enquiryId} for ${selectedPkg.title} at XTSY Adventure Campsite, Dawki. Check-in: ${checkIn ? format(checkIn, 'yyyy-MM-dd') : ''}; check-out: ${checkOut ? format(checkOut, 'yyyy-MM-dd') : ''}; ${guests} guests × ${nights} nights at ₹${selectedPkg.price}/person/night. Total ₹${total.toLocaleString('en-IN')}. Please confirm availability.`)}`}
+                 <a href={`${WHATSAPP}?text=${encodeURIComponent(`Namaste XTSY Team! I'd like to enquire about ${selectedPkg.title} at XTSY Adventure Campsite, Dawki. Enquiry ID: ${enquiryId}. Check-in: ${checkIn ? format(checkIn, 'yyyy-MM-dd') : ''}; check-out: ${checkOut ? format(checkOut, 'yyyy-MM-dd') : ''}; ${guests} guests × ${nights} nights at ₹${selectedPkg.price}/person/night. Estimated total ₹${total.toLocaleString('en-IN')}. Name: ${name}; email: ${email}; phone: ${phone}.${notes ? ` Requests: ${notes}.` : ''} Page: ${bookingPageSource()}. Please confirm availability.`)}`}
                   target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 w-full sm:w-auto">
                     <MessageCircle className="w-4 h-4 mr-2" /> Open WhatsApp

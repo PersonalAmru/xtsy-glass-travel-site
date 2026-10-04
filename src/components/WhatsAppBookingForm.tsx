@@ -443,6 +443,8 @@ ${addOnsText.length > 0 ? `\n🍽️ *Services:*\n${addOnsText.join('\n')}` : ''
 ${formData.specialRequests ? `\n📝 *Requests:*\n   ${formData.specialRequests}` : ''}
 ${pricingText}
 
+Page: ${document.title || 'XTSY booking'} — ${window.location.origin}${window.location.pathname}
+
 Looking forward to hearing from you. Thank you! 🌟`;
 
     const encodedMessage = encodeURIComponent(message);
@@ -456,7 +458,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
       checkIn: formData.checkIn,
       checkOut: formData.checkOut,
       guests: formData.guests,
-      specialRequests: [formData.specialRequests, selectedRooms.some(room => isXtsy270Room(room.roomTypeName)) ? `Panorama: ${panoramaBreakfast ? 'Stay + breakfast for 2' : 'Stay only'}; Decoration: ${panoramaDecoration ? '₹2,500 one-time' : 'none'}` : ''].filter(Boolean).join(' | '),
+      specialRequests: [`Page: ${document.title || 'XTSY booking'} — ${window.location.origin}${window.location.pathname}`, formData.specialRequests, selectedRooms.some(room => isXtsy270Room(room.roomTypeName)) ? `Panorama: ${panoramaBreakfast ? 'Stay + breakfast for 2' : 'Stay only'}; Decoration: ${panoramaDecoration ? '₹2,500 one-time' : 'none'}` : ''].filter(Boolean).join(' | ').slice(0, 2000),
       selectedRooms,
       nights: nights || 1,
       totalAmount: finalAmount || 0,
@@ -470,7 +472,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
       toast({ title: 'Could not save enquiry', description: result.error || 'Please try again.', variant: 'destructive' });
       return;
     }
-    window.open(`https://wa.me/918837317070?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/918837317070?text=${encodeURIComponent(`${message}\nEnquiry ID: ${result.bookingId}`)}`, '_blank');
     
     // Track form completion for analytics
     trackFormComplete();
