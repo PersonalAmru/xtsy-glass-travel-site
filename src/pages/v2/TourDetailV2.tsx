@@ -45,7 +45,9 @@ export default function TourDetailV2() {
   const credit = photoCredit(photoKey);
   const schemaImages = tour.images?.length ? [tour.image, ...tour.images] : [tour.image];
   const basePrice = parseInt(tour.price.replace(/[^\d]/g, ''));
-  const displayPrice = (tour.fixedPrice || currency.code === 'INR') ? tour.price : formatPrice(Math.round(basePrice * 1.10));
+  // Tours quoted per trip carry price "On request" (no digits): no per-person figure, no booking calculator.
+  const onRequest = !Number.isFinite(basePrice);
+  const displayPrice = onRequest ? 'Price on request' : (tour.fixedPrice || currency.code === 'INR') ? tour.price : formatPrice(Math.round(basePrice * 1.10));
 
   const inclusions = tour.inclusions ?? [
     'Accommodation on twin/triple sharing',
@@ -99,9 +101,9 @@ export default function TourDetailV2() {
     mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   };
 
-  const answerBlock = `${tour.title} is a ${tour.duration} ${tour.category} tour in ${tour.location} priced from ${displayPrice} per person. It is rated ${tour.difficulty} difficulty, runs best in ${tour.bestSeason}${tour.groupSize ? `, with group sizes of ${tour.groupSize}` : ''}. Booking direct with XTSY includes transport, permits and a local expert guide.`;
+  const answerBlock = `${tour.title} is a ${tour.duration} ${tour.category} tour in ${tour.location} ${onRequest ? 'priced on request (quoted for your dates and group)' : `priced from ${displayPrice} per person`}. It is rated ${tour.difficulty} difficulty, runs best in ${tour.bestSeason}${tour.groupSize ? `, with group sizes of ${tour.groupSize}` : ''}. ${onRequest ? 'Stays, vehicles and guides are arranged through trusted travel partners, with XTSY as your single point of contact.' : 'Booking direct with XTSY includes transport, permits and a local expert guide.'}`;
   const quickFacts = [
-    { label: 'Price (per person)', value: displayPrice },
+    { label: onRequest ? 'Price' : 'Price (per person)', value: onRequest ? 'On request' : displayPrice },
     { label: 'Duration', value: tour.duration },
     { label: 'Location', value: tour.location },
     { label: 'Difficulty', value: tour.difficulty },
@@ -122,7 +124,7 @@ export default function TourDetailV2() {
     <>
       <SEOHead
         structuredDataOnly
-        title={`${tour.title} — ${tour.duration} from ${displayPrice} | XTSY Travel`}
+        title={onRequest ? `${tour.title} — ${tour.duration} | XTSY Travel` : `${tour.title} — ${tour.duration} from ${displayPrice} | XTSY Travel`}
         description={`${tour.description}`.slice(0, 155)}
         keywords={`${tour.title}, ${tour.location} tour, ${tour.category} tour, ${tour.duration} Meghalaya package, XTSY Travel`}
         canonicalUrl={tourUrl}
@@ -248,15 +250,31 @@ export default function TourDetailV2() {
 
           <aside className="lg:col-span-4">
             <div className="sticky top-28 flex flex-col gap-4 rounded-[28px] bg-xt-ink p-7 text-xt-paper">
-              <span className="text-[13px] font-bold text-xt-fog">Starting from</span>
-              <span className="font-display text-[52px] leading-none">{displayPrice}<span className="ml-1 font-sans text-[14px] font-semibold text-xt-fog">/person</span></span>
+              {onRequest ? (
+                <>
+                  <span className="text-[13px] font-bold text-xt-fog">Private trip</span>
+                  <span className="font-display text-[44px] leading-none">Price on request</span>
+                  <span className="text-[14px] text-xt-fog">Quoted for your dates, group size and hotel category.</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-[13px] font-bold text-xt-fog">Starting from</span>
+                  <span className="font-display text-[52px] leading-none">{displayPrice}<span className="ml-1 font-sans text-[14px] font-semibold text-xt-fog">/person</span></span>
+                </>
+              )}
               <div className="flex flex-col gap-1.5 text-[14px] text-xt-fog">
                 <span>{tour.duration}</span><span>{tour.location}</span><span>Best: {tour.bestSeason}</span>{tour.groupSize && <span>{tour.groupSize}</span>}
               </div>
-              <button type="button" onClick={() => setIsBookingOpen(true)} className="xt-btn h-14 rounded-full bg-xt-crimson text-[16px] font-extrabold text-white">Book now</button>
-              <a href={enquire} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-12 items-center justify-center rounded-full border-[1.5px] border-xt-paper text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">Enquire on WhatsApp</a>
+              {onRequest ? (
+                <a href={enquire} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-14 items-center justify-center rounded-full bg-xt-crimson text-[16px] font-extrabold text-white hover:text-white">Get a quote on WhatsApp</a>
+              ) : (
+                <>
+                  <button type="button" onClick={() => setIsBookingOpen(true)} className="xt-btn h-14 rounded-full bg-xt-crimson text-[16px] font-extrabold text-white">Book now</button>
+                  <a href={enquire} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-12 items-center justify-center rounded-full border-[1.5px] border-xt-paper text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">Enquire on WhatsApp</a>
+                </>
+              )}
               <ul className="m-0 flex list-none flex-col gap-1.5 border-t border-[#383D52] p-0 pt-4 text-[13px] text-xt-fog">
-                {['Instant confirmation', 'One date change allowed · booking amount non-refundable', 'Best price guarantee'].map((s) => <li key={s}>✓ {s}</li>)}
+                {(onRequest ? ['Private trip on your dates', 'Itinerary can be adjusted', 'Booking amount non-refundable once confirmed'] : ['Instant confirmation', 'One date change allowed · booking amount non-refundable', 'Best price guarantee']).map((s) => <li key={s}>✓ {s}</li>)}
               </ul>
             </div>
           </aside>

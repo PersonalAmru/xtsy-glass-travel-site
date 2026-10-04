@@ -75,14 +75,14 @@ export function tourHead(slug: string): RouteHeadInput {
   return {
     path: url,
     title: fitTitle([
-      `${tour.title} — ${tour.duration} from ${tour.price} | XTSY`,
+      ...(numericPrice ? [`${tour.title} — ${tour.duration} from ${tour.price} | XTSY`] : []),
       `${tour.title} — ${tour.duration} | XTSY`,
       `${tour.title} | XTSY Tours`,
       `${tour.title} | XTSY`,
       tour.title,
     ]),
     description: String(tour.description).slice(0, 155),
-    keywords: `${tour.title}, ${tour.location} tour, ${tour.category} tour, ${tour.duration} Meghalaya package, XTSY Travel`,
+    keywords: `${tour.title}, ${tour.location} tour, ${tour.category} tour, ${tour.duration} ${tour.location} package, XTSY Travel`,
     image: tour.image,
     // Same file, srcset and sizes as the page's <Photo> (default sizes), or phones download it twice.
     ...(h.responsive

@@ -17,6 +17,10 @@ on:
         description: "candidates or apply"
         required: true
         default: candidates
+      only_keys:
+        description: "candidates only: comma-separated target keys to search (merged into the existing file); blank = all"
+        required: false
+        default: ""
       pexels_key:
         description: "Pexels API key (only needed if the PEXELS_API_KEY secret is not set)"
         required: false
@@ -61,7 +65,7 @@ jobs:
         if: github.event.inputs.mode == 'candidates'
         run: |
           set -euo pipefail
-          bun scripts/images/pexels-candidates.ts
+          ONLY_KEYS='${{ github.event.inputs.only_keys }}' bun scripts/images/pexels-candidates.ts
           git add scripts/images/pexels-candidates.json
           git commit -q -m "Pexels candidates for review" || true
           git push -q origin "HEAD:refs/heads/${BRANCH}"
