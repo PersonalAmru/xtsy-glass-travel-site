@@ -49,7 +49,11 @@ const TEMPLE_ETIQUETTE = {
   a: 'Yes. Most temples expect modest traditional dress (dhoti or trousers for men, saree, salwar or long skirts for women), and some, especially in Kerala, admit only Hindus to the inner sanctum. Shoes are left outside, and photography is not allowed inside many shrines. Your coordinator will brief you before each visit.',
 };
 
-const img = (id: number) => `/img/px/tour-${id}-1280.webp`;
+/** Main photo for schema / sharing: the tour's own reviewed photo once it exists, else a shared one of the same place, else the XTSY cover. */
+const OWN_PHOTOS = new Set<number>([]);
+const SHARED: Record<number, number> = { 75: 71, 76: 73, 66: 64, 85: 83, 87: 84, 91: 82, 92: 81 };
+const img = (id: number) =>
+  OWN_PHOTOS.has(id) ? `/img/px/tour-${id}-1280.webp` : SHARED[id] ? `/img/px/tour-${SHARED[id]}-1280.webp` : 'https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png';
 
 const day = (n: number, title: string, activities: string[], overnight?: string, route?: string): ItineraryDay => ({
   day: `Day ${n}`,
