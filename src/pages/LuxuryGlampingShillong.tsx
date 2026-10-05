@@ -52,7 +52,7 @@ const LuxuryGlampingShillong = memo(() => {
         name: 'How much does glamping cost in Shillong?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Experience by XTSY is ${GLAMP_NIGHT}/night for the stay only, or ₹5,799/night with breakfast for two. WiFi and all amenities are included.`,
+          text: `Experience by XTSY is ${GLAMP_NIGHT}/night, all inclusive (stay only). WiFi and all amenities are included.`,
         },
       },
       {
@@ -139,7 +139,6 @@ const LuxuryGlampingShillong = memo(() => {
                 'Queen-size bed with premium linens',
                 'Private ensuite bathroom with hot shower',
                 'Climate control (heating + cooling)',
-                'Breakfast for two at TAB Bistro on the ₹5,799 rate',
                 'High-speed WiFi',
                 'Blackout curtains for privacy',
                 'Welcome drink on arrival',

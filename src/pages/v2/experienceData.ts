@@ -2,7 +2,7 @@
 import { XTSY270_DATA } from '@/data/rooms/xtsy270';
 import { IMG } from '@/data/v2Images';
 import { roomPrice } from '@/components/v2/pricing';
-import { PANORAMA_WITH_BREAKFAST, PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
+import { PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
 
 /** JSON-LD for the suite — rendered server-side by the /xtsy-270 route head. */
 export function experienceSchema() {
@@ -32,7 +32,6 @@ export function experienceSchema() {
     offers: { '@type': 'Offer', priceCurrency: 'INR', price: String(now), availability: 'https://schema.org/LimitedAvailability', url: 'https://xtsy.one/xtsy-270' },
     makesOffer: [
       { '@type': 'Offer', name: 'Stay only', price: String(PANORAMA_STAY_ONLY), priceCurrency: 'INR' },
-      { '@type': 'Offer', name: 'Stay with breakfast for two', price: String(PANORAMA_WITH_BREAKFAST), priceCurrency: 'INR' },
     ],
   };
 }

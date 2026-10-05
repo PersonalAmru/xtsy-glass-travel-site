@@ -21,7 +21,7 @@ import { useLocationConsent } from "@/hooks/useLocationConsent";
 import { useFormEngagement } from "@/hooks/useFormEngagement";
 import { useEnhancedAnalytics } from "@/hooks/useEnhancedAnalytics";
 import { XTSY270_DATA } from "@/data/rooms/xtsy270";
-import { panoramaQuote } from '@/data/panoramaPricing';
+import { PANORAMA_STAY_ONLY, quoteStay } from '@/data/panoramaPricing';
 
 // All Indian states and union territories
 const INDIAN_STATES = [
@@ -133,7 +133,6 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   const [roomTypes, setRoomTypes] = useState<RoomType[]>([]);
   const [selectedRoomIds, setSelectedRoomIds] = useState<Set<string>>(new Set());
   const [selectedRooms, setSelectedRooms] = useState<SelectedRoom[]>([]);
-  const [panoramaBreakfast, setPanoramaBreakfast] = useState(false);
   const [panoramaDecoration, setPanoramaDecoration] = useState(false);
   const [loadingRooms, setLoadingRooms] = useState(false);
   const [roomsError, setRoomsError] = useState<string>("");
@@ -350,7 +349,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
 
   const getTotalAmount = () => {
     return selectedRooms.reduce((total, room) => {
-      const roomTotal = (isXtsy270Room(room.roomTypeName) ? panoramaQuote(nights, panoramaBreakfast, false).nightly : room.price) * room.quantity * nights;
+      const roomTotal = (isXtsy270Room(room.roomTypeName) ? PANORAMA_STAY_ONLY : room.price) * room.quantity * nights;
       return total + roomTotal;
     }, 0) + (selectedRooms.some(room => isXtsy270Room(room.roomTypeName)) && panoramaDecoration ? 2500 : 0);
   };
@@ -366,10 +365,13 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
   const getFinalAmount = () => {
     return getTotalAmount() - getWelcomeDiscount() + getGst();
   };
-  const getGst = () => selectedRooms.reduce((sum, room) => {
-    const rate = isXtsy270Room(room.roomTypeName) ? panoramaQuote(nights, panoramaBreakfast, false).nightly : room.price;
-    return sum + Math.round(rate * room.quantity * nights * (rate >= 7500 ? .18 : .05));
-  }, 0) + (selectedRooms.some(room => isXtsy270Room(room.roomTypeName)) && panoramaDecoration ? 450 : 0);
+  // Room rates are all inclusive (GST inside); only the decoration add-on carries GST on top.
+  const getQuote = () => quoteStay(
+    selectedRooms.map(room => ({ nightlyRate: isXtsy270Room(room.roomTypeName) ? PANORAMA_STAY_ONLY : room.price, quantity: room.quantity })),
+    nights,
+    selectedRooms.some(room => isXtsy270Room(room.roomTypeName)) && panoramaDecoration,
+  );
+  const getGst = () => getQuote().decorationGst;
 
   const handleBookNow = async () => {
     // Validate all required fields
@@ -407,7 +409,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
 
     // Build warm, branded WhatsApp message for XTSY Travellers Hostel
     const roomsText = selectedRooms.length > 0 
-      ? selectedRooms.map(room => `   • ${room.roomTypeName} × ${room.quantity}${isXtsy270Room(room.roomTypeName) ? ` — ${panoramaBreakfast ? 'Stay + breakfast for 2' : 'Stay only'} (₹${panoramaQuote(nights, panoramaBreakfast, false).nightly.toLocaleString('en-IN')}/night)${panoramaDecoration ? '; Decoration +₹2,500 once (rose petals, scented candles, bouquet, cake)' : ''}` : ` (₹${room.price.toLocaleString('en-IN')}/night)`}`).join('\n')
+      ? selectedRooms.map(room => `   • ${room.roomTypeName} × ${room.quantity}${isXtsy270Room(room.roomTypeName) ? ` — Stay only (₹${PANORAMA_STAY_ONLY.toLocaleString('en-IN')}/night, all inclusive)${panoramaDecoration ? '; Decoration +₹2,500 once (rose petals, scented candles, bouquet, cake)' : ''}` : ` (₹${room.price.toLocaleString('en-IN')}/night)`}`).join('\n')
       : '   • To be decided';
 
     const addOnsText = [];
@@ -417,7 +419,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
     if (formData.itinerary) addOnsText.push(`   • Custom Itinerary Planning`);
 
     // Build pricing text with discount if applicable
-    const pricingText = finalAmount > 0 ? `\n💰 *Pricing:*\n   Subtotal: ${formatPrice(subtotalAmount)}${discountAmount ? `\n   XTSY Welcome Discount (5%): -${formatPrice(discountAmount)}` : ''}\n   GST: ${formatPrice(getGst())}\n   *Total: ${formatPrice(finalAmount)}*${currency.code !== 'INR' ? ` (${currency.code})` : ''}` : '';
+    const pricingText = finalAmount > 0 ? `\n💰 *Pricing (room rates all inclusive):*\n   Rooms and add-ons: ${formatPrice(subtotalAmount)}${discountAmount ? `\n   XTSY Welcome Discount (5%): -${formatPrice(discountAmount)}` : ''}${getGst() ? `\n   GST on decoration (18%): ${formatPrice(getGst())}` : ''}\n   *Total: ${formatPrice(finalAmount)}*${currency.code !== 'INR' ? ` (${currency.code})` : ''}` : '';
 
     const message = `🏠 *XTSY Travellers Hostel - Booking Inquiry*
 
@@ -458,13 +460,13 @@ Looking forward to hearing from you. Thank you! 🌟`;
       checkIn: formData.checkIn,
       checkOut: formData.checkOut,
       guests: formData.guests,
-      specialRequests: [`Page: ${document.title || 'XTSY booking'} — ${window.location.origin}${window.location.pathname}`, formData.specialRequests, selectedRooms.some(room => isXtsy270Room(room.roomTypeName)) ? `Panorama: ${panoramaBreakfast ? 'Stay + breakfast for 2' : 'Stay only'}; Decoration: ${panoramaDecoration ? '₹2,500 one-time' : 'none'}` : ''].filter(Boolean).join(' | ').slice(0, 2000),
+      specialRequests: [`Page: ${document.title || 'XTSY booking'} — ${window.location.origin}${window.location.pathname}`, formData.specialRequests, selectedRooms.some(room => isXtsy270Room(room.roomTypeName)) ? `Panorama: Stay only; Decoration: ${panoramaDecoration ? '₹2,500 one-time' : 'none'}` : ''].filter(Boolean).join(' | ').slice(0, 2000),
       selectedRooms,
       nights: nights || 1,
-      totalAmount: finalAmount || 0,
-      subtotal: subtotalAmount - discountAmount,
-      taxes: getGst(),
-      breakfast: panoramaBreakfast,
+      totalAmount: getQuote().total,
+      subtotal: getQuote().subtotal,
+      taxes: getQuote().taxes,
+      breakfast: false,
       decoration: panoramaDecoration,
     });
     if (!result.success) {
@@ -803,7 +805,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
                 {/* Selected Rooms Display */}
                 {selectedRooms.length > 0 && (
                   <div className="space-y-2 mt-4">
-                    {selectedRooms.some(room => isXtsy270Room(room.roomTypeName)) && <fieldset className="space-y-3 border border-primary/20 p-3"><legend className="font-semibold">Panorama package</legend><p className="text-sm">Breakfast is not complimentary.</p><div className="flex flex-wrap gap-2"><Button type="button" variant={panoramaBreakfast ? 'outline' : 'default'} onClick={() => setPanoramaBreakfast(false)}>Stay only · ₹5,399/night</Button><Button type="button" variant={panoramaBreakfast ? 'default' : 'outline'} onClick={() => setPanoramaBreakfast(true)}>Stay + breakfast for 2 · ₹5,799/night</Button></div><label className="flex items-center gap-2"><Checkbox checked={panoramaDecoration} onCheckedChange={checked => setPanoramaDecoration(checked === true)} /> Decoration +₹2,500 once — rose petals, scented candles, bouquet and cake</label></fieldset>}
+                    {selectedRooms.some(room => isXtsy270Room(room.roomTypeName)) && <fieldset className="space-y-3 border border-primary/20 p-3"><legend className="font-semibold">Panorama package</legend><p className="text-sm">Stay only · ₹5,999/night, all inclusive (breakfast not included).</p><label className="flex items-center gap-2"><Checkbox checked={panoramaDecoration} onCheckedChange={checked => setPanoramaDecoration(checked === true)} /> Decoration +₹2,500 once — rose petals, scented candles, bouquet and cake</label></fieldset>}
                     <div className="flex items-center justify-between">
                       <Label className="text-sm font-medium text-muted-foreground">Selected Rooms:</Label>
                       <span className="text-xs text-muted-foreground">
@@ -824,7 +826,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
                           <div className="flex-1">
                             <p className="font-medium text-sm">{room.roomTypeName}</p>
                             <p className="text-xs text-muted-foreground">
-                               {formatPrice(isXtsy270Room(room.roomTypeName) ? panoramaQuote(nights, panoramaBreakfast, false).nightly : room.price)}{priceLabel} × {room.quantity} {unitLabel} × {nights || 0} nights = {formatPrice((isXtsy270Room(room.roomTypeName) ? panoramaQuote(nights, panoramaBreakfast, false).nightly : room.price) * room.quantity * (nights || 0))}
+                               {formatPrice(isXtsy270Room(room.roomTypeName) ? PANORAMA_STAY_ONLY : room.price)}{priceLabel} × {room.quantity} {unitLabel} × {nights || 0} nights = {formatPrice((isXtsy270Room(room.roomTypeName) ? PANORAMA_STAY_ONLY : room.price) * room.quantity * (nights || 0))}
                             </p>
                             <p className="text-xs text-primary/70">
                               {isDormitory 
@@ -896,7 +898,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
                             <span className="text-green-600">-{formatPrice(getWelcomeDiscount())}</span>
                           </div>
                         )}
-                        <div className="flex justify-between text-sm"><span>GST (5% accommodation, 18% decoration):</span><span>{formatPrice(getGst())}</span></div>
+                        <p className="text-xs text-muted-foreground">Room rates include GST.</p>{getGst() > 0 && <div className="flex justify-between text-sm"><span>GST on decoration (18%):</span><span>{formatPrice(getGst())}</span></div>}
                         
                         <div className="border-t border-primary/20 pt-2">
                           <p className="text-primary font-bold text-lg text-right">

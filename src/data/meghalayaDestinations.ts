@@ -120,7 +120,7 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
     seoDescription: 'Umiam Lake (Barapani) near Shillong: boating, kayaking, best viewpoints, distance from Shillong, timings & best time to visit. Plan your Meghalaya trip — updated 2026.',
     seoKeywords: 'umiam lake, barapani, umiam lake shillong, umiam lake viewpoint, barapani lake, shillong lake, meghalaya lake, umiam lake boating',
     heroTagline: 'Barapani Reservoir · 15 km from Shillong, Meghalaya',
-    bookingAnchor: 'Book a bed in Shillong from ₹389 — 20 min from Umiam Lake',
+    bookingAnchor: 'Book a bed in Shillong from ₹399 — 20 min from Umiam Lake',
     description: 'Umiam Lake, locally known as Barapani, is one of the most beautiful landscapes in Meghalaya and the scenic gateway to Shillong. Spread across roughly 220 square kilometres of catchment, the reservoir sits about 15 kilometres before the city when you arrive from Guwahati, making it the first breathtaking view most travellers get of the Khasi Hills. It was created in the 1960s after the construction of the Umiam Dam — North East India\'s first hydel power project — and is today ringed by emerald pine forests and rolling hills that mirror the changing colours of the sky.\n\nMost travellers stop at the lakeside viewpoints to photograph the still blue water against the pines, but Umiam rewards those who linger. Early morning is genuinely magical: mist rises gently off the surface while the surrounding hills glow in soft gold light, and the water is calm enough for reflections. By afternoon the breeze picks up and the lake turns into one of the best spots near Shillong for boating, kayaking, water scooters and other adventure water sports run from the state water-sports complex.\n\nBecause it is so close to the city, Umiam Lake works equally well as a quick half-day trip from a Shillong base or as a relaxed first or last stop on a longer Meghalaya itinerary. Sunset over Barapani — when the sky burns orange and the dam lights flicker on — is one of those quiet, unhurried experiences that defines a trip to the hills.',
     shortDescription: 'A scenic reservoir (Barapani) surrounded by pine forests, perfect for boating, kayaking and sunset viewpoints near Shillong.',
     region: 'Near Shillong',
@@ -156,7 +156,7 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
       },
       {
         heading: 'Where to stay near Umiam Lake',
-        body: 'There is no need to find a stay right on the lake. Umiam is only 15 km from Shillong, so most travellers base themselves in the city and visit Umiam as a half-day trip. XTSY Travellers Hostel in Shillong is an affordable, well-located base — dorms from ₹389/night — with a travel desk that can arrange a cab to Umiam, Shillong Peak and Elephant Falls in a single circuit.',
+        body: 'There is no need to find a stay right on the lake. Umiam is only 15 km from Shillong, so most travellers base themselves in the city and visit Umiam as a half-day trip. XTSY Travellers Hostel in Shillong is an affordable, well-located base — dorms from ₹399/night — with a travel desk that can arrange a cab to Umiam, Shillong Peak and Elephant Falls in a single circuit.',
       },
     ],
     extraFaqs: [
@@ -195,7 +195,7 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
     seoDescription: 'Elephant Falls, Shillong: a three-tiered waterfall 12 km from the city. Entry fee, timings, distance from Shillong, best time to visit & photo tips — updated 2026.',
     seoKeywords: 'elephant falls, elephant falls shillong, elephant waterfall, waterfalls in shillong, elephant falls entry fees, elephant falls distance from shillong, shillong waterfall',
     heroTagline: 'Three-Tiered Waterfall · 12 km from Shillong, Meghalaya',
-    bookingAnchor: 'Book a bed in Shillong from ₹389 — 20 min from Elephant Falls',
+    bookingAnchor: 'Book a bed in Shillong from ₹399 — 20 min from Elephant Falls',
     description: 'Elephant Falls is the most famous waterfall near Shillong and one of the most visited natural attractions in all of Meghalaya. Tucked into the Khasi Hills about 12 kilometres from the city centre, the falls cascade through three distinct tiers, each framed by moss-covered rocks and dense, dripping forest. The name comes from a colonial-era stone beside the falls that resembled an elephant — it was later destroyed in the 1897 earthquake, but the name stuck.\n\nA well-maintained staircase and series of railed viewing platforms lead visitors down through all three tiers. The first tier is broad and partly hidden by trees, the second is the widest and most photographed, and the third — the bottom tier — is the tallest single drop, plunging dramatically into a clear pool. The short descent takes most people 15–20 minutes each way and is one of the most accessible waterfall experiences in the region.\n\nDuring the monsoon (June–September) the falls roar at full force, the spray drifting across the platforms, while in the drier winter months the flow is gentler but the surrounding light and greenery are at their clearest. Because it sits close to Shillong Peak and on the road back from the city\'s southern viewpoints, Elephant Falls is easy to combine with other sights into a single, rewarding day of sightseeing.',
     shortDescription: 'A scenic three-tiered waterfall 12 km from Shillong — one of the most accessible and most visited natural attractions in Meghalaya.',
     region: 'Near Shillong',
@@ -230,7 +230,7 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
       },
       {
         heading: 'Where to stay when visiting Elephant Falls',
-        body: 'Elephant Falls is a short day trip, so it is best visited from a Shillong base rather than staying nearby. XTSY Travellers Hostel in Shillong is an affordable, central option — dorms from ₹389/night — and its travel desk can arrange a half-day cab circuit covering Elephant Falls, Shillong Peak and Umiam Lake in one go.',
+        body: 'Elephant Falls is a short day trip, so it is best visited from a Shillong base rather than staying nearby. XTSY Travellers Hostel in Shillong is an affordable, central option — dorms from ₹399/night — and its travel desk can arrange a half-day cab circuit covering Elephant Falls, Shillong Peak and Umiam Lake in one go.',
       },
     ],
     extraFaqs: [
@@ -269,7 +269,7 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
     seoDescription: 'Nohkalikai Falls, Cherrapunji: India\'s tallest plunge waterfall (340m). Viewpoint timings, entry fee, how to reach, the legend & best time to visit — updated 2026.',
     seoKeywords: 'nohkalikai falls, nohkalikai falls view point, cherrapunji falls, cherrapunji waterfalls, nohkalikai falls story, meghalaya falls, waterfalls in meghalaya, plunge waterfall',
     heroTagline: 'India\'s Tallest Plunge Waterfall · Cherrapunji (Sohra), Meghalaya',
-    bookingAnchor: 'Book a bed in Shillong from ₹389 — your base for Cherrapunji',
+    bookingAnchor: 'Book a bed in Shillong from ₹399 — your base for Cherrapunji',
     description: 'Nohkalikai Falls is the tallest plunge waterfall in India and one of the most iconic natural landmarks in Meghalaya. Located near Cherrapunji (Sohra), the waterfall plunges dramatically from a high cliff into a turquoise pool far below.\n\nThe surrounding cliffs and valleys create a breathtaking landscape that becomes even more dramatic during the monsoon season when heavy rainfall feeds the waterfall.\n\nAccording to Khasi folklore, the waterfall\'s name is linked to a tragic legend about a woman named Likai who leapt from the cliff, giving the falls its name "Noh-Ka-Likai."',
     shortDescription: 'India\'s tallest plunge waterfall near Cherrapunji, plunging into a turquoise pool below dramatic cliffs.',
     region: 'Cherrapunji & Sohra',
@@ -886,7 +886,7 @@ export const destinationCategories: DestinationCategory[] = [
       },
       {
         heading: 'How to plan a waterfall trip from Shillong',
-        body: 'Shillong is the natural base — most major waterfalls are an easy day trip. Pair Elephant Falls with Shillong Peak, then dedicate a full day to the Cherrapunji circuit (Nohkalikai, Seven Sisters, Dainthlen) and another to the Jaintia Hills (Krang Suri, Wei Sawdong). XTSY Travellers Hostel offers dorms from ₹389/night plus curated Meghalaya tours that bundle transport and a local guide so you cover the best waterfalls without renting a car.',
+        body: 'Shillong is the natural base — most major waterfalls are an easy day trip. Pair Elephant Falls with Shillong Peak, then dedicate a full day to the Cherrapunji circuit (Nohkalikai, Seven Sisters, Dainthlen) and another to the Jaintia Hills (Krang Suri, Wei Sawdong). XTSY Travellers Hostel offers dorms from ₹399/night plus curated Meghalaya tours that bundle transport and a local guide so you cover the best waterfalls without renting a car.',
       },
     ],
     extraFaqs: [

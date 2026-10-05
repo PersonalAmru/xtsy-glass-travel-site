@@ -23,11 +23,11 @@ import { Photo } from '@/components/v2/primitives';
 
 const SHILLONG_HOSTEL_LINK_SLUGS = new Set(['dawki-umngot-river', 'nohkalikai-falls', 'umiam-lake']);
 /** Older copy hard-codes the 2025 dorm rate; show the live one from the booking engine. */
-const livePrice = (text: string) => text.replace(/₹389\b/g, inr(lowestDormPrice()));
+const livePrice = (text: string) => text.replace(/₹399\b/g, inr(lowestDormPrice()));
 
 function BookingCTA({ destination, placement }: { destination: MeghalayaDestination; placement: 'top' | 'bottom' }) {
   const { trackConversion, trackEvent } = useAnalytics();
-  const anchor = livePrice(destination.bookingAnchor ?? `Book a bed in Shillong from ₹389 — your base near ${destination.name}`);
+  const anchor = livePrice(destination.bookingAnchor ?? `Book a bed in Shillong from ₹399 — your base near ${destination.name}`);
   const handleClick = (step: 'availability_check' | 'book_now') => {
     trackConversion('destination_to_booking', step, step === 'availability_check' ? 2 : 3, {
       metadata: { destination_slug: destination.slug, destination_name: destination.name, placement },

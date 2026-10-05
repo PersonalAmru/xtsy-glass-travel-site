@@ -16,12 +16,12 @@ const HOST_RE = /^https?:\/\/(www\.)?xtsy\.one/;
 
 // ---------- facts ----------
 const PRICES: { key: string; re: RegExp; ok: number[] }[] = [
-  { key: '8-bed dorm', re: /8[- ]?bed/i, ok: [389, 550] },
+  { key: '8-bed dorm', re: /8[- ]?bed/i, ok: [399, 550] },
   { key: '6-bed mixed dorm', re: /6[- ]?bed(?![^.]{0,20}female)/i, ok: [499, 699] },
   { key: 'female dorm', re: /female|women/i, ok: [599, 679] },
-  { key: 'king/private room', re: /king|double room|private room/i, ok: [2200, 3499] },
-  { key: 'Experience by XTSY', re: /270|panorama|glass (suite|room|ensuite|house)|experience by xtsy|stargaze/i, ok: [5399, 5799, 2500, 11999] },
-  { key: 'dorm "from" price', re: /(dorm|bed)s?\s*(beds?\s*)?(from|starting|start at|at just|for just|only)/i, ok: [389] },
+  { key: 'king/private room', re: /king|double room|private room/i, ok: [2399, 3499] },
+  { key: 'Experience by XTSY', re: /270|panorama|glass (suite|room|ensuite|house)|experience by xtsy|stargaze/i, ok: [5999, 2500, 11999] },
+  { key: 'dorm "from" price', re: /(dorm|bed)s?\s*(beds?\s*)?(from|starting|start at|at just|for just|only)/i, ok: [399] },
 ];
 const RATING = { hostel: ['4.7', '237'], bistro: ['4.7', '142'] };
 const PHONE_OK = /8837317070/;
@@ -48,14 +48,21 @@ function factChecks(url: string, text: string, f: Finding[]) {
     const before = text.slice(Math.max(0, m.index! - 60), m.index!);
     const sentenceStart = Math.max(before.lastIndexOf('.'), before.lastIndexOf('\n'));
     const near = before.slice(sentenceStart + 1);
+    // The room word closest to the amount wins (a sentence can list several rooms and prices).
+    // Words before an earlier ₹ amount belong to that amount, so only look after the last one.
+    const own = near.slice(near.lastIndexOf('₹') + 1).replace(/^[\d,]+\s*(\([^)]*\))?/, ''); // "₹399 (8-bed) and ₹499": the bracket names the earlier amount
+    let best: (typeof PRICES)[number] | undefined; let bestAt = -1;
     for (const p of PRICES) {
-      if (!p.re.test(near)) continue;
-      // Only judge amounts in the plausible range for that room type.
-      const lo = Math.min(...p.ok) * 0.6, hi = Math.max(...p.ok) * 1.5;
-      if (v >= lo && v <= hi && !p.ok.includes(v)) f.push({ rule: `price:${p.key}`, detail: `₹${v} — "${ctx(text, m.index!)}"` });
-      break;
+      const g = new RegExp(p.re.source, p.re.flags.includes('g') ? p.re.flags : p.re.flags + 'g');
+      for (const mm of own.matchAll(g)) if (mm.index! > bestAt) { bestAt = mm.index!; best = p; }
     }
-    if (v === 399) f.push({ rule: 'price:₹399 anywhere', detail: ctx(text, m.index!) });
+    if (best) {
+      // Only judge amounts in the plausible range for that room type.
+      const lo = Math.min(...best.ok) * 0.6, hi = Math.max(...best.ok) * 1.5;
+      if (v >= lo && v <= hi && !best.ok.includes(v)) f.push({ rule: `price:${best.key}`, detail: `₹${v} — "${ctx(text, m.index!)}"` });
+    }
+    // Room rates before the 5 Oct 2026 all-inclusive change; none of these should appear for rooms now.
+    if ([389, 2200, 5399, 5799].includes(v) && /dorm|bed|room|king|double|suite|experience|stay|night/i.test(ctx(text, m.index!))) f.push({ rule: `price:old rate ₹${v}`, detail: ctx(text, m.index!) });
     if (v === 0) f.push({ rule: 'placeholder:₹0', detail: ctx(text, m.index!) });
   }
   // Ratings and review counts

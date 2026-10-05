@@ -43,6 +43,7 @@ import { getCanonicalRate, getBreakfastInclusion } from '@/utils/rateSanityCheck
 import { useOptionalAuth } from '@/hooks/useRequireAuth';
 import { openWhatsAppDirectly, generateBookingMessage, bookingPageSource } from '@/utils/privacyCompliantWhatsApp';
 import { trackBookingStart } from '@/utils/dataLayerService';
+import { quoteStay } from '@/data/panoramaPricing';
 
 type BookingStep = 'dates' | 'rooms' | 'summary' | 'details' | 'confirmation';
 
@@ -437,13 +438,13 @@ const SummaryStep = ({
         <h4 className="font-semibold text-white mb-3">Price Breakdown</h4>
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
-            <span className="text-white/80">Room charges ({nights} night{nights > 1 ? 's' : ''})</span>
-            <span className="text-white">₹{subtotal.toLocaleString()}</span>
+            <span className="text-white/80">Room charges ({nights} night{nights > 1 ? 's' : ''}), all inclusive</span>
+            <span className="text-white">₹{total.toLocaleString()}</span>
           </div>
           {gstAmount > 0 && (
             <div className="flex justify-between">
-              <span className="text-white/80">GST (5%)</span>
-              <span className="text-white">₹{gstAmount.toLocaleString()}</span>
+              <span className="text-white/60">Includes GST</span>
+              <span className="text-white/60">₹{gstAmount.toLocaleString()}</span>
             </div>
           )}
           <div className="flex justify-between pt-3 border-t border-white/10 font-bold text-lg">
@@ -997,18 +998,11 @@ export default function SimplifiedBookingFlow() {
     return 0;
   }, [checkIn, checkOut]);
 
+  // Room rates are all inclusive: the total is the sum of the room prices; the GST inside it is
+  // shown for information. Same maths as the database's enquiry check (quoteStay).
   const { subtotal, gstAmount, total } = useMemo(() => {
-    let sub = 0;
-    let gst = 0;
-    
-    selectedRooms.forEach(({ room, quantity }) => {
-      const roomTotal = room.discountedPrice * quantity * nights;
-      sub += roomTotal;
-      const rate = room.discountedPrice >= 7500 ? 0.18 : 0.05;
-      gst += Math.round(roomTotal * rate);
-    });
-    
-    return { subtotal: sub, gstAmount: gst, total: sub + gst };
+    const q = quoteStay(selectedRooms.map(({ room, quantity }) => ({ nightlyRate: room.discountedPrice, quantity })), nights);
+    return { subtotal: q.subtotal, gstAmount: q.taxes, total: q.total };
   }, [selectedRooms, nights]);
 
   // Navigation

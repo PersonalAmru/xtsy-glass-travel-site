@@ -6,9 +6,9 @@ export const Route = createFileRoute("/hostel-booking")({
   head: () =>
     buildRouteHead({
       path: "/hostel-booking",
-      title: "Hostel Booking in Shillong — Direct from ₹389 | XTSY",
+      title: "Hostel Booking in Shillong — Direct from ₹399 | XTSY",
       description:
-        "Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹389. Book direct — cheaper than Hostelworld and Booking.com.",
+        "Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹399. Book direct — cheaper than Hostelworld and Booking.com.",
       keywords:
         "hostel booking, online hostel booking, hostel booking shillong, book hostel meghalaya, cheap hostel booking",
     }),

@@ -51,7 +51,7 @@ const BlogBestTimeToVisit = () => (
         <PlanTripLinks
           source="best-time-to-visit-meghalaya"
           heading="Timed your trip? Now pick your places & stay"
-          bookingAnchor="Winter is peak season — book your Shillong base early. Dorm beds from ₹389, private rooms & glamping"
+          bookingAnchor="Winter is peak season — book your Shillong base early. Dorm beds from ₹399, private rooms & glamping"
           slugs={['dawki-umngot-river', 'double-decker-living-root-bridge', 'nohkalikai-falls', 'umiam-lake']}
         />
 

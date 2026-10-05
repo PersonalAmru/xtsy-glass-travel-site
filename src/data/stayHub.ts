@@ -7,7 +7,7 @@
  * All prices come from the live booking inventory.
  */
 import { inr, lowestDormPrice, roomPrice } from '@/components/v2/pricing';
-import { PANORAMA_DECORATION, PANORAMA_STAY_ONLY, PANORAMA_WITH_BREAKFAST } from '@/data/panoramaPricing';
+import { PANORAMA_DECORATION, PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
 import { fromXtsy } from '@/lib/travel/routing';
 
 export type StayHubVariant = 'hostels' | 'cheap';
@@ -18,7 +18,7 @@ export const rooms = () => [
   { id: '6-bed-mixed-dorm', name: '6-bed mixed dorm', price: roomPrice('6-bed-mixed-dorm').now, note: 'Smaller dorm, same in-bunk comforts — a favourite with backpackers.' },
   { id: '4-bed-female-only-dorm', name: '4-bed women-only dorm', price: roomPrice('4-bed-female-only-dorm').now, note: 'Women-only, female staff on call, lockers — the safest budget bed.' },
   { id: 'king-double-room', name: 'King Double room', price: roomPrice('king-double-room').now, note: 'Private room for two with a view of the pines.' },
-  { id: 'xtsy-270', name: 'Experience by XTSY (glass suite)', price: PANORAMA_STAY_ONLY, note: `India’s First Stargaze Glamp. ${inr(PANORAMA_WITH_BREAKFAST)} with breakfast for two; decoration +${inr(PANORAMA_DECORATION)}.` },
+  { id: 'xtsy-270', name: 'Experience by XTSY (glass suite)', price: PANORAMA_STAY_ONLY, note: `India’s First Stargaze Glamp. Stay only, all inclusive; decoration +${inr(PANORAMA_DECORATION)}.` },
 ].filter((r) => r.price > 0);
 
 export function stayHubCopy(v: StayHubVariant) {
@@ -45,7 +45,7 @@ export function stayHubFaqs(v: StayHubVariant): { q: string; a: string }[] {
   const dorm = inr(lowestDormPrice());
   const base = [
     { q: 'Which is the best hostel in Shillong?', a: `XTSY Travellers Hostel in New Shillong Township is one of the best-rated hostels in Shillong (4.7★ from 237 Google reviews). Dorms start at ${dorm}, there is a women-only dorm, private King Double rooms and the Experience by XTSY glass suite, and TAB Bistro is on site.` },
-    { q: 'How much is a hostel in Shillong per night?', a: `At XTSY, dorm beds are ${dorm} (8-bed) and ${inr(roomPrice('6-bed-mixed-dorm').now)} (6-bed), the women-only dorm is ${inr(roomPrice('4-bed-female-only-dorm').now)}, the King Double room ${inr(roomPrice('king-double-room').now)}, and Experience by XTSY ${inr(PANORAMA_STAY_ONLY)} (${inr(PANORAMA_WITH_BREAKFAST)} with breakfast for two).` },
+    { q: 'How much is a hostel in Shillong per night?', a: `At XTSY, dorm beds are ${dorm} (8-bed) and ${inr(roomPrice('6-bed-mixed-dorm').now)} (6-bed), the women-only dorm is ${inr(roomPrice('4-bed-female-only-dorm').now)}, the King Double room ${inr(roomPrice('king-double-room').now)}, and Experience by XTSY ${inr(PANORAMA_STAY_ONLY)}, all inclusive.` },
     { q: 'Where is XTSY Travellers Hostel?', a: 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018 — near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is not in Police Bazaar or central Shillong; the drive to Police Bazaar takes about 30 minutes.' },
     { q: 'Is there a women-only dorm in Shillong?', a: `Yes. XTSY has a 4-bed women-only dorm (${inr(roomPrice('4-bed-female-only-dorm').now)} a night) with female staff on call, lockers and 24/7 arrival support.` },
     { q: 'What are check-in and check-out times?', a: 'Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the desk with your arrival time.' },

@@ -14,7 +14,7 @@ import { CLUSTERS, PLACES, PLACE_BY_ID, XTSY, type ClusterId, type Place } from 
 import { XTSY_POINT, pointOfHub, pointOfPlace, travel } from './routing';
 import { buildPlan, fmtH, type Plan, type TripStyle } from './planner';
 import { inr, lowestDormPrice, roomPrice } from '@/components/v2/pricing';
-import { PANORAMA_DECORATION, PANORAMA_STAY_ONLY, PANORAMA_WITH_BREAKFAST } from '@/data/panoramaPricing';
+import { PANORAMA_DECORATION, PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
 
 export interface ChatState {
   days?: number;
@@ -136,7 +136,7 @@ function stayAnswer(place?: Place): string {
   const suite = roomPrice('xtsy-270');
   const lines = [
     `**1. ${XTSY.name}** — our own hostel on Mawdiangdiang Road, New Shillong Township (near IIM & NIFT Shillong). Dorm beds from ${inr(lowestDormPrice())}, women-only dorm ${inr(roomPrice('4-bed-female-only-dorm').now)}, King Double ${inr(roomPrice('king-double-room').now)} a night. TAB Bistro on site, 24/7 arrival support, pets welcome (cats and birds; dogs by breed and size).`,
-    `**2. Experience by XTSY** — India’s First Stargaze Glamp, a 270° glass suite for two at the same property: ${inr(suite.now || PANORAMA_STAY_ONLY)} stay only or ${inr(PANORAMA_WITH_BREAKFAST)} with breakfast for two; decoration +${inr(PANORAMA_DECORATION)}.`,
+    `**2. Experience by XTSY** — India’s First Stargaze Glamp, a 270° glass suite for two at the same property: ${inr(suite.now || PANORAMA_STAY_ONLY)} a night, all inclusive (stay only); decoration +${inr(PANORAMA_DECORATION)}.`,
   ];
   if (place && !CLUSTERS[place.cluster].dayTripFromXtsy) {
     const leg = travel(XTSY_POINT, pointOfPlace(place));
@@ -165,7 +165,7 @@ const FACTS: [RegExp, () => string, string[]][] = [
 ];
 
 function priceAnswer(): string {
-  return `Current direct rates at XTSY (per night):\n\n• Dorm beds from **${inr(lowestDormPrice())}**\n• Women-only 4-bed dorm **${inr(roomPrice('4-bed-female-only-dorm').now)}**\n• King Double **${inr(roomPrice('king-double-room').now)}**\n• Experience by XTSY: **${inr(PANORAMA_STAY_ONLY)}** stay only or **${inr(PANORAMA_WITH_BREAKFAST)}** with breakfast for two; decoration +${inr(PANORAMA_DECORATION)}\n\nBooking direct saves 20–30% vs OTAs. Tour prices depend on the plan — build one and the desk will quote it.`;
+  return `Current direct rates at XTSY (per night, all inclusive):\n\n• Dorm beds from **${inr(lowestDormPrice())}**\n• Women-only 4-bed dorm **${inr(roomPrice('4-bed-female-only-dorm').now)}**\n• King Double **${inr(roomPrice('king-double-room').now)}**\n• Experience by XTSY: **${inr(PANORAMA_STAY_ONLY)}** (stay only); decoration +${inr(PANORAMA_DECORATION)}\n\nBooking direct saves 20–30% vs OTAs. Tour prices depend on the plan — build one and the desk will quote it.`;
 }
 
 function distanceAnswer(places: Place[], t: string): string | null {
@@ -281,7 +281,7 @@ function planReply(plan: Plan, state: ChatState): Reply {
   if (nightsOther) stays.push(`${nightsOther} at partner stays the XTSY desk books`);
   if (stays.length) lines.push(`Stays: ${stays.join(' + ')}.`);
   if (!plan.nightsAtXtsy) lines.push(`Tip: add 2 days at the start for Shillong and Cherrapunji with nights at ${XTSY.name} — Guwahati is on the way.`);
-  if (state.styles.includes('romantic')) lines.push(`💫 Make one night special at **Experience by XTSY**, India’s First Stargaze Glamp: ${inr(PANORAMA_STAY_ONLY)} stay only or ${inr(PANORAMA_WITH_BREAKFAST)} with breakfast for two (decoration +${inr(PANORAMA_DECORATION)}).`);
+  if (state.styles.includes('romantic')) lines.push(`💫 Make one night special at **Experience by XTSY**, India’s First Stargaze Glamp: ${inr(PANORAMA_STAY_ONLY)} a night, all inclusive (decoration +${inr(PANORAMA_DECORATION)}).`);
   for (const d of plan.dropped) lines.push(`⚠️ I left out **${d.name}**: ${d.reason}. Add ${d.extraDays} ${d.extraDays === 1 ? 'day' : 'days'} to fit it in.`);
   if (plan.added.length) lines.push(`You had spare time, so I added: ${plan.added.join(', ')}. Say “remove …” to drop any.`);
   for (const p of plan.permits) lines.push(`🪪 ${p}`);

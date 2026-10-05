@@ -18,7 +18,7 @@ export function buildTopics(): Topic[] {
     ] },
     { id: 'suite', n: 'Experience by XTSY', q: [
       ['What is Experience by XTSY?', 'India’s First Stargaze Glamp: a 270° panoramic glass suite in the pines of New Shillong, for one couple a night.'],
-      ['How much is it?', `${inr(suite.now)} a night stay-only, or ₹5,799 with breakfast for two. Decoration for special occasions is ₹2,500.`],
+      ['How much is it?', `${inr(suite.now)} a night, all inclusive (stay only, breakfast not included). Decoration for special occasions is ₹2,500.`],
       ['Is it private?', 'Yes. The glass faces natural landscapes, not buildings, and there are blackout shades for total seclusion.'],
       ['Can I book it on OTAs?', 'No. Experience by XTSY is booked direct only, on xtsy.one or WhatsApp. Book 2–3 weeks ahead in peak season, and at least 48 hours ahead for decoration.'],
       ['Does it get hot in the day?', 'Daytime sun can warm any glass structure. The suite has climate control, blackout shades and cross ventilation.'],

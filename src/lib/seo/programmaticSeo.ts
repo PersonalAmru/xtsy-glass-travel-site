@@ -13,7 +13,7 @@ import { BISTRO_COVER } from '@/data/bistroCover';
 import { photoFor } from '@/data/v2TourImages';
 import { responsiveImage } from '@/data/cdnImages';
 import { inr, lowestDormPrice, roomPrice } from '@/components/v2/pricing';
-import { PANORAMA_STAY_ONLY, PANORAMA_WITH_BREAKFAST } from '@/data/panoramaPricing';
+import { PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
 import { CLUSTERS, PLACES, type Place } from '@/lib/travel/places';
 import { fromXtsy } from '@/lib/travel/routing';
 
@@ -126,7 +126,7 @@ export function factsFor(page: SEOPageData): Fact[] {
       { k: 'Where', v: 'Mawdiangdiang Road, New Shillong Township, Shillong 793018 (near IIM & NIFT Shillong)' },
       { k: 'Dorm beds', v: `from ${inr(lowestDormPrice())} / night` },
       { k: 'Private room', v: `King Double ${inr(roomPrice('king-double-room').now)} / night` },
-      { k: 'Glass suite', v: `Experience by XTSY ${inr(PANORAMA_STAY_ONLY)} (with breakfast ${inr(PANORAMA_WITH_BREAKFAST)})` },
+      { k: 'Glass suite', v: `Experience by XTSY ${inr(PANORAMA_STAY_ONLY)}, all inclusive` },
       { k: 'Check-in / out', v: '11 AM / 10 AM (strict)' },
       { k: 'Pets', v: 'Cats & birds welcome; dogs by breed and size' },
       { k: 'Cancellation', v: 'Booking amount non-refundable; one date change within 90 days' },
@@ -165,7 +165,7 @@ function mainEntity(page: SEOPageData, url: string, hero: Hero): Record<string, 
       address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road, New Shillong Township', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
       geo: { '@type': 'GeoCoordinates', latitude: 25.6025457, longitude: 91.9448902 },
       telephone: '+91-8837317070',
-      priceRange: `${inr(lowestDormPrice())} - ${inr(PANORAMA_WITH_BREAKFAST)}`,
+      priceRange: `${inr(lowestDormPrice())} - ${inr(PANORAMA_STAY_ONLY)}`,
       checkinTime: '11:00',
       checkoutTime: '10:00',
       petsAllowed: true,

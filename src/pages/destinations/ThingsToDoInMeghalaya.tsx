@@ -324,7 +324,7 @@ const ThingsToDoInMeghalaya = () => {
           <PlanTripLinks
             source="things-to-do-in-meghalaya"
             heading="Turn your list into a trip — book your base"
-            bookingAnchor="Stay central in Shillong to tick off every activity — dorm beds from ₹389, private rooms & glamping"
+            bookingAnchor="Stay central in Shillong to tick off every activity — dorm beds from ₹399, private rooms & glamping"
             slugs={['dawki-umngot-river', 'double-decker-living-root-bridge', 'nohkalikai-falls', 'laitlum-canyons']}
           />
         </div>

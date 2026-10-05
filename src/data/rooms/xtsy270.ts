@@ -12,7 +12,7 @@ export const XTSY270_DATA = {
   shortName: 'Experience by XTSY',
   seoTitle: 'Experience by XTSY – India\'s First Stargaze Glamp | Shillong, Meghalaya',
   seoDescription:
-    'Sleep under stars. Wake to mountains. Experience by XTSY is a panoramic glasshouse retreat in Shillong. Stay only ₹5,399 or stay with breakfast for two ₹5,799 per night; decoration optional.',
+    'Sleep under stars. Wake to mountains. Experience by XTSY is a panoramic glasshouse retreat in Shillong. ₹5,999 per night, all inclusive (stay only); decoration optional.',
   seoKeywords:
     'glamping India, luxury glamping Shillong, glasshouse glamping, romantic glamping retreat, glamping Meghalaya, stargazing glamping, couples glamping India, 270 glass house, Experience by XTSY, glamping resort Shillong, unique glamping India, honeymoon glamping',
   description:
@@ -21,7 +21,6 @@ export const XTSY270_DATA = {
   occupancy: { min: 1, max: 2 },
   bed: { type: 'Queen', count: 1 },
   features: [
-    'Breakfast for two available with the ₹5,799 package',
     '270° Panoramic Glass Walls',
     'Luxury Ensuite Washroom',
     'Premium Mountain Views',
@@ -74,9 +73,9 @@ export const XTSY270_DATA = {
     }
   ],
   priceCurrency: 'INR',
-  weekendPrice: 5399,
-  weekdayPrice: 5399,
-  price: 5399, // Stay-only rate; stay + breakfast for 2 is ₹5,799/night
+  weekendPrice: 5999,
+  weekdayPrice: 5999,
+  price: 5999, // All-inclusive stay-only rate (breakfast plan withdrawn Oct 2026)
   maxGuests: 2,
   maxRooms: 1,
   image: xtsyStargazing,
