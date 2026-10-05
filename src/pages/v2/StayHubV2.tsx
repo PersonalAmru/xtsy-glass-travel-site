@@ -62,7 +62,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
             <p className="m-0 text-[16px] leading-relaxed">{c.quick}</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Link to="/book" className="xt-btn flex h-12 items-center rounded-full bg-xt-crimson px-6 text-[15px] font-extrabold text-white hover:text-white">Check live availability</Link>
+            <Link to="/book" className="xt-btn flex h-12 items-center rounded-full bg-xt-crimson px-6 text-[15px] font-extrabold text-white hover:text-white">Book a stay</Link>
             <a href={waLink('Hi XTSY! I want to book a bed in Shillong. Dates: … Guests: …')} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-ink px-6 text-[15px] font-extrabold text-xt-ink hover:text-xt-ink">Book on WhatsApp</a>
           </div>
         </div>

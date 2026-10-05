@@ -62,7 +62,7 @@ export default function RentalsV2() {
         canonicalUrl="https://xtsy.one/xtsy-rentals"
       />
       <Helmet><script type="application/ld+json">{JSON.stringify(ld)}</script></Helmet>
-      <PageShell cta={{ title: 'Keys, route, go.', sub: 'Tell us the vehicle and your dates on WhatsApp. We’ll confirm availability.', bookTo: '/expeditions', bookLabel: 'See expedition routes' }}>
+      <PageShell bar={{ label: 'Get a quote', to: waLink('Hi XTSY! I want to rent a vehicle. Dates: …'), note: 'Cars & Royal Enfields' }} cta={{ title: 'Keys, route, go.', sub: 'Tell us the vehicle and your dates on WhatsApp. We’ll confirm availability.', bookTo: '/expeditions', bookLabel: 'See expedition routes' }}>
         <PageHero
           bg="#1F2230"
           fg="#F5EFE6"
