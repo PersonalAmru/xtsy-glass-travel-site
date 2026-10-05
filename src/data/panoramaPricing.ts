@@ -9,6 +9,20 @@
  * rounding), so the subtotal / taxes / total the site sends always match the server's check.
  */
 export const PANORAMA_STAY_ONLY = 5999;
+
+/**
+ * Same rule as the database function public.current_room_rate: the room price table cannot be
+ * edited right now, so the two rooms whose prices changed on 5 Oct 2026 are mapped here — only
+ * while the table still holds the old value. Once room_types is updated, this passes it through.
+ */
+const RATE_FIXES: Record<string, { from: number; to: number }> = {
+  '3746fd14-8fa7-4b27-b285-38855b447964': { from: 2200, to: 2399 }, // King Double Room
+  '3b10c81d-ad5f-441f-9b56-5ab9a7a00544': { from: 5399, to: 5999 }, // Experience by XTSY
+};
+export function currentRoomRate(roomId: string, basePrice: number): number {
+  const fix = RATE_FIXES[roomId];
+  return fix && Number(basePrice) === fix.from ? fix.to : Number(basePrice);
+}
 export const PANORAMA_DECORATION = 2500;
 export const PANORAMA_DECORATION_GST = 450;
 
