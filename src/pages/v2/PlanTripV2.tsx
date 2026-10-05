@@ -25,7 +25,7 @@ export default function PlanTripV2() {
         keywords="meghalaya trip planner, shillong itinerary, northeast india itinerary planner, ai trip planner meghalaya, wari chora how to reach, dawki day trip"
         canonicalUrl="https://xtsy.one/plan-trip-with-ai"
       />
-      <PageShell cta={{ title: 'Rather talk to a person?', sub: 'The XTSY desk plans trips on WhatsApp every day, 24/7.' }}>
+      <PageShell bar={false} cta={{ title: 'Rather talk to a person?', sub: 'The XTSY desk plans trips on WhatsApp every day, 24/7.' }}>
         <section className={`${PAD} grid gap-8 py-10 lg:grid-cols-12 lg:py-14`}>
           <div className="flex flex-col gap-5 lg:col-span-4">
             <div className="xt-in xt-eyebrow text-[15px] sm:text-[18px]">Free · instant · real drive times</div>

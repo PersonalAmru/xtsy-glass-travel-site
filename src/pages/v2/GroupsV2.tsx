@@ -63,7 +63,7 @@ export default function GroupsV2() {
         canonicalUrl="https://xtsy.one/group-bookings-meghalaya"
       />
       <Helmet><script type="application/ld+json">{JSON.stringify(ld)}</script></Helmet>
-      <PageShell cta={{ title: 'Bring the whole crew.', sub: 'Share group size and dates on WhatsApp. We’ll send per-person pricing within about an hour.' }}>
+      <PageShell bar={{ label: 'Get a quote', to: GROUP_WA, note: 'Groups of 2 to 50+' }} cta={{ title: 'Bring the whole crew.', sub: 'Share group size and dates on WhatsApp. We’ll send per-person pricing within about an hour.' }}>
         <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Tours', to: '/tours' }, { label: 'Group bookings' }]} />
         <PageHero
           eyebrow="Groups of 6–60 · Friends · Colleges · Corporates"

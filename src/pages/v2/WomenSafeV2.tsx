@@ -26,7 +26,7 @@ export default function WomenSafeV2() {
         keywords="female hostel Shillong, women solo travel India, safe hostel women, girls dorm Meghalaya, female traveller hostel northeast India"
         canonicalUrl="https://xtsy.one/female-travellers"
       />
-      <PageShell cta={{ title: 'A safe base for your solo trip.', sub: `Book the 4-bed female dorm for ${price} a night, or message our team with any questions first.` }}>
+      <PageShell bar={{ label: 'Book a stay', to: '/book', note: `Women-only dorm · ${price} a night, incl. taxes` }} cta={{ title: 'A safe base for your solo trip.', sub: `Book the 4-bed female dorm for ${price} a night, or message our team with any questions first.` }}>
         <PageHero
           bg="#8A1D3A"
           fg="#FBEFF1"

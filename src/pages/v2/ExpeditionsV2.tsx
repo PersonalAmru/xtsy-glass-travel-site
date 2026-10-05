@@ -30,7 +30,7 @@ function RouteCard({ r, type }: { r: ExpeditionRouteStub; type: ExpeditionType }
 
 export function ExpeditionsIndexV2() {
   return (
-    <PageShell cta={{ title: 'Ride the Northeast with backup.', sub: 'Tell us your route, dates and whether you ride or drive. We’ll sort vehicle, permits and stays.', bookTo: '/xtsy-rentals', bookLabel: 'Rent a bike or car' }}>
+    <PageShell bar={{ label: 'Get a quote', to: waLink('Hi XTSY! I want to plan an expedition. Route: … Dates: … Riders: …'), note: 'Motorbike & 4x4 expeditions' }} cta={{ title: 'Ride the Northeast with backup.', sub: 'Tell us your route, dates and whether you ride or drive. We’ll sort vehicle, permits and stays.', bookTo: '/xtsy-rentals', bookLabel: 'Rent a bike or car' }}>
       <PageHero
         bg="#1F2230"
         fg="#F5EFE6"
@@ -93,7 +93,7 @@ export function ExpeditionRouteV2() {
   const wa = waLink(`Hi! I'd like details on the ${expedition.name} ${label.toLowerCase()} expedition.`);
 
   return (
-    <PageShell cta={false}>
+    <PageShell bar={{ label: 'Get a quote', to: wa }} cta={false}>
       <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Expeditions', to: '/expeditions' }, { label }]} />
       <PageHero
         size="md"

@@ -45,12 +45,25 @@ function Faq({ q, a }: { q: string; a: string }) {
   );
 }
 
+/** Keep whole sentences up to `max` words, so the answer under the H1 stays short. */
+function firstWords(text: string, max: number): string {
+  const clean = (text || '').replace(/\s+/g, ' ').trim();
+  if (clean.split(' ').length <= max) return clean;
+  let out = '';
+  for (const s of clean.match(/[^.!?]+[.!?]+(\s|$)/g) ?? [clean]) {
+    if ((out + s).trim().split(' ').length > max) break;
+    out += s;
+  }
+  return (out.trim() || clean.split(' ').slice(0, max).join(' ') + '…');
+}
+
 export default function ProgrammaticV2() {
   const data = route.useLoaderData();
   // The loader already 404s/redirects missing and thin pages; this only guards odd states.
   if (!data || data.status !== 'ok') return <NotFound />;
   const { model, label, town, related, sameCat, wheel, beyond } = data;
   const { page, hero, hub, quickAnswer, facts } = model;
+  const answer = firstWords(quickAnswer, 70);
   const updated = new Date(data.updated).toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
 
   return (
@@ -61,7 +74,13 @@ export default function ProgrammaticV2() {
           <div className="flex flex-col gap-4 lg:col-span-7">
             <div className="xt-eyebrow text-[14px]">{label} · Updated {updated}</div>
             <h1 className="xt-display m-0 text-[44px] leading-[0.92] sm:text-[68px]">{page.h1}</h1>
-            <p className="m-0 max-w-[720px] text-[17px] leading-relaxed text-xt-mute">{page.intro}</p>
+            {/* Answer first: a short paragraph right under the H1 that answer engines can quote. */}
+            <p data-quick-answer className="m-0 max-w-[720px] text-[18px] leading-relaxed text-xt-ink">{answer}</p>
+            <div className="flex flex-wrap gap-2">
+              <Link to="/book" className="xt-btn flex h-11 items-center rounded-full bg-xt-crimson px-5 text-[14px] font-extrabold text-white hover:text-white">Book a stay</Link>
+              <a href={waLink(`Hi XTSY! I'm looking at: ${page.h1}`)} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-11 items-center rounded-full border-[1.5px] border-xt-ink px-5 text-[14px] font-extrabold text-xt-ink hover:text-xt-ink">Ask on WhatsApp</a>
+              <button type="button" onClick={() => openTripChat(`Plan a trip: ${page.h1}`)} className="xt-btn flex h-11 items-center gap-2 rounded-full bg-xt-ink px-5 text-[14px] font-extrabold text-xt-paper">✦ Plan this with AI</button>
+            </div>
           </div>
           <div className="relative overflow-hidden rounded-[28px] bg-xt-slate lg:col-span-5">
             <picture>
@@ -72,14 +91,9 @@ export default function ProgrammaticV2() {
         </header>
 
         <section className={`${PAD} grid gap-6 pb-10 lg:grid-cols-12`}>
-          <div data-quick-answer className="rounded-[24px] bg-xt-blush p-6 lg:col-span-7">
-            <h2 className="xt-eyebrow m-0 mb-2 text-[14px]">Quick answer</h2>
-            <p className="m-0 text-[17px] leading-relaxed text-xt-ink">{quickAnswer}</p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <a href={waLink(`Hi XTSY! I'm looking at: ${page.h1}`)} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-11 items-center rounded-full bg-xt-crimson px-5 text-[14px] font-extrabold text-white hover:text-white">Ask on WhatsApp</a>
-              <button type="button" onClick={() => openTripChat(`Plan a trip: ${page.h1}`)} className="xt-btn flex h-11 items-center gap-2 rounded-full bg-xt-ink px-5 text-[14px] font-extrabold text-xt-paper">✦ Plan this with AI</button>
-              <Link to="/book" className="xt-btn flex h-11 items-center rounded-full border-[1.5px] border-xt-ink px-5 text-[14px] font-extrabold text-xt-ink hover:text-xt-ink">Book XTSY</Link>
-            </div>
+          <div className="rounded-[24px] bg-xt-blush p-6 lg:col-span-7">
+            <h2 className="xt-eyebrow m-0 mb-2 text-[14px]">The details</h2>
+            <p className="m-0 text-[17px] leading-relaxed text-xt-ink">{page.intro}</p>
           </div>
           {facts.length > 0 && (
             <dl data-key-facts className="m-0 overflow-hidden rounded-[24px] bg-white lg:col-span-5">

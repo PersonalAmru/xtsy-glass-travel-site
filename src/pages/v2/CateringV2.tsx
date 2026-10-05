@@ -52,7 +52,7 @@ export default function CateringV2({ canonical = 'https://xtsy.one/tab-bistro/ca
         keywords="catering in shillong, wedding catering shillong, corporate catering shillong, bulk food order shillong, party order shillong, TAB Bistro catering"
         canonicalUrl={canonical}
       />
-      <PageShell cta={{ title: 'Feeding a crowd?', sub: 'Share your headcount and date on WhatsApp for a quote.', bookTo: '/tab-bistro', bookLabel: 'See the bistro menu' }}>
+      <PageShell bar={{ label: 'Get a quote', to: waLink('Hi TAB Bistro! Catering enquiry. Guests: … Date: …'), note: 'Catering by TAB Bistro' }} cta={{ title: 'Feeding a crowd?', sub: 'Share your headcount and date on WhatsApp for a quote.', bookTo: '/tab-bistro', bookLabel: 'See the bistro menu' }}>
         <PageHero
           eyebrow="TAB Bistro Catering · Shillong"
           title="Feeding the whole party."
