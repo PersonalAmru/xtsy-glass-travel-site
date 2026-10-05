@@ -48,12 +48,18 @@ function factChecks(url: string, text: string, f: Finding[]) {
     const before = text.slice(Math.max(0, m.index! - 60), m.index!);
     const sentenceStart = Math.max(before.lastIndexOf('.'), before.lastIndexOf('\n'));
     const near = before.slice(sentenceStart + 1);
+    // The room word closest to the amount wins (a sentence can list several rooms and prices).
+    // Words before an earlier ₹ amount belong to that amount, so only look after the last one.
+    const own = near.slice(near.lastIndexOf('₹') + 1).replace(/^[\d,]+\s*(\([^)]*\))?/, ''); // "₹399 (8-bed) and ₹499": the bracket names the earlier amount
+    let best: (typeof PRICES)[number] | undefined; let bestAt = -1;
     for (const p of PRICES) {
-      if (!p.re.test(near)) continue;
+      const g = new RegExp(p.re.source, p.re.flags.includes('g') ? p.re.flags : p.re.flags + 'g');
+      for (const mm of own.matchAll(g)) if (mm.index! > bestAt) { bestAt = mm.index!; best = p; }
+    }
+    if (best) {
       // Only judge amounts in the plausible range for that room type.
-      const lo = Math.min(...p.ok) * 0.6, hi = Math.max(...p.ok) * 1.5;
-      if (v >= lo && v <= hi && !p.ok.includes(v)) f.push({ rule: `price:${p.key}`, detail: `₹${v} — "${ctx(text, m.index!)}"` });
-      break;
+      const lo = Math.min(...best.ok) * 0.6, hi = Math.max(...best.ok) * 1.5;
+      if (v >= lo && v <= hi && !best.ok.includes(v)) f.push({ rule: `price:${best.key}`, detail: `₹${v} — "${ctx(text, m.index!)}"` });
     }
     // Room rates before the 5 Oct 2026 all-inclusive change; none of these should appear for rooms now.
     if ([389, 2200, 5399, 5799].includes(v) && /dorm|bed|room|king|double|suite|experience|stay|night/i.test(ctx(text, m.index!))) f.push({ rule: `price:old rate ₹${v}`, detail: ctx(text, m.index!) });
