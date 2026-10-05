@@ -1,0 +1,86 @@
+{
+ "site": "http://localhost:4174",
+ "crawled": 702,
+ "ok": 702,
+ "sitemapUrls": 682,
+ "broken": 0,
+ "internalRedirects": 0,
+ "orphans": 0,
+ "depthHistogram": {
+  "0": 1,
+  "1": 63,
+  "2": 634,
+  "3": 4
+ },
+ "deepPages": [],
+ "unreachableFromHome": 0,
+ "legacyDesignPages": [
+  "/book",
+  "/auth",
+  "/install"
+ ],
+ "h1Problems": [],
+ "duplicateTitles": [
+  {
+   "value": "northeast india tour packages from ₹7,999 | xtsy travel",
+   "urls": [
+    "/tours",
+    "/tours?group=northeast"
+   ]
+  }
+ ],
+ "duplicateDescriptions": [
+  {
+   "value": "30+ curated meghalaya, nagaland, assam, arunachal & sikkim tours from ₹7,999. living root bridges, dawki, tribal festivals. book direct and save 20-30% vs otas.",
+   "urls": [
+    "/tours",
+    "/tours?group=northeast"
+   ]
+  }
+ ],
+ "navLinks": [
+  "/best-hostel-in-shillong",
+  "/xtsy-270",
+  "/tours",
+  "/tab-bistro",
+  "/work-from-home",
+  "/things-to-do-in-meghalaya",
+  "/merch"
+ ],
+ "menuLinks": [],
+ "footerLinks": [
+  "/book",
+  "/xtsy-270",
+  "/xtsy-adventure-campsite-dawki",
+  "/pet-friendly",
+  "/female-travellers",
+  "/work-from-home",
+  "/best-hostel-in-shillong",
+  "/tours",
+  "/expeditions",
+  "/group-bookings-meghalaya",
+  "/xtsy-rentals",
+  "/plan-trip-with-ai",
+  "/destinations",
+  "/things-to-do-in-meghalaya",
+  "/meghalaya-waterfalls",
+  "/places-to-visit-in-meghalaya",
+  "/guides",
+  "/gallery",
+  "/tab-bistro",
+  "/tab-bistro/catering",
+  "/merch",
+  "/destination-wedding-shillong",
+  "/xtsy-vs-zostel",
+  "/about",
+  "/faq",
+  "/contact",
+  "/pricing-cancellation-policy",
+  "/privacy-policy",
+  "/terms-of-service",
+  "/install"
+ ],
+ "brokenList": [],
+ "redirectList": [],
+ "orphanList": []
+}

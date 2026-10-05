@@ -1,0 +1,1458 @@
+[
+ {
+  "viewport": "phone",
+  "route": "/",
+  "status": 200,
+  "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "title": "Hostels in Shillong 2026 — Dorms from ₹399 | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0",
+   "Fetch API cannot load https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/xtsy-270",
+  "status": 200,
+  "title": "Experience by XTSY – India's First Stargaze Glamp | Shillong, Meghalaya",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/book",
+  "status": 200,
+  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
+  "design": "legacy",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuButton": "missing",
+   "searchButton": "missing",
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": false
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/book/campsite",
+  "status": 200,
+  "title": "Book XTSY Adventure Campsite, Dawki | Riverside Camping",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatButton": "missing",
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/tours",
+  "status": 200,
+  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/tours/bhutan-mindful-kingdom-journey",
+  "status": 200,
+  "title": "Bhutan Mindful Kingdom Journey — 6 Days from ₹84,999 | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/expeditions",
+  "status": 200,
+  "title": "Motorbike & 4x4 Expeditions in Northeast India | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/destinations",
+  "status": 200,
+  "title": "Northeast India Destinations — State & City Guides | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "title": "Meghalaya Travel Guide — Places, Routes & Stays",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/destinations/meghalaya/shillong",
+  "status": 200,
+  "title": "Places to Visit in Shillong, Meghalaya | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/destinations/meghalaya/cherrapunji/nohkalikai-falls",
+  "status": 200,
+  "title": "Nohkalikai Falls, Cherrapunji — India's Tallest Plunge Waterfall",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "title": "Dormitory in Shillong — Mixed & Female Dorms | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/meghalaya-waterfalls",
+  "status": 200,
+  "title": "Best Waterfalls in Meghalaya — Travel Guide 2026",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/plan-trip-with-ai",
+  "status": 200,
+  "title": "Plan a Meghalaya & Northeast India Trip with AI | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatButton": "missing",
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/tab-bistro",
+  "status": 200,
+  "title": "TAB Bistro Shillong — Restaurant, Café & Catering",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/gallery",
+  "status": 200,
+  "title": "XTSY Gallery — Hostel, Glass Suite & Meghalaya Photos",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/about",
+  "status": 200,
+  "title": "About XTSY — India's Biggest Hostel in Northeast India",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/contact",
+  "status": 200,
+  "title": "Contact Us — XTSY | Support, Bookings & Enquiries",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/faq",
+  "status": 200,
+  "title": "FAQ — XTSY Hostel Shillong | Experience by XTSY, Rooms, Tours",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/pet-friendly",
+  "status": 200,
+  "title": "Pet-Friendly Hostel in Shillong — Travel With Your Pet | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0",
+   "Fetch API cannot load https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/female-travellers",
+  "status": 200,
+  "title": "Safe Stays for Women — Female-Only Dorm in Shillong | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/work-from-home",
+  "status": 200,
+  "title": "Work From Shillong — Remote Work & Digital Nomad Hostel | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/group-bookings-meghalaya",
+  "status": 200,
+  "title": "Meghalaya Group Tours & Group Bookings — Groups of 6–60 | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/merch",
+  "status": 200,
+  "title": "XTSY Merch — Travel Gear & Work-from-Anywhere Kit | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/meghalaya-tour-packages",
+  "status": 200,
+  "title": "Meghalaya Tour Packages 2026 — Starting ₹7,999 | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/things-to-do-in-meghalaya",
+  "status": 200,
+  "title": "Things to Do in Meghalaya: 50 Most Beautiful Places to Visit (2026)",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "title": "Hotels in Shillong from ₹399/night | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/travel-guide/how-to-reach-meghalaya",
+  "status": 200,
+  "title": "How to Reach Meghalaya & Shillong (2026 Guide)",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/pricing-cancellation-policy",
+  "status": 200,
+  "title": "Pricing & Cancellation Policies - XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/guides",
+  "status": 200,
+  "title": "All Shillong & Meghalaya Travel Guides A–Z | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/this-page-does-not-exist",
+  "status": 404,
+  "title": "Page Not Found (404) | XTSY Travel",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/",
+  "status": 200,
+  "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "title": "Hostels in Shillong 2026 — Dorms from ₹399 | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/xtsy-270",
+  "status": 200,
+  "title": "Experience by XTSY – India's First Stargaze Glamp | Shillong, Meghalaya",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/book",
+  "status": 200,
+  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
+  "design": "legacy",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuButton": "missing",
+   "searchButton": "missing",
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": false
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/book/campsite",
+  "status": 200,
+  "title": "Book XTSY Adventure Campsite, Dawki | Riverside Camping",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatButton": "missing",
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/tours",
+  "status": 200,
+  "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/tours/bhutan-mindful-kingdom-journey",
+  "status": 200,
+  "title": "Bhutan Mindful Kingdom Journey — 6 Days from ₹84,999 | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/expeditions",
+  "status": 200,
+  "title": "Motorbike & 4x4 Expeditions in Northeast India | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/destinations",
+  "status": 200,
+  "title": "Northeast India Destinations — State & City Guides | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "title": "Meghalaya Travel Guide — Places, Routes & Stays",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/destinations/meghalaya/shillong",
+  "status": 200,
+  "title": "Places to Visit in Shillong, Meghalaya | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/destinations/meghalaya/cherrapunji/nohkalikai-falls",
+  "status": 200,
+  "title": "Nohkalikai Falls, Cherrapunji — India's Tallest Plunge Waterfall",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "title": "Dormitory in Shillong — Mixed & Female Dorms | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/meghalaya-waterfalls",
+  "status": 200,
+  "title": "Best Waterfalls in Meghalaya — Travel Guide 2026",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/plan-trip-with-ai",
+  "status": 200,
+  "title": "Plan a Meghalaya & Northeast India Trip with AI | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatButton": "missing",
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/tab-bistro",
+  "status": 200,
+  "title": "TAB Bistro Shillong — Restaurant, Café & Catering",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/gallery",
+  "status": 200,
+  "title": "XTSY Gallery — Hostel, Glass Suite & Meghalaya Photos",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/about",
+  "status": 200,
+  "title": "About XTSY — India's Biggest Hostel in Northeast India",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/contact",
+  "status": 200,
+  "title": "Contact Us — XTSY | Support, Bookings & Enquiries",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/faq",
+  "status": 200,
+  "title": "FAQ — XTSY Hostel Shillong | Experience by XTSY, Rooms, Tours",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/pet-friendly",
+  "status": 200,
+  "title": "Pet-Friendly Hostel in Shillong — Travel With Your Pet | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0",
+   "Fetch API cannot load https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/female-travellers",
+  "status": 200,
+  "title": "Safe Stays for Women — Female-Only Dorm in Shillong | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/work-from-home",
+  "status": 200,
+  "title": "Work From Shillong — Remote Work & Digital Nomad Hostel | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/group-bookings-meghalaya",
+  "status": 200,
+  "title": "Meghalaya Group Tours & Group Bookings — Groups of 6–60 | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/merch",
+  "status": 200,
+  "title": "XTSY Merch — Travel Gear & Work-from-Anywhere Kit | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0",
+   "Fetch API cannot load https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/meghalaya-tour-packages",
+  "status": 200,
+  "title": "Meghalaya Tour Packages 2026 — Starting ₹7,999 | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/things-to-do-in-meghalaya",
+  "status": 200,
+  "title": "Things to Do in Meghalaya: 50 Most Beautiful Places to Visit (2026)",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "title": "Hotels in Shillong from ₹399/night | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/travel-guide/how-to-reach-meghalaya",
+  "status": 200,
+  "title": "How to Reach Meghalaya & Shillong (2026 Guide)",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/pricing-cancellation-policy",
+  "status": 200,
+  "title": "Pricing & Cancellation Policies - XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/guides",
+  "status": 200,
+  "title": "All Shillong & Meghalaya Travel Guides A–Z | XTSY",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/this-page-does-not-exist",
+  "status": 404,
+  "title": "Page Not Found (404) | XTSY Travel",
+  "design": "v2",
+  "axe": [],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ }
+]
