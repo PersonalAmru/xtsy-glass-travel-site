@@ -140,7 +140,7 @@ const faqsForDestination = (destination: string): SEOFaq[] => {
     { question: `Is ${label} safe for solo and female travellers?`, answer: `Yes. Northeast India is among the safest regions in the country, and XTSY runs dedicated female-only dorms with 24/7 reception. Solo and female guests consistently rate their stays 5/5 for safety and a peaceful atmosphere.` },
     { question: `How do I book a stay near ${label}?`, answer: `Message us on WhatsApp at +91 88373 17070 for instant availability and the best direct rate. Our Shillong base offers 24/7 check-in.` },
     { question: `What do guests say about staying with XTSY near ${label}?`, answer: `XTSY Travellers Hostel is rated highly across Google, MakeMyTrip, Goibibo, Agoda and Hostelworld. Guests repeatedly praise the spotless dorms, friendly staff, great food at TAB Bistro and a genuine international backpacker vibe — "one of the best dormitories near Shillong".` },
-    { question: `Where will I sleep — what rooms are available near ${label}?`, answer: `Choose 4, 6 and 8-bed mixed dorms, female-only dorms, private rooms, or Experience by XTSY, India's first stargaze glamp. Every bed has a locker, reading light and charging point. Dorms from ₹389, glass suite for couples and content creators.` },
+    { question: `Where will I sleep — what rooms are available near ${label}?`, answer: `Choose 4, 6 and 8-bed mixed dorms, female-only dorms, private rooms, or Experience by XTSY, India's first stargaze glamp. Every bed has a locker, reading light and charging point. Dorms from ₹399, glass suite for couples and content creators.` },
   ];
 };
 
@@ -148,7 +148,7 @@ const faqsForRoute = (from: string, to: string): SEOFaq[] => [
   { question: `What is the cheapest way from ${slugToLabel(from)} to ${slugToLabel(to)}?`, answer: `The most cost-effective combo is a flight to Guwahati followed by a shared sumo (₹400–₹600/seat) from Paltan Bazaar to ${slugToLabel(to)}.` },
   { question: `How long does the journey from ${slugToLabel(from)} to ${slugToLabel(to)} take?`, answer: `Total travel time is typically 5–8 hours: a 2–3 hour flight to Guwahati, then 3–4 hours by road to ${slugToLabel(to)}.` },
   { question: `Are there direct flights from ${slugToLabel(from)} to ${slugToLabel(to)}?`, answer: `Most travellers route via Guwahati (GAU). Direct flights are rare; we recommend booking your stay at XTSY first and we'll coordinate ground transport.` },
-  { question: `Where should I stay on arrival in ${slugToLabel(to)}?`, answer: `XTSY Travellers Hostel offers 24/7 check-in with dorms from ₹389 and private rooms from ₹2,200. Book on WhatsApp.` },
+  { question: `Where should I stay on arrival in ${slugToLabel(to)}?`, answer: `XTSY Travellers Hostel offers 24/7 check-in with dorms from ₹399 and private rooms from ₹2,399. Book on WhatsApp.` },
 ];
 
 const faqsForInstitution = (instSlug: string, instName: string, type: 'medical' | 'education'): SEOFaq[] => {
@@ -163,7 +163,7 @@ const faqsForInstitution = (instSlug: string, instName: string, type: 'medical' 
 
 const faqsForLastMinute = (city: string): SEOFaq[] => [
   { question: `Can I book a stay in ${slugToLabel(city)} for tonight?`, answer: `Yes — XTSY accepts same-day bookings via WhatsApp at +91 88373 17070. Subject to availability.` },
-  { question: `What's the cheapest last-minute stay in ${slugToLabel(city)}?`, answer: `Dorm beds at XTSY start at ₹389/night including taxes. Private rooms from ₹2,200.` },
+  { question: `What's the cheapest last-minute stay in ${slugToLabel(city)}?`, answer: `Dorm beds at XTSY start at ₹399/night including taxes. Private rooms from ₹2,399.` },
   { question: `Do you have 24/7 check-in?`, answer: `Yes — our Shillong reception is staffed 24/7 for late arrivals.` },
   { question: `Is breakfast included?`, answer: `Breakfast can be added on at TAB Bistro — message us for the menu and rates. Guests rate the food highly: "food was great, staff were very polite".` },
   { question: `Is a last-minute dorm at XTSY any good?`, answer: `Very. Even guests who booked purely for budget end up surprised — spotless beds, friendly staff and a welcoming vibe earn repeat 5/5 ratings across Goibibo, MakeMyTrip and Agoda. "Really amazing and affordable place to stay near Shillong."` },
@@ -295,7 +295,7 @@ export function buildIntentStayPage(slug: string): SEOPageData {
         heading: `Why XTSY for ${stayLabel.toLowerCase()} in ${cityLabel}`,
         content: `Walk-in friendly, transparent pricing and 24/7 reception. Unlike OTAs, you get an instant confirmation on WhatsApp and a verified rate.`,
         listItems: [
-          'Dorms from ₹389, private rooms from ₹2,200 (taxes incl.)',
+          'Dorms from ₹399, private rooms from ₹2,399 (taxes incl.)',
           '24/7 check-in for late-night and red-eye arrivals',
           'Free WiFi, secure lockers, hot showers',
           'Female-only dorms available',
@@ -311,7 +311,7 @@ export function buildIntentStayPage(slug: string): SEOPageData {
     ctaText: intent ? `Book for ${intent.replace('-', ' ')}` : 'Check Availability',
     ctaLink: 'https://wa.me/918837317070?text=Hi, I need a ' + stayLabel.toLowerCase() + ' in ' + cityLabel + (intent ? ' for ' + intent.replace('-', ' ') : ''),
     keywords: [`${stayLabel.toLowerCase()} in ${cityLabel}`, `${cityLabel} ${stayLabel.toLowerCase()}`, intent ? `${cityLabel} ${intent.replace('-', ' ')}` : `${cityLabel} accommodation`, 'last minute booking shillong'],
-    quickAnswer: `Yes — XTSY accepts same-day bookings in ${cityLabel} via WhatsApp +91 88373 17070. Dorms from ₹389, private rooms from ₹2,200. 24/7 check-in.`,
+    quickAnswer: `Yes — XTSY accepts same-day bookings in ${cityLabel} via WhatsApp +91 88373 17070. Dorms from ₹399, private rooms from ₹2,399. 24/7 check-in.`,
   });
 }
 

@@ -11,7 +11,7 @@ import { IMG } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FeatureCards, PriceCards, FaqList, PAD } from '@/components/v2/blocks';
 import { Photo, waLink } from '@/components/v2/primitives';
 import { inr, roomPrice } from '@/components/v2/pricing';
-import { PANORAMA_WITH_BREAKFAST, PANORAMA_DECORATION } from '@/data/panoramaPricing';
+import { PANORAMA_DECORATION } from '@/data/panoramaPricing';
 
 const STARS = [
   [80, 60, 1.6, 0], [210, 140, 1.2, 1], [330, 40, 2, 2], [470, 110, 1.4, 1], [560, 30, 1.1, 0], [640, 170, 1.7, 2],
@@ -24,7 +24,6 @@ const FEATURES = [
   { t: 'Stargazing from bed', d: 'Open sky above the bed on clear nights.' },
   { t: 'Queen bed', d: 'Hotel-grade linen and two comfort pillows each.' },
   { t: 'Private en-suite', d: 'Premium fittings, with a view of its own.' },
-  { t: 'Premium breakfast', d: 'Breakfast for two is available with your stay.' },
   { t: 'Air conditioning', d: 'Comfortable in every season.' },
   { t: 'High-speed Wi-Fi', d: 'Fast enough for a morning call, if you must.' },
   { t: 'QLED 4K TV', d: 'Netflix ready for rainy Meghalaya evenings.' },
@@ -107,8 +106,7 @@ export default function ExperienceByXtsy() {
           <H2 eyebrow="Packages">Choose your night</H2>
           <PriceCards
             cards={[
-              { t: 'Stay only', price: inr(now), text: `One night in the glass suite for two.${suite.was > now ? ` Regular ${inr(suite.was)}.` : ''}`, cta: <Btn to={wa} kind="outline" className="w-full">Reserve</Btn> },
-              { t: 'Stay + breakfast for two', price: inr(PANORAMA_WITH_BREAKFAST), text: 'The suite plus breakfast for two in the morning.', hot: true, cta: <Btn to={wa} className="w-full">Reserve</Btn> },
+              { t: 'Stay only', price: inr(now), hot: true, text: `One night in the glass suite for two, all inclusive (taxes included, breakfast not included).${suite.was > now ? ` Regular ${inr(suite.was)}.` : ''}`, cta: <Btn to={wa} kind="outline" className="w-full">Reserve</Btn> },
               { t: 'Decoration add-on', price: `+${inr(PANORAMA_DECORATION)}`, text: 'For anniversaries, proposals, honeymoons and birthdays. Book 48 hours ahead.', cta: <Btn to={waLink('Hi XTSY! I want to add the decoration package to my Experience by XTSY stay.')} kind="outline" className="w-full">Add to my stay</Btn> },
             ]}
           />

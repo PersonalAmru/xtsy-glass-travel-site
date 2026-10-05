@@ -8,7 +8,7 @@ export const Route = createFileRoute("/hostel-near-me")({
       path: "/hostel-near-me",
       title: "Hostel Near Me in Shillong — XTSY, New Shillong Township",
       description:
-        "Hostel near you in Shillong? XTSY is on Mawdiangdiang Road, New Shillong Township, near NIFT and IIM: dorms from ₹389, 4.7★ from 237 Google reviews.",
+        "Hostel near you in Shillong? XTSY is on Mawdiangdiang Road, New Shillong Township, near NIFT and IIM: dorms from ₹399, 4.7★ from 237 Google reviews.",
       keywords:
         "hostel near me, hostel near me shillong, hostel near police bazar, closest hostel shillong",
     }),

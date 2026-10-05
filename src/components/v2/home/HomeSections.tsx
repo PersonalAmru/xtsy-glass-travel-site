@@ -81,7 +81,7 @@ export function Stays() {
     { title: 'Dorm beds', price: `from ${inr(lowestDormPrice())}`, text: '6 and 8-bed mixed dorms with curtains, lockers and charging points.', img: first(IMG.mixedDorm), to: '/book', tone: 'sand' as const },
     { title: 'Female Dorm', price: inr(roomPrice('4-bed-female-only-dorm').now), text: '4-bed women-only dorm with female staff on call.', img: first(IMG.femaleDorm), to: '/female-travellers', tone: 'crimson' as const },
     { title: 'King Double', price: inr(roomPrice('king-double-room').now), text: 'A private room for two, with a view of the pines.', img: first(IMG.king), to: '/book', tone: 'pine' as const },
-    { title: 'Experience by XTSY', price: `from ${inr(suite.now)}`, text: 'Stay only ₹5,399 or with breakfast for two ₹5,799 nightly. Decoration +₹2,500 per stay.', img: first(IMG.suite), to: '/xtsy-270', tone: 'night' as const },
+    { title: 'Experience by XTSY', price: `from ${inr(suite.now)}`, text: '₹5,999 a night, all inclusive (stay only). Decoration +₹2,500 per stay.', img: first(IMG.suite), to: '/xtsy-270', tone: 'night' as const },
   ];
   return (
     <section className={`${PAD} flex flex-col gap-8 py-12`}>

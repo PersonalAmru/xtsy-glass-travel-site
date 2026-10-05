@@ -21,7 +21,7 @@ const ADDRESS = {
 
 const ABOUT_FAQS = [
   { q: 'Where is XTSY Travellers Hostel?', a: 'On Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018 — near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is not in Police Bazar or central Shillong.' },
-  { q: 'What is Experience by XTSY?', a: "India's first stargaze glamp: a 270° panoramic glass suite at the same New Shillong Township property. It is booked directly with XTSY, from ₹5,399 a night (₹5,799 with breakfast for two)." },
+  { q: 'What is Experience by XTSY?', a: "India's first stargaze glamp: a 270° panoramic glass suite at the same New Shillong Township property. It is booked directly with XTSY, at ₹5,999 a night, all inclusive." },
   { q: 'Does XTSY have properties outside Shillong?', a: "XTSY's own property is only in New Shillong Township. Elsewhere in Meghalaya and Northeast India, XTSY arranges stays, transport and travel help through trusted travel partners." },
   { q: 'How highly rated is XTSY?', a: 'XTSY Travellers Hostel is rated 4.7★ from 237 Google reviews and has hosted 10,786+ guests. TAB Bistro by XTSY has its own Google profile.' },
 ];

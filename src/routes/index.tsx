@@ -11,9 +11,9 @@ export const Route = createFileRoute("/")({
   head: () =>
     buildRouteHead({
       path: "/",
-      title: "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389",
+      title: "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
       description:
-        "XTSY Travellers Hostel, New Shillong Township: dorms from ₹389, women-only dorm, King Double ₹2,200, glass suite ₹5,399 and TAB Bistro on site.",
+        "XTSY Travellers Hostel, New Shillong Township: dorms from ₹399, women-only dorm, King Double ₹2,399, glass suite ₹5,999 and TAB Bistro on site.",
       keywords:
         "best hostel in Shillong, hostel in Shillong, hostels in Shillong, cheap hostel Shillong, budget stay Shillong, dorm in Shillong, backpacker hostel Meghalaya",
       // Preload the real hero photo (responsive WebP) so it is the first image the browser fetches.

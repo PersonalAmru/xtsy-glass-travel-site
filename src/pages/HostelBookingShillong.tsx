@@ -19,11 +19,11 @@ const HostelBookingShillong = memo(() => {
     '@id': 'https://xtsy.one/hostel-booking#hostel',
     name: 'XTSY Travellers Hostel — Online Hostel Booking, Shillong',
     description:
-      'Direct online hostel booking in Shillong, Meghalaya. Instant confirmation, no OTA commission, one free date change. Dorm beds from ₹389, private rooms from ₹2,500. 4.7★ from 237 Google reviews.',
+      'Direct online hostel booking in Shillong, Meghalaya. Instant confirmation, no OTA commission, one free date change. Dorm beds from ₹399, private rooms from ₹2,500. 4.7★ from 237 Google reviews.',
     url: 'https://xtsy.one/hostel-booking',
     telephone: '+918837317070',
     email: 'booking@xtsy.one',
-    priceRange: '₹389 - ₹9,999',
+    priceRange: '₹399 - ₹9,999',
     currenciesAccepted: 'INR',
     paymentAccepted: 'Cash, UPI, Credit Card, Debit Card, Net Banking, PayPal',
     address: {
@@ -44,7 +44,7 @@ const HostelBookingShillong = memo(() => {
       bestRating: '5',
     },
     makesOffer: [
-      { '@type': 'Offer', name: '8-Bed Mixed Dorm Bed', price: '389', priceCurrency: 'INR', availability: 'https://schema.org/InStock', url: 'https://xtsy.one/book' },
+      { '@type': 'Offer', name: '8-Bed Mixed Dorm Bed', price: '399', priceCurrency: 'INR', availability: 'https://schema.org/InStock', url: 'https://xtsy.one/book' },
       { '@type': 'Offer', name: '6-Bed Mixed Dorm Bed', price: '499', priceCurrency: 'INR', availability: 'https://schema.org/InStock', url: 'https://xtsy.one/book' },
       { '@type': 'Offer', name: 'Female-only Dorm Bed', price: '550', priceCurrency: 'INR', availability: 'https://schema.org/InStock', url: 'https://xtsy.one/book' },
       { '@type': 'Offer', name: 'Private Double Room', price: '2500', priceCurrency: 'INR', availability: 'https://schema.org/InStock', url: 'https://xtsy.one/book' },
@@ -81,7 +81,7 @@ const HostelBookingShillong = memo(() => {
     },
     {
       q: 'What is the cheapest hostel booking in Shillong?',
-      a: 'XTSY 8-bed mixed dorm beds start at ₹389/night — one of the cheapest verified hostel booking rates in Shillong with 4.7★ reviews, WiFi, hot shower and 24/7 security included.',
+      a: 'XTSY 8-bed mixed dorm beds start at ₹399/night — one of the cheapest verified hostel booking rates in Shillong with 4.7★ reviews, WiFi, hot shower and 24/7 security included.',
     },
     {
       q: 'Is same-day hostel booking possible?',
@@ -109,11 +109,11 @@ const HostelBookingShillong = memo(() => {
   };
 
   const rooms = [
-    { name: '8-Bed Mixed Dorm', price: '₹389', per: 'per bed / night', tag: 'Cheapest' },
+    { name: '8-Bed Mixed Dorm', price: '₹399', per: 'per bed / night', tag: 'Cheapest' },
     { name: '6-Bed Mixed Dorm', price: '₹499', per: 'per bed / night', tag: 'Popular' },
     { name: 'Female-only Dorm', price: '₹599', per: 'per bed / night', tag: 'Solo-safe' },
-    { name: 'Private Double Room', price: '₹2,200', per: 'per room / night', tag: 'Couples' },
-    { name: 'Experience by XTSY', price: '₹5,399', per: 'stay only / night', tag: 'Signature' },
+    { name: 'Private Double Room', price: '₹2,399', per: 'per room / night', tag: 'Couples' },
+    { name: 'Experience by XTSY', price: '₹5,999', per: 'stay only / night', tag: 'Signature' },
   ];
 
   return (
@@ -121,7 +121,7 @@ const HostelBookingShillong = memo(() => {
       <Helmet>
         <meta
           name="description"
-          content="Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹389. Book direct — cheaper than Hostelworld & Booking.com. 4.7★ from 237 Google reviews."
+          content="Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹399. Book direct — cheaper than Hostelworld & Booking.com. 4.7★ from 237 Google reviews."
         />
         <script type="application/ld+json">{JSON.stringify(hostelSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
@@ -141,7 +141,7 @@ const HostelBookingShillong = memo(() => {
               </span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-bold text-foreground font-playfair mb-4">
-              Hostel Booking in Shillong — Direct from ₹389
+              Hostel Booking in Shillong — Direct from ₹399
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
               Book XTSY Travellers Hostel direct and skip the OTA commission. Instant WhatsApp confirmation,
