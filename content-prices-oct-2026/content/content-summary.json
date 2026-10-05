@@ -1,7 +1,7 @@
 {
  "site": "http://localhost:4174",
  "pages": 685,
- "pagesWithFindings": 556,
+ "pagesWithFindings": 552,
  "siteFiles": {
   "/robots.txt": {
    "status": 200,
@@ -39,8 +39,8 @@
     "/cheap-hostels-shillong — 2025 — \"ick XTSY ✓ 4.7★ on Google (237 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\"",
     "/shillong-dormitory — 2025 — \"hillong Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
     "/shillong-dormitory — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
-    "/hostel-near-police-bazar-shillong — 2025 — \"hillong Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
-    "/hostel-near-police-bazar-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
+    "/budget-stay-shillong — 2025 — \"t Rooms Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
+    "/budget-stay-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
    ]
   },
   "placeholder:coming soon": {
@@ -68,49 +68,30 @@
     "/xtsy-rentals — 144",
     "/female-travellers — 84",
     "/expeditions — 187",
-    "/hostel-near-police-bazar-shillong — 140",
     "/budget-stay-shillong — 171",
+    "/hostel-near-police-bazar-shillong — 140",
     "/couples-hostel-shillong — 121",
     "/solo-travel-hostel-shillong — 124",
     "/group-stay-shillong — 183",
-    "/isabella-hostel-vs-xtsy — 187",
+    "/stargaze-hostel-vs-xtsy — 180",
     "/zion-backpackers-vs-xtsy — 188"
    ]
   },
   "aeo:no FAQ or question headings": {
    "pages": 19,
    "examples": [
-    "/privacy-policy — ",
-    "/xtsy-vs-zostel — ",
-    "/pricing-cancellation-policy — ",
-    "/book — ",
     "/terms-of-service — ",
-    "/expeditions — ",
+    "/pricing-cancellation-policy — ",
+    "/privacy-policy — ",
+    "/book — ",
+    "/xtsy-vs-zostel — ",
     "/motorbike-expedition-northeast-india — ",
     "/meghalaya-adventure-tour — ",
     "/4x4-expedition-meghalaya — ",
     "/merch — ",
-    "/shillong-tour-package — ",
-    "/best-time-to-visit-meghalaya — "
-   ]
-  },
-  "price:8-bed dorm": {
-   "pages": 5,
-   "examples": [
-    "/cheap-hostels-shillong — ₹499 — \"tel in Shillong per night? + At XTSY, dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the Kin\"",
-    "/cheap-hostels-shillong — ₹599 — \", dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the King Double room ₹2,399, and Experience \"",
-    "/best-hostel-in-shillong — ₹499 — \"tel in Shillong per night? + At XTSY, dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the Kin\"",
-    "/best-hostel-in-shillong — ₹599 — \", dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the King Double room ₹2,399, and Experience \"",
-    "/faq — ₹599 — \"have? + 6 and 8-bed mixed dorms from ₹399, a 4-bed female-only dorm (₹599), King Double private rooms and Experience by\""
-   ]
-  },
-  "price:dorm \"from\" price": {
-   "pages": 4,
-   "examples": [
-    "/hostel-near-me — ₹430 — \" at XTSY Hostelworld / OTAs Price per dorm bed From ₹399 — base rate ₹430–₹450 after 15–18% commission Commission adde\"",
-    "/hostel-near-me — ₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹399 — base rate ₹430–₹450 after 15–18% commission Commission added to \"",
-    "/hostel-booking — ₹430 — \" at XTSY Hostelworld / OTAs Price per dorm bed From ₹399 — base rate ₹430–₹450 after 15–18% commission Commission adde\"",
-    "/hostel-booking — ₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹399 — base rate ₹430–₹450 after 15–18% commission Commission added to \""
+    "/expeditions — ",
+    "/meghalaya-couple-tour-package — ",
+    "/shillong-tour-package — "
    ]
   },
   "seo:thin (<300 words)": {
@@ -124,8 +105,8 @@
   "policy:cancellation/refund claim": {
    "pages": 3,
    "examples": [
-    "/pricing-cancellation-policy — nate room or equivalent property accommodation • Option 3: Full refund (only if accommodation canno",
     "/terms-of-service — e modification, OR Alternate equivalent accommodation, OR Full refund (only if accommodation canno",
+    "/pricing-cancellation-policy — nate room or equivalent property accommodation • Option 3: Full refund (only if accommodation canno",
     "/car-rental-guwahati —  Aadhaar/passport for ID, and a security deposit of ₹5,000 (refundable). Credit card preferred for d"
    ]
   },
@@ -141,12 +122,6 @@
    "examples": [
     "/dawki-umngot-river-guide — ₹1500 — \"00-1,500/person including meals ✓ Kayaking: 1-2 hours on the Umngot, ₹1,500-2,500/person ✓ Cliff jumping: 5-15 meter j\"",
     "/shnongpdeng-camping — ₹1500 — \"enture sports center: ✓ Kayaking: 1-2 hours on crystal-clear Umngot, ₹1,500-3,000/person ✓ Cliff jumping: 5-15 meter j\""
-   ]
-  },
-  "price:female dorm": {
-   "pages": 1,
-   "examples": [
-    "/ — ₹399 — \"ortheast Workation Pet-friendly Women safe stays 30+ tours Dorms from ₹399 Experience by XTSY TAB Bistro Partner stays a\""
    ]
   },
   "aeo:no \"New Shillong Township\" entity mention": {

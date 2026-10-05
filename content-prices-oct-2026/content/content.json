@@ -3,12 +3,7 @@
   "url": "/",
   "status": 200,
   "words": 1700,
-  "findings": [
-   {
-    "rule": "price:female dorm",
-    "detail": "₹399 — \"ortheast Workation Pet-friendly Women safe stays 30+ tours Dorms from ₹399 Experience by XTSY TAB Bistro Partner stays a\""
-   }
-  ],
+  "findings": [],
   "seo": {
    "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
    "titleLen": 59,
@@ -3291,14 +3286,6 @@
   "words": 1190,
   "findings": [
    {
-    "rule": "price:8-bed dorm",
-    "detail": "₹499 — \"tel in Shillong per night? + At XTSY, dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the Kin\""
-   },
-   {
-    "rule": "price:8-bed dorm",
-    "detail": "₹599 — \", dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the King Double room ₹2,399, and Experience \""
-   },
-   {
     "rule": "stale:year",
     "detail": "2025 — \"ick XTSY ✓ 4.7★ on Google (237 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\""
    }
@@ -6189,14 +6176,6 @@
   "status": 200,
   "words": 1202,
   "findings": [
-   {
-    "rule": "price:8-bed dorm",
-    "detail": "₹499 — \"tel in Shillong per night? + At XTSY, dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the Kin\""
-   },
-   {
-    "rule": "price:8-bed dorm",
-    "detail": "₹599 — \", dorm beds are ₹399 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the King Double room ₹2,399, and Experience \""
-   },
    {
     "rule": "stale:year",
     "detail": "2025 — \"ick XTSY ✓ 4.7★ on Google (237 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\""
@@ -12127,12 +12106,7 @@
   "url": "/faq",
   "status": 200,
   "words": 995,
-  "findings": [
-   {
-    "rule": "price:8-bed dorm",
-    "detail": "₹599 — \"have? + 6 and 8-bed mixed dorms from ₹399, a 4-bed female-only dorm (₹599), King Double private rooms and Experience by\""
-   }
-  ],
+  "findings": [],
   "seo": {
    "title": "FAQ — XTSY Travellers Hostel, New Shillong Township",
    "titleLen": 51,
@@ -19307,16 +19281,7 @@
   "url": "/hostel-booking",
   "status": 200,
   "words": 1288,
-  "findings": [
-   {
-    "rule": "price:dorm \"from\" price",
-    "detail": "₹430 — \" at XTSY Hostelworld / OTAs Price per dorm bed From ₹399 — base rate ₹430–₹450 after 15–18% commission Commission adde\""
-   },
-   {
-    "rule": "price:dorm \"from\" price",
-    "detail": "₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹399 — base rate ₹430–₹450 after 15–18% commission Commission added to \""
-   }
-  ],
+  "findings": [],
   "seo": {
    "title": "Hostel Booking in Shillong — Direct from ₹399 | XTSY",
    "titleLen": 52,
@@ -20020,16 +19985,7 @@
   "url": "/hostel-near-me",
   "status": 200,
   "words": 1486,
-  "findings": [
-   {
-    "rule": "price:dorm \"from\" price",
-    "detail": "₹430 — \" at XTSY Hostelworld / OTAs Price per dorm bed From ₹399 — base rate ₹430–₹450 after 15–18% commission Commission adde\""
-   },
-   {
-    "rule": "price:dorm \"from\" price",
-    "detail": "₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹399 — base rate ₹430–₹450 after 15–18% commission Commission added to \""
-   }
-  ],
+  "findings": [],
   "seo": {
    "title": "Hostel Near Me in Shillong — XTSY, New Shillong Township",
    "titleLen": 56,
