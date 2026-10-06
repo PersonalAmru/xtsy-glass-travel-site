@@ -5953,6 +5953,10 @@ export type Database = {
         }
         Returns: Json
       }
+      current_room_rate: {
+        Args: { p_base_price: number; p_room_id: string }
+        Returns: number
+      }
       current_user_id: { Args: never; Returns: string }
       delete_email: {
         Args: { message_id: number; queue_name: string }
