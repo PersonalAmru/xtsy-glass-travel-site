@@ -33,10 +33,10 @@ export function MobileBookBar({ label, to, onClick, note }: BarAction) {
   return (
     <div
       data-mobile-book-bar
-      aria-hidden={!show}
       className={cn(
-        'fixed inset-x-0 bottom-0 z-40 border-t border-xt-line bg-xt-paper/95 px-4 py-2.5 shadow-[0_-8px_24px_rgba(31,34,48,0.12)] backdrop-blur transition-transform duration-300 md:hidden',
-        show ? 'translate-y-0' : 'pointer-events-none translate-y-full',
+        'fixed inset-x-0 bottom-0 z-40 border-t border-xt-line bg-xt-paper/95 px-4 py-2.5 shadow-[0_-8px_24px_rgba(31,34,48,0.12)] backdrop-blur transition-[transform,visibility] duration-300 md:hidden',
+        // invisible (not just moved) while hidden, so the button is out of the tab order and screen readers
+        show ? 'visible translate-y-0' : 'pointer-events-none invisible translate-y-full',
       )}
     >
       <div className="flex items-center gap-3">
