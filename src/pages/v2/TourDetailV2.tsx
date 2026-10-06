@@ -130,7 +130,7 @@ export default function TourDetailV2() {
         canonicalUrl={tourUrl}
         structuredData={[tourSchema, tourBreadcrumb, faqSchema]}
       />
-      <PageShell cta={{ title: 'Want it your way?', sub: 'Every itinerary can change. Tell a travel expert your dates and pace on WhatsApp.', bookTo: '/plan-trip-with-ai', bookLabel: 'Build a trip with AI' }}>
+      <PageShell bar={onRequest ? { label: 'Get a quote', to: enquire, note: 'Price on request' } : { label: 'Book this tour', onClick: () => setIsBookingOpen(true), note: `${displayPrice} per person` }} cta={{ title: 'Want it your way?', sub: 'Every itinerary can change. Tell a travel expert your dates and pace on WhatsApp.', bookTo: '/plan-trip-with-ai', bookLabel: 'Build a trip with AI' }}>
         <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Tours', to: '/tours' }, { label: tour.title }]} />
 
         <section className={`${PAD} grid items-end gap-8 py-10 lg:grid-cols-12 lg:py-14`}>
@@ -147,6 +147,12 @@ export default function TourDetailV2() {
               <span>{tour.duration}</span>
               {tour.groupSize && <span>{tour.groupSize}</span>}
               <span>Best: {tour.bestSeason}</span>
+            </div>
+            <div className="xt-in xt-d3 flex flex-wrap items-center gap-3">
+              {onRequest
+                ? <a href={enquire} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-12 items-center rounded-full bg-xt-crimson px-6 text-[15px] font-extrabold text-white hover:text-white">Get a quote</a>
+                : <button type="button" onClick={() => setIsBookingOpen(true)} className="xt-btn flex h-12 items-center rounded-full bg-xt-crimson px-6 text-[15px] font-extrabold text-white">Book this tour</button>}
+              <span className="text-[15px] font-extrabold">{onRequest ? 'Price on request' : `${displayPrice} per person`}</span>
             </div>
           </div>
           <figure className="m-0 flex flex-col gap-1.5 lg:col-span-5">
@@ -269,7 +275,7 @@ export default function TourDetailV2() {
                 <a href={enquire} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-14 items-center justify-center rounded-full bg-xt-crimson text-[16px] font-extrabold text-white hover:text-white">Get a quote on WhatsApp</a>
               ) : (
                 <>
-                  <button type="button" onClick={() => setIsBookingOpen(true)} className="xt-btn h-14 rounded-full bg-xt-crimson text-[16px] font-extrabold text-white">Book now</button>
+                  <button type="button" onClick={() => setIsBookingOpen(true)} className="xt-btn h-14 rounded-full bg-xt-crimson text-[16px] font-extrabold text-white">Book this tour</button>
                   <a href={enquire} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-12 items-center justify-center rounded-full border-[1.5px] border-xt-paper text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">Enquire on WhatsApp</a>
                 </>
               )}

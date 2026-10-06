@@ -41,7 +41,7 @@ export default function CampsiteV2() {
         canonicalUrl="https://xtsy.one/xtsy-adventure-campsite-dawki"
       />
       <Helmet><script type="application/ld+json">{JSON.stringify(ld)}</script></Helmet>
-      <PageShell cta={{ title: 'Pitch up by the Umngot.', sub: 'Tell us your date and group size on WhatsApp. We’ll book the tent and your ride from New Shillong.', bookTo: '/book/campsite', bookLabel: 'Book online' }}>
+      <PageShell bar={{ label: 'Book a stay', to: '/book/campsite', note: 'Dawki riverside camping' }} cta={{ title: 'Pitch up by the Umngot.', sub: 'Tell us your date and group size on WhatsApp. We’ll book the tent and your ride from New Shillong.', bookTo: '/book/campsite', bookLabel: 'Book online' }}>
         <PageHero
           bg="#2F4A3F"
           fg="#EAF0EA"

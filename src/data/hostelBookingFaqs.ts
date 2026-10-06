@@ -15,11 +15,11 @@ export const hostelDealFaqs: HostelFaq[] = [
   },
   {
     q: 'How do I get the best hostel deals?',
-    a: 'Five things move the price the most: (1) book direct instead of through Hostelworld or Booking.com so no 15–18% commission is priced in, (2) travel midweek — Sunday to Thursday beds are cheaper than Friday/Saturday, (3) stay 3+ nights to trigger the long-stay discount, (4) travel in the June–September monsoon shoulder when Meghalaya is greenest and rates are lowest, and (5) message us on WhatsApp before booking — we can often match or beat any OTA rate you have found.',
+    a: 'Five things move the price the most: (1) book direct instead of through Hostelworld or Booking.com so no 15–18% commission is priced in, (2) travel midweek — Sunday to Thursday beds are more affordable than Friday/Saturday, (3) stay 3+ nights to trigger the long-stay discount, (4) travel in the June–September monsoon shoulder when Meghalaya is greenest and rates are lowest, and (5) message us on WhatsApp before booking — we can often match or beat any OTA rate you have found.',
   },
   {
-    q: 'Is it cheaper to book a hostel direct or on Hostelworld / Booking.com?',
-    a: 'Direct is cheaper. OTAs charge the property a 15–18% commission that is built into the displayed rate, plus a booking deposit. Booking direct at xtsy.one gives you the same bed at the base rate, direct support from the XTSY desk, and free extras (late checkout on request, luggage storage, TAB Bistro breakfast discount) that OTA bookings do not include.',
+    q: 'Is it more affordable to book a hostel direct or on Hostelworld / Booking.com?',
+    a: 'Direct is more affordable. OTAs charge the property a 15–18% commission that is built into the displayed rate, plus a booking deposit. Booking direct at xtsy.one gives you the same bed at the base rate, direct support from the XTSY desk, and free extras (late checkout on request, luggage storage, TAB Bistro breakfast discount) that OTA bookings do not include.',
   },
   {
     q: 'Are there group, long-stay or student discounts?',

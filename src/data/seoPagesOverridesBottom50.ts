@@ -273,7 +273,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "question": "Why choose a dormitory over a hotel in Meghalaya?",
-        "answer": "A dorm bed is significantly cheaper than a private hotel room, foster a social community, and offer better local travel insights from fellow backpackers."
+        "answer": "A dorm bed is significantly more affordable than a private hotel room, foster a social community, and offer better local travel insights from fellow backpackers."
       },
       {
         "question": "Is there a curfew for hostels in Shillong?",
@@ -520,7 +520,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "metaDescription": "Discover the best budget stay in Shillong with XTSY. Low-cost hostels, dorms, and private rooms from ₹399. New Shillong Township location with Wi-Fi and hot water.",
     "faqs": [
       {
-        "question": "What is the cheapest way to stay in Shillong?",
+        "question": "What is the best budget-friendly way to stay in Shillong?",
         "answer": "The most cost-effective lodging in Shillong is staying at a hostel like XTSY, which provides shared dormitory beds in New Shillong Township, near NIFT and IIM Shillong. This reduces costs compared to luxury hotels or remote resorts."
       },
       {
@@ -556,7 +556,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "keywords": [
       "budget stay shillong",
       "shillong hostels",
-      "cheap hotels shillong",
+      "budget-friendly hotels shillong",
       "backpacker stays meghalaya",
       "shillong dormitory prices",
       "affordable lodging shillong"
@@ -882,7 +882,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "answer": "While Isabella offers a home-like environment, XTSY is specifically designed for the modern backpacker with high-speed Wi-Fi, premium bedding, and dedicated common areas for remote work."
       },
       {
-        "question": "Which hostel is cheaper, Isabella or XTSY?",
+        "question": "Which hostel is more affordable, Isabella or XTSY?",
         "answer": "Rates for both hostels are competitive; however, precise pricing depends on the season and room type. You can enquire for live rates via WhatsApp +91 8837317070."
       },
       {
@@ -1004,7 +1004,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "keywords": [
       "youth hostel shillong",
       "backpackers hostel meghalaya",
-      "cheap stay shillong",
+      "budget-friendly stay shillong",
       "student accommodation shillong",
       "dorms in shillong",
       "budget travel meghalaya",
@@ -1248,7 +1248,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "keywords": [
       "hostel in shillong",
       "shillong backpacker stay",
-      "cheap stay shillong",
+      "budget-friendly stay shillong",
       "laitumkhrah hostels",
       "police bazar accommodation",
       "meghalaya budget travel",
@@ -1318,7 +1318,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "dormitory in shillong",
       "meghalaya hostels",
       "shillong tourism rooms",
-      "cheap stay shillong"
+      "budget-friendly stay shillong"
     ]
   },
   {
@@ -1393,7 +1393,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "hostel in shillong",
       "shillong backpacker stay",
       "last minute shillong accommodation",
-      "cheap stay shillong",
+      "budget-friendly stay shillong",
       "meghalaya hostels",
       "shillong dormitories",
       "budget shillong travel",
@@ -1460,7 +1460,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "last minute accommodation shillong",
       "meghalaya budget travel",
       "shillong dormitory booking",
-      "cheap stays shillong"
+      "budget-friendly stays shillong"
     ],
     "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed at short notice at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
     "h1": "Hostel in Shillong Last Minute",
@@ -1547,7 +1547,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "hostel in shillong",
       "last minute stay shillong",
       "shillong backpacker hostels",
-      "cheap accommodation shillong",
+      "budget-friendly accommodation shillong",
       "shillong dormitory booking",
       "meghalaya budget travel",
       "police bazar hostels"
@@ -1673,15 +1673,15 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         ]
       }
     ],
-    "metaDescription": "Looking for a cheap hostel in Shillong? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
+    "metaDescription": "Looking for a budget-friendly hostel in Shillong? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
     "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed on a budget at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
-    "intro": "Looking for a cheap hostel in Shillong? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed on a budget, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
-    "h1": "Cheap Hostel in Shillong",
-    "title": "Cheap Hostel in Shillong — Dorm Beds from ₹399 | XTSY",
+    "intro": "Looking for a budget-friendly hostel in Shillong? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed on a budget, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
+    "h1": "Budget-Friendly Hostel in Shillong",
+    "title": "Budget-Friendly Hostel in Shillong — Dorm Beds from ₹399 | XTSY",
     "keywords": [
       "shillong hostels",
       "budget accommodation shillong",
-      "cheap stay meghalaya",
+      "budget-friendly stay meghalaya",
       "backpacker hostel shillong village",
       "shillong dormitories",
       "last minute shillong stay"
@@ -1868,7 +1868,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "budget stay cherrapunji",
       "last minute hostel booking",
       "solo travel meghalaya",
-      "cheap stay sohra",
+      "budget-friendly stay sohra",
       "xtsy travellers hostel"
     ],
     "intro": "Need a stay in Cherrapunji this weekend? XTSY does not run its own hostel in Cherrapunji — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Cherrapunji (Sohra) is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Sohra has small homestays and guesthouses rather than backpacker hostels, and mobile signal can be patchy, so confirm your stay before you set off.",
@@ -2013,14 +2013,14 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   },
   {
     "slug": "cheap-homestay-in-cherrapunji",
-    "title": "Cheap Homestay in Cherrapunji? Read This Before You Book",
-    "h1": "Cheap Homestay in Cherrapunji: An Honest Guide",
-    "metaDescription": "Cherrapunji homestays are basic and limited. For a cheaper, more reliable stay, book XTSY Travellers Hostel in Shillong (dorms from ₹399, 24/7 check-in) and day-trip to Sohra. WhatsApp +91 8837317070.",
-    "intro": "Hunting for a cheap homestay in Cherrapunji? Be prepared: Sohra's budget stays are a small set of basic, family-run homestays and guesthouses with limited rooms, variable hot water and Wi-Fi, and unreliable mobile network. There are no dedicated, vetted travellers' hostels in Cherrapunji itself. For most budget travellers the better value is XTSY Travellers Hostel in Shillong — dorms from ₹399, private rooms from ₹2,399, 24/7 check-in and instant WhatsApp confirmation — only 1.5–2 hours from Sohra. You sleep cheaper and more reliably, and a single day trip still covers Nohkalikai Falls, the caves and the living root bridges. Message us on WhatsApp +91 8837317070 for live rates.",
-    "quickAnswer": "Cherrapunji (Sohra) only has a few basic homestays — no vetted budget hostels — and same-day availability is unreliable. The cheapest dependable option is XTSY Travellers Hostel in Shillong (dorms from ₹399, 24/7 check-in), 1.5–2 hrs away, with day trips into Cherrapunji. WhatsApp +91 8837317070.",
+    "title": "Budget-Friendly Homestay in Cherrapunji? Read This Before You Book",
+    "h1": "Budget-Friendly Homestay in Cherrapunji: An Honest Guide",
+    "metaDescription": "Cherrapunji homestays are basic and limited. For a more affordable, more reliable stay, book XTSY Travellers Hostel in Shillong (dorms from ₹399, 24/7 check-in) and day-trip to Sohra. WhatsApp +91 8837317070.",
+    "intro": "Hunting for a budget-friendly homestay in Cherrapunji? Be prepared: Sohra's budget stays are a small set of basic, family-run homestays and guesthouses with limited rooms, variable hot water and Wi-Fi, and unreliable mobile network. There are no dedicated, vetted travellers' hostels in Cherrapunji itself. For most budget travellers the better value is XTSY Travellers Hostel in Shillong — dorms from ₹399, private rooms from ₹2,399, 24/7 check-in and instant WhatsApp confirmation — only 1.5–2 hours from Sohra. You sleep for less and more reliably, and a single day trip still covers Nohkalikai Falls, the caves and the living root bridges. Message us on WhatsApp +91 8837317070 for live rates.",
+    "quickAnswer": "Cherrapunji (Sohra) only has a few basic homestays — no vetted budget hostels — and same-day availability is unreliable. The best budget-friendly, dependable option is XTSY Travellers Hostel in Shillong (dorms from ₹399, 24/7 check-in), 1.5–2 hrs away, with day trips into Cherrapunji. WhatsApp +91 8837317070.",
     "sections": [
       {
-        "heading": "What a Cheap Cherrapunji Homestay Really Looks Like",
+        "heading": "What a Budget-Friendly Cherrapunji Homestay Really Looks Like",
         "content": "Budget homestays in Sohra can be charming, but they are basic and inconsistent. Manage your expectations before booking sight-unseen, especially at the lowest price points.",
         "listItems": [
           "Small, family-run properties with just a few rooms",
@@ -2031,7 +2031,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         ]
       },
       {
-        "heading": "The Cheaper, More Reliable Alternative: XTSY in Shillong",
+        "heading": "The More Affordable, More Reliable Alternative: XTSY in Shillong",
         "content": "For value-focused travellers, XTSY Travellers Hostel in Shillong beats most Sohra homestays on both price and reliability — and keeps Cherrapunji well within reach.",
         "listItems": [
           "Dorms from ₹399 — genuinely budget, with consistent quality",
@@ -2043,7 +2043,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "See Cherrapunji Without Staying There",
-        "content": "A homestay in Sohra is not required to experience it. From Shillong you can cover the headline sights on a single day trip and return to a comfortable, cheap bed.",
+        "content": "A homestay in Sohra is not required to experience it. From Shillong you can cover the headline sights on a single day trip and return to a comfortable, budget-friendly bed.",
         "listItems": [
           "Nohkalikai Falls — India's tallest plunge waterfall",
           "Mawsmai and Arwah caves — easy limestone cave walks",
@@ -2054,7 +2054,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "When an Overnight in Sohra Makes Sense",
-        "content": "If you plan a sunrise start for the Nongriat / Double Decker trek, one night near the trailhead can help. Plan it in advance rather than relying on a cheap walk-in.",
+        "content": "If you plan a sunrise start for the Nongriat / Double Decker trek, one night near the trailhead can help. Plan it in advance rather than relying on a budget-friendly walk-in.",
         "listItems": [
           "Book a vetted homestay before you lose mobile signal",
           "Carry cash — ATMs and UPI are unreliable in Sohra",
@@ -2065,27 +2065,27 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       },
       {
         "heading": "How to Book Your Budget Stay",
-        "content": "Skip the uncertainty of cheap walk-ins. Confirm a reliable budget bed in minutes and add Cherrapunji logistics in the same chat.",
+        "content": "Skip the uncertainty of budget-friendly walk-ins. Confirm a reliable budget bed in minutes and add Cherrapunji logistics in the same chat.",
         "listItems": [
           "WhatsApp +91 8837317070 with dates and group size",
           "Get live dorm and private-room rates instantly",
           "Receive a digital voucher for fast check-in",
           "Bundle a Cherrapunji day tour to save time and money",
-          "Travel cheaper and safer with a verified Shillong base"
+          "Travel more affordable and safer with a verified Shillong base"
         ]
       }
     ],
     "faqs": [
       {
-        "question": "Are there cheap homestays in Cherrapunji?",
+        "question": "Are there budget-friendly homestays in Cherrapunji?",
         "answer": "There are a few basic, family-run homestays in Cherrapunji (Sohra), but inventory is small, quality varies, and same-day availability is unreliable. There are no vetted budget travellers' hostels in Cherrapunji itself. For dependable budget value, XTSY Travellers Hostel in Shillong offers dorms from ₹399, 1.5–2 hours from Sohra."
       },
       {
-        "question": "What is the cheapest reliable stay near Cherrapunji?",
+        "question": "What is the best budget-friendly, reliable stay near Cherrapunji?",
         "answer": "XTSY Travellers Hostel in Shillong, with dorms from ₹399 and 24/7 check-in. It is more consistent than most Sohra homestays — clean dorms, hot showers, Wi-Fi and a travel desk — and lets you day-trip to Cherrapunji's waterfalls and root bridges."
       },
       {
-        "question": "Why not just stay cheap in Cherrapunji itself?",
+        "question": "Why not just stay budget-friendly in Cherrapunji itself?",
         "answer": "Sohra's budget homestays are basic and limited: bucket hot water, patchy Wi-Fi, weak mobile network and no guaranteed late check-in. For the same money or less, a Shillong hostel gives you reliable amenities and a social atmosphere, plus easy day trips into Cherrapunji."
       },
       {
@@ -2097,14 +2097,14 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "answer": "About 53 km — a scenic 1.5 to 2 hour drive. That proximity is why Shillong works so well as an affordable, reliable base for exploring Sohra."
       },
       {
-        "question": "How do I book a cheap stay quickly?",
+        "question": "How do I book a budget-friendly stay quickly?",
         "answer": "Message XTSY on WhatsApp at +91 8837317070 with your dates and group size. We confirm live budget rates at our Shillong hostel and can add a Cherrapunji day tour in the same conversation."
       }
     ],
     "keywords": [
-      "cheap homestay in cherrapunji",
+      "budget-friendly homestay in cherrapunji",
       "budget stay cherrapunji",
-      "cheap stay near cherrapunji",
+      "budget-friendly stay near cherrapunji",
       "where to stay in cherrapunji on a budget",
       "cherrapunji homestay alternative",
       "xtsy travellers hostel shillong",
@@ -2171,7 +2171,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "sohra budget accommodation",
       "last minute hostel meghalaya",
       "meghalaya travel guide",
-      "cheap stays sohra"
+      "budget-friendly stays sohra"
     ],
     "metaDescription": "Need a stay in Cherrapunji tomorrow? XTSY arranges partner stays, transfers and sightseeing in Cherrapunji, Meghalaya. XTSY's own hostel is in New Shillong Township. WhatsApp +91 88373 17070."
   },
@@ -2305,7 +2305,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   },
   {
     "slug": "cheap-hostel-in-cherrapunji",
-    "h1": "Cheap Hostels and Budget Stays in Cherrapunji",
+    "h1": "Budget-Friendly Hostels and Budget Stays in Cherrapunji",
     "sections": [
       {
         "heading": "How XTSY helps in Cherrapunji",
@@ -2336,7 +2336,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. Dorm beds, a female-only dorm, King Double rooms, Experience by XTSY (India's first stargaze glamp) and TAB Bistro are all on site."
       }
     ],
-    "metaDescription": "Looking for a cheap stay in Cherrapunji? XTSY arranges partner stays, transfers and sightseeing in Cherrapunji, Meghalaya. XTSY's own hostel is in New Shillong Township. WhatsApp +91 88373 17070.",
+    "metaDescription": "Looking for a budget-friendly stay in Cherrapunji? XTSY arranges partner stays, transfers and sightseeing in Cherrapunji, Meghalaya. XTSY's own hostel is in New Shillong Township. WhatsApp +91 88373 17070.",
     "faqs": [
       {
         "question": "Does XTSY have its own hostel in Cherrapunji?",
@@ -2355,9 +2355,9 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "answer": "Yes. The XTSY desk can arrange cabs, airport or station transfers and sightseeing through trusted partners."
       }
     ],
-    "title": "Cheap Hostel in Cherrapunji — Budget Stays via XTSY Partners",
+    "title": "Budget-Friendly Hostel in Cherrapunji — Budget Stays via XTSY Partners",
     "keywords": [
-      "cheap hostel in cherrapunji",
+      "budget-friendly hostel in cherrapunji",
       "sohra backpacker stay",
       "budget accommodation meghalaya",
       "cherrapunji dormitory booking",
@@ -2367,7 +2367,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "solo travel meghalaya"
     ],
     "quickAnswer": "XTSY's own property is only in New Shillong Township, Meghalaya. In Cherrapunji, XTSY arranges stays on a budget, transport and travel help through trusted travel partners — WhatsApp +91 88373 17070 with your dates for live options.",
-    "intro": "Looking for a cheap stay in Cherrapunji? XTSY does not run its own hostel in Cherrapunji — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Cherrapunji (Sohra) is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Sohra has small homestays and guesthouses rather than backpacker hostels, and mobile signal can be patchy, so confirm your stay before you set off."
+    "intro": "Looking for a budget-friendly stay in Cherrapunji? XTSY does not run its own hostel in Cherrapunji — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Cherrapunji (Sohra) is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Sohra has small homestays and guesthouses rather than backpacker hostels, and mobile signal can be patchy, so confirm your stay before you set off."
   },
   {
     "slug": "best-hostel-in-cherrapunji",
@@ -2599,7 +2599,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "budget accommodation guwahati",
       "solo travel guwahati",
       "northeast india hostels",
-      "cheap rooms guwahati",
+      "budget-friendly rooms guwahati",
       "paltan bazaar hostel"
     ],
     "sections": [
@@ -2800,7 +2800,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "hostel in guwahati",
       "last minute booking",
       "guwahati backpacker stay",
-      "cheap dorms guwahati village",
+      "budget-friendly dorms guwahati village",
       "paltan bazaar hostels",
       "guwahati transit accommodation"
     ],
@@ -2892,7 +2892,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   {
     "slug": "cheap-hostel-in-guwahati",
     "quickAnswer": "XTSY's own property is only in New Shillong Township, Meghalaya. In Guwahati, XTSY arranges stays on a budget, transport and travel help through trusted travel partners — WhatsApp +91 88373 17070 with your dates for live options.",
-    "title": "Cheap Hostel in Guwahati — Budget Stays via XTSY Partners",
+    "title": "Budget-Friendly Hostel in Guwahati — Budget Stays via XTSY Partners",
     "sections": [
       {
         "heading": "How XTSY helps in Guwahati",
@@ -2924,7 +2924,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       }
     ],
     "keywords": [
-      "cheap hostel guwahati",
+      "budget-friendly hostel guwahati",
       "guwahati backpacker stay",
       "budget accommodation guwahati",
       "hostels near guwahati railway station",
@@ -2949,9 +2949,9 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "answer": "Yes. The XTSY desk can arrange cabs, airport or station transfers and sightseeing through trusted partners."
       }
     ],
-    "intro": "Looking for a cheap stay in Guwahati? XTSY does not run its own hostel in Guwahati — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Guwahati is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Guwahati is the main gateway to the Northeast, with Lokpriya Gopinath Bordoloi International Airport and Guwahati railway station. Most travellers spend a night here before heading on to Meghalaya.",
-    "metaDescription": "Looking for a cheap stay in Guwahati? XTSY arranges partner stays, transfers and sightseeing in Guwahati, Assam. XTSY's own hostel is in New Shillong Township. WhatsApp +91 88373 17070.",
-    "h1": "Cheap Hostels and Budget Stays in Guwahati"
+    "intro": "Looking for a budget-friendly stay in Guwahati? XTSY does not run its own hostel in Guwahati — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Guwahati is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Guwahati is the main gateway to the Northeast, with Lokpriya Gopinath Bordoloi International Airport and Guwahati railway station. Most travellers spend a night here before heading on to Meghalaya.",
+    "metaDescription": "Looking for a budget-friendly stay in Guwahati? XTSY arranges partner stays, transfers and sightseeing in Guwahati, Assam. XTSY's own hostel is in New Shillong Township. WhatsApp +91 88373 17070.",
+    "h1": "Budget-Friendly Hostels and Budget Stays in Guwahati"
   },
   {
     "slug": "best-hostel-in-guwahati",
@@ -3146,7 +3146,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "last minute hostel gangtok",
       "mg marg hostels",
       "gangtok solo travel bed",
-      "cheap stay gangtok tonight",
+      "budget-friendly stay gangtok tonight",
       "sikkim travel marketplace"
     ],
     "quickAnswer": "XTSY's own property is only in New Shillong Township, Meghalaya. In Gangtok, XTSY arranges stays for today, transport and travel help through trusted travel partners — WhatsApp +91 88373 17070 with your dates for live options.",
@@ -3281,7 +3281,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "hostel near mg marg",
       "northeast india travel",
       "xtsy staying gangtok",
-      "cheap rooms sikkim"
+      "budget-friendly rooms sikkim"
     ],
     "quickAnswer": "XTSY's own property is only in New Shillong Township, Meghalaya. In Gangtok, XTSY arranges stays for tomorrow, transport and travel help through trusted travel partners — WhatsApp +91 88373 17070 with your dates for live options."
   },
@@ -3343,7 +3343,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "keywords": [
       "hostel in gangtok tonight",
       "gangtok backpacker stay",
-      "cheap dorms gangtok",
+      "budget-friendly dorms gangtok",
       "sikkim hostel booking",
       "last minute gangtok luxury hostel",
       "mg marg accommodation",
@@ -3381,7 +3381,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "last minute stay gangtok",
       "sikkim backpacker hostels",
       "mg marg accommodation",
-      "cheap dorms gangtok",
+      "budget-friendly dorms gangtok",
       "gangtok travel guide"
     ],
     "sections": [
@@ -3472,7 +3472,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "keywords": [
       "hostel in gangtok",
       "gangtok backpacker stay",
-      "cheap dorms gangtok",
+      "budget-friendly dorms gangtok",
       "sikkim solo travel",
       "last minute stay gangtok",
       "mg marg hostels",
@@ -3482,9 +3482,9 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
   },
   {
     "slug": "cheap-hostel-in-gangtok",
-    "title": "Cheap Hostel in Gangtok — Budget Stays via XTSY Partners",
+    "title": "Budget-Friendly Hostel in Gangtok — Budget Stays via XTSY Partners",
     "quickAnswer": "XTSY's own property is only in New Shillong Township, Meghalaya. In Gangtok, XTSY arranges stays on a budget, transport and travel help through trusted travel partners — WhatsApp +91 88373 17070 with your dates for live options.",
-    "h1": "Cheap Hostels and Budget Stays in Gangtok",
+    "h1": "Budget-Friendly Hostels and Budget Stays in Gangtok",
     "faqs": [
       {
         "question": "Does XTSY have its own hostel in Gangtok?",
@@ -3503,8 +3503,8 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
         "answer": "Yes. The XTSY desk can arrange cabs, airport or station transfers and sightseeing through trusted partners."
       }
     ],
-    "metaDescription": "Looking for a cheap stay in Gangtok? XTSY arranges partner stays, transfers and sightseeing in Gangtok, Sikkim. XTSY's own hostel is in New Shillong Township. WhatsApp +91 88373 17070.",
-    "intro": "Looking for a cheap stay in Gangtok? XTSY does not run its own hostel in Gangtok — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Gangtok is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Gangtok is reached by road from Bagdogra Airport or NJP railway station, or via Pakyong Airport. Some high-altitude areas such as Tsomgo Lake and Nathu La need permits arranged in advance.",
+    "metaDescription": "Looking for a budget-friendly stay in Gangtok? XTSY arranges partner stays, transfers and sightseeing in Gangtok, Sikkim. XTSY's own hostel is in New Shillong Township. WhatsApp +91 88373 17070.",
+    "intro": "Looking for a budget-friendly stay in Gangtok? XTSY does not run its own hostel in Gangtok — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Gangtok is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Gangtok is reached by road from Bagdogra Airport or NJP railway station, or via Pakyong Airport. Some high-altitude areas such as Tsomgo Lake and Nathu La need permits arranged in advance.",
     "sections": [
       {
         "heading": "How XTSY helps in Gangtok",
@@ -3538,7 +3538,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "keywords": [
       "gangtok hostel",
       "budget stay sikkim",
-      "cheap accommodation gangtok",
+      "budget-friendly accommodation gangtok",
       "backpacking sikkim guide",
       "gangtok dormitory price",
       "last minute hostel booking"
@@ -3602,7 +3602,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "budget accommodation gangtok",
       "solo travel sikkim",
       "mg marg hostels",
-      "cheap rooms gangtok"
+      "budget-friendly rooms gangtok"
     ],
     "intro": "Looking for a good hostel in Gangtok? XTSY does not run its own hostel in Gangtok — our only property is XTSY Travellers Hostel in New Shillong Township, Meghalaya. What we do in Gangtok is facilitate: the XTSY desk finds a stay through our trusted travel partners, confirms the rate with you on WhatsApp, and can add transport and sightseeing to the same booking. Gangtok is reached by road from Bagdogra Airport or NJP railway station, or via Pakyong Airport. Some high-altitude areas such as Tsomgo Lake and Nathu La need permits arranged in advance.",
     "title": "Best Hostel in Gangtok (2026) — Stays via XTSY Partners",
@@ -3670,7 +3670,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "hostels near gangtok airport",
       "pakyong airport accommodation",
       "gangtok backpacker hostels",
-      "cheap stay in sikkim",
+      "budget-friendly stay in sikkim",
       "sikkim travel packages",
       "gangtok transit hotels"
     ],
@@ -3772,7 +3772,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
       "nagaland backpacker stay",
       "kohima accommodation",
       "dzukou valley basecamp",
-      "cheap stays kohima",
+      "budget-friendly stays kohima",
       "northeast india travel"
     ],
     "sections": [

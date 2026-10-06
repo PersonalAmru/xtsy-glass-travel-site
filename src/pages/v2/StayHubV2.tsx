@@ -62,7 +62,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
             <p className="m-0 text-[16px] leading-relaxed">{c.quick}</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <Link to="/book" className="xt-btn flex h-12 items-center rounded-full bg-xt-crimson px-6 text-[15px] font-extrabold text-white hover:text-white">Check live availability</Link>
+            <Link to="/book" className="xt-btn flex h-12 items-center rounded-full bg-xt-crimson px-6 text-[15px] font-extrabold text-white hover:text-white">Book a stay</Link>
             <a href={waLink('Hi XTSY! I want to book a bed in Shillong. Dates: … Guests: …')} target="_blank" rel="noopener noreferrer" className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-ink px-6 text-[15px] font-extrabold text-xt-ink hover:text-xt-ink">Book on WhatsApp</a>
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
         <div className="flex flex-wrap gap-2">
           <button type="button" onClick={() => openTripChat('Plan 5 days in Meghalaya staying at XTSY')} className="xt-btn h-12 rounded-full bg-xt-crimson px-6 text-[15px] font-extrabold text-white">✦ Plan a trip with AI</button>
           <Link to="/tours" className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-paper px-6 text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">Tour packages</Link>
-          <Link to={variant === 'cheap' ? '/best-hostel-in-shillong' : '/cheap-hostels-shillong'} className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-paper/50 px-6 text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">{variant === 'cheap' ? 'Hostels in Shillong guide' : 'Cheapest beds in Shillong'}</Link>
+          <Link to={variant === 'cheap' ? '/best-hostel-in-shillong' : '/cheap-hostels-shillong'} className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-paper/50 px-6 text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">{variant === 'cheap' ? 'Hostels in Shillong guide' : 'Best budget-friendly beds in Shillong'}</Link>
           <Link to="/female-travellers" className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-paper/50 px-6 text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">Women-safe stays</Link>
         </div>
       </section>

@@ -260,7 +260,7 @@ export const KEYWORD_CANONICAL_MAP: Record<string, string> = {
   'hostel in shillong': 'best-hostel-in-shillong',
   'best hostel shillong': 'best-hostel-in-shillong',
   'backpacker hostel shillong': 'backpacker-hostel-shillong',
-  'cheap hostel shillong': 'cheap-hostels-shillong',
+  'budget-friendly hostel shillong': 'cheap-hostels-shillong',
   'budget stay shillong': 'budget-stay-shillong',
   'dormitory shillong': 'shillong-dormitory',
   'hostels in meghalaya': 'hostels-in-meghalaya',

@@ -62,7 +62,7 @@ export default function ContactV2() {
           },
         })}</script>
       </Helmet>
-      <PageShell cta={false}>
+      <PageShell bar={false} cta={false}>
         <section className={`${PAD} relative overflow-hidden bg-xt-cream py-16 lg:py-24`}>
           <SpinningMark className="-right-24 -top-24 h-[520px] w-[520px] opacity-[0.06]" />
           <div className="relative flex max-w-3xl flex-col gap-5">

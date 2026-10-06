@@ -131,19 +131,19 @@ const hostelPages: SEOPageData[] = [
     ['backpacker hostel shillong', 'hostel in shillong', 'shillong backpacker hostel', 'best hostel shillong for backpackers']
   ),
 
-  hostel('cheap-hostel-shillong', 'Cheap Hostel in Shillong — Beds from ₹399 | XTSY', 'Cheapest hostel in Shillong with beds from ₹399/night. Clean dorms, free WiFi, hot showers. Best value budget accommodation in Meghalaya.', 'Cheapest Hostel in Shillong — Starting ₹399', 'Find the most affordable hostel stay in Shillong at XTSY Travellers Hostel. With dormitory beds starting at just ₹399 per night, enjoy clean rooms, hot showers, free WiFi, and a social atmosphere without breaking the bank.',
+  hostel('cheap-hostel-shillong', 'Budget-Friendly Hostel in Shillong — Beds from ₹399 | XTSY', 'Best budget-friendly hostel in Shillong with beds from ₹399/night. Clean dorms, free WiFi, hot showers. Best value budget accommodation in Meghalaya.', 'Best Budget-Friendly Hostel in Shillong — Starting ₹399', 'Find the most affordable hostel stay in Shillong at XTSY Travellers Hostel. With dormitory beds starting at just ₹399 per night, enjoy clean rooms, hot showers, free WiFi, and a social atmosphere without breaking the bank.',
     [
       { heading: 'Budget-Friendly Pricing', content: 'At XTSY, we believe great experiences shouldn\'t cost a fortune. Our competitive pricing makes Shillong accessible to every traveler.', listItems: ['Dorm beds from ₹399/night — the lowest in Shillong', 'No hidden charges — WiFi, hot water included', 'Weekly & monthly discounts available', 'Group booking discounts for 4+ guests'] },
       { heading: 'What You Get for ₹399', content: 'Every bed at XTSY comes with a comfortable mattress, clean linen, personal locker, reading light, charging point, and access to all common facilities including kitchen, lounge, and outdoor areas.' },
       { heading: 'Compare Shillong Budget Stays', content: 'XTSY consistently offers the best value compared to other budget options in Shillong. While most hotels charge ₹1,500+ for basic rooms, our dorm beds provide a superior social experience at a fraction of the cost.' },
     ],
     [
-      { question: 'What is the cheapest room at XTSY?', answer: 'Our 8-bed mixed dormitory starts at ₹399 per night per bed, making it the most affordable option in Shillong.' },
+      { question: 'What is the best budget-friendly room at XTSY?', answer: 'Our 8-bed mixed dormitory starts at ₹399 per night per bed, making it the most affordable option in Shillong.' },
       { question: 'Are there any hidden charges?', answer: 'No hidden charges. WiFi, hot water, common kitchen access, and locker usage are all included in the room price.' },
       { question: 'Can I get a discount for longer stays?', answer: 'Yes! We offer weekly and monthly discounts. Contact us on WhatsApp for special long-stay rates.' },
     ],
     ['backpacker-hostel-shillong', 'budget-stay-shillong', 'shillong-dormitory'],
-    ['cheap hostel shillong', 'cheapest hostel in shillong', 'affordable hostel shillong', 'low budget stay shillong']
+    ['budget-friendly hostel shillong', 'best budget-friendly hostel in shillong', 'affordable hostel shillong', 'low budget stay shillong']
   ),
 
   hostel('shillong-dormitory', 'Dormitory in Shillong — Mixed & Female Dorms | XTSY', 'Book dormitory beds in Shillong from ₹399. Mixed & female-only dorms with lockers, hot showers, free WiFi. Best rated dorm stay in Meghalaya.', 'Dormitory Accommodation in Shillong', 'XTSY offers the best dormitory experience in Shillong with both mixed and female-only options. Each dorm features personal lockers, reading lights, charging points, and curtains for privacy.',
@@ -168,13 +168,13 @@ const hostelPages: SEOPageData[] = [
       { heading: 'Location — New Shillong Township', content: 'XTSY sits on Mawdiangdiang Road in New Shillong Township, near NIFT and IIM Shillong — a cab ride from Police Bazaar and a comfortable base for day trips to Cherrapunji, Dawki, and Mawlynnong. For a budget stay you get genuinely convenient access without paying a city-centre premium.' },
     ],
     [
-      { question: 'What is the cheapest way to stay in Shillong?', answer: 'XTSY dorm beds at ₹399/night are the most affordable quality accommodation in Shillong. Combined with self-cooking in our kitchen, you can manage a Shillong trip on ₹1,500/day.' },
+      { question: 'What is the best budget-friendly way to stay in Shillong?', answer: 'XTSY dorm beds at ₹399/night are the most affordable quality accommodation in Shillong. Combined with self-cooking in our kitchen, you can manage a Shillong trip on ₹1,500/day.' },
       { question: 'Are there good budget hotels in Shillong?', answer: 'Budget hotels in Shillong typically start around ₹1,500–2,500. XTSY\'s private rooms from ₹2,399 offer comparable comfort plus free WiFi, hot water, an in-house restaurant, and a tour desk — making them one of the best-value budget stays in the city.' },
       { question: 'Is Shillong expensive for tourists?', answer: 'Shillong is quite affordable compared to other tourist destinations. Budget travelers can explore comfortably on ₹1,500-2,500 per day including stay, food, and local transport.' },
       { question: 'Do budget stays in Shillong include WiFi and hot water?', answer: 'At XTSY, yes — free high-speed WiFi and hot water are included in every room and dorm at no extra cost. Always confirm with smaller budget hotels, as some charge extra for these.' },
     ],
     ['cheap-hostel-shillong', 'backpacker-hostel-shillong', 'shillong-dormitory', 'hotels-in-shillong', 'hostel-near-police-bazar-shillong'],
-    ['budget stay shillong', 'budget hotels in shillong', 'budget hotel shillong', 'affordable accommodation shillong', 'cheap stay shillong']
+    ['budget stay shillong', 'budget hotels in shillong', 'budget hotel shillong', 'affordable accommodation shillong', 'budget-friendly stay shillong']
   ),
 
   hostel('hostel-near-police-bazar-shillong', 'Hostel Near Police Bazar Shillong | XTSY', 'Looking near Police Bazar? XTSY is in New Shillong Township, a cab ride from the city centre. Dorms from ₹399, private rooms from ₹2,399.', 'Hostel Near Police Bazar, Shillong', 'Looking for a hostel near Police Bazar in Shillong? XTSY Travellers Hostel is not in Police Bazaar — it is on Mawdiangdiang Road in New Shillong Township, near NIFT and IIM Shillong. Police Bazaar is a cab ride away, and the XTSY desk can book one.',
@@ -271,7 +271,7 @@ const hotelPages: SEOPageData[] = [
       { question: 'How do XTSY rooms compare to budget hotels?', answer: 'Our private rooms offer hotel-quality beds, attached bathrooms, and modern amenities at 40-50% lower prices than comparable hotels in Shillong.' },
     ],
     ['backpacker-hostel-shillong', 'budget-stay-shillong'],
-    ['budget hotel shillong', 'cheap hotel shillong', 'affordable hotel shillong', 'hotel under 1000 shillong']
+    ['budget hotel shillong', 'budget-friendly hotel shillong', 'affordable hotel shillong', 'hotel under 1000 shillong']
   ),
 
   hotel('hotel-near-neigrihms-shillong', 'Hotel Near NEIGRIHMS Shillong — XTSY Hostel', 'Affordable hotel near NEIGRIHMS Hospital Shillong. Private rooms from ₹2,399. Clean, safe & comfortable. Near the NEIGRIHMS campus.', 'Hotel Near NEIGRIHMS Hospital, Shillong', 'Need accommodation near NEIGRIHMS Hospital in Shillong? XTSY Travellers Hostel is located in New Shillong Township, close to the NEIGRIHMS campus. Ideal for patients\' families and visitors.',
@@ -303,10 +303,10 @@ const hotelPages: SEOPageData[] = [
       { heading: 'Affordable Lodging Options', content: 'Budget-friendly stays near NEIGRIHMS:', listItems: ['Dorm beds from ₹399/night', 'Private rooms from ₹2,399/night', 'Weekly discounts available', 'Meal packages at TAB Bistro'] },
     ],
     [
-      { question: 'Is there a cheaper option than hotels near NEIGRIHMS?', answer: 'Yes! XTSY dorm beds start at ₹399/night and private rooms at ₹2,399 — significantly cheaper than most hotels in the area.' },
+      { question: 'Is there a more affordable option than hotels near NEIGRIHMS?', answer: 'Yes! XTSY dorm beds start at ₹399/night and private rooms at ₹2,399 — significantly more affordable than most hotels in the area.' },
     ],
     ['hotel-near-neigrihms-shillong', 'guest-house-neigrihms-shillong'],
-    ['lodge near neigrihms shillong', 'lodge neigrihms', 'cheap lodge shillong']
+    ['lodge near neigrihms shillong', 'lodge neigrihms', 'budget-friendly lodge shillong']
   ),
 
   hotel('homestay-neigrihms-shillong', 'Homestay Near NEIGRIHMS Shillong | XTSY', 'Cozy homestay-style accommodation near NEIGRIHMS Shillong. Home-cooked meals, family environment. Weekly & monthly rates available.', 'Homestay Near NEIGRIHMS Hospital, Shillong', 'XTSY offers a homestay-like experience near NEIGRIHMS Hospital with home-cooked meals, a warm family environment, and rates that won\'t strain your budget during a stressful time.',
@@ -646,7 +646,7 @@ const guidePages: SEOPageData[] = [
   guide('meghalaya-backpacking-guide', 'Meghalaya Backpacking Guide 2026 — Budget Tips & Routes', 'Complete backpacking guide to Meghalaya. Budget tips, routes, hostels, local transport. Explore Meghalaya on ₹1,500/day. Backpacker tested.', 'Meghalaya Backpacking Guide — Budget Travel', 'Meghalaya is emerging as one of India\'s top backpacking destinations. This guide covers everything you need to know about budget travel in Meghalaya — from ₹399 hostel beds to shared transport hacks and free attractions.',
     [
       { heading: 'Daily Budget Breakdown', content: 'Meghalaya on a budget:', listItems: ['Hostel dorm bed: ₹399–599/night', 'Food (local restaurants): ₹300-500/day', 'Local transport (shared): ₹200-400/day', 'Entry fees: ₹50-200/attraction', 'Total: ₹1,200-1,800/day'] },
-      { heading: 'Budget Travel Tips', content: 'Save money while exploring:', listItems: ['Stay at XTSY — cheapest quality hostel in Shillong', 'Use shared Sumo/taxi instead of private cars', 'Cook at the hostel common kitchen', 'Join group trips organized by XTSY', 'Visit free attractions: Laitlum, Sacred Forest, viewpoints', 'Travel in shoulder season (March-May) for lower prices'] },
+      { heading: 'Budget Travel Tips', content: 'Save money while exploring:', listItems: ['Stay at XTSY — best budget-friendly quality hostel in Shillong', 'Use shared Sumo/taxi instead of private cars', 'Cook at the hostel common kitchen', 'Join group trips organized by XTSY', 'Visit free attractions: Laitlum, Sacred Forest, viewpoints', 'Travel in shoulder season (March-May) for lower prices'] },
       { heading: 'Best Backpacking Routes', content: 'Tested routes for backpackers:', listItems: ['Route 1: Guwahati → Shillong → Cherrapunji → Dawki (5 days)', 'Route 2: Shillong → Jowai → Krang Suri → Dawki (4 days)', 'Route 3: Shillong → Nongriat Trek → Shillong (3 days)', 'Route 4: Full Circuit including Tura & Garo Hills (10 days)'] },
     ],
     [
@@ -705,7 +705,7 @@ const guidePages: SEOPageData[] = [
     ],
     [
       { question: 'Is there a direct flight to Shillong?', answer: 'Shillong\'s Umroi Airport has limited flights. Most travelers fly to Guwahati and drive 2.5 hours to Shillong.' },
-      { question: 'What is the cheapest way to reach Shillong?', answer: 'Fly to Guwahati, then take a shared Sumo/taxi for ₹500. Total journey time from Guwahati airport to Shillong is about 3 hours.' },
+      { question: 'What is the best budget-friendly way to reach Shillong?', answer: 'Fly to Guwahati, then take a shared Sumo/taxi for ₹500. Total journey time from Guwahati airport to Shillong is about 3 hours.' },
     ],
     ['places-to-stay-shillong', 'backpacker-hostel-shillong'],
     ['how to reach shillong', 'shillong travel', 'guwahati to shillong', 'flights to shillong']
@@ -749,7 +749,7 @@ const guidePages: SEOPageData[] = [
     ['dawki river guide', 'umngot river travel', 'dawki boating', 'crystal clear river india']
   ),
 
-  guide('budget-trip-meghalaya', 'Budget Trip to Meghalaya — Complete Guide Under ₹10K', 'How to plan a budget trip to Meghalaya under ₹10,000. Cheap transport, hostels, free attractions. Complete 5-day budget itinerary.', 'Budget Trip to Meghalaya — Under ₹10,000', 'Yes, you can explore Meghalaya on a tight budget! This guide shows you how to plan an amazing 5-day trip for under ₹10,000 including stay, food, transport, and attractions.',
+  guide('budget-trip-meghalaya', 'Budget Trip to Meghalaya — Complete Guide Under ₹10K', 'How to plan a budget trip to Meghalaya under ₹10,000. Budget-friendly transport, hostels, free attractions. Complete 5-day budget itinerary.', 'Budget Trip to Meghalaya — Under ₹10,000', 'Yes, you can explore Meghalaya on a tight budget! This guide shows you how to plan an amazing 5-day trip for under ₹10,000 including stay, food, transport, and attractions.',
     [
       { heading: '5-Day Budget Itinerary (Under ₹10K)', content: 'Day-by-day budget plan:', listItems: ['Day 1: Guwahati → Shillong (shared Sumo ₹500) → XTSY dorm (₹399)', 'Day 2: Shillong Peak, Elephant Falls, Laitlum (free entry) — Transport ₹400', 'Day 3: Cherrapunji day trip (shared Sumo ₹600) — Entry ₹200', 'Day 4: Dawki + Mawlynnong (shared transport ₹700)', 'Day 5: Local markets → Departure (shared Sumo ₹500)'] },
       { heading: 'Budget Breakdown', content: 'Total 5-day cost:', listItems: ['Accommodation (4 nights XTSY dorm): ₹2,000', 'Transport (shared): ₹2,700', 'Food (budget): ₹2,000', 'Entry fees & activities: ₹1,000', 'Miscellaneous: ₹800', 'TOTAL: ~₹8,500'] },
@@ -758,7 +758,7 @@ const guidePages: SEOPageData[] = [
       { question: 'Can I visit Meghalaya in ₹10,000?', answer: 'Absolutely! With hostel dorms at ₹399, shared transport, and budget eating, a 5-day Meghalaya trip costs under ₹10,000.' },
     ],
     ['meghalaya-backpacking-guide', 'meghalaya-trip-cost', 'cheap-hostel-shillong'],
-    ['budget trip meghalaya', 'cheap meghalaya tour', 'meghalaya in budget', 'meghalaya trip under 10000']
+    ['budget trip meghalaya', 'budget-friendly meghalaya tour', 'meghalaya in budget', 'meghalaya trip under 10000']
   ),
 
   guide('meghalaya-itinerary-planning', 'Meghalaya Itinerary Planning — 3 to 10 Day Plans', 'Plan your perfect Meghalaya itinerary. Day-by-day plans for 3, 5, 7, 10-day trips. Routes, timings, and booking tips. Updated for 2026.', 'Meghalaya Itinerary Planning Guide — 3 to 10 Days', 'Not sure how to plan your Meghalaya trip? This guide provides ready-made itineraries for 3-day weekends to 10-day adventures, with flexible options for every travel style.',

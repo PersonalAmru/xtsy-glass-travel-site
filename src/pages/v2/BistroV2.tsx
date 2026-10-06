@@ -39,7 +39,7 @@ export default function BistroV2() {
         <script type="application/ld+json">{JSON.stringify(restaurantSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(buildMenuSchema())}</script>
       </Helmet>
-      <PageShell cta={{ title: 'Hungry? We’re open till 10:30.', sub: 'Reserve a table or order on WhatsApp. Staying at XTSY? Breakfast is a short walk away.', bookTo: '/book', bookLabel: 'Stay at XTSY' }}>
+      <PageShell bar={{ label: 'Reserve a table', to: reserve, note: 'TAB Bistro by XTSY, New Shillong Township' }} cta={{ title: 'Hungry? We’re open till 10:30.', sub: 'Reserve a table or order on WhatsApp. Staying at XTSY? Breakfast is a short walk away.', bookTo: '/book', bookLabel: 'Stay at XTSY' }}>
         <PageHero
           bg="#2F4A3F"
           fg="#EAF0EA"

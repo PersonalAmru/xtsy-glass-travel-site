@@ -133,7 +133,7 @@ export default function MeghalayaForInternationalTourists() {
             <Card className="p-5">
               <Car className="w-5 h-5 text-primary mb-2" />
               <h3 className="font-semibold mb-1">Bus</h3>
-              <p className="text-sm text-muted-foreground">Rs 250–550 from Guwahati ISBT · 4–5 hrs · cheapest option.</p>
+              <p className="text-sm text-muted-foreground">Rs 250–550 from Guwahati ISBT · 4–5 hrs · best budget-friendly option.</p>
             </Card>
           </div>
           <p className="text-sm text-muted-foreground mt-3">

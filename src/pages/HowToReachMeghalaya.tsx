@@ -116,7 +116,7 @@ export default function HowToReachMeghalaya() {
                 <tr><td className="p-3">Shared Sumo / Innova</td><td className="p-3">Rs 400–600 / seat</td><td className="p-3">3–3.5 hr</td><td className="p-3">Solo budget travellers</td></tr>
                 <tr><td className="p-3">Private cab (sedan)</td><td className="p-3">Rs 2,800–3,200</td><td className="p-3">3 hr</td><td className="p-3">Couples, late arrivals</td></tr>
                 <tr><td className="p-3">Private cab (SUV)</td><td className="p-3">Rs 3,600–4,200</td><td className="p-3">3 hr</td><td className="p-3">Groups of 3–5 with luggage</td></tr>
-                <tr><td className="p-3">Bus (MTC / private)</td><td className="p-3">Rs 250–550</td><td className="p-3">4–5 hr</td><td className="p-3">Cheapest, daytime only</td></tr>
+                <tr><td className="p-3">Bus (MTC / private)</td><td className="p-3">Rs 250–550</td><td className="p-3">4–5 hr</td><td className="p-3">Best budget-friendly, daytime only</td></tr>
                 <tr><td className="p-3">Helicopter (MTC service)</td><td className="p-3">Rs 1,500–2,000</td><td className="p-3">~25 min</td><td className="p-3">Weather-dependent, limited seats</td></tr>
               </tbody>
             </table>

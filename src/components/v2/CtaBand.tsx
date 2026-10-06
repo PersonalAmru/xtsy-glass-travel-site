@@ -5,7 +5,7 @@ export default function CtaBand({
   title = 'Your bed in the pines is waiting.',
   sub = 'Book direct and save 20–30% vs OTAs. Our team answers on WhatsApp, 24/7.',
   bookTo = '/book',
-  bookLabel = 'Book direct',
+  bookLabel = 'Book a stay',
 }: {
   title?: string;
   sub?: string;

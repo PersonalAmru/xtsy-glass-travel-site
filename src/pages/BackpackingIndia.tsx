@@ -53,11 +53,11 @@ const budget = [
 
 const tips = [
   { icon: Wallet, title: 'Realistic daily budget', text: '₹1,200–₹1,800 a day covers a dorm bed, three meals, local transport and one paid activity. ₹2,500+ if you take private cabs.' },
-  { icon: Sun, title: 'Best months', text: 'October–April for most of India. For Meghalaya, October–May is peak and June–September monsoon is the greenest, cheapest and most dramatic.' },
+  { icon: Sun, title: 'Best months', text: 'October–April for most of India. For Meghalaya, October–May is peak and June–September monsoon is the greenest, best budget-friendly and most dramatic.' },
   { icon: Train, title: 'Book trains early', text: 'IRCTC opens 60 days out. Sleeper class is the backpacker default; 3AC if you want to sleep properly on long hauls.' },
   { icon: Shield, title: 'Solo & female safety', text: 'Stick to verified hostels with lockers, CCTV and female-only dorms. Meghalaya is matrilineal and among the safest states in India for solo women.' },
-  { icon: Compass, title: 'Go east, not just north', text: 'Everyone does Goa–Rajasthan–Rishikesh. The Northeast is cheaper, emptier and the single best value region left in India.' },
-  { icon: MapPin, title: 'Base and day-trip', text: 'Instead of a new bed every night, base in one hostel for 4–6 days and day-trip out. Cheaper, less exhausting, and unlocks long-stay discounts.' },
+  { icon: Compass, title: 'Go east, not just north', text: 'Everyone does Goa–Rajasthan–Rishikesh. The Northeast is more affordable, emptier and the single best value region left in India.' },
+  { icon: MapPin, title: 'Base and day-trip', text: 'Instead of a new bed every night, base in one hostel for 4–6 days and day-trip out. More affordable, less exhausting, and unlocks long-stay discounts.' },
 ];
 
 const BackpackingIndia = memo(() => {
@@ -191,7 +191,7 @@ const BackpackingIndia = memo(() => {
               The 30-Day Backpacking India Itinerary
             </h2>
             <p className="mt-3 text-center text-sm text-muted-foreground max-w-2xl mx-auto">
-              Built around slow bases and cheap overland hops rather than a new city every night. Cut the first
+              Built around slow bases and budget-friendly overland hops rather than a new city every night. Cut the first
               half if you are short on time and fly straight into Guwahati for the Northeast leg.
             </p>
             <ol className="mt-8 space-y-4">
@@ -278,7 +278,7 @@ const BackpackingIndia = memo(() => {
             </p>
             <div className="mt-8 grid sm:grid-cols-2 gap-4">
               {[
-                { name: '8-Bed Mixed Dorm', price: '₹399', note: 'Cheapest bed, best for long stays' },
+                { name: '8-Bed Mixed Dorm', price: '₹399', note: 'Best budget-friendly bed, best for long stays' },
                 { name: '6-Bed Mixed Dorm', price: '₹469', note: 'More space, most popular with backpackers' },
                 { name: 'Female-only Dorm', price: '₹550', note: 'Privacy curtains, keycard access' },
                 { name: 'Private Double Room', price: '₹2,500', note: 'For couples and rest days' },

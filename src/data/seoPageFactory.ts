@@ -145,7 +145,7 @@ const faqsForDestination = (destination: string): SEOFaq[] => {
 };
 
 const faqsForRoute = (from: string, to: string): SEOFaq[] => [
-  { question: `What is the cheapest way from ${slugToLabel(from)} to ${slugToLabel(to)}?`, answer: `The most cost-effective combo is a flight to Guwahati followed by a shared sumo (₹400–₹600/seat) from Paltan Bazaar to ${slugToLabel(to)}.` },
+  { question: `What is the best budget-friendly way from ${slugToLabel(from)} to ${slugToLabel(to)}?`, answer: `The most cost-effective combo is a flight to Guwahati followed by a shared sumo (₹400–₹600/seat) from Paltan Bazaar to ${slugToLabel(to)}.` },
   { question: `How long does the journey from ${slugToLabel(from)} to ${slugToLabel(to)} take?`, answer: `Total travel time is typically 5–8 hours: a 2–3 hour flight to Guwahati, then 3–4 hours by road to ${slugToLabel(to)}.` },
   { question: `Are there direct flights from ${slugToLabel(from)} to ${slugToLabel(to)}?`, answer: `Most travellers route via Guwahati (GAU). Direct flights are rare; we recommend booking your stay at XTSY first and we'll coordinate ground transport.` },
   { question: `Where should I stay on arrival in ${slugToLabel(to)}?`, answer: `XTSY Travellers Hostel offers 24/7 check-in with dorms from ₹399 and private rooms from ₹2,399. Book on WhatsApp.` },
@@ -163,7 +163,7 @@ const faqsForInstitution = (instSlug: string, instName: string, type: 'medical' 
 
 const faqsForLastMinute = (city: string): SEOFaq[] => [
   { question: `Can I book a stay in ${slugToLabel(city)} for tonight?`, answer: `Yes — XTSY accepts same-day bookings via WhatsApp at +91 88373 17070. Subject to availability.` },
-  { question: `What's the cheapest last-minute stay in ${slugToLabel(city)}?`, answer: `Dorm beds at XTSY start at ₹399/night including taxes. Private rooms from ₹2,399.` },
+  { question: `What's the best budget-friendly last-minute stay in ${slugToLabel(city)}?`, answer: `Dorm beds at XTSY start at ₹399/night including taxes. Private rooms from ₹2,399.` },
   { question: `Do you have 24/7 check-in?`, answer: `Yes — our Shillong reception is staffed 24/7 for late arrivals.` },
   { question: `Is breakfast included?`, answer: `Breakfast can be added on at TAB Bistro — message us for the menu and rates. Guests rate the food highly: "food was great, staff were very polite".` },
   { question: `Is a last-minute dorm at XTSY any good?`, answer: `Very. Even guests who booked purely for budget end up surprised — spotless beds, friendly staff and a welcoming vibe earn repeat 5/5 ratings across Goibibo, MakeMyTrip and Agoda. "Really amazing and affordable place to stay near Shillong."` },
@@ -591,7 +591,7 @@ const workationFaqs = (scope: string, intentLabel: string): SEOFaq[] => [
   { question: `What are the monthly workation rates in ${scope}?`, answer: `Long-stay rates are billed weekly or monthly with no hidden fees and drop the longer you stay. Share your dates on WhatsApp ${WA} for live monthly pricing.` },
   { question: `What is the minimum stay for a ${intentLabel} in ${scope}?`, answer: `Workation stays start from 7 nights, with discounted weekly and monthly rates for stays of a month or more. Flexible check-in and check-out on request.` },
   { question: `Is there a dedicated workspace or quiet zone?`, answer: `Yes — every workation guest gets an ergonomic desk, daylight lamp and access to a quiet zone with no-call hours (10am–5pm) for focused work.` },
-  { question: `What is the best time for a workation in ${scope}?`, answer: `October to April is ideal — clear skies, cool days and great weekend exploring. Monsoon (Jun–Sep) is greener and cheaper, with reliable indoor work setups.` },
+  { question: `What is the best time for a workation in ${scope}?`, answer: `October to April is ideal — clear skies, cool days and great weekend exploring. Monsoon (Jun–Sep) is greener and more affordable, with reliable indoor work setups.` },
   { question: `Can digital nomads explore on weekends?`, answer: `Absolutely. ${scope} puts waterfalls, living root bridges, lakes and viewpoints within easy reach — XTSY can arrange weekend trips so you switch off fully between work weeks.` },
   { question: `How do I book a ${intentLabel} in ${scope}?`, answer: `Send your dates and expected length of stay on WhatsApp ${WA}. We reply with live availability and a weekly/monthly quote within an hour.` },
 ];

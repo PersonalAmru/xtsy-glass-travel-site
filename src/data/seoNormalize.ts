@@ -155,7 +155,7 @@ const extraFaqsFor = (cat: SEOPageCategory, topic: string): SEOFaq[] => {
   const low = topic.toLowerCase();
   if (STAY_CATS.includes(cat)) {
     return [
-      { question: `How do I get the best rate for ${low}?`, answer: `Book direct with XTSY on WhatsApp ${WA} — you skip OTA commission, get a verified rate and instant confirmation, often cheaper than listing sites.` },
+      { question: `How do I get the best rate for ${low}?`, answer: `Book direct with XTSY on WhatsApp ${WA} — you skip OTA commission, get a verified rate and instant confirmation, often more affordable than listing sites.` },
       { question: `Is 24/7 check-in available?`, answer: `Yes. Reception is staffed round the clock, so late-night and early-morning arrivals for ${low} are always covered.` },
     ];
   }

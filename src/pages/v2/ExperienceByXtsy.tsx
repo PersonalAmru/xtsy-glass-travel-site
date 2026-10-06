@@ -48,7 +48,7 @@ export default function ExperienceByXtsy() {
   return (
     <>
       <SEOHead title={XTSY270_DATA.seoTitle} description={XTSY270_DATA.seoDescription} keywords={(XTSY270_DATA as { seoKeywords?: string }).seoKeywords} canonicalUrl={XTSY270_DATA.canonicalUrl} ogType="product" />
-      <PageShell cta={{ title: 'One suite. One night. Yours?', sub: 'Reserve on WhatsApp. Book 48 hours ahead for decoration and concierge.' }}>
+      <PageShell bar={{ label: 'Book a stay', to: wa, note: `Experience by XTSY · ${inr(now)} a night, incl. taxes` }} cta={{ title: 'One suite. One night. Yours?', sub: 'Reserve on WhatsApp. Book 48 hours ahead for decoration and concierge.' }}>
         <PageHero
           bg="#1F2438"
           fg="#F4EFE8"
@@ -79,7 +79,7 @@ export default function ExperienceByXtsy() {
           }
           actions={
             <>
-              <Btn to={wa}>Reserve on WhatsApp</Btn>
+              <Btn to={wa}>Book a stay</Btn>
               <Btn to="#packages" kind="outline-light">See packages</Btn>
             </>
           }

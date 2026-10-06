@@ -1,7 +1,7 @@
 /**
  * Page-building blocks for inner pages of the 2026 redesign.
  */
-import { useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from '@/lib/router-compat';
 import { cn } from '@/lib/utils';
@@ -9,23 +9,63 @@ import SiteHeader from './SiteHeader';
 import SiteFooter from './SiteFooter';
 import CtaBand from './CtaBand';
 import { Eyebrow, Photo, XtsyMark, waLink } from './primitives';
+import { inr, lowestDormPrice } from './pricing';
 
 export const PAD = 'px-4 sm:px-8 lg:px-16';
+
+/** The main action for the sticky phone bar. Wording is kept to a small set across the site:
+ *  "Book a stay", "Get a quote", "Book this tour", "Reserve a table". */
+export type BarAction = { label: string; to?: string; onClick?: () => void; note?: string };
+
+/**
+ * Phone-only booking bar fixed to the bottom of the screen. It appears once the visitor has
+ * scrolled past the first screen (the hero already has its own buttons), so it never covers
+ * the hero or delays the first paint.
+ */
+export function MobileBookBar({ label, to, onClick, note }: BarAction) {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShow(window.scrollY > window.innerHeight * 0.6);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return (
+    <div
+      data-mobile-book-bar
+      className={cn(
+        'fixed inset-x-0 bottom-0 z-40 border-t border-xt-line bg-xt-paper/95 px-4 py-2.5 shadow-[0_-8px_24px_rgba(31,34,48,0.12)] backdrop-blur transition-[transform,visibility] duration-300 md:hidden',
+        // invisible (not just moved) while hidden, so the button is out of the tab order and screen readers
+        show ? 'visible translate-y-0' : 'pointer-events-none invisible translate-y-full',
+      )}
+    >
+      <div className="flex items-center gap-3">
+        {note && <p className="m-0 min-w-0 flex-1 text-[13px] font-bold leading-tight text-xt-ink">{note}</p>}
+        <Btn to={to} onClick={onClick} className={cn('h-12 px-6 text-[15px]', !note && 'flex-1')}>{label}</Btn>
+      </div>
+    </div>
+  );
+}
 
 /** Header + page + CTA band + footer, all inside the .xt theme. */
 export function PageShell({
   children,
   cta,
+  bar,
 }: {
   children: ReactNode;
   cta?: { title?: string; sub?: string; bookTo?: string; bookLabel?: string } | false;
+  /** Sticky phone booking bar; defaults to "Book a stay". Pass false to hide it. */
+  bar?: BarAction | false;
 }) {
+  const action = bar === false ? null : bar ?? { label: 'Book a stay', to: '/book', note: `Dorms from ${inr(lowestDormPrice())} a night, incl. taxes` };
   return (
-    <div className="xt min-h-screen">
+    <div className={cn('xt min-h-screen', action && 'pb-[72px] md:pb-0')}>
       <SiteHeader />
       <main>{children}</main>
       {cta !== false && <CtaBand {...(cta || {})} />}
       <SiteFooter />
+      {action && <MobileBookBar {...action} />}
     </div>
   );
 }
@@ -85,7 +125,10 @@ export function PageHero({
       <div className="relative flex flex-col gap-6">
         {eyebrow && <div className="xt-in xt-eyebrow text-[15px] sm:text-[18px]" style={eyebrowColor ? { color: eyebrowColor } : undefined}>{eyebrow}</div>}
         <h1 className={cn('xt-in xt-d1 xt-display m-0 leading-[0.86]', size === 'lg' ? 'text-[68px] sm:text-[104px] lg:text-[136px]' : 'text-[56px] sm:text-[84px] lg:text-[104px]')}>{title}</h1>
-        {text && <div className="xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm:text-[20px]" style={{ color: muted }}>{text}</div>}
+        {/* A plain-text intro is a real paragraph straight under the H1: the short answer search and AI engines quote. */}
+        {text && (typeof text === 'string'
+          ? <p data-quick-answer className="xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm:text-[20px]" style={{ color: muted }}>{text}</p>
+          : <div className="xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm:text-[20px]" style={{ color: muted }}>{text}</div>)}
         {actions && <div className="xt-in xt-d3 flex flex-wrap gap-3">{actions}</div>}
       </div>
       {media && <div className="xt-in xt-d2 relative">{media}</div>}

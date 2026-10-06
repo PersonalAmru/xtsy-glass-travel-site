@@ -68,7 +68,7 @@ const BlogBudgetTrip = () => (
         <PlanTripLinks
           source="budget-trip-to-meghalaya"
           heading="Travelling on a budget? Book beds from ₹399"
-          bookingAnchor="The cheapest comfortable base in Shillong — dorm beds from ₹399, private rooms from ₹2,399"
+          bookingAnchor="The best budget-friendly, comfortable base in Shillong — dorm beds from ₹399, private rooms from ₹2,399"
           slugs={['dawki-umngot-river', 'double-decker-living-root-bridge', 'nohkalikai-falls', 'mawlynnong-village']}
         />
       </div>
