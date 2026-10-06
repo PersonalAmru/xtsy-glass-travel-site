@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-CdkaWMdP.js",
-      "totalBytes": 607464,
-      "mappedBytes": 595896,
+      "bundleName": ".output/public/assets/index-D8ttW3Gx.js",
+      "totalBytes": 607673,
+      "mappedBytes": 596105,
       "unmappedBytes": 11479,
       "eolBytes": 89,
       "sourceMapCommentBytes": 0,
@@ -471,7 +471,7 @@
           "size": 437
         },
         "../../../src/data/panoramaPricing.ts": {
-          "size": 312
+          "size": 512
         },
         "../../../src/data/stayHub.ts": {
           "size": 7063
@@ -744,7 +744,7 @@
           "size": 115
         },
         "../../../node_modules/@tanstack/react-start/dist/plugin/default-entry/client.tsx": {
-          "size": 856
+          "size": 865
         },
         "[sourceMappingURL]": {
           "size": 0

@@ -27,7 +27,20 @@
   "status": 200,
   "title": "Hostels in Shillong 2026 — Dorms from ₹399 | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -49,7 +62,20 @@
   "status": 200,
   "title": "Experience by XTSY – India's First Stargaze Glamp | Shillong, Meghalaya",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -113,7 +139,20 @@
   "status": 200,
   "title": "Northeast India Tour Packages 2026 — Meghalaya, Arunachal & More | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -135,7 +174,20 @@
   "status": 200,
   "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should be disabled or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -157,7 +209,20 @@
   "status": 200,
   "title": "Bhutan Mindful Kingdom Journey — 6 Days from ₹84,999 | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should be disabled or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -179,7 +244,20 @@
   "status": 200,
   "title": "Motorbike & 4x4 Expeditions in Northeast India | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -267,7 +345,20 @@
   "status": 200,
   "title": "Nohkalikai Falls, Cherrapunji — India's Tallest Plunge Waterfall",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -280,9 +371,7 @@
    "bookAboveFold": true
   },
   "errors": [
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0",
-   "Fetch API cannot load https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -291,7 +380,20 @@
   "status": 200,
   "title": "Dormitory in Shillong — Mixed & Female Dorms | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -313,7 +415,20 @@
   "status": 200,
   "title": "Best Waterfalls in Meghalaya — Travel Guide 2026",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -357,7 +472,20 @@
   "status": 200,
   "title": "TAB Bistro Shillong — Restaurant, Café & Catering",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -379,7 +507,20 @@
   "status": 200,
   "title": "XTSY Gallery — Hostel, Glass Suite & Meghalaya Photos",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -401,7 +542,20 @@
   "status": 200,
   "title": "About XTSY — India's Biggest Hostel in Northeast India",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -445,7 +599,20 @@
   "status": 200,
   "title": "FAQ — XTSY Hostel Shillong | Experience by XTSY, Rooms, Tours",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -467,7 +634,20 @@
   "status": 200,
   "title": "Pet-Friendly Hostel in Shillong — Travel With Your Pet | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -489,7 +669,20 @@
   "status": 200,
   "title": "Safe Stays for Women — Female-Only Dorm in Shillong | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -511,7 +704,20 @@
   "status": 200,
   "title": "Work From Shillong — Remote Work & Digital Nomad Hostel | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -533,7 +739,20 @@
   "status": 200,
   "title": "Meghalaya Group Tours & Group Bookings — Groups of 6–60 | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -555,7 +774,20 @@
   "status": 200,
   "title": "XTSY Merch — Travel Gear & Work-from-Anywhere Kit | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -687,7 +919,20 @@
   "status": 200,
   "title": "All Shillong & Meghalaya Travel Guides A–Z | XTSY",
   "design": "v2",
-  "axe": [],
+  "axe": [
+   {
+    "id": "aria-hidden-focus",
+    "impact": "serious",
+    "help": "ARIA hidden element must not be focusable or contain focusable elements",
+    "count": 1,
+    "examples": [
+     ".inset-x-0"
+    ],
+    "detail": [
+     "Fix all of the following:\n  Focusable content should have tabindex=\"-1\" or be removed from the DOM"
+    ]
+   }
+  ],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
@@ -766,9 +1011,7 @@
    "bookAboveFold": true
   },
   "errors": [
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0",
-   "Fetch API cannot load https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -854,7 +1097,9 @@
    "bookAboveFold": true
   },
   "errors": [
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0",
+   "Fetch API cannot load https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F"
   ]
  },
  {
@@ -898,9 +1143,7 @@
    "bookAboveFold": true
   },
   "errors": [
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0",
-   "Fetch API cannot load https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -1142,7 +1385,9 @@
    "bookAboveFold": true
   },
   "errors": [
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0",
+   "Fetch API cannot load https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F"
   ]
  },
  {
@@ -1340,7 +1585,9 @@
    "bookAboveFold": true
   },
   "errors": [
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
+   "Connecting to 'https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F10.70.0",
+   "Fetch API cannot load https://o4510659453911040.ingest.us.sentry.io/api/4510659499982848/envelope/?sentry_version=7&sentry_key=de60ec1c757d6d0b6fd991d42d4b8e06&sentry_client=sentry.javascript.react%2F"
   ]
  },
  {

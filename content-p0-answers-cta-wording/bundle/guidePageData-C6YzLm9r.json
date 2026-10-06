@@ -1,10 +1,10 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/guidePageData-mrKnl00g.js",
-      "totalBytes": 882928,
+      "bundleName": ".output/public/assets/guidePageData-C6YzLm9r.js",
+      "totalBytes": 882929,
       "mappedBytes": 882565,
-      "unmappedBytes": 363,
+      "unmappedBytes": 364,
       "eolBytes": 0,
       "sourceMapCommentBytes": 0,
       "files": {
@@ -93,7 +93,7 @@
           "size": 0
         },
         "[unmapped]": {
-          "size": 363
+          "size": 364
         }
       }
     }
