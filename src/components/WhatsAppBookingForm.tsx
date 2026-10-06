@@ -21,7 +21,7 @@ import { useLocationConsent } from "@/hooks/useLocationConsent";
 import { useFormEngagement } from "@/hooks/useFormEngagement";
 import { useEnhancedAnalytics } from "@/hooks/useEnhancedAnalytics";
 import { XTSY270_DATA } from "@/data/rooms/xtsy270";
-import { PANORAMA_STAY_ONLY, quoteStay } from '@/data/panoramaPricing';
+import { PANORAMA_STAY_ONLY, currentRoomRate, quoteStay } from '@/data/panoramaPricing';
 
 // All Indian states and union territories
 const INDIAN_STATES = [
@@ -277,7 +277,7 @@ const WhatsAppBookingForm = ({ isOpen, onClose }: WhatsAppBookingFormProps) => {
         setSelectedRooms(prevRooms => prevRooms.filter(r => r.roomTypeId !== roomTypeId));
       } else {
         newSet.add(roomTypeId);
-        const basePrice = isXtsy270Room(roomType.name) ? XTSY270_DATA.price : roomType.base_price;
+        const basePrice = isXtsy270Room(roomType.name) ? XTSY270_DATA.price : currentRoomRate(roomType.id, roomType.base_price);
         const isDormitory = roomType.name.toLowerCase().includes('dormitory');
         const newRoom: SelectedRoom = {
           roomTypeId: roomType.id,
@@ -772,7 +772,7 @@ Looking forward to hearing from you. Thank you! 🌟`;
                                      </Label>
                                       <div className="flex items-center gap-2 mt-1">
                                         {(() => {
-                                          const displayPrice = isXtsy270Room(roomType.name) ? XTSY270_DATA.price : roomType.base_price;
+                                          const displayPrice = isXtsy270Room(roomType.name) ? XTSY270_DATA.price : currentRoomRate(roomType.id, roomType.base_price);
                                           return (
                                             <p className="text-xs font-semibold text-green-600">
                                               {formatPrice(displayPrice)}/night

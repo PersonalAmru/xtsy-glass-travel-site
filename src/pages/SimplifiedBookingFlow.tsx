@@ -43,7 +43,7 @@ import { getCanonicalRate, getBreakfastInclusion } from '@/utils/rateSanityCheck
 import { useOptionalAuth } from '@/hooks/useRequireAuth';
 import { openWhatsAppDirectly, generateBookingMessage, bookingPageSource } from '@/utils/privacyCompliantWhatsApp';
 import { trackBookingStart } from '@/utils/dataLayerService';
-import { quoteStay } from '@/data/panoramaPricing';
+import { currentRoomRate, quoteStay } from '@/data/panoramaPricing';
 
 type BookingStep = 'dates' | 'rooms' | 'summary' | 'details' | 'confirmation';
 
@@ -1058,7 +1058,7 @@ export default function SimplifiedBookingFlow() {
       if (catalogueError) throw catalogueError;
       const rooms = selectedRooms.map(({ room, quantity }) => {
         const entry = catalogue?.find(item => item.name === room.name && item.is_active);
-        if (!entry || Number(entry.base_price) !== room.discountedPrice) throw new Error(`${room.name} rate or availability changed. Refresh and try again.`);
+        if (!entry || currentRoomRate(String(entry.id), Number(entry.base_price)) !== room.discountedPrice) throw new Error(`${room.name} rate or availability changed. Refresh and try again.`);
         return { id: String(entry.id), quantity };
       });
       const guests = selectedRooms.reduce((sum, r) => sum + (r.room.kind === 'dorm' ? r.quantity : r.room.capacity * r.quantity), 0);
