@@ -1,3 +1,5 @@
+- [ ] Fix remaining uploaded-checklist P0 priorities: duplicate budget-hostel canonicals and GA4 loading error, preserving consent and validation.
+- [ ] Verify fixes and record external blockers for tour photos and manual Google re-indexing.
 - [ ] Align existing adventure tour, activity, expedition, and local city pages with approved search terms.
 - [ ] Improve on-site search discovery and relevant internal links without creating doorway pages.
 - [ ] Keep sitemap coverage accurate and validate metadata, links, desktop/mobile views, and type safety.
