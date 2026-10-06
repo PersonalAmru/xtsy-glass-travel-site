@@ -50,7 +50,7 @@ const competitorPages: SEOPageData[] = [
       { heading: 'Amenities Comparison', content: 'XTSY provides free WiFi, hot showers, common kitchen, luggage storage, and a social lounge — all included in the base price. Our in-house restaurant means you never need to go far for meals.' },
     ],
     [
-      { question: 'Which hostel is cheaper — Isabella or XTSY?', answer: 'XTSY dorms start at ₹399/night, making it one of the most affordable options in Shillong with premium amenities included.' },
+      { question: 'Which hostel is more affordable — Isabella or XTSY?', answer: 'XTSY dorms start at ₹399/night, making it one of the most affordable options in Shillong with premium amenities included.' },
     ],
     ['zostel-vs-xtsy-shillong', 'backpacker-hostel-shillong', 'cheap-hostels-shillong'],
     ['isabella hostel shillong', 'isabella vs xtsy', 'hostels in shillong comparison']
@@ -163,17 +163,17 @@ const transportPages: SEOPageData[] = [
   ),
 
   mkPage('cheap-car-rental-shillong', 'rentals', 'AutoRental',
-    'Cheap Car Rental Shillong — From ₹1,200/Day | XTSY', 'Cheapest car rental in Shillong from ₹1,200/day. Hatchbacks, sedans, SUVs. Self-drive & chauffeur options. No hidden charges.',
-    'Cheapest Car Rental in Shillong', 'Looking for affordable car rental in Shillong? XTSY offers the best rates starting at ₹1,200/day for hatchbacks with no hidden charges. Perfect for budget Meghalaya road trips.',
+    'Budget-Friendly Car Rental Shillong — From ₹1,200/Day | XTSY', 'Best budget-friendly car rental in Shillong from ₹1,200/day. Hatchbacks, sedans, SUVs. Self-drive & chauffeur options. No hidden charges.',
+    'Best Budget-Friendly Car Rental in Shillong', 'Looking for affordable car rental in Shillong? XTSY offers the best rates starting at ₹1,200/day for hatchbacks with no hidden charges. Perfect for budget Meghalaya road trips.',
     [
       { heading: 'Budget Car Options', content: 'Most affordable vehicles in our fleet:', listItems: ['Maruti Alto/WagonR — ₹1,200/day', 'Maruti Swift/Baleno — ₹1,500/day', 'Hyundai i20 — ₹1,500/day', 'All include insurance & basic roadside assistance', 'No hidden charges or extra km fees'] },
       { heading: 'Money-Saving Tips', content: 'Save more on your car rental:', listItems: ['Book 3+ days for multi-day discount', 'Share with fellow travelers at XTSY', 'Combine with hostel stay for combo deals', 'Self-drive saves ₹800-1,200/day vs chauffeur'] },
     ],
     [
-      { question: 'What\'s the cheapest car I can rent?', answer: 'Our Maruti Alto/WagonR at ₹1,200/day is the most affordable option, perfect for Shillong city exploration and short trips.' },
+      { question: 'What\'s the best budget-friendly car I can rent?', answer: 'Our Maruti Alto/WagonR at ₹1,200/day is the most affordable option, perfect for Shillong city exploration and short trips.' },
     ],
     ['car-rental-shillong', 'self-drive-car-shillong', 'bike-rental-shillong'],
-    ['cheap car rental shillong', 'cheapest rental cars shillong', 'cheap car hire shillong', 'budget car rental meghalaya']
+    ['budget-friendly car rental shillong', 'best budget-friendly rental cars shillong', 'budget-friendly car hire shillong', 'budget car rental meghalaya']
   ),
 
   mkPage('guwahati-to-shillong-transport', 'rentals', 'LocalBusiness',
@@ -490,7 +490,7 @@ const accommodationExpansionPages: SEOPageData[] = [
       { question: 'Is XTSY a guest house or hostel?', answer: 'XTSY is a modern travellers hostel with both dormitories and private rooms. Our private rooms offer guest house-level privacy with hostel-level pricing and social atmosphere.' },
     ],
     ['budget-stay-shillong', 'stays-in-shillong', 'places-to-stay-shillong'],
-    ['guest house shillong', 'guest house in shillong', 'cheap guest house shillong', 'shillong guesthouse']
+    ['guest house shillong', 'guest house in shillong', 'budget-friendly guest house shillong', 'shillong guesthouse']
   ),
 ];
 
@@ -645,7 +645,7 @@ const destinationComboPages: SEOPageData[] = [
       { heading: 'By Road', content: 'Driving to Shillong:', listItems: ['From Guwahati: 98 km via NH6 (2.5 hrs)', 'From Siliguri: 430 km (10-12 hrs)', 'From Kolkata: 1,100 km (22-24 hrs)', 'Self-drive cars available from XTSY'] },
     ],
     [
-      { question: 'What is the cheapest way to reach Shillong?', answer: 'Fly to Guwahati (cheapest flights from Delhi ~₹3,000) then take a shared Sumo taxi (₹500) to Shillong. Total travel time: about 5-6 hours.' },
+      { question: 'What is the best budget-friendly way to reach Shillong?', answer: 'Fly to Guwahati (best budget-friendly flights from Delhi ~₹3,000) then take a shared Sumo taxi (₹500) to Shillong. Total travel time: about 5-6 hours.' },
     ],
     ['guwahati-to-shillong-transport', 'self-drive-car-guwahati', 'car-rental-guwahati'],
     ['how to reach shillong', 'reach shillong from delhi', 'shillong transport', 'flights to shillong', 'train to shillong']
@@ -817,9 +817,9 @@ const foodPages: SEOPageData[] = [
     '12 Best Cafés in Shillong (2026): Prices & Picks', 'Our 2026 shortlist of 12 Shillong cafés — ML 05, Dylan\'s, Café Shillong, TAB Bistro. Coffee ₹100–220, timings, WiFi and the best spots for live music.',
     'Best Cafés in Shillong', 'Twelve cafés worth your morning in Shillong, checked for 2026 — what a flat white actually costs, which ones have plug points and WiFi that holds, and where live music happens on weekends. Most sit in Laitumkhrah, Police Bazar or Laban; TAB Bistro by XTSY is the forest-side option in New Shillong Township.',
     [
-      { heading: '12 Best Cafés in Shillong (2026)', content: 'Names, neighbourhood and what to order:', listItems: ['ML 05 Café, Laitumkhrah — specialty pour-over & espresso, ₹150–220', 'Dylan\'s Café, Laitumkhrah — Dylan memorabilia, live music Fri–Sun, ₹120–200', 'Café Shillong, Laitumkhrah — the original live-music room, book a table after 7 PM', 'Café Shillong Heritage, Laban — colonial bungalow setting, all-day breakfast', 'Cloud 9, Upper Shillong — valley views, best in clear October weather', 'TAB Bistro by XTSY, New Shillong Township — forest-side café, coffee ₹100–180, 9 AM–10:30 PM', 'Kavya Café, Police Bazar — cheap filter coffee and quick breakfasts under ₹150', 'Dejavu Café, Police Bazar — late-evening desserts and shakes', 'Lamplight Café, Laitumkhrah — quiet, plug points, good for laptop work', 'The Evening Club, Laban — sundowner coffee and Khasi snacks', 'Trattoria-adjacent bakeries, Police Bazar — jadoh-and-coffee style local breakfasts', 'Cafés along Ward\'s Lake Road — walk-in stops between sightseeing'] },
+      { heading: '12 Best Cafés in Shillong (2026)', content: 'Names, neighbourhood and what to order:', listItems: ['ML 05 Café, Laitumkhrah — specialty pour-over & espresso, ₹150–220', 'Dylan\'s Café, Laitumkhrah — Dylan memorabilia, live music Fri–Sun, ₹120–200', 'Café Shillong, Laitumkhrah — the original live-music room, book a table after 7 PM', 'Café Shillong Heritage, Laban — colonial bungalow setting, all-day breakfast', 'Cloud 9, Upper Shillong — valley views, best in clear October weather', 'TAB Bistro by XTSY, New Shillong Township — forest-side café, coffee ₹100–180, 9 AM–10:30 PM', 'Kavya Café, Police Bazar — budget-friendly filter coffee and quick breakfasts under ₹150', 'Dejavu Café, Police Bazar — late-evening desserts and shakes', 'Lamplight Café, Laitumkhrah — quiet, plug points, good for laptop work', 'The Evening Club, Laban — sundowner coffee and Khasi snacks', 'Trattoria-adjacent bakeries, Police Bazar — jadoh-and-coffee style local breakfasts', 'Cafés along Ward\'s Lake Road — walk-in stops between sightseeing'] },
       { heading: 'What It Costs & When to Go (2026)', content: 'Practical numbers before you set out:', listItems: ['Cappuccino/latte: ₹120–180; specialty pour-over: ₹180–220', 'Breakfast plate with coffee: ₹250–400 for two', 'Most cafés open 9–10 AM and close 8–9 PM; TAB Bistro runs to 10:30 PM', 'Live music: Friday to Sunday evenings, mainly in Laitumkhrah', 'WiFi is reliable in Laitumkhrah cafés; carry a hotspot for Upper Shillong', 'Sunday mornings are slow — many Police Bazar spots open after 11 AM'] },
-      { heading: 'Café-Hopping From Your Stay', content: 'Backpackers usually base themselves near the café belt. XTSY Travellers Hostel puts dorm beds from ₹399 per night within an easy ride of Laitumkhrah and Police Bazar, with TAB Bistro on site for late coffee — use the booking link above to check tonight\'s availability.', listItems: ['Laitumkhrah: 4–5 cafés walkable in one evening', 'Police Bazar: cheapest breakfasts, busiest after 11 AM', 'Upper Shillong: pair Cloud 9 with Elephant Falls', 'New Shillong Township: TAB Bistro, quietest and latest-closing'] },
+      { heading: 'Café-Hopping From Your Stay', content: 'Backpackers usually base themselves near the café belt. XTSY Travellers Hostel puts dorm beds from ₹399 per night within an easy ride of Laitumkhrah and Police Bazar, with TAB Bistro on site for late coffee — use the booking link above to check tonight\'s availability.', listItems: ['Laitumkhrah: 4–5 cafés walkable in one evening', 'Police Bazar: best budget-friendly breakfasts, busiest after 11 AM', 'Upper Shillong: pair Cloud 9 with Elephant Falls', 'New Shillong Township: TAB Bistro, quietest and latest-closing'] },
     ],
     [
       { question: 'Which is the best café in Shillong for coffee?', answer: 'For specialty coffee, ML 05 Café in Laitumkhrah is the strongest pick (pour-over and espresso, ₹150–220). For a café with live music, Café Shillong and Dylan\'s Café — both in Laitumkhrah — are the long-running favourites.' },
@@ -947,7 +947,7 @@ const howToReachPages: SEOPageData[] = [
     'How to Reach Meghalaya from Mumbai 2026 — Guide', 'Mumbai to Meghalaya travel guide. Best flights, connections, costs. Plan your Northeast trip from Mumbai with XTSY.',
     'How to Reach Meghalaya from Mumbai', 'Planning a Meghalaya trip from Mumbai? While it\'s a longer journey, direct flights to Guwahati make it very accessible.',
     [
-      { heading: 'Getting There', content: 'Mumbai to Meghalaya options:', listItems: ['Direct flight: Mumbai → Guwahati (3.5 hrs, ₹4,000-10,000)', 'Then: Guwahati → Shillong (2.5 hrs)', 'Best airlines: IndiGo, Air India, SpiceJet', 'Advance booking for cheapest fares', 'Total travel time: 8-10 hours'] },
+      { heading: 'Getting There', content: 'Mumbai to Meghalaya options:', listItems: ['Direct flight: Mumbai → Guwahati (3.5 hrs, ₹4,000-10,000)', 'Then: Guwahati → Shillong (2.5 hrs)', 'Best airlines: IndiGo, Air India, SpiceJet', 'Advance booking for best budget-friendly fares', 'Total travel time: 8-10 hours'] },
       { heading: 'Trip Planning Tips', content: 'For Mumbai travelers:', listItems: ['Book flights 2-3 months ahead for best rates', 'Plan minimum 5 days for a good experience', 'October-March has the best weather', 'Pack warm clothes — much colder than Mumbai'] },
     ],
     [

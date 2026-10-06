@@ -70,7 +70,7 @@ export default function GuwahatiToShillongTransport() {
         <section className="mb-10">
           <h2 className="text-2xl font-bold mb-4">Quick answer</h2>
           <p className="text-foreground/90 leading-relaxed">
-            Guwahati (GAU) to Shillong is <strong>100 km, roughly 3–3.5 hours</strong> on NH6. Cheapest option: shared Sumo/Innova taxi from Paltan Bazaar (~₹400/seat). Fastest & most comfortable: private cab from the airport (₹2,800–₹4,200). Buses run from ISBT if you have 4–5 hours to spare.
+            Guwahati (GAU) to Shillong is <strong>100 km, roughly 3–3.5 hours</strong> on NH6. Best budget-friendly option: shared Sumo/Innova taxi from Paltan Bazaar (~₹400/seat). Fastest & most comfortable: private cab from the airport (₹2,800–₹4,200). Buses run from ISBT if you have 4–5 hours to spare.
           </p>
         </section>
 
@@ -93,7 +93,7 @@ export default function GuwahatiToShillongTransport() {
         </section>
 
         <section className="mb-10">
-          <h2 className="text-2xl font-bold mb-4">1. Shared taxis (cheapest & most popular)</h2>
+          <h2 className="text-2xl font-bold mb-4">1. Shared taxis (best budget-friendly & most popular)</h2>
           <p className="mb-3">Sumo, Innova and Xylo shared taxis are the backbone of Guwahati–Shillong transport. They leave when full (7–10 passengers), no fixed timetable.</p>
           <ul className="list-disc pl-6 space-y-2 text-foreground/90">
             <li><strong>Paltan Bazaar (Guwahati Railway Station):</strong> The busiest pickup. Departures every 20–30 minutes, 6 AM – 6 PM. Fare ₹400–₹450/seat.</li>

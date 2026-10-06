@@ -55,7 +55,7 @@ const REGIONAL_STAYS: StayLink[] = [
   {
     label: 'Base yourself at XTSY Travellers Hostel, Shillong',
     href: '/best-hostel-in-shillong',
-    note: 'Most Northeast circuits route through Guwahati and Shillong — a cheap, central base between legs.',
+    note: 'Most Northeast circuits route through Guwahati and Shillong — a budget-friendly, central base between legs.',
   },
   {
     label: 'XTSY Travel custom Northeast itineraries',

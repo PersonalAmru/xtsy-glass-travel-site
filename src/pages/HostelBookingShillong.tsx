@@ -73,15 +73,15 @@ const HostelBookingShillong = memo(() => {
   const faqs = [
     {
       q: 'How do I book a hostel in Shillong online?',
-      a: 'Book directly at xtsy.one/book — pick dates, choose a dorm bed or private room, pay with UPI/card/net banking. Direct booking is cheaper than Booking.com or Hostelworld (no OTA commission) and gets instant WhatsApp confirmation.',
+      a: 'Book directly at xtsy.one/book — pick dates, choose a dorm bed or private room, pay with UPI/card/net banking. Direct booking is more affordable than Booking.com or Hostelworld (no OTA commission) and gets instant WhatsApp confirmation.',
     },
     {
       q: 'How far in advance should I book?',
       a: 'Dorm beds: 3–7 days is usually fine outside peak. Private rooms and Experience by XTSY: 2–4 weeks ahead, especially Oct–May and long weekends.',
     },
     {
-      q: 'What is the cheapest hostel booking in Shillong?',
-      a: 'XTSY 8-bed mixed dorm beds start at ₹399/night — one of the cheapest verified hostel booking rates in Shillong with 4.7★ reviews, WiFi, hot shower and 24/7 security included.',
+      q: 'What is the best budget-friendly hostel booking in Shillong?',
+      a: 'XTSY 8-bed mixed dorm beds start at ₹399/night — one of the best budget-friendly, verified hostel booking rates in Shillong with 4.7★ reviews, WiFi, hot shower and 24/7 security included.',
     },
     {
       q: 'Is same-day hostel booking possible?',
@@ -109,7 +109,7 @@ const HostelBookingShillong = memo(() => {
   };
 
   const rooms = [
-    { name: '8-Bed Mixed Dorm', price: '₹399', per: 'per bed / night', tag: 'Cheapest' },
+    { name: '8-Bed Mixed Dorm', price: '₹399', per: 'per bed / night', tag: 'Best budget-friendly' },
     { name: '6-Bed Mixed Dorm', price: '₹499', per: 'per bed / night', tag: 'Popular' },
     { name: 'Female-only Dorm', price: '₹599', per: 'per bed / night', tag: 'Solo-safe' },
     { name: 'Private Double Room', price: '₹2,399', per: 'per room / night', tag: 'Couples' },
@@ -121,7 +121,7 @@ const HostelBookingShillong = memo(() => {
       <Helmet>
         <meta
           name="description"
-          content="Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹399. Book direct — cheaper than Hostelworld & Booking.com. 4.7★ from 237 Google reviews."
+          content="Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹399. Book direct — more affordable than Hostelworld & Booking.com. 4.7★ from 237 Google reviews."
         />
         <script type="application/ld+json">{JSON.stringify(hostelSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
@@ -175,7 +175,7 @@ const HostelBookingShillong = memo(() => {
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { icon: IndianRupee, title: 'Cheaper than OTAs', desc: 'No commission markup vs Hostelworld / Booking.com.' },
+                { icon: IndianRupee, title: 'More affordable than OTAs', desc: 'No commission markup vs Hostelworld / Booking.com.' },
                 { icon: Clock, title: 'Instant Confirmation', desc: 'WhatsApp confirmation within minutes.' },
                 { icon: Shield, title: 'One Free Date Change', desc: 'Booking amount is non-refundable; change dates once within 90 days.' },
                 { icon: CreditCard, title: 'Flexible Payment', desc: 'UPI, cards, net banking, cash on arrival.' },
@@ -284,7 +284,7 @@ const HostelBookingShillong = memo(() => {
               Ready to Book Your Bed in Shillong?
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              Instant confirmation. Cheaper than any OTA.
+              Instant confirmation. More affordable than any OTA.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90">

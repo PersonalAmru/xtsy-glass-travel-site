@@ -66,7 +66,7 @@ const STYLE_WORDS: [RegExp, TripStyle][] = [
   [/honeymoon|romantic|anniversary|couple|wife|husband|girlfriend|boyfriend|proposal/, 'romantic'],
   [/\b(dog|dogs|cat|cats|pet|pets|puppy)\b/, 'pets'],
   [/backpack|hostel|dorm/, 'backpacking'],
-  [/budget|cheap|low cost|affordable/, 'budget'],
+  [/budget|budget-friendly|low cost|affordable/, 'budget'],
   [/adventure|trek|hike|rappel|canyon|kayak|thrill/, 'adventure'],
   [/photo|camera|instagram|sunrise|sunset/, 'photography'],
   [/family|kids|children|parents/, 'family'],

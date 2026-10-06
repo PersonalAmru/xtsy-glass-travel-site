@@ -26,14 +26,14 @@ export function stayHubCopy(v: StayHubVariant) {
   const cheap = v === 'cheap';
   return {
     path: cheap ? '/cheap-hostels-shillong' : '/best-hostel-in-shillong',
-    title: cheap ? `Cheap Hostels in Shillong — Dorm Beds from ${dorm} | XTSY` : `Hostels in Shillong 2026 — Dorms from ${dorm} | XTSY`,
+    title: cheap ? `Budget-Friendly Hostels in Shillong — Dorm Beds from ${dorm} | XTSY` : `Hostels in Shillong 2026 — Dorms from ${dorm} | XTSY`,
     description: cheap
-      ? `Cheap hostel in Shillong? XTSY dorm beds from ${dorm}, women-only dorm, lockers, Wi-Fi, TAB Bistro on site. New Shillong Township. Book direct, no OTA mark-up.`
+      ? `Budget-friendly hostel in Shillong? XTSY dorm beds from ${dorm}, women-only dorm, lockers, Wi-Fi, TAB Bistro on site. New Shillong Township. Book direct, no OTA mark-up.`
       : `XTSY Travellers Hostel, New Shillong Township (4.7★, 237 Google reviews): dorms from ${dorm}, a women-only dorm, private rooms and a glass suite.`,
-    h1: cheap ? 'Cheap hostels in Shillong' : 'Hostels in Shillong',
+    h1: cheap ? 'Budget-friendly hostels in Shillong' : 'Hostels in Shillong',
     eyebrow: cheap ? `Budget beds from ${dorm} · book direct` : 'The 2026 guide · by the team that runs XTSY',
     quick: cheap
-      ? `The cheapest good bed in Shillong at XTSY Travellers Hostel is an 8-bed dorm bunk at ${dorm} a night, with a curtain, locker and charging point. Women can pick the women-only dorm at ${inr(roomPrice('4-bed-female-only-dorm').now)}. You save more by booking direct on xtsy.one or WhatsApp (+91 88373 17070), staying midweek and staying 3+ nights.`
+      ? `The best budget-friendly bed in Shillong at XTSY Travellers Hostel is an 8-bed dorm bunk at ${dorm} a night, with a curtain, locker and charging point. Women can pick the women-only dorm at ${inr(roomPrice('4-bed-female-only-dorm').now)}. You save more by booking direct on xtsy.one or WhatsApp (+91 88373 17070), staying midweek and staying 3+ nights.`
       : `For most travellers a top pick in Shillong is XTSY Travellers Hostel in New Shillong Township (4.7★ from 237 Google reviews): dorms from ${dorm}, a women-only dorm, King Double rooms at ${inr(roomPrice('king-double-room').now)} and the Experience by XTSY glass suite. It’s quieter and greener than central Shillong, about 30 minutes by road from Police Bazaar, with TAB Bistro on site.`,
     keywords: cheap
       ? 'cheap hostel in shillong, cheap hostels shillong, budget hostel shillong, dorm bed shillong price, affordable stay shillong'
@@ -52,12 +52,12 @@ export function stayHubFaqs(v: StayHubVariant): { q: string; a: string }[] {
     { q: 'What is the cancellation policy?', a: 'The booking amount is non-refundable — there is no free cancellation. You can change your dates once within 90 days of the original check-in (ask at least 48 hours before), subject to availability and any rate difference.' },
     { q: 'Are pets allowed?', a: 'Cats and birds are most welcome. Dogs are accepted depending on breed and size — please contact the XTSY desk about any additional charges before booking.' },
     { q: 'How do I get to XTSY from Guwahati airport?', a: `It is about ${fromXtsy('guwahati').hours + 0.25} hours by road (roughly 120 km). Shared taxis run Guwahati–Shillong all day, or the XTSY desk can send a cab.` },
-    { q: 'Is it cheaper to book the hostel direct?', a: 'Yes. OTAs add their commission to the price you see. Booking direct on xtsy.one or WhatsApp gets you the base rate and a GST invoice.' },
+    { q: 'Is it more affordable to book the hostel direct?', a: 'Yes. OTAs add their commission to the price you see. Booking direct on xtsy.one or WhatsApp gets you the base rate and a GST invoice.' },
     { q: 'Can I plan day trips from the hostel?', a: `Yes — Cherrapunji (~${fromXtsy('nohkalikai').hours} h), Dawki and Mawlynnong (~${fromXtsy('dawki').hours} h) and Laitlum (~${fromXtsy('laitlum').hours} h) are day trips from XTSY. Far places like Wari Chora or Tawang need nights nearby, which the XTSY desk books with trusted partners.` },
     { q: 'Do you take groups?', a: 'Yes — whole-dorm stays and group rates for 6–60 people, with transport, guides and TAB Bistro meals, and GST invoices on request.' },
   ];
   if (v === 'cheap') {
-    base.unshift({ q: 'What is the cheapest hostel bed in Shillong?', a: `At XTSY the cheapest bed is the 8-bed mixed dorm at ${dorm} a night, with a privacy curtain, locker and charging point at every bunk.` });
+    base.unshift({ q: 'What is the best budget-friendly hostel bed in Shillong?', a: `At XTSY the best budget-friendly bed is the 8-bed mixed dorm at ${dorm} a night, with a privacy curtain, locker and charging point at every bunk.` });
     base.push({ q: 'How can I save money on a Shillong hostel?', a: 'Book direct, travel Sunday to Thursday, stay 3 or more nights, and share a group dorm. Ask on WhatsApp about long-stay and group rates.' });
   } else {
     base.push({ q: 'Central Shillong or New Shillong Township — where should I stay?', a: 'Stay central (Police Bazaar, Laitumkhrah) if you want nightlife on foot. Stay at XTSY in New Shillong Township for quieter pines, more space, a restaurant downstairs, easy parking and quicker starts for Cherrapunji and Dawki day trips.' });

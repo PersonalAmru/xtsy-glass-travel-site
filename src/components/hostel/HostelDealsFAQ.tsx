@@ -15,7 +15,7 @@ interface Props {
  */
 const HostelDealsFAQ = memo(({
   title = 'Booking & Deals — Frequently Asked Questions',
-  intro = 'Everything travellers ask before booking a bed: how far in advance to book, and how to get the cheapest rate.',
+  intro = 'Everything travellers ask before booking a bed: how far in advance to book, and how to get the best budget-friendly rate.',
   faqs = hostelDealFaqs,
   className = '',
 }: Props) => (

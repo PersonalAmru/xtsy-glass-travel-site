@@ -25,7 +25,7 @@ export interface SearchEntry {
 // ======================== SYNONYM MAP ========================
 export const SYNONYM_MAP: Record<string, string[]> = {
   'glass stay': ['glasshouse', 'glass dome', 'glass cabin', 'glass suite', 'panorama glass', '270'],
-  'hostel': ['budget stay', 'backpacker hostel', 'dormitory', 'dorm', 'cheap stay', 'travellers hostel'],
+  'hostel': ['budget stay', 'backpacker hostel', 'dormitory', 'dorm', 'budget-friendly stay', 'travellers hostel'],
   'romantic stay': ['couple stay', 'honeymoon stay', 'couples retreat', 'romantic getaway', 'valentine'],
   'stargazing': ['glass house', 'night sky', 'milky way', 'star viewing', 'astronomy'],
   'adventure': ['trek', 'trekking', 'hiking', 'expedition', 'outdoor', 'camping'],

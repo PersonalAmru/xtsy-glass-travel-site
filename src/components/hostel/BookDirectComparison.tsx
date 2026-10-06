@@ -72,7 +72,7 @@ const BookDirectComparison = memo(({ className = '' }: { className?: string }) =
       <div className="mt-6 rounded-xl bg-primary/10 border border-primary/20 p-5 text-center">
         <p className="text-sm text-foreground font-medium flex items-center justify-center gap-2">
           <IndianRupee className="w-4 h-4 text-primary" aria-hidden="true" />
-          Found a cheaper rate on an OTA? Send us the screenshot — we match or beat it.
+          Found a more affordable rate on an OTA? Send us the screenshot — we match or beat it.
         </p>
         <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
           <Button asChild size="lg" className="bg-primary hover:bg-primary/90">

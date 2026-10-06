@@ -17,7 +17,7 @@ export const howToReachFaqs = [
     a: "About 3 to 3.5 hours by road for 100 km on NH6. Allow 4 to 4.5 hours in monsoon, on weekends, or if you stop at Umiam Lake on the way.",
   },
   {
-    q: "What is the cheapest way to reach Shillong?",
+    q: "What is the best budget-friendly way to reach Shillong?",
     a: "A shared Sumo or Innova taxi from Paltan Bazaar in Guwahati costs Rs 400 to Rs 600 per seat. Government and private buses from Guwahati ISBT cost Rs 250 to Rs 550 and take 4 to 5 hours.",
   },
   {

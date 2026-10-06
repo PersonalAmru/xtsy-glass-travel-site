@@ -8,9 +8,9 @@ export const Route = createFileRoute("/hostel-booking")({
       path: "/hostel-booking",
       title: "Hostel Booking in Shillong — Direct from ₹399 | XTSY",
       description:
-        "Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹399. Book direct — cheaper than Hostelworld and Booking.com.",
+        "Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹399. Book direct — more affordable than Hostelworld and Booking.com.",
       keywords:
-        "hostel booking, online hostel booking, hostel booking shillong, book hostel meghalaya, cheap hostel booking",
+        "hostel booking, online hostel booking, hostel booking shillong, book hostel meghalaya, budget-friendly hostel booking",
     }),
   component: HostelBookingShillong,
 });
