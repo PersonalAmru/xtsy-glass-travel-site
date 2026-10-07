@@ -114,7 +114,7 @@ export default function SiteFooter() {
           ))}
         </div>
         <div className="mt-12 flex flex-col gap-3 border-t border-[#383D52] pt-5 text-[13px] text-[#A3ABC2] md:flex-row md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} XTSY Ventures Private Limited. XTSY is a trademark of XTSY Ventures Private Limited. XTSY Travellers Hostel · Experience by XTSY · TAB Bistro by XTSY · XTSY Voyage</span>
+          <span>© {new Date().getFullYear()} XTSY is Owned and Operated by XTSY Ventures Private Limited including XTSY Travellers Hostel · Experience by XTSY · TAB Bistro by XTSY · XTSY Voyage · Travel by XTSY</span>
           <span className="font-display text-[20px] tracking-[0.25em] text-xt-rose">Travel.Sleep.Binge</span>
         </div>
       </footer>

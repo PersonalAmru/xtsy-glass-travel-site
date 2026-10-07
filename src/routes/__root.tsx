@@ -12,6 +12,7 @@ import {
   Scripts,
   useLocation,
   useRouter,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { lazy, memo, Suspense, useEffect, type ReactNode } from "react";
 import { trackAIReferral } from "@/utils/aiReferralTracking";
@@ -423,7 +424,7 @@ function RootComponent() {
   );
 }
 
-function RootErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function RootErrorComponent({ error, reset }: ErrorComponentProps) {
   const router = useRouter();
 
   console.error("[root-error]", error);
@@ -436,7 +437,7 @@ function RootErrorComponent({ error, reset }: { error: Error; reset: () => void 
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center gap-6 p-8">
       <h1 className="text-2xl font-semibold">This page didn't load</h1>
       <p className="text-sm text-muted-foreground max-w-md text-center">
-        {error?.message?.slice(0, 200) || "An unexpected error occurred."}
+        {error instanceof Error ? error.message.slice(0, 200) : "An unexpected error occurred."}
       </p>
       <div className="flex gap-3">
         <button
