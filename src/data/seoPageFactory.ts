@@ -14,6 +14,9 @@ import { SEO_YEAR } from '@/utils/seoDate';
 // Display label helpers
 // =============================================================
 const LABEL_OVERRIDES: Record<string, string> = {
+  cheap: 'Budget-friendly',
+  cheapest: 'Best budget-friendly',
+  cheaper: 'More affordable',
   neigrims: 'NEIGRIHMS',
   'iim-shillong': 'IIM Shillong',
   'nift-shillong': 'NIFT Shillong',
@@ -281,7 +284,7 @@ export function buildIntentStayPage(slug: string): SEOPageData {
   const cityLabel = slugToLabel(city);
   const intentLabel = intent ? ` ${slugToLabel(intent)}` : modifier ? ` (${slugToLabel(modifier)})` : '';
   const title = seoTitle(`${modifier ? slugToLabel(modifier) + ' ' : ''}${stayLabel} in ${cityLabel}${intentLabel}`);
-  const metaDescription = `Book a ${modifier ? modifier + ' ' : ''}${stayLabel.toLowerCase()} in ${cityLabel}${intent ? ' for ' + intent.replace('-', ' ') : ''}. Live availability, best rates and 24/7 check-in. Get instant help on WhatsApp.`;
+  const metaDescription = `Book a ${modifier ? slugToLabel(modifier).toLowerCase() + ' ' : ''}${stayLabel.toLowerCase()} in ${cityLabel}${intent ? ' for ' + intent.replace('-', ' ') : ''}. Live availability, best rates and 24/7 check-in. Get instant help on WhatsApp.`;
 
   return buildPage({
     slug,
