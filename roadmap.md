@@ -1,4 +1,5 @@
 - [x] Update ownership footer including Travel by XTSY and budget wording, preserving URLs, verbatim reviews and hidden search keywords.
+- [ ] Finish the four adventure guides, verify their live sitemap submission, and check current canonicals and analytics consent.
 - [ ] Fix remaining uploaded-checklist P0 priorities: duplicate budget-hostel canonicals and GA4 loading error, preserving consent and validation.
 - [ ] Verify fixes and record external blockers for tour photos and manual Google re-indexing.
 - [ ] Align existing adventure tour, activity, expedition, and local city pages with approved search terms.
