@@ -4,6 +4,6 @@ import { buildRouteHead } from '@/lib/seo-head';
 import { IMG } from '@/data/v2Images';
 
 export const Route = createFileRoute('/motorbike-expedition-northeast-india')({
-  head: () => buildRouteHead({ path: '/motorbike-expedition-northeast-india', title: 'Northeast India Motorbike Expedition — Routes | XTSY', description: 'Compare Meghalaya, Tawang and Kohima motorbike expeditions with practical advice on road conditions, permits, altitude, seasons and riding gear.', image: IMG.bumla }),
+  head: () => buildRouteHead({ path: '/motorbike-expedition-northeast-india', title: 'Northeast India Motorbike Expedition — Routes | XTSY', description: 'Compare Meghalaya, Tawang and Kohima motorbike expeditions with practical advice on road conditions, permits, altitude, seasons and riding gear.', image: new URL(IMG.bumla, 'https://xtsy.one').href, ogType: 'article' }),
   component: () => <AdventureLanding guide="motorbike-expedition-northeast-india" />,
 });

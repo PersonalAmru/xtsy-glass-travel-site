@@ -1,5 +1,10 @@
 - [x] Update ownership footer including Travel by XTSY and budget wording, preserving URLs, verbatim reviews and hidden search keywords.
-- [ ] Finish the four adventure guides, verify their live sitemap submission, and check current canonicals and analytics consent.
+- [x] Finish four adventure guides with itinerary, safety, logistics and visible FAQs; verify page rendering and single self-canonicals.
+- [x] Submit live adventure sitemap to Google and verify recorded submission; processing pending, inspected Northeast guide discovered but not indexed.
+- [x] Check budget-page canonicals and legacy redirects: one self-canonical per hub, duplicate aliases redirect 301.
+- [x] Check analytics scripts and rejection flow: both GTM scripts return 200, GA4 script returns 404; rejecting non-essential still grants analytics and creates Google cookies.
+- [ ] Publish expanded adventure content and corrected absolute cover-image metadata (awaiting publishing).
+- [ ] Correct analytics consent and investigate GA4 property configuration (check-only request; requires separately scoped correction).
 - [ ] Fix remaining uploaded-checklist P0 priorities: duplicate budget-hostel canonicals and GA4 loading error, preserving consent and validation.
 - [ ] Verify fixes and record external blockers for tour photos and manual Google re-indexing.
 - [ ] Align existing adventure tour, activity, expedition, and local city pages with approved search terms.
@@ -10,7 +15,7 @@
 - [x] Verify representative public pages on desktop and mobile.
 - [ ] Panorama package and decoration pricing match summary, tax, WhatsApp and saved enquiry.
 - [ ] Persist guest WhatsApp, room and campsite enquiries with dates, guests and totals; verify with real rooms.
-- [ ] Add distinct detailed Northeast adventure landing pages and request Google indexing (pages done; indexing awaits publish).
+- [x] Add distinct detailed Northeast adventure landing pages and submit their live sitemap to Google; direct indexing requests require Search Console UI.
 - [x] Refresh homepage in selected photographic editorial direction without changing room rates.
 - [ ] Normalize New Shillong Township address and strict 11 AM / 10 AM property times in SEO and AEO.
 - [ ] Flat nightly price for unspecified room: waiting on room name and amount from owner.
