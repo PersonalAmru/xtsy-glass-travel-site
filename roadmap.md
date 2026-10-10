@@ -7,7 +7,7 @@
 - [x] Check budget-page canonicals and legacy redirects: one self-canonical per hub, duplicate aliases redirect 301.
 - [x] Check analytics scripts and rejection flow: both GTM scripts return 200, GA4 script returns 404; rejecting non-essential still grants analytics and creates Google cookies.
 - [ ] Publish expanded adventure content and corrected absolute cover-image metadata (awaiting publishing).
-- [ ] Correct analytics consent and investigate GA4 property configuration (check-only request; requires separately scoped correction).
+- [ ] Fix optional analytics consent, block tracking cookies before choice and after rejection, and verify fresh/returning/rejection/acceptance flows. GA4 property configuration remains a separate investigation.
 - [ ] Fix remaining uploaded-checklist P0 priorities: duplicate budget-hostel canonicals and GA4 loading error, preserving consent and validation.
 - [ ] Verify fixes and record external blockers for tour photos and manual Google re-indexing.
 - [ ] Align existing adventure tour, activity, expedition, and local city pages with approved search terms.
