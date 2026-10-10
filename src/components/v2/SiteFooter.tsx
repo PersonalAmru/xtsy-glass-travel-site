@@ -54,6 +54,7 @@ const COLS = [
     title: 'Help',
     links: [
       { to: '/faq', label: 'FAQs' },
+      { to: '/safety-house-rules', label: 'Safety & house rules' },
       { to: '/contact', label: 'Contact' },
       { to: '/pricing-cancellation-policy', label: 'Cancellation policy' },
       { to: '/privacy-policy', label: 'Privacy policy' },

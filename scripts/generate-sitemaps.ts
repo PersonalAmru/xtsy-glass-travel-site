@@ -39,6 +39,7 @@ const STATIC_ROUTES: { path: string; priority: string; changefreq: string; lastm
   { path: '/gallery', priority: '0.7', changefreq: 'weekly', lastmod: TODAY },
   { path: '/guides', priority: '0.7', changefreq: 'weekly', lastmod: TODAY },
   { path: '/faq', priority: '0.6', changefreq: 'monthly', lastmod: TODAY },
+  { path: '/safety-house-rules', priority: '0.6', changefreq: 'monthly', lastmod: TODAY },
   { path: '/tours', priority: '0.9', changefreq: 'daily', lastmod: TODAY },
   { path: '/expeditions', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
   { path: '/adventure-tours-northeast-india', priority: '0.8', changefreq: 'monthly', lastmod: TODAY },
