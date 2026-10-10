@@ -1,3 +1,6 @@
+- [ ] Update hostel FAQs and add safety/house rules using current rates and published policies.
+- [ ] Harden dorm catalogue matching and verify real WhatsApp enquiries for all three dorms.
+- [ ] Verify India search volumes for the priority hostel questions.
 - [x] Update ownership footer including Travel by XTSY and budget wording, preserving URLs, verbatim reviews and hidden search keywords.
 - [x] Finish four adventure guides with itinerary, safety, logistics and visible FAQs; verify page rendering and single self-canonicals.
 - [x] Submit live adventure sitemap to Google and verify recorded submission; processing pending, inspected Northeast guide discovered but not indexed.
