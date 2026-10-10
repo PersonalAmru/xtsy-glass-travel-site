@@ -57,6 +57,7 @@ import { Route as PricingCancellationPolicyRouteImport } from './routes/pricing-
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as RestaurantInShillongRouteImport } from './routes/restaurant-in-shillong'
+import { Route as SafetyHouseRulesRouteImport } from './routes/safety-house-rules'
 import { Route as ShillongTourPackageRouteImport } from './routes/shillong-tour-package'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TermsOfServiceRouteImport } from './routes/terms-of-service'
@@ -336,6 +337,11 @@ const RestaurantInShillongRoute = RestaurantInShillongRouteImport.update({
   path: '/restaurant-in-shillong',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SafetyHouseRulesRoute = SafetyHouseRulesRouteImport.update({
+  id: '/safety-house-rules',
+  path: '/safety-house-rules',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShillongTourPackageRoute = ShillongTourPackageRouteImport.update({
   id: '/shillong-tour-package',
   path: '/shillong-tour-package',
@@ -547,6 +553,7 @@ export interface FileRoutesByFullPath {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/profile': typeof ProfileRoute
   '/restaurant-in-shillong': typeof RestaurantInShillongRoute
+  '/safety-house-rules': typeof SafetyHouseRulesRoute
   '/shillong-tour-package': typeof ShillongTourPackageRoute
   '/terms': typeof TermsRoute
   '/terms-of-service': typeof TermsOfServiceRoute
@@ -628,6 +635,7 @@ export interface FileRoutesByTo {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/profile': typeof ProfileRoute
   '/restaurant-in-shillong': typeof RestaurantInShillongRoute
+  '/safety-house-rules': typeof SafetyHouseRulesRoute
   '/shillong-tour-package': typeof ShillongTourPackageRoute
   '/terms': typeof TermsRoute
   '/terms-of-service': typeof TermsOfServiceRoute
@@ -710,6 +718,7 @@ export interface FileRoutesById {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/profile': typeof ProfileRoute
   '/restaurant-in-shillong': typeof RestaurantInShillongRoute
+  '/safety-house-rules': typeof SafetyHouseRulesRoute
   '/shillong-tour-package': typeof ShillongTourPackageRoute
   '/terms': typeof TermsRoute
   '/terms-of-service': typeof TermsOfServiceRoute
@@ -793,6 +802,7 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/profile'
     | '/restaurant-in-shillong'
+    | '/safety-house-rules'
     | '/shillong-tour-package'
     | '/terms'
     | '/terms-of-service'
@@ -874,6 +884,7 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/profile'
     | '/restaurant-in-shillong'
+    | '/safety-house-rules'
     | '/shillong-tour-package'
     | '/terms'
     | '/terms-of-service'
@@ -955,6 +966,7 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/profile'
     | '/restaurant-in-shillong'
+    | '/safety-house-rules'
     | '/shillong-tour-package'
     | '/terms'
     | '/terms-of-service'
@@ -1037,6 +1049,7 @@ export interface RootRouteChildren {
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ProfileRoute: typeof ProfileRoute
   RestaurantInShillongRoute: typeof RestaurantInShillongRoute
+  SafetyHouseRulesRoute: typeof SafetyHouseRulesRoute
   ShillongTourPackageRoute: typeof ShillongTourPackageRoute
   TermsRoute: typeof TermsRoute
   TermsOfServiceRoute: typeof TermsOfServiceRoute
@@ -1408,6 +1421,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RestaurantInShillongRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/safety-house-rules': {
+      id: '/safety-house-rules'
+      path: '/safety-house-rules'
+      fullPath: '/safety-house-rules'
+      preLoaderRoute: typeof SafetyHouseRulesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shillong-tour-package': {
       id: '/shillong-tour-package'
       path: '/shillong-tour-package'
@@ -1678,6 +1698,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   ProfileRoute: ProfileRoute,
   RestaurantInShillongRoute: RestaurantInShillongRoute,
+  SafetyHouseRulesRoute: SafetyHouseRulesRoute,
   ShillongTourPackageRoute: ShillongTourPackageRoute,
   TermsRoute: TermsRoute,
   TermsOfServiceRoute: TermsOfServiceRoute,

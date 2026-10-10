@@ -43,7 +43,8 @@ import { getCanonicalRate, getBreakfastInclusion } from '@/utils/rateSanityCheck
 import { useOptionalAuth } from '@/hooks/useRequireAuth';
 import { openWhatsAppDirectly, generateBookingMessage, bookingPageSource } from '@/utils/privacyCompliantWhatsApp';
 import { trackBookingStart } from '@/utils/dataLayerService';
-import { currentRoomRate, quoteStay } from '@/data/panoramaPricing';
+import { quoteStay } from '@/data/panoramaPricing';
+import { resolveBookingQuote } from '@/utils/bookingCatalogue';
 
 type BookingStep = 'dates' | 'rooms' | 'summary' | 'details' | 'confirmation';
 
@@ -1047,44 +1048,48 @@ export default function SimplifiedBookingFlow() {
 
   // Handle booking submission
   const handleSubmitBooking = async () => {
-    if (selectedRooms.length === 0 || !checkIn || !checkOut) return;
+    if (isSubmitting || selectedRooms.length === 0 || !checkIn || !checkOut) return;
 
     // Open on the guest's click, before awaiting the database, to avoid popup blockers.
     const whatsAppTab = window.open('', '_blank');
     setIsSubmitting(true);
     try {
       const { data: catalogue, error: catalogueError } = await supabase.from('room_types')
-        .select('id,name,base_price,is_active').in('name', selectedRooms.map(r => r.room.name));
+        .select('id,name,base_price,is_active').eq('is_active', true);
       if (catalogueError) throw catalogueError;
-      const rooms = selectedRooms.map(({ room, quantity }) => {
-        const entry = catalogue?.find(item => item.name === room.name && item.is_active);
-        if (!entry || currentRoomRate(String(entry.id), Number(entry.base_price)) !== room.discountedPrice) throw new Error(`${room.name} rate or availability changed. Refresh and try again.`);
-        return { id: String(entry.id), quantity };
-      });
-      const guests = selectedRooms.reduce((sum, r) => sum + (r.room.kind === 'dorm' ? r.quantity : r.room.capacity * r.quantity), 0);
+      const quote = resolveBookingQuote((catalogue ?? []).map(entry => ({ ...entry, id: String(entry.id), base_price: Number(entry.base_price), is_active: entry.is_active === true })),
+        selectedRooms.map(({ room, quantity }) => ({ name: room.name, quantity, kind: room.kind, capacity: room.capacity })), nights);
+      const { rooms, guests } = quote;
+      if (rooms.some((room, index) => room.nightlyRate !== selectedRooms[index]?.room.discountedPrice)) {
+        setSelectedRooms(prev => prev.map((selection, index) => ({ ...selection, room: { ...selection.room, discountedPrice: rooms[index]?.nightlyRate ?? selection.room.discountedPrice } })));
+        whatsAppTab?.close();
+        goToStep('summary');
+        toast.info('The current room price has been loaded. Please review the updated total and send your enquiry.');
+        return;
+      }
       const source = bookingPageSource();
       const requests = [`Page: ${source}`, guestDetails.specialRequests, guestDetails.address && `Address: ${guestDetails.address}`, [guestDetails.city, guestDetails.state, guestDetails.pincode].filter(Boolean).join(', ')].filter(Boolean).join(' | ').slice(0, 2000);
       const { data, error } = await supabase.rpc('create_whatsapp_enquiry', {
         p_guest_name: guestDetails.name.trim(), p_email: guestDetails.email.trim(), p_phone: guestDetails.phone.trim(),
         p_check_in: format(checkIn, 'yyyy-MM-dd'), p_check_out: format(checkOut, 'yyyy-MM-dd'),
         p_guests: guests, p_room_ids: rooms.map(r => r.id), p_quantities: rooms.map(r => r.quantity),
-        p_breakfast: false, p_decoration: false, p_subtotal: subtotal, p_taxes: gstAmount,
-        p_total: total, p_requests: requests,
+        p_breakfast: false, p_decoration: false, p_subtotal: quote.subtotal, p_taxes: quote.taxes,
+        p_total: quote.total, p_requests: requests,
       });
       if (error) throw error;
       const saved = typeof data === 'string' ? JSON.parse(data) : data;
       if (!saved?.success || !saved.enquiry_id) throw new Error(saved?.error || 'Could not save enquiry');
       setBookingId(saved.enquiry_id);
       const message = generateBookingMessage({
-        roomType: selectedRooms.map(r => `${r.quantity}× ${r.room.name} (₹${r.room.discountedPrice.toLocaleString('en-IN')}/night)`).join(', '),
+        roomType: rooms.map(r => `${r.quantity}× ${r.name} (₹${r.nightlyRate.toLocaleString('en-IN')}/night, GST included)`).join(', '),
         guests, checkIn: format(checkIn, 'yyyy-MM-dd'), checkOut: format(checkOut, 'yyyy-MM-dd'), nights,
-        totalPrice: total, guestName: guestDetails.name, email: guestDetails.email, phone: guestDetails.phone,
+        totalPrice: quote.total, guestName: guestDetails.name, email: guestDetails.email, phone: guestDetails.phone,
         address: guestDetails.address, city: guestDetails.city, state: guestDetails.state,
         pincode: guestDetails.pincode, specialRequests: guestDetails.specialRequests,
         reference: saved.enquiry_id, source,
       });
       const url = `https://wa.me/918837317070?text=${encodeURIComponent(message)}`;
-      if (whatsAppTab && !whatsAppTab.closed) whatsAppTab.location.href = url;
+      if (whatsAppTab && !whatsAppTab.closed) { whatsAppTab.opener = null; whatsAppTab.location.href = url; }
       else openWhatsAppDirectly(message);
       goToStep('confirmation');
       toast.success('Enquiry saved. Send your message in WhatsApp to reach the host.');

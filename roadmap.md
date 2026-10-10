@@ -1,3 +1,6 @@
+- [x] Update existing /faq and add /safety-house-rules using current rates, published quiet hours and strict property times; verified rendering, FAQs and self-canonicals.
+- [x] Harden dorm catalogue matching; verify real pending enquiries and WhatsApp messages for all three dorms at ₹399/₹499/₹599, with server GST checks preserved.
+- [x] Verify India search volumes; broad terms have demand, exact priority question volumes remain unknown (research recorded).
 - [x] Update ownership footer including Travel by XTSY and budget wording, preserving URLs, verbatim reviews and hidden search keywords.
 - [x] Finish four adventure guides with itinerary, safety, logistics and visible FAQs; verify page rendering and single self-canonicals.
 - [x] Submit live adventure sitemap to Google and verify recorded submission; processing pending, inspected Northeast guide discovered but not indexed.

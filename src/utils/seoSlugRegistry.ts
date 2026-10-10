@@ -20,6 +20,8 @@ export const STATIC_ROUTES: ReadonlyArray<string> = [
   '/pet-friendly',
   '/xtsy-vs-zostel',
   '/female-travellers',
+  '/faq',
+  '/safety-house-rules',
   '/work-from-home',
   '/xtsy-rentals',
   '/tab-bistro',
