@@ -14,7 +14,7 @@ import {
   useRouter,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { lazy, memo, Suspense, useEffect, type ReactNode } from "react";
+import { memo, Suspense, useEffect, type ReactNode } from "react";
 import { trackAIReferral } from "@/utils/aiReferralTracking";
 import { installChunkRecovery } from "@/utils/chunkRecovery";
 
@@ -41,8 +41,7 @@ import { TrafficAnalyticsProvider } from "@/hooks/useTrafficAnalytics";
 import { ConversionSignalsProvider } from "@/providers/ConversionSignalsProvider";
 import { useWebVitalsReporter } from "@/hooks/useWebVitalsReporter";
 import { reportLovableError } from "@/lib/lovable-error-reporting";
-
-const ConsentDebugPanel = lazy(() => import("@/components/debug/ConsentDebugPanel"));
+import OptionalConsentDebugPanel from "@/components/debug/OptionalConsentDebugPanel";
 
 // ---------------------------------------------------------------------------
 // Inline head scripts ported verbatim from index.html
@@ -391,7 +390,7 @@ function RootComponent() {
                       <ConsentModal />
                       <ClientOnly fallback={null}>
                         <Suspense fallback={null}>
-                          <ConsentDebugPanel />
+                          <OptionalConsentDebugPanel />
                         </Suspense>
                       </ClientOnly>
                       <TooltipProvider>
