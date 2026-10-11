@@ -1,3 +1,4 @@
+import { readConsent } from '@/lib/consent';
 /**
  * AI Answer-Engine referral tracking.
  *
@@ -71,7 +72,7 @@ const resolveAISourceFromUTM = (search: string): AIReferralSource | null => {
 
 /** The AI source for the current session, if any. */
 export const getSessionAISource = (): AIReferralSource | null => {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined' || !readConsent()?.analytics) return null;
   try {
     return (sessionStorage.getItem(STORAGE_KEY) as AIReferralSource) || null;
   } catch {
@@ -84,7 +85,7 @@ export const getSessionAISource = (): AIReferralSource | null => {
  * mount — the GA4 event fires only once per session.
  */
 export const trackAIReferral = (): AIReferralSource | null => {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined' || !readConsent()?.analytics) return null;
 
   const existing = getSessionAISource();
   const detected =
