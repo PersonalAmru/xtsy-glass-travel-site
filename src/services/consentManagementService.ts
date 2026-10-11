@@ -4,8 +4,7 @@
  * Google Consent Mode v2 (Advanced) Integration
  */
 
-import { supabase } from '@/integrations/supabase/client';
-import { generateVisitorId, generateSessionId } from './trafficAnalyticsService';
+import { CONSENT_KEY, CONSENT_VERSION, DENIED_PREFERENCES, readConsent } from '@/lib/consent';
 
 // =============================================
 // TYPE DEFINITIONS
@@ -49,7 +48,7 @@ class ConsentManagementService {
   private static instance: ConsentManagementService;
   private preferences: ConsentPreferences;
   private isInitialized: boolean = false;
-  private consentVersion: string = 'v2.1';
+  private consentVersion: string = CONSENT_VERSION;
   
   private constructor() {
     this.preferences = this.loadPreferences();
@@ -68,34 +67,12 @@ class ConsentManagementService {
   initialize(): void {
     if (this.isInitialized) return;
     
-    // Check if user has previously consented FIRST before pushing defaults
-    const stored = localStorage.getItem('xtsy_consent_v2');
-    let hasValidConsent = false;
-    
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        // Check for valid consent (has version and timestamp)
-        if (parsed.version && parsed.timestamp) {
-          this.preferences = parsed;
-          hasValidConsent = true;
-          // Only push update, NOT defaults (index.html already handled defaults)
-          this.updateGoogleConsent();
-          console.log('[Consent] Valid stored consent found, restored. NOT pushing defaults.');
-        }
-      } catch {
-        // Invalid stored consent, will fall through to defaults
-        console.log('[Consent] Invalid stored consent, clearing.');
-        localStorage.removeItem('xtsy_consent_v2');
-      }
-    }
-    
-    // Only push defaults if NO valid consent exists
-    // CRITICAL: Don't overwrite the granted state from index.html restoration
-    if (!hasValidConsent) {
-      this.setGoogleConsentDefaults();
-    }
-    
+    this.preferences = this.loadPreferences();
+    this.updateGoogleConsent();
+    window.addEventListener('consent-update', (event) => {
+      const prefs = (event as CustomEvent).detail?.preferences;
+      if (prefs) this.preferences = { ...DENIED_PREFERENCES, ...prefs, necessary: true };
+    });
     this.isInitialized = true;
   }
   
@@ -103,111 +80,27 @@ class ConsentManagementService {
    * Set Google Consent Mode v2 defaults via dataLayer (GTM handles gtag routing)
    * NO direct gtag calls - GTM is the sole routing authority
    */
-  private setGoogleConsentDefaults(): void {
-    if (typeof window !== 'undefined') {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: 'consent_default',
-        analytics_storage: 'denied',
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        functionality_storage: 'granted',
-        security_storage: 'granted',
-        wait_for_update: 500,
-      });
-      
-      console.log('[Consent→DataLayer] Defaults pushed: all denied');
-    }
-  }
-  
-  /**
-   * Update Google Consent Mode via dataLayer (GTM handles gtag routing)
-   * NO direct gtag calls - GTM is the sole routing authority
-   */
   private updateGoogleConsent(): void {
-    if (typeof window !== 'undefined') {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      
-      const config = {
-        event: 'consent_update',
-        analytics_storage: this.preferences.analytics ? 'granted' : 'denied',
-        ad_storage: this.preferences.marketing ? 'granted' : 'denied',
-        ad_user_data: this.preferences.marketing ? 'granted' : 'denied',
-        ad_personalization: this.preferences.personalization ? 'granted' : 'denied',
-        functionality_storage: 'granted',
-        security_storage: 'granted',
-      };
-      
-      (window as any).dataLayer.push(config);
-      
-      // HIGH VISIBILITY DEBUG for GTM Preview
-      console.log('%c[CONSENT→GTM] consent_update PUSHED', 
-        'background: #4CAF50; color: white; font-weight: bold; padding: 4px 12px; border-radius: 4px;');
-      console.log('[CONSENT→GTM] Payload:', config);
-      console.log('[CONSENT→GTM] analytics_storage:', config.analytics_storage);
-      console.log('[CONSENT→GTM] ad_storage:', config.ad_storage);
-    }
+    window.__xtsyApplyConsent?.(this.preferences);
   }
-  
+
   /**
    * Load preferences from localStorage
    */
   private loadPreferences(): ConsentPreferences {
-    const stored = localStorage.getItem('xtsy_consent_v2');
-    if (stored) {
-      try {
-        return JSON.parse(stored);
-      } catch {
-        // Return defaults
-      }
-    }
-    
-    return {
-      necessary: true,
-      analytics: false,
-      marketing: false,
-      personalization: false,
-    };
+    return readConsent() ?? { ...DENIED_PREFERENCES };
   }
-  
-  /**
-   * Save preferences to localStorage and database
-   */
-  private async savePreferences(method: 'banner' | 'settings' | 'implied' | 'explicit'): Promise<void> {
-    // Save to localStorage
-    localStorage.setItem('xtsy_consent_v2', JSON.stringify(this.preferences));
-    localStorage.setItem('xtsy_consent_timestamp', new Date().toISOString());
-    
-    // Save to database for compliance records
+
+  private async savePreferences(_method: 'banner' | 'settings' | 'implied' | 'explicit'): Promise<void> {
+    const timestamp = new Date().toISOString();
     try {
-      const record: ConsentRecord = {
-        visitor_id: generateVisitorId(),
-        session_id: generateSessionId(),
-        analytics_storage: this.preferences.analytics,
-        ad_storage: this.preferences.marketing,
-        ad_user_data: this.preferences.marketing,
-        ad_personalization: this.preferences.personalization,
-        functionality_storage: true,
-        security_storage: true,
-        consent_version: this.consentVersion,
-        consent_method: method,
-        granted_at: new Date().toISOString(),
-      };
-      
-      await supabase
-        .from('consent_records')
-        .insert(record as any);
-        
-      console.log('[Consent] Saved to database');
-    } catch (err) {
-      console.error('[Consent] Database save error:', err);
-    }
-    
-    // Update Google Consent Mode
+      localStorage.setItem(CONSENT_KEY, JSON.stringify({ ...this.preferences, timestamp, version: CONSENT_VERSION }));
+      localStorage.setItem('xtsy_consent_timestamp', timestamp);
+    } catch { /* Still apply this visit's choice when storage is unavailable. */ }
+    // Apply immediately; rejection never creates a visitor/session identifier.
     this.updateGoogleConsent();
   }
-  
+
   /**
    * Accept all cookies
    */
@@ -283,17 +176,6 @@ class ConsentManagementService {
     localStorage.removeItem('xtsy_consent_v2');
     localStorage.removeItem('xtsy_consent_timestamp');
     
-    // Update database
-    try {
-      await supabase
-        .from('consent_records')
-        .update({ revoked_at: new Date().toISOString() } as any)
-        .eq('visitor_id', generateVisitorId())
-        .is('revoked_at', null);
-    } catch (err) {
-      console.error('[Consent] Revoke error:', err);
-    }
-    
     this.updateGoogleConsent();
     this.dispatchConsentEvent('revoked');
   }
@@ -302,8 +184,7 @@ class ConsentManagementService {
    * Check if consent banner should be shown
    */
   shouldShowBanner(): boolean {
-    const stored = localStorage.getItem('xtsy_consent_v2');
-    return !stored;
+    return !readConsent();
   }
   
   /**

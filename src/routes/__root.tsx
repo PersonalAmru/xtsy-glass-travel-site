@@ -42,6 +42,7 @@ import { ConversionSignalsProvider } from "@/providers/ConversionSignalsProvider
 import { useWebVitalsReporter } from "@/hooks/useWebVitalsReporter";
 import { reportLovableError } from "@/lib/lovable-error-reporting";
 import OptionalConsentDebugPanel from "@/components/debug/OptionalConsentDebugPanel";
+import { CONSENT_BOOTSTRAP_SCRIPT, GTM_CONSENT_LOADER_SCRIPT } from "@/lib/consent";
 
 // ---------------------------------------------------------------------------
 // Inline head scripts ported verbatim from index.html
@@ -66,71 +67,8 @@ window.dataLayer = window.dataLayer || [];
   }
   window.__isLovableAdmin = isLovable;
   if (isLovable) { sessionStorage.setItem('xtsy_is_lovable_session', 'true'); }
-  dataLayer.push({
-    'event': 'xtsy_init',
-    'is_admin_session': isLovable,
-    'page_path': window.location.pathname,
-    'page_url': window.location.href,
-    'page_title': document.title,
-    'timestamp': new Date().toISOString(),
-    'user_agent': navigator.userAgent,
-    'screen_resolution': screen.width + 'x' + screen.height,
-    'viewport_size': window.innerWidth + 'x' + window.innerHeight
-  });
-  dataLayer.push({
-    'event': 'consent_default',
-    'analytics_storage': 'denied',
-    'ad_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied',
-    'functionality_storage': 'granted',
-    'security_storage': 'granted',
-    'wait_for_update': 2000
-  });
-  try {
-    var storedConsent = localStorage.getItem('xtsy_consent_v2');
-    if (storedConsent) {
-      var prefs = JSON.parse(storedConsent);
-      dataLayer.push({
-        'event': 'consent_update',
-        'analytics_storage': 'granted',
-        'ad_storage': prefs.marketing ? 'granted' : 'denied',
-        'ad_user_data': prefs.marketing ? 'granted' : 'denied',
-        'ad_personalization': prefs.personalization ? 'granted' : 'denied',
-        'functionality_storage': 'granted',
-        'security_storage': 'granted'
-      });
-    }
-  } catch(e) {}
-})();
-`;
 
-const GTM_GATED_LOADER_SCRIPT = `
-(function(w,d,s,l){
-  var loaded = false;
-  function loadGTM(){
-    if (loaded) return; loaded = true;
-    cleanup();
-    var containerId = w.__isLovableAdmin ? 'GTM-MS23NHMF' : 'GTM-5FXJ9QBK';
-    w.__activeGTMContainer = containerId;
-    w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-    var f=d.getElementsByTagName(s)[0],j=d.createElement(s),
-    dl=l!='dataLayer'?'&l='+l:'';j.async=true;
-    j.src='https://www.googletagmanager.com/gtm.js?id='+containerId+dl;
-    f.parentNode.insertBefore(j,f);
-  }
-  var events = ['pointerdown','touchstart','keydown','mousemove','visibilitychange'];
-  var opts = { once: true, passive: true, capture: true };
-  // Page scroll only: element scrolls (e.g. a chat list auto-scrolling on mount) are not the
-  // visitor engaging, and loading tags during page load slowed the hero image (LCP).
-  var scrollOpts = { once: true, passive: true };
-  function cleanup(){ events.forEach(function(e){ try { w.removeEventListener(e, loadGTM, opts); } catch(_){} }); try { w.removeEventListener('scroll', loadGTM, scrollOpts); } catch(_){} }
-  events.forEach(function(e){ w.addEventListener(e, loadGTM, opts); });
-  w.addEventListener('scroll', loadGTM, scrollOpts);
-  // Fallback: 10 s after the page has loaded (not from navigation start).
-  function fallback(){ setTimeout(loadGTM, 10000); }
-  if (d.readyState === 'complete') fallback(); else w.addEventListener('load', fallback, { once: true });
-})(window,document,'script','dataLayer');
+})();
 `;
 
 const JSONLD_WEBSITE = `{"@context":"https://schema.org","@type":"WebSite","name":"XTSY Travel","alternateName":"XTSY Travellers Hostel","url":"https://xtsy.one"}`;
@@ -220,8 +158,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       { children: HYDRATED_CLASS_SCRIPT },
       { children: LEGACY_FONTS_SCRIPT },
+      { children: CONSENT_BOOTSTRAP_SCRIPT },
       { children: DATALAYER_INIT_SCRIPT },
-      { children: GTM_GATED_LOADER_SCRIPT },
+      { children: GTM_CONSENT_LOADER_SCRIPT },
       { type: "application/ld+json", children: JSONLD_WEBSITE },
       { type: "application/ld+json", children: JSONLD_ORGANIZATION },
     ],
@@ -247,16 +186,6 @@ function RootShell({ children }: { children: ReactNode }) {
         >
           Skip to content
         </a>
-        {/* Google Tag Manager (noscript) fallback */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-5FXJ9QBK"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-            title="gtm"
-          />
-        </noscript>
         {children}
         <Scripts />
       </body>
