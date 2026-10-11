@@ -1,3 +1,4 @@
+import { readConsent } from '@/lib/consent';
 /**
  * Traffic Analytics Hook
  * React hook for integrating traffic analytics with 3-layer defense system
@@ -58,9 +59,10 @@ export const useTrafficAnalytics = () => {
   
   // Initialize analytics and defense engine on mount
   useEffect(() => {
-    if (isInitialized.current || !SELF_TRACKING_ENABLED) return;
+    if (isInitialized.current || !SELF_TRACKING_ENABLED || !readConsent()?.analytics) return;
     
     const init = async () => {
+      if (!readConsent()?.analytics) return;
       // Initialize consent management first
       consentManager.initialize();
       
@@ -187,7 +189,7 @@ export const useTrafficAnalytics = () => {
   
   // Track WhatsApp click with 3-layer validation
   const trackWhatsAppClick = useCallback(async (metadata?: Record<string, unknown>) => {
-    if (!defenseEngineRef.current) return;
+    if (!defenseEngineRef.current || !readConsent()?.analytics) return;
     
     // First track the raw click
     trafficAnalytics.trackWhatsAppEngagement(metadata);
@@ -220,7 +222,7 @@ export const useTrafficAnalytics = () => {
   
   // Track Call click with 3-layer validation
   const trackCallClick = useCallback(async (callDuration?: number, metadata?: Record<string, unknown>) => {
-    if (!defenseEngineRef.current) return;
+    if (!defenseEngineRef.current || !readConsent()?.analytics) return;
     
     // First track the raw click
     trafficAnalytics.trackCallEngagement(callDuration, metadata);

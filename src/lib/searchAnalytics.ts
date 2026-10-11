@@ -1,3 +1,4 @@
+import { readConsent } from '@/lib/consent';
 /**
  * searchAnalytics — fire-and-forget logger that records on-site search queries
  * to the `search_queries` table for the admin Search Console.
@@ -62,6 +63,7 @@ function getDevice(): string {
  * minimum-length guards prevent flood.
  */
 export function logSearchQuery(input: LogSearchInput): void {
+  if (!readConsent()?.analytics) return;
   const q = (input.query || '').trim();
   if (q.length < 2) return; // ignore noise
 
@@ -109,6 +111,7 @@ export async function logSearchClick(opts: {
   url: string;
   title: string;
 }): Promise<void> {
+  if (!readConsent()?.analytics) return;
   const q = (opts.query || '').trim().toLowerCase();
   if (!q) return;
   try {

@@ -1,3 +1,4 @@
+import { readConsent } from '@/lib/consent';
 /**
  * DataLayer Service
  * 
@@ -38,6 +39,7 @@ let cachedVisitorId: string | null = null;
  * Generate or retrieve anonymous session ID
  */
 const getSessionId = (): string => {
+  if (!readConsent()?.analytics) return '';
   if (cachedSessionId) return cachedSessionId;
   
   const SESSION_KEY = 'xtsy_session_id';
@@ -65,6 +67,7 @@ const getSessionId = (): string => {
  * Generate or retrieve anonymous visitor ID
  */
 const getVisitorId = (): string => {
+  if (!readConsent()?.analytics) return '';
   if (cachedVisitorId) return cachedVisitorId;
   
   const VISITOR_KEY = 'xtsy_visitor_id';
@@ -92,21 +95,7 @@ const isAdminSession = (): boolean => {
  * Get current consent preferences from localStorage
  */
 const getConsentPreferences = (): { analytics: boolean; marketing: boolean } => {
-  if (typeof window === 'undefined') return { analytics: false, marketing: false };
-  
-  try {
-    const consent = localStorage.getItem('xtsy_consent_v2');
-    if (consent) {
-      const parsed = JSON.parse(consent);
-      return {
-        analytics: parsed.analytics ?? false,
-        marketing: parsed.marketing ?? false,
-      };
-    }
-  } catch {
-    // Ignore parse errors
-  }
-  return { analytics: false, marketing: false };
+  return readConsent() ?? { analytics: false, marketing: false };
 };
 
 // =============================================
@@ -155,7 +144,7 @@ const NON_INTERACTION_EVENTS = new Set([
  * (clicks, form submits, bookings) are interaction events.
  */
 export const pushToDataLayer = (event: Partial<DataLayerEvent>): void => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || !readConsent()?.analytics) return;
   
   // Skip tracking for admin sessions (GTM will also check this)
   if (isAdminSession()) {

@@ -1,3 +1,4 @@
+import { readConsent } from '@/lib/consent';
 /**
  * Traffic Analytics Service
  * Core tracking engine for the Smart Analytics & Traffic Defense System
@@ -90,6 +91,7 @@ export interface BotSignal {
  * Generate a unique visitor ID (persisted in localStorage)
  */
 export const generateVisitorId = (): string => {
+  if (!readConsent()?.analytics) return '';
   const stored = localStorage.getItem('xtsy_vid');
   if (stored) return stored;
   
@@ -102,6 +104,7 @@ export const generateVisitorId = (): string => {
  * Generate a session ID (persisted in sessionStorage with 30-min timeout)
  */
 export const generateSessionId = (): string => {
+  if (!readConsent()?.analytics) return '';
   const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
   const stored = sessionStorage.getItem('xtsy_sid');
   const lastActivity = sessionStorage.getItem('xtsy_last_activity');
@@ -1043,7 +1046,7 @@ const disabledAsync = () => Promise.resolve();
 export const trafficAnalytics = new Proxy({} as TrafficAnalyticsService, {
   get(_, prop, receiver) {
     if (typeof window === 'undefined') return ssrNoop;
-    if (!SELF_TRACKING_ENABLED) return DISABLED[String(prop)] ?? disabledAsync;
+    if (!SELF_TRACKING_ENABLED || !readConsent()?.analytics) return DISABLED[String(prop)] ?? disabledAsync;
     if (!_trafficAnalytics) _trafficAnalytics = new TrafficAnalyticsService();
     const value = Reflect.get(_trafficAnalytics, prop, receiver);
     return typeof value === 'function' ? value.bind(_trafficAnalytics) : value;
@@ -1052,7 +1055,7 @@ export const trafficAnalytics = new Proxy({} as TrafficAnalyticsService, {
 
 // Export initialization function
 export const initTrafficAnalytics = async () => {
-  if (typeof window === 'undefined' || !SELF_TRACKING_ENABLED) return;
+  if (typeof window === 'undefined' || !SELF_TRACKING_ENABLED || !readConsent()?.analytics) return;
   await trafficAnalytics.initSession();
   trafficAnalytics.trackPageView();
 };

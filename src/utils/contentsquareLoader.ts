@@ -1,3 +1,4 @@
+import { readConsent } from '@/lib/consent';
 /**
  * Contentsquare / Hotjar consent-gated loader (hardened, first-party aware)
  *
@@ -117,40 +118,8 @@ function deviceInfo(): { deviceType: string; browser: string } {
  *  3. `{ granted: false, source: 'none' }`.
  */
 function resolveAnalyticsConsent(): { granted: boolean; source: CSLoaderState['consentSource'] } {
-  try {
-    const raw = typeof localStorage !== 'undefined' ? localStorage.getItem('xtsy_consent_v2') : null;
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      const granted =
-        parsed?.analytics === true ||
-        parsed?.preferences?.analytics === true ||
-        parsed?.analytics_storage === 'granted' ||
-        parsed?.analytics_storage === true;
-      if (typeof granted === 'boolean') {
-        return { granted, source: 'localStorage' };
-      }
-    }
-  } catch (e) {
-    console.warn(`${LOG} localStorage parse failed`, e);
-  }
-
-  try {
-    const dl = (typeof window !== 'undefined' && window.dataLayer) || [];
-    for (let i = dl.length - 1; i >= 0; i--) {
-      const entry = dl[i];
-      if (!entry) continue;
-      if (Array.isArray(entry) && (entry[0] === 'consent') && entry[2]?.analytics_storage) {
-        return { granted: entry[2].analytics_storage === 'granted', source: 'consent-mode' };
-      }
-      if (typeof entry === 'object' && entry.analytics_storage) {
-        return { granted: entry.analytics_storage === 'granted', source: 'consent-mode' };
-      }
-    }
-  } catch (e) {
-    console.warn(`${LOG} dataLayer scan failed`, e);
-  }
-
-  return { granted: false, source: 'none' };
+  const prefs = readConsent();
+  return { granted: prefs?.analytics === true, source: prefs ? 'localStorage' : 'none' };
 }
 
 /** Classify why a load attempt failed. */
@@ -237,7 +206,7 @@ let candidateIndex = 0;
 let totalAttempts = 0;
 
 function injectScript(): void {
-  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+  if (typeof window === 'undefined' || typeof document === 'undefined' || !readConsent()?.analytics) return;
 
   try {
     if (window.__cs_uxa_loaded) {
