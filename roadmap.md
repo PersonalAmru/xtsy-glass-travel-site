@@ -1,5 +1,5 @@
-- [ ] Verify the stale duplicate-metadata finding on homepage, About and itinerary pages; record the result.
-- [ ] Expand the existing 10-day Meghalaya itinerary with practical logistics and weather alternatives; verify and update its SEO finding.
+- [x] Verify stale duplicate metadata: homepage, About and 3-day itinerary have one title, description and self-canonical in server HTML and browser DOM; finding recorded as fixed.
+- [x] Expand the existing 10-day Meghalaya itinerary with overnight logistics, trek preparation and weather alternatives; preview verified, SEO finding recorded as fixed awaiting rescan and publishing. Redirect tests: 52 passed; legacy SEO regression suite cannot load because it references removed index.html and obsolete rates.
 - [x] Update existing /faq and add /safety-house-rules using current rates, published quiet hours and strict property times; verified rendering, FAQs and self-canonicals.
 - [x] Harden dorm catalogue matching; verify real pending enquiries and WhatsApp messages for all three dorms at ₹399/₹499/₹599, with server GST checks preserved.
 - [x] Verify India search volumes; broad terms have demand, exact priority question volumes remain unknown (research recorded).
