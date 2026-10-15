@@ -83,7 +83,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
             </Link>
           ))}
         </div>
-        <p className="m-0 text-[13px] text-xt-mute">Prices come from our booking engine and can change with dates; check-in 11 AM, check-out strictly 10 AM.</p>
+        <p className="m-0 text-[13px] text-xt-mute">Prices come from our booking engine and can change with dates; check-in 11 AM, check-out strictly 10 AM.{variant === 'hostels' && <> <Link to="/faq" className="inline-flex min-h-12 items-center font-bold text-xt-crimson underline underline-offset-4">Hostel FAQs: booking, facilities and arrival</Link>.</>}</p>
       </section>
 
       <section className={`${PAD} grid gap-8 pb-14 lg:grid-cols-2`}>
@@ -97,7 +97,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
         </div>
         <div className="flex flex-col gap-4">
           <h2 className="xt-display m-0 text-[36px] leading-none sm:text-[48px]">Where it is</h2>
-          <p className="m-0 text-[15px] leading-relaxed text-xt-mute">Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018 — in the pines near IIM and NIFT Shillong, not in Police Bazaar. Quieter nights, easy parking and faster starts for waterfall days.</p>
+          <p className="m-0 text-[15px] leading-relaxed text-xt-mute">Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018 — in the pines near IIM and NIFT Shillong, not in Police Bazaar. Quieter nights, easy parking and faster starts for waterfall days.{variant === 'hostels' && <> Plan your arrival with our <Link to="/travel-guide/how-to-reach-meghalaya" className="inline-flex min-h-12 items-center font-bold text-xt-crimson underline underline-offset-4">Guwahati-to-Shillong transport and Meghalaya arrival guide</Link>.</>}</p>
           <dl className="m-0 overflow-hidden rounded-[22px] bg-white">
             {distances.map((d) => (
               <div key={d.t} className="grid grid-cols-[60%_40%] gap-3 border-t border-xt-cream px-5 py-3 text-[14px] first:border-t-0">
@@ -114,7 +114,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
           <h2 className="xt-display m-0 text-[36px] leading-none sm:text-[48px]">How to choose a hostel in Shillong</h2>
           <ol className="m-0 flex list-decimal flex-col gap-2 pl-5 text-[15px] leading-relaxed text-xt-mute">
             <li><strong className="text-xt-ink">Location for your trip:</strong> central Shillong for nightlife on foot; New Shillong for quiet, space and quicker waterfall starts.</li>
-            <li><strong className="text-xt-ink">Safety:</strong> look for a women-only dorm, lockers and 24/7 arrival support.</li>
+            <li><strong className="text-xt-ink">Safety:</strong> look for a women-only dorm, lockers and 24/7 arrival support.{variant === 'hostels' && <> Read <Link to="/safety-house-rules" className="inline-flex min-h-12 items-center font-bold text-xt-crimson underline underline-offset-4">XTSY hostel safety and house rules</Link> before your stay.</>}</li>
             <li><strong className="text-xt-ink">Food:</strong> an on-site kitchen or restaurant saves money and late-night hunting.</li>
             <li><strong className="text-xt-ink">Price you actually pay:</strong> compare the direct rate — OTAs add their commission.</li>
             <li><strong className="text-xt-ink">Trip help:</strong> a travel desk that knows real drive times saves whole days.</li>
