@@ -22,6 +22,13 @@
       "when": 1790512411290,
       "tag": "0002_grant_public_active_room_catalogue_reads",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1792134155253,
+      "tag": "0003_grant_backend_rate_limit_and_cache_access",
+      "breakpoints": true
     }
   ]
 }
