@@ -1,11 +1,11 @@
 {
- "checkedAt": "2026-10-03T08:00:55.732Z",
+ "checkedAt": "2026-10-16T16:22:57.219Z",
  "site": "https://xtsy.one",
  "sitemaps": [
   {
    "sitemap": "https://xtsy.one/sitemap-static.xml",
    "status": 200,
-   "urls": 43
+   "urls": 45
   },
   {
    "sitemap": "https://xtsy.one/sitemap-hostel.xml",
@@ -15,7 +15,7 @@
   {
    "sitemap": "https://xtsy.one/sitemap-tour-packages.xml",
    "status": 200,
-   "urls": 60
+   "urls": 74
   },
   {
    "sitemap": "https://xtsy.one/sitemap-tours.xml",
@@ -53,19 +53,22 @@
    "urls": 2
   }
  ],
- "urlsChecked": 668,
- "healthy": 668,
- "withIssues": 0,
- "byIssue": {},
- "medianMs": 41,
- "p95Ms": 100,
- "withStructuredData": 668,
- "withQuickAnswer": 482,
+ "urlsChecked": 684,
+ "healthy": 1,
+ "withIssues": 683,
+ "byIssue": {
+  "old dorm price  on page": 683,
+  "long title": 3
+ },
+ "medianMs": 90,
+ "p95Ms": 618,
+ "withStructuredData": 684,
+ "withQuickAnswer": 495,
  "extra": {
   "robots": 200,
   "llms": 200,
   "llmsFull": 200,
   "indexNowKey": 200,
-  "home": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹389"
+  "home": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399"
  }
 }
