@@ -1,25 +1,25 @@
 url	try	status	ttfb_s	total_s	bytes	cache-control	cf-cache-status	age	server	x-xtsy-cache	link
-/	1	200	0.442126	0.451290	23519	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
-/	2	200	0.917740	0.921371	24083	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
-/	3	200	0.354611	0.359197	23566	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
-/cheap-hostels-shillong	1	200	0.705402	0.707223	16037	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
-/cheap-hostels-shillong	2	200	0.313068	0.316740	16014	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
-/cheap-hostels-shillong	3	200	0.726793	0.729190	15988	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
-/hostel-in-shillong-tonight	1	200	0.523842	0.527014	19107	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsy-property-images-9-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
-/hostel-in-shillong-tonight	2	200	0.459972	0.461714	19071	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsy-property-images-9-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
-/hostel-in-shillong-tonight	3	200	0.694360	0.697060	19109	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsy-property-images-9-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
-/xtsy-270	1	200	0.277609	0.281372	15907	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsy-270-xtsy270-480.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-270-xtsy270-480.
-/xtsy-270	2	200	0.243484	0.246341	15922	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-270-xtsy270-480.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-270-xtsy270-480.
-/xtsy-270	3	200	0.370998	0.375794	15956	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsy-270-xtsy270-480.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-270-xtsy270-480.
-/assets/styles-BvCEcKkR.css	1	200	0.717159	0.717260	28942	public, max-age=31536000, immutable			cloudflare		
-/assets/styles-BvCEcKkR.css	2	200	0.271628	0.271780	28942	public, max-age=31536000, immutable			cloudflare		
-/assets/styles-BvCEcKkR.css	3	200	0.092488	0.092773	28942	public, max-age=31536000, immutable			cloudflare		
-/assets/index-NxpB0yjV.js	1	200	0.816633	0.852285	188132	public, max-age=31536000, immutable			cloudflare		
-/assets/index-NxpB0yjV.js	2	200	0.397622	0.400400	188132	public, max-age=31536000, immutable			cloudflare		
-/assets/index-NxpB0yjV.js	3	200	0.085671	0.090031	188132	public, max-age=31536000, immutable			cloudflare		
-/img/o/xtsy-property-images-8-portrait-828.webp	1	200	0.595308	0.597285	127832				cloudflare		
-/img/o/xtsy-property-images-8-portrait-828.webp	2	200	0.316202	0.318263	127832				cloudflare		
-/img/o/xtsy-property-images-8-portrait-828.webp	3	200	0.079044	0.081040	127832				cloudflare		
-/fonts/manrope-latin.woff2	1	200	0.712462	0.712538	24836				cloudflare		
-/fonts/manrope-latin.woff2	2	200	0.483948	0.484059	24836				cloudflare		
-/fonts/manrope-latin.woff2	3	200	0.052184	0.052272	24836				cloudflare		
+/img/o/xtsy-property-images-8-828.avif	1	200	0.506988	0.508019	33261				cloudflare		
+/img/o/xtsy-property-images-8-828.avif	2	200	0.110374	0.111502	33261				cloudflare		
+/img/o/xtsy-property-images-8-828.avif	3	200	0.389342	0.390039	33261				cloudflare		
+/fonts/manrope-latin.woff2	1	200	0.358935	0.359298	24836				cloudflare		
+/fonts/manrope-latin.woff2	2	200	0.079726	0.080230	24836				cloudflare		
+/fonts/manrope-latin.woff2	3	200	0.294618	0.295443	24836				cloudflare		
+/assets/styles-BzelrVhN.css	1	200	0.344761	0.345360	28971	public, max-age=31536000, immutable			cloudflare		
+/assets/styles-BzelrVhN.css	2	200	0.319388	0.320082	28971	public, max-age=31536000, immutable			cloudflare		
+/assets/styles-BzelrVhN.css	3	200	0.094420	0.095300	28971	public, max-age=31536000, immutable			cloudflare		
+/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif	1	200	0.405937	0.406045	14492				cloudflare		
+/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif	2	200	0.092789	0.093087	14492				cloudflare		
+/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif	3	200	0.086510	0.086635	14492				cloudflare		
+/assets/styles-BzelrVhN.css	1	200	0.085889	0.086719	28879	public, max-age=31536000, immutable			cloudflare		
+/assets/styles-BzelrVhN.css	2	200	0.374533	0.375400	28971	public, max-age=31536000, immutable			cloudflare		
+/assets/styles-BzelrVhN.css	3	200	0.075333	0.076008	28971	public, max-age=31536000, immutable			cloudflare		
+/assets/index-CgwZ-ACd.js	1	200	0.411299	0.422913	132801	public, max-age=31536000, immutable			cloudflare		
+/assets/index-CgwZ-ACd.js	2	200	0.104745	0.116142	132540	public, max-age=31536000, immutable			cloudflare		
+/assets/index-CgwZ-ACd.js	3	200	0.101958	0.112080	132801	public, max-age=31536000, immutable			cloudflare		
+/img/o/xtsy-property-images-8-portrait-828.webp	1	200	0.728255	0.739911	127832				cloudflare		
+/img/o/xtsy-property-images-8-portrait-828.webp	2	200	0.310459	0.323053	127832				cloudflare		
+/img/o/xtsy-property-images-8-portrait-828.webp	3	200	0.271478	0.281543	127832				cloudflare		
+/fonts/manrope-latin.woff2	1	200	0.318373	0.318997	24836				cloudflare		
+/fonts/manrope-latin.woff2	2	200	0.070953	0.071306	24836				cloudflare		
+/fonts/manrope-latin.woff2	3	200	0.287578	0.287988	24836				cloudflare		
