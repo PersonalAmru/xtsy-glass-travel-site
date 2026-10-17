@@ -29,6 +29,13 @@
       "when": 1792134155253,
       "tag": "0003_grant_backend_rate_limit_and_cache_access",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1792270692342,
+      "tag": "0004_grant_traffic_tracking_table_access",
+      "breakpoints": true
     }
   ]
 }
