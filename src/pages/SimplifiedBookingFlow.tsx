@@ -43,6 +43,7 @@ import { getCanonicalRate, getBreakfastInclusion } from '@/utils/rateSanityCheck
 import { useOptionalAuth } from '@/hooks/useRequireAuth';
 import { openWhatsAppDirectly, generateBookingMessage, bookingPageSource } from '@/utils/privacyCompliantWhatsApp';
 import { trackBookingStart } from '@/utils/dataLayerService';
+import { trafficAnalytics } from '@/services/trafficAnalyticsService';
 import { quoteStay } from '@/data/panoramaPricing';
 import { resolveBookingQuote } from '@/utils/bookingCatalogue';
 
@@ -1019,6 +1020,31 @@ export default function SimplifiedBookingFlow() {
     setDirection(newIdx > currentIdx ? 1 : -1);
     setCurrentStep(step);
   }, [currentStep]);
+
+  // Step-by-step funnel tracking: records every step view so the admin dashboard
+  // can show where guests leave (dates → rooms → summary → details → confirmation).
+  // Consent-gated and admin-excluded inside trafficAnalytics.trackInteraction.
+  const lastTrackedStep = useRef<BookingStep | null>(null);
+  useEffect(() => {
+    if (lastTrackedStep.current === currentStep) return;
+    lastTrackedStep.current = currentStep;
+    void trafficAnalytics.trackInteraction({
+      session_id: trafficAnalytics.getSessionId(),
+      event_type: 'custom',
+      event_name: 'booking_step_view',
+      event_category: 'booking_funnel',
+      page_url: window.location.pathname,
+      metadata: {
+        step: currentStep,
+        property: propertyName || null,
+        nights: nights || null,
+        rooms_selected: selectedRooms.length,
+        room_names: selectedRooms.map(sr => sr.room.name),
+        guests: selectedRooms.reduce((sum, r) => sum + r.quantity, 0) || null,
+        total: total || null,
+      },
+    });
+  }, [currentStep, propertyName, nights, selectedRooms, total]);
 
   const goBack = useCallback(() => {
     if (currentStep === 'details') {

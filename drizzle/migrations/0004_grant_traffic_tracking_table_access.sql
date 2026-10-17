@@ -1,0 +1,15 @@
+GRANT INSERT, UPDATE ON public.traffic_sessions TO anon, authenticated;
+GRANT SELECT ON public.traffic_sessions TO authenticated;
+GRANT INSERT ON public.traffic_page_events TO anon, authenticated;
+GRANT SELECT ON public.traffic_page_events TO authenticated;
+GRANT INSERT ON public.traffic_interaction_events TO anon, authenticated;
+GRANT SELECT ON public.traffic_interaction_events TO authenticated;
+GRANT INSERT ON public.traffic_validated_events TO anon, authenticated;
+GRANT SELECT ON public.traffic_validated_events TO authenticated;
+GRANT INSERT, UPDATE, DELETE ON public.analytics_realtime TO anon, authenticated;
+GRANT SELECT ON public.analytics_realtime TO authenticated;
+GRANT ALL ON public.traffic_sessions TO service_role;
+GRANT ALL ON public.traffic_page_events TO service_role;
+GRANT ALL ON public.traffic_interaction_events TO service_role;
+GRANT ALL ON public.traffic_validated_events TO service_role;
+GRANT ALL ON public.analytics_realtime TO service_role;

@@ -79,8 +79,8 @@ export default function ExperienceByXtsy() {
           }
           actions={
             <>
-              <Btn to={wa}>Book a stay</Btn>
-              <Btn to="#packages" kind="outline-light">See packages</Btn>
+              <Btn to="/book?property=xtsy-experience">Book / Enquire</Btn>
+              <Btn to={wa} kind="outline-light">WhatsApp us</Btn>
             </>
           }
           media={

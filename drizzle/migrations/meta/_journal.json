@@ -29,6 +29,27 @@
       "when": 1792134155253,
       "tag": "0003_grant_backend_rate_limit_and_cache_access",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1792270692342,
+      "tag": "0004_grant_traffic_tracking_table_access",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1792270805826,
+      "tag": "0005_grant_traffic_visitor_history_access",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1792270906945,
+      "tag": "0006_grant_trigger_owner_traffic_access",
+      "breakpoints": true
     }
   ]
 }
