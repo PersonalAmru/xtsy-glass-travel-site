@@ -43,6 +43,13 @@
       "when": 1792270805826,
       "tag": "0005_grant_traffic_visitor_history_access",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1792270906945,
+      "tag": "0006_grant_trigger_owner_traffic_access",
+      "breakpoints": true
     }
   ]
 }
