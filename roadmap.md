@@ -25,3 +25,4 @@
 - [ ] Normalize New Shillong Township address and strict 11 AM / 10 AM property times in SEO and AEO.
 - [ ] Flat nightly price for unspecified room: waiting on room name and amount from owner.
 - [x] Improve /best-hostel-in-shillong search title, description and contextual FAQ, safety and arrival links; verified single self-canonical, working destinations, unchanged displayed rates/policies and desktop/mobile rendering. Eight booking quote tests pass; publish needed for the live URL.
+- [x] Investigate the two open live error findings: published room list and realtime writes now work; marked historical findings stale. Restore missing backend-only cache/rate-limit grants; verify exchange-rate cache hits. Review measured weekly traffic without identifying anonymous visitors or treating visits as conversions.
