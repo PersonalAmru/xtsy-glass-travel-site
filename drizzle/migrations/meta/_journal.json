@@ -36,6 +36,13 @@
       "when": 1792270692342,
       "tag": "0004_grant_traffic_tracking_table_access",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1792270805826,
+      "tag": "0005_grant_traffic_visitor_history_access",
+      "breakpoints": true
     }
   ]
 }
