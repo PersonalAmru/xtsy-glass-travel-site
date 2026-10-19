@@ -63,12 +63,9 @@ jobs:
           SHARD: ${{ matrix.shard }}
           SHARDS: 8
           LIMIT: ${{ inputs.limit }}
-      - uses: actions/upload-artifact@v4
+      - name: Publish shard results
         if: always()
-        with:
-          name: perf-lab-${{ matrix.shard }}
-          path: perf/
-          if-no-files-found: ignore
+        run: bash scripts/audit/perf-publish.sh "${{ inputs.label }}" perf
 
   psi:
     if: ${{ inputs.psi == '1' }}
@@ -102,12 +99,9 @@ jobs:
           CONCURRENCY: 4
           LIMIT: ${{ inputs.limit }}
           PSI_KEY: ${{ secrets.PSI_KEY }}
-      - uses: actions/upload-artifact@v4
+      - name: Publish shard results
         if: always()
-        with:
-          name: perf-psi-${{ matrix.shard }}
-          path: perf/
-          if-no-files-found: ignore
+        run: bash scripts/audit/perf-publish.sh "${{ inputs.label }}" perf
 
   merge:
     needs: [lab, psi]
@@ -127,33 +121,18 @@ jobs:
         run: |
           curl -fsSL https://bun.sh/install | bash
           echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: perf-*
-          path: perf
-          merge-multiple: true
+      - name: Collect shard results from ci-screenshots
+        run: |
+          set -euo pipefail
+          mkdir -p perf /tmp/shards
+          git fetch -q --depth=1 origin ci-screenshots
+          git --work-tree=/tmp/shards checkout FETCH_HEAD -- "perf-full/${{ inputs.label }}" 2>/dev/null || mkdir -p "/tmp/shards/perf-full/${{ inputs.label }}"
+          cp /tmp/shards/perf-full/${{ inputs.label }}/{lab,psi}-*.json perf/ 2>/dev/null || true
+          ls perf
       - name: Merge
         run: bun scripts/audit/perf-merge.ts
         env:
           OUT_DIR: perf
           LABEL: ${{ inputs.label }}
       - name: Publish report
-        run: |
-          set -euo pipefail
-          LABEL="${{ inputs.label }}"
-          mkdir -p /tmp/pub && cd /tmp/pub
-          git init -q .
-          git config user.name "xtsy-ci"
-          git config user.email "ci@xtsy.one"
-          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          if git fetch --depth=1 origin ci-screenshots 2>/dev/null; then git checkout -q FETCH_HEAD; else git checkout -q --orphan ci-screenshots; fi
-          rm -rf "perf-full/$LABEL" && mkdir -p "perf-full/$LABEL"
-          cp "$GITHUB_WORKSPACE"/perf/{lab,psi,summary}.json "$GITHUB_WORKSPACE"/perf/report.md "perf-full/$LABEL/" 2>/dev/null || true
-          git add -A
-          git commit -q -m "Full-site performance ($LABEL) @ $(date -u +%FT%TZ)" || exit 0
-          for i in 1 2 3 4 5; do
-            git push -q origin HEAD:ci-screenshots && exit 0
-            git fetch -q --depth=1 origin ci-screenshots && git rebase -q FETCH_HEAD || true
-            sleep 5
-          done
-          exit 1
+        run: bash scripts/audit/perf-publish.sh "${{ inputs.label }}" perf
