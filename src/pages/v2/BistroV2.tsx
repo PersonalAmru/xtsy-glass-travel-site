@@ -42,6 +42,7 @@ export default function BistroV2() {
       </Helmet>
       <PageShell bar={{ label: 'Book a table', to: '#book-a-table', note: 'TAB Bistro · Open 9 AM – 10:30 PM' }} cta={{ title: 'Hungry? We’re open till 10:30.', sub: 'Book a table online or order on WhatsApp. Staying at XTSY? Breakfast is a short walk away.', bookTo: '/book', bookLabel: 'Stay at XTSY' }}>
         <PageHero
+          size="md"
           bg="#2F4A3F"
           fg="#EAF0EA"
           muted="#C8D6CC"
