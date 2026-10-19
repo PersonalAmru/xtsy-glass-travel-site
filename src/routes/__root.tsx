@@ -21,6 +21,10 @@ import { installChunkRecovery } from "@/utils/chunkRecovery";
 import { HelmetProvider } from "react-helmet-async";
 
 import appCss from "../styles.css?url";
+import staatlichesLatin from "@/assets/fonts/staatliches-latin.woff2?url";
+import staatlichesLatinExt from "@/assets/fonts/staatliches-latin-ext.woff2?url";
+import manropeLatin from "@/assets/fonts/manrope-latin.woff2?url";
+import manropeLatinExt from "@/assets/fonts/manrope-latin-ext.woff2?url";
 
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -49,7 +53,10 @@ import { CONSENT_BOOTSTRAP_SCRIPT, GTM_CONSENT_LOADER_SCRIPT } from "@/lib/conse
 // ---------------------------------------------------------------------------
 
 /** Loads the legacy Google Fonts stylesheet after first paint (it used to block every page). */
-const LEGACY_FONTS_SCRIPT = `(function(){function add(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap';document.head.appendChild(l);}if(document.readyState==='complete')add();else window.addEventListener('load',add,{once:true});})();`;
+// Older pages still use Playfair Display / Josefin Sans. After the page has loaded, look at the
+// visible text: only if some of it is set in those families is the Google Fonts stylesheet added,
+// so redesigned pages make no request to Google at all.
+const LEGACY_FONTS_SCRIPT = `(function(){function uses(){var els=document.querySelectorAll('h1,h2,h3,h4,p,li,a,button,span');for(var i=0;i<els.length&&i<400;i++){var f=getComputedStyle(els[i]).fontFamily.split(',')[0].replace(/["']/g,'').trim();if(/^(Playfair Display|Josefin Sans|Glacial Indifference|Cormorant Garamond)$/.test(f)&&els[i].textContent.trim())return true;}return false;}function add(){if(!uses())return;var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Josefin+Sans:wght@300;400;500;600&display=swap';document.head.appendChild(l);}if(document.readyState==='complete')setTimeout(add,0);else window.addEventListener('load',function(){setTimeout(add,0)},{once:true});})();`;
 
 const HYDRATED_CLASS_SCRIPT = `document.documentElement.classList.add('hydrated');`;
 
@@ -130,17 +137,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://kzhsxemkntfwsakhkylt.supabase.co", crossOrigin: "anonymous" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      // Brand fonts are self-hosted and preloaded so headlines render in Staatliches from the first paint.
-      { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/staatliches-latin.woff2", crossOrigin: "anonymous" },
-      { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/manrope-latin.woff2", crossOrigin: "anonymous" },
+      // Brand fonts are bundled (hashed /assets URLs, cached for a year; their @font-face rules are
+      // in the main stylesheet) and preloaded so headlines render in Staatliches from the first paint.
+      { rel: "preload", as: "font", type: "font/woff2", href: staatlichesLatin, crossOrigin: "anonymous" },
+      { rel: "preload", as: "font", type: "font/woff2", href: manropeLatin, crossOrigin: "anonymous" },
       // ₹ (U+20B9) lives in the latin-ext subset; every page shows prices, so
       // preload it too or the late swap shifts the layout (CLS).
-      { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/manrope-latin-ext.woff2", crossOrigin: "anonymous" },
-      { rel: "preload", as: "font", type: "font/woff2", href: "/fonts/staatliches-latin-ext.woff2", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "/fonts/fonts.css" },
-      // Legacy Playfair/Josefin fonts (older pages only) load after the page, not render-blocking:
+      { rel: "preload", as: "font", type: "font/woff2", href: manropeLatinExt, crossOrigin: "anonymous" },
+      { rel: "preload", as: "font", type: "font/woff2", href: staatlichesLatinExt, crossOrigin: "anonymous" },
+      // Legacy Playfair/Josefin fonts load after the page, and only on older pages that use them:
       // see LEGACY_FONTS_SCRIPT.
       {
         rel: "icon",
