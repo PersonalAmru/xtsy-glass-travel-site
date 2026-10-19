@@ -32,6 +32,7 @@
 - [x] Added "Book / Enquire" button on /xtsy-270 leading to /book?property=xtsy-experience
 
 ## Done 2026-10-19
+- [ ] Move remaining affected admin and booking functions off the restricted owner, preserving access checks and verifying permissions.
 - [x] Added a clear "Book a table" action on /tab-bistro (hero primary + phone sticky bar) opening an on-page table request form: date, time, guests, name, WhatsApp, email, notes. Request is saved as a pending enquiry (XTH-ENQ ref, time and page source kept) and WhatsApp opens with the same details; a request is not a confirmed table. Verified end to end in the preview.
 - [x] Fixed why nothing was ever saved through create_enquiry: it was owned by the migration role, which cannot be granted access to the auth schema, so every call died at auth.uid(). create_enquiry plus has_role / get_user_role / is_admin / is_admin_or_staff are now owned by postgres and the counter table is writable by it; admin role checks answer again instead of erroring. Remaining sandbox_exec-owned functions (create_booking_secure, verify_booking_access, generate_password_reset_otp, admin_* and log_* helpers) share the same defect and still need the same handover.
 - [ ] QA table enquiry XTH-ENQ-001 ("QA Table Test", qa.table@example.com) is still pending in the enquiries list — delete when convenient.

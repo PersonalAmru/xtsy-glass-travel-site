@@ -71,6 +71,13 @@
       "when": 1792401877532,
       "tag": "0009_hand_enquiry_and_role_helpers_to_postgres",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1792412523644,
+      "tag": "0010_restore_admin_booking_function_owners_safely",
+      "breakpoints": true
     }
   ]
 }
