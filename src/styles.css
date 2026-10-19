@@ -5,6 +5,7 @@
 @source "../src";
 @import "tw-animate-css";
 
+@import "./styles/fonts.css";
 @import "./styles/responsive.css";
 @import "./styles/ios-optimizations.css";
 @import "./styles/typography.css";

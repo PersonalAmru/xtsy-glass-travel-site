@@ -58,30 +58,35 @@ const countryLanguageMap: Record<string, string> = {
   // Default to English for other countries
 };
 
+// Euro-area time zones → country (the only places where the currency differs from the default).
+const EURO_TZ: Record<string, string> = {
+  'Europe/Berlin': 'DE', 'Europe/Paris': 'FR', 'Europe/Madrid': 'ES', 'Europe/Rome': 'IT', 'Europe/Lisbon': 'PT',
+  'Europe/Amsterdam': 'NL', 'Europe/Vienna': 'AT', 'Europe/Brussels': 'BE', 'Europe/Helsinki': 'FI', 'Europe/Dublin': 'IE',
+  'Europe/Luxembourg': 'LU', 'Europe/Malta': 'MT', 'Europe/Ljubljana': 'SI', 'Europe/Bratislava': 'SK', 'Europe/Tallinn': 'EE',
+  'Europe/Riga': 'LV', 'Europe/Vilnius': 'LT', 'Asia/Nicosia': 'CY', 'Europe/Athens': 'GR',
+};
+
+/**
+ * Visitor's country (for the default currency and language), worked out in the browser from its
+ * time zone and language — no request to a third-party IP-lookup service, so nothing slows the
+ * page and no IP address leaves the visitor's device.
+ */
 export const detectUserLocation = async (): Promise<LocationData> => {
-  try {
-    // Try to get location from IP geolocation
-    const response = await fetch('https://ipapi.co/json/');
-    const data = await response.json();
-    
-    const country = data.country_code || 'IN';
-    const currency = countryCurrencyMap[country] || 'INR';
-    const language = countryLanguageMap[country] || 'en';
-    
-    return { country, currency, language };
-  } catch (error) {
-    console.warn('Failed to detect location, using defaults:', error);
-    // Fallback to browser language if available
-    const browserLang = navigator.language.split('-')[0];
-    const supportedLanguages = ['en', 'de', 'fr', 'es', 'it', 'pt', 'ru', 'pl', 'nl', 'zh', 'ja', 'ko', 'hi', 'th', 'vi', 'id', 'ms', 'ar'];
-    const language = supportedLanguages.includes(browserLang) ? browserLang : 'en';
-    
-    return { 
-      country: 'IN', 
-      currency: 'INR', 
-      language 
-    };
-  }
+  let tz = '';
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch { /* old browser */ }
+  const region = (typeof navigator !== 'undefined' ? navigator.language : 'en-IN').split('-')[1]?.toUpperCase() || '';
+  const country =
+    tz === 'Asia/Kolkata' || tz === 'Asia/Calcutta' ? 'IN'
+    : EURO_TZ[tz] ? EURO_TZ[tz]
+    : tz.startsWith('America/') && (region === 'US' || !region) ? 'US'
+    : region || 'IN';
+  const browserLang = (typeof navigator !== 'undefined' ? navigator.language : 'en').split('-')[0];
+  const supportedLanguages = ['en', 'de', 'fr', 'es', 'it', 'pt', 'ru', 'pl', 'nl', 'zh', 'ja', 'ko', 'hi', 'th', 'vi', 'id', 'ms', 'ar'];
+  return {
+    country,
+    currency: countryCurrencyMap[country] || 'INR',
+    language: supportedLanguages.includes(browserLang) ? browserLang : countryLanguageMap[country] || 'en',
+  };
 };
 
 // Fetch real-time exchange rates
