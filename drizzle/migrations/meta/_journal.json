@@ -64,6 +64,13 @@
       "when": 1792401800942,
       "tag": "0008_grant_auth_schema_access_to_migration_role",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1792401877532,
+      "tag": "0009_hand_enquiry_and_role_helpers_to_postgres",
+      "breakpoints": true
     }
   ]
 }
