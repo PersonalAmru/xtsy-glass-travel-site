@@ -50,6 +50,27 @@
       "when": 1792270906945,
       "tag": "0006_grant_trigger_owner_traffic_access",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1792401715870,
+      "tag": "0007_restore_enquiry_function_owner",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1792401800942,
+      "tag": "0008_grant_auth_schema_access_to_migration_role",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1792401877532,
+      "tag": "0009_hand_enquiry_and_role_helpers_to_postgres",
+      "breakpoints": true
     }
   ]
 }
