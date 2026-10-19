@@ -1,0 +1,159 @@
+name: Full-site performance test (manual)
+
+# On-demand only. Tests EVERY page in the live sitemaps:
+#   lab  — emulated mid-range phone, Slow 4G, 4x CPU; first visit and repeat visit (8 parallel shards)
+#   psi  — Google PageSpeed Insights mobile for every page (needs the PSI_KEY secret)
+#   merge — per-template medians, slowest pages, uncached files, console errors
+# Saves to the ci-screenshots branch under perf-full/<label>/.
+
+on:
+  workflow_dispatch:
+    inputs:
+      label:
+        description: 'Name for this run (e.g. baseline, after)'
+        required: true
+        default: 'baseline'
+      base_url:
+        description: 'Site to test'
+        required: false
+        default: 'https://xtsy.one'
+      psi:
+        description: 'Also run PageSpeed Insights on every page (1/0)'
+        required: false
+        default: '1'
+      limit:
+        description: 'Test only the first N pages (0 = all)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+
+jobs:
+  lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${GITHUB_REF_NAME}"
+          git checkout -q FETCH_HEAD
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+      - name: Install dependencies
+        run: bun install --frozen-lockfile || bun install
+      - name: Install Playwright Chromium
+        run: bunx playwright install --with-deps chromium
+      - name: Lab test (shard ${{ matrix.shard }} of 8)
+        run: bunx tsx scripts/audit/perf-full.ts
+        env:
+          BASE_URL: ${{ inputs.base_url }}
+          OUT_DIR: perf
+          SHARD: ${{ matrix.shard }}
+          SHARDS: 8
+          LIMIT: ${{ inputs.limit }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: perf-lab-${{ matrix.shard }}
+          path: perf/
+          if-no-files-found: ignore
+
+  psi:
+    if: ${{ inputs.psi == '1' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2]
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${GITHUB_REF_NAME}"
+          git checkout -q FETCH_HEAD
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+      - name: PageSpeed Insights (shard ${{ matrix.shard }} of 3)
+        run: bun scripts/audit/perf-psi.ts
+        env:
+          BASE_URL: ${{ inputs.base_url }}
+          OUT_DIR: perf
+          SHARD: ${{ matrix.shard }}
+          SHARDS: 3
+          CONCURRENCY: 4
+          LIMIT: ${{ inputs.limit }}
+          PSI_KEY: ${{ secrets.PSI_KEY }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: perf-psi-${{ matrix.shard }}
+          path: perf/
+          if-no-files-found: ignore
+
+  merge:
+    needs: [lab, psi]
+    if: always()
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${GITHUB_REF_NAME}"
+          git checkout -q FETCH_HEAD
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: perf-*
+          path: perf
+          merge-multiple: true
+      - name: Merge
+        run: bun scripts/audit/perf-merge.ts
+        env:
+          OUT_DIR: perf
+          LABEL: ${{ inputs.label }}
+      - name: Publish report
+        run: |
+          set -euo pipefail
+          LABEL="${{ inputs.label }}"
+          mkdir -p /tmp/pub && cd /tmp/pub
+          git init -q .
+          git config user.name "xtsy-ci"
+          git config user.email "ci@xtsy.one"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git fetch --depth=1 origin ci-screenshots 2>/dev/null; then git checkout -q FETCH_HEAD; else git checkout -q --orphan ci-screenshots; fi
+          rm -rf "perf-full/$LABEL" && mkdir -p "perf-full/$LABEL"
+          cp "$GITHUB_WORKSPACE"/perf/{lab,psi,summary}.json "$GITHUB_WORKSPACE"/perf/report.md "perf-full/$LABEL/" 2>/dev/null || true
+          git add -A
+          git commit -q -m "Full-site performance ($LABEL) @ $(date -u +%FT%TZ)" || exit 0
+          for i in 1 2 3 4 5; do
+            git push -q origin HEAD:ci-screenshots && exit 0
+            git fetch -q --depth=1 origin ci-screenshots && git rebase -q FETCH_HEAD || true
+            sleep 5
+          done
+          exit 1
