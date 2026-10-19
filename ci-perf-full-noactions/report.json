@@ -1,0 +1,102 @@
+[
+  {
+    "route": "/guides",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-guides.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+    ]
+  },
+  {
+    "route": "/female-travellers",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-female-travellers.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+    ]
+  },
+  {
+    "route": "/book",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-book.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+    ]
+  },
+  {
+    "route": "/faq",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-faq.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "desktop",
+    "status": 200,
+    "file": "desktop-contact.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+    ]
+  },
+  {
+    "route": "/guides",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-guides.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+    ]
+  },
+  {
+    "route": "/female-travellers",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-female-travellers.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+    ]
+  },
+  {
+    "route": "/book",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-book.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+    ]
+  },
+  {
+    "route": "/faq",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-faq.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+    ]
+  },
+  {
+    "route": "/contact",
+    "viewport": "mobile",
+    "status": 200,
+    "file": "mobile-contact.png",
+    "errors": [
+      "The Content Security Policy directive 'frame-ancestors' is ignored when delivered via a <meta> element.",
+      "X-Frame-Options may only be set via an HTTP header sent along with a document. It may not be set inside <meta>."
+    ]
+  }
+]
