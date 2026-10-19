@@ -12,6 +12,7 @@ import { buildRestaurantSchema, buildMenuSchema } from '@/data/tabBistroSchema';
 import { IMG, first } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FaqList, PAD } from '@/components/v2/blocks';
 import { Photo, Marquee, Eyebrow, waLink } from '@/components/v2/primitives';
+import { TableBookingForm } from '@/components/v2/TableBookingForm';
 
 const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=TAB+Bistro+by+XTSY+Mawdiangdiang+New+Shillong+Township';
 
@@ -39,7 +40,7 @@ export default function BistroV2() {
         <script type="application/ld+json">{JSON.stringify(restaurantSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(buildMenuSchema())}</script>
       </Helmet>
-      <PageShell bar={{ label: 'Reserve a table', to: reserve, note: 'TAB Bistro by XTSY, New Shillong Township' }} cta={{ title: 'Hungry? We’re open till 10:30.', sub: 'Reserve a table or order on WhatsApp. Staying at XTSY? Breakfast is a short walk away.', bookTo: '/book', bookLabel: 'Stay at XTSY' }}>
+      <PageShell bar={{ label: 'Book a table', to: '#book-a-table', note: 'TAB Bistro · Open 9 AM – 10:30 PM' }} cta={{ title: 'Hungry? We’re open till 10:30.', sub: 'Book a table online or order on WhatsApp. Staying at XTSY? Breakfast is a short walk away.', bookTo: '/book', bookLabel: 'Stay at XTSY' }}>
         <PageHero
           bg="#2F4A3F"
           fg="#EAF0EA"
@@ -56,7 +57,7 @@ export default function BistroV2() {
               </p>
             </>
           }
-          actions={<><Btn to={reserve}>Reserve a table</Btn><Btn to="#menu" kind="outline-light">View the menu</Btn></>}
+          actions={<><Btn to="#book-a-table">Book a table</Btn><Btn to="#menu" kind="outline-light">View the menu</Btn><Btn to={reserve} kind="outline-light">WhatsApp us</Btn></>}
           media={
             <div className="relative">
               <Photo src={first(IMG.bistro)} alt="TAB Bistro by XTSY" eager tone="sand" className="aspect-[628/600] rounded-[32px]" />
@@ -98,6 +99,11 @@ export default function BistroV2() {
           </div>
           <p className="m-0 text-[13px] text-xt-mute">Prices in INR from the official TAB Bistro menu. Taxes as applicable.</p>
         </Section>
+
+        <Section id="book-a-table" className="scroll-mt-24 pt-0">
+          <TableBookingForm />
+        </Section>
+
 
         <section className={`${PAD} grid gap-6 pb-20 md:grid-cols-3`}>
           {[
