@@ -37,3 +37,5 @@
 - [x] Repaired create_enquiry and role helpers owned by the restricted migration role; completed the remaining affected booking/admin handover above.
 - [ ] QA table enquiry XTH-ENQ-001 ("QA Table Test", qa.table@example.com) is still pending in the enquiries list — delete when convenient.
 - [ ] QA table enquiry XTH-ENQ-002 ("QA Ownership Repair") remains pending; cleanup awaits owner authorization.
+- [x] Add lunch preorder-only requests to the TAB Bistro table form, preserving existing hours and saving before WhatsApp confirmation; three tests passed and real request XTH-ENQ-004 saved with matching lunch time, order and reference in the captured WhatsApp redirect. Preview build clean; publish pending.
+- [ ] QA lunch requests XTH-ENQ-003 and XTH-ENQ-004 ("QA Lunch Preorder", explicitly marked test-only) remain pending; cleanup awaits owner authorization.

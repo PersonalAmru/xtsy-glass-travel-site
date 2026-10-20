@@ -12,7 +12,8 @@ import { bookingPageSource } from '@/utils/privacyCompliantWhatsApp';
 import { formatLocalDateString, getLocalToday, parseLocalDate } from '@/lib/date-utils';
 import { waLink } from './primitives';
 import { Btn } from './blocks';
-import { BISTRO_SLOT_RANGES, BISTRO_HOURS_SENTENCE } from '@/data/tabBistroHours';
+import { Button } from '@/components/ui/button';
+import { BISTRO_SLOT_RANGES, BISTRO_HOURS_SENTENCE, isValidBistroRequestTime, type BistroRequestKind } from '@/data/tabBistroHours';
 
 /** Slots follow the two daily service windows in @/data/tabBistroHours (breakfast + evening/dinner; lunch by preorder). */
 const SLOTS: { value: string; label: string }[] = (() => {
@@ -44,6 +45,8 @@ const slotLabel = (value: string) => SLOTS.find((s) => s.value === value)?.label
 
 export function TableBookingForm({ id = 'table-booking-form' }: { id?: string }) {
   const [today, setToday] = useState('');
+  const [kind, setKind] = useState<BistroRequestKind>('table');
+  const [lunchTime, setLunchTime] = useState('');
   const [f, setF] = useState({ date: '', time: '', party: '2', name: '', phone: '', email: '', notes: '' });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -75,17 +78,22 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
     }
   }, [slots, f.time]);
 
+  const lunch = kind === 'lunch-preorder';
+  const requestedTime = lunch ? lunchTime : f.time;
+  const requestedTimeLabel = lunch ? `Requested lunch time: ${requestedTime} (subject to confirmation)` : `Time: ${slotLabel(requestedTime)}`;
+
   const message = (ref?: string) => {
     const d = parseLocalDate(f.date);
     return [
-      'Namaste TAB Bistro Team! I’d like to book a table.',
+      lunch ? 'Namaste TAB Bistro Team! I’d like to preorder lunch. Please confirm availability, my order and the price on WhatsApp.' : 'Namaste TAB Bistro Team! I’d like to book a table.',
       d ? `Date: ${prettyDate(d)}` : '',
-      `Time: ${slotLabel(f.time)}`,
+      requestedTimeLabel,
       `Guests: ${f.party}`,
       `Name: ${f.name.trim()}`,
       `Phone: ${f.phone.trim()}`,
       f.email.trim() ? `Email: ${f.email.trim()}` : '',
-      f.notes.trim() ? `Notes: ${f.notes.trim()}` : '',
+      f.notes.trim() ? `${lunch ? 'Lunch order / requirements' : 'Notes'}: ${f.notes.trim()}` : '',
+      lunch ? 'Lunch is preorder only; this is not a confirmed order or table reservation.' : '',
       ref ? `Enquiry ID: ${ref}` : '',
       `Page: ${bookingPageSource()}`,
     ]
@@ -105,7 +113,9 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
     if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(email)) return setError('Please enter a valid email address.');
     if (phone.replace(/\D/g, '').length < 8) return setError('Please enter a valid WhatsApp number.');
     if (!f.date || (today && f.date < today)) return setError('Please choose today or a later date.');
-    if (!slots.some((s) => s.value === f.time)) return setError('Please pick one of the available times shown.');
+    if (!isValidBistroRequestTime(kind, requestedTime, slots.map((s) => s.value)))
+      return setError(lunch ? 'Please enter your requested lunch time.' : 'Please pick one of the available times shown.');
+    if (lunch && !f.notes.trim()) return setError('Please tell us what you would like to preorder for lunch.');
     if (!Number.isFinite(party) || party < 1 || party > MAX_PARTY)
       return setError(`Party size must be between 1 and ${MAX_PARTY}. For bigger groups, plan an event with our catering team.`);
 
@@ -123,7 +133,7 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
         p_check_in: f.date,
         p_check_out: checkOut,
         p_room_type: 'table-reservation',
-        p_room_name: `TAB Bistro — table for ${party}`,
+        p_room_name: lunch ? `TAB Bistro — lunch preorder for ${party}` : `TAB Bistro — table for ${party}`,
         p_quantity: party,
         p_nights: 1,
         p_rate_per_night: 0,
@@ -132,9 +142,10 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
         p_gst_amount: 0,
         p_total_amount: 0,
         p_special_requests: [
-          `Table: ${f.date} at ${slotLabel(f.time)}`,
+          `${lunch ? 'Lunch preorder only' : 'Table'}: ${f.date} | ${requestedTimeLabel}`,
           `Guests: ${party}`,
           f.notes.trim(),
+          lunch ? 'Pending WhatsApp confirmation of availability, order and price. Not a table reservation.' : '',
           `Page: ${bookingPageSource()}`,
         ]
           .filter(Boolean)
@@ -146,7 +157,8 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
       if (!ref) throw new Error('Could not save your table request.');
       const wa = waLink(message(ref));
       setSaved({ ref, wa });
-      window.open(wa, '_blank', 'noopener');
+      if (lunch) window.location.assign(wa);
+      else window.open(wa, '_blank', 'noopener');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not send your request. Please WhatsApp us instead.');
       setSaved({ ref: '', wa: waLink(message()) });
@@ -159,7 +171,7 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
     const first = f.name.trim().split(' ')[0] || 'friend';
     return (
       <div id={id} className="xt-reveal flex scroll-mt-28 flex-col gap-4 rounded-[28px] bg-white p-7 text-xt-ink sm:p-10">
-        <h2 className="xt-display m-0 text-[40px] leading-none sm:text-[48px]">Table request sent</h2>
+        <h2 className="xt-display m-0 text-[40px] leading-none sm:text-[48px]">{saved.ref ? (lunch ? 'Lunch preorder requested' : 'Table request sent') : 'Send your request on WhatsApp'}</h2>
         <p className="m-0 text-[17px] leading-relaxed">
           {saved.ref ? (
             <>
@@ -168,11 +180,11 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
           ) : (
             'Your request could not be saved online. '
           )}
-          Send the pre-filled WhatsApp message and the desk will confirm your table.
+          {lunch ? 'Send the pre-filled WhatsApp message so the team can confirm availability, your lunch order and the price.' : 'Send the pre-filled WhatsApp message and the desk will confirm your table.'}
         </p>
         <Btn to={saved.wa}>Send on WhatsApp</Btn>
         <p className="m-0 text-[13px] text-xt-mute">
-          A table is confirmed once the desk replies. {BISTRO_HOURS_SENTENCE}
+          {lunch ? 'Lunch is preorder only and is confirmed only when the team replies.' : 'A table is confirmed once the desk replies.'} {BISTRO_HOURS_SENTENCE}
         </p>
       </div>
     );
@@ -185,6 +197,13 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
       className="xt-reveal grid scroll-mt-28 gap-4 rounded-[28px] bg-white p-7 text-xt-ink sm:grid-cols-2 sm:p-10"
     >
       <h2 className="xt-display m-0 text-[40px] leading-none sm:col-span-2 sm:text-[48px]">Book a table</h2>
+      <label className={`${labelCls} sm:col-span-2`}>
+        REQUEST TYPE
+        <select value={kind} onChange={(e) => setKind(e.target.value === 'lunch-preorder' ? 'lunch-preorder' : 'table')} className={input}>
+          <option value="table">Table — breakfast or evening &amp; dinner</option>
+          <option value="lunch-preorder">Lunch — preorder only</option>
+        </select>
+      </label>
       <label className={labelCls}>
         DATE
         <input
@@ -197,14 +216,14 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
         />
       </label>
       <label className={labelCls}>
-        TIME
-        <select required value={f.time} onChange={(e) => setF({ ...f, time: e.target.value })} className={input}>
+        {lunch ? 'REQUESTED LUNCH TIME' : 'TIME'}
+        {lunch ? <input required type="time" value={lunchTime} onChange={(e) => setLunchTime(e.target.value)} className={input} /> : <select required value={f.time} onChange={(e) => setF({ ...f, time: e.target.value })} className={input}>
           {slots.map((s) => (
             <option key={s.value} value={s.value}>
               {s.label}
             </option>
           ))}
-        </select>
+        </select>}
       </label>
       <label className={labelCls}>
         GUESTS
@@ -246,23 +265,23 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
         />
       </label>
       <label className={`${labelCls} sm:col-span-2`}>
-        ANYTHING ELSE? (OCCASION, HIGH CHAIR, WINDOW TABLE)
-        <textarea rows={3} value={f.notes} onChange={(e) => setF({ ...f, notes: e.target.value })} className={`${input} h-auto py-3`} />
+        {lunch ? 'LUNCH ORDER / REQUIREMENTS' : 'ANYTHING ELSE? (OCCASION, HIGH CHAIR, WINDOW TABLE)'}
+        <textarea required={lunch} rows={3} value={f.notes} onChange={(e) => setF({ ...f, notes: e.target.value })} className={`${input} h-auto py-3`} />
       </label>
-      <button
+      <Button
         type="submit"
         disabled={busy}
-        className="xt-btn h-14 rounded-full bg-xt-crimson text-[16px] font-extrabold text-white disabled:opacity-60 sm:col-span-2"
+        className="xt-btn h-14 rounded-full bg-xt-crimson text-[16px] font-extrabold text-primary-foreground disabled:opacity-60 sm:col-span-2"
       >
-        {busy ? 'Sending…' : 'Request a table'}
-      </button>
+        {busy ? 'Sending…' : lunch ? 'Send lunch preorder on WhatsApp' : 'Request a table'}
+      </Button>
       {error && (
         <p role="alert" className="m-0 text-[14px] font-bold text-xt-crimson sm:col-span-2">
           {error}
         </p>
       )}
       <p className="m-0 text-[13px] text-xt-mute sm:col-span-2">
-        No payment now — we hold your request and confirm on WhatsApp. {BISTRO_HOURS_SENTENCE} For more than{' '}
+        {lunch ? 'Lunch is preorder only — availability, your order and the price must be confirmed on WhatsApp. No payment now.' : 'No payment now — we hold your request and confirm on WhatsApp.'} {BISTRO_HOURS_SENTENCE} For more than{' '}
         {MAX_PARTY} guests, <Link to="/tab-bistro/catering" className="font-extrabold text-xt-crimson">plan an event</Link>.
       </p>
     </form>
