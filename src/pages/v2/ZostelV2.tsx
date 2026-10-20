@@ -12,7 +12,7 @@ const ROWS = [
   { f: 'Pet-friendly', x: 'Cats & birds welcome; dogs by breed and size', z: 'Check with the property' },
   { f: 'Custom itineraries', x: 'Built around your dates and pace', z: 'Mostly scheduled trips' },
   { f: 'Operations', x: 'One XTSY team in Shillong; trusted partners elsewhere', z: 'Network of properties' },
-  { f: 'On-site restaurant', x: 'TAB Bistro, 9 AM – 10:30 PM', z: 'Varies by property' },
+  { f: 'On-site restaurant', x: 'TAB Bistro, breakfast 8:45–11:45 AM & dinner 4:30–11 PM', z: 'Varies by property' },
   { f: 'Where XTSY is', x: 'New Shillong Township, Meghalaya (only property)', z: 'Multiple cities' },
 ];
 

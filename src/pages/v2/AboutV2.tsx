@@ -31,7 +31,7 @@ export default function AboutV2() {
   const brands = [
     { t: 'XTSY Travellers Hostel', d: 'Dorms and private rooms in New Shillong Township.', to: '/book', bg: '#A12444', fg: '#FFFFFF', mark: '#F4EFE8' },
     { t: 'Experience by XTSY', d: 'India’s First Stargaze Glamp.', to: '/xtsy-270', bg: '#1F2438', fg: '#F4EFE8', mark: '#BD2E30' },
-    { t: 'TAB Bistro by XTSY', d: 'Forest dining, 9 AM to 10:30 PM.', to: '/tab-bistro', bg: '#2F4A3F', fg: '#EAF0EA', mark: '#F2B8C2' },
+    { t: 'TAB Bistro by XTSY', d: 'Forest dining — breakfast 8:45–11:45 AM, dinner 4:30–11 PM.', to: '/tab-bistro', bg: '#2F4A3F', fg: '#EAF0EA', mark: '#F2B8C2' },
     { t: 'XTSY Voyage', d: 'Tours, rentals and travel films, with trusted partners.', to: '/tours', bg: '#FFFFFF', fg: '#1F2230', mark: '#A12444' },
   ];
   const tiers = [

@@ -90,7 +90,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
         <div className="flex flex-col gap-4">
           <h2 className="xt-display m-0 text-[36px] leading-none sm:text-[48px]">Why guests pick XTSY</h2>
           <ul className="m-0 grid list-none gap-2.5 p-0 sm:grid-cols-2">
-            {['4.7★ on Google (237 reviews)', 'NEITA 2025 nominee — Best Budget-Friendly Accommodation', 'Women-only dorm with female staff on call', 'Privacy curtain, locker and charging point at every bunk', 'TAB Bistro restaurant downstairs (9 AM – 10:30 PM)', 'Pet-friendly: cats & birds; dogs by breed and size', 'Fast Wi-Fi and desks for remote work', 'Travel desk for Cherrapunji, Dawki and all of Northeast India'].map((x) => (
+            {['4.7★ on Google (237 reviews)', 'NEITA 2025 nominee — Best Budget-Friendly Accommodation', 'Women-only dorm with female staff on call', 'Privacy curtain, locker and charging point at every bunk', 'TAB Bistro restaurant downstairs (breakfast 8:45–11:45 AM, dinner 4:30–11 PM)', 'Pet-friendly: cats & birds; dogs by breed and size', 'Fast Wi-Fi and desks for remote work', 'Travel desk for Cherrapunji, Dawki and all of Northeast India'].map((x) => (
               <li key={x} className="rounded-2xl bg-white px-4 py-3 text-[15px] font-semibold">✓ {x}</li>
             ))}
           </ul>
