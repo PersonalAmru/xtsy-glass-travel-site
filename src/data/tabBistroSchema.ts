@@ -1,5 +1,6 @@
 import { menuSections } from "./tabBistroMenu";
 import { BISTRO_COVER } from "./bistroCover";
+import { BISTRO_BREAKFAST, BISTRO_EVENING } from "./tabBistroHours";
 
 /**
  * Structured-data helpers for TAB Bistro by XTSY.
@@ -11,8 +12,8 @@ export const TAB_BISTRO_NAME = "TAB Bistro by XTSY";
 export const TAB_BISTRO_URL = "https://xtsy.one/tab-bistro";
 export const TAB_BISTRO_IMAGE = new URL(BISTRO_COVER, TAB_BISTRO_URL).href;
 export const TAB_BISTRO_PHONE = "+918837317070";
-export const TAB_BISTRO_OPENS = "09:00";
-export const TAB_BISTRO_CLOSES = "22:30";
+export const TAB_BISTRO_OPENS = BISTRO_BREAKFAST.opens;
+export const TAB_BISTRO_CLOSES = BISTRO_EVENING.closes;
 export const TAB_BISTRO_INSTAGRAM = "https://www.instagram.com/tabbistrobyxtsy";
 export const TAB_BISTRO_GOOGLE = "https://g.page/tabbistrobyxtsy";
 export const TAB_BISTRO_SAME_AS = [TAB_BISTRO_INSTAGRAM, TAB_BISTRO_GOOGLE];
@@ -103,22 +104,20 @@ export function buildRestaurantSchema(opts: {
       postalCode: "793018",
       addressCountry: "IN",
     },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday",
-        ],
-        opens: TAB_BISTRO_OPENS,
-        closes: TAB_BISTRO_CLOSES,
-      },
-    ],
+    openingHoursSpecification: [BISTRO_BREAKFAST, BISTRO_EVENING].map((w) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: w.opens,
+      closes: w.closes,
+    })),
     hasMenu: TAB_BISTRO_URL,
     ...(ratingValue && reviewCount
       ? {

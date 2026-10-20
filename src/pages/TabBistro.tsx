@@ -36,7 +36,7 @@ const TabBistro = memo(() => {
     <div className="min-h-screen bg-background">
       <SEOHead structuredDataOnly
         title="TAB Bistro Shillong — Restaurant, Café & Catering"
-        description="TAB Bistro by XTSY, New Shillong Township: North Indian, Chinese, Thai, Continental and Italian, breakfast and wedding catering. Open 9 AM–10:30 PM."
+        description="TAB Bistro by XTSY, New Shillong Township: North Indian, Chinese, Thai, Continental and Italian, breakfast and wedding catering. Breakfast 8:45–11:45 AM, dinner 4:30–11 PM; lunch by preorder."
         keywords="restaurant in shillong, best restaurant shillong, multi cuisine restaurant shillong, food in shillong, food delivery shillong, online food order shillong, chinese food shillong, north indian restaurant shillong, thai food shillong, continental food shillong, italian restaurant shillong, pizza in shillong, breakfast places in shillong, rooftop restaurants in shillong, rooftop cafe in shillong, cafe shillong, dining shillong, wedding catering shillong, event catering shillong, corporate catering shillong, bulk food order shillong, party order shillong, forest dining, TAB Bistro"
         canonicalUrl="https://xtsy.one/tab-bistro"
       />

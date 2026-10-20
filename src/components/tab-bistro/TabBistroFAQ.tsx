@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 export const tabBistroFaqs = [
   {
     q: "Does TAB Bistro serve breakfast in Shillong?",
-    a: "Yes. TAB Bistro by XTSY serves a multi-cuisine breakfast daily from 9 AM — Assam tea, filter coffee, English breakfast, parathas, eggs to order and pancakes, in a pine-forest setting.",
+    a: "Yes. TAB Bistro by XTSY serves a multi-cuisine breakfast daily, 8:45 AM – 11:45 AM — Assam tea, filter coffee, English breakfast, parathas, eggs to order and pancakes, in a pine-forest setting.",
   },
   {
     q: "Is TAB Bistro a rooftop restaurant in Shillong?",
@@ -12,7 +12,7 @@ export const tabBistroFaqs = [
   },
   {
     q: "What are the opening hours of TAB Bistro?",
-    a: "TAB Bistro is open every day from 9 AM to 10:30 PM, serving breakfast, lunch, dinner and all-day café service.",
+    a: "TAB Bistro is open every day in two windows: breakfast 8:45 AM – 11:45 AM, and evening & dinner 4:30 PM – 11 PM. We are closed for lunch, but lunch preorders are accepted.",
   },
   {
     q: "What cuisines does TAB Bistro serve?",
@@ -20,7 +20,7 @@ export const tabBistroFaqs = [
   },
   {
     q: "Can I work from the café at TAB Bistro?",
-    a: "Yes. TAB Bistro doubles as an all-day café in Shillong with WiFi-friendly corners, espresso and cold brew — popular with remote workers and travellers.",
+    a: "Yes. TAB Bistro doubles as a café in Shillong with WiFi-friendly corners, espresso and cold brew during both service windows — popular with remote workers and travellers.",
   },
   {
     q: "Does TAB Bistro offer wedding catering and events?",

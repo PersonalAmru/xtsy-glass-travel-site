@@ -4,7 +4,7 @@ import { Coffee, Sunrise, Building2, Mountain } from "lucide-react";
 const highlights = [
   {
     title: "Breakfast in Shillong",
-    desc: "One of the best breakfast places in Shillong — fresh Assam tea, filter coffee, English breakfast, parathas, eggs to order and pancakes, served from 9 AM in a calm pine-forest setting.",
+    desc: "One of the best breakfast places in Shillong — fresh Assam tea, filter coffee, English breakfast, parathas, eggs to order and pancakes, served 8:45–11:45 AM in a calm pine-forest setting.",
     icon: <Sunrise className="w-5 h-5" />,
   },
   {
@@ -36,7 +36,7 @@ const TabBistroBreakfast = memo(() => (
     </h2>
     <p className="text-muted-foreground text-sm mb-8 max-w-3xl leading-relaxed">
       Looking for breakfast places in Shillong or a rooftop cafe with a view? TAB Bistro by XTSY serves a
-      multi-cuisine breakfast from 9 AM and is opening a rooftop dining deck overlooking the pine valley —
+      multi-cuisine breakfast (8:45–11:45 AM daily) and is opening a rooftop dining deck overlooking the pine valley —
       a calm, scenic alternative to the city's crowded cafés.
     </p>
 

@@ -12,17 +12,20 @@ import { bookingPageSource } from '@/utils/privacyCompliantWhatsApp';
 import { formatLocalDateString, getLocalToday, parseLocalDate } from '@/lib/date-utils';
 import { waLink } from './primitives';
 import { Btn } from './blocks';
+import { BISTRO_SLOT_RANGES, BISTRO_HOURS_SENTENCE } from '@/data/tabBistroHours';
 
-/** The kitchen serves 9 AM – 10:30 PM, so the last table request is 10:00 PM. */
+/** Slots follow the two daily service windows in @/data/tabBistroHours (breakfast + evening/dinner; lunch by preorder). */
 const SLOTS: { value: string; label: string }[] = (() => {
   const out: { value: string; label: string }[] = [];
-  for (let m = 9 * 60; m <= 22 * 60; m += 30) {
-    const h = Math.floor(m / 60);
-    const mm = String(m % 60).padStart(2, '0');
-    out.push({
-      value: `${String(h).padStart(2, '0')}:${mm}`,
-      label: `${((h + 11) % 12) + 1}:${mm} ${h >= 12 ? 'PM' : 'AM'}`,
-    });
+  for (const { from, to } of BISTRO_SLOT_RANGES) {
+    for (let m = from; m <= to; m += 30) {
+      const h = Math.floor(m / 60);
+      const mm = String(m % 60).padStart(2, '0');
+      out.push({
+        value: `${String(h).padStart(2, '0')}:${mm}`,
+        label: `${((h + 11) % 12) + 1}:${mm} ${h >= 12 ? 'PM' : 'AM'}`,
+      });
+    }
   }
   return out;
 })();
@@ -169,7 +172,7 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
         </p>
         <Btn to={saved.wa}>Send on WhatsApp</Btn>
         <p className="m-0 text-[13px] text-xt-mute">
-          A table is confirmed once the desk replies. Open daily 9 AM – 10:30 PM.
+          A table is confirmed once the desk replies. {BISTRO_HOURS_SENTENCE}
         </p>
       </div>
     );
@@ -259,7 +262,7 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
         </p>
       )}
       <p className="m-0 text-[13px] text-xt-mute sm:col-span-2">
-        No payment now — we hold your request and confirm on WhatsApp. Open daily 9 AM – 10:30 PM. For more than{' '}
+        No payment now — we hold your request and confirm on WhatsApp. {BISTRO_HOURS_SENTENCE} For more than{' '}
         {MAX_PARTY} guests, <Link to="/tab-bistro/catering" className="font-extrabold text-xt-crimson">plan an event</Link>.
       </p>
     </form>

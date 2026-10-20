@@ -9,7 +9,7 @@ export const Route = createFileRoute("/tab-bistro/")({
       path: "/tab-bistro",
       title: "Restaurant in Shillong | TAB Bistro by XTSY",
       description:
-        "Forest dining at TAB Bistro, New Shillong Township. North Indian, Indo-Chinese, Thai, Continental & Italian. View menu or reserve a table. Daily 9 AM–10:30 PM.",
+        "Forest dining at TAB Bistro, New Shillong Township. North Indian, Indo-Chinese, Thai, Continental & Italian. View menu or reserve a table. Breakfast 8:45–11:45 AM, dinner 4:30–11 PM daily; lunch by preorder.",
       keywords:
         "restaurant in shillong, best restaurant shillong, multi cuisine restaurant shillong, rooftop cafe shillong, wedding catering shillong, TAB Bistro",
       jsonLd: [RESTAURANT_SCHEMA],

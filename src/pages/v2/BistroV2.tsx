@@ -33,14 +33,14 @@ export default function BistroV2() {
       <SEOHead
         structuredDataOnly
         title="TAB Bistro Shillong — Restaurant, Café & Catering"
-        description="TAB Bistro by XTSY — multi-cuisine restaurant in New Shillong Township: North Indian, Chinese, Thai, Continental, Italian, breakfast and café, catering and bulk orders. Open 9 AM–10:30 PM."
+        description="TAB Bistro by XTSY — multi-cuisine restaurant in New Shillong Township: North Indian, Chinese, Thai, Continental, Italian, breakfast and café, catering and bulk orders. Breakfast 8:45–11:45 AM, dinner 4:30–11 PM; lunch by preorder."
         canonicalUrl="https://xtsy.one/tab-bistro"
       />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(restaurantSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(buildMenuSchema())}</script>
       </Helmet>
-      <PageShell bar={{ label: 'Book a table', to: '#book-a-table', note: 'TAB Bistro · Open 9 AM – 10:30 PM' }} cta={{ title: 'Hungry? We’re open till 10:30.', sub: 'Book a table online or order on WhatsApp. Staying at XTSY? Breakfast is a short walk away.', bookTo: '/book', bookLabel: 'Stay at XTSY' }}>
+      <PageShell bar={{ label: 'Book a table', to: '#book-a-table', note: 'TAB Bistro · Breakfast 8:45–11:45 AM · Dinner 4:30–11 PM' }} cta={{ title: 'Hungry? Dinner runs till 11 PM.', sub: 'Book a table online or order on WhatsApp. Staying at XTSY? Breakfast is a short walk away.', bookTo: '/book', bookLabel: 'Stay at XTSY' }}>
         <PageHero
           size="md"
           bg="#2F4A3F"
@@ -54,7 +54,7 @@ export default function BistroV2() {
               <p className="m-0">North Indian, Indo-Chinese, Thai, Continental, Italian and Northeast plates, all-day café and a Wi-Fi-friendly table if you need to work.</p>
               <p className="m-0 mt-5 flex items-center gap-2.5 text-[16px] font-bold text-[#EAF0EA]">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
-                Open daily · 9 AM – 10:30 PM
+                Open daily · Breakfast 8:45–11:45 AM · Dinner 4:30–11 PM · Lunch by preorder
               </p>
             </>
           }
@@ -153,7 +153,7 @@ export default function BistroV2() {
           <div className="xt-reveal flex flex-col gap-3.5 rounded-3xl bg-white p-8 sm:p-10">
             <h2 className="xt-display m-0 text-[44px] leading-none sm:text-[48px]">Find us</h2>
             <p className="m-0 text-[17px] leading-relaxed">Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018 (at XTSY Travellers Hostel)</p>
-            <p className="m-0 text-[17px]">9 AM – 10:30 PM, every day</p>
+            <p className="m-0 text-[17px]">Breakfast 8:45–11:45 AM · Evening & dinner 4:30–11 PM, every day. Lunch by preorder.</p>
             <p className="m-0 text-[17px]"><a href="tel:+918837317070" className="font-bold text-xt-crimson">+91 88373 17070</a></p>
             <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="text-[15px] font-extrabold text-xt-crimson">Get directions →</a>
           </div>
