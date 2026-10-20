@@ -104,22 +104,20 @@ export function buildRestaurantSchema(opts: {
       postalCode: "793018",
       addressCountry: "IN",
     },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday",
-        ],
-        opens: TAB_BISTRO_OPENS,
-        closes: TAB_BISTRO_CLOSES,
-      },
-    ],
+    openingHoursSpecification: [BISTRO_BREAKFAST, BISTRO_EVENING].map((w) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: w.opens,
+      closes: w.closes,
+    })),
     hasMenu: TAB_BISTRO_URL,
     ...(ratingValue && reviewCount
       ? {
