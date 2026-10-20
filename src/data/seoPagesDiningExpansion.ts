@@ -29,12 +29,12 @@ import type { SEOPageData, SchemaType } from './seoPages';
 
 const TAB_CTA = 'Dine at TAB Bistro';
 const TAB_LINK = '/tab-bistro';
-const HOURS = 'open 9 AM–10:30 PM';
+const HOURS = 'open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM';
 
 const tabFaq = {
   question: 'Where can I eat near XTSY in Shillong?',
   answer:
-    'TAB Bistro by XTSY is a multi-cuisine forest-dining restaurant in New Shillong Township serving North Indian, tandoor, Indo-Chinese, Thai, Continental, Italian, seafood and Northeast cuisine. It is open 9 AM–10:30 PM, takes reservations, and also handles catering and bulk orders.',
+    'TAB Bistro by XTSY is a multi-cuisine forest-dining restaurant in New Shillong Township serving North Indian, tandoor, Indo-Chinese, Thai, Continental, Italian, seafood and Northeast cuisine. It is open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM, takes reservations, and also handles catering and bulk orders.',
 };
 
 const dish = (
@@ -88,7 +88,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Butter chicken & dal makhani', 'Tandoori chicken, fish & paneer', 'Shahi paneer & kadhai dishes', 'Biryani & jeera pulao', 'Fresh naan, roti & kulcha'],
     why: ['Live tandoor & charcoal grill', 'Rich, slow-cooked gravies', 'Veg & non-veg thalis', 'Generous family portions', 'Catering & bulk orders'],
     keywords: ['north indian restaurant in shillong', 'indian restaurant in shillong', 'indian food near me', 'indian restaurant near me', 'best indian restaurant near me'],
-    quick: 'TAB Bistro by XTSY is a leading North Indian restaurant in Shillong — live tandoor, rich curries, biryani and fresh naan, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY is a leading North Indian restaurant in Shillong — live tandoor, rich curries, biryani and fresh naan, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'south-indian-restaurant-shillong',
@@ -97,7 +97,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Crispy masala dosa', 'Idli, vada & sambar', 'Uttapam & rava dosa', 'Filter coffee', 'South Indian veg thali'],
     why: ['Fresh batter prepared daily', 'Pure-veg friendly', 'Great for breakfast', 'Coconut chutneys & sambar', 'Light, wholesome meals'],
     keywords: ['south indian restaurant shillong', 'south indian restaurants near me', 'dosa shillong', 'vegetarian food near me', 'breakfast places in shillong'],
-    quick: 'TAB Bistro by XTSY serves South Indian favourites in Shillong — dosa, idli, vada and filter coffee — alongside its multi-cuisine menu, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves South Indian favourites in Shillong — dosa, idli, vada and filter coffee — alongside its multi-cuisine menu, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'thai-restaurant-shillong',
@@ -106,7 +106,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Thai red & green curry', 'Tom yum & tom kha soup', 'Thai fried rice & noodles', 'Stir-fried basil chicken', 'Veg & non-veg Thai bowls'],
     why: ['Authentic Thai spice balance', 'Veg & seafood options', 'Aromatic curries with rice', 'Hand-tossed wok dishes', 'Dine-in & catering'],
     keywords: ['thai food shillong', 'thai restaurant shillong', 'asian food shillong', 'best food near me', 'places to eat in shillong'],
-    quick: 'TAB Bistro by XTSY plates up Thai curries, soups and stir-fries in Shillong as part of its multi-cuisine menu, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY plates up Thai curries, soups and stir-fries in Shillong as part of its multi-cuisine menu, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'continental-restaurant-shillong',
@@ -115,7 +115,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Grilled chicken steak', 'Sizzlers with sides', 'Soups & salads', 'Wood-fired pizza', 'Pasta in creamy & red sauces'],
     why: ['European-style mains', 'Forest-side fine dining', 'Veg & non-veg options', 'Great for date nights', 'Reservations welcome'],
     keywords: ['continental food shillong', 'continental restaurant shillong', 'italian restaurants near me', 'romantic restaurants near me', 'fine dining shillong'],
-    quick: 'TAB Bistro by XTSY offers Continental dining in Shillong — grilled steaks, sizzlers, pizza and pasta in a forest setting, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers Continental dining in Shillong — grilled steaks, sizzlers, pizza and pasta in a forest setting, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'italian-restaurant-shillong',
@@ -124,7 +124,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Wood-fired Margherita & veggie pizza', 'Penne & spaghetti in red/white sauce', 'Garlic bread & bruschetta', 'Cheesy baked dishes', 'Fresh salads & soups'],
     why: ['Hand-tossed pizza dough', 'Creamy & arrabbiata pastas', 'Veg & non-veg toppings', 'Family & group friendly', 'Catering for events'],
     keywords: ['italian restaurant shillong', 'pizza in shillong', 'italian restaurants near me', 'pasta shillong', 'best food places in shillong'],
-    quick: 'TAB Bistro by XTSY is an Italian-friendly restaurant in Shillong serving wood-fired pizza and pasta, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY is an Italian-friendly restaurant in Shillong serving wood-fired pizza and pasta, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'seafood-restaurant-shillong',
@@ -133,7 +133,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Grilled & tandoori fish', 'Fish curry & masala', 'Prawn dishes', 'Fish & chips', 'Spiced fish fry'],
     why: ['Fresh fish preparations', 'Tandoor & grill options', 'Indian & continental styles', 'Veg sides available', 'Group & catering orders'],
     keywords: ['seafood restaurant shillong', 'seafood restaurants near me', 'fish curry shillong', 'best seafood near me', 'food in shillong'],
-    quick: 'TAB Bistro by XTSY serves seafood in Shillong — grilled and tandoori fish, fish curry and prawns — as part of its multi-cuisine menu, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves seafood in Shillong — grilled and tandoori fish, fish curry and prawns — as part of its multi-cuisine menu, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'tandoor-restaurant-shillong',
@@ -142,7 +142,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Tandoori chicken & tangri kebab', 'Paneer tikka & seekh kebab', 'Tandoori fish & prawns', 'Fresh tandoori naan & roti', 'Smoky veg tandoor'],
     why: ['Live clay-oven tandoor', 'Charcoal-grilled flavour', 'Veg & non-veg kebabs', 'Great for groups', 'Catering & barbecue nights'],
     keywords: ['tandoor restaurant shillong', 'kebab shillong', 'grill restaurant shillong', 'barbecue restaurant shillong', 'best food near me'],
-    quick: 'TAB Bistro by XTSY runs a live tandoor in Shillong — tandoori chicken, kebabs, paneer tikka and fresh naan, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY runs a live tandoor in Shillong — tandoori chicken, kebabs, paneer tikka and fresh naan, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'indo-chinese-restaurant-shillong',
@@ -151,7 +151,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Hakka & Schezwan noodles', 'Chilli chicken & paneer', 'Manchurian (veg & chicken)', 'Fried rice', 'Spring rolls & momos'],
     why: ['Wok-tossed street flavours', 'Veg & non-veg options', 'Spice levels to order', 'Generous portions', 'Takeaway & bulk orders'],
     keywords: ['chinese restaurant in shillong', 'best chinese restaurant in shillong', 'chinese food', 'chinese food near me', 'chinese restaurant near me'],
-    quick: 'TAB Bistro by XTSY serves Indo-Chinese food in Shillong — Hakka noodles, chilli chicken, Manchurian and fried rice, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves Indo-Chinese food in Shillong — Hakka noodles, chilli chicken, Manchurian and fried rice, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'multi-cuisine-restaurant-shillong',
@@ -160,7 +160,7 @@ const cuisines: Cuisine[] = [
     dishes: ['North Indian & tandoor', 'Indo-Chinese & Thai', 'Continental & Italian', 'Seafood & barbecue', 'All-day breakfast & café'],
     why: ['10+ cuisines under one roof', 'Something for every craving', 'Veg & non-veg menus', 'Forest-side ambiance', 'Reservations, catering & bulk orders'],
     keywords: ['multi cuisine restaurant shillong', 'cuisine restaurant shillong', 'best restaurant in shillong', 'restaurants in shillong', 'restaurants near me'],
-    quick: 'TAB Bistro by XTSY is a multi-cuisine restaurant in Shillong with 10+ cuisines — North Indian, Chinese, Thai, Continental, Italian and more, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY is a multi-cuisine restaurant in Shillong with 10+ cuisines — North Indian, Chinese, Thai, Continental, Italian and more, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'khasi-food-restaurant-shillong',
@@ -169,7 +169,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Jadoh — Khasi rice with meat', 'Doh khlieh — spiced pork salad', 'Tungrymbai', 'Smoked pork dishes', 'Local greens & rice'],
     why: ['Authentic Northeast flavours', 'Local Khasi specialities', 'Pairs with global menu', 'Forest-side setting', 'Great for first-time visitors'],
     keywords: ['khasi food shillong', 'northeast food shillong', 'local food shillong', 'best food in shillong', 'food in shillong'],
-    quick: 'TAB Bistro by XTSY offers Khasi and Northeast dishes in Shillong alongside its global multi-cuisine menu, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers Khasi and Northeast dishes in Shillong alongside its global multi-cuisine menu, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'pizza-in-shillong',
@@ -178,7 +178,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Wood-fired Margherita', 'Loaded veggie pizza', 'Chicken & pepperoni pizza', 'Cheese-burst options', 'Garlic bread sides'],
     why: ['Hand-tossed fresh dough', 'Generous cheese & toppings', 'Veg & non-veg', 'Dine-in & takeaway', 'Family & group friendly'],
     keywords: ['pizza in shillong', 'best pizza shillong', 'italian restaurants near me', 'places to eat in shillong', 'food near me'],
-    quick: 'TAB Bistro by XTSY serves wood-fired pizza in Shillong — Margherita, veggie, chicken and more, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves wood-fired pizza in Shillong — Margherita, veggie, chicken and more, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'momos-in-shillong',
@@ -187,7 +187,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Steamed veg & chicken momos', 'Pan-fried momos', 'Tandoori momos', 'Thukpa & noodle soup', 'Spicy momo chutney'],
     why: ['Hand-folded daily', 'Veg & non-veg fillings', 'Steamed, fried & tandoori', 'Perfect snack or meal', 'Takeaway available'],
     keywords: ['momos in shillong', 'best momos shillong', 'chinese food near me', 'street food shillong', 'food places near me'],
-    quick: 'TAB Bistro by XTSY serves momos and dumplings in Shillong — steamed, fried and tandoori, with thukpa, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves momos and dumplings in Shillong — steamed, fried and tandoori, with thukpa, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'biryani-in-shillong',
@@ -196,7 +196,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Chicken & mutton biryani', 'Veg & paneer biryani', 'Egg biryani', 'Raita & salan', 'Pulao & jeera rice'],
     why: ['Slow-dum cooked rice', 'Aromatic whole spices', 'Veg & non-veg options', 'Generous portions', 'Takeaway & bulk orders'],
     keywords: ['biryani in shillong', 'best biryani near me', 'best biryani shillong', 'indian food near me', 'food near me'],
-    quick: 'TAB Bistro by XTSY serves dum biryani in Shillong — chicken, mutton, veg and egg — open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves dum biryani in Shillong — chicken, mutton, veg and egg — open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'burger-and-fast-food-shillong',
@@ -205,7 +205,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Chicken & veg burgers', 'Crispy fried chicken', 'Loaded fries', 'Wraps & rolls', 'Sandwiches & shakes'],
     why: ['Quick, fresh bites', 'Veg & non-veg', 'Great for groups & kids', 'Takeaway friendly', 'Casual all-day menu'],
     keywords: ['fast food shillong', 'burger shillong', 'fried chicken near me', 'fast food places near me', 'food near me'],
-    quick: 'TAB Bistro by XTSY serves burgers, fried chicken and fast-food bites in Shillong, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves burgers, fried chicken and fast-food bites in Shillong, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'sizzlers-in-shillong',
@@ -214,7 +214,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Chicken & fish sizzlers', 'Paneer & veg sizzlers', 'Sizzling brownie', 'Grilled sides & sauces', 'Loaded rice/noodle base'],
     why: ['Served hot on the plate', 'Veg & non-veg options', 'Hearty single-plate meal', 'Continental-style grills', 'Dine-in favourite'],
     keywords: ['sizzlers shillong', 'continental food shillong', 'best food in shillong', 'places to eat in shillong', 'food near me'],
-    quick: 'TAB Bistro by XTSY serves sizzlers in Shillong — chicken, fish, paneer and veg — plus a sizzling brownie, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves sizzlers in Shillong — chicken, fish, paneer and veg — plus a sizzling brownie, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'coffee-shop-shillong',
@@ -223,7 +223,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Espresso, cappuccino & latte', 'Cold coffee & frappes', 'Teas & hot chocolate', 'Cakes & desserts', 'Light café bites'],
     why: ['Forest-side café setting', 'Work-friendly seating', 'All-day breakfast', 'Coffee & desserts', 'Cozy weekend spot'],
     keywords: ['coffee shop shillong', 'cafe shillong', 'best cafes in shillong', 'brunch near me', 'breakfast near me'],
-    quick: 'TAB Bistro by XTSY doubles as a coffee shop and café in Shillong with espresso, cold coffee, desserts and breakfast, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY doubles as a coffee shop and café in Shillong with espresso, cold coffee, desserts and breakfast, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'pure-vegetarian-restaurant-shillong',
@@ -232,7 +232,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Veg thali & North Indian curries', 'Paneer tikka & tandoori veg', 'Veg Hakka noodles & Manchurian', 'Veggie pizza & pasta', 'Dosa & idli (breakfast)'],
     why: ['Dedicated vegetarian section', 'Jain-friendly on request', 'Multi-cuisine veg variety', 'Veg catering & bulk orders', 'No-fuss veg breakfast'],
     keywords: ['pure veg restaurant in shillong', 'pure veg restaurants in shillong', 'vegetarian restaurant near me', 'vegetarian food near me', 'best veg restaurants in shillong'],
-    quick: 'TAB Bistro by XTSY has an extensive pure-veg menu in Shillong with Jain-friendly options on request, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY has an extensive pure-veg menu in Shillong with Jain-friendly options on request, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'healthy-food-restaurant-shillong',
@@ -241,7 +241,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Fresh salads & soups', 'Grilled (not fried) mains', 'Veg & protein bowls', 'Smoothies & fresh juices', 'Light breakfast options'],
     why: ['Grilled over fried', 'Fresh seasonal produce', 'Balanced veg & non-veg', 'Customisable portions', 'Great for fitness travellers'],
     keywords: ['healthy food shillong', 'salad shillong', 'vegetarian food near me', 'best food in shillong', 'food places near me'],
-    quick: 'TAB Bistro by XTSY offers healthy, grilled and salad-forward options in Shillong, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers healthy, grilled and salad-forward options in Shillong, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'noodles-in-shillong',
@@ -250,7 +250,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Hakka & Schezwan noodles', 'Chowmein (veg & chicken)', 'Thukpa & noodle soup', 'Pan-fried noodles', 'Manchurian with noodles'],
     why: ['Wok-tossed fresh', 'Veg & non-veg options', 'Spice levels to order', 'Hearty single bowls', 'Takeaway available'],
     keywords: ['noodles in shillong', 'chinese food near me', 'chinese food', 'best food in shillong', 'food places near me'],
-    quick: 'TAB Bistro by XTSY serves noodles and soups in Shillong — Hakka, Schezwan, chowmein and thukpa, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves noodles and soups in Shillong — Hakka, Schezwan, chowmein and thukpa, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'thali-restaurant-shillong',
@@ -259,7 +259,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Veg & non-veg thalis', 'Dal, sabzi & rice', 'Roti & paratha', 'Curry of the day', 'Salad, papad & dessert'],
     why: ['Complete, value meals', 'Veg & non-veg options', 'Generous portions', 'Great for lunch', 'Takeaway friendly'],
     keywords: ['thali shillong', 'veg thali shillong', 'best food in shillong', 'indian food near me', 'lunch near me'],
-    quick: 'TAB Bistro by XTSY serves hearty veg and non-veg thalis in Shillong, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves hearty veg and non-veg thalis in Shillong, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'bakery-and-desserts-shillong',
@@ -268,7 +268,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Cakes & pastries', 'Brownies & cookies', 'Sizzling brownie', 'Ice cream & shakes', 'Coffee & hot chocolate'],
     why: ['Freshly baked treats', 'Coffee & desserts', 'Birthday cakes on order', 'Cosy café setting', 'Takeaway available'],
     keywords: ['bakery shillong', 'desserts shillong', 'cake shillong', 'cafe shillong', 'best cafes in shillong'],
-    quick: 'TAB Bistro by XTSY offers cakes, brownies and desserts in Shillong alongside coffee and shakes, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers cakes, brownies and desserts in Shillong alongside coffee and shakes, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'juices-and-shakes-shillong',
@@ -277,7 +277,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Fresh fruit juices', 'Thick milkshakes', 'Cold coffee & frappes', 'Smoothies', 'Lemonades & coolers'],
     why: ['Fresh, no-preservative drinks', 'Pairs with breakfast', 'Veg & vegan options', 'Great in summer', 'Takeaway friendly'],
     keywords: ['juice shop shillong', 'milkshake shillong', 'cold coffee shillong', 'cafe shillong', 'breakfast near me'],
-    quick: 'TAB Bistro by XTSY serves fresh juices, shakes and cold coffee in Shillong, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves fresh juices, shakes and cold coffee in Shillong, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
   {
     slug: 'chinese-food-in-shillong',
@@ -286,7 +286,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Hakka & Schezwan noodles', 'Chilli chicken & paneer', 'Manchurian & fried rice', 'Momos & spring rolls', 'Thai curries'],
     why: ['Authentic wok flavours', 'Veg & non-veg options', 'Spice to taste', 'Generous portions', 'Takeaway & bulk orders'],
     keywords: ['chinese food in shillong', 'chinese food', 'best chinese restaurant in shillong', 'chinese food near me', 'chinese restaurant near me'],
-    quick: 'TAB Bistro by XTSY serves Chinese food in Shillong — noodles, chilli chicken, Manchurian and fried rice, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves Chinese food in Shillong — noodles, chilli chicken, Manchurian and fried rice, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
   },
 ];
 
@@ -341,7 +341,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Breakfast Menu Highlights', items: ['Eggs your way & omelettes', 'Toast, pancakes & waffles', 'Dosa, idli & paratha', 'Fresh juices & coffee', 'Continental breakfast platters'] },
     points2: { h: 'Why Breakfast Here', items: ['Served fresh all morning', 'Veg & non-veg options', 'Coffee & teas', 'Quiet forest views', 'Work-friendly seating'] },
     keywords: ['breakfast in shillong', 'breakfast places in shillong', 'breakfast near me', 'breakfast places near me', 'best breakfast near me'],
-    quick: 'TAB Bistro by XTSY serves all-day breakfast in Shillong — eggs, pancakes, dosa, coffee and continental plates, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves all-day breakfast in Shillong — eggs, pancakes, dosa, coffee and continental plates, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Where can I get breakfast in Shillong?',
   },
   {
@@ -353,7 +353,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Brunch Picks', items: ['Eggs, pancakes & waffles', 'Sandwiches & burgers', 'Pizza & pasta', 'Fresh juices & coffee', 'Desserts & bakes'] },
     points2: { h: 'Why Brunch at TAB Bistro', items: ['Relaxed forest ambiance', 'Veg & non-veg menus', 'Great for groups & families', 'Coffee & cold beverages', 'Reservations welcome'] },
     keywords: ['brunch in shillong', 'brunch near me', 'brunch places near me', 'sunday brunch near me', 'best brunch near me'],
-    quick: 'TAB Bistro by XTSY is a great brunch spot in Shillong — breakfast classics, burgers, pizza and coffee, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY is a great brunch spot in Shillong — breakfast classics, burgers, pizza and coffee, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Where can I have brunch in Shillong?',
   },
   {
@@ -365,7 +365,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Lunch Options', items: ['Veg & non-veg thalis', 'Biryani & rice bowls', 'Indo-Chinese & noodles', 'Continental mains', 'Quick combos & set menus'] },
     points2: { h: 'Why Lunch Here', items: ['Fast, fresh service', 'Multi-cuisine variety', 'Group & corporate lunches', 'Takeaway available', 'In-house guest discount of 15%'] },
     keywords: ['lunch in shillong', 'lunch near me', 'best lunch near me', 'places to eat in shillong', 'restaurants near me'],
-    quick: 'TAB Bistro by XTSY serves multi-cuisine lunch in Shillong — thalis, biryani, Chinese and continental — open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY serves multi-cuisine lunch in Shillong — thalis, biryani, Chinese and continental — open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Where can I have lunch in Shillong?',
   },
   {
@@ -377,7 +377,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Dinner Favourites', items: ['Barbecue & tandoor platters', 'North Indian curries & naan', 'Sizzlers & continental mains', 'Indo-Chinese & Thai', 'Desserts & beverages'] },
     points2: { h: 'Why Dinner Here', items: ['Open till 10:30 PM', 'Cosy forest setting', 'Veg & non-veg menus', 'Reservations for groups', 'Great for couples & families'] },
     keywords: ['dinner in shillong', 'dinner near me', 'romantic restaurants near me', 'late night food shillong', 'restaurants near me'],
-    quick: 'TAB Bistro by XTSY is a top dinner restaurant in Shillong — barbecue, tandoor and global mains — open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY is a top dinner restaurant in Shillong — barbecue, tandoor and global mains — open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Where can I have dinner in Shillong?',
   },
   {
@@ -401,7 +401,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Open-Air Experience', items: ['Forest-side seating', 'Fresh mountain air', 'Barbecue & grill nights', 'Coffee & sundowners', 'Great for photos'] },
     points2: { h: 'Menu to Match', items: ['Barbecue & tandoor', 'Multi-cuisine mains', 'Veg & non-veg', 'Desserts & beverages', 'Reservations recommended'] },
     keywords: ['rooftop restaurants in shillong', 'rooftop cafe in shillong', 'open air restaurant shillong', 'best food in shillong', 'romantic restaurants near me'],
-    quick: 'TAB Bistro by XTSY offers open-air, forest-side dining in Shillong — barbecue, multi-cuisine mains and coffee, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers open-air, forest-side dining in Shillong — barbecue, multi-cuisine mains and coffee, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Is there a rooftop or open-air restaurant in Shillong?',
   },
   {
@@ -413,7 +413,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Fine Dining Menu', items: ['Continental grills & steaks', 'Tandoor & barbecue', 'Italian & Thai mains', 'Curated set menus', 'Desserts & beverages'] },
     points2: { h: 'The Experience', items: ['Scenic forest ambiance', 'Attentive table service', 'Ideal for celebrations', 'Reservations recommended', 'Veg & non-veg menus'] },
     keywords: ['fine dining shillong', 'fancy restaurants near me', 'nice restaurants near me', 'best restaurant in shillong', 'romantic restaurants near me'],
-    quick: 'TAB Bistro by XTSY offers multi-cuisine fine dining in Shillong in a scenic forest setting, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers multi-cuisine fine dining in Shillong in a scenic forest setting, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Is there fine dining in Shillong?',
   },
   {
@@ -425,7 +425,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Why It\'s Romantic', items: ['Quiet forest setting', 'Cosy seating for two', 'Candlelight on request', 'Desserts to share', 'Reservations for special dates'] },
     points2: { h: 'What to Order', items: ['Continental grills & sizzlers', 'Tandoor & barbecue', 'Pizza & pasta', 'Coffee & desserts', 'Veg & non-veg menus'] },
     keywords: ['romantic restaurants near me', 'candlelight dinner shillong', 'couple restaurant shillong', 'date night shillong', 'best restaurant in shillong'],
-    quick: 'TAB Bistro by XTSY is a romantic forest-side restaurant in Shillong, ideal for couples and anniversaries, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY is a romantic forest-side restaurant in Shillong, ideal for couples and anniversaries, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Where is a good romantic restaurant in Shillong?',
   },
   {
@@ -437,7 +437,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Café Menu', items: ['Espresso, latte & cold coffee', 'Teas & hot chocolate', 'All-day breakfast', 'Cakes & desserts', 'Light snacks & bites'] },
     points2: { h: 'Café Vibes', items: ['Forest views', 'Work-friendly seating', 'Cosy interiors', 'Weekend favourite', 'WiFi-friendly'] },
     keywords: ['rooftop cafe in shillong', 'cafe shillong', 'best cafes in shillong', 'coffee shop shillong', 'brunch near me'],
-    quick: 'TAB Bistro by XTSY is a forest-side café in Shillong with coffee, breakfast and desserts, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY is a forest-side café in Shillong with coffee, breakfast and desserts, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Is there a café with a view in Shillong?',
   },
   {
@@ -449,7 +449,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Built for Groups', items: ['Large-table reservations', 'Set menus by headcount', 'Birthday & event hosting', 'Barbecue group nights', 'Bulk & catering orders'] },
     points2: { h: 'Why Choose Us', items: ['Spacious forest seating', 'Multi-cuisine variety', 'Veg & non-veg options', 'Custom budgets', 'In-house guest discount of 15%'] },
     keywords: ['group dining shillong', 'family restaurants near me', 'party restaurant shillong', 'restaurants for groups shillong', 'best places to eat near me'],
-    quick: 'TAB Bistro by XTSY offers group dining in Shillong — large tables, set menus and party bookings, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers group dining in Shillong — large tables, set menus and party bookings, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Where can large groups dine in Shillong?',
   },
   {
@@ -461,7 +461,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Birthday Packages', items: ['Group table reservations', 'Custom set menus', 'Cake & dessert arrangements', 'Barbecue & multi-cuisine spreads', 'Veg & non-veg options'] },
     points2: { h: 'Why Celebrate Here', items: ['Scenic forest ambiance', 'Space for families & friends', 'Catering add-ons', 'Flexible budgets', 'Easy reservations'] },
     keywords: ['birthday party shillong', 'birthday restaurant shillong', 'party restaurant shillong', 'celebration restaurant shillong', 'family restaurants near me'],
-    quick: 'TAB Bistro by XTSY hosts birthday parties in Shillong with set menus, cakes and group bookings, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY hosts birthday parties in Shillong with set menus, cakes and group bookings, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Can I host a birthday party at a restaurant in Shillong?',
   },
   {
@@ -473,7 +473,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Make It Special', items: ['Candlelight on request', 'Cosy table for two', 'Desserts to share', 'Continental & tandoor mains', 'Reservations for special dates'] },
     points2: { h: 'Why TAB Bistro', items: ['Quiet forest ambiance', 'Attentive service', 'Veg & non-veg menus', 'Coffee & desserts', 'Ideal for couples'] },
     keywords: ['anniversary dinner shillong', 'candlelight dinner shillong', 'romantic restaurants near me', 'couple restaurant shillong', 'best restaurant in shillong'],
-    quick: 'TAB Bistro by XTSY is ideal for an anniversary dinner in Shillong — romantic forest-side dining with candlelight on request, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY is ideal for an anniversary dinner in Shillong — romantic forest-side dining with candlelight on request, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Where can I have an anniversary dinner in Shillong?',
   },
   {
@@ -485,7 +485,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Buffet Spread Options', items: ['North Indian & tandoor', 'Indo-Chinese & Thai', 'Continental & Italian', 'Live barbecue counters', 'Desserts & beverages'] },
     points2: { h: 'Good to Know', items: ['Best for groups & events', 'Custom menus by headcount', 'Veg & non-veg options', 'Advance booking needed', 'Catering add-ons'] },
     keywords: ['buffet restaurant shillong', 'buffet in shillong', 'group dining shillong', 'best food in shillong', 'restaurants near me'],
-    quick: 'TAB Bistro by XTSY arranges multi-cuisine buffet-style spreads in Shillong for groups and events, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY arranges multi-cuisine buffet-style spreads in Shillong for groups and events, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Is there a buffet restaurant in Shillong?',
   },
   {
@@ -497,7 +497,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Why Pet-Friendly', items: ['Open-air forest seating', 'Space for pets to relax', 'Water bowls on request', 'Quiet, green surroundings', 'Friendly staff'] },
     points2: { h: 'What to Order', items: ['Barbecue & grills', 'Multi-cuisine mains', 'Coffee & desserts', 'Veg & non-veg menus', 'Takeaway available'] },
     keywords: ['pet friendly restaurant shillong', 'dog friendly restaurant shillong', 'best food in shillong', 'places to eat in shillong', 'restaurants near me'],
-    quick: 'TAB Bistro by XTSY is a pet-friendly restaurant in Shillong with open-air forest seating, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY is a pet-friendly restaurant in Shillong with open-air forest seating, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Is there a pet-friendly restaurant in Shillong?',
   },
   {
@@ -509,7 +509,7 @@ const occasions: Occasion[] = [
     points1: { h: 'The Vibe', items: ['Relaxed forest ambiance', 'Music-loving setting', 'Coffee & sundowners', 'Great for evenings', 'Group-friendly'] },
     points2: { h: 'Menu', items: ['Barbecue & tandoor', 'Multi-cuisine mains', 'Snacks & starters', 'Desserts & beverages', 'Veg & non-veg'] },
     keywords: ['live music restaurant shillong', 'best restaurant in shillong', 'places to eat in shillong', 'dinner in shillong', 'restaurants near me'],
-    quick: 'TAB Bistro by XTSY offers a relaxed, music-loving forest-side dining experience in Shillong, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers a relaxed, music-loving forest-side dining experience in Shillong, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Is there a live music restaurant in Shillong?',
   },
   {
@@ -521,7 +521,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Why Shoot Here', items: ['Pine-forest backdrop', 'Open-air seating', 'Scenic dining areas', 'Catering for the day', 'Group bookings'] },
     points2: { h: 'Plan Your Day', items: ['Reserve the space', 'Choose a menu or catering', 'Add barbecue counters', 'Veg & non-veg options', 'Flexible budgets'] },
     keywords: ['pre wedding photoshoot locations', 'pre wedding shoot shillong', 'destination wedding locations', 'wedding catering shillong', 'best food in shillong'],
-    quick: 'TAB Bistro by XTSY offers a pine-forest pre-wedding shoot and dining venue in Shillong, with catering available, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers a pine-forest pre-wedding shoot and dining venue in Shillong, with catering available, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Is TAB Bistro a good pre-wedding shoot venue in Shillong?',
   },
   {
@@ -533,7 +533,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Best Food Places', items: ['TAB Bistro by XTSY — multi-cuisine & barbecue', 'Police Bazaar street food', 'Laitumkhrah cafés', 'Khasi jadoh stalls', 'Family restaurants'] },
     points2: { h: 'Why TAB Bistro', items: ['10+ cuisines', 'Live grill & tandoor', 'Forest-side ambiance', 'Catering & bulk orders', 'In-house guest discount of 15%'] },
     keywords: ['best food places in shillong', 'food places near me', 'best food in shillong', 'places to eat in shillong', 'food places'],
-    quick: 'The best food places in Shillong span street food, cafés and fine dining — TAB Bistro by XTSY is the multi-cuisine standout, open 9 AM–10:30 PM.',
+    quick: 'The best food places in Shillong span street food, cafés and fine dining — TAB Bistro by XTSY is the multi-cuisine standout, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'What are the best food places in Shillong?',
   },
   {
@@ -545,7 +545,7 @@ const occasions: Occasion[] = [
     points1: { h: 'Veg Dishes to Try', items: ['Paneer tikka & tandoori veg', 'Veg thalis & curries', 'Veg Hakka noodles & Manchurian', 'Veggie pizza & pasta', 'Dosa & idli (breakfast)'] },
     points2: { h: 'Veg-Friendly Dining', items: ['Dedicated vegetarian section', 'Jain-friendly on request', 'Multi-cuisine variety', 'Veg catering & bulk orders', 'Veg breakfast all morning'] },
     keywords: ['vegetarian food near me', 'vegetarian restaurant near me', 'pure veg restaurant in shillong', 'best veg restaurants in shillong', 'vegetarian cafe near me'],
-    quick: 'TAB Bistro by XTSY offers extensive vegetarian food in Shillong — Indian, Chinese, Italian and continental veg dishes, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers extensive vegetarian food in Shillong — Indian, Chinese, Italian and continental veg dishes, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Where can I find vegetarian food in Shillong?',
   },
 ];
@@ -601,7 +601,7 @@ const services: Service[] = [
     items1: { h: 'What You Can Order', items: ['North Indian & tandoor', 'Indo-Chinese & noodles', 'Pizza & pasta', 'Biryani & rice bowls', 'Desserts & beverages'] },
     items2: { h: 'How to Order', items: ['Call to place an order', 'Choose delivery or pickup', 'Bulk & party orders welcome', 'Veg & non-veg menus', 'Freshly packed meals'] },
     keywords: ['food delivery shillong', 'restaurants that deliver near me', 'food near me', 'online food order shillong', 'takeout food near me'],
-    quick: 'TAB Bistro by XTSY offers food delivery and takeaway in Shillong — multi-cuisine meals freshly packed, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers food delivery and takeaway in Shillong — multi-cuisine meals freshly packed, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Does TAB Bistro deliver food in Shillong?',
   },
   {
@@ -613,7 +613,7 @@ const services: Service[] = [
     items1: { h: 'Menu to Order', items: ['Barbecue & tandoor', 'Chinese & Thai', 'Continental & Italian', 'Veg & non-veg combos', 'Snacks & desserts'] },
     items2: { h: 'Easy Ordering', items: ['Call or message to order', 'Pickup or delivery', 'Bulk & catering options', 'Custom menus on request', 'Transparent pricing'] },
     keywords: ['online food order shillong', 'order food online shillong', 'food near me', 'takeaway food near me', 'restaurants that deliver near me'],
-    quick: 'TAB Bistro by XTSY lets you order food online in Shillong for pickup or delivery — multi-cuisine meals, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY lets you order food online in Shillong for pickup or delivery — multi-cuisine meals, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Can I order food online in Shillong?',
   },
   {
@@ -625,7 +625,7 @@ const services: Service[] = [
     items1: { h: 'Takeaway Favourites', items: ['Barbecue & tandoor packs', 'Noodles & fried rice', 'Biryani & combos', 'Burgers & wraps', 'Desserts & beverages'] },
     items2: { h: 'Quick & Fresh', items: ['Freshly packed meals', 'Veg & non-veg options', 'Bulk & party packs', 'Call ahead to save time', 'Easy pickup'] },
     keywords: ['takeaway food near me', 'takeout restaurants near me', 'takeaway restaurants near me', 'food near me', 'takeout food near me'],
-    quick: 'TAB Bistro by XTSY offers takeaway food in Shillong — freshly packed multi-cuisine meals, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers takeaway food in Shillong — freshly packed multi-cuisine meals, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Where can I get takeaway food in Shillong?',
   },
   {
@@ -637,7 +637,7 @@ const services: Service[] = [
     items1: { h: 'Party Order Menu', items: ['Barbecue & tandoor trays', 'Party platters & combos', 'Veg & non-veg spreads', 'Snacks & starters', 'Desserts & beverages'] },
     items2: { h: 'How It Works', items: ['Share headcount & cuisine', 'Pick a custom menu', 'Confirm date & delivery', 'On-time bulk preparation', 'Catering add-ons available'] },
     keywords: ['order party food near me', 'party order shillong', 'bulk order food near me', 'catering food near me', 'food deals today'],
-    quick: 'TAB Bistro by XTSY handles party food orders in Shillong — platters, combos and bulk spreads, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY handles party food orders in Shillong — platters, combos and bulk spreads, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Can I order party food in Shillong?',
   },
 ];
@@ -680,7 +680,7 @@ const generals: Occasion[] = [
     points1: { h: 'Why TAB Bistro Tops the List', items: ['10+ cuisines under one roof', 'Live tandoor & barbecue', 'Veg & non-veg menus', 'Scenic forest dining', 'In-house guest discount of 15%'] },
     points2: { h: 'What to Order', items: ['Barbecue & sizzlers', 'North Indian thalis', 'Indo-Chinese & Thai', 'Pizza & pasta', 'Coffee & desserts'] },
     keywords: ['best restaurant in shillong', 'shillong best restaurant', 'best restaurants shillong', 'best food in shillong', 'best restaurant'],
-    quick: 'TAB Bistro by XTSY is among the best restaurants in Shillong — a multi-cuisine forest-dining spot with barbecue and global flavours, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY is among the best restaurants in Shillong — a multi-cuisine forest-dining spot with barbecue and global flavours, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Which is the best restaurant in Shillong?',
   },
   {
@@ -692,7 +692,7 @@ const generals: Occasion[] = [
     points1: { h: 'Top Dining Picks', items: ['TAB Bistro by XTSY — multi-cuisine & barbecue', 'Cafés in Laitumkhrah', 'Police Bazaar eateries', 'Khasi jadoh stalls', 'Family restaurants'] },
     points2: { h: 'Why TAB Bistro Stands Out', items: ['10+ cuisines', 'Live grill & tandoor', 'Forest-side ambiance', 'Catering & bulk orders', 'Reservations welcome'] },
     keywords: ['top restaurants near me', 'top restaurants in shillong', 'best restaurants shillong', 'good restaurants near me', 'restaurants near me'],
-    quick: 'Top restaurants in Shillong span cafés, barbecue and Khasi food — TAB Bistro by XTSY is the multi-cuisine standout, open 9 AM–10:30 PM.',
+    quick: 'Top restaurants in Shillong span cafés, barbecue and Khasi food — TAB Bistro by XTSY is the multi-cuisine standout, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'What are the top restaurants in Shillong?',
   },
   {
@@ -704,7 +704,7 @@ const generals: Occasion[] = [
     points1: { h: 'Where to Go', items: ['TAB Bistro by XTSY — multi-cuisine forest dining', 'Police Bazaar — cafés & street food', 'Laitumkhrah — cafés & casual eats', 'Iewduh — Khasi jadoh', 'Ward\'s Lake area — heritage cafés'] },
     points2: { h: 'Plan Your Meal', items: ['Most kitchens close by 10:30 PM', 'Reserve ahead on weekends', 'Veg & non-veg widely available', 'TAB Bistro offers catering', 'In-house guests get 15% off'] },
     keywords: ['where to eat in shillong', 'places to eat in shillong', 'best places to eat near me', 'food places near me', 'eat near me'],
-    quick: 'For where to eat in Shillong, TAB Bistro by XTSY is a multi-cuisine forest restaurant covering barbecue, Chinese, continental and more, open 9 AM–10:30 PM.',
+    quick: 'For where to eat in Shillong, TAB Bistro by XTSY is a multi-cuisine forest restaurant covering barbecue, Chinese, continental and more, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Where should I eat in Shillong?',
   },
   {
@@ -716,7 +716,7 @@ const generals: Occasion[] = [
     points1: { h: 'Must-Visit Restaurants', items: ['TAB Bistro by XTSY — multi-cuisine & barbecue', 'Cafés with live music', 'Chinese & momo specialists', 'Khasi food stalls', 'Family dining spots'] },
     points2: { h: 'Why Visit TAB Bistro', items: ['10+ cuisines', 'Live tandoor & barbecue', 'Forest-side ambiance', 'Catering & bulk orders', 'Reservations welcome'] },
     keywords: ['famous restaurants in shillong', 'best restaurants shillong', 'nice restaurants near me', 'recommended restaurants near me', 'good restaurants in shillong'],
-    quick: 'Among the famous restaurants in Shillong, TAB Bistro by XTSY stands out for multi-cuisine forest dining and live barbecue, open 9 AM–10:30 PM.',
+    quick: 'Among the famous restaurants in Shillong, TAB Bistro by XTSY stands out for multi-cuisine forest dining and live barbecue, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'What are the famous restaurants in Shillong?',
   },
   {
@@ -728,7 +728,7 @@ const generals: Occasion[] = [
     points1: { h: 'Best Cafés to Try', items: ['TAB Bistro by XTSY — forest-side café', 'Laitumkhrah coffee houses', 'Police Bazaar bakeries', 'Live-music cafés', 'Work-friendly spots'] },
     points2: { h: 'Café at XTSY', items: ['Specialty coffee & cold brew', 'All-day breakfast', 'Cakes & desserts', 'Cosy forest seating', 'WiFi-friendly'] },
     keywords: ['best cafes in shillong', 'cafe shillong', 'coffee shop shillong', 'best cafe shillong', 'brunch near me'],
-    quick: 'The best cafés in Shillong span Laitumkhrah and Police Bazaar — TAB Bistro by XTSY adds a forest-side café with coffee and breakfast, open 9 AM–10:30 PM.',
+    quick: 'The best cafés in Shillong span Laitumkhrah and Police Bazaar — TAB Bistro by XTSY adds a forest-side café with coffee and breakfast, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'What are the best cafés in Shillong?',
   },
   {
@@ -740,7 +740,7 @@ const generals: Occasion[] = [
     points1: { h: 'Value Picks', items: ['Combo & set menus', 'Veg & non-veg thalis', 'Noodles & fried rice', 'Snacks & quick bites', 'Family-size portions'] },
     points2: { h: 'Save More', items: ['In-house guest discount of 15%', 'Group & bulk pricing', 'Generous portions', 'Takeaway available', 'Transparent prices'] },
     keywords: ['cheap restaurants shillong', 'budget restaurants shillong', 'food deals today', 'affordable food shillong', 'food places near me'],
-    quick: 'TAB Bistro by XTSY offers affordable, value-packed multi-cuisine meals in Shillong with combos and an in-house guest discount, open 9 AM–10:30 PM.',
+    quick: 'TAB Bistro by XTSY offers affordable, value-packed multi-cuisine meals in Shillong with combos and an in-house guest discount, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.',
     faqQ: 'Where can I find affordable restaurants in Shillong?',
   },
 ];
@@ -820,12 +820,12 @@ localities.forEach((l) => {
         { heading: 'Pair It With TAB Bistro', content: 'When you want more variety:', listItems: ['Multi-cuisine forest dining', 'Barbecue & tandoor', 'Veg & non-veg menus', 'Reservations & catering', 'In-house guest discount of 15%'] },
       ],
       [
-        { question: `Which are the best restaurants ${l.area.startsWith('near') ? l.area : `in ${l.area}`}, Shillong?`, answer: `${l.area.startsWith('near') ? `Dining ${l.area}` : l.area} in Shillong offers ${l.known}. For a full multi-cuisine spread with barbecue and global cuisine, TAB Bistro by XTSY nearby is a top pick, open 9 AM–10:30 PM.` },
+        { question: `Which are the best restaurants ${l.area.startsWith('near') ? l.area : `in ${l.area}`}, Shillong?`, answer: `${l.area.startsWith('near') ? `Dining ${l.area}` : l.area} in Shillong offers ${l.known}. For a full multi-cuisine spread with barbecue and global cuisine, TAB Bistro by XTSY nearby is a top pick, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.` },
         tabFaq,
       ],
       localityRelated.filter((s) => s !== l.slug).slice(0, 4),
       l.keywords,
-      `For dining ${l.area.startsWith('near') ? l.area : `in ${l.area}`}, Shillong (${l.known}), TAB Bistro by XTSY in New Shillong Township serves multi-cuisine food and barbecue, open 9 AM–10:30 PM.`,
+      `For dining ${l.area.startsWith('near') ? l.area : `in ${l.area}`}, Shillong (${l.known}), TAB Bistro by XTSY in New Shillong Township serves multi-cuisine food and barbecue, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.`,
     ),
   );
 });
@@ -879,12 +879,12 @@ combos.forEach((c) => {
         { heading: 'Why TAB Bistro Nearby', content: 'A reliable choice a cab ride from ' + c.area + ':', listItems: ['10+ cuisines under one roof', 'Live tandoor & barbecue', 'Veg & non-veg menus', 'Reservations & catering', 'In-house guest discount of 15%'] },
       ],
       [
-        { question: `Where is a good ${c.food} in ${c.area}, Shillong?`, answer: `${c.area} has several options for a ${c.food}. For ${c.food === 'café' ? 'coffee and breakfast' : c.dishes[0].toLowerCase()} plus a full multi-cuisine menu, TAB Bistro by XTSY nearby is a top pick, open 9 AM–10:30 PM.` },
+        { question: `Where is a good ${c.food} in ${c.area}, Shillong?`, answer: `${c.area} has several options for a ${c.food}. For ${c.food === 'café' ? 'coffee and breakfast' : c.dishes[0].toLowerCase()} plus a full multi-cuisine menu, TAB Bistro by XTSY nearby is a top pick, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.` },
         tabFaq,
       ],
       comboRelated.filter((s) => s !== c.slug).slice(0, 4),
       c.keywords,
-      `For a ${areaPhrase}, TAB Bistro by XTSY in New Shillong Township serves ${c.food === 'café' ? 'coffee and breakfast' : c.dishes[0].toLowerCase()} and a full multi-cuisine menu, open 9 AM–10:30 PM.`,
+      `For a ${areaPhrase}, TAB Bistro by XTSY in New Shillong Township serves ${c.food === 'café' ? 'coffee and breakfast' : c.dishes[0].toLowerCase()} and a full multi-cuisine menu, open for breakfast 8:45–11:45 AM & dinner 4:30–11 PM.`,
     ),
   );
 });
