@@ -63,6 +63,15 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
     return open.length ? open : SLOTS;
   }, [f.date, today]);
 
+  // If the stored time is no longer an offered slot (e.g. 7:00 PM after it has passed,
+  // or a future-date pick after switching back to today), move it to the first slot the
+  // guest can actually see in the box, so what is shown is what gets sent.
+  useEffect(() => {
+    if (f.time && !slots.some((s) => s.value === f.time)) {
+      setF((s) => ({ ...s, time: slots[0]?.value ?? '' }));
+    }
+  }, [slots, f.time]);
+
   const message = (ref?: string) => {
     const d = parseLocalDate(f.date);
     return [
