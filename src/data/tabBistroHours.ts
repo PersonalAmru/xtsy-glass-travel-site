@@ -29,3 +29,12 @@ export const BISTRO_SLOT_RANGES: { from: number; to: number }[] = [
   { from: 8 * 60 + 45, to: 11 * 60 + 30 },
   { from: 16 * 60 + 30, to: 22 * 60 + 30 },
 ];
+
+export type BistroRequestKind = 'table' | 'lunch-preorder';
+
+/** Lunch times are guest requests, not an additional restaurant service window. */
+export function isValidBistroRequestTime(kind: BistroRequestKind, time: string, offeredTableTimes: string[]): boolean {
+  return kind === 'lunch-preorder'
+    ? /^([01]\d|2[0-3]):[0-5]\d$/.test(time)
+    : offeredTableTimes.includes(time);
+}
