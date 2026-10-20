@@ -102,6 +102,7 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
     if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(email)) return setError('Please enter a valid email address.');
     if (phone.replace(/\D/g, '').length < 8) return setError('Please enter a valid WhatsApp number.');
     if (!f.date || (today && f.date < today)) return setError('Please choose today or a later date.');
+    if (!slots.some((s) => s.value === f.time)) return setError('Please pick one of the available times shown.');
     if (!Number.isFinite(party) || party < 1 || party > MAX_PARTY)
       return setError(`Party size must be between 1 and ${MAX_PARTY}. For bigger groups, plan an event with our catering team.`);
 
