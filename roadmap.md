@@ -41,5 +41,5 @@
 - [ ] QA lunch requests XTH-ENQ-003 and XTH-ENQ-004 ("QA Lunch Preorder", explicitly marked test-only) remain pending; cleanup awaits owner authorization.
 
 ## Current request 2026-10-21
-- [ ] Improve the existing Umiam Lake search title, description and contextual links; preserve its URL, rates and facts.
-- [ ] Improve existing TAB Bistro content and links for restaurants in Shillong; preserve its URL, hours and official menu.
+- [x] Improve existing Umiam Lake title, description and 10 contextual planning links; verified single self-canonical, unchanged activity/cab rates and working destinations. Publish pending.
+- [x] Improve existing TAB Bistro introduction, meal-planning content and links for restaurants in Shillong; hours/menu unchanged, table-form action verified. 63 booking/redirect tests pass; preview has no page errors. Publish pending.
