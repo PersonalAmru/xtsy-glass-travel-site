@@ -137,6 +137,7 @@ export default function DestinationV2() {
   return (
     <>
       <Helmet>
+        {!destination.planningLinks && <>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         <meta name="keywords" content={pageKeywords} />
@@ -146,6 +147,7 @@ export default function DestinationV2() {
         <meta property="og:type" content="article" />
         <meta property="og:url" content={url} />
         <meta property="og:image" content={images[0]?.src} />
+        </>}
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
@@ -218,6 +220,19 @@ export default function DestinationV2() {
                 {destination.travelTips.map((t) => <li key={t}>{t}</li>)}
               </ul>
             </section>
+            {destination.planningLinks && (
+              <nav aria-label={`${destination.name} trip planning`} className="flex flex-col gap-5 border-t border-xt-line pt-8">
+                <H2>Plan your {destination.name} visit</H2>
+                <ul className="m-0 grid list-none gap-5 p-0 sm:grid-cols-2">
+                  {destination.planningLinks.map((link) => (
+                    <li key={link.to}>
+                      <Link to={link.to} className="inline-flex min-h-12 items-center text-[16px] font-extrabold text-xt-crimson underline underline-offset-4">{link.label} →</Link>
+                      <p className="m-0 text-[15px] leading-relaxed text-xt-mute">{link.context}</p>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
           </article>
 
           <aside className="flex flex-col gap-4 lg:col-span-4">
@@ -269,7 +284,7 @@ export default function DestinationV2() {
         <section className={`${PAD} flex flex-col gap-10 pb-10`}>
           <BookingCTA destination={destination} placement="bottom" />
           <StayEatExplore context={destination.name} />
-          <nav aria-label="Related guides" className="flex flex-col gap-4 border-t border-xt-line pt-8">
+          {!destination.planningLinks && <nav aria-label="Related guides" className="flex flex-col gap-4 border-t border-xt-line pt-8">
             <h2 className="m-0 text-[18px] font-extrabold">Related guides</h2>
             <div className="flex flex-wrap gap-2">
               {[
@@ -286,7 +301,7 @@ export default function DestinationV2() {
                 <Link key={l.to} to={l.to} className="rounded-full border-[1.5px] border-xt-stone px-4 py-2 text-[14px] font-bold text-xt-ink hover:text-xt-crimson">{l.label}</Link>
               ))}
             </div>
-          </nav>
+          </nav>}
         </section>
       </PageShell>
     </>

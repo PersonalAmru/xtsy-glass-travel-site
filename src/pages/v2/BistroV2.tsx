@@ -13,6 +13,7 @@ import { IMG, first } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FaqList, PAD } from '@/components/v2/blocks';
 import { Photo, Marquee, Eyebrow, waLink } from '@/components/v2/primitives';
 import { TableBookingForm } from '@/components/v2/TableBookingForm';
+import { BISTRO_BREAKFAST, BISTRO_EVENING } from '@/data/tabBistroHours';
 
 const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=TAB+Bistro+by+XTSY+Mawdiangdiang+New+Shillong+Township';
 
@@ -48,10 +49,10 @@ export default function BistroV2() {
           muted="#C8D6CC"
           eyebrowColor="#F2B8C2"
           eyebrow="TAB Bistro by XTSY · New Shillong Township"
-          title="Forest dining under the pines."
+           title="TAB Bistro by XTSY"
           text={
             <>
-              <p className="m-0">North Indian, Indo-Chinese, Thai, Continental, Italian and Northeast plates, all-day café and a Wi-Fi-friendly table if you need to work.</p>
+              <p className="m-0">Looking for restaurants in Shillong? TAB Bistro by XTSY brings North Indian, Indo-Chinese, Thai, Continental, Italian and Northeast plates to forest dining in New Shillong Township. Browse the menu and request a table for breakfast or dinner.</p>
               <p className="m-0 mt-5 flex items-center gap-2.5 text-[16px] font-bold text-[#EAF0EA]">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
                 Open daily · Breakfast 8:45–11:45 AM · Dinner 4:30–11 PM · Lunch by preorder
@@ -103,6 +104,28 @@ export default function BistroV2() {
 
         <Section id="book-a-table" className="scroll-mt-24 pt-0">
           <TableBookingForm />
+        </Section>
+
+        <Section className="pt-0">
+          <H2 eyebrow="Restaurants in Shillong">Plan a meal at TAB Bistro</H2>
+          <div className="grid gap-8 md:grid-cols-3">
+            <div className="flex flex-col gap-3">
+              <h3 className="m-0 text-[22px] font-extrabold">Breakfast in New Shillong</h3>
+              <p className="m-0 text-[16px] leading-relaxed text-xt-mute">Breakfast is served daily from {BISTRO_BREAKFAST.label}. View the menu above and send your date, time and group size through the table form.</p>
+              <Btn to="#menu" kind="outline">Browse the menu</Btn>
+            </div>
+            <div className="flex flex-col gap-3">
+              <h3 className="m-0 text-[22px] font-extrabold">Evening &amp; dinner</h3>
+              <p className="m-0 text-[16px] leading-relaxed text-xt-mute">Join us from {BISTRO_EVENING.label} for multi-cuisine dining among the pines. Table requests go to the team on WhatsApp for confirmation.</p>
+              <Btn to="#book-a-table" kind="outline">Book a table</Btn>
+            </div>
+            <div className="flex flex-col gap-3">
+              <h3 className="m-0 text-[22px] font-extrabold">Lunch — preorder only</h3>
+              <p className="m-0 text-[16px] leading-relaxed text-xt-mute">We are closed for lunch service. Choose “Lunch — preorder only” in the form and share your order; the team confirms availability and price on WhatsApp.</p>
+              <Btn to="#book-a-table" kind="outline">Request a lunch preorder</Btn>
+            </div>
+          </div>
+          <p className="m-0 max-w-3xl text-[17px] leading-relaxed">Planning more than a meal? Explore our <Link to="/tab-bistro/catering" className="font-bold text-xt-crimson underline underline-offset-4">catering and bulk orders</Link> for an event, or compare <Link to="/best-hostel-in-shillong" className="font-bold text-xt-crimson underline underline-offset-4">XTSY stays in New Shillong Township</Link> and <Link to="/destinations/meghalaya/shillong" className="font-bold text-xt-crimson underline underline-offset-4">places to visit in Shillong</Link> for your trip.</p>
         </Section>
 
 
