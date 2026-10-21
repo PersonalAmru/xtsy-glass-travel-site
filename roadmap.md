@@ -39,3 +39,7 @@
 - [ ] QA table enquiry XTH-ENQ-002 ("QA Ownership Repair") remains pending; cleanup awaits owner authorization.
 - [x] Add lunch preorder-only requests to the TAB Bistro table form, preserving existing hours and saving before WhatsApp confirmation; three tests passed and real request XTH-ENQ-004 saved with matching lunch time, order and reference in the captured WhatsApp redirect. Preview build clean; publish pending.
 - [ ] QA lunch requests XTH-ENQ-003 and XTH-ENQ-004 ("QA Lunch Preorder", explicitly marked test-only) remain pending; cleanup awaits owner authorization.
+
+## Current request 2026-10-21
+- [ ] Improve the existing Umiam Lake search title, description and contextual links; preserve its URL, rates and facts.
+- [ ] Improve existing TAB Bistro content and links for restaurants in Shillong; preserve its URL, hours and official menu.
