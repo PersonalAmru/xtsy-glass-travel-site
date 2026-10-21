@@ -25,6 +25,8 @@ export interface MeghalayaDestination {
   heroTagline?: string;
   /** Keyword-rich anchor text for the primary booking CTA on this page. */
   bookingAnchor?: string;
+  /** Destination-specific planning links; rendered instead of generic related guides. */
+  planningLinks?: { to: string; label: string; context: string }[];
 }
 
 
@@ -116,8 +118,8 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
   {
     name: 'Umiam Lake',
     slug: 'umiam-lake',
-    seoTitle: 'Umiam Lake (Barapani), Shillong — Boating, Timings & Viewpoints',
-    seoDescription: 'Umiam Lake (Barapani) near Shillong: boating, kayaking, best viewpoints, distance from Shillong, timings & best time to visit. Plan your Meghalaya trip — updated 2026.',
+    seoTitle: 'Umiam Lake (Barapani): Boating & Shillong Travel Guide',
+    seoDescription: 'Plan your Umiam Lake visit: boating, kayaking and sunset viewpoints, 15 km from Shillong. Find how to reach, activity prices and the best time to go.',
     seoKeywords: 'umiam lake, barapani, umiam lake shillong, umiam lake viewpoint, barapani lake, shillong lake, meghalaya lake, umiam lake boating',
     heroTagline: 'Barapani Reservoir · 15 km from Shillong, Meghalaya',
     bookingAnchor: 'Book a bed in Shillong from ₹399 — 20 min from Umiam Lake',
@@ -144,6 +146,18 @@ export const meghalayaDestinations: MeghalayaDestination[] = [
       'Cycling and short nature walks along the shoreline',
     ],
     nearbyAttractions: ['Shillong Peak', 'Elephant Falls', 'Don Bosco Museum'],
+    planningLinks: [
+      { to: '/', label: 'XTSY Shillong stays and travel desk', context: 'Start with your base and onward travel plans.' },
+      { to: '/meghalaya-travel-guide', label: 'Meghalaya travel guide', context: 'Fit a Umiam Lake visit into your wider trip.' },
+      { to: '/meghalaya-viewpoints', label: 'Viewpoints in Meghalaya', context: 'Browse more scenic stops for your itinerary.' },
+      { to: '/things-to-do-in-meghalaya', label: 'Things to do in Meghalaya', context: 'Compare lake outings with treks, caves and other activities.' },
+      { to: '/destinations/meghalaya/shillong', label: 'Places to visit in Shillong', context: 'Plan the rest of your Shillong sightseeing.' },
+      { to: '/destinations/meghalaya/cherrapunji', label: 'Cherrapunji destination guide', context: 'Explore options for the next part of your Meghalaya trip.' },
+      { to: '/destinations/meghalaya/dawki', label: 'Dawki destination guide', context: 'Compare a river outing with your lake visit.' },
+      { to: '/destinations/meghalaya/shillong/elephant-falls', label: 'Elephant Falls travel guide', context: 'Read about the waterfall mentioned in the sightseeing tips above.' },
+      { to: '/destinations/meghalaya/shillong/shillong-peak', label: 'Shillong Peak travel guide', context: 'Check the viewpoint before planning your sightseeing circuit.' },
+      { to: '/3-day-meghalaya-itinerary', label: '3-day Meghalaya itinerary', context: 'See how to organise a short trip from a Shillong base.' },
+    ],
     featured: true,
     deepDive: [
       {
