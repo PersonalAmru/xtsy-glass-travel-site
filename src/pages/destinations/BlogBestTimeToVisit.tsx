@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Calendar, Sun, CloudRain, Leaf, Snowflake } from 'lucide-react';
 import PlanTripLinks from '@/components/PlanTripLinks';
+import PageFaq from '@/components/seo/PageFaq';
 
 const BlogBestTimeToVisit = () => (
   <div className="min-h-screen bg-background">
@@ -69,6 +70,7 @@ const BlogBestTimeToVisit = () => (
         </nav>
       </div>
     </main>
+    <PageFaq path="/best-time-to-visit-meghalaya" />
     <Footer />
   </div>
 );

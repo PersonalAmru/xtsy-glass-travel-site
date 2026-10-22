@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Check, Star, Calendar, Users, MapPin } from 'lucide-react';
+import PageFaq from '@/components/seo/PageFaq';
 
 const packages = [
   {
@@ -108,6 +109,7 @@ const MeghalayaTourPackages = () => {
           </nav>
         </div>
       </main>
+      <PageFaq path="/meghalaya-tour-packages" />
       <Footer />
     </div>
   );

@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import DestinationGallery from '@/components/destinations/DestinationGallery';
 import { getFeaturedDestinations, getDestinationImages } from '@/data/meghalayaDestinations';
+import PageFaq from '@/components/seo/PageFaq';
 
 const MeghalayaPhotoGallery = () => {
   const featured = getFeaturedDestinations();
@@ -77,6 +78,7 @@ const MeghalayaPhotoGallery = () => {
           </nav>
         </div>
       </main>
+      <PageFaq path="/meghalaya-photo-gallery" />
       <Footer />
     </div>
   );

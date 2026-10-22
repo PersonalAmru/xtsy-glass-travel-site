@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import PlanTripLinks from '@/components/PlanTripLinks';
 import { Calendar } from 'lucide-react';
+import PageFaq from '@/components/seo/PageFaq';
 
 const BlogItinerary5Day = () => (
   <div className="min-h-screen bg-background">
@@ -62,6 +63,7 @@ const BlogItinerary5Day = () => (
         />
       </div>
     </main>
+    <PageFaq path="/5-day-meghalaya-itinerary" />
     <Footer />
   </div>
 );

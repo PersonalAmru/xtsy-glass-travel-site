@@ -6,6 +6,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import PlanTripLinks from '@/components/PlanTripLinks';
 import DestinationCard from '@/components/destinations/DestinationCard';
 import { meghalayaDestinations } from '@/data/meghalayaDestinations';
+import PageFaq from '@/components/seo/PageFaq';
 
 const hiddenSlugs = ['wah-rilang-viewpoint', 'phe-phe-falls', 'nongkhnum-island', 'ranikor', 'shnongpdeng', 'nongjrong-sunrise-viewpoint', 'mawthadraishan-peak', 'jakrem-hot-springs'];
 const hidden = hiddenSlugs.map(s => meghalayaDestinations.find(d => d.slug === s)).filter(Boolean) as typeof meghalayaDestinations;
@@ -47,6 +48,7 @@ const BlogHiddenPlaces = () => (
         />
       </div>
     </main>
+    <PageFaq path="/hidden-places-in-meghalaya" />
     <Footer />
   </div>
 );

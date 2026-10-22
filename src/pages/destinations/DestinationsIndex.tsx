@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { NE_STATES } from '@/data/neTaxonomy';
 import { MapPin } from 'lucide-react';
+import PageFaq from '@/components/seo/PageFaq';
 
 const DestinationsIndex = () => (
   <div className="min-h-screen bg-background">
@@ -44,6 +45,7 @@ const DestinationsIndex = () => (
         </div>
       </div>
     </main>
+    <PageFaq path="/destinations" />
     <Footer />
   </div>
 );

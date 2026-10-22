@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import PlanTripLinks from '@/components/PlanTripLinks';
 import { IndianRupee, Bed, Car, UtensilsCrossed } from 'lucide-react';
+import PageFaq from '@/components/seo/PageFaq';
 
 const BlogBudgetTrip = () => (
   <div className="min-h-screen bg-background">
@@ -73,6 +74,7 @@ const BlogBudgetTrip = () => (
         />
       </div>
     </main>
+    <PageFaq path="/budget-trip-to-meghalaya" />
     <Footer />
   </div>
 );

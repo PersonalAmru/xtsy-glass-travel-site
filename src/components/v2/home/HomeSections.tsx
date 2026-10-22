@@ -247,11 +247,11 @@ export function BistroFeature() {
 }
 
 export function ToursRow() {
-  const picks = ['4n-5d-shillong-meghalaya-tour', '6d-meghalaya-honeymoon-package', '5n-6d-tawang-tour']
+  const picks = ['meghalaya-group-trip-6n-7d', '6d-meghalaya-honeymoon-package', '5n-6d-tawang-tour']
     .map((s) => SIGNATURE_PACKAGES.find((p) => p.slug === s))
     .filter((p): p is (typeof SIGNATURE_PACKAGES)[number] => Boolean(p));
   const photos: Record<string, string> = {
-    '4n-5d-shillong-meghalaya-tour': IMG.dawki,
+    'meghalaya-group-trip-6n-7d': IMG.dawki,
     '6d-meghalaya-honeymoon-package': IMG.laitlum,
     '5n-6d-tawang-tour': IMG.arunachal,
   };
@@ -263,7 +263,10 @@ export function ToursRow() {
           <Link key={p.slug} to={`/tours/${p.slug}`} className="xt-reveal xt-lift flex flex-col overflow-hidden rounded-3xl bg-white text-xt-ink hover:text-xt-ink">
             <Photo afterLoad src={photos[p.slug]} alt={p.title} tone="pine" className="aspect-[426/250]" sizes="(max-width: 767px) 92vw, 31vw" />
             <div className="flex flex-col gap-2.5 p-6">
-              <span className="self-start rounded-full bg-xt-sand px-3 py-1.5 text-[13px] font-extrabold">{p.duration}</span>
+              <span className="flex flex-wrap gap-2">
+                <span className="rounded-full bg-xt-sand px-3 py-1.5 text-[13px] font-extrabold">{p.duration}</span>
+                {p.departures && <span className="rounded-full bg-xt-crimson px-3 py-1.5 text-[13px] font-extrabold text-white">Every Saturday · join solo</span>}
+              </span>
               <h3 className="m-0 text-[21px] font-extrabold leading-tight">{p.title}</h3>
               <p className="m-0 text-[15px] text-xt-mute">{p.shortDescription}</p>
               <div className="mt-1.5 flex items-center justify-between">

@@ -6,6 +6,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import DestinationCard from '@/components/destinations/DestinationCard';
 import { getDestinationsByRegion } from '@/data/meghalayaDestinations';
 import { Check, Calendar } from 'lucide-react';
+import PageFaq from '@/components/seo/PageFaq';
 
 const ShillongTourPackage = () => {
   const nearShillong = getDestinationsByRegion('Near Shillong').slice(0, 6);
@@ -79,6 +80,7 @@ const ShillongTourPackage = () => {
           </nav>
         </div>
       </main>
+      <PageFaq path="/shillong-tour-package" />
       <Footer />
     </div>
   );

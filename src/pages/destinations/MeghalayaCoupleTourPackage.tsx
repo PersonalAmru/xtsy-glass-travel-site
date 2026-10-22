@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Heart, Check, Calendar } from 'lucide-react';
+import PageFaq from '@/components/seo/PageFaq';
 
 const MeghalayaCoupleTourPackage = () => (
   <div className="min-h-screen bg-background">
@@ -72,6 +73,7 @@ const MeghalayaCoupleTourPackage = () => (
         </nav>
       </div>
     </main>
+    <PageFaq path="/meghalaya-couple-tour-package" />
     <Footer />
   </div>
 );

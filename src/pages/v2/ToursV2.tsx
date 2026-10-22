@@ -106,7 +106,7 @@ export default function ToursV2() {
                 to={`/tours/${p.slug}`}
                 title={p.title}
                 duration={p.duration}
-                badge={p.minGroup ? `Min ${p.minGroup} guests` : p.region}
+                badge={p.departures ? "Every Saturday · join solo" : p.minGroup ? `Min ${p.minGroup} guests` : p.region}
                 text={p.shortDescription}
                 price={formatPackagePrice(p.pricePerPerson)}
                 img={reviewedPhoto(`sig-${p.slug}`) || photoFor(p.title, p.highlights.join(' '), p.region)}
