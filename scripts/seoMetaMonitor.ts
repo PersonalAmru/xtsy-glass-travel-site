@@ -64,6 +64,8 @@ function readSitemapLocs(): string[] {
   for (const f of fs.readdirSync(pub)) {
     if (!/^sitemap.*\.xml$/.test(f) || /index/.test(f)) continue;
     const xml = fs.readFileSync(path.join(pub, f), 'utf-8');
+    // sitemap.xml is a sitemap index: its <loc>s are other sitemaps, not pages.
+    if (/<sitemapindex[\s>]/.test(xml)) continue;
     for (const m of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) {
       out.add(m[1].trim());
     }

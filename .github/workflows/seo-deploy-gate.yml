@@ -54,7 +54,7 @@ jobs:
           set -o pipefail
           rc=0
           bunx tsx scripts/postDeploySchemaCheck.ts --base "$BASE_URL" --routes top 2>&1 | tee schema.log || rc=$?
-          if [ $rc -ne 0 ]; then grep -iE 'fail|error|✗|❌|missing|invalid|mismatch' schema.log | head -40 | sed 's/^/::error::/'; fi
+          if [ $rc -ne 0 ]; then grep -iE 'fail|error|✗|❌|missing|invalid|mismatch|→|found' schema.log | head -40 | sed 's/^/::error::/'; fi
           exit $rc
       - name: SEO meta + soft-404 + hreflang monitor
         if: always()
@@ -65,7 +65,7 @@ jobs:
           set -o pipefail
           rc=0
           bunx tsx scripts/seoMetaMonitor.ts --base "$BASE_URL" 2>&1 | tee seo.log || rc=$?
-          if [ $rc -ne 0 ]; then grep -iE 'fail|error|✗|❌|missing|invalid|mismatch' seo.log | head -40 | sed 's/^/::error::/'; fi
+          if [ $rc -ne 0 ]; then grep -iE 'fail|error|✗|❌|missing|invalid|mismatch|→|found' seo.log | head -40 | sed 's/^/::error::/'; fi
           exit $rc
       - name: CDN room + panorama images return 200
         if: always()

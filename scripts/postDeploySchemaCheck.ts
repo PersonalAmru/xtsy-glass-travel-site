@@ -153,7 +153,10 @@ function validateRoute(route: string, status: number, html: string): RouteResult
       r.errors.push(`JSON-LD #${r.jsonLdCount} unparseable: ${(e as Error).message.slice(0, 80)}`);
       continue;
     }
-    const blocks = Array.isArray(parsed) ? parsed : [parsed];
+    const top = Array.isArray(parsed) ? parsed : [parsed];
+    // A {"@context", "@graph": [...]} block holds several nodes that share its @context.
+    const blocks: any[] = top.flatMap((b: any) =>
+      Array.isArray(b?.['@graph']) ? b['@graph'].map((n: any) => ({ '@context': b['@context'], ...n })) : [b]);
     for (const b of blocks) {
       if (!b['@context']) r.errors.push('JSON-LD block missing @context');
       if (!b['@type']) r.errors.push('JSON-LD block missing @type');

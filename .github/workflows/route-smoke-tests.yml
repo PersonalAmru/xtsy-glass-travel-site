@@ -60,7 +60,7 @@ jobs:
           set -o pipefail
           rc=0
           bunx tsx scripts/smoke-routes.ts --base "${BASE_URL}" --hydrate --sample 25 2>&1 | tee smoke.log || rc=$?
-          if [ $rc -ne 0 ]; then grep -iE 'fail|error|✗|❌|missing|invalid|mismatch' smoke.log | head -40 | sed 's/^/::error::/'; fi
+          if [ $rc -ne 0 ]; then grep -iE 'fail|error|✗|❌|missing|invalid|mismatch|→|found' smoke.log | head -40 | sed 's/^/::error::/'; fi
           exit $rc
         env:
           BASE_URL: ${{ github.event.inputs.base_url || 'http://localhost:8080' }}
