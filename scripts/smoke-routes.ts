@@ -48,6 +48,8 @@ function extractRoutes(): string[] {
     .map((p) =>
       p.replace(/\$([A-Za-z0-9_]+)/g, (_m, name: string) => PARAM_SAMPLES[name] ?? 'sample'),
     )
+    // Index routes are listed as '/x/'; the site's URLs have no trailing slash.
+    .map((p) => (p.length > 1 ? p.replace(/\/+$/, '') : p))
     .sort();
 }
 

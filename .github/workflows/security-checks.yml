@@ -1,0 +1,159 @@
+name: Security checks
+
+# Replaces secret-scan.yml, security-audit.yml and dependency-sca.yml, which never ran:
+# the organisation's Actions policy blocks marketplace actions (`uses:`), so they all ended in
+# startup_failure. This workflow has ZERO `uses:` references — plain git checkout, and the
+# gitleaks / osv-scanner release binaries downloaded from GitHub.
+#
+#   secrets       gitleaks over the working tree (reviewed findings listed in .gitleaksignore —
+#                 all are public values such as the Supabase anon key) + source pattern checks.
+#                 Fails on any NEW finding.
+#   dependencies  osv-scanner over bun.lock (the project's only lockfile). Reports known
+#                 vulnerabilities in the job summary; fails only on the nightly run if any are
+#                 rated CRITICAL, so routine pull requests are not blocked by upstream advisories.
+#   hygiene       security headers present in source; no secrets in VITE_ variables of edge
+#                 functions; PII in console.log (warning only).
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '30 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-checks-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+env:
+  GITLEAKS_VERSION: 8.21.2
+  OSV_VERSION: 2.2.2
+
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_REF: ${{ github.head_ref || github.sha }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${TARGET_REF}"
+          git checkout -q FETCH_HEAD
+      - name: Install gitleaks
+        run: |
+          set -euo pipefail
+          curl -fsSL -o /tmp/gl.tgz "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          tar -xzf /tmp/gl.tgz -C /usr/local/bin gitleaks
+          gitleaks version
+      - name: gitleaks (new findings fail the check)
+        run: gitleaks dir . --config .gitleaks.toml --redact --no-banner --verbose
+      - name: Source pattern checks
+        run: |
+          set -u
+          fail=0
+          check() { # $1 label, $2 extended regex, $3.. paths
+            local label="$1" re="$2"; shift 2
+            if grep -rnEI "$re" "$@" --include='*.ts' --include='*.tsx' --include='*.js' --include='*.jsx' 2>/dev/null | grep -v '/node_modules/'; then
+              echo "::error::$label found in source"; fail=1
+            fi
+          }
+          check "OpenAI-style secret key" '(^|[^A-Za-z0-9])sk-(proj-)?[A-Za-z0-9]{20,}' src supabase/functions
+          check "Database URL with password" 'postgres(ql)?://[^:@/ ]+:[^@/ ]+@' src supabase/functions
+          check "AWS access key" 'AKIA[0-9A-Z]{16}' src supabase/functions scripts
+          # The service-role key may only be read in server-only modules (*.server.ts, src/server*).
+          if grep -rnE 'SUPABASE_SERVICE_ROLE' src --include='*.ts' --include='*.tsx' | grep -vE '\.server\.ts:|^src/server'; then
+            echo "::error::Service-role key referenced in browser code"; fail=1
+          fi
+          if grep -rnE 'VITE_[A-Z_]*(SECRET|SERVICE_ROLE|PRIVATE)' supabase/functions 2>/dev/null; then
+            echo "::error::VITE_ (browser-exposed) variable used for a secret in an edge function"; fail=1
+          fi
+          [ "$fail" = 0 ] && echo "No hardcoded secrets found in source."
+          exit $fail
+
+  dependencies:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_REF: ${{ github.head_ref || github.sha }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${TARGET_REF}"
+          git checkout -q FETCH_HEAD
+      - name: Install osv-scanner
+        run: |
+          set -euo pipefail
+          curl -fsSL -o /usr/local/bin/osv-scanner "https://github.com/google/osv-scanner/releases/download/v${OSV_VERSION}/osv-scanner_linux_amd64"
+          chmod +x /usr/local/bin/osv-scanner
+          osv-scanner --version
+      - name: Scan bun.lock for known vulnerabilities
+        run: |
+          set -u
+          osv-scanner scan source --lockfile bun.lock --format json > osv.json || true
+          python3 - <<'PY'
+          import json, os
+          d = json.load(open('osv.json')) if os.path.getsize('osv.json') else {}
+          rows = []
+          for res in d.get('results', []):
+              for pkg in res.get('packages', []):
+                  p = pkg['package']
+                  groups = pkg.get('groups', [])
+                  sev = max([float(g.get('max_severity') or 0) for g in groups] or [0])
+                  ids = sorted({i for g in groups for i in g.get('ids', [])})
+                  rows.append((sev, p['name'], p['version'], ', '.join(ids[:3])))
+          rows.sort(reverse=True)
+          crit = [r for r in rows if r[0] >= 9.0]
+          high = [r for r in rows if 7.0 <= r[0] < 9.0]
+          lines = [f"## Dependency vulnerabilities (bun.lock)", "",
+                   f"{len(rows)} vulnerable packages: {len(crit)} critical, {len(high)} high.", ""]
+          if rows:
+              lines += ["| CVSS | Package | Version | Advisories |", "|---|---|---|---|"]
+              lines += [f"| {r[0] or '?'} | {r[1]} | {r[2]} | {r[3]} |" for r in rows[:60]]
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write('\n'.join(lines) + '\n')
+          print('\n'.join(lines))
+          if crit and os.environ.get('GITHUB_EVENT_NAME') == 'schedule':
+              raise SystemExit(f'{len(crit)} critical vulnerabilities in dependencies')
+          PY
+
+  hygiene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_REF: ${{ github.head_ref || github.sha }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${TARGET_REF}"
+          git checkout -q FETCH_HEAD
+      - name: Security headers defined in source
+        run: |
+          set -e
+          grep -rqE "Content-Security-Policy" src --include='*.ts' --include='*.tsx' || { echo "::error::No Content-Security-Policy in source"; exit 1; }
+          grep -rqE "Strict-Transport-Security" src public/_headers 2>/dev/null || echo "::warning::HSTS header not found"
+          echo "Security headers are defined."
+      - name: PII in console logging (warning only)
+        run: |
+          if grep -rnE "console\.(log|info)\(.*(email|password|token|phone)" src --include='*.ts' --include='*.tsx'; then
+            echo "::warning::Possible personal data in console logging — review the lines above"
+          else
+            echo "No personal data in console logging."
+          fi
