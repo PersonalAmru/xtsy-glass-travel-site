@@ -1,0 +1,1866 @@
+{
+ "base": "http://localhost:4174",
+ "profile": "Slow 4G (150ms, 1.6Mbps) + 4x CPU, 412x823 @1.75x, cold cache",
+ "routes": [
+  {
+   "route": "/",
+   "lcp": 1416,
+   "fcp": 1416,
+   "cls": 0.009,
+   "el": "IMG xtsy-property-images-8-portrait-828.avif",
+   "breakdown": {
+    "ttfb": 17,
+    "loadDelay": 170,
+    "loadDuration": 1060,
+    "renderDelay": 169
+   },
+   "image": {
+    "file": "xtsy-property-images-8-portrait-828.avif",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 353,
+   "before": {
+    "jsKb": 308,
+    "cssKb": 26,
+    "imgKb": 53,
+    "thirdPartyKb": 0,
+    "requests": 58,
+    "images": [
+     {
+      "url": "/img/o/xtsy-property-images-8-portrait-828.avif",
+      "kb": 48,
+      "start": 187
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 189
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-Cdp07Wkb.js",
+      "kb": 125,
+      "start": 190,
+      "end": 1932
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 190,
+      "end": 502
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 191,
+      "end": 509
+     },
+     {
+      "url": "/assets/useEnhancedAnalytics-B-pTTBVZ.js",
+      "kb": 12,
+      "start": 191,
+      "end": 967
+     },
+     {
+      "url": "/assets/redirect-D2YulXhr.js",
+      "kb": 1,
+      "start": 192,
+      "end": 696
+     },
+     {
+      "url": "/assets/router-compat-CDkhoqYk.js",
+      "kb": 14,
+      "start": 193,
+      "end": 1024
+     },
+     {
+      "url": "/assets/route-C_kvAkN5.js",
+      "kb": 1,
+      "start": 193,
+      "end": 890
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 194,
+      "end": 1061
+     },
+     {
+      "url": "/assets/helmet-BBs4_uPy.js",
+      "kb": 6,
+      "start": 194,
+      "end": 1210
+     },
+     {
+      "url": "/assets/consent-CrDfmvk6.js",
+      "kb": 2,
+      "start": 194,
+      "end": 1175
+     },
+     {
+      "url": "/assets/use-toast-Ea9QfbfL.js",
+      "kb": 1,
+      "start": 194,
+      "end": 1205
+     },
+     {
+      "url": "/assets/AppContext-D02E-vzh.js",
+      "kb": 15,
+      "start": 194,
+      "end": 1418
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 194,
+      "end": 1368
+     },
+     {
+      "url": "/assets/xtsy270-Dub6SbwQ.js",
+      "kb": 4,
+      "start": 196,
+      "end": 1439
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 196,
+      "end": 1391
+     },
+     {
+      "url": "/assets/button-BJC-Ye8t.js",
+      "kb": 1,
+      "start": 196,
+      "end": 1425
+     },
+     {
+      "url": "/assets/house-FD351ML4.js",
+      "kb": 0,
+      "start": 198,
+      "end": 1532
+     },
+     {
+      "url": "/assets/lock-DKlMGqxI.js",
+      "kb": 0,
+      "start": 198,
+      "end": 1554
+     },
+     {
+      "url": "/assets/map-pin-DZYVUrTY.js",
+      "kb": 0,
+      "start": 198,
+      "end": 1582
+     },
+     {
+      "url": "/assets/message-circle-WjthbjZm.js",
+      "kb": 0,
+      "start": 199,
+      "end": 1597
+     },
+     {
+      "url": "/assets/refresh-cw-DPTffksW.js",
+      "kb": 0,
+      "start": 199,
+      "end": 1612
+     },
+     {
+      "url": "/assets/triangle-alert-CcJX09Jw.js",
+      "kb": 0,
+      "start": 200,
+      "end": 1690
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 200,
+      "end": 1719
+     },
+     {
+      "url": "/assets/dist-Cl_xTLJ9.js",
+      "kb": 9,
+      "start": 200,
+      "end": 1869
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 201,
+      "end": 1762
+     },
+     {
+      "url": "/assets/UserAuthContext-BhKAAPAQ.js",
+      "kb": 3,
+      "start": 201,
+      "end": 1825
+     },
+     {
+      "url": "/assets/SiteFooter-BahL6vsT.js",
+      "kb": 4,
+      "start": 201,
+      "end": 1904
+     },
+     {
+      "url": "/assets/primitives-DAjVh3xy.js",
+      "kb": 2,
+      "start": 203,
+      "end": 1911
+     },
+     {
+      "url": "/assets/roomTypes-CXBno-eN.js",
+      "kb": 12,
+      "start": 203,
+      "end": 1997
+     },
+     {
+      "url": "/assets/pricing-C8xt32J8.js",
+      "kb": 1,
+      "start": 203,
+      "end": 1991
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Bb_Zrg18.css",
+     "kb": 26,
+     "end": 932
+    }
+   ]
+  },
+  {
+   "route": "/best-hostel-in-shillong",
+   "lcp": 1264,
+   "fcp": 1264,
+   "cls": 0.018,
+   "el": "P \"For most travellers a top pick in Shillong is XTSY Traveller\"",
+   "breakdown": {
+    "ttfb": 16,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1248
+   },
+   "image": null,
+   "longTasks": 149,
+   "before": {
+    "jsKb": 281,
+    "cssKb": 26,
+    "imgKb": 139,
+    "thirdPartyKb": 0,
+    "requests": 59,
+    "images": [
+     {
+      "url": "/img/o/xtsy-270-xtsy270-900.avif",
+      "kb": 54,
+      "start": 1238
+     },
+     {
+      "url": "/img/o/xtsy-property-images-8-828.avif",
+      "kb": 33,
+      "start": 199
+     },
+     {
+      "url": "/img/o/xtsy-4-bed-female-dormitory-828.avif",
+      "kb": 18,
+      "start": 1238
+     },
+     {
+      "url": "/img/o/xtsy-king-double-room-828.avif",
+      "kb": 11,
+      "start": 1238
+     },
+     {
+      "url": "/img/o/xtsy-6-bed-mixed-dormitory-1-828.avif",
+      "kb": 9,
+      "start": 1238
+     },
+     {
+      "url": "/img/o/xtsy-6-bed-mixed-dormitory-2-828.avif",
+      "kb": 8,
+      "start": 1238
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 200
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-Cdp07Wkb.js",
+      "kb": 125,
+      "start": 201,
+      "end": 1878
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 201,
+      "end": 541
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 202,
+      "end": 505
+     },
+     {
+      "url": "/assets/useEnhancedAnalytics-B-pTTBVZ.js",
+      "kb": 12,
+      "start": 202,
+      "end": 742
+     },
+     {
+      "url": "/assets/redirect-D2YulXhr.js",
+      "kb": 1,
+      "start": 204,
+      "end": 692
+     },
+     {
+      "url": "/assets/router-compat-CDkhoqYk.js",
+      "kb": 14,
+      "start": 204,
+      "end": 999
+     },
+     {
+      "url": "/assets/route-C_kvAkN5.js",
+      "kb": 1,
+      "start": 205,
+      "end": 878
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 205,
+      "end": 928
+     },
+     {
+      "url": "/assets/helmet-BBs4_uPy.js",
+      "kb": 6,
+      "start": 206,
+      "end": 1113
+     },
+     {
+      "url": "/assets/consent-CrDfmvk6.js",
+      "kb": 2,
+      "start": 206,
+      "end": 1121
+     },
+     {
+      "url": "/assets/use-toast-Ea9QfbfL.js",
+      "kb": 1,
+      "start": 207,
+      "end": 1135
+     },
+     {
+      "url": "/assets/AppContext-D02E-vzh.js",
+      "kb": 15,
+      "start": 207,
+      "end": 1357
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 208,
+      "end": 1228
+     },
+     {
+      "url": "/assets/xtsy270-Dub6SbwQ.js",
+      "kb": 4,
+      "start": 209,
+      "end": 1343
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 209,
+      "end": 1294
+     },
+     {
+      "url": "/assets/button-BJC-Ye8t.js",
+      "kb": 1,
+      "start": 209,
+      "end": 1314
+     },
+     {
+      "url": "/assets/house-FD351ML4.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1386
+     },
+     {
+      "url": "/assets/lock-DKlMGqxI.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1458
+     },
+     {
+      "url": "/assets/map-pin-DZYVUrTY.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1480
+     },
+     {
+      "url": "/assets/message-circle-WjthbjZm.js",
+      "kb": 0,
+      "start": 211,
+      "end": 1507
+     },
+     {
+      "url": "/assets/refresh-cw-DPTffksW.js",
+      "kb": 0,
+      "start": 212,
+      "end": 1522
+     },
+     {
+      "url": "/assets/triangle-alert-CcJX09Jw.js",
+      "kb": 0,
+      "start": 213,
+      "end": 1550
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 213,
+      "end": 1622
+     },
+     {
+      "url": "/assets/dist-Cl_xTLJ9.js",
+      "kb": 9,
+      "start": 214,
+      "end": 1771
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 214,
+      "end": 1679
+     },
+     {
+      "url": "/assets/UserAuthContext-BhKAAPAQ.js",
+      "kb": 3,
+      "start": 215,
+      "end": 1750
+     },
+     {
+      "url": "/assets/SiteFooter-BahL6vsT.js",
+      "kb": 4,
+      "start": 216,
+      "end": 1779
+     },
+     {
+      "url": "/assets/primitives-DAjVh3xy.js",
+      "kb": 2,
+      "start": 216,
+      "end": 1807
+     },
+     {
+      "url": "/assets/roomTypes-CXBno-eN.js",
+      "kb": 12,
+      "start": 217,
+      "end": 1936
+     },
+     {
+      "url": "/assets/pricing-C8xt32J8.js",
+      "kb": 1,
+      "start": 217,
+      "end": 1909
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Bb_Zrg18.css",
+     "kb": 26,
+     "end": 957
+    }
+   ]
+  },
+  {
+   "route": "/xtsy-270",
+   "lcp": 1272,
+   "fcp": 1272,
+   "cls": 0.003,
+   "el": "IMG xtsy-270-xtsy270-640.avif",
+   "breakdown": {
+    "ttfb": 21,
+    "loadDelay": 176,
+    "loadDuration": 822,
+    "renderDelay": 253
+   },
+   "image": {
+    "file": "xtsy-270-xtsy270-640.avif",
+    "inServerHtml": true,
+    "preloaded": false
+   },
+   "longTasks": 150,
+   "before": {
+    "jsKb": 365,
+    "cssKb": 26,
+    "imgKb": 161,
+    "thirdPartyKb": 0,
+    "requests": 69,
+    "images": [
+     {
+      "url": "/img/o/xtsy-270-xtsy270-640.avif",
+      "kb": 32,
+      "start": 197
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-2-900.avif",
+      "kb": 32,
+      "start": 1246
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-5-960.avif",
+      "kb": 26,
+      "start": 1249
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-3-828.avif",
+      "kb": 24,
+      "start": 1247
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-6-828.avif",
+      "kb": 22,
+      "start": 1246
+     },
+     {
+      "url": "/img/o/xtsy-270-xtsy270-4-828.avif",
+      "kb": 20,
+      "start": 1249
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 198
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-Cdp07Wkb.js",
+      "kb": 125,
+      "start": 200,
+      "end": 1870
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 201,
+      "end": 540
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 202,
+      "end": 505
+     },
+     {
+      "url": "/assets/useEnhancedAnalytics-B-pTTBVZ.js",
+      "kb": 12,
+      "start": 202,
+      "end": 740
+     },
+     {
+      "url": "/assets/redirect-D2YulXhr.js",
+      "kb": 1,
+      "start": 203,
+      "end": 691
+     },
+     {
+      "url": "/assets/router-compat-CDkhoqYk.js",
+      "kb": 14,
+      "start": 203,
+      "end": 998
+     },
+     {
+      "url": "/assets/route-C_kvAkN5.js",
+      "kb": 1,
+      "start": 203,
+      "end": 877
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 203,
+      "end": 927
+     },
+     {
+      "url": "/assets/helmet-BBs4_uPy.js",
+      "kb": 6,
+      "start": 205,
+      "end": 1105
+     },
+     {
+      "url": "/assets/consent-CrDfmvk6.js",
+      "kb": 2,
+      "start": 206,
+      "end": 1120
+     },
+     {
+      "url": "/assets/use-toast-Ea9QfbfL.js",
+      "kb": 1,
+      "start": 206,
+      "end": 1134
+     },
+     {
+      "url": "/assets/AppContext-D02E-vzh.js",
+      "kb": 15,
+      "start": 207,
+      "end": 1355
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 207,
+      "end": 1213
+     },
+     {
+      "url": "/assets/xtsy270-Dub6SbwQ.js",
+      "kb": 4,
+      "start": 207,
+      "end": 1327
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 208,
+      "end": 1300
+     },
+     {
+      "url": "/assets/button-BJC-Ye8t.js",
+      "kb": 1,
+      "start": 209,
+      "end": 1320
+     },
+     {
+      "url": "/assets/house-FD351ML4.js",
+      "kb": 0,
+      "start": 209,
+      "end": 1377
+     },
+     {
+      "url": "/assets/lock-DKlMGqxI.js",
+      "kb": 0,
+      "start": 209,
+      "end": 1463
+     },
+     {
+      "url": "/assets/map-pin-DZYVUrTY.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1485
+     },
+     {
+      "url": "/assets/message-circle-WjthbjZm.js",
+      "kb": 0,
+      "start": 211,
+      "end": 1499
+     },
+     {
+      "url": "/assets/refresh-cw-DPTffksW.js",
+      "kb": 0,
+      "start": 211,
+      "end": 1513
+     },
+     {
+      "url": "/assets/triangle-alert-CcJX09Jw.js",
+      "kb": 0,
+      "start": 211,
+      "end": 1542
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 212,
+      "end": 1621
+     },
+     {
+      "url": "/assets/dist-Cl_xTLJ9.js",
+      "kb": 9,
+      "start": 213,
+      "end": 1785
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 213,
+      "end": 1670
+     },
+     {
+      "url": "/assets/UserAuthContext-BhKAAPAQ.js",
+      "kb": 3,
+      "start": 214,
+      "end": 1741
+     },
+     {
+      "url": "/assets/SiteFooter-BahL6vsT.js",
+      "kb": 4,
+      "start": 215,
+      "end": 1771
+     },
+     {
+      "url": "/assets/primitives-DAjVh3xy.js",
+      "kb": 2,
+      "start": 215,
+      "end": 1806
+     },
+     {
+      "url": "/assets/roomTypes-CXBno-eN.js",
+      "kb": 12,
+      "start": 216,
+      "end": 1920
+     },
+     {
+      "url": "/assets/pricing-C8xt32J8.js",
+      "kb": 1,
+      "start": 216,
+      "end": 1909
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Bb_Zrg18.css",
+     "kb": 26,
+     "end": 969
+    }
+   ]
+  },
+  {
+   "route": "/tours/5n-6d-tawang-tour",
+   "lcp": 1272,
+   "fcp": 1272,
+   "cls": 0.002,
+   "el": "IMG sig-5n-6d-tawang-tour-828.avif",
+   "breakdown": {
+    "ttfb": 11,
+    "loadDelay": 182,
+    "loadDuration": 839,
+    "renderDelay": 240
+   },
+   "image": {
+    "file": "sig-5n-6d-tawang-tour-828.avif",
+    "inServerHtml": true,
+    "preloaded": true
+   },
+   "longTasks": 128,
+   "before": {
+    "jsKb": 379,
+    "cssKb": 26,
+    "imgKb": 37,
+    "thirdPartyKb": 0,
+    "requests": 82,
+    "images": [
+     {
+      "url": "/img/px/sig-5n-6d-tawang-tour-828.avif",
+      "kb": 31,
+      "start": 193
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 195
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-Cdp07Wkb.js",
+      "kb": 125,
+      "start": 197,
+      "end": 1890
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 197,
+      "end": 568
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 198,
+      "end": 533
+     },
+     {
+      "url": "/assets/useEnhancedAnalytics-B-pTTBVZ.js",
+      "kb": 12,
+      "start": 199,
+      "end": 761
+     },
+     {
+      "url": "/assets/redirect-D2YulXhr.js",
+      "kb": 1,
+      "start": 200,
+      "end": 719
+     },
+     {
+      "url": "/assets/router-compat-CDkhoqYk.js",
+      "kb": 14,
+      "start": 200,
+      "end": 1026
+     },
+     {
+      "url": "/assets/route-C_kvAkN5.js",
+      "kb": 1,
+      "start": 200,
+      "end": 905
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 201,
+      "end": 947
+     },
+     {
+      "url": "/assets/helmet-BBs4_uPy.js",
+      "kb": 6,
+      "start": 201,
+      "end": 1133
+     },
+     {
+      "url": "/assets/consent-CrDfmvk6.js",
+      "kb": 2,
+      "start": 202,
+      "end": 1140
+     },
+     {
+      "url": "/assets/use-toast-Ea9QfbfL.js",
+      "kb": 1,
+      "start": 202,
+      "end": 1155
+     },
+     {
+      "url": "/assets/AppContext-D02E-vzh.js",
+      "kb": 15,
+      "start": 203,
+      "end": 1383
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 204,
+      "end": 1226
+     },
+     {
+      "url": "/assets/xtsy270-Dub6SbwQ.js",
+      "kb": 4,
+      "start": 204,
+      "end": 1355
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 205,
+      "end": 1320
+     },
+     {
+      "url": "/assets/button-BJC-Ye8t.js",
+      "kb": 1,
+      "start": 206,
+      "end": 1341
+     },
+     {
+      "url": "/assets/house-FD351ML4.js",
+      "kb": 0,
+      "start": 206,
+      "end": 1390
+     },
+     {
+      "url": "/assets/lock-DKlMGqxI.js",
+      "kb": 0,
+      "start": 207,
+      "end": 1484
+     },
+     {
+      "url": "/assets/map-pin-DZYVUrTY.js",
+      "kb": 0,
+      "start": 207,
+      "end": 1505
+     },
+     {
+      "url": "/assets/message-circle-WjthbjZm.js",
+      "kb": 0,
+      "start": 208,
+      "end": 1520
+     },
+     {
+      "url": "/assets/refresh-cw-DPTffksW.js",
+      "kb": 0,
+      "start": 208,
+      "end": 1548
+     },
+     {
+      "url": "/assets/triangle-alert-CcJX09Jw.js",
+      "kb": 0,
+      "start": 209,
+      "end": 1562
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1649
+     },
+     {
+      "url": "/assets/dist-Cl_xTLJ9.js",
+      "kb": 9,
+      "start": 210,
+      "end": 1806
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 210,
+      "end": 1692
+     },
+     {
+      "url": "/assets/UserAuthContext-BhKAAPAQ.js",
+      "kb": 3,
+      "start": 210,
+      "end": 1777
+     },
+     {
+      "url": "/assets/SiteFooter-BahL6vsT.js",
+      "kb": 4,
+      "start": 213,
+      "end": 1798
+     },
+     {
+      "url": "/assets/primitives-DAjVh3xy.js",
+      "kb": 2,
+      "start": 213,
+      "end": 1834
+     },
+     {
+      "url": "/assets/roomTypes-CXBno-eN.js",
+      "kb": 12,
+      "start": 214,
+      "end": 1934
+     },
+     {
+      "url": "/assets/pricing-C8xt32J8.js",
+      "kb": 1,
+      "start": 215,
+      "end": 1944
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Bb_Zrg18.css",
+     "kb": 26,
+     "end": 983
+    }
+   ]
+  },
+  {
+   "route": "/destinations/meghalaya/shillong",
+   "lcp": 1108,
+   "fcp": 1108,
+   "cls": 0.218,
+   "el": "P \"Searching for adventures near me while in Shillong? These ne\"",
+   "breakdown": {
+    "ttfb": 12,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1096
+   },
+   "image": null,
+   "longTasks": 98,
+   "before": {
+    "jsKb": 280,
+    "cssKb": 26,
+    "imgKb": 260,
+    "thirdPartyKb": 0,
+    "requests": 56,
+    "images": [
+     {
+      "url": "/img/o/xtsyvoyage-elephant-falls-736.webp",
+      "kb": 154,
+      "start": 1083
+     },
+     {
+      "url": "/img/o/xtsyvoyage-umiam-lake-736.webp",
+      "kb": 71,
+      "start": 1078
+     },
+     {
+      "url": "/img/o/xtsyvoyage-laitlum-canyons-736.webp",
+      "kb": 29,
+      "start": 1083
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 191
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-Cdp07Wkb.js",
+      "kb": 125,
+      "start": 191,
+      "end": 1814
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 191,
+      "end": 528
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 193,
+      "end": 499
+     },
+     {
+      "url": "/assets/useEnhancedAnalytics-B-pTTBVZ.js",
+      "kb": 12,
+      "start": 194,
+      "end": 670
+     },
+     {
+      "url": "/assets/redirect-D2YulXhr.js",
+      "kb": 1,
+      "start": 194,
+      "end": 643
+     },
+     {
+      "url": "/assets/router-compat-CDkhoqYk.js",
+      "kb": 14,
+      "start": 194,
+      "end": 899
+     },
+     {
+      "url": "/assets/route-C_kvAkN5.js",
+      "kb": 1,
+      "start": 195,
+      "end": 706
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 196,
+      "end": 822
+     },
+     {
+      "url": "/assets/helmet-BBs4_uPy.js",
+      "kb": 6,
+      "start": 197,
+      "end": 942
+     },
+     {
+      "url": "/assets/consent-CrDfmvk6.js",
+      "kb": 2,
+      "start": 197,
+      "end": 914
+     },
+     {
+      "url": "/assets/use-toast-Ea9QfbfL.js",
+      "kb": 1,
+      "start": 197,
+      "end": 986
+     },
+     {
+      "url": "/assets/AppContext-D02E-vzh.js",
+      "kb": 15,
+      "start": 197,
+      "end": 1214
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 198,
+      "end": 1087
+     },
+     {
+      "url": "/assets/xtsy270-Dub6SbwQ.js",
+      "kb": 4,
+      "start": 199,
+      "end": 1143
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 199,
+      "end": 1114
+     },
+     {
+      "url": "/assets/button-BJC-Ye8t.js",
+      "kb": 1,
+      "start": 200,
+      "end": 1165
+     },
+     {
+      "url": "/assets/house-FD351ML4.js",
+      "kb": 0,
+      "start": 201,
+      "end": 1250
+     },
+     {
+      "url": "/assets/lock-DKlMGqxI.js",
+      "kb": 0,
+      "start": 201,
+      "end": 1279
+     },
+     {
+      "url": "/assets/map-pin-DZYVUrTY.js",
+      "kb": 0,
+      "start": 202,
+      "end": 1300
+     },
+     {
+      "url": "/assets/message-circle-WjthbjZm.js",
+      "kb": 0,
+      "start": 202,
+      "end": 1329
+     },
+     {
+      "url": "/assets/refresh-cw-DPTffksW.js",
+      "kb": 0,
+      "start": 202,
+      "end": 1371
+     },
+     {
+      "url": "/assets/triangle-alert-CcJX09Jw.js",
+      "kb": 0,
+      "start": 203,
+      "end": 1415
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 204,
+      "end": 1443
+     },
+     {
+      "url": "/assets/dist-Cl_xTLJ9.js",
+      "kb": 9,
+      "start": 204,
+      "end": 1572
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 205,
+      "end": 1494
+     },
+     {
+      "url": "/assets/UserAuthContext-BhKAAPAQ.js",
+      "kb": 3,
+      "start": 205,
+      "end": 1579
+     },
+     {
+      "url": "/assets/SiteFooter-BahL6vsT.js",
+      "kb": 4,
+      "start": 208,
+      "end": 1629
+     },
+     {
+      "url": "/assets/primitives-DAjVh3xy.js",
+      "kb": 2,
+      "start": 209,
+      "end": 1636
+     },
+     {
+      "url": "/assets/roomTypes-CXBno-eN.js",
+      "kb": 12,
+      "start": 209,
+      "end": 1795
+     },
+     {
+      "url": "/assets/pricing-C8xt32J8.js",
+      "kb": 1,
+      "start": 210,
+      "end": 1743
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Bb_Zrg18.css",
+     "kb": 26,
+     "end": 856
+    }
+   ]
+  },
+  {
+   "route": "/living-root-bridges-meghalaya",
+   "lcp": 1236,
+   "fcp": 1236,
+   "cls": 0.035,
+   "el": "H1 \"A Guide to Meghalaya's Living Root Bridges (2026)\"",
+   "breakdown": {
+    "ttfb": 39,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1197
+   },
+   "image": null,
+   "longTasks": 170,
+   "before": {
+    "jsKb": 286,
+    "cssKb": 26,
+    "imgKb": 81,
+    "thirdPartyKb": 0,
+    "requests": 55,
+    "images": [
+     {
+      "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.avif",
+      "kb": 75,
+      "start": 195
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 195
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-Cdp07Wkb.js",
+      "kb": 125,
+      "start": 197,
+      "end": 2156
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 198,
+      "end": 518
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 198,
+      "end": 490
+     },
+     {
+      "url": "/assets/useEnhancedAnalytics-B-pTTBVZ.js",
+      "kb": 12,
+      "start": 198,
+      "end": 725
+     },
+     {
+      "url": "/assets/redirect-D2YulXhr.js",
+      "kb": 1,
+      "start": 198,
+      "end": 676
+     },
+     {
+      "url": "/assets/router-compat-CDkhoqYk.js",
+      "kb": 14,
+      "start": 198,
+      "end": 976
+     },
+     {
+      "url": "/assets/route-C_kvAkN5.js",
+      "kb": 1,
+      "start": 198,
+      "end": 861
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 198,
+      "end": 904
+     },
+     {
+      "url": "/assets/helmet-BBs4_uPy.js",
+      "kb": 6,
+      "start": 198,
+      "end": 1140
+     },
+     {
+      "url": "/assets/consent-CrDfmvk6.js",
+      "kb": 2,
+      "start": 198,
+      "end": 1111
+     },
+     {
+      "url": "/assets/use-toast-Ea9QfbfL.js",
+      "kb": 1,
+      "start": 201,
+      "end": 1098
+     },
+     {
+      "url": "/assets/AppContext-D02E-vzh.js",
+      "kb": 15,
+      "start": 202,
+      "end": 1412
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 203,
+      "end": 1312
+     },
+     {
+      "url": "/assets/xtsy270-Dub6SbwQ.js",
+      "kb": 4,
+      "start": 203,
+      "end": 1362
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 204,
+      "end": 1327
+     },
+     {
+      "url": "/assets/button-BJC-Ye8t.js",
+      "kb": 1,
+      "start": 204,
+      "end": 1485
+     },
+     {
+      "url": "/assets/house-FD351ML4.js",
+      "kb": 0,
+      "start": 205,
+      "end": 1506
+     },
+     {
+      "url": "/assets/lock-DKlMGqxI.js",
+      "kb": 0,
+      "start": 205,
+      "end": 1534
+     },
+     {
+      "url": "/assets/map-pin-DZYVUrTY.js",
+      "kb": 0,
+      "start": 205,
+      "end": 1584
+     },
+     {
+      "url": "/assets/message-circle-WjthbjZm.js",
+      "kb": 0,
+      "start": 205,
+      "end": 1656
+     },
+     {
+      "url": "/assets/refresh-cw-DPTffksW.js",
+      "kb": 0,
+      "start": 205,
+      "end": 1677
+     },
+     {
+      "url": "/assets/triangle-alert-CcJX09Jw.js",
+      "kb": 0,
+      "start": 208,
+      "end": 1698
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 209,
+      "end": 1748
+     },
+     {
+      "url": "/assets/dist-Cl_xTLJ9.js",
+      "kb": 9,
+      "start": 209,
+      "end": 1969
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 210,
+      "end": 1835
+     },
+     {
+      "url": "/assets/UserAuthContext-BhKAAPAQ.js",
+      "kb": 3,
+      "start": 211,
+      "end": 1913
+     },
+     {
+      "url": "/assets/SiteFooter-BahL6vsT.js",
+      "kb": 4,
+      "start": 212,
+      "end": 1941
+     },
+     {
+      "url": "/assets/primitives-DAjVh3xy.js",
+      "kb": 2,
+      "start": 212,
+      "end": 1962
+     },
+     {
+      "url": "/assets/roomTypes-CXBno-eN.js",
+      "kb": 12,
+      "start": 212,
+      "end": 2127
+     },
+     {
+      "url": "/assets/pricing-C8xt32J8.js",
+      "kb": 1,
+      "start": 212,
+      "end": 2077
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Bb_Zrg18.css",
+     "kb": 26,
+     "end": 911
+    }
+   ]
+  },
+  {
+   "route": "/tab-bistro",
+   "lcp": 1244,
+   "fcp": 1244,
+   "cls": 0.083,
+   "el": "P \"Looking for restaurants in Shillong? TAB Bistro by XTSY brin\"",
+   "breakdown": {
+    "ttfb": 10,
+    "loadDelay": 0,
+    "loadDuration": 0,
+    "renderDelay": 1234
+   },
+   "image": null,
+   "longTasks": 188,
+   "before": {
+    "jsKb": 346,
+    "cssKb": 26,
+    "imgKb": 25,
+    "thirdPartyKb": 0,
+    "requests": 59,
+    "images": [
+     {
+      "url": "/img/o/xtsy-tab-bistro-by-xtsy-1-828.avif",
+      "kb": 19,
+      "start": 194
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 195
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-Cdp07Wkb.js",
+      "kb": 125,
+      "start": 198,
+      "end": 1814
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 199,
+      "end": 526
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 199,
+      "end": 491
+     },
+     {
+      "url": "/assets/useEnhancedAnalytics-B-pTTBVZ.js",
+      "kb": 12,
+      "start": 199,
+      "end": 727
+     },
+     {
+      "url": "/assets/redirect-D2YulXhr.js",
+      "kb": 1,
+      "start": 201,
+      "end": 677
+     },
+     {
+      "url": "/assets/router-compat-CDkhoqYk.js",
+      "kb": 14,
+      "start": 201,
+      "end": 941
+     },
+     {
+      "url": "/assets/route-C_kvAkN5.js",
+      "kb": 1,
+      "start": 202,
+      "end": 856
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 203,
+      "end": 906
+     },
+     {
+      "url": "/assets/helmet-BBs4_uPy.js",
+      "kb": 6,
+      "start": 203,
+      "end": 1062
+     },
+     {
+      "url": "/assets/consent-CrDfmvk6.js",
+      "kb": 2,
+      "start": 205,
+      "end": 1049
+     },
+     {
+      "url": "/assets/use-toast-Ea9QfbfL.js",
+      "kb": 1,
+      "start": 206,
+      "end": 1071
+     },
+     {
+      "url": "/assets/AppContext-D02E-vzh.js",
+      "kb": 15,
+      "start": 206,
+      "end": 1271
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 207,
+      "end": 1134
+     },
+     {
+      "url": "/assets/xtsy270-Dub6SbwQ.js",
+      "kb": 4,
+      "start": 207,
+      "end": 1278
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 208,
+      "end": 1235
+     },
+     {
+      "url": "/assets/button-BJC-Ye8t.js",
+      "kb": 1,
+      "start": 209,
+      "end": 1259
+     },
+     {
+      "url": "/assets/house-FD351ML4.js",
+      "kb": 0,
+      "start": 209,
+      "end": 1293
+     },
+     {
+      "url": "/assets/lock-DKlMGqxI.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1400
+     },
+     {
+      "url": "/assets/map-pin-DZYVUrTY.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1421
+     },
+     {
+      "url": "/assets/message-circle-WjthbjZm.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1435
+     },
+     {
+      "url": "/assets/refresh-cw-DPTffksW.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1449
+     },
+     {
+      "url": "/assets/triangle-alert-CcJX09Jw.js",
+      "kb": 0,
+      "start": 211,
+      "end": 1464
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 211,
+      "end": 1565
+     },
+     {
+      "url": "/assets/dist-Cl_xTLJ9.js",
+      "kb": 9,
+      "start": 213,
+      "end": 1722
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 213,
+      "end": 1599
+     },
+     {
+      "url": "/assets/UserAuthContext-BhKAAPAQ.js",
+      "kb": 3,
+      "start": 214,
+      "end": 1678
+     },
+     {
+      "url": "/assets/SiteFooter-BahL6vsT.js",
+      "kb": 4,
+      "start": 215,
+      "end": 1700
+     },
+     {
+      "url": "/assets/primitives-DAjVh3xy.js",
+      "kb": 2,
+      "start": 216,
+      "end": 1750
+     },
+     {
+      "url": "/assets/roomTypes-CXBno-eN.js",
+      "kb": 12,
+      "start": 216,
+      "end": 1865
+     },
+     {
+      "url": "/assets/pricing-C8xt32J8.js",
+      "kb": 1,
+      "start": 217,
+      "end": 1846
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Bb_Zrg18.css",
+     "kb": 26,
+     "end": 898
+    }
+   ]
+  },
+  {
+   "route": "/faq",
+   "lcp": 1228,
+   "fcp": 1228,
+   "cls": 0.143,
+   "el": "IMG xtsy-property-images-8-828.avif",
+   "breakdown": {
+    "ttfb": 16,
+    "loadDelay": 180,
+    "loadDuration": 854,
+    "renderDelay": 178
+   },
+   "image": {
+    "file": "xtsy-property-images-8-828.avif",
+    "inServerHtml": true,
+    "preloaded": false
+   },
+   "longTasks": 105,
+   "before": {
+    "jsKb": 281,
+    "cssKb": 26,
+    "imgKb": 38,
+    "thirdPartyKb": 0,
+    "requests": 54,
+    "images": [
+     {
+      "url": "/img/o/xtsy-property-images-8-828.avif",
+      "kb": 33,
+      "start": 196
+     },
+     {
+      "url": "/assets/xtsy-color-logo-DLbAB-SC.webp",
+      "kb": 6,
+      "start": 198
+     }
+    ],
+    "scripts": [
+     {
+      "url": "/assets/index-Cdp07Wkb.js",
+      "kb": 125,
+      "start": 200,
+      "end": 1858
+     },
+     {
+      "url": "/assets/react-0T9Avz-T.js",
+      "kb": 3,
+      "start": 200,
+      "end": 542
+     },
+     {
+      "url": "/assets/react-dom-CQiUf--n.js",
+      "kb": 2,
+      "start": 201,
+      "end": 506
+     },
+     {
+      "url": "/assets/redirect-D2YulXhr.js",
+      "kb": 1,
+      "start": 202,
+      "end": 728
+     },
+     {
+      "url": "/assets/useEnhancedAnalytics-B-pTTBVZ.js",
+      "kb": 12,
+      "start": 202,
+      "end": 978
+     },
+     {
+      "url": "/assets/router-compat-CDkhoqYk.js",
+      "kb": 14,
+      "start": 203,
+      "end": 1035
+     },
+     {
+      "url": "/assets/route-C_kvAkN5.js",
+      "kb": 1,
+      "start": 203,
+      "end": 921
+     },
+     {
+      "url": "/assets/jsx-runtime-BRYeo4JD.js",
+      "kb": 1,
+      "start": 204,
+      "end": 1086
+     },
+     {
+      "url": "/assets/helmet-BBs4_uPy.js",
+      "kb": 6,
+      "start": 205,
+      "end": 1192
+     },
+     {
+      "url": "/assets/consent-CrDfmvk6.js",
+      "kb": 2,
+      "start": 205,
+      "end": 1171
+     },
+     {
+      "url": "/assets/use-toast-Ea9QfbfL.js",
+      "kb": 1,
+      "start": 205,
+      "end": 1202
+     },
+     {
+      "url": "/assets/AppContext-D02E-vzh.js",
+      "kb": 15,
+      "start": 206,
+      "end": 1408
+     },
+     {
+      "url": "/assets/dist-D8JUnkVs.js",
+      "kb": 1,
+      "start": 206,
+      "end": 1279
+     },
+     {
+      "url": "/assets/xtsy270-Dub6SbwQ.js",
+      "kb": 4,
+      "start": 207,
+      "end": 1400
+     },
+     {
+      "url": "/assets/dist-lw9ttprl.js",
+      "kb": 1,
+      "start": 207,
+      "end": 1365
+     },
+     {
+      "url": "/assets/button-BJC-Ye8t.js",
+      "kb": 1,
+      "start": 207,
+      "end": 1387
+     },
+     {
+      "url": "/assets/house-FD351ML4.js",
+      "kb": 0,
+      "start": 209,
+      "end": 1445
+     },
+     {
+      "url": "/assets/lock-DKlMGqxI.js",
+      "kb": 0,
+      "start": 209,
+      "end": 1530
+     },
+     {
+      "url": "/assets/map-pin-DZYVUrTY.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1551
+     },
+     {
+      "url": "/assets/message-circle-WjthbjZm.js",
+      "kb": 0,
+      "start": 210,
+      "end": 1565
+     },
+     {
+      "url": "/assets/refresh-cw-DPTffksW.js",
+      "kb": 0,
+      "start": 211,
+      "end": 1579
+     },
+     {
+      "url": "/assets/triangle-alert-CcJX09Jw.js",
+      "kb": 0,
+      "start": 211,
+      "end": 1608
+     },
+     {
+      "url": "/assets/x-CYn_9wsl.js",
+      "kb": 0,
+      "start": 213,
+      "end": 1694
+     },
+     {
+      "url": "/assets/dist-Cl_xTLJ9.js",
+      "kb": 9,
+      "start": 214,
+      "end": 1850
+     },
+     {
+      "url": "/assets/preload-helper-Czpn1I53.js",
+      "kb": 1,
+      "start": 215,
+      "end": 1730
+     },
+     {
+      "url": "/assets/UserAuthContext-BhKAAPAQ.js",
+      "kb": 3,
+      "start": 215,
+      "end": 1801
+     },
+     {
+      "url": "/assets/SiteFooter-BahL6vsT.js",
+      "kb": 4,
+      "start": 215,
+      "end": 1836
+     },
+     {
+      "url": "/assets/primitives-DAjVh3xy.js",
+      "kb": 2,
+      "start": 215,
+      "end": 1874
+     },
+     {
+      "url": "/assets/roomTypes-CXBno-eN.js",
+      "kb": 12,
+      "start": 215,
+      "end": 1944
+     },
+     {
+      "url": "/assets/pricing-C8xt32J8.js",
+      "kb": 1,
+      "start": 218,
+      "end": 1958
+     }
+    ]
+   },
+   "blocking": [
+    {
+     "url": "/assets/styles-Bb_Zrg18.css",
+     "kb": 26,
+     "end": 956
+    }
+   ]
+  }
+ ]
+}

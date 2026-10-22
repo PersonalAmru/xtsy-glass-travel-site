@@ -1,0 +1,2320 @@
+[
+ {
+  "viewport": "phone",
+  "route": "/",
+  "status": 200,
+  "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".leading-snug.sm\\:text-\\[14px\\].flex-1 > .rounded-md.bg-primary.hover\\:bg-primary\\/90"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "title": "Hostels in Shillong from ₹399 | XTSY Travellers Hostel",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   },
+   {
+    "id": "scrollable-region-focusable",
+    "impact": "serious",
+    "help": "Scrollable region must have keyboard access",
+    "count": 1,
+    "examples": [
+     ".overflow-x-auto"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/xtsy-270",
+  "status": 200,
+  "title": "Experience by XTSY — India's First Stargaze Glamp, Shillong",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/book",
+  "status": 200,
+  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
+  "design": "legacy",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuButton": "missing",
+   "searchButton": "missing",
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": false
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/book/campsite",
+  "status": 200,
+  "title": "Book the Dawki Riverside Campsite | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".bg-primary.hover\\:bg-primary\\/90.underline"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatButton": "missing",
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/tours",
+  "status": 200,
+  "title": "Northeast India Tour Packages from ₹7,999 | XTSY Travel",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/tours/bhutan-mindful-kingdom-journey",
+  "status": 200,
+  "title": "Bhutan Mindful Kingdom Journey — 6 Days from ₹84,999 | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/expeditions",
+  "status": 200,
+  "title": "Motorbike & 4x4 Expeditions in Northeast India | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/destinations",
+  "status": 200,
+  "title": "Northeast India Destinations — State & City Guides | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "title": "Meghalaya Travel Guide — Places, Routes & Stays",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/destinations/meghalaya/shillong",
+  "status": 200,
+  "title": "Places to Visit in Shillong, Meghalaya | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/destinations/meghalaya/cherrapunji/nohkalikai-falls",
+  "status": 200,
+  "title": "Nohkalikai Falls, Cherrapunji — Timings & How to Reach",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "title": "Dormitory in Shillong — Mixed & Female Dorms | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".bg-primary"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/meghalaya-waterfalls",
+  "status": 200,
+  "title": "Meghalaya Waterfalls: Nohkalikai & More | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/plan-trip-with-ai",
+  "status": 200,
+  "title": "Plan a Meghalaya & Northeast India Trip with AI | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatButton": "missing",
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/tab-bistro",
+  "status": 200,
+  "title": "Restaurant in Shillong | TAB Bistro by XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/gallery",
+  "status": 200,
+  "title": "XTSY Gallery — Hostel, Glass Suite & Meghalaya Photos",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/about",
+  "status": 200,
+  "title": "About XTSY — India's Biggest Hostel in Northeast India",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/contact",
+  "status": 200,
+  "title": "Contact XTSY Shillong: Phone, Address & Map",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/faq",
+  "status": 200,
+  "title": "Hostel FAQs — Shillong Rates, Safety & Booking | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".text-sm"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/pet-friendly",
+  "status": 200,
+  "title": "Pet Friendly Stay in Shillong, Meghalaya | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".leading-snug > .rounded-md.text-sm.bg-primary"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/female-travellers",
+  "status": 200,
+  "title": "Solo Female Travellers in Shillong: Safe Stay | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/work-from-home",
+  "status": 200,
+  "title": "Work From Meghalaya: Wifi, Desks & Long Stays | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/group-bookings-meghalaya",
+  "status": 200,
+  "title": "Group Bookings in Meghalaya: Stays & Tours | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/merch",
+  "status": 200,
+  "title": "XTSY Merch — Travel Gear & Work-from-Anywhere Kit",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/meghalaya-tour-packages",
+  "status": 200,
+  "title": "Meghalaya Tour Packages 2026 — Starting ₹7,999 | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/things-to-do-in-meghalaya",
+  "status": 200,
+  "title": "Things to Do in Meghalaya: 20 Ideas | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md.underline.underline-offset-2"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "title": "Hotels in Shillong: Areas, Prices & Alternatives | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".bg-primary.hover\\:bg-primary\\/90.underline"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/travel-guide/how-to-reach-meghalaya",
+  "status": 200,
+  "title": "How to Reach Meghalaya & Shillong (2026 Guide)",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".bg-primary.hover\\:bg-primary\\/90.underline-offset-2"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/pricing-cancellation-policy",
+  "status": 200,
+  "title": "Pricing & Cancellation Policy | XTSY Shillong",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/guides",
+  "status": 200,
+  "title": "All Shillong & Meghalaya Travel Guides A–Z | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "phone",
+  "route": "/this-page-does-not-exist",
+  "status": 404,
+  "title": "Page Not Found (404) | XTSY Travel",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 9.2pt (12.25px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/",
+  "status": 200,
+  "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".leading-snug.sm\\:text-\\[14px\\].flex-1 > .rounded-md.bg-primary.hover\\:bg-primary\\/90"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/best-hostel-in-shillong",
+  "status": 200,
+  "title": "Hostels in Shillong from ₹399 | XTSY Travellers Hostel",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/xtsy-270",
+  "status": 200,
+  "title": "Experience by XTSY — India's First Stargaze Glamp, Shillong",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/book",
+  "status": 200,
+  "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
+  "design": "legacy",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuButton": "missing",
+   "searchButton": "missing",
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": false
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/book/campsite",
+  "status": 200,
+  "title": "Book the Dawki Riverside Campsite | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".bg-primary.hover\\:bg-primary\\/90.underline"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatButton": "missing",
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/tours",
+  "status": 200,
+  "title": "Northeast India Tour Packages from ₹7,999 | XTSY Travel",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/tours/5n-6d-tawang-tour",
+  "status": 200,
+  "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/tours/bhutan-mindful-kingdom-journey",
+  "status": 200,
+  "title": "Bhutan Mindful Kingdom Journey — 6 Days from ₹84,999 | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/expeditions",
+  "status": 200,
+  "title": "Motorbike & 4x4 Expeditions in Northeast India | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/destinations",
+  "status": 200,
+  "title": "Northeast India Destinations — State & City Guides | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/destinations/meghalaya",
+  "status": 200,
+  "title": "Meghalaya Travel Guide — Places, Routes & Stays",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/destinations/meghalaya/shillong",
+  "status": 200,
+  "title": "Places to Visit in Shillong, Meghalaya | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/destinations/meghalaya/cherrapunji/nohkalikai-falls",
+  "status": 200,
+  "title": "Nohkalikai Falls, Cherrapunji — Timings & How to Reach",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/shillong-dormitory",
+  "status": 200,
+  "title": "Dormitory in Shillong — Mixed & Female Dorms | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".bg-primary"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/meghalaya-waterfalls",
+  "status": 200,
+  "title": "Meghalaya Waterfalls: Nohkalikai & More | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/plan-trip-with-ai",
+  "status": 200,
+  "title": "Plan a Meghalaya & Northeast India Trip with AI | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatButton": "missing",
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/tab-bistro",
+  "status": 200,
+  "title": "Restaurant in Shillong | TAB Bistro by XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/gallery",
+  "status": 200,
+  "title": "XTSY Gallery — Hostel, Glass Suite & Meghalaya Photos",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/about",
+  "status": 200,
+  "title": "About XTSY — India's Biggest Hostel in Northeast India",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/contact",
+  "status": 200,
+  "title": "Contact XTSY Shillong: Phone, Address & Map",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/faq",
+  "status": 200,
+  "title": "Hostel FAQs — Shillong Rates, Safety & Booking | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".text-sm"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/pet-friendly",
+  "status": 200,
+  "title": "Pet Friendly Stay in Shillong, Meghalaya | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".leading-snug > .rounded-md.text-sm.bg-primary"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/female-travellers",
+  "status": 200,
+  "title": "Solo Female Travellers in Shillong: Safe Stay | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/work-from-home",
+  "status": 200,
+  "title": "Work From Meghalaya: Wifi, Desks & Long Stays | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/group-bookings-meghalaya",
+  "status": 200,
+  "title": "Group Bookings in Meghalaya: Stays & Tours | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/merch",
+  "status": 200,
+  "title": "XTSY Merch — Travel Gear & Work-from-Anywhere Kit",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/meghalaya-tour-packages",
+  "status": 200,
+  "title": "Meghalaya Tour Packages 2026 — Starting ₹7,999 | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/things-to-do-in-meghalaya",
+  "status": 200,
+  "title": "Things to Do in Meghalaya: 20 Ideas | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md.underline.underline-offset-2"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/hotels-in-shillong",
+  "status": 200,
+  "title": "Hotels in Shillong: Areas, Prices & Alternatives | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".bg-primary.hover\\:bg-primary\\/90.underline"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/travel-guide/how-to-reach-meghalaya",
+  "status": 200,
+  "title": "How to Reach Meghalaya & Shillong (2026 Guide)",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".bg-primary.hover\\:bg-primary\\/90.underline-offset-2"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/pricing-cancellation-policy",
+  "status": 200,
+  "title": "Pricing & Cancellation Policy | XTSY Shillong",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/guides",
+  "status": 200,
+  "title": "All Shillong & Meghalaya Travel Guides A–Z | XTSY",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ },
+ {
+  "viewport": "desktop",
+  "route": "/this-page-does-not-exist",
+  "status": 404,
+  "title": "Page Not Found (404) | XTSY Travel",
+  "design": "v2",
+  "axe": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "help": "Elements must meet minimum color contrast ratio thresholds",
+    "count": 1,
+    "examples": [
+     ".rounded-md"
+    ],
+    "detail": [
+     "Fix any of the following:\n  Element has insufficient color contrast of 2.17 (foreground color: #1f2230, background color: #a32442, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+    ]
+   }
+  ],
+  "ui": {
+   "firstTab": "Skip to content",
+   "focusVisible": true,
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
+   "chatOpens": true,
+   "whatsapp": true,
+   "bookAboveFold": true
+  },
+  "errors": [
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
+  ]
+ }
+]

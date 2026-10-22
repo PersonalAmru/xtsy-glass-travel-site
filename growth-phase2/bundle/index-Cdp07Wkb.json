@@ -1,10 +1,10 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-BqlTx8jR.js",
-      "totalBytes": 429967,
-      "mappedBytes": 418414,
-      "unmappedBytes": 11527,
+      "bundleName": ".output/public/assets/index-Cdp07Wkb.js",
+      "totalBytes": 429888,
+      "mappedBytes": 418369,
+      "unmappedBytes": 11493,
       "eolBytes": 26,
       "sourceMapCommentBytes": 0,
       "files": {
@@ -15,7 +15,7 @@
           "size": 28
         },
         "../../../node_modules/react-dom/cjs/react-dom-client.production.js": {
-          "size": 174655
+          "size": 174658
         },
         "../../../node_modules/react-dom/client.js": {
           "size": 217
@@ -261,16 +261,16 @@
           "size": 2122
         },
         "../../../src/contexts/HappyGuestsContext.tsx": {
-          "size": 1196
+          "size": 1214
         },
         "../../../src/services/trafficDefenseService.ts": {
-          "size": 7956
+          "size": 7965
         },
         "../../../src/utils/ga4Integration.ts": {
           "size": 537
         },
         "../../../src/hooks/useTrafficAnalytics.tsx": {
-          "size": 4345
+          "size": 4396
         },
         "../../../src/hooks/useConversionSignals.ts": {
           "size": 4723
@@ -279,7 +279,7 @@
           "size": 111
         },
         "../../../src/hooks/useWebVitalsReporter.tsx": {
-          "size": 2906
+          "size": 2915
         },
         "../../../src/lib/lovable-error-reporting.ts": {
           "size": 486
@@ -291,34 +291,34 @@
           "size": 10492
         },
         "../../../src/lib/seo-head.ts": {
-          "size": 1968
+          "size": 1965
         },
         "../../../src/routes/index.tsx": {
           "size": 696
         },
         "../../../src/routes/$slug.tsx": {
-          "size": 743
+          "size": 740
         },
         "../../../src/routes/3-day-meghalaya-itinerary.tsx": {
           "size": 493
         },
         "../../../src/routes/4x4-expedition-meghalaya.tsx": {
-          "size": 508
+          "size": 505
         },
         "../../../src/routes/5-day-meghalaya-itinerary.tsx": {
           "size": 509
         },
         "../../../src/routes/about.tsx": {
-          "size": 479
+          "size": 476
         },
         "../../../src/routes/adventure-tours-northeast-india.tsx": {
-          "size": 529
+          "size": 526
         },
         "../../../src/routes/auth.tsx": {
-          "size": 354
+          "size": 357
         },
         "../../../src/routes/backpacking-india.tsx": {
-          "size": 614
+          "size": 608
         },
         "../../../src/routes/best-hostel-in-shillong.tsx": {
           "size": 363
@@ -339,85 +339,85 @@
           "size": 109
         },
         "../../../src/routes/cheap-hostel-shillong.tsx": {
-          "size": 243
+          "size": 240
         },
         "../../../src/routes/cheap-hostels-shillong.tsx": {
           "size": 358
         },
         "../../../src/routes/contact.tsx": {
-          "size": 401
+          "size": 398
         },
         "../../../src/routes/destination-wedding-shillong.tsx": {
           "size": 478
         },
         "../../../src/routes/faq.tsx": {
-          "size": 555
+          "size": 552
         },
         "../../../src/routes/female-travellers.tsx": {
-          "size": 445
+          "size": 442
         },
         "../../../src/routes/gallery.tsx": {
-          "size": 498
+          "size": 495
         },
         "../../../src/routes/group-bookings-meghalaya.tsx": {
           "size": 473
         },
         "../../../src/routes/guides.tsx": {
-          "size": 1047
+          "size": 1044
         },
         "../../../src/routes/hidden-places-in-meghalaya.tsx": {
           "size": 510
         },
         "../../../src/routes/homestays-in-shillong.tsx": {
-          "size": 475
+          "size": 472
         },
         "../../../src/routes/hostel-booking.tsx": {
-          "size": 615
+          "size": 612
         },
         "../../../src/routes/hostel-near-me.tsx": {
-          "size": 586
+          "size": 583
         },
         "../../../src/routes/hotels-in-shillong.tsx": {
-          "size": 460
+          "size": 457
         },
         "../../../src/routes/install.tsx": {
           "size": 400
         },
         "../../../src/routes/luxury-glamping-shillong.tsx": {
-          "size": 487
-        },
-        "../../../src/routes/meghalaya-adventure-tour.tsx": {
-          "size": 526
-        },
-        "../../../src/routes/meghalaya-caves.tsx": {
-          "size": 455
-        },
-        "../../../src/routes/meghalaya-couple-tour-package.tsx": {
           "size": 484
         },
+        "../../../src/routes/meghalaya-adventure-tour.tsx": {
+          "size": 523
+        },
+        "../../../src/routes/meghalaya-caves.tsx": {
+          "size": 452
+        },
+        "../../../src/routes/meghalaya-couple-tour-package.tsx": {
+          "size": 481
+        },
         "../../../src/routes/meghalaya-festivals.tsx": {
-          "size": 462
-        },
-        "../../../src/routes/meghalaya-photo-gallery.tsx": {
-          "size": 477
-        },
-        "../../../src/routes/meghalaya-tour-packages.tsx": {
-          "size": 615
-        },
-        "../../../src/routes/meghalaya-viewpoints.tsx": {
           "size": 459
         },
-        "../../../src/routes/meghalaya-villages.tsx": {
-          "size": 454
-        },
-        "../../../src/routes/meghalaya-waterfalls.tsx": {
-          "size": 463
-        },
-        "../../../src/routes/merch.tsx": {
+        "../../../src/routes/meghalaya-photo-gallery.tsx": {
           "size": 474
         },
+        "../../../src/routes/meghalaya-tour-packages.tsx": {
+          "size": 612
+        },
+        "../../../src/routes/meghalaya-viewpoints.tsx": {
+          "size": 456
+        },
+        "../../../src/routes/meghalaya-villages.tsx": {
+          "size": 451
+        },
+        "../../../src/routes/meghalaya-waterfalls.tsx": {
+          "size": 460
+        },
+        "../../../src/routes/merch.tsx": {
+          "size": 471
+        },
         "../../../src/routes/motorbike-expedition-northeast-india.tsx": {
-          "size": 550
+          "size": 547
         },
         "../../../src/routes/partner-stays.tsx": {
           "size": 421
@@ -432,28 +432,28 @@
           "size": 577
         },
         "../../../src/routes/pricing-cancellation-policy.tsx": {
-          "size": 466
+          "size": 463
         },
         "../../../src/routes/privacy-policy.tsx": {
-          "size": 485
+          "size": 482
         },
         "../../../src/routes/profile.tsx": {
-          "size": 416
+          "size": 419
         },
         "../../../src/routes/restaurant-in-shillong.tsx": {
           "size": 540
         },
         "../../../src/routes/safety-house-rules.tsx": {
-          "size": 512
+          "size": 509
         },
         "../../../src/routes/shillong-tour-package.tsx": {
-          "size": 478
+          "size": 475
         },
         "../../../src/routes/terms.tsx": {
           "size": 80
         },
         "../../../src/routes/terms-of-service.tsx": {
-          "size": 506
+          "size": 503
         },
         "../../../src/routes/things-to-do-in-meghalaya.tsx": {
           "size": 662
@@ -462,7 +462,7 @@
           "size": 391
         },
         "../../../src/routes/work-from-home.tsx": {
-          "size": 423
+          "size": 420
         },
         "../../../src/pages/v2/experienceData.ts": {
           "size": 1128
@@ -471,28 +471,28 @@
           "size": 566
         },
         "../../../src/routes/xtsy-adventure-campsite-dawki.tsx": {
-          "size": 479
+          "size": 476
         },
         "../../../src/routes/xtsy-rentals.tsx": {
-          "size": 417
+          "size": 414
         },
         "../../../src/routes/xtsy-vs-zostel.tsx": {
-          "size": 411
+          "size": 408
         },
         "../../../src/routes/book/index.tsx": {
-          "size": 607
+          "size": 610
         },
         "../../../src/routes/book/campsite.tsx": {
           "size": 470
         },
         "../../../src/routes/book/select.tsx": {
-          "size": 430
+          "size": 427
         },
         "../../../src/routes/destinations/index.tsx": {
-          "size": 447
+          "size": 444
         },
         "../../../src/routes/expeditions/index.tsx": {
-          "size": 561
+          "size": 558
         },
         "../../../src/routes/franchise/index.tsx": {
           "size": 425
@@ -513,16 +513,16 @@
           "size": 439
         },
         "../../../src/routes/tours/index.tsx": {
-          "size": 567
+          "size": 564
         },
         "../../../src/routes/tours/$slug.tsx": {
           "size": 732
         },
         "../../../src/routes/travel-guide/guwahati-to-shillong-transport.tsx": {
-          "size": 657
+          "size": 651
         },
         "../../../src/routes/travel-guide/how-to-reach-meghalaya.tsx": {
-          "size": 1642
+          "size": 1639
         },
         "../../../src/routes/travel-guide/meghalaya-for-international-tourists.tsx": {
           "size": 1582
@@ -531,10 +531,10 @@
           "size": 167
         },
         "../../../src/routes/destinations/$state/index.tsx": {
-          "size": 563
+          "size": 560
         },
         "../../../src/routes/expeditions/$type/$route.tsx": {
-          "size": 1980
+          "size": 1974
         },
         "../../../src/routes/destinations/$state/$city/index.tsx": {
           "size": 896
@@ -564,7 +564,7 @@
           "size": 0
         },
         "[unmapped]": {
-          "size": 11527
+          "size": 11493
         },
         "[EOLs]": {
           "size": 26

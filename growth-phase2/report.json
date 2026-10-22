@@ -4,7 +4,9 @@
     "viewport": "desktop",
     "status": 200,
     "file": "desktop-guides.png",
-    "errors": []
+    "errors": [
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
   },
   {
     "route": "/female-travellers",
@@ -39,7 +41,9 @@
     "viewport": "mobile",
     "status": 200,
     "file": "mobile-guides.png",
-    "errors": []
+    "errors": [
+      "Failed to load resource: the server responded with a status of 401 ()"
+    ]
   },
   {
     "route": "/female-travellers",
