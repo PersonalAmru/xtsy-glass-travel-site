@@ -1,0 +1,71 @@
+{
+ "checkedAt": "2026-10-22T18:27:15.860Z",
+ "site": "http://localhost:4174",
+ "sitemaps": [
+  {
+   "sitemap": "https://xtsy.one/sitemap-static.xml",
+   "status": 200,
+   "urls": 45
+  },
+  {
+   "sitemap": "https://xtsy.one/sitemap-hostel.xml",
+   "status": 200,
+   "urls": 94
+  },
+  {
+   "sitemap": "https://xtsy.one/sitemap-tour-packages.xml",
+   "status": 200,
+   "urls": 75
+  },
+  {
+   "sitemap": "https://xtsy.one/sitemap-tours.xml",
+   "status": 200,
+   "urls": 136
+  },
+  {
+   "sitemap": "https://xtsy.one/sitemap-destinations.xml",
+   "status": 200,
+   "urls": 79
+  },
+  {
+   "sitemap": "https://xtsy.one/sitemap-guides.xml",
+   "status": 200,
+   "urls": 139
+  },
+  {
+   "sitemap": "https://xtsy.one/sitemap-programmatic.xml",
+   "status": 200,
+   "urls": 27
+  },
+  {
+   "sitemap": "https://xtsy.one/sitemap-dining.xml",
+   "status": 200,
+   "urls": 70
+  },
+  {
+   "sitemap": "https://xtsy.one/sitemap-misc.xml",
+   "status": 200,
+   "urls": 22
+  },
+  {
+   "sitemap": "https://xtsy.one/sitemap-images.xml",
+   "status": 200,
+   "urls": 2
+  }
+ ],
+ "urlsChecked": 687,
+ "healthy": 687,
+ "withIssues": 0,
+ "byIssue": {},
+ "medianMs": 53,
+ "p95Ms": 111,
+ "withStructuredData": 687,
+ "withQuickAnswer": 497,
+ "extra": {
+  "robots": 200,
+  "llms": 200,
+  "llmsFull": 200,
+  "indexNowKey": 200,
+  "home": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399"
+ }
+}
