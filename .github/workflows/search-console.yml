@@ -44,6 +44,6 @@ jobs:
         run: bun scripts/audit/gsc-pull.ts
       - name: Publish to ci-screenshots
         run: |
-          echo '{}' > gsc-out/.keep.json
+          echo "{\"pulledAt\":\"$(date -u +%FT%TZ)\"}" > gsc-out/status.json
           bash scripts/audit/perf-publish.sh "$(date -u +%F)" gsc-out gsc
           bash scripts/audit/perf-publish.sh latest gsc-out gsc
