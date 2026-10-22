@@ -25,6 +25,9 @@ export interface SignaturePackage {
   pickupDrop: string;
   idealFor: string[];
   highlights: string[];
+  /** Fixed group departures a solo traveller can join (weekday 0 = Sunday … 6 = Saturday;
+   *  months 1–12 in which the trip departs). */
+  departures?: { weekday: number; months: number[] };
 }
 
 /** Format a fixed price for display. Never used to compute new prices. */
@@ -72,6 +75,26 @@ export const SIGNATURE_PACKAGES: SignaturePackage[] = [
       "Dawki & Shnongpdeng",
       "Mawphlang Sacred Forest",
     ],
+  },
+  {
+    slug: "meghalaya-group-trip-6n-7d",
+    title: "Meghalaya Group Trip, Saturday Departures",
+    region: "Meghalaya",
+    pricePerPerson: 18500,
+    duration: "6 Nights / 7 Days",
+    nights: 6,
+    days: 7,
+    shortDescription:
+      "Join a small group on a fixed-date week in Meghalaya: Shillong, the Double Decker root bridge, Krang Suri, Dawki and Mawlynnong. Book one seat.",
+    pickupDrop: "Guwahati Airport / Railway Station",
+    idealFor: ["Solo travellers", "Friends", "Couples", "First-time visitors"],
+    highlights: [
+      "Departs every Saturday, October to May",
+      "Double Decker Living Root Bridge trek",
+      "Krang Suri Falls & Dawki on the Umngot River",
+      "Mawphlang Sacred Forest & Mawlynnong village",
+    ],
+    departures: { weekday: 6, months: [10, 11, 12, 1, 2, 3, 4, 5] },
   },
   {
     slug: "6d-shillong-meghalaya-tour",
@@ -971,6 +994,21 @@ export const PACKAGE_ITINERARIES: Record<string, ItineraryDay[]> = {
   ],
 };
 
+PACKAGE_ITINERARIES["meghalaya-group-trip-6n-7d"] = PACKAGE_ITINERARIES["6n-7d-meghalaya-tour"];
+
+/** The next departure dates (ISO yyyy-mm-dd) for a package with fixed departures, from `from`. */
+export const upcomingDepartures = (p: SignaturePackage, from: Date, count = 8): string[] => {
+  if (!p.departures) return [];
+  const out: string[] = [];
+  const d = new Date(Date.UTC(from.getUTCFullYear(), from.getUTCMonth(), from.getUTCDate() + 1));
+  for (let i = 0; i < 400 && out.length < count; i++, d.setUTCDate(d.getUTCDate() + 1)) {
+    if (d.getUTCDay() === p.departures.weekday && p.departures.months.includes(d.getUTCMonth() + 1)) {
+      out.push(d.toISOString().slice(0, 10));
+    }
+  }
+  return out;
+};
+
 export const getPackageItinerary = (slug: string): ItineraryDay[] | undefined =>
   PACKAGE_ITINERARIES[slug];
 
@@ -1028,13 +1066,13 @@ export const signaturePackageToTourPackage = (p: SignaturePackage): TourPackage 
     region: p.region,
     highlights: p.highlights,
     bestSeason: "Oct–Apr",
-    groupSize: p.minGroup ? `Min ${p.minGroup} travellers` : undefined,
+    groupSize: p.departures ? "Join solo — fixed group departures" : p.minGroup ? `Min ${p.minGroup} travellers` : undefined,
     fixedPrice: true,
     itinerary: PACKAGE_ITINERARIES[p.slug],
     inclusions: [
       "Accommodation on twin/triple sharing",
       "Daily breakfast",
-      "Private transport throughout the tour",
+      p.departures ? "Shared group transport throughout the tour" : "Private transport throughout the tour",
       `Pickup & drop: ${p.pickupDrop}`,
       "Experienced local driver-guide",
       "All applicable permits & entry coordination",
@@ -1049,7 +1087,9 @@ export const signaturePackageToTourPackage = (p: SignaturePackage): TourPackage 
       { q: "Is this a fixed price?", a: `Yes — ${formatPackagePrice(p.pricePerPerson)} per person is a fixed, transparent rate. We never generate random pricing.` },
       { q: "What is the pickup & drop point?", a: p.pickupDrop },
       { q: "Who is this package ideal for?", a: p.idealFor.join(", ") + "." },
-      { q: "Can I customise the itinerary?", a: "Yes, dates and stays can be tailored. Message us on WhatsApp to personalise this package." },
+      p.departures
+        ? { q: "Can I join on my own?", a: "Yes. Book one seat on any Saturday departure; you travel with the other guests on that date. For your own dates or a private group, see the 6 Nights 7 Days Meghalaya Tour." }
+        : { q: "Can I customise the itinerary?", a: "Yes, dates and stays can be tailored. Message us on WhatsApp to personalise this package." },
     ],
   };
 };

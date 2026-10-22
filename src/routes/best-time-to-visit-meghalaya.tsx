@@ -8,7 +8,7 @@ export const Route = createFileRoute("/best-time-to-visit-meghalaya")({
       path: "/best-time-to-visit-meghalaya",
       title: "Best Time to Visit Meghalaya (Month by Month) | XTSY",
       description:
-        "Month-by-month weather, rainfall and crowd guide for Meghalaya, plus the best windows for waterfalls, root bridges, Dawki boating and more affordable hostel rates.",
+        "Month-by-month weather, rainfall and crowd guide for Meghalaya, with the best windows for waterfalls, root bridges, Dawki boating and hostel rates.",
     }),
   component: BlogBestTimeToVisit,
 });

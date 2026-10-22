@@ -8,7 +8,7 @@ export const Route = createFileRoute("/faq")({
   head: () =>
     buildRouteHead({
       path: "/faq",
-      title: "Hostel FAQs — Shillong Rates, Safety & WhatsApp Booking | XTSY",
+      title: "Hostel FAQs — Shillong Rates, Safety & Booking | XTSY",
       description:
         "Shillong dorms ₹399/₹499/₹599, GST included. XTSY FAQs on solo-women safety, New Shillong Township, check-in and WhatsApp enquiries.",
       image: new URL(COVERS.home, 'https://xtsy.one').href,

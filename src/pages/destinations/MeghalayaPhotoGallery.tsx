@@ -37,6 +37,33 @@ const MeghalayaPhotoGallery = () => {
             className="mt-8"
           />
 
+          <section className="mt-12">
+            <h2 className="text-2xl font-bold text-foreground">Where these photos were taken</h2>
+            <p className="mt-2 text-muted-foreground max-w-3xl">
+              Every photo above is from one of these places. Each line says what you will see there and when it looks its best.
+            </p>
+            <ul className="mt-6 grid gap-4 md:grid-cols-2">
+              {featured.map((d) => (
+                <li key={d.slug} className="rounded-xl border border-border p-4">
+                  <p className="font-semibold text-foreground">{d.name} <span className="text-sm font-normal text-muted-foreground">· {d.region}</span></p>
+                  <p className="mt-1 text-sm text-muted-foreground">{d.shortDescription}</p>
+                  <p className="mt-1 text-sm text-muted-foreground"><span className="font-medium text-foreground">Best time:</span> {d.bestTimeToVisit}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="mt-12">
+            <h2 className="text-2xl font-bold text-foreground">Tips for photographing Meghalaya</h2>
+            <ul className="mt-4 list-disc pl-6 space-y-2 text-muted-foreground max-w-3xl">
+              <li>Waterfalls are fullest from June to September, but mist often hides them by midday. Go early, and carry a rain cover for your camera.</li>
+              <li>October to December brings the clearest skies for canyon and valley views such as Laitlum and the Sohra plateau.</li>
+              <li>The Umngot River at Dawki is clearest from November to April, when boats appear to float on glass.</li>
+              <li>Living root bridges sit under heavy forest cover. A phone's night mode or a fast lens helps more than a long zoom.</li>
+              <li>Ask before photographing people in villages, and respect signs at sacred forests such as Mawphlang.</li>
+            </ul>
+          </section>
+
           <section className="mt-12 bg-primary/10 rounded-2xl p-8 text-center">
             <h2 className="text-2xl font-bold text-foreground">Experience These Places Yourself</h2>
             <Link to="/meghalaya-tour-packages" className="mt-4 inline-block px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium">View Tour Packages</Link>

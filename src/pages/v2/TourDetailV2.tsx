@@ -9,7 +9,7 @@ import SEOHead from '@/components/SEOHead';
 import TourBookingModal from '@/components/TourBookingModal';
 import TourPermitAdvisory from '@/components/TourPermitAdvisory';
 import { getAllTours, mergeItinerary, type TourPackage } from '@/data/travelData';
-import { getSignaturePackageBySlug, signaturePackageToTourPackage } from '@/data/signaturePackages';
+import { getSignaturePackageBySlug, signaturePackageToTourPackage, upcomingDepartures, type SignaturePackage } from '@/data/signaturePackages';
 import { useApp } from '@/contexts/AppContext';
 import { photoFor } from '@/data/v2TourImages';
 import { reviewedPhoto, reviewedAlt, photoCredit } from '@/data/tourPhotos';
@@ -168,6 +168,8 @@ export default function TourDetailV2() {
               <p className="m-0 text-[16px] leading-relaxed">{answerBlock}</p>
             </section>
 
+            {slug && getSignaturePackageBySlug(slug)?.departures && <Departures pkg={getSignaturePackageBySlug(slug)!} onBook={() => setIsBookingOpen(true)} />}
+
             <section aria-labelledby="tour-facts-heading" className="xt-reveal overflow-hidden rounded-3xl bg-white">
               <h2 id="tour-facts-heading" className="xt-display m-0 px-6 pt-6 text-[32px] leading-none">{tour.title} at a glance</h2>
               <dl className="m-0 mt-4">
@@ -290,3 +292,35 @@ export default function TourDetailV2() {
     </>
   );
 }
+
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+/** Fixed departures. Dates are worked out in the browser after load, so the server and client
+ *  render the same markup; the weekly rule itself is in the server HTML. */
+function Departures({ pkg, onBook }: { pkg: SignaturePackage; onBook: () => void }) {
+  const [dates, setDates] = useState<string[]>([]);
+  useEffect(() => { setDates(upcomingDepartures(pkg, new Date(), 8)); }, [pkg]);
+  const dep = pkg.departures!;
+  const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dep.weekday];
+  const first = MONTHS[dep.months[0] - 1];
+  const last = MONTHS[dep.months[dep.months.length - 1] - 1];
+  return (
+    <section aria-labelledby="departures-heading" className="xt-reveal rounded-3xl bg-white p-6">
+      <h2 id="departures-heading" className="xt-display m-0 text-[32px] leading-none">Next departures</h2>
+      <p className="m-0 mt-3 text-[15px] leading-relaxed text-xt-mute">
+        Departs every {day}, {first} to {last}, from {pkg.pickupDrop}. Book one seat and travel with the other guests on that date; there is no minimum group size.
+      </p>
+      {dates.length > 0 && (
+        <ul className="m-0 mt-4 grid list-none grid-cols-2 gap-2 p-0 sm:grid-cols-4">
+          {dates.map((d) => (
+            <li key={d} className="rounded-xl border border-xt-line px-3 py-2 text-[14px] font-bold">
+              {new Date(`${d}T00:00:00Z`).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}
+            </li>
+          ))}
+        </ul>
+      )}
+      <button type="button" onClick={onBook} className="xt-btn mt-4 flex h-12 items-center rounded-full bg-xt-crimson px-6 text-[15px] font-extrabold text-white">Book a seat</button>
+    </section>
+  );
+}
+
