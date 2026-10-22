@@ -1,0 +1,841 @@
+{
+ "label": "after-fixes-2026-10-22",
+ "at": "2026-10-22T18:23:40.610Z",
+ "pages": 685,
+ "lab": {
+  "measured": 685,
+  "failed": 0,
+  "lcpMedian": 2428,
+  "lcpP75": 2696,
+  "lcpP95": 3266,
+  "fcpMedian": 2356,
+  "ttfbMedian": 172,
+  "goodLcpPct": 68,
+  "poorLcpPct": 2,
+  "clsOverPointOne": [],
+  "tbtMedian": 125,
+  "coldKbMedian": 607,
+  "warmKbMedian": 47,
+  "jsKbMedian": 445,
+  "jsFilesMedian": 74,
+  "thirdParties": [
+   "fonts.googleapis.com",
+   "kzhsxemkntfwsakhkylt.supabase.co"
+  ],
+  "non200": []
+ },
+ "psi": {
+  "measured": 670,
+  "failed": 15,
+  "scoreMedian": 70,
+  "scoreP25": 69,
+  "score90plusPct": 1,
+  "lcpMedian": 4989,
+  "fcpMedian": 4201,
+  "tbtMedian": 0,
+  "withFieldData": 670,
+  "originField": "SLOW",
+  "topOpportunities": [
+   {
+    "id": "cache-insight",
+    "title": "Use efficient cache lifetimes",
+    "pages": 670,
+    "lcpMs": 114000,
+    "avgLcpMs": 170
+   },
+   {
+    "id": "render-blocking-insight",
+    "title": "Render-blocking requests",
+    "pages": 670,
+    "lcpMs": 25750,
+    "avgLcpMs": 38
+   },
+   {
+    "id": "image-delivery-insight",
+    "title": "Improve image delivery",
+    "pages": 669,
+    "lcpMs": 35050,
+    "avgLcpMs": 52
+   },
+   {
+    "id": "unused-javascript",
+    "title": "Reduce unused JavaScript",
+    "pages": 668,
+    "lcpMs": 312300,
+    "avgLcpMs": 468
+   },
+   {
+    "id": "mainthread-work-breakdown",
+    "title": "Minimize main-thread work",
+    "pages": 20,
+    "lcpMs": 0,
+    "avgLcpMs": 0
+   },
+   {
+    "id": "bootup-time",
+    "title": "Reduce JavaScript execution time",
+    "pages": 4,
+    "lcpMs": 0,
+    "avgLcpMs": 0
+   },
+   {
+    "id": "unsized-images",
+    "title": "Image elements do not have explicit `width` and `height`",
+    "pages": 2,
+    "lcpMs": 0,
+    "avgLcpMs": 0
+   },
+   {
+    "id": "layout-shifts",
+    "title": "Avoid large layout shifts",
+    "pages": 2,
+    "lcpMs": 0,
+    "avgLcpMs": 0
+   },
+   {
+    "id": "total-byte-weight",
+    "title": "Avoid enormous network payloads",
+    "pages": 1,
+    "lcpMs": 0,
+    "avgLcpMs": 0
+   }
+  ]
+ },
+ "byTemplate": [
+  {
+   "template": "sitemap-destinations",
+   "pages": 79,
+   "labLcpMedian": 2264,
+   "labLcpP75": 2396,
+   "labFcpMedian": 2200,
+   "clsMax": 0.018,
+   "labGoodLcp": 86,
+   "coldKbMedian": 624,
+   "warmKbMedian": 23,
+   "jsKbMedian": 452,
+   "requestsMedian": 106,
+   "psiScoreMedian": 68,
+   "psiScoreMin": 64,
+   "psiLcpMedian": 5401,
+   "psiTbtMedian": 0
+  },
+  {
+   "template": "sitemap-dining",
+   "pages": 70,
+   "labLcpMedian": 2368,
+   "labLcpP75": 2420,
+   "labFcpMedian": 2324,
+   "clsMax": 0,
+   "labGoodLcp": 89,
+   "coldKbMedian": 598,
+   "warmKbMedian": 39,
+   "jsKbMedian": 445,
+   "requestsMedian": 90,
+   "psiScoreMedian": 71,
+   "psiScoreMin": 68,
+   "psiLcpMedian": 4863,
+   "psiTbtMedian": 0
+  },
+  {
+   "template": "sitemap-guides",
+   "pages": 139,
+   "labLcpMedian": 2452,
+   "labLcpP75": 2522,
+   "labFcpMedian": 2380,
+   "clsMax": 0,
+   "labGoodLcp": 74,
+   "coldKbMedian": 607,
+   "warmKbMedian": 49,
+   "jsKbMedian": 445,
+   "requestsMedian": 90,
+   "psiScoreMedian": 70,
+   "psiScoreMin": 68,
+   "psiLcpMedian": 4972,
+   "psiTbtMedian": 0
+  },
+  {
+   "template": "sitemap-hostel",
+   "pages": 94,
+   "labLcpMedian": 2468,
+   "labLcpP75": 2644,
+   "labFcpMedian": 2360,
+   "clsMax": 0,
+   "labGoodLcp": 65,
+   "coldKbMedian": 613,
+   "warmKbMedian": 55,
+   "jsKbMedian": 445,
+   "requestsMedian": 90,
+   "psiScoreMedian": 70,
+   "psiScoreMin": 66,
+   "psiLcpMedian": 5051,
+   "psiTbtMedian": 0
+  },
+  {
+   "template": "sitemap-misc",
+   "pages": 22,
+   "labLcpMedian": 3086,
+   "labLcpP75": 3196,
+   "labFcpMedian": 2392,
+   "clsMax": 0,
+   "labGoodLcp": 36,
+   "coldKbMedian": 670,
+   "warmKbMedian": 112,
+   "jsKbMedian": 445,
+   "requestsMedian": 90,
+   "psiScoreMedian": 70,
+   "psiScoreMin": 68,
+   "psiLcpMedian": 5026,
+   "psiTbtMedian": 0
+  },
+  {
+   "template": "sitemap-programmatic",
+   "pages": 25,
+   "labLcpMedian": 2384,
+   "labLcpP75": 2456,
+   "labFcpMedian": 2384,
+   "clsMax": 0,
+   "labGoodLcp": 88,
+   "coldKbMedian": 610,
+   "warmKbMedian": 49,
+   "jsKbMedian": 445,
+   "requestsMedian": 90,
+   "psiScoreMedian": 70,
+   "psiScoreMin": 67,
+   "psiLcpMedian": 5044,
+   "psiTbtMedian": 0
+  },
+  {
+   "template": "sitemap-static",
+   "pages": 45,
+   "labLcpMedian": 2414,
+   "labLcpP75": 2764,
+   "labFcpMedian": 2348,
+   "clsMax": 0,
+   "labGoodLcp": 69,
+   "coldKbMedian": 607,
+   "warmKbMedian": 42,
+   "jsKbMedian": 441,
+   "requestsMedian": 89,
+   "psiScoreMedian": 71,
+   "psiScoreMin": 67,
+   "psiLcpMedian": 4922,
+   "psiTbtMedian": 0
+  },
+  {
+   "template": "sitemap-tour-packages",
+   "pages": 75,
+   "labLcpMedian": 2860,
+   "labLcpP75": 2954,
+   "labFcpMedian": 2844,
+   "clsMax": 0,
+   "labGoodLcp": 0,
+   "coldKbMedian": 709,
+   "warmKbMedian": 37,
+   "jsKbMedian": 535,
+   "requestsMedian": 111,
+   "psiScoreMedian": 66,
+   "psiScoreMin": 56,
+   "psiLcpMedian": 5592,
+   "psiTbtMedian": 0
+  },
+  {
+   "template": "sitemap-tours",
+   "pages": 136,
+   "labLcpMedian": 2400,
+   "labLcpP75": 2476,
+   "labFcpMedian": 2336,
+   "clsMax": 0,
+   "labGoodLcp": 82,
+   "coldKbMedian": 605,
+   "warmKbMedian": 47,
+   "jsKbMedian": 445,
+   "requestsMedian": 90,
+   "psiScoreMedian": 70,
+   "psiScoreMin": 62,
+   "psiLcpMedian": 4945,
+   "psiTbtMedian": 0
+  }
+ ],
+ "worstLab": [
+  {
+   "path": "/things-to-do-in-meghalaya",
+   "lcp": 7066,
+   "fcp": 2704,
+   "el": "IMG assets/northeast-ecological-education-authentic-DcCVgflo.jpg",
+   "kb": 1697
+  },
+  {
+   "path": "/meghalaya-itinerary",
+   "lcp": 5524,
+   "fcp": 5442,
+   "el": "P Backed by XTSY — Northeast India's NEITA 2025-nomi",
+   "kb": 609
+  },
+  {
+   "path": "/destinations/meghalaya/dawki",
+   "lcp": 4568,
+   "fcp": 2184,
+   "el": "IMG /img/o/xtsyvoyage-dawki-river-735.webp",
+   "kb": 819
+  },
+  {
+   "path": "/kongthong-whistling-village",
+   "lcp": 4286,
+   "fcp": 4286,
+   "el": "P Backed by XTSY — Northeast India's NEITA 2025-nomi",
+   "kb": 610
+  },
+  {
+   "path": "/tours/sri-lanka-heritage-wildlife-loop",
+   "lcp": 4202,
+   "fcp": 4202,
+   "el": "IMG /img/px/tour-306-828.avif",
+   "kb": 696
+  },
+  {
+   "path": "/workation-aizawl",
+   "lcp": 4146,
+   "fcp": 3362,
+   "el": "IMG /img/o/xtsy-property-images-27-1242.avif",
+   "kb": 671
+  },
+  {
+   "path": "/monsoon-in-cherrapunji",
+   "lcp": 4134,
+   "fcp": 4134,
+   "el": "IMG /img/o/xtsyvoyage-nohkalikai-falls-736.avif",
+   "kb": 612
+  },
+  {
+   "path": "/student-accommodation-near-nift-shillong",
+   "lcp": 4082,
+   "fcp": 3798,
+   "el": "IMG /img/o/xtsy-property-images-6-828.avif",
+   "kb": 630
+  },
+  {
+   "path": "/destinations/meghalaya/shillong/sweet-falls",
+   "lcp": 4064,
+   "fcp": 2284,
+   "el": "P We use necessary cookies to run the site. With you",
+   "kb": 619
+  },
+  {
+   "path": "/meghalaya-adventure-tour",
+   "lcp": 4064,
+   "fcp": 2306,
+   "el": "IMG img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
+   "kb": 773
+  },
+  {
+   "path": "/destinations/meghalaya/shillong/bishop-falls",
+   "lcp": 4018,
+   "fcp": 2262,
+   "el": "P We use necessary cookies to run the site. With you",
+   "kb": 624
+  },
+  {
+   "path": "/tours/vietnam-discovery-trail",
+   "lcp": 4016,
+   "fcp": 4016,
+   "el": "IMG /img/px/tour-301-828.avif",
+   "kb": 711
+  },
+  {
+   "path": "/5-day-meghalaya-itinerary",
+   "lcp": 3974,
+   "fcp": 2212,
+   "el": "P We use necessary cookies to run the site. With you",
+   "kb": 572
+  },
+  {
+   "path": "/monsoon-in-jowai",
+   "lcp": 3962,
+   "fcp": 3962,
+   "el": "IMG /img/o/xtsyvoyage-meghalaya-cover-image-736.avif",
+   "kb": 608
+  },
+  {
+   "path": "/destinations/meghalaya/tura/tura-peak",
+   "lcp": 3900,
+   "fcp": 2168,
+   "el": "P We use necessary cookies to run the site. With you",
+   "kb": 624
+  },
+  {
+   "path": "/shillong-to-cherrapunji-road-trip",
+   "lcp": 3872,
+   "fcp": 3872,
+   "el": "P Backed by XTSY — Northeast India's NEITA 2025-nomi",
+   "kb": 611
+  },
+  {
+   "path": "/tours/dawki-crystal-waters-winter-escape",
+   "lcp": 3780,
+   "fcp": 3764,
+   "el": "IMG /img/px/tour-4-828.avif",
+   "kb": 719
+  },
+  {
+   "path": "/tours/turkey-history-landscape-route",
+   "lcp": 3752,
+   "fcp": 3752,
+   "el": "IMG /img/px/tour-307-828.avif",
+   "kb": 705
+  },
+  {
+   "path": "/zostel-vs-xtsy-shillong",
+   "lcp": 3724,
+   "fcp": 3724,
+   "el": "P XTSY Travellers Hostel on Mawdiangdiang Road, New ",
+   "kb": 606
+  },
+  {
+   "path": "/workation-pelling",
+   "lcp": 3670,
+   "fcp": 2948,
+   "el": "IMG /img/o/xtsy-property-images-27-1242.avif",
+   "kb": 671
+  },
+  {
+   "path": "/workation-dawki",
+   "lcp": 3626,
+   "fcp": 2928,
+   "el": "IMG /img/o/xtsy-property-images-27-1242.avif",
+   "kb": 670
+  },
+  {
+   "path": "/tours/arunachal-bike-expedition-solo-friendly",
+   "lcp": 3622,
+   "fcp": 3566,
+   "el": "IMG /img/px/tour-703-828.avif",
+   "kb": 710
+  },
+  {
+   "path": "/monsoon-in-nongjrong",
+   "lcp": 3530,
+   "fcp": 3530,
+   "el": "IMG /img/o/xtsyvoyage-meghalaya-cover-image-736.avif",
+   "kb": 608
+  },
+  {
+   "path": "/work-from-home",
+   "lcp": 3504,
+   "fcp": 2756,
+   "el": "IMG /img/o/xtsy-property-images-27-1242.avif",
+   "kb": 659
+  },
+  {
+   "path": "/plan-trip-with-ai",
+   "lcp": 3500,
+   "fcp": 3500,
+   "el": "P Type the way you’d text a friend: “6 days, Dawki a",
+   "kb": 582
+  }
+ ],
+ "worstPsi": [
+  {
+   "path": "/tours/6d-shillong-meghalaya-tour",
+   "score": 56,
+   "lcp": 4328,
+   "tbt": 766
+  },
+  {
+   "path": "/group-tour-aizawl",
+   "score": 62,
+   "lcp": 4951,
+   "tbt": 361
+  },
+  {
+   "path": "/destinations/meghalaya/dawki/shnongpdeng",
+   "score": 64,
+   "lcp": 6451,
+   "tbt": 25
+  },
+  {
+   "path": "/destinations/meghalaya/jowai",
+   "score": 64,
+   "lcp": 6029,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/assam-wildlife-tea-heritage",
+   "score": 65,
+   "lcp": 5796,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/bumla-pass-bike-expedition",
+   "score": 65,
+   "lcp": 5688,
+   "tbt": 38
+  },
+  {
+   "path": "/tours/dawki-crystal-waters-winter-escape",
+   "score": 65,
+   "lcp": 5740,
+   "tbt": 81
+  },
+  {
+   "path": "/tours/manipur-loktak-lake-winter-discovery",
+   "score": 65,
+   "lcp": 5659,
+   "tbt": 0
+  },
+  {
+   "path": "/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge",
+   "score": 65,
+   "lcp": 6160,
+   "tbt": 0
+  },
+  {
+   "path": "/destinations/meghalaya/shillong/elephant-falls",
+   "score": 65,
+   "lcp": 6091,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/bali-wellness-culture-retreat",
+   "score": 65,
+   "lcp": 5657,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/meghalaya-biodiversity-research-expedition",
+   "score": 65,
+   "lcp": 4351,
+   "tbt": 409
+  },
+  {
+   "path": "/tours/sikkim-peaceful-winter-retreat",
+   "score": 65,
+   "lcp": 5644,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/turkey-history-landscape-route",
+   "score": 65,
+   "lcp": 5693,
+   "tbt": 0
+  },
+  {
+   "path": "/destinations/meghalaya/cherrapunji/nongriat-village",
+   "score": 65,
+   "lcp": 6320,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/double-decker-root-bridge-cherrapunji",
+   "score": 65,
+   "lcp": 5816,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/ne-india-solo-bike-circuit-meghalaya",
+   "score": 65,
+   "lcp": 5636,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/solo-female-traveller-ne-cultural-trail",
+   "score": 65,
+   "lcp": 5798,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/shillong-winter-cultural-sojourn",
+   "score": 65,
+   "lcp": 5764,
+   "tbt": 102
+  },
+  {
+   "path": "/destinations/meghalaya/cherrapunji/dainthlen-falls",
+   "score": 66,
+   "lcp": 5637,
+   "tbt": 0
+  },
+  {
+   "path": "/destinations/meghalaya/cherrapunji/rainbow-falls",
+   "score": 66,
+   "lcp": 5776,
+   "tbt": 25
+  },
+  {
+   "path": "/destinations/meghalaya/shillong/umiam-lake",
+   "score": 66,
+   "lcp": 5724,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/5d-meghalaya-trip-package",
+   "score": 66,
+   "lcp": 5650,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/6d-meghalaya-honeymoon-package",
+   "score": 66,
+   "lcp": 5648,
+   "tbt": 0
+  },
+  {
+   "path": "/tours/6n-7d-meghalaya-tour",
+   "score": 66,
+   "lcp": 5640,
+   "tbt": 0
+  }
+ ],
+ "uncached": [
+  {
+   "url": "/~flock.js",
+   "kb": 0,
+   "cc": "max-age=1500",
+   "pages": 685
+  },
+  {
+   "url": "/img/o/xtsyvoyage-meghalaya-cover-image-736.avif",
+   "kb": 26,
+   "cc": "(none)",
+   "pages": 125
+  },
+  {
+   "url": "/img/o/xtsy-tab-bistro-by-xtsy-1-828.avif",
+   "kb": 19,
+   "cc": "(none)",
+   "pages": 71
+  },
+  {
+   "url": "/img/o/xtsy-property-images-12-828.avif",
+   "kb": 13,
+   "cc": "(none)",
+   "pages": 51
+  },
+  {
+   "url": "/img/o/xtsyvoyage-assam-cover-image-736.avif",
+   "kb": 20,
+   "cc": "(none)",
+   "pages": 37
+  },
+  {
+   "url": "/__l5e/events.js",
+   "kb": 0,
+   "cc": "no-store",
+   "pages": 36
+  },
+  {
+   "url": "/img/o/xtsyvoyage-bumla-pass-bike-expedition-736.avif",
+   "kb": 23,
+   "cc": "(none)",
+   "pages": 30
+  },
+  {
+   "url": "/img/o/xtsyvoyage-nohkalikai-falls-736.avif",
+   "kb": 30,
+   "cc": "(none)",
+   "pages": 28
+  },
+  {
+   "url": "/img/o/xtsy-property-images-9-828.avif",
+   "kb": 26,
+   "cc": "(none)",
+   "pages": 23
+  },
+  {
+   "url": "/img/o/xtsyvoyage-dawki-river-735.avif",
+   "kb": 40,
+   "cc": "(none)",
+   "pages": 22
+  },
+  {
+   "url": "/img/o/xtsy-270-xtsy270-900.avif",
+   "kb": 54,
+   "cc": "(none)",
+   "pages": 20
+  },
+  {
+   "url": "/img/o/xtsy-property-images-8-828.avif",
+   "kb": 32,
+   "cc": "(none)",
+   "pages": 20
+  },
+  {
+   "url": "/img/o/xtsy-property-images-6-828.avif",
+   "kb": 49,
+   "cc": "(none)",
+   "pages": 18
+  },
+  {
+   "url": "/img/o/xtsy-property-images-27-1242.avif",
+   "kb": 88,
+   "cc": "(none)",
+   "pages": 13
+  },
+  {
+   "url": "/img/o/xtsyvoyage-arunachal-pradesh-cover-image-500.avif",
+   "kb": 18,
+   "cc": "(none)",
+   "pages": 13
+  },
+  {
+   "url": "/img/o/xtsyvoyage-sikkim-cover-image-736.avif",
+   "kb": 41,
+   "cc": "(none)",
+   "pages": 10
+  },
+  {
+   "url": "/img/o/xtsyvoyage-nagaland-cover-image-736.avif",
+   "kb": 52,
+   "cc": "(none)",
+   "pages": 10
+  },
+  {
+   "url": "/img/o/xtsyvoyage-krang-shuri-waterfall-736.avif",
+   "kb": 20,
+   "cc": "(none)",
+   "pages": 8
+  },
+  {
+   "url": "/img/o/xtsyvoyage-laitlum-canyons-736.avif",
+   "kb": 11,
+   "cc": "(none)",
+   "pages": 8
+  },
+  {
+   "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.avif",
+   "kb": 75,
+   "cc": "(none)",
+   "pages": 8
+  },
+  {
+   "url": "/img/o/xtsyvoyage-mawlynnong-736.avif",
+   "kb": 37,
+   "cc": "(none)",
+   "pages": 8
+  },
+  {
+   "url": "/img/o/xtsy-270-xtsy270-640.avif",
+   "kb": 32,
+   "cc": "(none)",
+   "pages": 8
+  },
+  {
+   "url": "/img/o/xtsyvoyage-mawsmai-cave-300.avif",
+   "kb": 8,
+   "cc": "(none)",
+   "pages": 8
+  },
+  {
+   "url": "/img/o/xtsy-270-xtsy270-6-828.avif",
+   "kb": 21,
+   "cc": "(none)",
+   "pages": 6
+  },
+  {
+   "url": "/img/o/xtsyvoyage-umiam-lake-736.webp",
+   "kb": 71,
+   "cc": "(none)",
+   "pages": 6
+  },
+  {
+   "url": "/img/o/xtsyvoyage-laitlum-canyons-736.webp",
+   "kb": 29,
+   "cc": "(none)",
+   "pages": 6
+  },
+  {
+   "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.webp",
+   "kb": 205,
+   "cc": "(none)",
+   "pages": 6
+  },
+  {
+   "url": "/img/o/xtsyvoyage-elephant-falls-736.webp",
+   "kb": 154,
+   "cc": "(none)",
+   "pages": 6
+  },
+  {
+   "url": "/img/o/xtsyvoyage-dawki-river-735.webp",
+   "kb": 106,
+   "cc": "(none)",
+   "pages": 6
+  },
+  {
+   "url": "/img/o/xtsyvoyage-dawki-river-2-735.webp",
+   "kb": 146,
+   "cc": "(none)",
+   "pages": 5
+  },
+  {
+   "url": "/img/o/xtsyvoyage-mawlynnong-736.webp",
+   "kb": 94,
+   "cc": "(none)",
+   "pages": 5
+  },
+  {
+   "url": "/img/o/xtsyvoyage-nohkalikai-falls-736.webp",
+   "kb": 87,
+   "cc": "(none)",
+   "pages": 5
+  },
+  {
+   "url": "/img/o/xtsyvoyage-elephant-falls-736.avif",
+   "kb": 51,
+   "cc": "(none)",
+   "pages": 5
+  },
+  {
+   "url": "/img/o/xtsyvoyage-dawki-river-3-720.webp",
+   "kb": 117,
+   "cc": "(none)",
+   "pages": 4
+  },
+  {
+   "url": "/img/o/xtsyvoyage-seven-sister-waterfalls-500.avif",
+   "kb": 19,
+   "cc": "(none)",
+   "pages": 4
+  },
+  {
+   "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-and-rainbow-waterfall-736.avif",
+   "kb": 76,
+   "cc": "(none)",
+   "pages": 4
+  },
+  {
+   "url": "/img/o/xtsy-4-bed-female-dormitory-828.avif",
+   "kb": 18,
+   "cc": "(none)",
+   "pages": 4
+  },
+  {
+   "url": "/img/o/xtsyvoyage-nongriat-double-decker-root-bridge-and-rainbow-waterfall-736.webp",
+   "kb": 227,
+   "cc": "(none)",
+   "pages": 4
+  },
+  {
+   "url": "/img/o/xtsyvoyage-mawlynnong-2-736.webp",
+   "kb": 176,
+   "cc": "(none)",
+   "pages": 3
+  },
+  {
+   "url": "/img/o/xtsyvoyage-umiam-lake-2-680.webp",
+   "kb": 63,
+   "cc": "(none)",
+   "pages": 3
+  }
+ ],
+ "uncachedFilesTotal": 285,
+ "consoleErrors": [
+  {
+   "msg": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+   "pages": 49
+  },
+  {
+   "msg": "Failed to load resource: the server responded with a status of 403 ()",
+   "pages": 5
+  }
+ ]
+}
