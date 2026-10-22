@@ -1,6 +1,6 @@
 import { destinationPath } from '@/data/neTaxonomy';
 import { Link } from '@/lib/router-compat';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import { MapPin, Waves, Mountain, Home, Droplets, Eye, Trees } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';

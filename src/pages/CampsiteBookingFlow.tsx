@@ -5,7 +5,7 @@
  */
 
 import { memo, useState, useMemo, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from '@/lib/seo/helmet';
 import { useNavigate, useSearchParams } from "@/lib/router-compat";
 import { motion } from "framer-motion";
 import { addDays, differenceInDays, format, parseISO } from "date-fns";

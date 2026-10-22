@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from '@/lib/seo/helmet';
 import SEOHead, { getSEOConfig } from "@/components/SEOHead";
 import { useScrollDepthTracking } from "@/hooks/useScrollDepthTracking";
 import { googleReviews } from "@/data/googleReviews";

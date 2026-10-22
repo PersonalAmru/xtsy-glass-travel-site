@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Link } from '@/lib/router-compat';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';

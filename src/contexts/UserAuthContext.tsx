@@ -291,7 +291,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       
       const redirectUrl = `${window.location.origin}/auth`;
       
-      console.log('[UserAuth] Attempting signup for:', email.trim());
+      console.log('[UserAuth] Attempting signup');
       
       const { data, error: signUpError } = await supabase.auth.signUp({
         email: email.trim(),

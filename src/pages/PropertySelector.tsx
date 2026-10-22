@@ -5,7 +5,7 @@
  */
 
 import { memo, useMemo } from "react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from '@/lib/seo/helmet';
 import { useNavigate, useSearchParams, Link } from "@/lib/router-compat";
 import { motion } from "framer-motion";
 import { MapPin, Calendar, Users, ArrowRight, Star, Sparkles } from "lucide-react";

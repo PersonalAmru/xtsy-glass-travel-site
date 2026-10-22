@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from '@/lib/seo/helmet';
 import { Star, BadgeCheck, MessageSquare, Camera, Loader2, Send, ImagePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

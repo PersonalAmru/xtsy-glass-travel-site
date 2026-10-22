@@ -1,5 +1,5 @@
 import { MapPin, Star, Calendar } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 
 const AUTHOR_SCHEMA = {
   '@context': 'https://schema.org',

@@ -1,6 +1,6 @@
 import { useEffect, useState, memo } from "react";
 import { useSearchParams } from "@/lib/router-compat";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from '@/lib/seo/helmet';
 import { Loader2, CheckCircle2, AlertCircle, MailX } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -26,7 +26,7 @@ const Unsubscribe = memo(() => {
 
   useEffect(() => {
     if (!token) {
-      setState({ kind: "invalid", message: "Missing unsubscribe token." });
+      setState({ kind: "invalid", message: "This page needs the unsubscribe link from one of our emails." });
       return;
     }
     (async () => {
@@ -110,11 +110,26 @@ const Unsubscribe = memo(() => {
               <p className="text-sm text-muted-foreground">We won't email you anymore. Sorry to see you go!</p>
             </>
           )}
-          {(state.kind === "invalid" || state.kind === "error") && (
+          {state.kind === "invalid" && (
+            <>
+              <AlertCircle className="w-10 h-10 mx-auto mb-4 text-muted-foreground" />
+              <h1 className="text-xl font-bold mb-2">This unsubscribe link is missing or has expired</h1>
+              <p className="text-sm text-muted-foreground">{state.message}</p>
+              <p className="text-sm text-muted-foreground mt-3">
+                To stop our emails, open the latest email from XTSY and use its unsubscribe link, or write to{" "}
+                <a className="underline" href="mailto:admin@xtsy.one?subject=Unsubscribe">admin@xtsy.one</a> with the subject “Unsubscribe”.
+              </p>
+            </>
+          )}
+          {state.kind === "error" && (
             <>
               <AlertCircle className="w-10 h-10 mx-auto mb-4 text-destructive" />
-              <h1 className="text-xl font-bold mb-2">Something went wrong</h1>
+              <h1 className="text-xl font-bold mb-2">We couldn't process your request</h1>
               <p className="text-sm text-muted-foreground">{state.message}</p>
+              <p className="text-sm text-muted-foreground mt-3">
+                Please try again in a minute, or write to{" "}
+                <a className="underline" href="mailto:admin@xtsy.one?subject=Unsubscribe">admin@xtsy.one</a> with the subject “Unsubscribe”.
+              </p>
             </>
           )}
         </div>

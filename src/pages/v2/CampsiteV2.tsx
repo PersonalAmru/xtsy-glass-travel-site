@@ -2,7 +2,7 @@
  * /xtsy-adventure-campsite-dawki — Dawki riverside camping (redesign).
  * The camp is run by a trusted partner; XTSY books it and handles transfers.
  */
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import SEOHead from '@/components/SEOHead';
 import { DAWKI_CAMPING_IMAGES } from '@/data/properties';
 import { PageShell, PageHero, Btn, Section, H2, PriceCards, FaqList, PAD } from '@/components/v2/blocks';

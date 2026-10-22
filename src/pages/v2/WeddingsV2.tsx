@@ -1,7 +1,7 @@
 /**
  * /destination-wedding-shillong — intimate weddings at XTSY (redesign).
  */
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import SEOHead from '@/components/SEOHead';
 import { COVERS } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FeatureCards, PriceCards, FaqList, PAD } from '@/components/v2/blocks';

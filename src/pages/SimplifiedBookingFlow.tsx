@@ -7,7 +7,7 @@
 
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from '@/lib/router-compat';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import { motion, AnimatePresence } from 'framer-motion';
 import { format, differenceInDays, parseISO } from 'date-fns';
 import { 

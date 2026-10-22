@@ -3,7 +3,7 @@
  * Uses react-helmet for actual <head> injection
  */
 
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 
 interface ArticleMeta {
   publishedTime?: string;
