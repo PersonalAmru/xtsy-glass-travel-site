@@ -87,6 +87,7 @@ import { Route as TravelGuideMeghalayaForInternationalTouristsRouteImport } from
 import { Route as DotlovableOauthConsentRouteImport } from './routes/[.]lovable.oauth.consent'
 import { Route as DestinationsStateIndexRouteImport } from './routes/destinations/$state/index'
 import { Route as ExpeditionsTypeRouteRouteImport } from './routes/expeditions/$type/$route'
+import { Route as ApiPublicHooksBistroGoogleSyncRouteImport } from './routes/api/public/hooks/bistro-google-sync'
 import { Route as DestinationsStateCityIndexRouteImport } from './routes/destinations/$state/$city/index'
 import { Route as DestinationsStateCityAttractionRouteImport } from './routes/destinations/$state/$city/$attraction'
 
@@ -491,6 +492,12 @@ const ExpeditionsTypeRouteRoute = ExpeditionsTypeRouteRouteImport.update({
   path: '/expeditions/$type/$route',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicHooksBistroGoogleSyncRoute =
+  ApiPublicHooksBistroGoogleSyncRouteImport.update({
+    id: '/api/public/hooks/bistro-google-sync',
+    path: '/api/public/hooks/bistro-google-sync',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const DestinationsStateCityIndexRoute =
   DestinationsStateCityIndexRouteImport.update({
     id: '/destinations/$state/$city/',
@@ -583,6 +590,7 @@ export interface FileRoutesByFullPath {
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/expeditions/$type/$route': typeof ExpeditionsTypeRouteRoute
   '/destinations/$state/': typeof DestinationsStateIndexRoute
+  '/api/public/hooks/bistro-google-sync': typeof ApiPublicHooksBistroGoogleSyncRoute
   '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
   '/destinations/$state/$city/': typeof DestinationsStateCityIndexRoute
 }
@@ -665,6 +673,7 @@ export interface FileRoutesByTo {
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/expeditions/$type/$route': typeof ExpeditionsTypeRouteRoute
   '/destinations/$state': typeof DestinationsStateIndexRoute
+  '/api/public/hooks/bistro-google-sync': typeof ApiPublicHooksBistroGoogleSyncRoute
   '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
   '/destinations/$state/$city': typeof DestinationsStateCityIndexRoute
 }
@@ -748,6 +757,7 @@ export interface FileRoutesById {
   '/.lovable/oauth/consent': typeof DotlovableOauthConsentRoute
   '/expeditions/$type/$route': typeof ExpeditionsTypeRouteRoute
   '/destinations/$state/': typeof DestinationsStateIndexRoute
+  '/api/public/hooks/bistro-google-sync': typeof ApiPublicHooksBistroGoogleSyncRoute
   '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
   '/destinations/$state/$city/': typeof DestinationsStateCityIndexRoute
 }
@@ -832,6 +842,7 @@ export interface FileRouteTypes {
     | '/.lovable/oauth/consent'
     | '/expeditions/$type/$route'
     | '/destinations/$state/'
+    | '/api/public/hooks/bistro-google-sync'
     | '/destinations/$state/$city/$attraction'
     | '/destinations/$state/$city/'
   fileRoutesByTo: FileRoutesByTo
@@ -914,6 +925,7 @@ export interface FileRouteTypes {
     | '/.lovable/oauth/consent'
     | '/expeditions/$type/$route'
     | '/destinations/$state'
+    | '/api/public/hooks/bistro-google-sync'
     | '/destinations/$state/$city/$attraction'
     | '/destinations/$state/$city'
   id:
@@ -996,6 +1008,7 @@ export interface FileRouteTypes {
     | '/.lovable/oauth/consent'
     | '/expeditions/$type/$route'
     | '/destinations/$state/'
+    | '/api/public/hooks/bistro-google-sync'
     | '/destinations/$state/$city/$attraction'
     | '/destinations/$state/$city/'
   fileRoutesById: FileRoutesById
@@ -1079,6 +1092,7 @@ export interface RootRouteChildren {
   DotlovableOauthConsentRoute: typeof DotlovableOauthConsentRoute
   ExpeditionsTypeRouteRoute: typeof ExpeditionsTypeRouteRoute
   DestinationsStateIndexRoute: typeof DestinationsStateIndexRoute
+  ApiPublicHooksBistroGoogleSyncRoute: typeof ApiPublicHooksBistroGoogleSyncRoute
   DestinationsStateCityAttractionRoute: typeof DestinationsStateCityAttractionRoute
   DestinationsStateCityIndexRoute: typeof DestinationsStateCityIndexRoute
 }
@@ -1631,6 +1645,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExpeditionsTypeRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hooks/bistro-google-sync': {
+      id: '/api/public/hooks/bistro-google-sync'
+      path: '/api/public/hooks/bistro-google-sync'
+      fullPath: '/api/public/hooks/bistro-google-sync'
+      preLoaderRoute: typeof ApiPublicHooksBistroGoogleSyncRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/destinations/$state/$city/': {
       id: '/destinations/$state/$city/'
       path: '/destinations/$state/$city'
@@ -1730,6 +1751,7 @@ const rootRouteChildren: RootRouteChildren = {
   DotlovableOauthConsentRoute: DotlovableOauthConsentRoute,
   ExpeditionsTypeRouteRoute: ExpeditionsTypeRouteRoute,
   DestinationsStateIndexRoute: DestinationsStateIndexRoute,
+  ApiPublicHooksBistroGoogleSyncRoute: ApiPublicHooksBistroGoogleSyncRoute,
   DestinationsStateCityAttractionRoute: DestinationsStateCityAttractionRoute,
   DestinationsStateCityIndexRoute: DestinationsStateCityIndexRoute,
 }
