@@ -138,7 +138,7 @@ function validateRoute(route: string, status: number, html: string): RouteResult
   if (!r.hasTitle) r.errors.push('Missing <title>');
   if (!r.hasDescription) r.errors.push('Missing meta description');
   if (!r.hasCanonical) r.errors.push('Missing canonical link');
-  if (r.canonicalCount !== 1) r.errors.push(`Expected exactly one canonical; found ${r.canonicalCount}`);
+  if (r.canonicalCount !== 1) r.errors.push(`Expected exactly one canonical; found ${r.canonicalCount}: ${(html.match(/<link\s+rel=["']canonical["'][^>]*>/gi) || []).join(' ')}`);
   if (/\(1970\)|1970-01-01/i.test(html)) r.errors.push('Epoch year 1970 found in public HTML');
   if (!r.hasH1) r.warnings.push('No <h1> in static HTML (may be injected by SEO body script)');
 
