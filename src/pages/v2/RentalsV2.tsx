@@ -2,7 +2,7 @@
  * /xtsy-rentals — car & bike rentals from Shillong (redesign). Rates unchanged.
  */
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import SEOHead from '@/components/SEOHead';
 import { IMG } from '@/data/v2Images';
 import { inr } from '@/components/v2/pricing';

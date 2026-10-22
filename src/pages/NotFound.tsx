@@ -1,7 +1,7 @@
 import { destinationPath } from '@/data/neTaxonomy';
 import { Link, useLocation, useNavigate } from "@/lib/router-compat";
 import { useEffect, useMemo, useState } from "react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from '@/lib/seo/helmet';
 import { SEOHead } from "@/components/SEOHead";
 import SiteHeader from "@/components/v2/SiteHeader";
 import SiteFooter from "@/components/v2/SiteFooter";

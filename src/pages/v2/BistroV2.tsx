@@ -2,7 +2,7 @@
  * /tab-bistro — TAB Bistro by XTSY (redesign) with the full official menu.
  */
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import SEOHead from '@/components/SEOHead';
 import { Link } from '@/lib/router-compat';
 import { menuSections } from '@/data/tabBistroMenu';

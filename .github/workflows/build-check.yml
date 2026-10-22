@@ -108,6 +108,19 @@ jobs:
           set -o pipefail
           ANALYZE_BUNDLE=1 bun run build 2>&1 | tee build.log || { echo "::error::$(sed 's/\x1b\[[0-9;]*m//g; s/\r/\n/g' build.log | grep -vE '^\s*at |\.output/|^\s*$|computing gzip|transforming|rendering chunks' | tail -45 | tr '\n' ' ' | cut -c1-3800)"; exit 1; }
 
+      - name: Hosting headers in the build output (what Cloudflare will apply)
+        continue-on-error: true
+        run: |
+          mkdir -p shots/hosting
+          { echo "== .output/public/_headers"; cat .output/public/_headers 2>/dev/null || echo "(none)";
+            echo; echo "== server config files"; ls .output/server 2>/dev/null | head -20;
+            for f in .output/server/wrangler.json .output/wrangler.json .output/nitro.json; do [ -f "$f" ] && { echo "== $f"; head -c 3000 "$f"; echo; }; done;
+            echo "== lovable config options"; ls node_modules/@lovable.dev/vite-tanstack-config/dist 2>/dev/null;
+            grep -o "nitro[^;]\{0,300\}" node_modules/@lovable.dev/vite-tanstack-config/dist/*.d.ts 2>/dev/null | head -20;
+            grep -n "routeRules\|publicAssets\|preset\|nitro" node_modules/@lovable.dev/vite-tanstack-config/dist/*.js 2>/dev/null | head -40;
+          } > shots/hosting/headers.txt 2>&1
+          cat shots/hosting/headers.txt
+
       - name: Every optimised photo has its AVIF twin
         run: bash scripts/audit/check-avif.sh
 

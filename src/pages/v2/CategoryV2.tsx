@@ -1,7 +1,7 @@
 import { destinationPath } from '@/data/neTaxonomy';
 import { Link, useLocation } from '@/lib/router-compat';
 import NotFound from '@/pages/NotFound';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import { inr, lowestDormPrice } from '@/components/v2/pricing';
 import { PageShell, PageHero, Breadcrumbs, Btn, PAD } from '@/components/v2/blocks';
 import { Photo } from '@/components/v2/primitives';

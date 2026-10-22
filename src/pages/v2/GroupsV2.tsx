@@ -1,7 +1,7 @@
 /**
  * /group-bookings-meghalaya — group trips, offsites and whole-dorm stays (redesign).
  */
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import SEOHead from '@/components/SEOHead';
 import { COVERS } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FaqList, Breadcrumbs, PAD } from '@/components/v2/blocks';

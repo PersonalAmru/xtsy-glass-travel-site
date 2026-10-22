@@ -3,7 +3,7 @@
  * gateway onboarding needs: address, phone, emails, GSTIN, support hours.
  */
 import { useState, type FormEvent } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import { Link } from '@/lib/router-compat';
 import { PageShell, PAD, FaqList } from '@/components/v2/blocks';
 import { SpinningMark, waLink, WHATSAPP_DISPLAY } from '@/components/v2/primitives';

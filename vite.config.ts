@@ -15,7 +15,12 @@ export default defineConfig({
   // CI only: hidden source maps so the bundle report can attribute bytes to modules.
   // Normal (Lovable) builds are unchanged.
   vite: {
-    build: { sourcemap: process.env.ANALYZE_BUNDLE === "1" ? "hidden" : false },
+    build: {
+      sourcemap: process.env.ANALYZE_BUNDLE === "1" ? "hidden" : false,
+      // Merge the many tiny chunks (single icons, small helpers) into their neighbours: fewer
+      // requests compete with the stylesheet and hero image on slow phones before the first paint.
+      rollupOptions: { output: { experimentalMinChunkSize: 10_000 } },
+    },
     // Unique per build: the server page cache keys on it, so a new publish never serves old pages.
     define: { __XTSY_BUILD_ID__: JSON.stringify(Date.now().toString(36)) },
   },

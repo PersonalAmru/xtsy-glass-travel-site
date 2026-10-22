@@ -5,7 +5,7 @@
  */
 import type { ReactNode } from 'react';
 import { photoCredit } from '@/data/tourPhotos';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import { useParams, Link } from '@/lib/router-compat';
 import NotFound from '@/pages/NotFound';
 import { GONE_SLUGS } from '@/data/seoGoneSlugs';

@@ -3,7 +3,7 @@
  * prices) first, then every tour in the catalogue with filters.
  */
 import { useMemo, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import SEOHead from '@/components/SEOHead';
 import { Link, useSearchParams } from '@/lib/router-compat';
 import { getAllTours, isTempleCircuit, type TourPackage } from '@/data/travelData';

@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from '@/lib/seo/helmet';
 import { Link } from "@/lib/router-compat";
 import { Utensils, ShoppingBag, Truck, PartyPopper } from "lucide-react";
 

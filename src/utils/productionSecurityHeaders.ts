@@ -32,8 +32,9 @@ export function generateProductionSecurityHeaders(config: SecurityHeadersConfig 
       // Scripts: GTM, GA4, Google Ads (inline needed for GTM to inject tags).
       // 'self' covers the first-party /cs/uxa proxy path; Contentsquare/Hotjar kept as fallback origins.
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://www.googletagmanager.com https://tagmanager.google.com https://www.google-analytics.com https://ssl.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.googlesyndication.com https://pagead2.googlesyndication.com https://adservice.google.com https://www.gstatic.com https://ssl.gstatic.com https://www.google.com https://www.google.co.in https://tagassistant.google.com https://t.contentsquare.net https://*.contentsquare.net https://script.hotjar.com https://static.hotjar.com",
-      // Connect: API endpoints for analytics + Supabase + Contentsquare/Hotjar beacons
-      `connect-src 'self' https://kzhsxemkntfwsakhkylt.supabase.co wss://kzhsxemkntfwsakhkylt.supabase.co https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://*.googletagmanager.com https://tagassistant.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://td.doubleclick.net https://*.g.doubleclick.net https://adservice.google.com https://www.google.com https://www.google.co.in https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://fonts.googleapis.com https://fonts.gstatic.com https://t.contentsquare.net https://*.contentsquare.net https://*.hotjar.com https://*.hotjar.io https://ipapi.co https://*.doubleclick.net wss://*.hotjar.com`,
+      // Connect: API endpoints for analytics + Supabase + Contentsquare/Hotjar beacons + Sentry error
+      // reports (without the Sentry ingest hosts every crash report was blocked by this policy).
+      `connect-src 'self' https://kzhsxemkntfwsakhkylt.supabase.co wss://kzhsxemkntfwsakhkylt.supabase.co https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://*.googletagmanager.com https://tagassistant.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://td.doubleclick.net https://*.g.doubleclick.net https://adservice.google.com https://www.google.com https://www.google.co.in https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://fonts.googleapis.com https://fonts.gstatic.com https://t.contentsquare.net https://*.contentsquare.net https://*.hotjar.com https://*.hotjar.io https://*.doubleclick.net wss://*.hotjar.com https://*.ingest.sentry.io https://*.ingest.us.sentry.io`,
       // Frames: Allow GTM preview/debug mode
       "frame-src 'self' https://www.googletagmanager.com https://tagassistant.google.com https://td.doubleclick.net https://*.doubleclick.net https://www.google.com https://*.hotjar.com",
       "frame-ancestors 'self' https://tagassistant.google.com https://tagmanager.google.com",
@@ -103,24 +104,44 @@ export function withProductionSecurityHeaders(
 }
 
 /**
- * Client-side security headers via meta tags
+ * Directives and headers a browser ignores when they arrive in a <meta http-equiv> tag.
+ * Sending them that way only logs console errors on every page; they must be real HTTP headers
+ * (see serverOnlySecurityHeaders, applied in src/server.ts).
+ */
+const META_IGNORED_CSP_DIRECTIVES = ['frame-ancestors', 'report-uri', 'report-to', 'sandbox'];
+
+/** The part of the policy that only works as an HTTP header: framing protection and nosniff. */
+export function serverOnlySecurityHeaders(config: SecurityHeadersConfig = {}): Record<string, string> {
+  const csp = generateProductionSecurityHeaders(config)['Content-Security-Policy'] || '';
+  const frameAncestors = csp.split(';').map((d) => d.trim()).find((d) => d.startsWith('frame-ancestors')) || "frame-ancestors 'self'";
+  return {
+    'Content-Security-Policy': frameAncestors,
+    'X-Frame-Options': 'SAMEORIGIN',
+    'X-Content-Type-Options': 'nosniff',
+  };
+}
+
+/**
+ * Client-side Content-Security-Policy via a meta tag. Only the CSP is emitted, minus the
+ * directives browsers ignore in meta form; every other security header is header-only and is
+ * either sent by the server or not applicable to a page.
  */
 export function applyClientSideSecurityHeaders(config: SecurityHeadersConfig = {}) {
   if (typeof document === 'undefined') return;
 
-  const securityHeaders = generateProductionSecurityHeaders(config);
-  
-  // Remove existing security meta tags
-  document.querySelectorAll('meta[data-security-header]').forEach(meta => meta.remove());
+  const csp = (generateProductionSecurityHeaders(config)['Content-Security-Policy'] || '')
+    .split(';')
+    .map((d) => d.trim())
+    .filter((d) => d && !META_IGNORED_CSP_DIRECTIVES.some((x) => d.startsWith(x)))
+    .join('; ');
 
-  // Add new security meta tags
-  Object.entries(securityHeaders).forEach(([name, content]) => {
-    const meta = document.createElement('meta');
-    meta.setAttribute('http-equiv', name);
-    meta.setAttribute('content', content);
-    meta.setAttribute('data-security-header', 'true');
-    document.head.appendChild(meta);
-  });
+  document.querySelectorAll('meta[data-security-header]').forEach(meta => meta.remove());
+  if (!csp) return;
+  const meta = document.createElement('meta');
+  meta.setAttribute('http-equiv', 'Content-Security-Policy');
+  meta.setAttribute('content', csp);
+  meta.setAttribute('data-security-header', 'true');
+  document.head.appendChild(meta);
 }
 
 /**

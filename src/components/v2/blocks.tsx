@@ -2,7 +2,7 @@
  * Page-building blocks for inner pages of the 2026 redesign.
  */
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import { Link } from '@/lib/router-compat';
 import { cn } from '@/lib/utils';
 import SiteHeader from './SiteHeader';

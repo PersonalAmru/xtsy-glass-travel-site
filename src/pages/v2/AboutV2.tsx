@@ -1,7 +1,7 @@
 /**
  * /about — About XTSY (redesign). Keeps the Organization + Hostel JSON-LD.
  */
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@/lib/seo/helmet';
 import SEOHead, { getSEOConfig } from '@/components/SEOHead';
 import { Link } from '@/lib/router-compat';
 import neitaCertificate from '@/assets/neita-award-certificate.jpeg';

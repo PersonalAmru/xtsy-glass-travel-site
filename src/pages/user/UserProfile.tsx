@@ -173,6 +173,24 @@ export default function UserProfile() {
     setChatOpen(true);
   };
 
+  // Signed out: say so and offer sign-in, instead of a spinner that never ends.
+  if (!isLoading && !user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20 flex items-center justify-center px-6">
+        <div className="max-w-sm text-center">
+          <h1 className="text-2xl font-bold text-foreground mb-2">Sign in to see your bookings</h1>
+          <p className="text-sm text-muted-foreground mb-6">
+            Your XTSY profile shows your stays, enquiries and invoices once you're signed in.
+          </p>
+          <div className="flex flex-col gap-3">
+            <Button onClick={() => navigate('/auth')}>Sign in</Button>
+            <Button variant="outline" onClick={() => navigate('/book')}>Book a stay</Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (isLoading || !user) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20 flex items-center justify-center">
@@ -184,6 +202,7 @@ export default function UserProfile() {
           <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
             <Loader2 className="w-8 h-8 animate-spin text-primary" />
           </div>
+          <h1 className="sr-only">Your XTSY profile</h1>
           <p className="text-sm text-muted-foreground">Loading your profile...</p>
         </motion.div>
       </div>
