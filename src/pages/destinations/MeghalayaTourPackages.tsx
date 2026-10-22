@@ -84,7 +84,7 @@ const MeghalayaTourPackages = () => {
                   ))}
                 </ul>
                 <a
-                  href={`https://wa.me/918787537633?text=Hi, I'm interested in the ${pkg.title} package.`}
+                  href={`https://wa.me/918837317070?text=Hi, I'm interested in the ${pkg.title} package.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-6 block w-full text-center px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"

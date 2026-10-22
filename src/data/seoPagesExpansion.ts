@@ -19,7 +19,7 @@ const mkPage = (
   schemaType, relatedSlugs: related, ctaText, ctaLink, keywords,
 });
 
-const waLink = (msg: string) => `https://wa.me/918787537633?text=${encodeURIComponent(msg)}`;
+const waLink = (msg: string) => `https://wa.me/918837317070?text=${encodeURIComponent(msg)}`;
 
 // ============================================================================
 // COMPETITOR CAPTURE PAGES (5)

@@ -1,5 +1,6 @@
 import { Link } from '@/lib/router-compat';
 import { Helmet } from '@/lib/seo/helmet';
+import PageFaqs from '@/components/seo/PageFaqs';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -61,6 +62,18 @@ const BlogItinerary5Day = () => (
           slugs={['nohkalikai-falls', 'dawki-umngot-river', 'mawlynnong-village', 'double-decker-living-root-bridge']}
         />
       </div>
+        <div className="container mx-auto px-4 max-w-5xl pb-12">
+        <PageFaqs
+          faqs={[
+          { q: "Is 5 days enough for Meghalaya?", a: "Yes, for the main circuit. Five days covers Shillong, Sohra's waterfalls and caves, Mawlynnong and Dawki at a reasonable pace. It is tight if you also want the full Double Decker root-bridge trek, which deserves its own day; for that, plan six or seven days." },
+          { q: "Where should I base myself for a 5-day Meghalaya trip?", a: "Shillong works as the main base, with one night near Sohra or Shnongpdeng so you are not driving back late. XTSY Travellers Hostel is in New Shillong Township, which gives faster morning starts towards Sohra and Dawki than central Shillong does." },
+          { q: "How much does a 5-day Meghalaya trip cost?", a: "Budget travellers can do it on roughly \u20b91,500-2,500 a day including a dorm bed, shared transport and meals. XTSY's fixed 4-night, 5-day Shillong and Meghalaya package is \u20b915,500 per person for a group of four or more, including stays, private transport, a driver-guide and daily breakfast." },
+          { q: "Should I hire a car or use shared taxis?", a: "A private car costs more but saves hours every day, because shared taxis run on their own schedules and rarely reach viewpoints. For a five-day loop with fixed stops, a private vehicle or a package is usually better value than piecing together shared transport." },
+          { q: "Can I do this itinerary solo?", a: "Yes. Solo travellers can stay in dorms and join XTSY's Saturday group departure, a 6-night, 7-day Meghalaya trip at \u20b918,500 per person with no minimum group size, so you share transport and costs with other travellers." },
+          ]}
+        />
+        </div>
+
     </main>
     <Footer />
   </div>

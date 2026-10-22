@@ -1,5 +1,6 @@
 import { Link } from '@/lib/router-compat';
 import { Helmet } from '@/lib/seo/helmet';
+import PageFaqs from '@/components/seo/PageFaqs';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -68,6 +69,19 @@ const BlogBestTimeToVisit = () => (
           </div>
         </nav>
       </div>
+        <div className="container mx-auto px-4 max-w-5xl pb-12">
+        <PageFaqs
+          faqs={[
+          { q: "What is the best month to visit Meghalaya?", a: "October and November are the best all-round months: the monsoon has ended, the waterfalls are still full, the skies are clear for Dawki and the canyons, and the Shillong Cherry Blossom Festival falls in late November. March to May is the next best window, with warm days and fewer crowds." },
+          { q: "Is it worth visiting Meghalaya during the monsoon?", a: "Yes, if waterfalls are your reason for coming. June to September is when Nohkalikai, Seven Sisters and Wei Sawdong are at their most powerful, and the hills are greenest. Expect rain most days, leeches on forest trails, and mist that can hide viewpoints by midday. Roads to Sohra and Dawki stay open, but plan loose days." },
+          { q: "When is the Umngot River at Dawki clearest?", a: "November to April. After the monsoon silt settles, the water turns glass-clear and boats appear to float. During and just after heavy rain the river runs brown and boating can be suspended." },
+          { q: "What is the weather like in Shillong through the year?", a: "Shillong sits at about 1,500 m, so it is mild year-round: roughly 15-24\u00b0C in summer and 4-15\u00b0C in winter, with cold nights from December to February. Carry a jacket in every season and a rain layer from May to September." },
+          { q: "Which months are cheapest to travel in Meghalaya?", a: "June to September, the monsoon, is the low season, and stays and cabs are at their cheapest. At XTSY, dorm beds start at \u20b9399 a night all year, with a women-only dorm at \u20b9599 and the King Double at \u20b92,399." },
+          { q: "How many days do you need for Meghalaya?", a: "Five days covers Shillong, Sohra and Dawki comfortably. Seven days adds the Double Decker root-bridge trek and the Jaintia Hills without rushing. XTSY runs a 6-night, 7-day Meghalaya group trip that departs every Saturday from October to May at \u20b918,500 per person, which a solo traveller can join." },
+          ]}
+        />
+        </div>
+
     </main>
     <Footer />
   </div>
