@@ -1,0 +1,169 @@
+== .output/public/_headers
+# Cloudflare Pages / Netlify _headers — asset caching + LCP preload hints.
+# The Cloudflare Worker also injects a matching Link header for the homepage
+# (see cloudflare/worker.js). This file covers direct-from-origin serves.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), bluetooth=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googletagmanager.com https://tagmanager.google.com; font-src 'self' data: https://fonts.gstatic.com https://*.hotjar.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://www.googletagmanager.com https://tagmanager.google.com https://www.google-analytics.com https://ssl.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.googlesyndication.com https://pagead2.googlesyndication.com https://adservice.google.com https://www.gstatic.com https://ssl.gstatic.com https://www.google.com https://www.google.co.in https://tagassistant.google.com https://t.contentsquare.net https://*.contentsquare.net https://script.hotjar.com https://static.hotjar.com; connect-src 'self' https://kzhsxemkntfwsakhkylt.supabase.co wss://kzhsxemkntfwsakhkylt.supabase.co https://*.supabase.co wss://*.supabase.co https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://*.googletagmanager.com https://tagassistant.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://td.doubleclick.net https://*.g.doubleclick.net https://adservice.google.com https://www.google.com https://www.google.co.in https://pagead2.googlesyndication.com https://ep1.adtrafficquality.google https://ep2.adtrafficquality.google https://fonts.googleapis.com https://fonts.gstatic.com https://t.contentsquare.net https://*.contentsquare.net https://*.hotjar.com https://*.hotjar.io https://ipapi.co https://*.doubleclick.net wss://*.hotjar.com; frame-src 'self' https://www.googletagmanager.com https://tagassistant.google.com https://td.doubleclick.net https://*.doubleclick.net https://www.google.com https://*.hotjar.com; frame-ancestors 'self' https://tagassistant.google.com https://tagmanager.google.com; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+
+# ── Homepage LCP preload ─────────────────────────────────────────────
+# Preload the hero AVIF as the LCP resource so Cloudflare's HTTP/2 push
+# and 103 Early Hints can start the fetch before HTML parse.
+/
+  Link: </lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Link: </lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high
+
+# ── Immutable hashed assets ──────────────────────────────────────────
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── Images — long cache; CF Image Resizing can re-encode on the fly ──
+/lovable-uploads/*
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+
+*.avif
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/avif
+
+*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Content-Type: image/webp
+
+/assets/*
+  cache-control: public, max-age=31536000, immutable
+== server config files
+_._lovable.oauth.consent-BIxMe4jB.mjs
+_attraction-D3Fz9W29.mjs
+_chunks
+_city-D8VvFZIZ.mjs
+_libs
+_route-BXP34MPP.mjs
+_runtime.mjs
+_slug-BjWTR-iH.mjs
+_slug-Dd0deXz_.mjs
+_slug-OYx1LrJj.mjs
+_ssr
+_state-C9iJW499.mjs
+_tanstack-start-manifest_v-PQJdSpUQ.mjs
+index.mjs
+wrangler.json
+== .output/server/wrangler.json
+{
+  "compatibility_date": "2026-10-22",
+  "main": "index.mjs",
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "../public"
+  },
+  "name": "personalamru-xtsy-glass-travel-site",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "no_bundle": true,
+  "rules": [
+    {
+      "type": "ESModule",
+      "globs": [
+        "**/*.mjs",
+        "**/*.js"
+      ]
+    }
+  ]
+}
+== .output/nitro.json
+{
+  "date": "2026-10-22T17:46:19.820Z",
+  "preset": "cloudflare-module",
+  "framework": {
+    "name": "nitro",
+    "version": "3.0.260603-beta"
+  },
+  "versions": {
+    "nitro": "3.0.260603-beta"
+  },
+  "serverEntry": "server/index.mjs",
+  "publicDir": "public",
+  "commands": {
+    "preview": "npx wrangler --cwd ./ dev",
+    "deploy": "npx wrangler --cwd ./ deploy"
+  },
+  "config": {
+    "cloudflare": {
+      "deployConfig": true,
+      "nodeCompat": true
+    }
+  }
+}
+== lovable config options
+dev-server-bridge.cjs
+dev-server-bridge.d.cts
+dev-server-bridge.d.ts
+dev-server-bridge.js
+hmr-gate.cjs
+hmr-gate.d.cts
+hmr-gate.d.ts
+hmr-gate.js
+index.cjs
+index.d.cts
+index.d.ts
+index.js
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.d.ts:nitro emitted its entry into. */
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.d.ts:nitro's `compiled` hook, which fires inside its own post-order `buildApp`. */
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.d.ts:nitroOutput: NitroOutput
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.d.ts:nitro()` from `nitro/vite`.
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.d.ts:nitro runs on every production build, defaulting
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.d.ts:nitro` peer dep isn't installed, it's skipped (no deploy intent to honor).
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.d.ts:nitro` peer dep is
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.d.ts:nitro entirely.
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.d.ts:nitro?: true | {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:336:async function nitroSupportsDefaultPreset() {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:339:		const { version } = createRequire(`${process.cwd()}/package.json`)("nitro/package.json");
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:710:function nitroEmitDirs(dirs) {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:712:	const found = [dirs.nitroOutput.serverDir, ...dirs.entryDirs].filter((dir) => !!dir);
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:731:				for (const dir of nitroEmitDirs(dirs)) {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:772:    // srvx's NodeRequest exposes \`ip\` as a getter-only accessor and nitro's
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:780:function captureNitroServerDir(nitroOpts) {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:782:	nitroOpts.modules = [...nitroOpts.modules ?? [], (nitro) => {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:783:		nitro.hooks.hook("compiled", (instance) => {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:795:function pinnedNitroServerDir(nitroOpts) {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:796:	const output = nitroOpts.output;
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:802:function prerenderShimDirs(viteConfig, nitroOpts) {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:805:		pinnedNitroServerDir(nitroOpts),
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:812:		nitroOutput: captureNitroServerDir(nitroOpts)
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:841:				const candidates = nitroEmitDirs(dirs);
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:851:					logWarning(`Cannot prerender: nitro's ${NITRO_SERVER_ENTRY} is in none of ${candidates.join(", ")}, so the preview shim was not written and every prerendered route will fall back to SSR.`);
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:857:					logWarning(`Cannot prerender: the server entry "${serverEntryName}" would need a shim at ${dirs.shimDir}/index.js, which outranks nitro's own entry when publishing. Rename the entry to anything but \`index\`.`);
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1130:			if ("cloudflare" in optionObject) if (optionObject.cloudflare === false && !("nitro" in optionObject)) {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1131:				optionObject.nitro = false;
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1132:				logWarning("`cloudflare: false` is deprecated in v2 — migrated to `nitro: false`. Update your config to drop the warning.");
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1133:			} else logWarning("The `cloudflare` option was removed in v2. Use `nitro: false` to disable the deploy plugin, or `nitro: { preset: '...' }` to configure it. The `cloudflare` setting is being ignored.");
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1134:			options = "vite" in optionObject || "serverFnErrorLogger" in optionObject || "ssrErrorLogger" in optionObject || "nitro" in optionObject || "tanstackStart" in optionObject || "react" in optionObject || "envDefine" in optionObject || "hmrGate" in optionObject || "buildExitWatchdog" in optionObject ? optionObject : { vite: optionObject };
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1169:		const explicitNitro = options.nitro === true || typeof options.nitro === "object" && options.nitro !== null;
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1170:		if (options.nitro !== false && command === "build") {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1171:			let nitroMod;
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1173:				nitroMod = await import("nitro/vite");
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1176:					const reason = explicitNitro ? `an explicit \`nitro\` option (${options.nitro === true ? "true" : "{ ... }"}) was set in vite.config.ts` : "running inside a Lovable sandbox";
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1177:					throw new Error(`[@lovable.dev/vite-tanstack-config] ${reason}, but the \`nitro\` package isn't installed. Add \`nitro\` to your devDependencies (matches peerDependency >=3.0.260429-beta). Original import error: ${err instanceof Error ? err.message : String(err)}`);
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1180:			if (nitroMod) {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1181:				const { nitro } = nitroMod;
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1182:				const userNitroOpts = typeof options.nitro === "object" && options.nitro ? options.nitro : {};
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1183:				const nitroOpts = {
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1195:						if (!await nitroSupportsDefaultPreset()) throw new Error("[@lovable.dev/vite-tanstack-config] LOVABLE_NITRO_PRESET=lovable-fetch-bundle requires nitro >=3.0.260603-beta.");
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1196:						nitroOpts.preset = "";
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1197:						delete nitroOpts.cloudflare;
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1199:						nitroOpts.defaultPreset = fetchBundle;
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1200:						Object.assign(nitroOpts, fetchBundle);
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1202:						delete nitroOpts.defaultPreset;
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1203:						nitroOpts.preset = "cloudflare-module";
+node_modules/@lovable.dev/vite-tanstack-config/dist/index.js:1204:						nitroOpts.output = {
