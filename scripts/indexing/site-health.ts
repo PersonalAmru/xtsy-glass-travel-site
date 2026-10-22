@@ -69,7 +69,7 @@ async function main() {
         if (!pick(h, /<meta[^>]*name="description"[^>]*content="([^"]*)"/)) issues.push('no meta description');
         if (!/<h1[\s>]/.test(h)) issues.push('no H1');
         if (!ld.length) issues.push('no structured data');
-        if (/₹\s?(369|399)\b(?![^<]{0,40}(Tandoori|chicken))/i.test(body)) issues.push('old dorm price (₹369/₹399) on page');
+        if (/₹\s?369\b/.test(body)) issues.push('old dorm price (₹369) on page');
         if (r.ms > 2500) issues.push(`slow response (${r.ms} ms)`);
       }
       rows.push({ url, sitemap, status: r.status, ms: r.ms, title, canonical, robots: robots || 'index', h1: /<h1[\s>]/.test(h), jsonLd: [...new Set(types(ld))].slice(0, 12), words: body.split(/\s+/).filter(Boolean).length, quickAnswer: /data-quick-answer/.test(h), issues });

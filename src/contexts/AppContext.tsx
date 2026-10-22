@@ -81,18 +81,20 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   // Fetch exchange rates from Edge Function (non-blocking with deduplication)
   const fetchExchangeRates = async () => {
-    // Check sessionStorage cache first (5 min TTL)
-    const cachedRates = sessionStorage.getItem('exchangeRates');
-    const cacheTime = sessionStorage.getItem('exchangeRatesTime');
-    const fiveMinutes = 5 * 60 * 1000;
+    // Rates change once a day, so keep them for 12 hours across visits (one request per visitor
+    // per half day instead of one per tab session — fewer 429s from shared networks).
+    const read = (k: string) => { try { return localStorage.getItem(k); } catch { return null; } };
+    const cachedRates = read('exchangeRates');
+    const cacheTime = read('exchangeRatesTime');
+    const ttl = 12 * 60 * 60 * 1000;
     
-    if (cachedRates && cacheTime && (Date.now() - parseInt(cacheTime)) < fiveMinutes) {
+    if (cachedRates && cacheTime && (Date.now() - parseInt(cacheTime)) < ttl) {
       const rates = JSON.parse(cachedRates);
       setExchangeRates(rates);
       availableCurrencies.forEach(curr => {
         curr.rate = rates[curr.code] || curr.rate;
       });
-      console.log('Exchange rates loaded from sessionStorage cache');
+      console.log('Exchange rates loaded from cache');
       return;
     }
 
@@ -116,9 +118,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         curr.rate = newRates[curr.code] || curr.rate;
       });
       
-      // Cache in sessionStorage
-      sessionStorage.setItem('exchangeRates', JSON.stringify(newRates));
-      sessionStorage.setItem('exchangeRatesTime', Date.now().toString());
+      // Cache for 12 hours (see above)
+      try {
+        localStorage.setItem('exchangeRates', JSON.stringify(newRates));
+        localStorage.setItem('exchangeRatesTime', Date.now().toString());
+      } catch { /* storage unavailable: rates stay in memory */ }
       
       console.log('Exchange rates updated from Edge Function:', newRates);
     } catch (error) {
