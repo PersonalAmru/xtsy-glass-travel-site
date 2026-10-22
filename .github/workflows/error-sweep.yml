@@ -1,0 +1,97 @@
+name: Error sweep — every page (manual)
+
+# On-demand only. Loads every page in the live sitemaps plus the app routes (booking, account,
+# AI planner, franchise, legal) and a 404 probe, and records JavaScript errors, failed requests,
+# broken images and links, HTTP errors and SEO errors. Saves to ci-screenshots:error-sweep/<label>/.
+
+on:
+  workflow_dispatch:
+    inputs:
+      label:
+        description: 'Name for this run'
+        required: true
+        default: 'latest'
+      base_url:
+        description: 'Site to test'
+        required: false
+        default: 'https://xtsy.one'
+      limit:
+        description: 'Test only the first N pages (0 = all)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5]
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${GITHUB_REF_NAME}"
+          git checkout -q FETCH_HEAD
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+      - name: Install dependencies
+        run: bun install --frozen-lockfile || bun install
+      - name: Install Playwright Chromium
+        run: bunx playwright install --with-deps chromium
+      - name: Sweep (shard ${{ matrix.shard }} of 6)
+        run: bunx tsx scripts/audit/error-sweep.ts
+        env:
+          BASE_URL: ${{ inputs.base_url }}
+          OUT_DIR: errors
+          SHARD: ${{ matrix.shard }}
+          SHARDS: 6
+          CONCURRENCY: 2
+          LIMIT: ${{ inputs.limit }}
+      - name: Publish shard results
+        if: always()
+        run: bash scripts/audit/perf-publish.sh "${{ inputs.label }}" errors error-sweep
+
+  merge:
+    needs: [sweep]
+    if: always()
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${GITHUB_REF_NAME}"
+          git checkout -q FETCH_HEAD
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+      - name: Collect shard results from ci-screenshots
+        run: |
+          set -euo pipefail
+          mkdir -p errors /tmp/shards
+          git fetch -q --depth=1 origin ci-screenshots
+          git --work-tree=/tmp/shards checkout FETCH_HEAD -- "error-sweep/${{ inputs.label }}" 2>/dev/null || mkdir -p "/tmp/shards/error-sweep/${{ inputs.label }}"
+          cp /tmp/shards/error-sweep/${{ inputs.label }}/errors-*.json errors/ 2>/dev/null || true
+          ls errors
+      - name: Merge and check internal links
+        run: bun scripts/audit/error-merge.ts
+        env:
+          OUT_DIR: errors
+          BASE_URL: ${{ inputs.base_url }}
+      - name: Publish report
+        run: bash scripts/audit/perf-publish.sh "${{ inputs.label }}" errors error-sweep
