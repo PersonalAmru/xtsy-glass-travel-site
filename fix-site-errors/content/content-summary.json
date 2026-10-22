@@ -30,18 +30,18 @@
   "stale:year": {
    "pages": 1088,
    "examples": [
+    "/xtsy-vs-zostel — 2025 — \"9.4 Booking.com rating 50+ Guests at once NEITA 2025 Nominated, Best Budget-Fr\"",
+    "/xtsy-rentals — 2025 — \"al 7 seats ₹4,000 /day Book on WhatsApp Top End 2025 Premium SUV Mahindra XUV \"",
+    "/privacy-policy — 2023 — \"nt with the Digital Personal Data Protection Act, 2023 (DPDP Act) of India, Gene\"",
     "/about — 2025 — \"y XTSY, India's first stargaze glamp, and a NEITA 2025 nomination..\"",
     "/about — 2025 — \"om ₹399 a night. Recognition Nominated at NEITA 2025 XTSY Traveller’s Hostel \"",
     "/about — 2025 — \"lence Award at the Northeast India Tourism Awards 2025, an initiative of the Eme\"",
     "/about — 2025 — \" North-East Eco Forum (ENEEF), held on 11 October 2025 in Guwahati. Location & \"",
-    "/xtsy-vs-zostel — 2025 — \"9.4 Booking.com rating 50+ Guests at once NEITA 2025 Nominated, Best Budget-Fr\"",
-    "/xtsy-rentals — 2025 — \"al 7 seats ₹4,000 /day Book on WhatsApp Top End 2025 Premium SUV Mahindra XUV \"",
-    "/privacy-policy — 2023 — \"nt with the Digital Personal Data Protection Act, 2023 (DPDP Act) of India, Gene\"",
     "/cheap-hostels-shillong — 2025 — \"ick XTSY ✓ 4.7★ on Google (237 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\"",
-    "/shillong-dormitory — 2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
-    "/shillong-dormitory — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
     "/budget-stay-shillong — 2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
-    "/budget-stay-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
+    "/budget-stay-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
+    "/shillong-dormitory — 2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
+    "/shillong-dormitory — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
    ]
   },
   "placeholder:coming soon": {
@@ -50,32 +50,32 @@
     "/tab-bistro — on. Book a table View the menu WhatsApp us Rooftop terrace · café coming soon North Indian Indo-Chinese Thai Contin",
     "/restaurant-in-shillong —  Dining A rooftop terrace with panoramic views — the rooftop café is coming soon. Traveller's Feast Multi-cuisine din",
     "/zion-backpackers-vs-xtsy — ockers. ✓ XTSY has a rooftop terrace for relaxing; a rooftop café is coming soon. Tour and Travel Services Both hoste",
+    "/destinations/meghalaya/cherrapunji/nohkalikai-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/jowai/krang-suri-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/cherrapunji/wei-sawdong-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/mawlynnong/mawlynnong-village — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/dawki/dawki-umngot-river — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/shillong/laitlum-canyons — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/cherrapunji/nohkalikai-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/shillong/mawphlang-sacred-forest — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/dawki/shnongpdeng — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/cherrapunji/mawsmai-cave — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event"
+    "/destinations/meghalaya/shillong/umiam-lake — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event"
    ]
   },
   "aeo:no FAQ or question headings": {
    "pages": 16,
    "examples": [
     "/xtsy-vs-zostel — ",
+    "/terms-of-service — ",
     "/privacy-policy — ",
     "/pricing-cancellation-policy — ",
-    "/terms-of-service — ",
     "/book — ",
     "/expeditions — ",
     "/merch — ",
-    "/hidden-places-in-meghalaya — ",
     "/meghalaya-couple-tour-package — ",
+    "/hidden-places-in-meghalaya — ",
     "/best-time-to-visit-meghalaya — ",
-    "/shillong-tour-package — ",
-    "/5-day-meghalaya-itinerary — "
+    "/5-day-meghalaya-itinerary — ",
+    "/shillong-tour-package — "
    ]
   },
   "seo:title > 60 chars": {
@@ -97,8 +97,8 @@
   "policy:cancellation/refund claim": {
    "pages": 3,
    "examples": [
-    "/pricing-cancellation-policy — nate room or equivalent property accommodation • Option 3: Full refund (only if accommodation canno",
     "/terms-of-service — e modification, OR Alternate equivalent accommodation, OR Full refund (only if accommodation canno",
+    "/pricing-cancellation-policy — nate room or equivalent property accommodation • Option 3: Full refund (only if accommodation canno",
     "/car-rental-guwahati —  Aadhaar/passport for ID, and a security deposit of ₹5,000 (refundable). Credit card preferred for d"
    ]
   },

@@ -1,15 +1,15 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-DngbqNMD.js",
-      "totalBytes": 428836,
-      "mappedBytes": 417388,
+      "bundleName": ".output/public/assets/index-DOB3v3DL.js",
+      "totalBytes": 428816,
+      "mappedBytes": 417368,
       "unmappedBytes": 11422,
       "eolBytes": 26,
       "sourceMapCommentBytes": 0,
       "files": {
         "../../../node_modules/scheduler/cjs/scheduler.production.js": {
-          "size": 3488
+          "size": 3489
         },
         "../../../node_modules/scheduler/index.js": {
           "size": 28
@@ -27,7 +27,7 @@
           "size": 365
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/new-process-route-tree.js": {
-          "size": 8298
+          "size": 8296
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/scroll-restoration.js": {
           "size": 2450
@@ -36,7 +36,7 @@
           "size": 526
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/rewrite.js": {
-          "size": 635
+          "size": 634
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/stores.js": {
           "size": 656
@@ -45,10 +45,10 @@
           "size": 4550
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/router.js": {
-          "size": 16396
+          "size": 16386
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/load-client.js": {
-          "size": 19505
+          "size": 19497
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/defer.js": {
           "size": 258
@@ -84,22 +84,22 @@
           "size": 59
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/lazyRouteComponent.js": {
-          "size": 440
+          "size": 441
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/not-found.js": {
-          "size": 344
+          "size": 342
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/renderRouteNotFound.js": {
           "size": 205
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/Match.js": {
-          "size": 2431
+          "size": 2429
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/Transitioner.js": {
           "size": 727
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/Matches.js": {
-          "size": 556
+          "size": 555
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/routerStores.js": {
           "size": 68
@@ -114,13 +114,13 @@
           "size": 1976
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/headContentUtils.js": {
-          "size": 1603
+          "size": 1602
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/HeadContent.js": {
           "size": 194
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/Scripts.js": {
-          "size": 400
+          "size": 399
         },
         "../../../node_modules/@tanstack/start-client-core/dist/esm/createMiddleware.js": {
           "size": 297
@@ -201,7 +201,7 @@
           "size": 58
         },
         "../../../node_modules/@radix-ui/react-toast/dist/index.mjs": {
-          "size": 10923
+          "size": 10926
         },
         "../../../src/components/ui/toast.tsx": {
           "size": 2651
@@ -288,7 +288,7 @@
           "size": 558
         },
         "../../../src/routes/__root.tsx": {
-          "size": 10489
+          "size": 10492
         },
         "../../../src/lib/seo-head.ts": {
           "size": 1968
