@@ -14,6 +14,7 @@ import { chromium, type Page } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
 import { CDN_IMAGE_MAP } from '../src/data/cdnImageMap';
+import { blockAnalytics } from './audit/no-analytics';
 
 const BASE = process.env.BASE_URL || 'http://localhost:8080';
 const OUT = path.join(process.env.OUT_DIR || 'shots', 'audit');
@@ -57,6 +58,7 @@ async function perfAudit() {
   const targets: [string, string][] = [...PERF_ROUTES.map((r) => [BASE, r] as [string, string]), ...(process.env.BASELINE_URL ? [[process.env.BASELINE_URL, '/'] as [string, string]] : [])];
   for (const [base, route] of targets) {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+    await blockAnalytics(ctx);
     await ctx.route('**/__l5e/**', async (r) => {
       try {
         const u = new URL(r.request().url());

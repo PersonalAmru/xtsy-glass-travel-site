@@ -15,6 +15,7 @@
 import { chromium, devices, type Browser } from '@playwright/test';
 import fs from 'fs';
 import { sitemapUrls } from './perf-sitemap';
+import { blockAnalytics } from './no-analytics';
 
 const BASE = (process.env.BASE_URL || 'https://xtsy.one').replace(/\/$/, '');
 const OUT = process.env.OUT_DIR || 'perf';
@@ -36,6 +37,7 @@ type Visit = Record<string, unknown> & { lcp: number; bytes: number };
 
 async function visit(browser: Browser, url: string, warm: boolean): Promise<{ cold: Visit; warm?: Visit; uncached: { url: string; kb: number; cc: string }[]; errors: string[] }> {
   const ctx = await browser.newContext({ ...devices['Moto G4'], viewport: { width: 412, height: 823 }, deviceScaleFactor: 1.75, locale: 'en-IN' });
+  await blockAnalytics(ctx);
   // Consent already given, so the privacy bar does not sit over the page while measuring.
   await ctx.addInitScript(`try{localStorage.setItem('xtsy_consent_v2', JSON.stringify({necessary:true,analytics:true,marketing:false,personalization:false,timestamp:new Date().toISOString(),version:'2.0'}))}catch(e){}`);
   await ctx.addInitScript(OBSERVER);

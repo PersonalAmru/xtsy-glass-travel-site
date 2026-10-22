@@ -15,6 +15,7 @@
  */
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { blockAnalytics } from './audit/no-analytics';
 
 const args = process.argv.slice(2);
 const flag = (name: string, fallback?: string) => {
@@ -108,6 +109,7 @@ async function checkHydration(routes: string[]): Promise<Failure[]> {
   const failures: Failure[] = [];
   const browser = await chromium.launch();
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  await blockAnalytics(context);
 
   for (const route of routes) {
     const page = await context.newPage();

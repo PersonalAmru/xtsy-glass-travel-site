@@ -12,6 +12,7 @@
  */
 import { chromium, type Page } from '@playwright/test';
 import fs from 'fs';
+import { blockAnalytics } from './no-analytics';
 
 const BASE = (process.env.BASE_URL || 'https://xtsy.one').replace(/\/$/, '');
 const OUT = process.env.OUT_DIR || 'shots/lcp';
@@ -142,6 +143,7 @@ async function main() {
     for (let i = 0; i < RUNS; i++) {
       const ctx = await browser.newContext({ viewport: { width: 412, height: 823 }, deviceScaleFactor: 1.75, isMobile: true, hasTouch: true,
         userAgent: 'Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36 xtsy-lcp-audit' });
+      await blockAnalytics(ctx);
       await ctx.addInitScript({ content: OBSERVER });
       const page = await ctx.newPage();
       try {

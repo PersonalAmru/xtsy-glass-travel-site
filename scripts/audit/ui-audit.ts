@@ -9,6 +9,7 @@
  */
 import { chromium, type Page } from '@playwright/test';
 import fs from 'fs';
+import { blockAnalytics } from './no-analytics';
 
 const BASE = process.env.BASE_URL || 'http://localhost:4174';
 const OUT = process.env.OUT_DIR || 'shots/ui';
@@ -71,6 +72,7 @@ async function main() {
   const rows: Record<string, unknown>[] = [];
   for (const vp of VPS) {
     const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height }, isMobile: vp.mobile, hasTouch: vp.mobile, reducedMotion: 'reduce' });
+    await blockAnalytics(ctx);
     await ctx.addInitScript({ content: 'window.__name = (f) => f;' });
     await ctx.addInitScript(() => { try { localStorage.setItem('xtsy_consent_v2', JSON.stringify({ necessary: true, analytics: true, marketing: false, personalization: false, timestamp: new Date().toISOString(), version: '2.0' })); } catch { /* */ } });
     await ctx.route('**/__l5e/**', async (route) => { try { const u = new URL(route.request().url()); await route.fulfill({ response: await route.fetch({ url: `https://xtsy.one${u.pathname}` }) }); } catch { await route.continue(); } });

@@ -5,6 +5,7 @@
 import { chromium } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
+import { blockAnalytics } from './audit/no-analytics';
 
 const BASE = process.env.BASE_URL || 'http://localhost:8080';
 const OUT = path.join(process.env.OUT_DIR || 'shots', 'chat');
@@ -14,6 +15,7 @@ async function main() {
   const log: string[] = [];
   const browser = await chromium.launch();
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, reducedMotion: 'reduce' });
+  await blockAnalytics(ctx);
   await ctx.addInitScript(() => { try { localStorage.setItem('xtsy_consent_v2', JSON.stringify({ necessary: true, analytics: true, marketing: false, personalization: false, timestamp: new Date().toISOString(), version: '2.0' })); } catch { /* */ } });
   await ctx.route('**/__l5e/**', async (r) => { try { const u = new URL(r.request().url()); await r.fulfill({ response: await r.fetch({ url: `https://xtsy.one${u.pathname}` }) }); } catch { await r.continue(); } });
   const page = await ctx.newPage();

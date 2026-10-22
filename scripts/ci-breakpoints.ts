@@ -11,6 +11,7 @@
  */
 import { chromium } from '@playwright/test';
 import fs from 'fs';
+import { blockAnalytics } from './audit/no-analytics';
 
 const BASE = process.env.BASE_URL || 'http://localhost:4174';
 const OUT = process.env.OUT_DIR || 'shots/bp';
@@ -31,6 +32,7 @@ async function main() {
   const rows: Record<string, unknown>[] = [];
   for (const vp of VIEWPORTS) {
     const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height }, hasTouch: vp.touch, isMobile: vp.touch && vp.width < 800, reducedMotion: 'reduce' });
+    await blockAnalytics(ctx);
     await ctx.route('**/__l5e/**', async (route) => {
       try { const u = new URL(route.request().url()); await route.fulfill({ response: await route.fetch({ url: `https://xtsy.one${u.pathname}` }) }); } catch { await route.continue(); }
     });
