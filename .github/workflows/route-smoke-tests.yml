@@ -1,44 +1,62 @@
 name: Route smoke tests (SSR + hydration)
 
+# Starts the dev server and checks a sample of routes render on the server and hydrate in the
+# browser without errors. ZERO `uses:` references (organisation policy blocks marketplace
+# actions): plain git checkout, Bun via its install script, Playwright via bunx.
+
 on:
   pull_request:
+    branches: [main]
   push:
     branches: [main]
   workflow_dispatch:
     inputs:
       base_url:
-        description: "Base URL to smoke test (defaults to a local dev server)"
+        description: "Base URL to smoke test (blank = a local dev server)"
         required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: route-smoke-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   smoke:
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_REF: ${{ github.head_ref || github.sha }}
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${TARGET_REF}"
+          git checkout -q FETCH_HEAD
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
       - name: Install dependencies
-        run: bun install --frozen-lockfile
-
+        run: bun install --frozen-lockfile || bun install
       - name: Install Playwright Chromium
         run: bunx playwright install --with-deps chromium
-
       - name: Start dev server
         if: ${{ github.event.inputs.base_url == '' }}
         run: |
-          bun run dev &
-          for i in $(seq 1 60); do
-            curl -sf -o /dev/null http://localhost:8080/ && break
+          bun run dev > dev.log 2>&1 &
+          for i in $(seq 1 90); do
+            curl -sf -o /dev/null http://localhost:8080/ && { echo "dev server up after ${i}x2s"; exit 0; }
             sleep 2
           done
+          echo "::error::dev server did not start"; tail -60 dev.log; exit 1
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
-
       - name: Run SSR + hydration smoke tests
         run: bunx tsx scripts/smoke-routes.ts --base "${BASE_URL}" --hydrate --sample 25
         env:

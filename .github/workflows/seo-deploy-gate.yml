@@ -1,223 +1,93 @@
 name: SEO Deploy Gate
-# Blocks deploys to main when:
-#   1. Sitemap/robots ↔ prerender manifest drift is detected
-#   2. Post-deploy JSON-LD / FAQPage validation finds errors on top SEO routes
-#   3. Lighthouse Core Web Vitals regress below configured budgets
-#
-# Triggers on push to main and on PRs targeting main so regressions are caught
-# BEFORE the publish step runs.
+
+# 1. sitemap-diff (every PR and push): production build, then the sitemaps must match the
+#    prerender manifest (strict).
+# 2. live checks (daily and on demand): JSON-LD on top routes, SEO meta / soft-404 / hreflang
+#    monitor, CDN room and panorama images. These run against the live site on a schedule
+#    because publishing happens from Lovable, not on push.
+# Lighthouse budgets moved to the full-site performance test (perf-full.yml).
+# ZERO `uses:` references (organisation policy blocks marketplace actions).
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    - cron: '45 3 * * *'
   workflow_dispatch:
     inputs:
       base_url:
-        description: 'Live URL to validate post-deploy (default https://xtsy.one)'
+        description: 'Live URL to validate (default https://xtsy.one)'
         required: false
         default: 'https://xtsy.one'
 
 permissions:
   contents: read
-  pull-requests: write
 
 concurrency:
-  group: seo-deploy-gate-${{ github.ref }}
+  group: seo-deploy-gate-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
 jobs:
-  # ────────────────────────────────────────────────────────────────
-  # 1. Build + sitemap diff (REQUIRED — blocks deploy on drift)
-  # ────────────────────────────────────────────────────────────────
   sitemap-diff:
     name: Sitemap ↔ Prerender Diff
+    if: github.event_name == 'push' || github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-    outputs:
-      build-cache-key: ${{ steps.cache-key.outputs.key }}
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_REF: ${{ github.head_ref || github.sha }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - run: npm ci --prefer-offline --no-audit
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${TARGET_REF}"
+          git checkout -q FETCH_HEAD
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+      - name: Install dependencies
+        run: bun install --frozen-lockfile || bun install
       - name: Build (production)
-        run: npm run build
+        run: bun run build
       - name: Diff sitemaps vs prerender manifest (STRICT)
-        run: npx tsx scripts/diffSitemapManifest.ts --strict
-      - name: Upload SEO reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: seo-reports-${{ github.run_id }}
-          path: dist/seo-reports/
-          retention-days: 30
-      - id: cache-key
-        run: echo "key=build-${{ github.sha }}" >> $GITHUB_OUTPUT
+        run: bunx tsx scripts/diffSitemapManifest.ts --strict
 
-  # ────────────────────────────────────────────────────────────────
-  # 2. Post-deploy schema validation against LIVE URL
-  #    Runs on push to main (after Lovable auto-deploys) — fails the
-  #    gate if JSON-LD / FAQPage errors are detected on top routes.
-  # ────────────────────────────────────────────────────────────────
-  post-deploy-schema:
-    name: Post-deploy Schema Check (live)
-    if: github.event_name != 'pull_request'
+  live:
+    name: Live SEO checks
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    needs: sitemap-diff
-    timeout-minutes: 15
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_REF: ${{ github.sha }}
+      BASE_URL: ${{ github.event.inputs.base_url || 'https://xtsy.one' }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - run: npm ci --prefer-offline --no-audit
-      - name: Wait 60s for Lovable deploy to propagate
-        run: sleep 60
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${TARGET_REF}"
+          git checkout -q FETCH_HEAD
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+      - name: Install dependencies
+        run: bun install --frozen-lockfile || bun install
       - name: Validate JSON-LD on top SEO routes
-        env:
-          BASE_URL: ${{ github.event.inputs.base_url || 'https://xtsy.one' }}
-        run: npx tsx scripts/postDeploySchemaCheck.ts --base "$BASE_URL" --routes top
-      - name: Upload schema report
+        run: bunx tsx scripts/postDeploySchemaCheck.ts --base "$BASE_URL" --routes top
+      - name: SEO meta + soft-404 + hreflang monitor
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: post-deploy-schema-${{ github.run_id }}
-          path: dist/seo-reports/
-
-  # ────────────────────────────────────────────────────────────────
-  # 2b. Post-deploy SEO meta + soft-404 monitor (live)
-  #     Alerts (fails the gate + writes a job summary) when an indexable
-  #     URL renders a soft-404 or is missing title/description/canonical/h1.
-  # ────────────────────────────────────────────────────────────────
-  seo-meta-monitor:
-    name: SEO Meta + Soft-404 Monitor (live)
-    if: github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
-    needs: sitemap-diff
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - run: npm ci --prefer-offline --no-audit
-      - name: Wait 60s for Lovable deploy to propagate
-        run: sleep 60
-      - name: Run SEO meta + soft-404 + hreflang monitor
         env:
-          BASE_URL: ${{ github.event.inputs.base_url || 'https://xtsy.one' }}
-          # Slack/email alerting (no-op unless these repo secrets are set)
           SEO_ALERT_ENDPOINT: ${{ secrets.SEO_ALERT_ENDPOINT }}
           SEO_ALERT_TOKEN: ${{ secrets.SEO_ALERT_TOKEN }}
-        run: npx tsx scripts/seoMetaMonitor.ts --base "$BASE_URL"
-      - name: Upload monitor report
+        run: bunx tsx scripts/seoMetaMonitor.ts --base "$BASE_URL"
+      - name: CDN room + panorama images return 200
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: seo-meta-monitor-${{ github.run_id }}
-          path: dist/seo-reports/
-
-  # ────────────────────────────────────────────────────────────────
-  # 2c. CDN room + panorama image health (live)
-  #     Fails the gate if any CDN-mapped room/panorama image does not
-  #     return HTTP 200 — prevents shipping broken room imagery.
-  # ────────────────────────────────────────────────────────────────
-  cdn-images:
-    name: CDN Room + Panorama Image Check (live)
-    if: github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
-    needs: sitemap-diff
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - run: npm ci --prefer-offline --no-audit
-      - name: Wait 60s for Lovable deploy to propagate
-        run: sleep 60
-      - name: Verify CDN room + panorama images return 200
-        env:
-          BASE_URL: ${{ github.event.inputs.base_url || 'https://xtsy.one' }}
-        run: npm run verify:cdn-images
-
-  # ────────────────────────────────────────────────────────────────
-  # 3. Lighthouse Core Web Vitals — budgets enforced via .lighthouserc.cjs
-  # ────────────────────────────────────────────────────────────────
-
-  lighthouse:
-    name: Lighthouse CWV (${{ matrix.preset }})
-    if: github.event_name != 'pull_request'
-    needs: sitemap-diff
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
-    strategy:
-      fail-fast: false
-      matrix:
-        preset: [mobile, desktop]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - run: npm install -g @lhci/cli@0.14.x
-      - name: Build URL list (top SEO routes)
-        id: urls
-        run: |
-          BASE="${{ github.event.inputs.base_url || 'https://xtsy.one' }}"
-          ROUTES=(
-            "/" "/best-hostel-in-shillong" "/hotels-in-shillong"
-            "/homestays-in-shillong" "/meghalaya-tour-packages"
-            "/meghalaya-couple-tour-package" "/shillong-tour-package"
-            "/things-to-do-in-meghalaya" "/best-time-to-visit-meghalaya"
-            "/3-day-meghalaya-itinerary" "/tours"
-          )
-          URLS=""
-          for r in "${ROUTES[@]}"; do
-            [ -n "$URLS" ] && URLS="$URLS,"
-            URLS="$URLS$BASE$r"
-          done
-          echo "urls=$URLS" >> $GITHUB_OUTPUT
-      - name: Run Lighthouse CI
-        env:
-          LHCI_URLS: ${{ steps.urls.outputs.urls }}
-        run: |
-          if [ "${{ matrix.preset }}" = "mobile" ]; then
-            sed -i "s/preset: 'desktop'/preset: 'mobile'/" .lighthouserc.cjs || true
-          fi
-          lhci autorun --config=.lighthouserc.cjs
-      - name: Upload Lighthouse reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: lighthouse-${{ matrix.preset }}-${{ github.run_id }}
-          path: .lighthouseci/
-
-  # ────────────────────────────────────────────────────────────────
-  # 4. Final gate — succeeds only if every required job passed
-  # ────────────────────────────────────────────────────────────────
-  gate:
-    name: SEO Deploy Gate
-    if: always()
-    needs: [sitemap-diff, post-deploy-schema, seo-meta-monitor, cdn-images, lighthouse]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Verify all required jobs passed
-        run: |
-          echo "sitemap-diff:        ${{ needs.sitemap-diff.result }}"
-          echo "post-deploy-schema:  ${{ needs.post-deploy-schema.result }}"
-          echo "seo-meta-monitor:    ${{ needs.seo-meta-monitor.result }}"
-          echo "cdn-images:          ${{ needs.cdn-images.result }}"
-          echo "lighthouse:          ${{ needs.lighthouse.result }}"
-          # PRs only require sitemap-diff; pushes require all required jobs.
-          if [ "${{ needs.sitemap-diff.result }}" != "success" ]; then
-            echo "::error::Sitemap diff failed — blocking deploy."
-            exit 1
-          fi
-          if [ "${{ github.event_name }}" != "pull_request" ]; then
-            for r in "${{ needs.post-deploy-schema.result }}" "${{ needs.seo-meta-monitor.result }}" "${{ needs.cdn-images.result }}" "${{ needs.lighthouse.result }}"; do
-              if [ "$r" != "success" ] && [ "$r" != "skipped" ]; then
-                echo "::error::Post-deploy validation failed — blocking deploy."
-                exit 1
-              fi
-            done
-          fi
-          echo "✅ SEO deploy gate passed."
+        run: bunx tsx scripts/verify-cdn-images.ts

@@ -1,0 +1,41 @@
+# Reviewed gitleaks findings (22 Oct 2026) — none is a secret:
+#  - Supabase anon/publishable key (role=anon, public by design) in .env, scripts, tests, a migration
+#  - placeholders in .env.example; comments naming SUPABASE_SERVICE_ROLE_KEY in scripts
+#  - the IndexNow key (published at /<key>.txt by design)
+#  - browser storage key names (xtsy_*), cache keys and unsubscribe token field names
+# New findings are not covered and fail the Security checks workflow.
+.env.example:generic-secret:10
+.env.example:generic-secret:11
+.env.example:generic-secret:14
+.env.example:generic-secret:3
+.env.example:generic-secret:9
+.env:generic-secret:2
+.env:generic-secret:5
+.env:jwt:2
+.env:jwt:5
+.env:supabase-service-key:2
+.env:supabase-service-key:5
+scripts/audit-supabase-assets.ts:generic-secret:13
+scripts/batchGenerateSEOHeroes.ts:jwt:18
+scripts/batchGenerateSEOHeroes.ts:supabase-service-key:18
+scripts/indexing/indexnow-submit.ts:generic-api-key:14
+scripts/indexing/indexnow-submit.ts:generic-secret:14
+scripts/optimize-and-upload-images.ts:generic-secret:13
+scripts/storage-cache-control.ts:generic-secret:11
+src/components/v2/TripChat.tsx:generic-secret:20
+src/contexts/UserAuthContext.tsx:generic-secret:12
+src/contexts/UserAuthContext.tsx:generic-secret:13
+src/contexts/UserAuthContext.tsx:generic-secret:14
+src/hooks/useConversionSignals.ts:generic-secret:157
+src/lib/seo/tourPageData.ts:generic-secret:24
+src/utils/aiReferralTracking.ts:generic-secret:45
+supabase/functions/fetch-exchange-rates/index.ts:generic-secret:9
+supabase/functions/send-transactional-email/index.ts:generic-secret:249
+supabase/functions/send-transactional-email/index.ts:generic-secret:364
+supabase/functions/seo-crawl-request/index.ts:generic-api-key:19
+supabase/functions/seo-crawl-request/index.ts:generic-secret:19
+supabase/migrations/20260601072100_effebe3c-25b6-476e-9257-9fb36c3e4139.sql:jwt:19
+supabase/migrations/20260601072100_effebe3c-25b6-476e-9257-9fb36c3e4139.sql:supabase-service-key:19
+tests/load/k6-config.js:generic-secret:63
+tests/load/k6-config.js:jwt:63
+tests/load/k6-config.js:supabase-service-key:63
