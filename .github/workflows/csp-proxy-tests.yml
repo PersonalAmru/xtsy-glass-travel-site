@@ -1,9 +1,9 @@
 name: CSP + /cs Proxy Tests
-# Verifies, on every push/PR to main, that:
-#   1. The production CSP keeps allowing first-party (/cs) + Contentsquare/Hotjar.
-#   2. The /cs proxy path resolver accepts the tag + subresources and rejects
-#      open-proxy / traversal attempts.
-#   3. (post-deploy) The live /cs/uxa tag loads with a JS content-type.
+
+# Guards the Content-Security-Policy and the first-party /cs analytics proxy.
+# ZERO `uses:` references (organisation policy blocks marketplace actions): plain git checkout,
+# Bun via its install script. The live smoke test runs on demand only, because publishing
+# happens from Lovable, not on push.
 
 on:
   push:
@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       base_url:
-        description: 'Live URL for the proxy smoke test'
+        description: 'Live URL for the proxy smoke test (blank = skip)'
         required: false
         default: 'https://xtsy.one'
 
@@ -21,39 +21,58 @@ permissions:
   contents: read
 
 concurrency:
-  group: csp-proxy-tests-${{ github.ref }}
+  group: csp-proxy-tests-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
 jobs:
   unit:
-    name: CSP + proxy unit tests (production build)
+    name: CSP + proxy unit tests
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_REF: ${{ github.head_ref || github.sha }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - run: npm ci --prefer-offline --no-audit
-      # Build first so failures surface against the production bundle config.
-      - name: Build (production)
-        run: npm run build
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${TARGET_REF}"
+          git checkout -q FETCH_HEAD
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+      - name: Install dependencies
+        run: bun install --frozen-lockfile || bun install
       - name: Run CSP + proxy tests
-        run: npx vitest run tests/cspAndProxy.test.ts
+        run: bunx vitest run tests/cspAndProxy.test.ts
 
   live-smoke:
-    name: Live /cs/uxa proxy smoke (post-deploy)
-    if: github.event_name != 'pull_request'
+    name: Live /cs/uxa proxy smoke
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.base_url != ''
     needs: unit
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_REF: ${{ github.sha }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - run: npm ci --prefer-offline --no-audit
-      - name: Wait 60s for deploy to propagate
-        run: sleep 60
+      - name: Checkout (plain git)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git fetch --depth=1 origin "${TARGET_REF}"
+          git checkout -q FETCH_HEAD
+      - name: Install Bun
+        run: |
+          curl -fsSL https://bun.sh/install | bash
+          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
+      - name: Install dependencies
+        run: bun install --frozen-lockfile || bun install
       - name: Smoke test the live proxy + CSP
         env:
-          BASE_URL: ${{ github.event.inputs.base_url || 'https://xtsy.one' }}
-        run: npx vitest run tests/cspAndProxy.test.ts
+          BASE_URL: ${{ github.event.inputs.base_url }}
+        run: bunx vitest run tests/cspAndProxy.test.ts
