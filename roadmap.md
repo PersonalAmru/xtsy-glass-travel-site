@@ -43,3 +43,7 @@
 ## Current request 2026-10-21
 - [x] Improve existing Umiam Lake title, description and 10 contextual planning links; verified single self-canonical, unchanged activity/cab rates and working destinations. Publish pending.
 - [x] Improve existing TAB Bistro introduction, meal-planning content and links for restaurants in Shillong; hours/menu unchanged, table-form action verified. 63 booking/redirect tests pass; preview has no page errors. Publish pending.
+
+## Current request 2026-10-22
+- [ ] Link TAB Bistro's Google Business Profile and automatically reconcile published site hours and lunch-preorder wording, with protected scheduling and unchanged name/address/phone.
+- [ ] Verify changed and unchanged syncs, unauthorized rejection, scheduling and existing Bistro request rules; publish required to activate the live callback.

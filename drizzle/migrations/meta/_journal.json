@@ -78,6 +78,13 @@
       "when": 1792412523644,
       "tag": "0010_restore_admin_booking_function_owners_safely",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1792645250505,
+      "tag": "0011_bistro_google_sync_state",
+      "breakpoints": true
     }
   ]
 }

@@ -13,7 +13,7 @@ import { IMG, first } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FaqList, PAD } from '@/components/v2/blocks';
 import { Photo, Marquee, Eyebrow, waLink } from '@/components/v2/primitives';
 import { TableBookingForm } from '@/components/v2/TableBookingForm';
-import { BISTRO_BREAKFAST, BISTRO_EVENING } from '@/data/tabBistroHours';
+import { BISTRO_BREAKFAST, BISTRO_EVENING, BISTRO_HOURS_SENTENCE, BISTRO_LUNCH_DETAILS } from '@/data/tabBistroHours';
 
 const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=TAB+Bistro+by+XTSY+Mawdiangdiang+New+Shillong+Township';
 
@@ -55,7 +55,7 @@ export default function BistroV2() {
               <p className="m-0">Looking for restaurants in Shillong? TAB Bistro by XTSY brings North Indian, Indo-Chinese, Thai, Continental, Italian and Northeast plates to forest dining in New Shillong Township. Browse the menu and request a table for breakfast or dinner.</p>
               <p className="m-0 mt-5 flex items-center gap-2.5 text-[16px] font-bold text-[#EAF0EA]">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
-                Open daily · Breakfast 8:45–11:45 AM · Dinner 4:30–11 PM · Lunch by preorder
+                {BISTRO_HOURS_SENTENCE}
               </p>
             </>
           }
@@ -121,7 +121,7 @@ export default function BistroV2() {
             </div>
             <div className="flex flex-col gap-3">
               <h3 className="m-0 text-[22px] font-extrabold">Lunch — preorder only</h3>
-              <p className="m-0 text-[16px] leading-relaxed text-xt-mute">We are closed for lunch service. Choose “Lunch — preorder only” in the form and share your order; the team confirms availability and price on WhatsApp.</p>
+              <p className="m-0 text-[16px] leading-relaxed text-xt-mute">{BISTRO_LUNCH_DETAILS} Choose “Lunch — preorder only” in the form and share your order; the team confirms availability and price on WhatsApp.</p>
               <Btn to="#book-a-table" kind="outline">Request a lunch preorder</Btn>
             </div>
           </div>
@@ -176,7 +176,7 @@ export default function BistroV2() {
           <div className="xt-reveal flex flex-col gap-3.5 rounded-3xl bg-white p-8 sm:p-10">
             <h2 className="xt-display m-0 text-[44px] leading-none sm:text-[48px]">Find us</h2>
             <p className="m-0 text-[17px] leading-relaxed">Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018 (at XTSY Travellers Hostel)</p>
-            <p className="m-0 text-[17px]">Breakfast 8:45–11:45 AM · Evening & dinner 4:30–11 PM, every day. Lunch by preorder.</p>
+            <p className="m-0 text-[17px]">{BISTRO_HOURS_SENTENCE}</p>
             <p className="m-0 text-[17px]"><a href="tel:+918837317070" className="font-bold text-xt-crimson">+91 88373 17070</a></p>
             <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="text-[15px] font-extrabold text-xt-crimson">Get directions →</a>
           </div>
