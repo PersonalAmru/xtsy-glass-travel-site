@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { getSupabase } from '@/integrations/supabase/lazy';
 import { deferUntilIdle } from '@/utils/deferUntilIdle';
 
 interface HappyGuestsContextValue {
@@ -38,7 +38,7 @@ export const HappyGuestsProvider = ({ children }: { children: ReactNode }) => {
 
     globalFetchPromise = (async () => {
       try {
-        const { data, error: fetchError } = await supabase
+        const { data, error: fetchError } = await (await getSupabase())
           .from('metrics')
           .select('value')
           .eq('key', 'happy_guests')
@@ -70,7 +70,7 @@ export const HappyGuestsProvider = ({ children }: { children: ReactNode }) => {
   const incrementHappyGuests = useCallback(async (): Promise<void> => {
     try {
       setError(null);
-      const { data, error: incrementError } = await supabase.rpc('increment_happy_guests');
+      const { data, error: incrementError } = await (await getSupabase()).rpc('increment_happy_guests');
 
       if (incrementError) {
         console.error('Failed to increment happy guests:', incrementError.message);

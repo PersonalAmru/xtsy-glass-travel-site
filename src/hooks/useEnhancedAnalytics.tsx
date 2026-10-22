@@ -2,7 +2,7 @@ import { readConsent } from '@/lib/consent';
 import { SELF_TRACKING_ENABLED } from '@/lib/selfTracking';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation } from '@/lib/router-compat';
-import { supabase } from '@/integrations/supabase/client';
+import { getSupabase } from '@/integrations/supabase/lazy';
 import { 
   isLovableSession, 
   initLovableSessionDetection, 
@@ -121,7 +121,7 @@ const sendAnalytics = async (endpoint: string, data: Record<string, unknown>) =>
   }
 
   try {
-    await supabase.functions.invoke('track-analytics', {
+    await (await getSupabase()).functions.invoke('track-analytics', {
       body: { endpoint, data },
     });
   } catch (error) {

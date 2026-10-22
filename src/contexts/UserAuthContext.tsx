@@ -5,7 +5,7 @@
  */
 
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, ReactNode } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { getSupabase } from '@/integrations/supabase/lazy';
 import type { User, Session } from '@supabase/supabase-js';
 
 // Session isolation keys
@@ -113,7 +113,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
   // Fetch user profile from our custom table
   const fetchUserProfile = useCallback(async (userId: string): Promise<UserProfile | null> => {
     try {
-      const { data, error: fetchError } = await supabase
+      const { data, error: fetchError } = await (await getSupabase())
         .from('user_profiles')
         .select('*')
         .eq('user_id', userId)
@@ -133,7 +133,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
   const createUserProfileIfNeeded = useCallback(async (supabaseUser: User): Promise<UserProfile | null> => {
     try {
       // Check if profile exists
-      const { data: existing } = await supabase
+      const { data: existing } = await (await getSupabase())
         .from('user_profiles')
         .select('*')
         .eq('user_id', supabaseUser.id)
@@ -142,7 +142,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       if (existing) return existing as UserProfile;
       
       // Create new profile
-      const { data: newProfile, error: createError } = await supabase
+      const { data: newProfile, error: createError } = await (await getSupabase())
         .from('user_profiles')
         .insert({
           user_id: supabaseUser.id,
@@ -168,8 +168,12 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
 
   // Initialize auth state
   useEffect(() => {
+    let subscription: { unsubscribe: () => void } | null = null;
+    let cancelled = false;
+    void getSupabase().then((supabase) => {
+    if (cancelled) return;
     // Set up auth state listener FIRST
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+    ({ data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, currentSession) => {
         // SECURITY: Ignore ALL auth state changes if this is an admin/franchise session
         // This is CRITICAL to prevent admin login from affecting user state
@@ -206,7 +210,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
           setUser(null);
         }
       }
-    );
+    ));
 
     // THEN check for existing session
     supabase.auth.getSession().then(async ({ data: { session: existingSession } }) => {
@@ -239,8 +243,9 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       
       setIsInitialized(true);
     });
+    });
 
-    return () => subscription.unsubscribe();
+    return () => { cancelled = true; subscription?.unsubscribe(); };
   }, [fetchUserProfile, createUserProfileIfNeeded]);
 
   // Sign in with email and password
@@ -253,7 +258,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       localStorage.removeItem(ADMIN_SESSION_KEY);
       localStorage.removeItem(FRANCHISE_SESSION_KEY);
       
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
+      const { data, error: signInError } = await (await getSupabase()).auth.signInWithPassword({
         email: email.trim(),
         password,
       });
@@ -293,7 +298,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       
       console.log('[UserAuth] Attempting signup');
       
-      const { data, error: signUpError } = await supabase.auth.signUp({
+      const { data, error: signUpError } = await (await getSupabase()).auth.signUp({
         email: email.trim(),
         password,
         options: {
@@ -378,7 +383,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     setError(null);
     
     try {
-      const { error: otpError } = await supabase.auth.signInWithOtp({
+      const { error: otpError } = await (await getSupabase()).auth.signInWithOtp({
         email: email.trim(),
         options: {
           emailRedirectTo: `${window.location.origin}/`,
@@ -403,7 +408,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     setError(null);
     
     try {
-      const { data, error: verifyError } = await supabase.auth.verifyOtp({
+      const { data, error: verifyError } = await (await getSupabase()).auth.verifyOtp({
         email: email.trim(),
         token,
         type: 'email',
@@ -434,7 +439,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     setError(null);
     
     try {
-      const { error: resetError } = await supabase.auth.resetPasswordForEmail(
+      const { error: resetError } = await (await getSupabase()).auth.resetPasswordForEmail(
         email.trim(),
         {
           redirectTo: `${window.location.origin}/auth?reset=true`,
@@ -463,7 +468,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
       localStorage.removeItem(ADMIN_SESSION_KEY);
       localStorage.removeItem(FRANCHISE_SESSION_KEY);
       
-      const { error: googleError } = await supabase.auth.signInWithOAuth({
+      const { error: googleError } = await (await getSupabase()).auth.signInWithOAuth({
         provider: 'google',
         options: {
           redirectTo: `${window.location.origin}/`,
@@ -488,7 +493,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     setError(null);
     
     try {
-      const { error: signOutError } = await supabase.auth.signOut();
+      const { error: signOutError } = await (await getSupabase()).auth.signOut();
       
       if (signOutError) {
         throw signOutError;
@@ -523,7 +528,7 @@ export function UserAuthProvider({ children }: UserAuthProviderProps) {
     setError(null);
     
     try {
-      const { error: updateError } = await supabase
+      const { error: updateError } = await (await getSupabase())
         .from('user_profiles')
         .update({
           ...data,

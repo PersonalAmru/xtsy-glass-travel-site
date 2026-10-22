@@ -2,7 +2,7 @@ import { readConsent } from '@/lib/consent';
 import { SELF_TRACKING_ENABLED } from '@/lib/selfTracking';
 import { useEffect, useRef } from 'react';
 import { useLocation } from '@/lib/router-compat';
-import { supabase } from '@/integrations/supabase/client';
+import { getSupabase } from '@/integrations/supabase/lazy';
 
 /**
  * Real User Monitoring — captures LCP/INP/CLS/FCP/TTFB via PerformanceObserver
@@ -53,7 +53,7 @@ const sendSample = async (sample: VitalsSample) => {
   if (!SELF_TRACKING_ENABLED || !readConsent()?.analytics) return;
   try {
     // Prefer fire-and-forget insert to avoid blocking on edge cold-starts
-    await supabase.from('route_performance_metrics').insert(sample as any);
+    await (await getSupabase()).from('route_performance_metrics').insert(sample as any);
   } catch {
     // Silently swallow — RUM must never break the page
   }

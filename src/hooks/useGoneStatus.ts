@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { getSupabase } from '@/integrations/supabase/lazy';
 import { GONE_SLUGS } from "@/data/seoGoneSlugs";
 
 /**
@@ -37,7 +37,7 @@ export function useGoneStatus(
     // Runtime check: is this path flagged 410 in Supabase?
     (async () => {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await (await getSupabase())
           .from("seo_redirects")
           .select("status_code")
           .eq("source_path", normalized)

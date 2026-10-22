@@ -23,7 +23,7 @@ import {
   sendSessionQuality,
   setUserProperties,
 } from '@/utils/ga4Integration';
-import { supabase } from '@/integrations/supabase/client';
+import { getSupabase } from '@/integrations/supabase/lazy';
 import { deferUntilIdle } from '@/utils/deferUntilIdle';
 
 export interface TrafficAnalyticsState {
@@ -82,7 +82,7 @@ export const useTrafficAnalytics = () => {
       const deviceInfo = captureEnterpriseDeviceInfo();
       
       // Update session with device info and defense results
-      await supabase
+      await (await getSupabase())
         .from('traffic_sessions')
         .update({
           defense_layer_1_passed: initialChecks.layer1.passed,
@@ -106,7 +106,7 @@ export const useTrafficAnalytics = () => {
         .eq('session_id', sessionId);
       
       // Check if return visitor
-      const { data: sessionCount } = await supabase.rpc('get_visitor_session_count', {
+      const { data: sessionCount } = await (await getSupabase()).rpc('get_visitor_session_count', {
         _visitor_id: visitorId,
       } as any);
       
@@ -162,13 +162,16 @@ export const useTrafficAnalytics = () => {
       
       // Update session with active scroll data
       if (meetsThreshold && !state.meetsScrollThreshold) {
-        supabase
-          .from('traffic_sessions')
-          .update({
-            active_scroll_seconds: Math.round(activeScrollSeconds),
-            meets_15s_threshold: true,
-          } as any)
-          .eq('session_id', state.sessionId);
+        // Builds the update without awaiting it, exactly as before the client became lazy-loaded.
+        void getSupabase().then((sb) => {
+          sb
+            .from('traffic_sessions')
+            .update({
+              active_scroll_seconds: Math.round(activeScrollSeconds),
+              meets_15s_threshold: true,
+            } as any)
+            .eq('session_id', state.sessionId);
+        });
       }
     }, 5000);
     
@@ -198,7 +201,7 @@ export const useTrafficAnalytics = () => {
     const validation = await defenseEngineRef.current.validateWhatsAppEngagement();
     
     // Update session
-    await supabase
+    await (await getSupabase())
       .from('traffic_sessions')
       .update({
         whatsapp_clicked: true,
@@ -231,7 +234,7 @@ export const useTrafficAnalytics = () => {
     const validation = await defenseEngineRef.current.validateCallEngagement(callDuration);
     
     // Update session
-    await supabase
+    await (await getSupabase())
       .from('traffic_sessions')
       .update({
         call_clicked: true,

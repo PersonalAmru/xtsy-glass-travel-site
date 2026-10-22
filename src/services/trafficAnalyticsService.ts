@@ -6,7 +6,7 @@ import { readConsent } from '@/lib/consent';
  */
 
 import { SELF_TRACKING_ENABLED } from '@/lib/selfTracking';
-import { supabase } from '@/integrations/supabase/client';
+import { getSupabase } from '@/integrations/supabase/lazy';
 
 // =============================================
 // TYPE DEFINITIONS
@@ -433,7 +433,7 @@ class TrafficAnalyticsService {
     
     try {
       // Use type assertion for the insert
-      const { error } = await supabase
+      const { error } = await (await getSupabase())
         .from('traffic_sessions')
         .insert(sessionData as any);
       
@@ -567,12 +567,12 @@ class TrafficAnalyticsService {
     };
     
     try {
-      await supabase
+      await (await getSupabase())
         .from('traffic_page_events')
         .insert(event as any);
       
       // Update session page count
-      await supabase
+      await (await getSupabase())
         .from('traffic_sessions')
         .update({ 
           page_views: this.pageViewCount,
@@ -592,7 +592,7 @@ class TrafficAnalyticsService {
     const timeSpent = Math.round((Date.now() - this.currentPageStartTime) / 1000);
     
     try {
-      await supabase
+      await (await getSupabase())
         .from('traffic_page_events')
         .update({
           exit_timestamp: new Date().toISOString(),
@@ -618,7 +618,7 @@ class TrafficAnalyticsService {
     if (!this.isInitialized || this.isAdminSession()) return;
     
     try {
-      await supabase
+      await (await getSupabase())
         .from('traffic_interaction_events')
         .insert(event as any);
     } catch (err) {
@@ -755,7 +755,7 @@ class TrafficAnalyticsService {
     }
     
     try {
-      await supabase
+      await (await getSupabase())
         .from('traffic_lead_events')
         .insert({
           session_id: this.sessionId,
@@ -793,7 +793,7 @@ class TrafficAnalyticsService {
     if (!this.isInitialized) return;
     
     try {
-      await supabase
+      await (await getSupabase())
         .from('traffic_lead_events')
         .insert({
           session_id: this.sessionId,
@@ -825,7 +825,7 @@ class TrafficAnalyticsService {
     const adjustedValue = (event.conversion_value || 0) * valueMultiplier;
     
     try {
-      await supabase
+      await (await getSupabase())
         .from('traffic_validated_events')
         .insert({
           ...event,
@@ -963,7 +963,7 @@ class TrafficAnalyticsService {
    */
   private async logBotDetection(signals: BotSignal[]): Promise<void> {
     try {
-      await supabase
+      await (await getSupabase())
         .from('bot_detection_logs')
         .insert({
           session_id: this.sessionId,
