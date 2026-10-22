@@ -1,0 +1,142 @@
+{
+ "site": "http://localhost:4174",
+ "pages": 687,
+ "pagesWithFindings": 546,
+ "siteFiles": {
+  "/robots.txt": {
+   "status": 200,
+   "bytes": 2432,
+   "blocksAIBots": false
+  },
+  "/llms.txt": {
+   "status": 200,
+   "bytes": 6421
+  },
+  "/llms-full.txt": {
+   "status": 200,
+   "bytes": 10559
+  }
+ },
+ "info": {
+  "info:check-in time seen": {
+   "11a": 50
+  },
+  "info:check-out time seen": {
+   "10a": 50,
+   "10p": 1,
+   "11a": 1
+  }
+ },
+ "rules": {
+  "stale:year": {
+   "pages": 1088,
+   "examples": [
+    "/xtsy-vs-zostel — 2025 — \"9.4 Booking.com rating 50+ Guests at once NEITA 2025 Nominated, Best Budget-Fr\"",
+    "/xtsy-rentals — 2025 — \"al 7 seats ₹4,000 /day Book on WhatsApp Top End 2025 Premium SUV Mahindra XUV \"",
+    "/privacy-policy — 2023 — \"nt with the Digital Personal Data Protection Act, 2023 (DPDP Act) of India, Gene\"",
+    "/about — 2025 — \"y XTSY, India's first stargaze glamp, and a NEITA 2025 nomination..\"",
+    "/about — 2025 — \"om ₹399 a night. Recognition Nominated at NEITA 2025 XTSY Traveller’s Hostel \"",
+    "/about — 2025 — \"lence Award at the Northeast India Tourism Awards 2025, an initiative of the Eme\"",
+    "/about — 2025 — \" North-East Eco Forum (ENEEF), held on 11 October 2025 in Guwahati. Location & \"",
+    "/cheap-hostels-shillong — 2025 — \"ick XTSY ✓ 4.7★ on Google (237 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\"",
+    "/shillong-dormitory — 2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
+    "/shillong-dormitory — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
+    "/budget-stay-shillong — 2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
+    "/budget-stay-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
+   ]
+  },
+  "placeholder:coming soon": {
+   "pages": 179,
+   "examples": [
+    "/tab-bistro — on. Book a table View the menu WhatsApp us Rooftop terrace · café coming soon North Indian Indo-Chinese Thai Contin",
+    "/restaurant-in-shillong —  Dining A rooftop terrace with panoramic views — the rooftop café is coming soon. Traveller's Feast Multi-cuisine din",
+    "/zion-backpackers-vs-xtsy — ockers. ✓ XTSY has a rooftop terrace for relaxing; a rooftop café is coming soon. Tour and Travel Services Both hoste",
+    "/destinations/meghalaya/cherrapunji/wei-sawdong-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/dawki/dawki-umngot-river — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/mawlynnong/mawlynnong-village — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/shillong/laitlum-canyons — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/cherrapunji/nohkalikai-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/jowai/krang-suri-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/shillong/mawphlang-sacred-forest — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/cherrapunji/mawsmai-cave — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event"
+   ]
+  },
+  "aeo:no FAQ or question headings": {
+   "pages": 14,
+   "examples": [
+    "/xtsy-vs-zostel — ",
+    "/privacy-policy — ",
+    "/terms-of-service — ",
+    "/pricing-cancellation-policy — ",
+    "/merch — ",
+    "/expeditions — ",
+    "/meghalaya-couple-tour-package — ",
+    "/hidden-places-in-meghalaya — ",
+    "/best-time-to-visit-meghalaya — ",
+    "/5-day-meghalaya-itinerary — ",
+    "/budget-trip-to-meghalaya — ",
+    "/shillong-tour-package — "
+   ]
+  },
+  "policy:cancellation/refund claim": {
+   "pages": 5,
+   "examples": [
+    "/terms-of-service — e modification, OR Alternate equivalent accommodation, OR Full refund (only if accommodation canno",
+    "/pricing-cancellation-policy — nate room or equivalent property accommodation • Option 3: Full refund (only if accommodation canno",
+    "/best-hostel-in-shillong — ellation Non-refundable; one date change allowed (see FAQs) Free cancellation more than 8 days ahead",
+    "/best-hostel-in-shillong —  Shillong if you want to be closer to the city centre, need flexible cancellation, or already collec",
+    "/car-rental-guwahati —  Aadhaar/passport for ID, and a security deposit of ₹5,000 (refundable). Credit card preferred for d"
+   ]
+  },
+  "location:\"heart of Shillong\"": {
+   "pages": 2,
+   "examples": [
+    "/shillong-travel-guide —  museum covering all NE India cultures, ₹100 entry ✓ Police Bazaar — Heart of Shillong, shopping, street food, nightlif",
+    "/restaurants-in-police-bazar-shillong — rgaze glamping ensuite, both in Shillong. Police Bazar is the beating heart of Shillong's food scene — restaurants, café"
+   ]
+  },
+  "policy:check-in time": {
+   "pages": 1,
+   "examples": [
+    "/safety-house-rules — n-only stays, 11 AM check-in, strict 10 AM check-out and quiet hours 10 PM–7 AM "
+   ]
+  },
+  "seo:thin (<300 words)": {
+   "pages": 1,
+   "examples": [
+    "/book — 213"
+   ]
+  },
+  "schema:offer price 0": {
+   "pages": 1,
+   "examples": [
+    "/plan-trip-with-ai — {\"@type\":\"Offer\",\"price\":0,\"priceCurrency\":\"INR\"}"
+   ]
+  },
+  "price:king/private room": {
+   "pages": 1,
+   "examples": [
+    "/best-hostel-in-shillong — ₹2993 — \"Double ₹2,399, all inclusive Private rooms; deluxe room listed around ₹2,993 plus taxes on booking sites Women-only dor\""
+   ]
+  },
+  "rating:review count": {
+   "pages": 1,
+   "examples": [
+    "/best-hostel-in-shillong — 481 — \"y, groups of up to 6, no pets Guest rating 4.7★ from 237 Google reviews 7.3/10 on ixigo (481 reviews); 8.0/10 on Hostelworld (24)\""
+   ]
+  },
+  "policy:pets": {
+   "pages": 1,
+   "examples": [
+    "/best-hostel-in-shillong — nd birds welcome, dogs by breed and size 18+ only, groups of up to 6, no pets Guest rating 4.7★ from 237 Google reviews"
+   ]
+  },
+  "price:Experience by XTSY": {
+   "pages": 1,
+   "examples": [
+    "/meghalaya-travel-guide — ₹5000 — \"mium experiences like Experience by XTSY or luxury resorts range from ₹5,000-15,000 per night. ✓ Budget: ₹1,500-2,500/d\""
+   ]
+  }
+ }
+}

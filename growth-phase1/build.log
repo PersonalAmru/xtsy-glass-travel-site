@@ -309,12 +309,12 @@ computing gzip size...
 .output/public/assets/index-C2fhQXyg.js                                        428.72 kB │ gzip: 135.12 kB │ map: 1,630.07 kB
 .output/public/assets/guidePageData-BoWusOu7.js                                890.83 kB │ gzip: 227.64 kB │ map: 1,273.33 kB
 
+[32m✓ built in 6.14s[39m
 [33m[plugin builtin:vite-reporter] 
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 4.94s[39m
 [36mvite v8.2.1 [32mbuilding ssr environment for production...[36m[39m
 [33mWarning: Invalid output options (1 issue found)
 - For the "experimentalMinChunkSize". Invalid key: Expected never but received "experimentalMinChunkSize". [0m
@@ -515,7 +515,7 @@ node_modules/.nitro/vite/services/ssr/assets/guidePageData-DAlUM6Ts.js          
 [39m
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 1.33s[39m
+[32m✓ built in 1.69s[39m
 [start] [nitro] Building [[35mNitro[39m] [2m(preset: `cloudflare-module`, compatibility: `2026-10-22`)[22m
 [success] [nitro] Generated public [36m.output/public[39m
 [36mvite v8.2.1 [32mbuilding nitro environment for production...[36m[39m
@@ -721,11 +721,11 @@ computing gzip size...
 .output/server/_libs/supabase__auth-js.mjs                               312.48 kB │ gzip:  63.71 kB
 .output/server/_libs/@sentry/browser+[...].mjs                           346.93 kB │ gzip:  82.23 kB
 .output/server/_libs/framer-motion.mjs                                   352.40 kB │ gzip:  92.38 kB
-.output/server/index.mjs                                                 415.48 kB │ gzip:  74.23 kB
+.output/server/index.mjs                                                 415.48 kB │ gzip:  74.24 kB
 .output/server/_libs/@tanstack/react-router+[...].mjs                    752.69 kB │ gzip: 159.14 kB
 .output/server/_ssr/guidePageData-DAlUM6Ts.mjs                         1,003.12 kB │ gzip: 242.10 kB
 
-[32m✓ built in 1.66s[39m
+[32m✓ built in 1.86s[39m
 [info] [nitro] Using auto generated worker name: `personalamru-xtsy-glass-travel-site`
 [info] Generated [36m.output/server/wrangler.json[39m
 [info] Generated [36m.wrangler/deploy/config.json[39m

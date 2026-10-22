@@ -83,7 +83,7 @@ wrangler.json
 }
 == .output/nitro.json
 {
-  "date": "2026-10-22T11:58:43.600Z",
+  "date": "2026-10-22T12:02:02.917Z",
   "preset": "cloudflare-module",
   "framework": {
     "name": "nitro",
