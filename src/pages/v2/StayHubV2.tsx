@@ -109,6 +109,8 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
         </div>
       </section>
 
+      {variant === 'hostels' && <HostelComparison />}
+
       <section className={`${PAD} grid gap-8 pb-14 lg:grid-cols-12`}>
         <div className="flex flex-col gap-4 lg:col-span-5">
           <h2 className="xt-display m-0 text-[36px] leading-none sm:text-[48px]">How to choose a hostel in Shillong</h2>
@@ -139,3 +141,54 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
     </PageShell>
   );
 }
+
+/** Side-by-side of the two branded hostels in Shillong. Facts as publicly listed, October 2026. */
+const COMPARE: { label: string; xtsy: string; zostel: string }[] = [
+  { label: 'Area', xtsy: 'New Shillong Township, in the pines near IIM and NIFT; about 30 minutes by road from Police Bazaar', zostel: 'Golf Club area (Pine Villa, LumShyiap), about 2 km from the city centre' },
+  { label: 'Dorm beds', xtsy: '₹399 (8-bed), ₹499 (6-bed), ₹599 (4-bed women-only), all inclusive', zostel: 'Mixed dorms; prices not published on its own website' },
+  { label: 'Private room', xtsy: 'King Double ₹2,399, all inclusive', zostel: 'Private rooms; deluxe room listed around ₹2,993 plus taxes on booking sites' },
+  { label: 'Women-only dorm', xtsy: 'Yes, 4 beds', zostel: 'Female dorm available' },
+  { label: 'Food', xtsy: 'TAB Bistro on site', zostel: 'In-house café; breakfast extra' },
+  { label: 'Check-in / check-out', xtsy: '11 AM / 10 AM', zostel: '1 PM / 10 AM' },
+  { label: 'Cancellation', xtsy: 'Non-refundable; one date change allowed (see FAQs)', zostel: 'Free cancellation more than 8 days ahead (as listed on Hostelworld)' },
+  { label: 'Who can stay', xtsy: 'Groups of 6–60 welcome; cats and birds welcome, dogs by breed and size', zostel: '18+ only, groups of up to 6, no pets' },
+  { label: 'Guest rating', xtsy: '4.7★ from 237 Google reviews', zostel: '7.3/10 on ixigo (481 reviews); 8.0/10 on Hostelworld (24)' },
+];
+
+function HostelComparison() {
+  return (
+    <section className={`${PAD} flex flex-col gap-5 pb-14`} aria-labelledby="compare-hostels">
+      <h2 id="compare-hostels" className="xt-display m-0 text-[36px] leading-none sm:text-[48px]">XTSY or Zostel Shillong? An honest comparison</h2>
+      <p className="m-0 max-w-3xl text-[15px] leading-relaxed text-xt-mute">
+        Shillong has two branded backpacker hostels. Both are good places to meet other travellers; they suit different trips.
+        We run XTSY, so we have kept this to facts each hostel lists publicly (checked October 2026). Check current prices before you book.
+      </p>
+      <div className="overflow-x-auto rounded-xl border border-xt-line">
+        <table className="w-full min-w-[560px] border-collapse text-left text-[14px]">
+          <thead>
+            <tr className="bg-xt-cream text-xt-ink">
+              <th scope="col" className="p-3 font-extrabold"> </th>
+              <th scope="col" className="p-3 font-extrabold">XTSY Travellers Hostel</th>
+              <th scope="col" className="p-3 font-extrabold">Zostel Shillong</th>
+            </tr>
+          </thead>
+          <tbody>
+            {COMPARE.map((r) => (
+              <tr key={r.label} className="border-t border-xt-line align-top">
+                <th scope="row" className="p-3 font-bold text-xt-ink">{r.label}</th>
+                <td className="p-3 text-xt-mute">{r.xtsy}</td>
+                <td className="p-3 text-xt-mute">{r.zostel}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <ul className="m-0 flex list-disc flex-col gap-2 pl-5 text-[15px] leading-relaxed text-xt-mute">
+        <li><strong className="text-xt-ink">Pick Zostel Shillong</strong> if you want to be closer to the city centre, need flexible cancellation, or already collect stays across Zostel's network.</li>
+        <li><strong className="text-xt-ink">Pick XTSY</strong> if you want the lowest published dorm price, a women-only dorm, a restaurant downstairs, an earlier check-in, quieter nights in the pines, or you are travelling as a bigger group or with a pet.</li>
+      </ul>
+      <p className="m-0 text-[15px] text-xt-mute">Travelling solo? <Link to="/tours/meghalaya-group-trip-6n-7d" className="inline-flex min-h-12 items-center font-bold text-xt-crimson underline underline-offset-4">Join the Saturday Meghalaya group trip</Link>.</p>
+    </section>
+  );
+}
+

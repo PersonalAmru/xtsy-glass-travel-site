@@ -5,6 +5,7 @@
  * Triggered from PropertyDetail page with pre-selected rooms
  */
 
+import BookingFacts from '@/components/booking/BookingFacts';
 import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from '@/lib/router-compat';
 import { Helmet } from '@/lib/seo/helmet';
@@ -1129,6 +1130,7 @@ export default function SimplifiedBookingFlow() {
 
   if (currentStep === 'dates') {
     return (
+      <>
       <DateStep
         initialProperty={searchParams.get('property') === 'xtsy-experience' || searchParams.get('location') === 'xtsy-270' ? 'xtsy-experience' : 'xtsy-hostel'}
         onSubmit={(ci, co, property) => {
@@ -1136,6 +1138,8 @@ export default function SimplifiedBookingFlow() {
           setSearchParams({ checkIn: ci, checkOut: co, property, location: property === 'xtsy-experience' ? 'xtsy-270' : 'shillong' });
         }}
       />
+      <BookingFacts />
+      </>
     );
   }
 
