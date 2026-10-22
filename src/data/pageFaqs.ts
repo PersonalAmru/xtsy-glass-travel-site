@@ -67,6 +67,12 @@ export const PAGE_FAQS: Record<string, PageFaq[]> = {
     { q: 'Which is better for groups and pets?', a: 'XTSY takes groups of 6 to 60 and welcomes cats and birds (dogs depending on breed and size). Zostel Shillong lists an 18+ rule, groups of up to 6 and no pets.' },
     { q: 'Do both run group trips?', a: 'Yes. Zostel sells fixed-date Zo Trips. ' + GROUP_TRIP },
   ],
+  '/meghalaya-festivals': [
+    { q: 'What is the most famous festival in Meghalaya?', a: 'Wangala, the Garo 100 Drums Festival near Tura, and Shad Suk Mynsiem, the Khasi spring dance in Shillong, are the best known. Behdienkhlam in Jowai is the biggest Pnar festival.' },
+    { q: 'Which festival can I see from Shillong?', a: 'Shad Suk Mynsiem (usually April) is held in Shillong, the Nongkrem Dance (usually October or November) is at Smit nearby, and the Cherry Blossom Festival (usually November) takes place across the city.' },
+    { q: 'Are festival dates the same every year?', a: 'No. Most follow traditional or agricultural calendars, so confirm the dates for your year before booking. The Hornbill Festival in Nagaland is the exception: it runs 1–10 December every year.' },
+    { q: 'Can XTSY plan a festival trip?', a: 'Yes. XTSY arranges stays, transport and timing from New Shillong, and works with trusted partners for festivals elsewhere in the Northeast.' },
+  ],
   '/pricing-cancellation-policy': [
     { q: 'Can I cancel and get a refund?', a: 'No. There is no free cancellation: the booking amount is non-refundable, and no-shows are treated as cancellations.' },
     { q: 'Can I change my dates instead?', a: 'Yes, once per booking. The new dates must fall within 90 days of the original check-in, you must ask at least 48 hours before check-in, and any rate difference is paid at the time of change.' },

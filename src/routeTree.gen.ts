@@ -68,6 +68,7 @@ import { Route as Xtsy270RouteImport } from './routes/xtsy-270'
 import { Route as XtsyAdventureCampsiteDawkiRouteImport } from './routes/xtsy-adventure-campsite-dawki'
 import { Route as XtsyRentalsRouteImport } from './routes/xtsy-rentals'
 import { Route as XtsyVsZostelRouteImport } from './routes/xtsy-vs-zostel'
+import { Route as MeghalayaFestivalsRouteImport } from './routes/meghalaya-festivals'
 import { Route as BookIndexRouteImport } from './routes/book/index'
 import { Route as BookCampsiteRouteImport } from './routes/book/campsite'
 import { Route as BookSelectRouteImport } from './routes/book/select'
@@ -394,6 +395,11 @@ const XtsyVsZostelRoute = XtsyVsZostelRouteImport.update({
   path: '/xtsy-vs-zostel',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MeghalayaFestivalsRoute = MeghalayaFestivalsRouteImport.update({
+  id: '/meghalaya-festivals',
+  path: '/meghalaya-festivals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BookIndexRoute = BookIndexRouteImport.update({
   id: '/book/',
   path: '/book/',
@@ -571,6 +577,7 @@ export interface FileRoutesByFullPath {
   '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
+  '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -654,6 +661,7 @@ export interface FileRoutesByTo {
   '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
+  '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -738,6 +746,7 @@ export interface FileRoutesById {
   '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
+  '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -823,6 +832,7 @@ export interface FileRouteTypes {
     | '/xtsy-adventure-campsite-dawki'
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
+    | '/meghalaya-festivals'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -906,6 +916,7 @@ export interface FileRouteTypes {
     | '/xtsy-adventure-campsite-dawki'
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
+    | '/meghalaya-festivals'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -989,6 +1000,7 @@ export interface FileRouteTypes {
     | '/xtsy-adventure-campsite-dawki'
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
+    | '/meghalaya-festivals'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -1073,6 +1085,7 @@ export interface RootRouteChildren {
   XtsyAdventureCampsiteDawkiRoute: typeof XtsyAdventureCampsiteDawkiRoute
   XtsyRentalsRoute: typeof XtsyRentalsRoute
   XtsyVsZostelRoute: typeof XtsyVsZostelRoute
+  MeghalayaFestivalsRoute: typeof MeghalayaFestivalsRoute
   BookCampsiteRoute: typeof BookCampsiteRoute
   BookSelectRoute: typeof BookSelectRoute
   FranchiseInstallRoute: typeof FranchiseInstallRoute
@@ -1512,6 +1525,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof XtsyVsZostelRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/meghalaya-festivals': {
+      id: '/meghalaya-festivals'
+      path: '/meghalaya-festivals'
+      fullPath: '/meghalaya-festivals'
+      preLoaderRoute: typeof MeghalayaFestivalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/book/': {
       id: '/book/'
       path: '/book'
@@ -1730,6 +1750,7 @@ const rootRouteChildren: RootRouteChildren = {
   XtsyAdventureCampsiteDawkiRoute: XtsyAdventureCampsiteDawkiRoute,
   XtsyRentalsRoute: XtsyRentalsRoute,
   XtsyVsZostelRoute: XtsyVsZostelRoute,
+  MeghalayaFestivalsRoute: MeghalayaFestivalsRoute,
   BookCampsiteRoute: BookCampsiteRoute,
   BookSelectRoute: BookSelectRoute,
   FranchiseInstallRoute: FranchiseInstallRoute,
