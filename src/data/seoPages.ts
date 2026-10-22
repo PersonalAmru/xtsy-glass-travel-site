@@ -75,12 +75,12 @@ const homestay = (slug: string, title: string, metaDesc: string, h1: string, int
 
 const rental = (slug: string, title: string, metaDesc: string, h1: string, intro: string, sections: SEOSection[], faqs: SEOFaq[], related: string[], keywords: string[]): SEOPageData => ({
   slug, category: 'rentals', title, metaDescription: metaDesc, h1, intro, sections, faqs,
-  schemaType: 'AutoRental', relatedSlugs: related, ctaText: 'Book Now', ctaLink: 'https://wa.me/918787537633?text=Hi, I need a rental vehicle in Shillong', keywords
+  schemaType: 'AutoRental', relatedSlugs: related, ctaText: 'Book Now', ctaLink: 'https://wa.me/918837317070?text=Hi, I need a rental vehicle in Shillong', keywords
 });
 
 const tour = (slug: string, title: string, metaDesc: string, h1: string, intro: string, sections: SEOSection[], faqs: SEOFaq[], related: string[], keywords: string[]): SEOPageData => ({
   slug, category: 'tours', title, metaDescription: metaDesc, h1, intro, sections, faqs,
-  schemaType: 'TouristTrip', relatedSlugs: related, ctaText: 'Book This Package', ctaLink: 'https://wa.me/918787537633?text=Hi, I am interested in a tour package', keywords
+  schemaType: 'TouristTrip', relatedSlugs: related, ctaText: 'Book This Package', ctaLink: 'https://wa.me/918837317070?text=Hi, I am interested in a tour package', keywords
 });
 
 const guide = (slug: string, title: string, metaDesc: string, h1: string, intro: string, sections: SEOSection[], faqs: SEOFaq[], related: string[], keywords: string[]): SEOPageData => ({
@@ -100,7 +100,7 @@ const destination = (slug: string, title: string, metaDesc: string, h1: string, 
 
 const itinerary = (slug: string, title: string, metaDesc: string, h1: string, intro: string, sections: SEOSection[], faqs: SEOFaq[], related: string[], keywords: string[]): SEOPageData => ({
   slug, category: 'itineraries', title, metaDescription: metaDesc, h1, intro, sections, faqs,
-  schemaType: 'TouristTrip', relatedSlugs: related, ctaText: 'Book This Itinerary', ctaLink: 'https://wa.me/918787537633?text=Hi, I want to plan my Meghalaya trip', keywords
+  schemaType: 'TouristTrip', relatedSlugs: related, ctaText: 'Book This Itinerary', ctaLink: 'https://wa.me/918837317070?text=Hi, I want to plan my Meghalaya trip', keywords
 });
 
 const activity = (slug: string, title: string, metaDesc: string, h1: string, intro: string, sections: SEOSection[], faqs: SEOFaq[], related: string[], keywords: string[]): SEOPageData => ({
@@ -1094,9 +1094,12 @@ const BASE_SEO_PAGES: SEOPageData[] = [
 
 import { filterHighQualityPages } from './seoQualityFilter';
 
+import { FESTIVAL_SEO_PAGES } from './seoPagesFestivals';
+
 // Raw set — every programmatic page we know about.
 const RAW_SEO_PAGES_WITH_DUPES: SEOPageData[] = [
   ...PILLAR_PAGES,
+  ...FESTIVAL_SEO_PAGES,
   ...DESTINATION_PAGES,
   ...BASE_SEO_PAGES,
   ...EXPANSION_SEO_PAGES,

@@ -2,6 +2,7 @@
  * Root route — TanStack Start migration of the old index.html <head>,
  * src/main.tsx init code, and src/App.tsx provider stack.
  */
+import { isSyntheticVisit } from "@/lib/analytics/isSynthetic";
 import type { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
 import {
@@ -222,11 +223,7 @@ function initializeNonCritical() {
 
   // Consent-gated Contentsquare loader — first REAL user interaction only;
   // synthetic audit agents (Lighthouse etc.) are skipped.
-  const ua = navigator.userAgent || "";
-  const isSyntheticAudit =
-    /Chrome-Lighthouse|HeadlessChrome|PTST\/|Speed[ -]?Insights|GTmetrix|WebPageTest/i.test(ua) ||
-    (navigator as unknown as { webdriver?: boolean }).webdriver === true ||
-    /[?&](lh|lighthouse)=1\b/.test(window.location.search);
+  const isSyntheticAudit = isSyntheticVisit();
 
   if (!isSyntheticAudit) {
     const loadContentsquare = () => {

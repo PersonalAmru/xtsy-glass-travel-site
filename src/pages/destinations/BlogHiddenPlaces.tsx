@@ -1,5 +1,6 @@
 import { Link } from '@/lib/router-compat';
 import { Helmet } from '@/lib/seo/helmet';
+import PageFaqs from '@/components/seo/PageFaqs';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -46,6 +47,18 @@ const BlogHiddenPlaces = () => (
           slugs={['laitlum-canyons', 'wei-sawdong-falls', 'mawphlang-sacred-forest', 'phe-phe-falls']}
         />
       </div>
+        <div className="container mx-auto px-4 max-w-5xl pb-12">
+        <PageFaqs
+          faqs={[
+          { q: "Which offbeat places in Meghalaya are worth the detour?", a: "Laitlum Canyons for the cliff views, Wei Sawdong for its three-tier falls down a steep bamboo ladder, Mawphlang Sacred Forest for Khasi monoliths and old-growth trees, Phe Phe Falls in the Jaintia Hills, and Krang Suri for its turquoise pool. All are day trips from Shillong." },
+          { q: "Are these places reachable without a car?", a: "Most are not reachable by regular public transport. Shared taxis serve the main towns, but the last stretch to viewpoints and falls usually needs a hired vehicle. The XTSY desk arranges cabs and can group travellers heading the same way." },
+          { q: "Do offbeat spots in Meghalaya charge entry fees?", a: "Many are run by the village community and charge a small entry or parking fee, typically \u20b920-100 per person, often collected in cash. Carry small notes, as mobile networks and UPI are unreliable away from the main roads." },
+          { q: "Is it safe to visit remote spots in Meghalaya?", a: "Generally yes, but go early, tell someone your plan, and come back before dark; the roads have no lighting and mist falls quickly. Several trails, including Wei Sawdong, involve steep ladders and slippery rock in the monsoon. Hire a local guide where the village offers one." },
+          { q: "What should I carry for a day of offbeat exploring?", a: "Shoes with grip, a rain layer in any season, cash in small notes, water and snacks, and a power bank. Network coverage drops outside the towns, so download offline maps before you leave Shillong." },
+          ]}
+        />
+        </div>
+
     </main>
     <Footer />
   </div>

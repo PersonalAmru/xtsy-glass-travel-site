@@ -50,6 +50,8 @@ async function checkPage(browser: Browser, path: string, source: string): Promis
   // Treat the visitor as having chosen cookies already, so the consent bar does not hide content.
   await ctx.addInitScript(`try{localStorage.setItem('xtsy_consent_v2',JSON.stringify({necessary:true,analytics:true,marketing:false,personalization:false,timestamp:new Date().toISOString(),version:'2.0'}))}catch(e){}`);
   await ctx.addInitScript('globalThis.__name = (f) => f;');
+  // Keep the sweep out of the site's own analytics (see src/lib/analytics/isSynthetic.ts).
+  await ctx.addInitScript("try{localStorage.setItem('xtsy_no_track','1')}catch(e){}");
   const page: Page = await ctx.newPage();
   const jsErrors: string[] = [];
   const consoleErrors: string[] = [];
