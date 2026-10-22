@@ -11,12 +11,14 @@
 export const BISTRO_BREAKFAST = { opens: '08:45', closes: '11:45', label: '8:45 AM – 11:45 AM' } as const;
 export const BISTRO_EVENING = { opens: '16:30', closes: '23:00', label: '4:30 PM – 11 PM' } as const;
 
+export const BISTRO_LUNCH_DETAILS = 'Closed for lunch service; lunch preorders are accepted subject to confirmation.';
+
 /** Short display string for chips, cards and footers. */
 export const BISTRO_HOURS_SHORT = `Breakfast ${BISTRO_BREAKFAST.label} · Dinner ${BISTRO_EVENING.label}`;
 
 /** Sentence form for descriptions and FAQs. */
 export const BISTRO_HOURS_SENTENCE =
-  'Open daily for breakfast 8:45 AM – 11:45 AM and evening & dinner 4:30 PM – 11 PM. Closed for lunch — lunch preorders accepted.';
+  `Open daily for breakfast ${BISTRO_BREAKFAST.label} and evening & dinner ${BISTRO_EVENING.label}. ${BISTRO_LUNCH_DETAILS}`;
 
 /** Compact form for meta descriptions. */
 export const BISTRO_HOURS_META = 'Breakfast 8:45–11:45 AM & dinner 4:30–11 PM daily; lunch by preorder.';
