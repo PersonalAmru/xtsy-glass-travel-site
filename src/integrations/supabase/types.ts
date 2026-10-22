@@ -773,6 +773,36 @@ export type Database = {
           },
         ]
       }
+      bistro_google_sync_state: {
+        Row: {
+          callback_token: string
+          id: boolean
+          last_checked_at: string | null
+          last_error: string | null
+          last_synced_at: string | null
+          lease_until: string | null
+          synced_payload: string | null
+        }
+        Insert: {
+          callback_token: string
+          id?: boolean
+          last_checked_at?: string | null
+          last_error?: string | null
+          last_synced_at?: string | null
+          lease_until?: string | null
+          synced_payload?: string | null
+        }
+        Update: {
+          callback_token?: string
+          id?: boolean
+          last_checked_at?: string | null
+          last_error?: string | null
+          last_synced_at?: string | null
+          lease_until?: string | null
+          synced_payload?: string | null
+        }
+        Relationships: []
+      }
       blocked_dates: {
         Row: {
           blocked: boolean
@@ -5827,6 +5857,7 @@ export type Database = {
           suspicious_indicators: string[]
         }[]
       }
+      claim_bistro_google_sync: { Args: never; Returns: boolean }
       classify_traffic_session: {
         Args: {
           p_active_scroll_seconds: number
