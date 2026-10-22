@@ -48,15 +48,13 @@ jobs:
       - name: Start dev server
         if: ${{ github.event.inputs.base_url == '' }}
         run: |
-          bun run dev > dev.log 2>&1 &
+          # Public Supabase settings come from .env (empty secrets would override them).
+          (bun run dev > dev.log 2>&1 &)
           for i in $(seq 1 90); do
             curl -sf -o /dev/null http://localhost:8080/ && { echo "dev server up after ${i}x2s"; exit 0; }
             sleep 2
           done
           echo "::error::dev server did not start"; tail -60 dev.log; exit 1
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
       - name: Run SSR + hydration smoke tests
         run: bunx tsx scripts/smoke-routes.ts --base "${BASE_URL}" --hydrate --sample 25
         env:

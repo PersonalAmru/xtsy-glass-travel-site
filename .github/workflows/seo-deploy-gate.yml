@@ -1,18 +1,15 @@
 name: SEO Deploy Gate
 
-# 1. sitemap-diff (every PR and push): production build, then the sitemaps must match the
-#    prerender manifest (strict).
-# 2. live checks (daily and on demand): JSON-LD on top routes, SEO meta / soft-404 / hreflang
-#    monitor, CDN room and panorama images. These run against the live site on a schedule
-#    because publishing happens from Lovable, not on push.
+# Live checks (daily and on demand): JSON-LD on top routes, SEO meta / soft-404 / hreflang
+# monitor, CDN room and panorama images. They run against the live site on a schedule because
+# publishing happens from Lovable, not on push.
+# The old strict "sitemap vs prerender manifest" diff was retired: the site is server-rendered,
+# so there is no prerender manifest; build-check.yml already checks every sitemap URL on each
+# pull request's build.
 # Lighthouse budgets moved to the full-site performance test (perf-full.yml).
 # ZERO `uses:` references (organisation policy blocks marketplace actions).
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
   schedule:
     - cron: '45 3 * * *'
   workflow_dispatch:
@@ -30,36 +27,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  sitemap-diff:
-    name: Sitemap ↔ Prerender Diff
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    env:
-      GH_TOKEN: ${{ github.token }}
-      TARGET_REF: ${{ github.head_ref || github.sha }}
-    steps:
-      - name: Checkout (plain git)
-        run: |
-          set -euo pipefail
-          git init -q .
-          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git fetch --depth=1 origin "${TARGET_REF}"
-          git checkout -q FETCH_HEAD
-      - name: Install Bun
-        run: |
-          curl -fsSL https://bun.sh/install | bash
-          echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
-      - name: Install dependencies
-        run: bun install --frozen-lockfile || bun install
-      - name: Build (production)
-        run: bun run build
-      - name: Diff sitemaps vs prerender manifest (STRICT)
-        run: bunx tsx scripts/diffSitemapManifest.ts --strict
-
   live:
     name: Live SEO checks
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
