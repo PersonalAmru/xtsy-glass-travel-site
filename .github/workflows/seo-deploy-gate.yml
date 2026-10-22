@@ -52,8 +52,8 @@ jobs:
       - name: Validate JSON-LD on top SEO routes
         run: |
           set -o pipefail
-          bunx tsx scripts/postDeploySchemaCheck.ts --base "$BASE_URL" --routes top 2>&1 | tee schema.log
-          rc=$?
+          rc=0
+          bunx tsx scripts/postDeploySchemaCheck.ts --base "$BASE_URL" --routes top 2>&1 | tee schema.log || rc=$?
           if [ $rc -ne 0 ]; then grep -iE 'fail|error|✗|❌|missing|invalid|mismatch' schema.log | head -40 | sed 's/^/::error::/'; fi
           exit $rc
       - name: SEO meta + soft-404 + hreflang monitor
@@ -63,8 +63,8 @@ jobs:
           SEO_ALERT_TOKEN: ${{ secrets.SEO_ALERT_TOKEN }}
         run: |
           set -o pipefail
-          bunx tsx scripts/seoMetaMonitor.ts --base "$BASE_URL" 2>&1 | tee seo.log
-          rc=$?
+          rc=0
+          bunx tsx scripts/seoMetaMonitor.ts --base "$BASE_URL" 2>&1 | tee seo.log || rc=$?
           if [ $rc -ne 0 ]; then grep -iE 'fail|error|✗|❌|missing|invalid|mismatch' seo.log | head -40 | sed 's/^/::error::/'; fi
           exit $rc
       - name: CDN room + panorama images return 200
