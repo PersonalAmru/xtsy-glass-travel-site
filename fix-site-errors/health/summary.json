@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-10-22T06:59:08.586Z",
+ "checkedAt": "2026-10-22T07:20:55.067Z",
  "site": "http://localhost:4174",
  "sitemaps": [
   {
@@ -60,8 +60,8 @@
   "old dorm price  on page": 683,
   "long title": 3
  },
- "medianMs": 44,
- "p95Ms": 91,
+ "medianMs": 39,
+ "p95Ms": 89,
  "withStructuredData": 684,
  "withQuickAnswer": 495,
  "extra": {
