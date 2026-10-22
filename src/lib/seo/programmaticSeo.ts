@@ -18,7 +18,7 @@ import { CLUSTERS, PLACES, type Place } from '@/lib/travel/places';
 import { fromXtsy } from '@/lib/travel/routing';
 
 const SITE = 'https://xtsy.one';
-export const SEO_CONTENT_UPDATED = '2026-09-27';
+export const SEO_CONTENT_UPDATED = '2026-10-22';
 
 export const CATEGORY_LABELS: Record<string, string> = {
   hostels: 'Hostels', hotels: 'Hotels', homestays: 'Homestays', glamping: 'Glamping',
