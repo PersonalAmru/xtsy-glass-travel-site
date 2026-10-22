@@ -1,7 +1,7 @@
 {
  "site": "https://xtsy.one",
- "pages": 671,
- "pagesWithFindings": 556,
+ "pages": 686,
+ "pagesWithFindings": 548,
  "siteFiles": {
   "/robots.txt": {
    "status": 200,
@@ -10,107 +10,72 @@
   },
   "/llms.txt": {
    "status": 200,
-   "bytes": 6081
+   "bytes": 6421
   },
   "/llms-full.txt": {
    "status": 200,
-   "bytes": 10209
+   "bytes": 10559
   }
  },
  "info": {
   "info:check-in time seen": {
-   "11a": 46
+   "11a": 48
   },
   "info:check-out time seen": {
-   "10a": 47
+   "10a": 49,
+   "10p": 1
   }
  },
  "rules": {
   "stale:year": {
    "pages": 1088,
    "examples": [
-    "/xtsy-vs-zostel — 2025 — \"9.4 Booking.com rating 50+ Guests at once NEITA 2025 Nominated, Best Budget-Fr\"",
     "/about — 2025 — \"y XTSY, India's first stargaze glamp, and a NEITA 2025 nomination..\"",
-    "/about — 2025 — \"om ₹389 a night. Recognition Nominated at NEITA 2025 XTSY Traveller’s Hostel \"",
+    "/about — 2025 — \"om ₹399 a night. Recognition Nominated at NEITA 2025 XTSY Traveller’s Hostel \"",
     "/about — 2025 — \"lence Award at the Northeast India Tourism Awards 2025, an initiative of the Eme\"",
     "/about — 2025 — \" North-East Eco Forum (ENEEF), held on 11 October 2025 in Guwahati. Location & \"",
+    "/xtsy-vs-zostel — 2025 — \"9.4 Booking.com rating 50+ Guests at once NEITA 2025 Nominated, Best Budget-Fr\"",
     "/xtsy-rentals — 2025 — \"al 7 seats ₹4,000 /day Book on WhatsApp Top End 2025 Premium SUV Mahindra XUV \"",
     "/privacy-policy — 2023 — \"nt with the Digital Personal Data Protection Act, 2023 (DPDP Act) of India, Gene\"",
     "/cheap-hostels-shillong — 2025 — \"ick XTSY ✓ 4.7★ on Google (237 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\"",
-    "/shillong-dormitory — 2025 — \"hillong Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
+    "/shillong-dormitory — 2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
     "/shillong-dormitory — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
-    "/solo-travel-hostel-shillong — 2025 — \"hillong Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
-    "/solo-travel-hostel-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
+    "/couples-hostel-shillong — 2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
+    "/couples-hostel-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
    ]
   },
   "placeholder:coming soon": {
    "pages": 179,
    "examples": [
+    "/tab-bistro — der Book a table View the menu WhatsApp us Rooftop terrace · café coming soon North Indian Indo-Chinese Thai Contin",
     "/restaurant-in-shillong —  Dining A rooftop terrace with panoramic views — the rooftop café is coming soon. Traveller's Feast Multi-cuisine din",
-    "/tab-bistro — AM – 10:30 PM Reserve a table View the menu Rooftop terrace · café coming soon North Indian Indo-Chinese Thai Contin",
     "/zion-backpackers-vs-xtsy — ockers. ✓ XTSY has a rooftop terrace for relaxing; a rooftop café is coming soon. Tour and Travel Services Both hoste",
+    "/destinations/meghalaya/cherrapunji/nohkalikai-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/jowai/krang-suri-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/cherrapunji/wei-sawdong-falls — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/mawlynnong/mawlynnong-village — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/dawki/dawki-umngot-river — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/shillong/mawphlang-sacred-forest — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
     "/destinations/meghalaya/shillong/laitlum-canyons — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/shillong/umiam-lake — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
-    "/destinations/meghalaya/dawki/shnongpdeng — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event"
-   ]
-  },
-  "aeo:no concise answer paragraph under H1": {
-   "pages": 51,
-   "examples": [
-    "/female-travellers — 84",
-    "/work-from-home — 153",
-    "/about — 166",
-    "/xtsy-rentals — 144",
-    "/expeditions — 187",
-    "/solo-travel-hostel-shillong — 124",
-    "/hostel-near-police-bazar-shillong — 140",
-    "/budget-stay-shillong — 171",
-    "/group-stay-shillong — 183",
-    "/isabella-hostel-vs-xtsy — 187",
-    "/zion-backpackers-vs-xtsy — 188",
-    "/stargaze-hostel-vs-xtsy — 180"
+    "/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/shillong/mawphlang-sacred-forest — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/dawki/shnongpdeng — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/shillong/shillong-peak — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event",
+    "/destinations/meghalaya/cherrapunji/mawsmai-cave — ne dining, breakfast and café favourites, with a rooftop terrace café coming soon. Explore the Menu → Catering & Event"
    ]
   },
   "aeo:no FAQ or question headings": {
-   "pages": 19,
+   "pages": 16,
    "examples": [
     "/xtsy-vs-zostel — ",
-    "/privacy-policy — ",
     "/terms-of-service — ",
     "/pricing-cancellation-policy — ",
-    "/meghalaya-adventure-tour — ",
-    "/4x4-expedition-meghalaya — ",
-    "/motorbike-expedition-northeast-india — ",
-    "/merch — ",
+    "/expeditions — ",
+    "/book — ",
     "/meghalaya-couple-tour-package — ",
+    "/hidden-places-in-meghalaya — ",
+    "/merch — ",
     "/shillong-tour-package — ",
+    "/5-day-meghalaya-itinerary — ",
     "/best-time-to-visit-meghalaya — ",
-    "/hidden-places-in-meghalaya — "
-   ]
-  },
-  "price:8-bed dorm": {
-   "pages": 5,
-   "examples": [
-    "/cheap-hostels-shillong — ₹499 — \"tel in Shillong per night? + At XTSY, dorm beds are ₹389 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the Kin\"",
-    "/cheap-hostels-shillong — ₹599 — \", dorm beds are ₹389 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the King Double room ₹2,200, and Experience \"",
-    "/best-hostel-in-shillong — ₹499 — \"tel in Shillong per night? + At XTSY, dorm beds are ₹389 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the Kin\"",
-    "/best-hostel-in-shillong — ₹599 — \", dorm beds are ₹389 (8-bed) and ₹499 (6-bed), the women-only dorm is ₹599, the King Double room ₹2,200, and Experience \"",
-    "/faq — ₹599 — \"have? + 6 and 8-bed mixed dorms from ₹389, a 4-bed female-only dorm (₹599), King Double private rooms and Experience by\""
-   ]
-  },
-  "price:dorm \"from\" price": {
-   "pages": 4,
-   "examples": [
-    "/hostel-booking — ₹430 — \" at XTSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission adde\"",
-    "/hostel-booking — ₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission added to \"",
-    "/hostel-near-me — ₹430 — \" at XTSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission adde\"",
-    "/hostel-near-me — ₹450 — \"TSY Hostelworld / OTAs Price per dorm bed From ₹389 — base rate ₹430–₹450 after 15–18% commission Commission added to \""
+    "/privacy-policy — "
    ]
   },
   "policy:cancellation/refund claim": {
@@ -121,12 +86,27 @@
     "/car-rental-guwahati —  Aadhaar/passport for ID, and a security deposit of ₹5,000 (refundable). Credit card preferred for d"
    ]
   },
-  "seo:thin (<300 words)": {
+  "seo:title > 60 chars": {
    "pages": 3,
    "examples": [
-    "/gallery — 288",
-    "/meghalaya-photo-gallery — 265",
-    "/book — 60"
+    "/safety-house-rules — 61: Hostel Safety & House Rules — XTSY Travellers Hostel Shillong",
+    "/faq — 62: Hostel FAQs — Shillong Rates, Safety & WhatsApp Booking | XTSY",
+    "/cheap-hostels-shillong — 64: Budget-Friendly Hostels in Shillong — Dorm Beds from ₹399 | XTSY"
+   ]
+  },
+  "seo:description > 160 chars": {
+   "pages": 3,
+   "examples": [
+    "/tab-bistro — 207: Forest dining at TAB Bistro, New Shillong Township. North Indian, Indo-Chinese, Thai, Cont…",
+    "/best-time-to-visit-meghalaya — 163: Month-by-month weather, rainfall and crowd guide for Meghalaya, plus the best windows for …",
+    "/cheap-hostels-shillong — 166: Budget-friendly hostel in Shillong? XTSY dorm beds from ₹399, women-only dorm, lockers, Wi…"
+   ]
+  },
+  "seo:thin (<300 words)": {
+   "pages": 2,
+   "examples": [
+    "/book — 60",
+    "/meghalaya-photo-gallery — 271"
    ]
   },
   "location:\"heart of Shillong\"": {
@@ -136,29 +116,22 @@
     "/restaurants-in-police-bazar-shillong — rgaze glamping ensuite, both in Shillong. Police Bazar is the beating heart of Shillong's food scene — restaurants, café"
    ]
   },
-  "price:king/private room": {
-   "pages": 2,
-   "examples": [
-    "/dawki-umngot-river-guide — ₹1500 — \"00-1,500/person including meals ✓ Kayaking: 1-2 hours on the Umngot, ₹1,500-2,500/person ✓ Cliff jumping: 5-15 meter j\"",
-    "/shnongpdeng-camping — ₹1500 — \"enture sports center: ✓ Kayaking: 1-2 hours on crystal-clear Umngot, ₹1,500-3,000/person ✓ Cliff jumping: 5-15 meter j\""
-   ]
-  },
-  "price:female dorm": {
+  "policy:check-in time": {
    "pages": 1,
    "examples": [
-    "/ — ₹389 — \"ortheast Workation Pet-friendly Women safe stays 30+ tours Dorms from ₹389 Experience by XTSY TAB Bistro Partner stays a\""
-   ]
-  },
-  "schema:offer price 0": {
-   "pages": 1,
-   "examples": [
-    "/plan-trip-with-ai — {\"@type\":\"Offer\",\"price\":0,\"priceCurrency\":\"INR\"}"
+    "/safety-house-rules — n-only stays, 11 AM check-in, strict 10 AM check-out and quiet hours 10 PM–7 AM "
    ]
   },
   "aeo:no \"New Shillong Township\" entity mention": {
    "pages": 1,
    "examples": [
     "/book — "
+   ]
+  },
+  "schema:offer price 0": {
+   "pages": 1,
+   "examples": [
+    "/plan-trip-with-ai — {\"@type\":\"Offer\",\"price\":0,\"priceCurrency\":\"INR\"}"
    ]
   },
   "location:wrong area": {
