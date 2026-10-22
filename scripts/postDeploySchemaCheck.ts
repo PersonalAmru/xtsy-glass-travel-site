@@ -68,12 +68,11 @@ export const TOP_SEO_ROUTES = [
   '/faq',
 ];
 
-// Routes that MUST have a FAQPage block.
+// Routes that MUST have a FAQPage block (they show FAQs on the page; FAQ markup without
+// visible questions breaks Google's guidelines, so pages without FAQs are not listed).
 const FAQ_REQUIRED = new Set<string>([
   '/best-hostel-in-shillong',
   '/hotels-in-shillong',
-  '/meghalaya-tour-packages',
-  '/shillong-tour-package',
   '/faq',
   '/things-to-do-in-meghalaya',
 ]);
