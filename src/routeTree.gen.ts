@@ -69,6 +69,7 @@ import { Route as XtsyAdventureCampsiteDawkiRouteImport } from './routes/xtsy-ad
 import { Route as XtsyRentalsRouteImport } from './routes/xtsy-rentals'
 import { Route as XtsyVsZostelRouteImport } from './routes/xtsy-vs-zostel'
 import { Route as MeghalayaFestivalsRouteImport } from './routes/meghalaya-festivals'
+import { Route as PartnerStaysRouteImport } from './routes/partner-stays'
 import { Route as BookIndexRouteImport } from './routes/book/index'
 import { Route as BookCampsiteRouteImport } from './routes/book/campsite'
 import { Route as BookSelectRouteImport } from './routes/book/select'
@@ -400,6 +401,11 @@ const MeghalayaFestivalsRoute = MeghalayaFestivalsRouteImport.update({
   path: '/meghalaya-festivals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PartnerStaysRoute = PartnerStaysRouteImport.update({
+  id: '/partner-stays',
+  path: '/partner-stays',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BookIndexRoute = BookIndexRouteImport.update({
   id: '/book/',
   path: '/book/',
@@ -578,6 +584,7 @@ export interface FileRoutesByFullPath {
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
   '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
+  '/partner-stays': typeof PartnerStaysRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -662,6 +669,7 @@ export interface FileRoutesByTo {
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
   '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
+  '/partner-stays': typeof PartnerStaysRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -747,6 +755,7 @@ export interface FileRoutesById {
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
   '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
+  '/partner-stays': typeof PartnerStaysRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -833,6 +842,7 @@ export interface FileRouteTypes {
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
     | '/meghalaya-festivals'
+    | '/partner-stays'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -917,6 +927,7 @@ export interface FileRouteTypes {
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
     | '/meghalaya-festivals'
+    | '/partner-stays'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -1001,6 +1012,7 @@ export interface FileRouteTypes {
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
     | '/meghalaya-festivals'
+    | '/partner-stays'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -1086,6 +1098,7 @@ export interface RootRouteChildren {
   XtsyRentalsRoute: typeof XtsyRentalsRoute
   XtsyVsZostelRoute: typeof XtsyVsZostelRoute
   MeghalayaFestivalsRoute: typeof MeghalayaFestivalsRoute
+  PartnerStaysRoute: typeof PartnerStaysRoute
   BookCampsiteRoute: typeof BookCampsiteRoute
   BookSelectRoute: typeof BookSelectRoute
   FranchiseInstallRoute: typeof FranchiseInstallRoute
@@ -1532,6 +1545,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MeghalayaFestivalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/partner-stays': {
+      id: '/partner-stays'
+      path: '/partner-stays'
+      fullPath: '/partner-stays'
+      preLoaderRoute: typeof PartnerStaysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/book/': {
       id: '/book/'
       path: '/book'
@@ -1751,6 +1771,7 @@ const rootRouteChildren: RootRouteChildren = {
   XtsyRentalsRoute: XtsyRentalsRoute,
   XtsyVsZostelRoute: XtsyVsZostelRoute,
   MeghalayaFestivalsRoute: MeghalayaFestivalsRoute,
+  PartnerStaysRoute: PartnerStaysRoute,
   BookCampsiteRoute: BookCampsiteRoute,
   BookSelectRoute: BookSelectRoute,
   FranchiseInstallRoute: FranchiseInstallRoute,

@@ -47,6 +47,8 @@ const COLS = [
       { to: '/merch', label: 'Merch' },
       { to: '/destination-wedding-shillong', label: 'Destination weddings' },
       { to: '/xtsy-vs-zostel', label: 'XTSY vs Zostel' },
+      { to: '/partner-stays', label: 'Become a partner stay' },
+      { to: '/meghalaya-festivals', label: 'Meghalaya festivals' },
       { to: '/about', label: 'About us' },
     ],
   },
