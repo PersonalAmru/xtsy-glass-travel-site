@@ -1,0 +1,21 @@
+{
+ "checkedAt": "2026-10-22T07:56:51.044Z",
+ "site": "https://xtsy.one",
+ "pages": 702,
+ "sitemapPages": 684,
+ "appRoutes": 17,
+ "statusCounts": {
+  "200": 701,
+  "404": 1
+ },
+ "pagesWithHigh": 0,
+ "pagesWithMedium": 35,
+ "pagesClean": 667,
+ "distinctErrors": 4,
+ "byKind": {
+  "Console error": 2,
+  "Failed request": 2
+ },
+ "internalLinksChecked": 12,
+ "brokenInternalLinks": 0
+}
