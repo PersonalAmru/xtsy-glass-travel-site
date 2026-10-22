@@ -308,7 +308,7 @@ computing gzip size...
 - Using dynamic import() to code-split the application
 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 5.93s[39m
+[32m✓ built in 5.65s[39m
 [36mvite v8.2.1 [32mbuilding ssr environment for production...[36m[39m
 [2Ktransforming...✓ 520 modules transformed.
 rendering chunks...
@@ -502,7 +502,7 @@ node_modules/.nitro/vite/services/ssr/assets/guidePageData-BlqZbzN-.js          
 [39m
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 2.53s[39m
+[32m✓ built in 2.21s[39m
 [start] [nitro] Building [[35mNitro[39m] [2m(preset: `cloudflare-module`, compatibility: `2026-10-22`)[22m
 [success] [nitro] Generated public [36m.output/public[39m
 [36mvite v8.2.1 [32mbuilding nitro environment for production...[36m[39m
@@ -705,11 +705,11 @@ computing gzip size...
 .output/server/_libs/supabase__auth-js.mjs                               312.48 kB │ gzip:  63.71 kB
 .output/server/_libs/@sentry/browser+[...].mjs                           346.93 kB │ gzip:  82.23 kB
 .output/server/_libs/framer-motion.mjs                                   352.40 kB │ gzip:  92.38 kB
-.output/server/index.mjs                                                 414.50 kB │ gzip:  74.49 kB
+.output/server/index.mjs                                                 414.50 kB │ gzip:  74.66 kB
 .output/server/_libs/@tanstack/react-router+[...].mjs                    751.82 kB │ gzip: 158.95 kB
 .output/server/_ssr/guidePageData-BlqZbzN-.mjs                         1,003.10 kB │ gzip: 242.10 kB
 
-[32m✓ built in 2.06s[39m
+[32m✓ built in 3.38s[39m
 [info] [nitro] Using auto generated worker name: `personalamru-xtsy-glass-travel-site`
 [info] Generated [36m.output/server/wrangler.json[39m
 [info] Generated [36m.wrangler/deploy/config.json[39m
