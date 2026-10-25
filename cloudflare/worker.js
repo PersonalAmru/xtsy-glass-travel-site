@@ -339,9 +339,11 @@ export default {
     // zone has Early Hints enabled, Cloudflare converts this into a 103 hint
     // sent before the origin HTML — measurably cuts mobile LCP.
     if (path === '/' || path === '') {
+      // Must stay in step with HERO_IMAGE.mobile.avifSrc in src/data/v2Images.ts. Preloading
+      // anything else costs every visitor an extra download of an image that is never shown.
       newResponse.headers.append(
         'Link',
-        '</lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high'
+        '</img/o/xtsy-property-images-8-portrait-828.avif>; rel=preload; as=image; type=image/avif; fetchpriority=high'
       );
     }
     return newResponse;
