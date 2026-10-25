@@ -255,7 +255,7 @@ export const useEnhancedAnalytics = () => {
       };
 
       navigator.sendBeacon(
-        `${import.meta.env.VITE_SUPABASE_URL || 'https://oidnydyyjyjfnyadhyzn.supabase.co'}/functions/v1/track-analytics`,
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/track-analytics`,
         JSON.stringify(data)
       );
     };

@@ -13,9 +13,11 @@
 import { ALL_SEO_PAGES } from '../src/data/seoPages';
 import type { SEOPageData, SEOPageCategory } from '../src/data/seoPages';
 
-const FN_URL = 'https://oidnydyyjyjfnyadhyzn.supabase.co/functions/v1/generate-seo-hero';
-const ANON =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9pZG55ZHl5anlqZm55YWRoeXpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA1MDEwNTUsImV4cCI6MjA2NjA3NzA1NX0.olHw9wNl8VNv-nM6heYMDpJJTARy9RxF30tvBfNLZNc';
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
+if (!SUPABASE_URL) throw new Error('VITE_SUPABASE_URL is not set');
+const FN_URL = `${SUPABASE_URL}/functions/v1/generate-seo-hero`;
+const ANON = process.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+if (!ANON) throw new Error('VITE_SUPABASE_PUBLISHABLE_KEY is not set');
 
 // Commercial-intent ranking — higher = more revenue per impression.
 const CATEGORY_PRIORITY: Partial<Record<SEOPageCategory, number>> = {
