@@ -30,8 +30,11 @@ id = "${CF_KV_SLIM_MAP_ID}"
 
 # ─── Vars consumed by worker.js (legacy redirect resolver fallback) ───────────
 [vars]
-SUPABASE_URL = "https://yqicimrurvgsynvmxckb.supabase.co"
-SUPABASE_FUNCTIONS_HOST = "https://yqicimrurvgsynvmxckb.functions.supabase.co"
+# These must match the project the app uses (supabase/config.toml). They pointed at a
+# retired project, so the worker's redirect lookups and /cs proxy were calling a host that
+# does not run seo-redirect-resolver or cs-proxy. Both URLs are public, not secrets.
+SUPABASE_URL = "https://kzhsxemkntfwsakhkylt.supabase.co"
+SUPABASE_FUNCTIONS_HOST = "https://kzhsxemkntfwsakhkylt.functions.supabase.co"
 # SUPABASE_ANON_KEY is injected at deploy time via `wrangler deploy --var` in
 # the workflow (kept out of source). Worker tolerates it being absent.
 
