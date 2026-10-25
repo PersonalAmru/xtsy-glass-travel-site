@@ -395,7 +395,7 @@ supabase/
 
 ### Backend
 - Edge functions deploy automatically
-- Supabase project: `oidnydyyjyjfnyadhyzn`
+- Supabase project: set per environment via `VITE_SUPABASE_URL` / `VITE_SUPABASE_PROJECT_ID` (never hardcode a project reference; the legacy `oidnydyyjyjfnyadhyzn` project was retired)
 
 ---
 

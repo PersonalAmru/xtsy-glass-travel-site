@@ -8,7 +8,8 @@ import fs from 'fs';
 import path from 'path';
 
 // Supabase configuration
-const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://oidnydyyjyjfnyadhyzn.supabase.co';
+const supabaseUrl = process.env.VITE_SUPABASE_URL;
+if (!supabaseUrl) throw new Error('VITE_SUPABASE_URL is not set');
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 
 if (!supabaseServiceKey) {
