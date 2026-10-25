@@ -47,3 +47,8 @@
 ## Current request 2026-10-22
 - [ ] Link TAB Bistro's Google Business Profile and automatically reconcile published site hours and lunch-preorder wording, with protected scheduling and unchanged name/address/phone.
 - [ ] Verify changed and unchanged syncs, unauthorized rejection, scheduling and existing Bistro request rules; publish required to activate the live callback.
+
+## Current request 2026-10-25
+- [ ] Implement listing corrections and honest review requests for genuine recent guests; Hostelworld editing access, channel-specific terms and eligible recipients need confirmation.
+- [ ] Share existing stay and arrival pages through labelled links; active social accounts, audience and sending access need confirmation. Do not repeat completed hostel SEO edits or create duplicate pages.
+- [ ] Check that booking enquiries save and hand off to WhatsApp with no on-site payment requirement.
