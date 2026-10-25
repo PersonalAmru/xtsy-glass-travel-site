@@ -338,7 +338,6 @@ export default {
     // Emits a Link: rel=preload for the hero AVIF on the homepage. When the
     // zone has Early Hints enabled, Cloudflare converts this into a 103 hint
     // sent before the origin HTML — measurably cuts mobile LCP.
-    const path = new URL(request.url).pathname;
     if (path === '/' || path === '') {
       newResponse.headers.append(
         'Link',
