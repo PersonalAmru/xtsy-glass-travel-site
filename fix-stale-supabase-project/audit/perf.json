@@ -2,11 +2,11 @@
  {
   "route": "/",
   "status": 200,
-  "wallMs": 9836,
-  "ttfb": 15,
-  "fcp": 1420,
+  "wallMs": 9728,
+  "ttfb": 13,
+  "fcp": 1316,
   "lcp": {
-   "t": 1420,
+   "t": 1316,
    "size": 249600,
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-828.avif",
    "tag": "IMG",
@@ -15,7 +15,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1420,
+    "t": 1316,
     "size": 249600,
     "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-828.avif",
     "tag": "IMG",
@@ -27,7 +27,7 @@
   "shifts": [
    {
     "v": 0.0086,
-    "t": 3242,
+    "t": 3099,
     "nodes": [
      "DIV.max-w-5xl"
     ],
@@ -40,7 +40,7 @@
    },
    {
     "v": 0.0003,
-    "t": 3413,
+    "t": 3272,
     "nodes": [
      "A.xt-btn flex h-14 items-center gap-2.5 rounded-full bg-xt-paper pl-4 pr-6 text-[1",
      "DIV.flex items-center gap-2"
@@ -164,11 +164,11 @@
  {
   "route": "/best-hostel-in-shillong",
   "status": 200,
-  "wallMs": 9968,
-  "ttfb": 7,
-  "fcp": 1220,
+  "wallMs": 9952,
+  "ttfb": 9,
+  "fcp": 1180,
   "lcp": {
-   "t": 1220,
+   "t": 1180,
    "size": 72910,
    "url": "",
    "tag": "P",
@@ -177,7 +177,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1220,
+    "t": 1180,
     "size": 72910,
     "url": "",
     "tag": "P",
@@ -185,34 +185,21 @@
     "text": "For most travellers a top pick in Shillong is XTSY Traveller"
    }
   ],
-  "cls": 0.018,
+  "cls": 0.02,
   "shifts": [
    {
-    "v": 0.0005,
-    "t": 2956,
-    "nodes": [
-     "#text."
-    ],
-    "rects": [
-     "14,232 362x120 -> 14,229 362x120"
-    ],
-    "text": [
-     "Hostels in Shillong"
-    ]
-   },
-   {
-    "v": 0.0172,
-    "t": 3015,
+    "v": 0.0197,
+    "t": 2920,
     "nodes": [
      "DIV.rounded-[22px] bg-xt-blush p-5",
-     "H1.xt-display m-0 text-[56px] leading-[0.9] sm:text-[88px]",
+     "#text.",
      "IMG.absolute inset-0 h-full w-full object-cover",
      "svg.[object SVGAnimatedString]",
      "DIV.flex flex-wrap gap-2"
     ],
     "rects": [
      "14,357 362x296 -> 14,336 362x296",
-     "14,229 362x120 -> 14,208 362x120",
+     "14,232 362x120 -> 14,208 362x120",
      "14,740 362x104 -> 14,719 362x125",
      "166,719 210x125 -> 166,719 210x125",
      "14,670 362x42 -> 14,649 362x42"
@@ -227,7 +214,7 @@
    },
    {
     "v": 0.0004,
-    "t": 3066,
+    "t": 3049,
     "nodes": [
      "DIV.flex items-center gap-2",
      "A.xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-ink px-6 tex",
@@ -357,11 +344,11 @@
  {
   "route": "/cheap-hostels-shillong",
   "status": 200,
-  "wallMs": 10000,
-  "ttfb": 19,
-  "fcp": 1208,
+  "wallMs": 9968,
+  "ttfb": 14,
+  "fcp": 1168,
   "lcp": {
-   "t": 1208,
+   "t": 1168,
    "size": 65892,
    "url": "",
    "tag": "P",
@@ -370,7 +357,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1208,
+    "t": 1168,
     "size": 65892,
     "url": "",
     "tag": "P",
@@ -382,7 +369,7 @@
   "shifts": [
    {
     "v": 0.0417,
-    "t": 2948,
+    "t": 2930,
     "nodes": [
      "DIV.rounded-[22px] bg-xt-blush p-5",
      "#text.",
@@ -407,7 +394,7 @@
    },
    {
     "v": 0.0005,
-    "t": 3038,
+    "t": 3020,
     "nodes": [
      "DIV.flex items-center gap-2",
      "A.xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-ink px-6 tex",
@@ -537,11 +524,11 @@
  {
   "route": "/shillong-dormitory",
   "status": 200,
-  "wallMs": 9594,
-  "ttfb": 17,
-  "fcp": 1196,
+  "wallMs": 9585,
+  "ttfb": 14,
+  "fcp": 1164,
   "lcp": {
-   "t": 1196,
+   "t": 1164,
    "size": 81295,
    "url": "",
    "tag": "P",
@@ -550,7 +537,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1196,
+    "t": 1164,
     "size": 81295,
     "url": "",
     "tag": "P",
@@ -562,7 +549,7 @@
   "shifts": [
    {
     "v": 0.004,
-    "t": 2919,
+    "t": 2958,
     "nodes": [
      "#text.",
      "#text."
@@ -578,7 +565,7 @@
    },
    {
     "v": 0.001,
-    "t": 3044,
+    "t": 3076,
     "nodes": [
      "DIV.flex items-center gap-2",
      "A.xt-btn flex h-11 items-center rounded-full border-[1.5px] border-xt-ink px-5 tex",
@@ -711,11 +698,11 @@
  {
   "route": "/xtsy-270",
   "status": 200,
-  "wallMs": 10420,
+  "wallMs": 10399,
   "ttfb": 6,
-  "fcp": 1244,
+  "fcp": 1180,
   "lcp": {
-   "t": 1364,
+   "t": 1328,
    "size": 64074,
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-900.avif",
    "tag": "IMG",
@@ -724,7 +711,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1244,
+    "t": 1180,
     "size": 48927,
     "url": "",
     "tag": "H1",
@@ -732,7 +719,7 @@
     "text": "Experience by XTSY"
    },
    {
-    "t": 1364,
+    "t": 1328,
     "size": 64074,
     "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-900.avif",
     "tag": "IMG",
@@ -744,7 +731,7 @@
   "shifts": [
    {
     "v": 0.0094,
-    "t": 3205,
+    "t": 3248,
     "nodes": [
      "#text.",
      "#text.",
@@ -763,7 +750,7 @@
    },
    {
     "v": 0.0006,
-    "t": 3391,
+    "t": 3437,
     "nodes": [
      "DIV.flex items-center gap-2",
      "A.xt-btn inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 text",
@@ -890,11 +877,11 @@
  {
   "route": "https://xtsy.one/",
   "status": 200,
-  "wallMs": 11154,
-  "ttfb": 1504,
-  "fcp": 3808,
+  "wallMs": 11096,
+  "ttfb": 1481,
+  "fcp": 3848,
   "lcp": {
-   "t": 4184,
+   "t": 4148,
    "size": 249600,
    "url": "https://xtsy.one/img/o/xtsy-property-images-8-portrait-828.avif",
    "tag": "IMG",
@@ -903,7 +890,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 3808,
+    "t": 3848,
     "size": 2618,
     "url": "",
     "tag": "A",
@@ -911,7 +898,7 @@
     "text": "Dorm beds from ₹399/night"
    },
    {
-    "t": 3868,
+    "t": 3900,
     "size": 38556,
     "url": "",
     "tag": "H1",
@@ -919,7 +906,7 @@
     "text": "XTSY Travellers Hostel"
    },
    {
-    "t": 4184,
+    "t": 4148,
     "size": 249600,
     "url": "https://xtsy.one/img/o/xtsy-property-images-8-portrait-828.avif",
     "tag": "IMG",
@@ -929,7 +916,7 @@
   ],
   "cls": 0,
   "shifts": [],
-  "requests": 98,
+  "requests": 99,
   "byType": {
    "document": {
     "n": 1,
@@ -956,7 +943,7 @@
     "kb": 0
    },
    "other": {
-    "n": 1,
+    "n": 2,
     "kb": 0
    }
   },
