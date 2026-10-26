@@ -17,9 +17,12 @@ import urllib.error
 import urllib.request
 
 BASE = "https://api.cloudflare.com/client/v4"
-TOKEN = os.environ.get("CLOUDFLARE_API_TOKEN", "")
-ACCOUNT = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "")
-ZONE_NAME = os.environ.get("VERIFY_ZONE_NAME", "xtsy.one")
+# .strip() matters: a secret pasted with a trailing newline makes urllib reject
+# the Authorization header outright ("Invalid header value"), while wrangler
+# tolerates it — so the same token appears to work in one place and not the other.
+TOKEN = os.environ.get("CLOUDFLARE_API_TOKEN", "").strip()
+ACCOUNT = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "").strip()
+ZONE_NAME = os.environ.get("VERIFY_ZONE_NAME", "xtsy.one").strip()
 
 
 def api(path):
