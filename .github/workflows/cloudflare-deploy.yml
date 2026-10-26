@@ -104,8 +104,17 @@ jobs:
             fs.writeFileSync("kv-slim-bulk.json", JSON.stringify(out));
             console.log(`prepared ${out.length} slim-map entries`);
           '
-          npx -y wrangler@latest kv bulk put --binding=SEO_SLIM_MAP kv-slim-bulk.json
+          # --remote is required. Without it wrangler v4 writes to the runner's
+          # throwaway .wrangler/state folder and exits 0, so the production
+          # namespace never receives the map and the step still looks green.
+          set -o pipefail
+          rc=0
+          npx -y wrangler@latest kv bulk put --binding=SEO_SLIM_MAP --remote kv-slim-bulk.json 2>&1 | tee kv.log || rc=$?
           rm -f kv-slim-bulk.json
+          if [ $rc -ne 0 ]; then
+            grep -iE 'error|Authentication|\[code: [0-9]+\]' kv.log | head -20 | sed 's/^/::error::KV: /'
+            exit $rc
+          fi
 
       - name: Show which permissions the token actually has
         working-directory: cloudflare
