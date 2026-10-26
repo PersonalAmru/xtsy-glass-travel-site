@@ -92,7 +92,27 @@ jobs:
             < wrangler.toml > wrangler.rendered.toml
           mv wrangler.rendered.toml wrangler.toml
           echo "── Rendered wrangler.toml ──"
-          grep -E '^(name|id|pattern|binding)' wrangler.toml || true
+          grep -E '^(name|pattern|binding)' wrangler.toml || true
+          # The two KV ids come from secrets, so GitHub masks them in the log and
+          # a bad value is invisible. Report the shape plus the last 4 characters
+          # (not a credential) so a wrong or empty id can be spotted and matched
+          # against the dashboard without printing the whole value.
+          fail=0
+          check_id() {
+            label="$1"; value="$2"
+            if [ -z "$value" ]; then
+              echo "::error::$label is empty — the secret is not set"
+              fail=1
+            elif ! printf '%s' "$value" | grep -qE '^[0-9a-f]{32}$'; then
+              echo "::error::$label is not a 32-character hex namespace id (length ${#value})"
+              fail=1
+            else
+              echo "::notice::$label looks valid, ends ...$(printf '%s' "$value" | tail -c 4)"
+            fi
+          }
+          check_id CF_KV_PRERENDER_ID "$(grep -A2 'PRERENDER_CACHE' wrangler.toml | grep '^id' | cut -d'"' -f2)"
+          check_id CF_KV_SLIM_MAP_ID  "$(grep -A2 'SEO_SLIM_MAP' wrangler.toml | grep '^id' | cut -d'"' -f2)"
+          exit $fail
 
       - name: Upload slim SEO map to KV (bulk)
         working-directory: cloudflare
