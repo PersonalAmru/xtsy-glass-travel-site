@@ -165,7 +165,18 @@ jobs:
       - name: Verify edge rewrite is live (samples 20 URLs)
         run: |
           export PATH="$HOME/.bun/bin:$PATH"
-          bunx tsx scripts/verifyEdgeRewrite.ts
+          set -o pipefail
+          rc=0
+          bunx tsx scripts/verifyEdgeRewrite.ts 2>&1 | tee verify.log || rc=$?
+          # The script's verdict lines are the whole diagnosis, and the raw job
+          # log is not reachable through the API here, so promote the failing
+          # lines and the summary into check annotations.
+          if [ $rc -ne 0 ]; then
+            grep -E '^(.| )*(MISSING|fetch error)' verify.log | head -10 | sed 's/^/::error::/' || true
+            sed -n '/── Summary ──/,$p' verify.log | sed 's/^/::error::/' || true
+            exit $rc
+          fi
+          sed -n '/── Summary ──/,$p' verify.log | sed 's/^/::notice::/' || true
         env:
           VERIFY_BASE_URL: https://xtsy.one
           VERIFY_SAMPLE_SIZE: "20"
