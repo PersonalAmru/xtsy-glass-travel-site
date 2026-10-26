@@ -8,6 +8,9 @@
  * Route: xtsy.one/* (after pointing DNS through Cloudflare)
  */
 
+// Build stamp, set at deploy time so the probe identifies the version.
+const BUILD_STAMP = '2026-10-26T19:34Z';
+
 // Bot user-agent patterns
 const BOT_AGENTS = [
   'googlebot', 'bingbot', 'yandexbot', 'duckduckbot', 'slurp',
@@ -198,6 +201,21 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const userAgent = request.headers.get('user-agent') || '';
+
+    // --- Liveness probe (temporary, diagnostic) ---------------------------
+    // Returns before every other code path, so a response here proves the
+    // route dispatches to this Worker at all. Remove once the edge is
+    // confirmed working; it exposes nothing and is not linked anywhere.
+    if (url.pathname === '/__xtsy_worker_probe') {
+      return new Response(`worker-alive deployed-at=${BUILD_STAMP}`, {
+        status: 200,
+        headers: {
+          'content-type': 'text/plain;charset=utf-8',
+          'cache-control': 'no-store',
+          'x-rendered-by': 'cf-probe',
+        },
+      });
+    }
 
     // Skip for non-HTML requests (assets, API calls, etc.)
     const path = url.pathname;

@@ -116,6 +116,10 @@ jobs:
 
       - name: Upload slim SEO map to KV (bulk)
         working-directory: cloudflare
+        # The free plan caps KV writes per day. Running out is a reason to skip
+        # refreshing the map, not a reason to block a Worker code deploy, so let
+        # this step report and continue rather than failing the job.
+        continue-on-error: true
         run: |
           node -e '
             const fs = require("fs");
