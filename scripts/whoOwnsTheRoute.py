@@ -84,24 +84,38 @@ def main():
                 script = r.get("script") or "(none)"
                 note(f"route {pattern} -> worker {script}")
 
-    # A Worker route only fires on traffic Cloudflare actually proxies. If the
-    # record is "DNS only" (grey cloud) the request goes straight to the origin
-    # and the route is inert no matter how correctly it is configured.
-    if zid:
-        recs, err = api(f"zones/{zid}/dns_records?per_page=100")
-        if err:
-            warn(f"could not list DNS records (token may lack Zone:DNS:Read): {err}")
-        else:
-            interesting = [
-                r for r in (recs or [])
-                if r.get("name") in (ZONE_NAME, f"www.{ZONE_NAME}")
-                and r.get("type") in ("A", "AAAA", "CNAME")
-            ]
-            if not interesting:
-                warn(f"no A/AAAA/CNAME record for {ZONE_NAME} or www.{ZONE_NAME}")
-            for r in interesting:
-                state = "PROXIED" if r.get("proxied") else "DNS-ONLY (worker routes inert)"
-                note(f"dns {r.get('type')} {r.get('name')} -> {r.get('content')} [{state}]")
+    # Whether Cloudflare proxies this hostname needs no API permission: a
+    # proxied response always carries cf-ray. Absent cf-ray means the record is
+    # "DNS only", the edge never sees the request, and the Worker route above is
+    # inert however correctly it is configured.
+    for host in (ZONE_NAME, f"www.{ZONE_NAME}"):
+        try:
+            req = urllib.request.Request(
+                f"https://{host}/",
+                headers={"user-agent": "XTSY-RouteDiagnostic/1.0"},
+            )
+            with urllib.request.urlopen(req, timeout=20) as r:
+                h = r.headers
+                cf_ray = h.get("cf-ray")
+                server = h.get("server", "")
+                rendered = h.get("x-rendered-by", "")
+            if cf_ray:
+                note(
+                    f"{host}: PROXIED by Cloudflare (server={server}), "
+                    f"x-rendered-by={rendered or 'MISSING'}"
+                )
+                if not rendered:
+                    warn(
+                        f"{host} is proxied and the route points at xtsy-prerender, "
+                        "but the Worker set no header - it is not executing"
+                    )
+            else:
+                warn(
+                    f"{host}: NOT proxied by Cloudflare (no cf-ray, server={server or 'unknown'}) "
+                    "- Worker routes are inert on this hostname"
+                )
+        except Exception as e:
+            warn(f"{host}: probe failed: {e}")
 
     if not ACCOUNT:
         warn("CLOUDFLARE_ACCOUNT_ID not set; cannot list Worker custom domains")
