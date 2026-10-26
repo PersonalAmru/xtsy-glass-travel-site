@@ -1,0 +1,29 @@
+# Read-only Cloudflare diagnostic.
+#
+# Separate from cloudflare-deploy.yml on purpose: that workflow bulk-writes the
+# slim SEO map to KV on every run, and the free plan caps KV writes per day, so
+# re-running a full deploy just to read a route or a header exhausts the quota.
+# This job writes nothing and deploys nothing.
+name: Cloudflare diagnostic (read-only)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CLOUDFLARE_NEW_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout repository (plain git, no third-party action)
+        run: |
+          git init -q .
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git -c protocol.version=2 fetch -q --depth=1 origin "${GITHUB_SHA}"
+          git checkout -q FETCH_HEAD
+
+      - name: Who serves xtsy.one, and is the edge in the path
+        run: python3 scripts/whoOwnsTheRoute.py
