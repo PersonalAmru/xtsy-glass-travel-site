@@ -108,11 +108,20 @@ jobs:
       - name: Deploy worker
         working-directory: cloudflare
         run: |
+          set -o pipefail
+          rc=0
           if [ -n "$SUPABASE_ANON_KEY" ]; then
-            npx -y wrangler@latest deploy --var SUPABASE_ANON_KEY:"$SUPABASE_ANON_KEY"
+            npx -y wrangler@latest deploy --var SUPABASE_ANON_KEY:"$SUPABASE_ANON_KEY" 2>&1 | tee deploy.log || rc=$?
           else
-            npx -y wrangler@latest deploy
+            npx -y wrangler@latest deploy 2>&1 | tee deploy.log || rc=$?
           fi
+          # Wrangler's reason for refusing is the useful part: put it in the check annotations
+          # so a failed deploy explains itself without opening the raw log.
+          if [ $rc -ne 0 ]; then
+            grep -iE 'error|✘|unauthorized|forbidden|not found|invalid|binding|namespace|route|zone' deploy.log \
+              | head -25 | sed 's/^/::error::/'
+          fi
+          exit $rc
 
       - name: Verify edge rewrite is live (samples 20 URLs)
         run: |
