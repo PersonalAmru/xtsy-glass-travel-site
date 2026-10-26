@@ -162,6 +162,10 @@ jobs:
           fi
           exit $rc
 
+      - name: Who owns the xtsy.one route (diagnostic, read-only)
+        continue-on-error: true
+        run: bash scripts/whoOwnsTheRoute.sh
+
       - name: Verify edge rewrite is live (samples 20 URLs)
         run: |
           export PATH="$HOME/.bun/bin:$PATH"
