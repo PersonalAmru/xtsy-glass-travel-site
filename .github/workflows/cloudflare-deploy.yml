@@ -107,6 +107,14 @@ jobs:
           npx -y wrangler@latest kv bulk put --binding=SEO_SLIM_MAP kv-slim-bulk.json
           rm -f kv-slim-bulk.json
 
+      - name: Show which permissions the token actually has
+        working-directory: cloudflare
+        continue-on-error: true
+        run: |
+          # `whoami` lists the token's permission groups. If the deploy fails on auth,
+          # this says exactly which one is missing (Workers Scripts needs Edit).
+          npx -y wrangler@latest whoami 2>&1 | tee whoami.log | sed 's/^/::notice::/'
+
       - name: Deploy worker
         working-directory: cloudflare
         run: |
