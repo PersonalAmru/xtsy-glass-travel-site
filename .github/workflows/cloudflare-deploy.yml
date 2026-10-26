@@ -38,7 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      # Prefer the conventional name (wrangler reads it from the environment itself);
+      # fall back to CLOUDFLARE_NEW_TOKEN so a token saved under that name still works.
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CLOUDFLARE_NEW_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CF_KV_PRERENDER_ID: ${{ secrets.CF_KV_PRERENDER_ID }}
       CF_KV_SLIM_MAP_ID: ${{ secrets.CF_KV_SLIM_MAP_ID }}
