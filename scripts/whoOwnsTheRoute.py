@@ -104,6 +104,21 @@ def main():
     # proxied response always carries cf-ray. Absent cf-ray means the record is
     # "DNS only", the edge never sees the request, and the Worker route above is
     # inert however correctly it is configured.
+    # Liveness probe: the Worker answers this path before any other logic, so a
+    # 200 proves the route dispatches and a 4xx proves it does not.
+    for probe_url in (f"https://{ZONE_NAME}/__xtsy_worker_probe",):
+        try:
+            req = urllib.request.Request(
+                probe_url, headers={"user-agent": "XTSY-RouteDiagnostic/1.0"}
+            )
+            with urllib.request.urlopen(req, timeout=20) as r:
+                body = r.read(200).decode("utf-8", "replace").strip()
+                note(f"PROBE {r.status}: {body[:120]}")
+        except urllib.error.HTTPError as e:
+            warn(f"PROBE returned HTTP {e.code} - the Worker did NOT answer this path")
+        except Exception as e:
+            warn(f"PROBE failed: {e}")
+
     for host in (ZONE_NAME, f"www.{ZONE_NAME}"):
         try:
             req = urllib.request.Request(
