@@ -157,8 +157,7 @@ export function TableBookingForm({ id = 'table-booking-form' }: { id?: string })
       if (!ref) throw new Error('Could not save your table request.');
       const wa = waLink(message(ref));
       setSaved({ ref, wa });
-      if (lunch) window.location.assign(wa);
-      else window.open(wa, '_blank', 'noopener');
+      window.location.assign(wa);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not send your request. Please WhatsApp us instead.');
       setSaved({ ref: '', wa: waLink(message()) });

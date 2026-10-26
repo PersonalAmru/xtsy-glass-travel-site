@@ -44,7 +44,7 @@ export default function AboutV2() {
     <>
       <SEOHead structuredDataOnly title={seo.title} description={seo.description} keywords={seo.keywords} canonicalUrl="https://xtsy.one/about" />
       <Helmet>
-        <script type="application/ld+json">{JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'XTSY Travellers Hostel', url: 'https://xtsy.one', telephone: '+918837317070', email: 'booking@xtsy.one', address: ADDRESS, sameAs: ['https://www.instagram.com/xtsyhostel', 'https://www.youtube.com/@xtsyhostel'] })}</script>
+        <script type="application/ld+json">{JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'XTSY Travellers Hostel', url: 'https://xtsy.one', telephone: '+918837317070', email: 'booking@xtsy.one', address: ADDRESS, sameAs: ['https://www.instagram.com/xtsy.one', 'https://www.youtube.com/@xtsyhostel'] })}</script>
         <script type="application/ld+json">{JSON.stringify({ '@context': 'https://schema.org', '@type': 'Hostel', name: 'XTSY Travellers Hostel', url: 'https://xtsy.one/about', telephone: '+918837317070', address: ADDRESS, petsAllowed: true })}</script>
       </Helmet>
       <PageShell>

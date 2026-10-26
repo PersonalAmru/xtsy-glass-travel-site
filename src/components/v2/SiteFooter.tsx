@@ -96,7 +96,7 @@ export default function SiteFooter() {
               {' · '}
               <a href="mailto:booking@xtsy.one" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">booking@xtsy.one</a>
               <br />
-              <a href="https://www.instagram.com/xtsyhostel" target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">Instagram</a>
+              <a href="https://www.instagram.com/xtsy.one" target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">Instagram</a>
               {' · '}
               <a href="https://www.youtube.com/@xtsyhostel" target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 text-xt-paper hover:text-xt-rose">YouTube</a>
               {' · '}
