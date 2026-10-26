@@ -164,7 +164,7 @@ jobs:
 
       - name: Who owns the xtsy.one route (diagnostic, read-only)
         continue-on-error: true
-        run: bash scripts/whoOwnsTheRoute.sh
+        run: python3 scripts/whoOwnsTheRoute.py
 
       - name: Verify edge rewrite is live (samples 20 URLs)
         run: |
