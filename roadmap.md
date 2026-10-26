@@ -49,6 +49,7 @@
 - [ ] Verify changed and unchanged syncs, unauthorized rejection, scheduling and existing Bistro request rules; publish required to activate the live callback.
 
 ## Current request 2026-10-25
-- [ ] Implement listing corrections and honest review requests for genuine recent guests; Hostelworld editing access, channel-specific terms and eligible recipients need confirmation.
-- [ ] Share existing stay and arrival pages through labelled links; active social accounts, audience and sending access need confirmation. Do not repeat completed hostel SEO edits or create duplicate pages.
-- [ ] Check that booking enquiries save and hand off to WhatsApp with no on-site payment requirement.
+- [x] Correct website Instagram links to owner-confirmed @xtsy.one; exclude inactive Hostelworld. Google listing phone/website/locality and review links verified; street-address wording differs and needs owner confirmation before changing Google arrival directions.
+- [x] Prepare voluntary honest-review requests and labelled existing-page links/copy in the XTSY guest growth collection. Seven pages verified; no duplicate pages or completed hostel SEO edits repeated.
+- [ ] Post/share through @xtsy.one and send review requests to genuine recent guests: blocked by unavailable publishing/sending access and no eligible recipient/audience list. No messages or posts sent.
+- [x] Remove misleading online-payment/instant-confirmation copy from hostel-booking page and shared payment FAQ; primary hostel enquiry save-before-WhatsApp retained, Bistro uses a same-tab post-save redirect to avoid popup blocking. Eleven quote/request tests pass; site changes require publishing.
