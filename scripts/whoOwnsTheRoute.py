@@ -69,8 +69,24 @@ def main():
         warn(f"{ZONE_NAME} is not a zone on this account")
         zid = None
     else:
-        zid = zones[0]["id"]
+        z = zones[0]
+        zid = z["id"]
         note(f"zone {ZONE_NAME} found, id ends ...{zid[-4:]}")
+        # status must be "active": a zone that is pending/moved/deactivated keeps
+        # its DNS records and route config on screen while the edge ignores them.
+        note(
+            f"zone status={z.get('status')} paused={z.get('paused')} "
+            f"type={z.get('type')} plan={(z.get('plan') or {}).get('name')}"
+        )
+        ns = z.get("name_servers") or []
+        ons = z.get("original_name_servers") or []
+        note(f"zone name_servers={','.join(ns) or 'none'}")
+        note(f"zone original_name_servers={','.join(ons) or 'none'}")
+        if z.get("status") != "active":
+            warn(
+                f"zone is '{z.get('status')}', not active - Worker routes and proxy "
+                "settings do not take effect in this state"
+            )
 
     if zid:
         routes, err = api(f"zones/{zid}/workers/routes")
@@ -116,6 +132,13 @@ def main():
                 )
         except Exception as e:
             warn(f"{host}: probe failed: {e}")
+
+    if ACCOUNT:
+        script, err = api(f"accounts/{ACCOUNT}/workers/scripts/xtsy-prerender/settings")
+        if err:
+            warn(f"could not read xtsy-prerender settings: {err}")
+        elif script:
+            note(f"worker settings: {json.dumps(script)[:300]}")
 
     if not ACCOUNT:
         warn("CLOUDFLARE_ACCOUNT_ID not set; cannot list Worker custom domains")
