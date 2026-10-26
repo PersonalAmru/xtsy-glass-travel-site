@@ -159,6 +159,26 @@ def main():
         warn("CLOUDFLARE_ACCOUNT_ID not set; cannot list Worker custom domains")
         return 0
 
+    # Cloudflare Pages projects attach custom domains through a separate API, and
+    # a Pages custom domain takes precedence over a Worker route on the same
+    # hostname. Such a project is invisible to the Workers endpoints above, so a
+    # correctly-bound Worker route can sit there never firing.
+    projects, err = api(f"accounts/{ACCOUNT}/pages/projects")
+    if err:
+        warn(f"could not list Pages projects: {err}")
+    elif not projects:
+        note("no Cloudflare PAGES projects on this account")
+    else:
+        for pr in projects:
+            name = pr.get("name")
+            doms = pr.get("domains") or []
+            note(f"pages project {name} -> domains: {', '.join(doms) or 'none'}")
+            if ZONE_NAME in doms or f"www.{ZONE_NAME}" in doms:
+                warn(
+                    f"Pages project '{name}' claims {ZONE_NAME} - this takes "
+                    "precedence over the Worker route and would stop it firing"
+                )
+
     domains, err = api(f"accounts/{ACCOUNT}/workers/domains")
     if err:
         warn(f"could not list Worker custom domains: {err}")
