@@ -126,6 +126,12 @@ jobs:
           with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
               f.write('\n'.join(lines) + '\n')
           print('\n'.join(lines))
+          # Surface each critical finding as a check annotation, so the failure explains
+          # itself without opening the job summary.
+          for sev, name, version, ids in crit:
+              print(f'::error::CRITICAL {name}@{version} (CVSS {sev}): {ids}')
+          for sev, name, version, ids in high[:10]:
+              print(f'::warning::HIGH {name}@{version} (CVSS {sev}): {ids}')
           if crit and os.environ.get('GITHUB_EVENT_NAME') == 'schedule':
               raise SystemExit(f'{len(crit)} critical vulnerabilities in dependencies')
           PY
