@@ -67,6 +67,9 @@ async function checkSsr(route: string): Promise<Failure | null> {
     const res = await fetch(url, {
       redirect: 'follow',
       headers: { 'user-agent': 'xtsy-smoke-test/1.0' },
+      // Without a deadline one stalled route hangs the entire run until the
+      // job timeout, which reports as "cancelled" and names no route at all.
+      signal: AbortSignal.timeout(20_000),
     });
     const html = await res.text();
 
@@ -126,8 +129,9 @@ async function checkHydration(routes: string[]): Promise<Failure[]> {
     try {
       await page.goto(`${BASE}${route}`, { waitUntil: 'domcontentloaded', timeout: 30_000 });
       await page.waitForTimeout(1200);
+      await page.waitForSelector('body', { timeout: 10_000 }).catch(() => {});
       const rendered = await page.evaluate(
-        () => (document.body.textContent ?? '').trim().length,
+        () => (document.body?.textContent ?? '').trim().length,
       );
       if (rendered < 50) problems.push('client render produced (near) empty DOM');
     } catch (err) {
