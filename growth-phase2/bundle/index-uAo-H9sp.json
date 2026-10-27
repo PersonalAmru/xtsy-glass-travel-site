@@ -1,10 +1,10 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-Cdp07Wkb.js",
-      "totalBytes": 429888,
-      "mappedBytes": 418369,
-      "unmappedBytes": 11493,
+      "bundleName": ".output/public/assets/index-uAo-H9sp.js",
+      "totalBytes": 429672,
+      "mappedBytes": 418145,
+      "unmappedBytes": 11501,
       "eolBytes": 26,
       "sourceMapCommentBytes": 0,
       "files": {
@@ -15,7 +15,7 @@
           "size": 28
         },
         "../../../node_modules/react-dom/cjs/react-dom-client.production.js": {
-          "size": 174658
+          "size": 174649
         },
         "../../../node_modules/react-dom/client.js": {
           "size": 217
@@ -48,7 +48,7 @@
           "size": 16386
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/load-client.js": {
-          "size": 19497
+          "size": 19485
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/defer.js": {
           "size": 258
@@ -162,10 +162,10 @@
           "size": 324
         },
         "../../../node_modules/@tanstack/query-core/build/modern/infiniteQueryBehavior.js": {
-          "size": 1217
+          "size": 1214
         },
         "../../../node_modules/@tanstack/query-core/build/modern/query.js": {
-          "size": 6263
+          "size": 6264
         },
         "../../../node_modules/@tanstack/query-core/build/modern/mutation.js": {
           "size": 3305
@@ -180,10 +180,10 @@
           "size": 4023
         },
         "../../../src/utils/aiReferralTracking.ts": {
-          "size": 1712
+          "size": 1711
         },
         "../../../src/utils/chunkRecovery.ts": {
-          "size": 1078
+          "size": 1082
         },
         "../../../src/styles.css?url": {
           "size": 37
@@ -240,7 +240,7 @@
           "size": 1024
         },
         "../../../node_modules/@radix-ui/react-switch/dist/index.mjs": {
-          "size": 3391
+          "size": 3386
         },
         "../../../src/components/ui/switch.tsx": {
           "size": 705
@@ -255,7 +255,7 @@
           "size": 2986
         },
         "../../../src/components/FloatingWhatsApp.tsx": {
-          "size": 1729
+          "size": 1727
         },
         "../../../src/components/v2/ChatLauncher.tsx": {
           "size": 2122
@@ -288,7 +288,7 @@
           "size": 558
         },
         "../../../src/routes/__root.tsx": {
-          "size": 10492
+          "size": 10296
         },
         "../../../src/lib/seo-head.ts": {
           "size": 1965
@@ -372,7 +372,7 @@
           "size": 472
         },
         "../../../src/routes/hostel-booking.tsx": {
-          "size": 612
+          "size": 611
         },
         "../../../src/routes/hostel-near-me.tsx": {
           "size": 583
@@ -411,10 +411,10 @@
           "size": 451
         },
         "../../../src/routes/meghalaya-waterfalls.tsx": {
-          "size": 460
+          "size": 459
         },
         "../../../src/routes/merch.tsx": {
-          "size": 471
+          "size": 472
         },
         "../../../src/routes/motorbike-expedition-northeast-india.tsx": {
           "size": 547
@@ -501,10 +501,10 @@
           "size": 407
         },
         "../../../src/routes/franchise/login.tsx": {
-          "size": 361
+          "size": 360
         },
         "../../../src/routes/places-to-visit/$slug.tsx": {
-          "size": 642
+          "size": 643
         },
         "../../../src/routes/tab-bistro/index.tsx": {
           "size": 606
@@ -525,10 +525,10 @@
           "size": 1639
         },
         "../../../src/routes/travel-guide/meghalaya-for-international-tourists.tsx": {
-          "size": 1582
+          "size": 1581
         },
         "../../../src/routes/[.]lovable.oauth.consent.tsx": {
-          "size": 167
+          "size": 168
         },
         "../../../src/routes/destinations/$state/index.tsx": {
           "size": 560
@@ -564,7 +564,7 @@
           "size": 0
         },
         "[unmapped]": {
-          "size": 11493
+          "size": 11501
         },
         "[EOLs]": {
           "size": 26

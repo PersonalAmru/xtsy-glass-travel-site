@@ -2,7 +2,7 @@
  {
   "url": "/",
   "status": 200,
-  "words": 1725,
+  "words": 1727,
   "findings": [],
   "seo": {
    "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
@@ -1856,7 +1856,7 @@
  {
   "url": "/5-day-meghalaya-itinerary",
   "status": 200,
-  "words": 646,
+  "words": 846,
   "findings": [],
   "seo": {
    "title": "5 Day Meghalaya Itinerary: Route, Cost, Stays | XTSY",
@@ -1884,8 +1884,8 @@
     "Question",
     "Answer"
    ],
-   "faqSchemaQuestions": 4,
-   "questionHeadings": 4,
+   "faqSchemaQuestions": 8,
+   "questionHeadings": 8,
    "firstParagraphWords": 18,
    "mentionsBrand": true,
    "mentionsLocation": true,
@@ -3509,7 +3509,7 @@
  {
   "url": "/best-time-to-visit-meghalaya",
   "status": 200,
-  "words": 671,
+  "words": 931,
   "findings": [],
   "seo": {
    "title": "Best Time to Visit Meghalaya (Month by Month) | XTSY",
@@ -3537,8 +3537,8 @@
     "Question",
     "Answer"
    ],
-   "faqSchemaQuestions": 4,
-   "questionHeadings": 4,
+   "faqSchemaQuestions": 9,
+   "questionHeadings": 9,
    "firstParagraphWords": 36,
    "mentionsBrand": true,
    "mentionsLocation": true,
@@ -14704,7 +14704,7 @@
  {
   "url": "/guides",
   "status": 200,
-  "words": 2386,
+  "words": 2390,
   "findings": [],
   "seo": {
    "title": "All Shillong & Meghalaya Travel Guides A–Z | XTSY",
@@ -16281,7 +16281,7 @@
  {
   "url": "/hidden-places-in-meghalaya",
   "status": 200,
-  "words": 665,
+  "words": 912,
   "findings": [],
   "seo": {
    "title": "Hidden Places in Meghalaya Tourists Miss | XTSY",
@@ -16309,8 +16309,8 @@
     "Question",
     "Answer"
    ],
-   "faqSchemaQuestions": 4,
-   "questionHeadings": 4,
+   "faqSchemaQuestions": 9,
+   "questionHeadings": 9,
    "firstParagraphWords": 26,
    "mentionsBrand": true,
    "mentionsLocation": true,
@@ -19207,13 +19207,13 @@
  {
   "url": "/hostel-booking",
   "status": 200,
-  "words": 1310,
+  "words": 1338,
   "findings": [],
   "seo": {
    "title": "Hostel Booking in Shillong — Direct from ₹399 | XTSY",
    "titleLen": 52,
-   "desc": "Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹399. Book direct — more affordable than Hostelworld and Booking.com.",
-   "descLen": 152,
+   "desc": "Enquire about XTSY hostel stays in New Shillong Township, Shillong. Dorm beds from ₹399. Choose dates and a room, then confirm with the desk on WhatsApp.",
+   "descLen": 153,
    "canonical": "https://xtsy.one/hostel-booking",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -19242,7 +19242,7 @@
    ],
    "faqSchemaQuestions": 12,
    "questionHeadings": 2,
-   "firstParagraphWords": 22,
+   "firstParagraphWords": 21,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": false
@@ -19879,7 +19879,7 @@
  {
   "url": "/hostel-near-me",
   "status": 200,
-  "words": 1502,
+  "words": 1499,
   "findings": [],
   "seo": {
    "title": "Hostel Near Me in Shillong — XTSY, New Shillong Township",
@@ -20600,7 +20600,7 @@
    }
   ],
   "seo": {
-   "title": "Hotels in Shillong Available Now (22 October 2026)",
+   "title": "Hotels in Shillong Available Now (27 October 2026)",
    "titleLen": 50,
    "desc": "Hotels and rooms in Shillong available right now. Private rooms from ₹2,399/night, luxury suites from ₹5,999. Real-time availability, instant confirmation.",
    "descLen": 155,
@@ -22771,7 +22771,7 @@
  {
   "url": "/meghalaya-couple-tour-package",
   "status": 200,
-  "words": 439,
+  "words": 657,
   "findings": [],
   "seo": {
    "title": "Meghalaya Couple Tour Package | XTSY Travel",
@@ -22799,8 +22799,8 @@
     "Question",
     "Answer"
    ],
-   "faqSchemaQuestions": 4,
-   "questionHeadings": 4,
+   "faqSchemaQuestions": 9,
+   "questionHeadings": 9,
    "firstParagraphWords": 23,
    "mentionsBrand": true,
    "mentionsLocation": true,
@@ -22811,7 +22811,7 @@
  {
   "url": "/meghalaya-festivals",
   "status": 200,
-  "words": 992,
+  "words": 997,
   "findings": [],
   "seo": {
    "title": "Meghalaya Festivals: When and Where to See Them | XTSY",
@@ -24703,7 +24703,7 @@
  {
   "url": "/monsoon-in-agartala",
   "status": 200,
-  "words": 1410,
+  "words": 1412,
   "findings": [
    {
     "rule": "stale:year",
@@ -24756,7 +24756,7 @@
  {
   "url": "/monsoon-in-aizawl",
   "status": 200,
-  "words": 1416,
+  "words": 1418,
   "findings": [
    {
     "rule": "stale:year",
@@ -24809,7 +24809,7 @@
  {
   "url": "/monsoon-in-bomdila",
   "status": 200,
-  "words": 1447,
+  "words": 1449,
   "findings": [
    {
     "rule": "stale:year",
@@ -24862,7 +24862,7 @@
  {
   "url": "/monsoon-in-champhai",
   "status": 200,
-  "words": 1394,
+  "words": 1396,
   "findings": [
    {
     "rule": "stale:year",
@@ -24915,7 +24915,7 @@
  {
   "url": "/monsoon-in-cherrapunji",
   "status": 200,
-  "words": 1418,
+  "words": 1420,
   "findings": [
    {
     "rule": "stale:year",
@@ -24968,7 +24968,7 @@
  {
   "url": "/monsoon-in-dawki",
   "status": 200,
-  "words": 1430,
+  "words": 1432,
   "findings": [
    {
     "rule": "stale:year",
@@ -25021,7 +25021,7 @@
  {
   "url": "/monsoon-in-dzukou-valley",
   "status": 200,
-  "words": 1452,
+  "words": 1454,
   "findings": [
    {
     "rule": "stale:year",
@@ -25074,7 +25074,7 @@
  {
   "url": "/monsoon-in-guwahati",
   "status": 200,
-  "words": 1410,
+  "words": 1412,
   "findings": [
    {
     "rule": "stale:year",
@@ -25127,7 +25127,7 @@
  {
   "url": "/monsoon-in-haflong",
   "status": 200,
-  "words": 1394,
+  "words": 1396,
   "findings": [
    {
     "rule": "stale:year",
@@ -25180,7 +25180,7 @@
  {
   "url": "/monsoon-in-imphal",
   "status": 200,
-  "words": 1422,
+  "words": 1424,
   "findings": [
    {
     "rule": "stale:year",
@@ -25233,7 +25233,7 @@
  {
   "url": "/monsoon-in-itanagar",
   "status": 200,
-  "words": 1394,
+  "words": 1396,
   "findings": [
    {
     "rule": "stale:year",
@@ -25286,7 +25286,7 @@
  {
   "url": "/monsoon-in-jorhat",
   "status": 200,
-  "words": 1394,
+  "words": 1396,
   "findings": [
    {
     "rule": "stale:year",
@@ -25339,7 +25339,7 @@
  {
   "url": "/monsoon-in-jowai",
   "status": 200,
-  "words": 1410,
+  "words": 1412,
   "findings": [
    {
     "rule": "stale:year",
@@ -25392,7 +25392,7 @@
  {
   "url": "/monsoon-in-kaziranga",
   "status": 200,
-  "words": 1423,
+  "words": 1425,
   "findings": [
    {
     "rule": "stale:year",
@@ -25445,7 +25445,7 @@
  {
   "url": "/monsoon-in-kohima",
   "status": 200,
-  "words": 1433,
+  "words": 1435,
   "findings": [
    {
     "rule": "stale:year",
@@ -25498,7 +25498,7 @@
  {
   "url": "/monsoon-in-loktak-lake",
   "status": 200,
-  "words": 1443,
+  "words": 1445,
   "findings": [
    {
     "rule": "stale:year",
@@ -25551,7 +25551,7 @@
  {
   "url": "/monsoon-in-majuli",
   "status": 200,
-  "words": 1406,
+  "words": 1408,
   "findings": [
    {
     "rule": "stale:year",
@@ -25604,7 +25604,7 @@
  {
   "url": "/monsoon-in-mawlynnong",
   "status": 200,
-  "words": 1427,
+  "words": 1429,
   "findings": [
    {
     "rule": "stale:year",
@@ -25657,7 +25657,7 @@
  {
   "url": "/monsoon-in-mawsynram",
   "status": 200,
-  "words": 1416,
+  "words": 1418,
   "findings": [
    {
     "rule": "stale:year",
@@ -25710,7 +25710,7 @@
  {
   "url": "/monsoon-in-mokokchung",
   "status": 200,
-  "words": 1394,
+  "words": 1396,
   "findings": [
    {
     "rule": "stale:year",
@@ -25763,7 +25763,7 @@
  {
   "url": "/monsoon-in-nongjrong",
   "status": 200,
-  "words": 1394,
+  "words": 1396,
   "findings": [
    {
     "rule": "stale:year",
@@ -25816,7 +25816,7 @@
  {
   "url": "/monsoon-in-pasighat",
   "status": 200,
-  "words": 1394,
+  "words": 1396,
   "findings": [
    {
     "rule": "stale:year",
@@ -25869,7 +25869,7 @@
  {
   "url": "/monsoon-in-reiek",
   "status": 200,
-  "words": 1394,
+  "words": 1396,
   "findings": [
    {
     "rule": "stale:year",
@@ -25922,7 +25922,7 @@
  {
   "url": "/monsoon-in-shillong",
   "status": 200,
-  "words": 1394,
+  "words": 1396,
   "findings": [
    {
     "rule": "stale:year",
@@ -25975,7 +25975,7 @@
  {
   "url": "/monsoon-in-shnongpdeng",
   "status": 200,
-  "words": 1423,
+  "words": 1425,
   "findings": [
    {
     "rule": "stale:year",
@@ -26028,7 +26028,7 @@
  {
   "url": "/monsoon-in-tawang",
   "status": 200,
-  "words": 1450,
+  "words": 1452,
   "findings": [
    {
     "rule": "stale:year",
@@ -26081,7 +26081,7 @@
  {
   "url": "/monsoon-in-tezpur",
   "status": 200,
-  "words": 1394,
+  "words": 1396,
   "findings": [
    {
     "rule": "stale:year",
@@ -26134,7 +26134,7 @@
  {
   "url": "/monsoon-in-tura",
   "status": 200,
-  "words": 1424,
+  "words": 1426,
   "findings": [
    {
     "rule": "stale:year",
@@ -26187,7 +26187,7 @@
  {
   "url": "/monsoon-in-unakoti",
   "status": 200,
-  "words": 1406,
+  "words": 1408,
   "findings": [
    {
     "rule": "stale:year",
@@ -26240,7 +26240,7 @@
  {
   "url": "/monsoon-in-ziro",
   "status": 200,
-  "words": 1429,
+  "words": 1431,
   "findings": [
    {
     "rule": "stale:year",
@@ -28512,6 +28512,72 @@
   "info": []
  },
  {
+  "url": "/shillong-cherry-blossom-festival",
+  "status": 200,
+  "words": 1416,
+  "findings": [
+   {
+    "rule": "stale:year",
+    "detail": "2025 — \"al 2026 Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\""
+   },
+   {
+    "rule": "stale:year",
+    "detail": "2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\""
+   },
+   {
+    "rule": "stale:year",
+    "detail": "2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
+   }
+  ],
+  "seo": {
+   "title": "Shillong Cherry Blossom Festival 2026: Dates & Stay",
+   "titleLen": 51,
+   "desc": "Shillong Cherry Blossom Festival 2026 runs 20-21 November at New Shillong Highland Grounds. Dates, tickets, getting there, and where to stay nearby from ₹399.",
+   "descLen": 158,
+   "canonical": "https://xtsy.one/shillong-cherry-blossom-festival",
+   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+   "h1": [
+    "Shillong Cherry Blossom Festival 2026"
+   ],
+   "ogImage": true,
+   "imgs": 3,
+   "imgsNoAlt": 0
+  },
+  "aeo": {
+   "schemaTypes": [
+    "WebSite",
+    "Organization",
+    "PostalAddress",
+    "ContactPoint",
+    "WebPage",
+    "ImageObject",
+    "SpeakableSpecification",
+    "Article",
+    "BreadcrumbList",
+    "ListItem",
+    "FAQPage",
+    "Question",
+    "Answer"
+   ],
+   "faqSchemaQuestions": 6,
+   "questionHeadings": 3,
+   "firstParagraphWords": 48,
+   "mentionsBrand": true,
+   "mentionsLocation": true,
+   "updatedDate": true
+  },
+  "info": [
+   {
+    "rule": "info:check-in time seen",
+    "detail": "11a"
+   },
+   {
+    "rule": "info:check-out time seen",
+    "detail": "10a"
+   }
+  ]
+ },
+ {
   "url": "/shillong-dormitory",
   "status": 200,
   "words": 1112,
@@ -28651,7 +28717,7 @@
    }
   ],
   "seo": {
-   "title": "Last Minute Stays in Shillong — Available Now (22 October 2…",
+   "title": "Last Minute Stays in Shillong — Available Now (27 October 2…",
    "titleLen": 60,
    "desc": "Need a last-minute stay in Shillong? Rooms and dorms available right now from ₹399/night. Instant booking, real-time availability at XTSY Travellers Hostel.",
    "descLen": 156,
@@ -28777,7 +28843,7 @@
    }
   ],
   "seo": {
-   "title": "Stay in Shillong Tonight — Rooms & Beds Available (22 Octob…",
+   "title": "Stay in Shillong Tonight — Rooms & Beds Available (27 Octob…",
    "titleLen": 60,
    "desc": "Need a place to stay in Shillong tonight? Beds from ₹399, rooms from ₹2,399. Real-time availability, instant booking, WhatsApp confirmation at XTSY Hostel.",
    "descLen": 155,
@@ -29028,7 +29094,7 @@
  {
   "url": "/shillong-tour-package",
   "status": 200,
-  "words": 581,
+  "words": 804,
   "findings": [],
   "seo": {
    "title": "Shillong Tour Package with Stay & Cab | XTSY",
@@ -29056,8 +29122,8 @@
     "Question",
     "Answer"
    ],
-   "faqSchemaQuestions": 3,
-   "questionHeadings": 3,
+   "faqSchemaQuestions": 8,
+   "questionHeadings": 8,
    "firstParagraphWords": 24,
    "mentionsBrand": true,
    "mentionsLocation": true,
@@ -32599,7 +32665,7 @@
  {
   "url": "/tours/meghalaya-group-trip-6n-7d",
   "status": 200,
-  "words": 962,
+  "words": 1034,
   "findings": [],
   "seo": {
    "title": "Meghalaya Group Trip, Saturday Departures | XTSY Tours",
@@ -32632,7 +32698,7 @@
     "Answer"
    ],
    "faqSchemaQuestions": 4,
-   "questionHeadings": 6,
+   "questionHeadings": 7,
    "firstParagraphWords": 54,
    "mentionsBrand": true,
    "mentionsLocation": true,

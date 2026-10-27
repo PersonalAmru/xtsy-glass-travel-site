@@ -1,15 +1,15 @@
 {
  "site": "http://localhost:4174",
- "crawled": 707,
- "ok": 707,
- "sitemapUrls": 686,
+ "crawled": 708,
+ "ok": 708,
+ "sitemapUrls": 687,
  "broken": 0,
  "internalRedirects": 0,
  "orphans": 0,
  "depthHistogram": {
   "0": 1,
   "1": 66,
-  "2": 636,
+  "2": 637,
   "3": 4
  },
  "deepPages": [],

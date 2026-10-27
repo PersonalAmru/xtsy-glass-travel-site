@@ -2,7 +2,7 @@
  {
   "url": "/",
   "status": 200,
-  "ms": 28,
+  "ms": 19,
   "depth": 0,
   "inSitemap": true,
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
@@ -12,12 +12,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 66,
-  "linksIn": 704
+  "linksIn": 705
  },
  {
   "url": "/book",
   "status": 200,
-  "ms": 12,
+  "ms": 8,
   "depth": 1,
   "inSitemap": true,
   "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
@@ -27,12 +27,12 @@
   "h1": 1,
   "design": "legacy",
   "linksOut": 3,
-  "linksIn": 703
+  "linksIn": 704
  },
  {
   "url": "/best-hostel-in-shillong",
   "status": 200,
-  "ms": 13,
+  "ms": 10,
   "depth": 1,
   "inSitemap": true,
   "title": "Hostels in Shillong from ₹399 | XTSY Travellers Hostel",
@@ -42,7 +42,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 37,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/xtsy-270",
@@ -57,7 +57,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 36,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/tours",
@@ -72,7 +72,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 109,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/tab-bistro",
@@ -87,12 +87,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 36,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/work-from-home",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 1,
   "inSitemap": true,
   "title": "Work From Meghalaya: Wifi, Desks & Long Stays | XTSY",
@@ -102,12 +102,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/things-to-do-in-meghalaya",
   "status": 200,
-  "ms": 21,
+  "ms": 18,
   "depth": 1,
   "inSitemap": true,
   "title": "Things to Do in Meghalaya: 20 Ideas | XTSY",
@@ -117,12 +117,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 72,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/merch",
   "status": 200,
-  "ms": 16,
+  "ms": 8,
   "depth": 1,
   "inSitemap": true,
   "title": "XTSY Merch — Travel Gear & Work-from-Anywhere Kit",
@@ -132,12 +132,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/auth",
   "status": 200,
-  "ms": 10,
+  "ms": 8,
   "depth": 1,
   "inSitemap": false,
   "title": "Sign In to XTSY",
@@ -147,12 +147,12 @@
   "h1": 0,
   "design": "legacy",
   "linksOut": 0,
-  "linksIn": 703
+  "linksIn": 704
  },
  {
   "url": "/group-bookings-meghalaya",
   "status": 200,
-  "ms": 14,
+  "ms": 8,
   "depth": 1,
   "inSitemap": true,
   "title": "Group Bookings in Meghalaya: Stays & Tours | XTSY",
@@ -162,12 +162,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 36,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/pet-friendly",
   "status": 200,
-  "ms": 15,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "Pet Friendly Stay in Shillong, Meghalaya | XTSY",
@@ -177,12 +177,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/plan-trip-with-ai",
   "status": 200,
-  "ms": 29,
+  "ms": 19,
   "depth": 1,
   "inSitemap": true,
   "title": "Plan a Meghalaya & Northeast India Trip with AI | XTSY",
@@ -192,12 +192,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/destinations",
   "status": 200,
-  "ms": 35,
+  "ms": 12,
   "depth": 1,
   "inSitemap": true,
   "title": "Northeast India Destinations — State & City Guides | XTSY",
@@ -207,12 +207,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 69,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/destinations/meghalaya/cherrapunji/nohkalikai-falls",
   "status": 200,
-  "ms": 15,
+  "ms": 12,
   "depth": 1,
   "inSitemap": true,
   "title": "Nohkalikai Falls, Cherrapunji — Timings & How to Reach",
@@ -227,7 +227,7 @@
  {
   "url": "/destinations/meghalaya/dawki/dawki-umngot-river",
   "status": 200,
-  "ms": 9,
+  "ms": 13,
   "depth": 1,
   "inSitemap": true,
   "title": "Dawki – Umngot River, Dawki — Timings & How to Reach",
@@ -242,7 +242,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/double-decker-living-root-bridge",
   "status": 200,
-  "ms": 12,
+  "ms": 9,
   "depth": 1,
   "inSitemap": true,
   "title": "Double Decker Living Root Bridge, Cherrapunji — Travel Guide",
@@ -257,7 +257,7 @@
  {
   "url": "/destinations/meghalaya/shillong/laitlum-canyons",
   "status": 200,
-  "ms": 13,
+  "ms": 9,
   "depth": 1,
   "inSitemap": true,
   "title": "Laitlum Canyons, Shillong — Timings & How to Reach",
@@ -272,7 +272,7 @@
  {
   "url": "/destinations/meghalaya/shillong/umiam-lake",
   "status": 200,
-  "ms": 21,
+  "ms": 10,
   "depth": 1,
   "inSitemap": true,
   "title": "Umiam Lake (Barapani): Boating & Shillong Travel Guide",
@@ -287,7 +287,7 @@
  {
   "url": "/destinations/meghalaya/jowai/krang-suri-falls",
   "status": 200,
-  "ms": 16,
+  "ms": 12,
   "depth": 1,
   "inSitemap": true,
   "title": "Krang Suri Falls, Jowai — Timings & How to Reach",
@@ -302,7 +302,7 @@
  {
   "url": "/female-travellers",
   "status": 200,
-  "ms": 16,
+  "ms": 6,
   "depth": 1,
   "inSitemap": true,
   "title": "Solo Female Travellers in Shillong: Safe Stay | XTSY",
@@ -312,12 +312,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/xtsy-adventure-campsite-dawki",
   "status": 200,
-  "ms": 17,
+  "ms": 8,
   "depth": 1,
   "inSitemap": true,
   "title": "Dawki Campsite by the Umngot River | XTSY",
@@ -327,12 +327,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 35,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/destinations/meghalaya",
   "status": 200,
-  "ms": 12,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "Meghalaya Travel Guide — Places, Routes & Stays",
@@ -342,12 +342,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 56,
-  "linksIn": 333
+  "linksIn": 334
  },
  {
   "url": "/destinations/assam",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "Assam Travel Guide — Places, Routes & Stays",
@@ -357,12 +357,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 40,
-  "linksIn": 329
+  "linksIn": 330
  },
  {
   "url": "/destinations/arunachal-pradesh",
   "status": 200,
-  "ms": 12,
+  "ms": 6,
   "depth": 1,
   "inSitemap": true,
   "title": "Arunachal Pradesh Travel Guide — Places, Routes & Stays",
@@ -372,12 +372,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 39,
-  "linksIn": 329
+  "linksIn": 330
  },
  {
   "url": "/destinations/nagaland",
   "status": 200,
-  "ms": 12,
+  "ms": 8,
   "depth": 1,
   "inSitemap": true,
   "title": "Nagaland Travel Guide — Places, Routes & Stays",
@@ -387,12 +387,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 38,
-  "linksIn": 328
+  "linksIn": 329
  },
  {
   "url": "/destinations/manipur",
   "status": 200,
-  "ms": 15,
+  "ms": 5,
   "depth": 1,
   "inSitemap": true,
   "title": "Manipur Travel Guide — Places, Routes & Stays",
@@ -407,7 +407,7 @@
  {
   "url": "/xtsy-rentals",
   "status": 200,
-  "ms": 23,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "Bike & Gear Rentals in Shillong | XTSY",
@@ -417,12 +417,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/tab-bistro/catering",
   "status": 200,
-  "ms": 21,
+  "ms": 8,
   "depth": 1,
   "inSitemap": false,
   "title": "TAB Bistro Catering in Shillong: Menus & Pricing",
@@ -432,12 +432,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/tours/meghalaya-group-trip-6n-7d",
   "status": 200,
-  "ms": 23,
+  "ms": 9,
   "depth": 1,
   "inSitemap": true,
   "title": "Meghalaya Group Trip, Saturday Departures | XTSY Tours",
@@ -450,24 +450,24 @@
   "linksIn": 5
  },
  {
-  "url": "/tours/6d-meghalaya-honeymoon-package",
+  "url": "/tours/4n-5d-shillong-meghalaya-tour",
   "status": 200,
-  "ms": 22,
+  "ms": 8,
   "depth": 1,
   "inSitemap": true,
-  "title": "6 Days Meghalaya Honeymoon Package | XTSY Tours",
-  "description": "A romantic six-day Meghalaya honeymoon with handpicked stays, scenic drives and private experiences for two.",
-  "canonical": "https://xtsy.one/tours/6d-meghalaya-honeymoon-package",
+  "title": "4 Nights 5 Days Shillong Meghalaya Tour | XTSY Tours",
+  "description": "The essential Meghalaya circuit covering Shillong, Cherrapunjee and Dawki with living root bridges and the Umngot River.",
+  "canonical": "https://xtsy.one/tours/4n-5d-shillong-meghalaya-tour",
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   "h1": 1,
   "design": "v2",
   "linksOut": 35,
-  "linksIn": 4
+  "linksIn": 3
  },
  {
   "url": "/tours/5n-6d-tawang-tour",
   "status": 200,
-  "ms": 17,
+  "ms": 8,
   "depth": 1,
   "inSitemap": true,
   "title": "5 Nights 6 Days Tawang Tour — 5 Nights / 6 Days | XTSY",
@@ -482,7 +482,7 @@
  {
   "url": "/expeditions",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 1,
   "inSitemap": true,
   "title": "Motorbike & 4x4 Expeditions in Northeast India | XTSY",
@@ -492,7 +492,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 47,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/faq",
@@ -507,12 +507,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 704
+  "linksIn": 705
  },
  {
   "url": "/cheap-hostels-shillong",
   "status": 200,
-  "ms": 3,
+  "ms": 2,
   "depth": 1,
   "inSitemap": true,
   "title": "Budget-Friendly Hostels in Shillong from ₹399 | XTSY",
@@ -527,7 +527,7 @@
  {
   "url": "/hotels-in-shillong",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "Hotels in Shillong: Areas, Prices & Alternatives | XTSY",
@@ -557,7 +557,7 @@
  {
   "url": "/hostel-near-me",
   "status": 200,
-  "ms": 12,
+  "ms": 17,
   "depth": 1,
   "inSitemap": true,
   "title": "Hostel Near Me in Shillong — XTSY, New Shillong Township",
@@ -572,7 +572,7 @@
  {
   "url": "/luxury-glamping-shillong",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "Luxury Glamping in Shillong & Meghalaya | XTSY",
@@ -597,12 +597,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 46,
-  "linksIn": 86
+  "linksIn": 87
  },
  {
   "url": "/meghalaya-waterfalls",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "Meghalaya Waterfalls: Nohkalikai & More | XTSY",
@@ -612,12 +612,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 52,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/meghalaya-caves",
   "status": 200,
-  "ms": 10,
+  "ms": 6,
   "depth": 1,
   "inSitemap": true,
   "title": "Meghalaya Caves: Mawsmai, Arwah & Siju Guide | XTSY",
@@ -632,7 +632,7 @@
  {
   "url": "/meghalaya-viewpoints",
   "status": 200,
-  "ms": 11,
+  "ms": 6,
   "depth": 1,
   "inSitemap": true,
   "title": "Best Viewpoints in Meghalaya | XTSY Travel",
@@ -647,7 +647,7 @@
  {
   "url": "/hidden-places-in-meghalaya",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "Hidden Places in Meghalaya Tourists Miss | XTSY",
@@ -662,7 +662,7 @@
  {
   "url": "/travel-guide/how-to-reach-meghalaya",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "How to Reach Meghalaya & Shillong (2026 Guide)",
@@ -677,7 +677,7 @@
  {
   "url": "/travel-guide/guwahati-to-shillong-transport",
   "status": 200,
-  "ms": 14,
+  "ms": 9,
   "depth": 1,
   "inSitemap": false,
   "title": "Guwahati to Shillong: Cab, Bus & Shared Taxi",
@@ -692,7 +692,7 @@
  {
   "url": "/travel-guide/meghalaya-for-international-tourists",
   "status": 200,
-  "ms": 38,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "Meghalaya for International Tourists: Visa & Permits",
@@ -707,7 +707,7 @@
  {
   "url": "/3-day-meghalaya-itinerary",
   "status": 200,
-  "ms": 8,
+  "ms": 5,
   "depth": 1,
   "inSitemap": true,
   "title": "3 Day Meghalaya Itinerary from Shillong | XTSY",
@@ -717,12 +717,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 42,
-  "linksIn": 489
+  "linksIn": 490
  },
  {
   "url": "/5-day-meghalaya-itinerary",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 1,
   "inSitemap": true,
   "title": "5 Day Meghalaya Itinerary: Route, Cost, Stays | XTSY",
@@ -752,7 +752,7 @@
  {
   "url": "/restaurant-in-shillong",
   "status": 200,
-  "ms": 13,
+  "ms": 11,
   "depth": 1,
   "inSitemap": true,
   "title": "Restaurant in Shillong: TAB Bistro by XTSY",
@@ -767,7 +767,7 @@
  {
   "url": "/catering-shillong",
   "status": 200,
-  "ms": 10,
+  "ms": 6,
   "depth": 1,
   "inSitemap": false,
   "title": "Catering in Shillong for Events & Groups | TAB Bistro",
@@ -782,7 +782,7 @@
  {
   "url": "/destination-wedding-shillong",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "Destination Wedding Venue in Shillong | XTSY",
@@ -792,7 +792,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/backpacking-india",
@@ -812,7 +812,7 @@
  {
   "url": "/places-to-visit-in-meghalaya",
   "status": 200,
-  "ms": 12,
+  "ms": 11,
   "depth": 1,
   "inSitemap": false,
   "title": "Places to Visit in Meghalaya: Top 25 Spots | XTSY",
@@ -822,12 +822,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 72,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/guides",
   "status": 200,
-  "ms": 29,
+  "ms": 25,
   "depth": 1,
   "inSitemap": false,
   "title": "All Shillong & Meghalaya Travel Guides A–Z | XTSY",
@@ -836,13 +836,13 @@
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   "h1": 1,
   "design": "v2",
-  "linksOut": 520,
-  "linksIn": 702
+  "linksOut": 521,
+  "linksIn": 703
  },
  {
   "url": "/gallery",
   "status": 200,
-  "ms": 8,
+  "ms": 4,
   "depth": 1,
   "inSitemap": true,
   "title": "XTSY Gallery — Hostel, Glass Suite & Meghalaya Photos",
@@ -852,12 +852,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/xtsy-vs-zostel",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 1,
   "inSitemap": true,
   "title": "XTSY vs Zostel Shillong: Honest Comparison",
@@ -867,12 +867,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/partner-stays",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 1,
   "inSitemap": false,
   "title": "Become an XTSY Partner Stay in Meghalaya | XTSY",
@@ -882,12 +882,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/meghalaya-festivals",
   "status": 200,
-  "ms": 5,
+  "ms": 6,
   "depth": 1,
   "inSitemap": true,
   "title": "Meghalaya Festivals: When and Where to See Them | XTSY",
@@ -896,8 +896,8 @@
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   "h1": 1,
   "design": "v2",
-  "linksOut": 36,
-  "linksIn": 702
+  "linksOut": 37,
+  "linksIn": 703
  },
  {
   "url": "/about",
@@ -912,12 +912,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/safety-house-rules",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 1,
   "inSitemap": true,
   "title": "Hostel Safety & House Rules | XTSY Travellers Hostel",
@@ -927,7 +927,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/contact",
@@ -942,7 +942,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 35,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/pricing-cancellation-policy",
@@ -957,12 +957,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 704
+  "linksIn": 705
  },
  {
   "url": "/privacy-policy",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 1,
   "inSitemap": true,
   "title": "Privacy Policy | XTSY Travellers Hostel Shillong",
@@ -972,7 +972,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/terms-of-service",
@@ -987,12 +987,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 34,
-  "linksIn": 702
+  "linksIn": 703
  },
  {
   "url": "/install",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 1,
   "inSitemap": false,
   "title": "Install the XTSY App on Your Phone",
@@ -1002,12 +1002,12 @@
   "h1": 1,
   "design": "legacy",
   "linksOut": 0,
-  "linksIn": 703
+  "linksIn": 704
  },
  {
   "url": "/book?property=xtsy-experience",
   "status": 200,
-  "ms": 6,
+  "ms": 5,
   "depth": 2,
   "inSitemap": false,
   "title": "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
@@ -1020,24 +1020,24 @@
   "linksIn": 1
  },
  {
-  "url": "/tours/4n-5d-shillong-meghalaya-tour",
+  "url": "/tours/6d-meghalaya-honeymoon-package",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
-  "title": "4 Nights 5 Days Shillong Meghalaya Tour | XTSY Tours",
-  "description": "The essential Meghalaya circuit covering Shillong, Cherrapunjee and Dawki with living root bridges and the Umngot River.",
-  "canonical": "https://xtsy.one/tours/4n-5d-shillong-meghalaya-tour",
+  "title": "6 Days Meghalaya Honeymoon Package | XTSY Tours",
+  "description": "A romantic six-day Meghalaya honeymoon with handpicked stays, scenic drives and private experiences for two.",
+  "canonical": "https://xtsy.one/tours/6d-meghalaya-honeymoon-package",
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   "h1": 1,
   "design": "v2",
   "linksOut": 35,
-  "linksIn": 2
+  "linksIn": 3
  },
  {
   "url": "/tours/6n-7d-meghalaya-tour",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "6 Nights 7 Days Meghalaya Tour — 6 Nights / 7 Days | XTSY",
@@ -1067,7 +1067,7 @@
  {
   "url": "/tours/5d-meghalaya-trip-package",
   "status": 200,
-  "ms": 9,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "5 Days Meghalaya Trip Package — 4 Nights / 5 Days | XTSY",
@@ -1082,7 +1082,7 @@
  {
   "url": "/tours/5n-6d-meghalaya-holiday-package",
   "status": 200,
-  "ms": 26,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "5 Nights 6 Days Meghalaya Holiday Package | XTSY Tours",
@@ -1097,7 +1097,7 @@
  {
   "url": "/tours/7n-guwahati-shillong-kaziranga-tour",
   "status": 200,
-  "ms": 16,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "7 Nights Guwahati Shillong Kaziranga Tour | XTSY Tours",
@@ -1112,7 +1112,7 @@
  {
   "url": "/tours/6n-7d-arunachal-pradesh-tour",
   "status": 200,
-  "ms": 14,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "6 Nights 7 Days Arunachal Pradesh Tour | XTSY Tours",
@@ -1127,7 +1127,7 @@
  {
   "url": "/tours/7n-8d-tawang-tour",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "7 Nights 8 Days Tawang Tour — 7 Nights / 8 Days | XTSY",
@@ -1142,7 +1142,7 @@
  {
   "url": "/tours/wari-chora-hidden-gem-of-meghalaya",
   "status": 200,
-  "ms": 10,
+  "ms": 17,
   "depth": 2,
   "inSitemap": true,
   "title": "Wari Chora — Hidden Gem of Meghalaya — 3 Days | XTSY",
@@ -1172,7 +1172,7 @@
  {
   "url": "/tours/khaddum-expedition-krem-chympe",
   "status": 200,
-  "ms": 13,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Khaddum Expedition — Krem Chympe — 4 Days | XTSY",
@@ -1187,7 +1187,7 @@
  {
   "url": "/tours/xtsy-270-romantic-meghalaya-escape",
   "status": 200,
-  "ms": 15,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "XTSY 270 Romantic Meghalaya Escape — 6 Days | XTSY",
@@ -1202,7 +1202,7 @@
  {
   "url": "/tours/xtsy-270-honeymoon-cloud-retreat",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "XTSY 270 Honeymoon Cloud Retreat — 5 Days | XTSY",
@@ -1217,7 +1217,7 @@
  {
   "url": "/tours/xtsy-270-adventure-couple-circuit",
   "status": 200,
-  "ms": 13,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "XTSY 270 Adventure Couple Circuit — 7 Days | XTSY",
@@ -1247,7 +1247,7 @@
  {
   "url": "/tours/ne-india-solo-bike-circuit-meghalaya",
   "status": 200,
-  "ms": 6,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "NE India Solo Bike Circuit — Meghalaya — 6 Days | XTSY",
@@ -1262,7 +1262,7 @@
  {
   "url": "/tours/dawki-crystal-waters-winter-escape",
   "status": 200,
-  "ms": 7,
+  "ms": 10,
   "depth": 2,
   "inSitemap": true,
   "title": "Dawki Crystal Waters Winter Escape — 3 Days | XTSY",
@@ -1277,7 +1277,7 @@
  {
   "url": "/tours/double-decker-root-bridge-cherrapunji",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Double Decker Root Bridge & Cherrapunji — 5 Days | XTSY",
@@ -1292,7 +1292,7 @@
  {
   "url": "/tours/shillong-winter-cultural-sojourn",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Shillong Winter Cultural Sojourn — 2 Days from ₹7,999 | XTSY",
@@ -1307,7 +1307,7 @@
  {
   "url": "/tours/krang-suri-waterfall-budget-getaway",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Krang Suri Waterfall Budget Getaway — 2 Days | XTSY",
@@ -1322,7 +1322,7 @@
  {
   "url": "/tours/phe-phe-moopun-waterfalls-adventure",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Phe Phe & Moopun Waterfalls Adventure — 3 Days | XTSY",
@@ -1337,7 +1337,7 @@
  {
   "url": "/tours/meghalaya-waterfalls-budget-circuit",
   "status": 200,
-  "ms": 13,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya Waterfalls Budget Circuit — 3 Days | XTSY",
@@ -1367,7 +1367,7 @@
  {
   "url": "/tours/wilderness-survival-camp-winter",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Wilderness Survival Camp (Winter) — 5 Days | XTSY",
@@ -1382,7 +1382,7 @@
  {
   "url": "/tours/arunachal-bike-expedition-solo-friendly",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Arunachal Bike Expedition — Solo Friendly — 8 Days | XTSY",
@@ -1427,7 +1427,7 @@
  {
   "url": "/tours/tawang-monastery-exploration",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Tawang Monastery Exploration — 6 Days from ₹33,999 | XTSY",
@@ -1442,7 +1442,7 @@
  {
   "url": "/tours/bumla-pass-bike-expedition",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Bumla Pass Bike Expedition — 8 Days from ₹46,999 | XTSY",
@@ -1457,7 +1457,7 @@
  {
   "url": "/tours/assam-wildlife-tea-heritage",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Assam Wildlife & Tea Heritage — 6 Days from ₹28,999 | XTSY",
@@ -1472,7 +1472,7 @@
  {
   "url": "/tours/nagaland-dzukou-valley-kohima-heritage",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Nagaland Dzukou Valley & Kohima Heritage — 5 Days | XTSY",
@@ -1487,7 +1487,7 @@
  {
   "url": "/tours/kohima-wwii-heritage-tribal-culture",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Kohima WWII Heritage & Tribal Culture — 4 Days | XTSY",
@@ -1502,7 +1502,7 @@
  {
   "url": "/tours/manipur-loktak-lake-winter-discovery",
   "status": 200,
-  "ms": 6,
+  "ms": 9,
   "depth": 2,
   "inSitemap": true,
   "title": "Manipur Loktak Lake Winter Discovery — 4 Days | XTSY",
@@ -1517,7 +1517,7 @@
  {
   "url": "/tours/tripura-heritage-craft-trail",
   "status": 200,
-  "ms": 10,
+  "ms": 11,
   "depth": 2,
   "inSitemap": true,
   "title": "Tripura Heritage & Craft Trail — 4 Days from ₹22,999 | XTSY",
@@ -1532,7 +1532,7 @@
  {
   "url": "/tours/pelling-kanchenjunga-winter-views",
   "status": 200,
-  "ms": 7,
+  "ms": 11,
   "depth": 2,
   "inSitemap": true,
   "title": "Pelling Kanchenjunga Winter Views — 4 Days | XTSY",
@@ -1547,7 +1547,7 @@
  {
   "url": "/tours/north-sikkim-winter-expedition",
   "status": 200,
-  "ms": 8,
+  "ms": 10,
   "depth": 2,
   "inSitemap": true,
   "title": "North Sikkim Winter Expedition — 7 Days from ₹39,999 | XTSY",
@@ -1562,7 +1562,7 @@
  {
   "url": "/tours/sikkim-peaceful-winter-retreat",
   "status": 200,
-  "ms": 7,
+  "ms": 10,
   "depth": 2,
   "inSitemap": true,
   "title": "Sikkim Peaceful Winter Retreat — 4 Days from ₹21,999 | XTSY",
@@ -1577,7 +1577,7 @@
  {
   "url": "/tours/classic-kerala-kochi-munnar-thekkady-alleppey",
   "status": 200,
-  "ms": 12,
+  "ms": 9,
   "depth": 2,
   "inSitemap": true,
   "title": "Classic Kerala: Kochi, Munnar, Thekkady & Alleppey | XTSY",
@@ -1592,7 +1592,7 @@
  {
   "url": "/tours/munnar-tea-hills-eravikulam",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Munnar Tea Hills & Eravikulam — 4 Days | XTSY",
@@ -1607,7 +1607,7 @@
  {
   "url": "/tours/alleppey-houseboat-kumarakom-backwaters",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Alleppey Houseboat & Kumarakom Backwaters — 3 Days | XTSY",
@@ -1637,7 +1637,7 @@
  {
   "url": "/tours/kerala-winter-backwaters-paradise",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Kerala Winter Backwaters Paradise — 5 Days | XTSY",
@@ -1667,7 +1667,7 @@
  {
   "url": "/tours/kerala-temple-trail-guruvayur-to-padmanabhaswamy",
   "status": 200,
-  "ms": 12,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Kerala Temple Trail: Guruvayur to Padmanabhaswamy | XTSY",
@@ -1697,7 +1697,7 @@
  {
   "url": "/tours/spiti-valley-circuit-via-kinnaur",
   "status": 200,
-  "ms": 12,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Spiti Valley Circuit via Kinnaur — 9 Days | XTSY",
@@ -1727,7 +1727,7 @@
  {
   "url": "/tours/shimla-manali-solang-classic",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Shimla, Manali & Solang Classic — 6 Days | XTSY",
@@ -1742,7 +1742,7 @@
  {
   "url": "/tours/kullu-valley-winter-adventure",
   "status": 200,
-  "ms": 7,
+  "ms": 10,
   "depth": 2,
   "inSitemap": true,
   "title": "Kullu Valley Winter Adventure — 4 Days from ₹26,999 | XTSY",
@@ -1757,7 +1757,7 @@
  {
   "url": "/tours/dharamshala-mcleod-ganj-winter",
   "status": 200,
-  "ms": 10,
+  "ms": 11,
   "depth": 2,
   "inSitemap": true,
   "title": "Dharamshala McLeod Ganj Winter — 5 Days from ₹31,999 | XTSY",
@@ -1772,7 +1772,7 @@
  {
   "url": "/tours/kodaikanal-madurai-hills-and-temples",
   "status": 200,
-  "ms": 7,
+  "ms": 11,
   "depth": 2,
   "inSitemap": true,
   "title": "Kodaikanal & Madurai: Hills and Temples — 5 Days | XTSY",
@@ -1787,7 +1787,7 @@
  {
   "url": "/tours/ooty-coonoor-nilgiri-mountain-railway",
   "status": 200,
-  "ms": 7,
+  "ms": 10,
   "depth": 2,
   "inSitemap": true,
   "title": "Ooty & Coonoor: Nilgiri Mountain Railway — 5 Days | XTSY",
@@ -1802,7 +1802,7 @@
  {
   "url": "/tours/mahabalipuram-pondicherry-chennai-heritage-coast",
   "status": 200,
-  "ms": 8,
+  "ms": 11,
   "depth": 2,
   "inSitemap": true,
   "title": "Mahabalipuram, Pondicherry & Chennai Heritage Coast | XTSY",
@@ -1817,7 +1817,7 @@
  {
   "url": "/tours/dravidian-architecture-masterclass",
   "status": 200,
-  "ms": 13,
+  "ms": 12,
   "depth": 2,
   "inSitemap": true,
   "title": "Dravidian Architecture Masterclass — 10 Days | XTSY",
@@ -1832,7 +1832,7 @@
  {
   "url": "/tours/kodaikanal-winter-hill-retreat",
   "status": 200,
-  "ms": 29,
+  "ms": 19,
   "depth": 2,
   "inSitemap": true,
   "title": "Kodaikanal Winter Hill Retreat — 3 Days from ₹20,999 | XTSY",
@@ -1847,7 +1847,7 @@
  {
   "url": "/tours/madurai-rameswaram-kanyakumari-temple-trail",
   "status": 200,
-  "ms": 14,
+  "ms": 13,
   "depth": 2,
   "inSitemap": true,
   "title": "Madurai, Rameswaram & Kanyakumari Temple Trail | XTSY Tours",
@@ -1862,7 +1862,7 @@
  {
   "url": "/tours/great-living-chola-temples-navagraha-circuit",
   "status": 200,
-  "ms": 7,
+  "ms": 10,
   "depth": 2,
   "inSitemap": true,
   "title": "Great Living Chola Temples & Navagraha Circuit | XTSY Tours",
@@ -1877,7 +1877,7 @@
  {
   "url": "/tours/pancha-bhoota-sthalam-the-five-elements-temples",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Pancha Bhoota Sthalam: The Five Elements Temples | XTSY",
@@ -1892,7 +1892,7 @@
  {
   "url": "/tours/grand-tamil-nadu-temple-circuit-premium-heritage",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Grand Tamil Nadu Temple Circuit — Premium Heritage | XTSY",
@@ -1907,7 +1907,7 @@
  {
   "url": "/tours/sacred-temples-of-south-india-9-day-spiritual-journey",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Sacred Temples of South India — 9 Day Spiritual Journey",
@@ -1922,7 +1922,7 @@
  {
   "url": "/tours/nainital-winter-lake-serenity",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Nainital Winter Lake Serenity — 4 Days from ₹24,999 | XTSY",
@@ -1937,7 +1937,7 @@
  {
   "url": "/tours/char-dham-winter-pilgrimage-prep",
   "status": 200,
-  "ms": 10,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Char Dham Winter Pilgrimage Prep — 8 Days | XTSY",
@@ -1952,7 +1952,7 @@
  {
   "url": "/tours/vietnam-discovery-trail",
   "status": 200,
-  "ms": 10,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Vietnam Discovery Trail — 10 Days from ₹74,999 | XTSY",
@@ -2012,7 +2012,7 @@
  {
   "url": "/tours/bhutan-mindful-kingdom-journey",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Bhutan Mindful Kingdom Journey — 6 Days from ₹84,999 | XTSY",
@@ -2027,7 +2027,7 @@
  {
   "url": "/tours/sri-lanka-heritage-wildlife-loop",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Sri Lanka Heritage & Wildlife Loop — 8 Days | XTSY",
@@ -2057,7 +2057,7 @@
  {
   "url": "/tours/morocco-culture-desert-caravan",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Morocco Culture & Desert Caravan — 8 Days | XTSY",
@@ -2072,7 +2072,7 @@
  {
   "url": "/tours/georgia-wine-mountains-trail",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Georgia Wine & Mountains Trail — 7 Days from ₹69,999 | XTSY",
@@ -2087,7 +2087,7 @@
  {
   "url": "/tours/tri-nation-himalayan-motorbike-expedition",
   "status": 200,
-  "ms": 9,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Tri-Nation Himalayan Motorbike Expedition | XTSY Tours",
@@ -2102,7 +2102,7 @@
  {
   "url": "/destinations/meghalaya/shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Shillong, Meghalaya | XTSY",
@@ -2117,7 +2117,7 @@
  {
   "url": "/meghalaya-villages",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya Villages: Mawlynnong & Beyond | XTSY",
@@ -2142,7 +2142,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 40,
-  "linksIn": 556
+  "linksIn": 557
  },
  {
   "url": "/meghalaya-photo-gallery",
@@ -2162,7 +2162,7 @@
  {
   "url": "/destinations/meghalaya/shillong/shillong-peak",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Shillong Peak, Shillong — Timings & How to Reach",
@@ -2177,7 +2177,7 @@
  {
   "url": "/destinations/meghalaya/shillong/elephant-falls",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Elephant Falls, Shillong — Timings, Entry Fee & How to Reach",
@@ -2237,7 +2237,7 @@
  {
   "url": "/destinations/meghalaya/shillong/spread-eagle-falls",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Spread Eagle Falls, Shillong — Timings & How to Reach",
@@ -2312,7 +2312,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/garden-of-caves",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Garden of Caves, Cherrapunji — Timings & How to Reach",
@@ -2327,7 +2327,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/arwah-cave",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Arwah Cave, Cherrapunji — Timings & How to Reach",
@@ -2372,7 +2372,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/krem-mawmluh",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Krem Mawmluh, Cherrapunji — Timings & How to Reach",
@@ -2387,7 +2387,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji/kynrem-falls",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Kynrem Falls, Cherrapunji — Timings & How to Reach",
@@ -2417,7 +2417,7 @@
  {
   "url": "/destinations/meghalaya/dawki/shnongpdeng",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Shnongpdeng Village, Dawki — Timings & How to Reach",
@@ -2432,7 +2432,7 @@
  {
   "url": "/destinations/meghalaya/nongstoin/nongkhnum-island",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Nongkhnum Island, Nongstoin — Timings & How to Reach",
@@ -2447,7 +2447,7 @@
  {
   "url": "/destinations/meghalaya/shillong/mawryngkhang-bamboo-trail",
   "status": 200,
-  "ms": 10,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Mawryngkhang Bamboo Trail, Shillong — Timings & How to Reach",
@@ -2462,7 +2462,7 @@
  {
   "url": "/destinations/meghalaya/nongstoin/jakrem-hot-springs",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Jakrem Hot Springs, Nongstoin — Timings & How to Reach",
@@ -2492,7 +2492,7 @@
  {
   "url": "/meghalaya-couple-tour-package",
   "status": 200,
-  "ms": 6,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya Couple Tour Package | XTSY Travel",
@@ -2507,7 +2507,7 @@
  {
   "url": "/shillong-tour-package",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Shillong Tour Package with Stay & Cab | XTSY",
@@ -2522,7 +2522,7 @@
  {
   "url": "/destinations/meghalaya/cherrapunji",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Cherrapunji (Sohra), Meghalaya | XTSY",
@@ -2537,7 +2537,7 @@
  {
   "url": "/destinations/meghalaya/dawki",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Dawki, Meghalaya | XTSY",
@@ -2552,7 +2552,7 @@
  {
   "url": "/destinations/meghalaya/mawlynnong",
   "status": 200,
-  "ms": 20,
+  "ms": 11,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Mawlynnong, Meghalaya | XTSY",
@@ -2567,7 +2567,7 @@
  {
   "url": "/destinations/meghalaya/jowai",
   "status": 200,
-  "ms": 17,
+  "ms": 10,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Jowai (Jaintia Hills), Meghalaya | XTSY",
@@ -2582,7 +2582,7 @@
  {
   "url": "/destinations/meghalaya/mawsynram",
   "status": 200,
-  "ms": 7,
+  "ms": 5,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Mawsynram, Meghalaya | XTSY",
@@ -2597,7 +2597,7 @@
  {
   "url": "/destinations/meghalaya/nongstoin",
   "status": 200,
-  "ms": 5,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Nongstoin, Meghalaya | XTSY",
@@ -2612,7 +2612,7 @@
  {
   "url": "/destinations/meghalaya/tura",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Tura (Garo Hills), Meghalaya | XTSY",
@@ -2642,7 +2642,7 @@
  {
   "url": "/destinations/assam/kaziranga",
   "status": 200,
-  "ms": 4,
+  "ms": 5,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Kaziranga, Assam | XTSY",
@@ -2657,7 +2657,7 @@
  {
   "url": "/destinations/assam/majuli",
   "status": 200,
-  "ms": 4,
+  "ms": 5,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Majuli, Assam | XTSY",
@@ -2687,7 +2687,7 @@
  {
   "url": "/destinations/arunachal-pradesh/tawang",
   "status": 200,
-  "ms": 5,
+  "ms": 4,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Tawang, Arunachal Pradesh | XTSY",
@@ -2702,7 +2702,7 @@
  {
   "url": "/destinations/arunachal-pradesh/ziro",
   "status": 200,
-  "ms": 6,
+  "ms": 4,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Ziro, Arunachal Pradesh | XTSY",
@@ -2717,7 +2717,7 @@
  {
   "url": "/destinations/arunachal-pradesh/itanagar",
   "status": 200,
-  "ms": 4,
+  "ms": 5,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Itanagar, Arunachal Pradesh | XTSY",
@@ -2732,7 +2732,7 @@
  {
   "url": "/destinations/arunachal-pradesh/dirang",
   "status": 200,
-  "ms": 4,
+  "ms": 5,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Dirang, Arunachal Pradesh | XTSY",
@@ -2747,7 +2747,7 @@
  {
   "url": "/destinations/nagaland/kohima",
   "status": 200,
-  "ms": 5,
+  "ms": 4,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Kohima, Nagaland | XTSY",
@@ -2762,7 +2762,7 @@
  {
   "url": "/destinations/nagaland/dimapur",
   "status": 200,
-  "ms": 5,
+  "ms": 4,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Dimapur, Nagaland | XTSY",
@@ -2792,7 +2792,7 @@
  {
   "url": "/destinations/manipur/imphal",
   "status": 200,
-  "ms": 4,
+  "ms": 5,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Imphal, Manipur | XTSY",
@@ -2852,7 +2852,7 @@
  {
   "url": "/destinations/mizoram/aizawl",
   "status": 200,
-  "ms": 5,
+  "ms": 4,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Aizawl, Mizoram | XTSY",
@@ -2867,7 +2867,7 @@
  {
   "url": "/destinations/mizoram/reiek",
   "status": 200,
-  "ms": 4,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Reiek, Mizoram | XTSY",
@@ -2897,7 +2897,7 @@
  {
   "url": "/destinations/tripura",
   "status": 200,
-  "ms": 6,
+  "ms": 5,
   "depth": 2,
   "inSitemap": true,
   "title": "Tripura Travel Guide — Places, Routes & Stays",
@@ -2927,7 +2927,7 @@
  {
   "url": "/destinations/tripura/unakoti",
   "status": 200,
-  "ms": 4,
+  "ms": 5,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Unakoti, Tripura | XTSY",
@@ -2942,7 +2942,7 @@
  {
   "url": "/destinations/tripura/neermahal",
   "status": 200,
-  "ms": 4,
+  "ms": 5,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Visit in Neermahal (Melaghar), Tripura | XTSY",
@@ -2957,7 +2957,7 @@
  {
   "url": "/meghalaya-travel-guide",
   "status": 200,
-  "ms": 11,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya Travel Guide 2026 — Ultimate Planning Resource",
@@ -2967,7 +2967,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 57,
-  "linksIn": 527
+  "linksIn": 528
  },
  {
   "url": "/destinations/meghalaya/dawki/dawki-suspension-bridge",
@@ -2987,7 +2987,7 @@
  {
   "url": "/destinations/meghalaya/jowai/thadlaskein-lake",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Thadlaskein Lake, Jowai — Timings & How to Reach",
@@ -3017,7 +3017,7 @@
  {
   "url": "/book/campsite",
   "status": 200,
-  "ms": 11,
+  "ms": 10,
   "depth": 2,
   "inSitemap": false,
   "title": "Book the Dawki Riverside Campsite | XTSY",
@@ -3047,7 +3047,7 @@
  {
   "url": "/meghalaya-adventure-tour",
   "status": 200,
-  "ms": 5,
+  "ms": 4,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya Adventure Tour | Trek, River & Waterfalls | XTSY",
@@ -3107,7 +3107,7 @@
  {
   "url": "/expeditions/motorbike/guwahati-to-tawang",
   "status": 200,
-  "ms": 6,
+  "ms": 5,
   "depth": 2,
   "inSitemap": false,
   "title": "Guwahati to Tawang via Assam Motorbike Route: Permits, Season, Co",
@@ -3122,7 +3122,7 @@
  {
   "url": "/expeditions/motorbike/guwahati-to-kohima",
   "status": 200,
-  "ms": 7,
+  "ms": 5,
   "depth": 2,
   "inSitemap": false,
   "title": "Guwahati to Kohima via Assam Motorbike Route: Permits, Season, Co",
@@ -3137,7 +3137,7 @@
  {
   "url": "/expeditions/motorbike/meghalaya-loop",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": false,
   "title": "Meghalaya Loop — Shillong · Dawki · Mawlynnong · Cherrapunji Moto",
@@ -3152,7 +3152,7 @@
  {
   "url": "/expeditions/4x4/guwahati-to-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": false,
   "title": "Guwahati to Shillong 4x4 Route: Permits, Season, Cost",
@@ -3216,7 +3216,7 @@
   "depth": 2,
   "inSitemap": true,
   "title": "Hostel Booking in Shillong — Direct from ₹399 | XTSY",
-  "description": "Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹399. Book direct — more affordable than Hostelworld and Booking.com.",
+  "description": "Enquire about XTSY hostel stays in New Shillong Township, Shillong. Dorm beds from ₹399. Choose dates and a room, then confirm with the desk on WhatsApp.",
   "canonical": "https://xtsy.one/hostel-booking",
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   "h1": 1,
@@ -3257,7 +3257,7 @@
  {
   "url": "/destinations/meghalaya/mawsynram/mawjymbuin-cave",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Mawjymbuin Cave, Mawsynram — Timings & How to Reach",
@@ -3347,7 +3347,7 @@
  {
   "url": "/destinations/meghalaya/nongstoin/ranikor",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Ranikor, Nongstoin — Timings & How to Reach",
@@ -3362,7 +3362,7 @@
  {
   "url": "/dawki-umngot-river-guide",
   "status": 200,
-  "ms": 9,
+  "ms": 11,
   "depth": 2,
   "inSitemap": true,
   "title": "Dawki & Umngot River Guide 2026 — Crystal Clear Waters",
@@ -3377,7 +3377,7 @@
  {
   "url": "/cherrapunji-travel-guide",
   "status": 200,
-  "ms": 24,
+  "ms": 18,
   "depth": 2,
   "inSitemap": true,
   "title": "Cherrapunji Travel Guide 2026 — Wettest Place on Earth",
@@ -3392,7 +3392,7 @@
  {
   "url": "/umiam-lake-shillong",
   "status": 200,
-  "ms": 24,
+  "ms": 11,
   "depth": 2,
   "inSitemap": true,
   "title": "Umiam Lake (Barapani) — Shillong's Scenic Reservoir Guide",
@@ -3407,7 +3407,7 @@
  {
   "url": "/trekking-in-meghalaya",
   "status": 200,
-  "ms": 14,
+  "ms": 13,
   "depth": 2,
   "inSitemap": true,
   "title": "Trekking in Meghalaya 2026 — 15 Best Trails & Routes",
@@ -3422,7 +3422,7 @@
  {
   "url": "/places-to-visit-meghalaya",
   "status": 200,
-  "ms": 16,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "80 Places to Visit in Meghalaya — Complete Destination Guide",
@@ -3432,12 +3432,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 57,
-  "linksIn": 477
+  "linksIn": 478
  },
  {
   "url": "/backpacking-northeast-india",
   "status": 200,
-  "ms": 10,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Backpacking Northeast India 2026 — Complete Guide",
@@ -3462,7 +3462,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 57,
-  "linksIn": 473
+  "linksIn": 474
  },
  {
   "url": "/waterfalls-in-meghalaya",
@@ -3497,7 +3497,7 @@
  {
   "url": "/dawki-river-travel-guide",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Dawki River Travel Guide — Crystal Clear Umngot River",
@@ -3572,7 +3572,7 @@
  {
   "url": "/guwahati-to-dawki",
   "status": 200,
-  "ms": 7,
+  "ms": 9,
   "depth": 2,
   "inSitemap": true,
   "title": "Guwahati to Dawki (2026) | XTSY",
@@ -3602,7 +3602,7 @@
  {
   "url": "/guwahati-to-itanagar",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Guwahati to Itanagar (2026) | XTSY",
@@ -3617,7 +3617,7 @@
  {
   "url": "/guwahati-to-jorhat",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Guwahati to Jorhat (2026) | XTSY",
@@ -3692,7 +3692,7 @@
  {
   "url": "/guwahati-to-majuli",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Guwahati to Majuli (2026) | XTSY",
@@ -3707,7 +3707,7 @@
  {
   "url": "/guwahati-to-mawlynnong",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Guwahati to Mawlynnong (2026) | XTSY",
@@ -3737,7 +3737,7 @@
  {
   "url": "/guwahati-to-meghalaya-road-trip",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Guwahati to Meghalaya Road Trip Guide 2026 | XTSY",
@@ -3797,7 +3797,7 @@
  {
   "url": "/guwahati-to-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Guwahati to Shillong (2026) | XTSY",
@@ -3812,7 +3812,7 @@
  {
   "url": "/guwahati-to-sivasagar",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Guwahati to Sivasagar (2026) | XTSY",
@@ -3827,7 +3827,7 @@
  {
   "url": "/guwahati-to-tawang",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Guwahati to Tawang (2026) | XTSY",
@@ -3887,7 +3887,7 @@
  {
   "url": "/guwahati-to-ziro",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Guwahati to Ziro (2026) | XTSY",
@@ -3917,7 +3917,7 @@
  {
   "url": "/how-to-reach-dawki",
   "status": 200,
-  "ms": 16,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "How to Reach Dawki 2026 — Crystal River Guide | XTSY",
@@ -3932,7 +3932,7 @@
  {
   "url": "/how-to-reach-meghalaya-from-bangalore",
   "status": 200,
-  "ms": 33,
+  "ms": 16,
   "depth": 2,
   "inSitemap": true,
   "title": "How to Reach Meghalaya from Bangalore 2026 — Guide",
@@ -3947,7 +3947,7 @@
  {
   "url": "/how-to-reach-meghalaya-from-delhi",
   "status": 200,
-  "ms": 9,
+  "ms": 10,
   "depth": 2,
   "inSitemap": true,
   "title": "How to Reach Meghalaya from Delhi 2026 — Best Routes",
@@ -3977,7 +3977,7 @@
  {
   "url": "/how-to-reach-meghalaya-from-mumbai",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "How to Reach Meghalaya from Mumbai 2026 — Guide",
@@ -3992,7 +3992,7 @@
  {
   "url": "/how-to-reach-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "How to Reach Shillong — Flights, Trains, Buses & Taxis",
@@ -4037,7 +4037,7 @@
  {
   "url": "/meghalaya-in-august",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya in August 2026 — Weather & Guide | XTSY",
@@ -4052,7 +4052,7 @@
  {
   "url": "/meghalaya-in-december",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya in December 2026 — Weather & Guide | XTSY",
@@ -4082,7 +4082,7 @@
  {
   "url": "/meghalaya-in-january",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya in January 2026 — Weather & Guide | XTSY",
@@ -4142,7 +4142,7 @@
  {
   "url": "/meghalaya-in-may",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya in May 2026 — Weather & Guide | XTSY",
@@ -4157,7 +4157,7 @@
  {
   "url": "/meghalaya-in-november",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya in November 2026 — Weather & Guide | XTSY",
@@ -4172,7 +4172,7 @@
  {
   "url": "/meghalaya-in-october",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya in October 2026 — Weather & Guide | XTSY",
@@ -4202,7 +4202,7 @@
  {
   "url": "/meghalaya-itinerary",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya Itinerary 2026 — 3, 5, 7 & 10 Day Plans",
@@ -4247,7 +4247,7 @@
  {
   "url": "/meghalaya-road-trip-guide",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya Road Trip Guide — Routes, Tips & Stops",
@@ -4262,7 +4262,7 @@
  {
   "url": "/meghalaya-tour-packages-pillar",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya Tour Packages 2026 | Local Experts at XTSY",
@@ -4277,7 +4277,7 @@
  {
   "url": "/meghalaya-trip-cost",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya Trip Cost 2026 — Complete Budget Breakdown",
@@ -4292,7 +4292,7 @@
  {
   "url": "/north-east-trip-guide",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "North East India Trip Guide 2026 | XTSY Travel",
@@ -4307,7 +4307,7 @@
  {
   "url": "/offbeat-meghalaya",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Offbeat Places in Meghalaya 2026 — Hidden Gems | XTSY",
@@ -4352,7 +4352,7 @@
  {
   "url": "/shillong-to-nongjrong",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Shillong to Nongjrong Trip Guide 2026 | XTSY",
@@ -4397,7 +4397,7 @@
  {
   "url": "/shnongpdeng-camping-guide",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Shnongpdeng Camping Guide — Adventure on Umngot River",
@@ -4427,7 +4427,7 @@
  {
   "url": "/meghalaya-trip-today",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Start Your Meghalaya Trip Today",
@@ -4442,7 +4442,7 @@
  {
   "url": "/anniversary-dinner-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Anniversary Dinner in Shillong | TAB Bistro",
@@ -4457,7 +4457,7 @@
  {
   "url": "/bakery-and-desserts-shillong",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Bakery & Desserts Restaurant in Shillong | TAB Bistro",
@@ -4472,7 +4472,7 @@
  {
   "url": "/barbeque-restaurant-shillong",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Barbecue Restaurant in Shillong — BBQ & Grill | TAB Bistro",
@@ -4487,7 +4487,7 @@
  {
   "url": "/cafes-in-shillong",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "12 Best Cafés in Shillong (2026): Prices & Picks",
@@ -4502,7 +4502,7 @@
  {
   "url": "/best-chinese-restaurant-in-shillong",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Best Chinese Restaurant in Shillong | TAB Bistro",
@@ -4517,7 +4517,7 @@
  {
   "url": "/best-chinese-restaurant-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 13,
   "depth": 2,
   "inSitemap": true,
   "title": "Best Chinese Restaurant in Shillong — Indo-Chinese & Thai",
@@ -4532,7 +4532,7 @@
  {
   "url": "/best-food-in-shillong",
   "status": 200,
-  "ms": 17,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Best Food in Shillong — What & Where to Eat | TAB Bistro",
@@ -4547,7 +4547,7 @@
  {
   "url": "/best-food-places-in-shillong",
   "status": 200,
-  "ms": 19,
+  "ms": 12,
   "depth": 2,
   "inSitemap": true,
   "title": "Best Food Places in Shillong | TAB Bistro",
@@ -4562,7 +4562,7 @@
  {
   "url": "/best-place-to-eat-in-shillong",
   "status": 200,
-  "ms": 24,
+  "ms": 11,
   "depth": 2,
   "inSitemap": true,
   "title": "Best Place to Eat in Shillong 2026 — Top Restaurant Guide",
@@ -4577,7 +4577,7 @@
  {
   "url": "/best-restaurant-shillong",
   "status": 200,
-  "ms": 13,
+  "ms": 10,
   "depth": 2,
   "inSitemap": true,
   "title": "Best Restaurant in Shillong 2026 | TAB Bistro",
@@ -4592,7 +4592,7 @@
  {
   "url": "/best-restaurants-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Best Restaurants in Shillong 2026 — Top Dining Guide",
@@ -4607,7 +4607,7 @@
  {
   "url": "/best-veg-restaurants-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Best Veg Restaurants in Shillong — Top Vegetarian Dining",
@@ -4622,7 +4622,7 @@
  {
   "url": "/birthday-party-restaurant-shillong",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Birthday Party Restaurant in Shillong | TAB Bistro",
@@ -4637,7 +4637,7 @@
  {
   "url": "/biryani-in-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Biryani Restaurant in Shillong — Biryani Menu | TAB Bistro",
@@ -4652,7 +4652,7 @@
  {
   "url": "/breakfast-in-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Breakfast in Shillong | TAB Bistro",
@@ -4667,7 +4667,7 @@
  {
   "url": "/brunch-in-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Brunch in Shillong — Best Weekend Brunch Spot | TAB Bistro",
@@ -4682,7 +4682,7 @@
  {
   "url": "/buffet-restaurant-shillong",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Buffet Restaurant in Shillong — Group Spreads | TAB Bistro",
@@ -4697,7 +4697,7 @@
  {
   "url": "/bulk-food-order-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Bulk Food Order in Shillong — Party & Corporate | TAB Bistro",
@@ -4712,7 +4712,7 @@
  {
   "url": "/burger-and-fast-food-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Burgers & Fast Food Restaurant in Shillong | TAB Bistro",
@@ -4727,7 +4727,7 @@
  {
   "url": "/cafe-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Café in Shillong — Best Coffee, Music & Bites | XTSY",
@@ -4742,7 +4742,7 @@
  {
   "url": "/rooftop-cafe-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Café with a View in Shillong — Coffee & Bites | TAB Bistro",
@@ -4757,7 +4757,7 @@
  {
   "url": "/catering-services-in-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Catering Services in Shillong | TAB Bistro",
@@ -4772,7 +4772,7 @@
  {
   "url": "/chinese-food-in-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Chinese Restaurant in Shillong — Chinese Menu | TAB Bistro",
@@ -4787,7 +4787,7 @@
  {
   "url": "/coffee-shop-shillong",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Coffee & Café Restaurant in Shillong | TAB Bistro",
@@ -4802,7 +4802,7 @@
  {
   "url": "/continental-restaurant-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Continental Restaurant in Shillong | TAB Bistro",
@@ -4817,7 +4817,7 @@
  {
   "url": "/corporate-event-catering-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Corporate & Event Catering in Shillong | TAB Bistro by XTSY",
@@ -4832,7 +4832,7 @@
  {
   "url": "/corporate-catering-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Corporate Catering in Shillong — Office Events | TAB Bistro",
@@ -4847,7 +4847,7 @@
  {
   "url": "/dinner-in-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Dinner in Shillong — Best Dinner Restaurants | TAB Bistro",
@@ -4877,7 +4877,7 @@
  {
   "url": "/fine-dining-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Fine Dining in Shillong | TAB Bistro",
@@ -4907,7 +4907,7 @@
  {
   "url": "/good-restaurants-in-shillong",
   "status": 200,
-  "ms": 9,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Good Restaurants in Shillong — Top Rated Dining 2026",
@@ -4922,7 +4922,7 @@
  {
   "url": "/group-dining-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Group Dining in Shillong | TAB Bistro",
@@ -4937,7 +4937,7 @@
  {
   "url": "/healthy-food-restaurant-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Healthy & Light Restaurant in Shillong | TAB Bistro",
@@ -4952,7 +4952,7 @@
  {
   "url": "/indo-chinese-restaurant-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Indo-Chinese Restaurant in Shillong | TAB Bistro",
@@ -4967,7 +4967,7 @@
  {
   "url": "/italian-restaurant-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Italian Restaurant in Shillong — Italian Menu | TAB Bistro",
@@ -4982,7 +4982,7 @@
  {
   "url": "/juices-and-shakes-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Juices & Shakes Restaurant in Shillong | TAB Bistro",
@@ -5012,7 +5012,7 @@
  {
   "url": "/khasi-food-guide",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Khasi Food Guide — Traditional Meghalaya Cuisine",
@@ -5042,7 +5042,7 @@
  {
   "url": "/live-music-restaurant-shillong",
   "status": 200,
-  "ms": 10,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Live Music Restaurant in Shillong | TAB Bistro",
@@ -5057,7 +5057,7 @@
  {
   "url": "/lunch-in-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Lunch in Shillong — Best Places for Lunch | TAB Bistro",
@@ -5102,7 +5102,7 @@
  {
   "url": "/noodles-in-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Noodles & Soups Restaurant in Shillong | TAB Bistro",
@@ -5117,7 +5117,7 @@
  {
   "url": "/north-indian-restaurant-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "North Indian Restaurant in Shillong | TAB Bistro",
@@ -5132,7 +5132,7 @@
  {
   "url": "/online-food-order-shillong",
   "status": 200,
-  "ms": 10,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Order Food Online in Shillong — Multi-Cuisine | TAB Bistro",
@@ -5147,7 +5147,7 @@
  {
   "url": "/party-catering-shillong",
   "status": 200,
-  "ms": 47,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Party Catering & Bulk Food Orders in Shillong",
@@ -5162,7 +5162,7 @@
  {
   "url": "/pet-friendly-restaurant-shillong",
   "status": 200,
-  "ms": 17,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Pet-Friendly Restaurant in Shillong | TAB Bistro",
@@ -5177,7 +5177,7 @@
  {
   "url": "/pizza-in-shillong",
   "status": 200,
-  "ms": 11,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Pizza Restaurant in Shillong — Pizza Menu | TAB Bistro",
@@ -5192,7 +5192,7 @@
  {
   "url": "/places-to-eat-in-shillong",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Places to Eat in Shillong — Restaurants, Cafés & Barbecue",
@@ -5207,7 +5207,7 @@
  {
   "url": "/pre-wedding-shoot-venue-shillong",
   "status": 200,
-  "ms": 10,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Pre-Wedding Shoot Venue in Shillong | TAB Bistro",
@@ -5222,7 +5222,7 @@
  {
   "url": "/pure-veg-restaurant-shillong",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Pure Veg Restaurant in Shillong — Vegetarian Food Guide",
@@ -5237,7 +5237,7 @@
  {
   "url": "/pure-vegetarian-restaurant-shillong",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Pure Vegetarian Restaurant in Shillong | TAB Bistro",
@@ -5252,7 +5252,7 @@
  {
   "url": "/restaurant-in-police-bazar",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Restaurant in Police Bazar Shillong | TAB Bistro",
@@ -5267,7 +5267,7 @@
  {
   "url": "/restaurants-in-laitumkhrah",
   "status": 200,
-  "ms": 9,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Restaurants in Laitumkhrah Shillong — Cafés & Dining Guide",
@@ -5282,7 +5282,7 @@
  {
   "url": "/restaurants-in-police-bazar-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Restaurants in Police Bazar Shillong — Best Dining & Food",
@@ -5297,7 +5297,7 @@
  {
   "url": "/romantic-restaurant-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Romantic Restaurant in Shillong — Couple Dining | TAB Bistro",
@@ -5312,7 +5312,7 @@
  {
   "url": "/rooftop-restaurant-shillong",
   "status": 200,
-  "ms": 11,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Rooftop Restaurant in Shillong | TAB Bistro",
@@ -5327,7 +5327,7 @@
  {
   "url": "/seafood-restaurant-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Seafood Restaurant in Shillong — Seafood Menu | TAB Bistro",
@@ -5342,7 +5342,7 @@
  {
   "url": "/sizzlers-in-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Sizzlers Restaurant in Shillong — Sizzlers Menu | TAB Bistro",
@@ -5357,7 +5357,7 @@
  {
   "url": "/south-indian-restaurant-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "South Indian Restaurant in Shillong | TAB Bistro",
@@ -5372,7 +5372,7 @@
  {
   "url": "/street-food-police-bazar",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Street Food in Police Bazar Shillong — Guide | XTSY",
@@ -5402,7 +5402,7 @@
  {
   "url": "/tandoor-restaurant-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Tandoor & Grill Restaurant in Shillong | TAB Bistro",
@@ -5417,7 +5417,7 @@
  {
   "url": "/thai-restaurant-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Thai Restaurant in Shillong — Thai Menu | TAB Bistro",
@@ -5447,7 +5447,7 @@
  {
   "url": "/vegetarian-food-in-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Vegetarian Food in Shillong — Where to Eat Veg | TAB Bistro",
@@ -5462,7 +5462,7 @@
  {
   "url": "/wedding-catering-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Wedding Catering in Shillong — Menus & Packages | TAB Bistro",
@@ -5477,7 +5477,7 @@
  {
   "url": "/wedding-catering-services-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Wedding Catering Services in Shillong | TAB Bistro",
@@ -5522,7 +5522,7 @@
  {
   "url": "/honeymoon-package-arunachal-pradesh",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Arunachal Pradesh 2026 – Custom by XTSY",
@@ -5537,7 +5537,7 @@
  {
   "url": "/honeymoon-package-assam",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Assam 2026 – Custom by XTSY",
@@ -5552,7 +5552,7 @@
  {
   "url": "/honeymoon-package-bomdila",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Bomdila 2026 – Custom by XTSY",
@@ -5582,7 +5582,7 @@
  {
   "url": "/honeymoon-package-cherrapunji",
   "status": 200,
-  "ms": 16,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Cherrapunji 2026 – Custom by XTSY",
@@ -5597,7 +5597,7 @@
  {
   "url": "/honeymoon-package-dawki",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Dawki 2026 – Custom by XTSY",
@@ -5612,7 +5612,7 @@
  {
   "url": "/honeymoon-package-dzukou-valley",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Dzukou Valley 2026 – Custom by XTSY",
@@ -5627,7 +5627,7 @@
  {
   "url": "/honeymoon-package-gangtok",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Gangtok 2026 – Custom by XTSY",
@@ -5642,7 +5642,7 @@
  {
   "url": "/honeymoon-package-guwahati",
   "status": 200,
-  "ms": 7,
+  "ms": 11,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Guwahati 2026 – Custom by XTSY",
@@ -5657,7 +5657,7 @@
  {
   "url": "/honeymoon-package-haflong",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Haflong 2026 – Custom by XTSY",
@@ -5672,7 +5672,7 @@
  {
   "url": "/honeymoon-package-imphal",
   "status": 200,
-  "ms": 7,
+  "ms": 10,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Imphal 2026 – Custom by XTSY",
@@ -5687,7 +5687,7 @@
  {
   "url": "/honeymoon-package-itanagar",
   "status": 200,
-  "ms": 18,
+  "ms": 13,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Itanagar 2026 – Custom by XTSY",
@@ -5702,7 +5702,7 @@
  {
   "url": "/honeymoon-package-jorhat",
   "status": 200,
-  "ms": 23,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Jorhat 2026 – Custom by XTSY",
@@ -5717,7 +5717,7 @@
  {
   "url": "/honeymoon-package-jowai",
   "status": 200,
-  "ms": 12,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Jowai 2026 – Custom by XTSY",
@@ -5747,7 +5747,7 @@
  {
   "url": "/honeymoon-package-kohima",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Kohima 2026 – Custom by XTSY",
@@ -5792,7 +5792,7 @@
  {
   "url": "/honeymoon-package-majuli",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Majuli 2026 – Custom by XTSY",
@@ -5822,7 +5822,7 @@
  {
   "url": "/honeymoon-package-mawlynnong",
   "status": 200,
-  "ms": 9,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Mawlynnong 2026 – Custom by XTSY",
@@ -5837,7 +5837,7 @@
  {
   "url": "/honeymoon-package-mawsynram",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Mawsynram 2026 – Custom by XTSY",
@@ -5867,7 +5867,7 @@
  {
   "url": "/honeymoon-package-mizoram",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Mizoram 2026 – Custom by XTSY",
@@ -5927,7 +5927,7 @@
  {
   "url": "/honeymoon-package-pasighat",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Pasighat 2026 – Custom by XTSY",
@@ -5942,7 +5942,7 @@
  {
   "url": "/honeymoon-package-pelling",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Pelling 2026 – Custom by XTSY",
@@ -5972,7 +5972,7 @@
  {
   "url": "/honeymoon-package-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Shillong 2026 – Custom by XTSY",
@@ -5987,7 +5987,7 @@
  {
   "url": "/honeymoon-package-shnongpdeng",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Shnongpdeng 2026 – Custom by XTSY",
@@ -6002,7 +6002,7 @@
  {
   "url": "/honeymoon-package-tawang",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Tawang 2026 – Custom by XTSY",
@@ -6032,7 +6032,7 @@
  {
   "url": "/honeymoon-package-tsomgo-lake",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Tsomgo Lake 2026 – Custom by XTSY",
@@ -6047,7 +6047,7 @@
  {
   "url": "/honeymoon-package-tura",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Honeymoon Package Tura 2026 – Custom by XTSY",
@@ -6092,7 +6092,7 @@
  {
   "url": "/10-day-meghalaya-itinerary",
   "status": 200,
-  "ms": 7,
+  "ms": 9,
   "depth": 2,
   "inSitemap": true,
   "title": "10-Day Meghalaya Itinerary: Route, Stays & Trek Tips | XTSY",
@@ -6122,7 +6122,7 @@
  {
   "url": "/2-day-arunachal-pradesh-trip",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "2 Day Arunachal Pradesh Trip Plan (2026)",
@@ -6137,7 +6137,7 @@
  {
   "url": "/2-day-assam-itinerary",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "2 Day Assam Itinerary (2026) – Day-Wise Plan & Stays",
@@ -6167,7 +6167,7 @@
  {
   "url": "/2-day-meghalaya-itinerary",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "2 Day Meghalaya Itinerary (2026) – Day-Wise Plan & Stays",
@@ -6212,7 +6212,7 @@
  {
   "url": "/2-day-mizoram-trip",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "2 Day Mizoram Trip Plan (2026) – Cost, Route & Stays",
@@ -6227,7 +6227,7 @@
  {
   "url": "/2-day-nagaland-itinerary",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "2 Day Nagaland Itinerary (2026) – Day-Wise Plan & Stays",
@@ -6242,7 +6242,7 @@
  {
   "url": "/2-day-nagaland-trip",
   "status": 200,
-  "ms": 13,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "2 Day Nagaland Trip Plan (2026) – Cost, Route & Stays",
@@ -6257,7 +6257,7 @@
  {
   "url": "/2-day-sikkim-itinerary",
   "status": 200,
-  "ms": 32,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "2 Day Sikkim Itinerary (2026) – Day-Wise Plan & Stays",
@@ -6272,7 +6272,7 @@
  {
   "url": "/2-day-sikkim-trip",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "2 Day Sikkim Trip Plan (2026) – Cost, Route & Stays",
@@ -6287,7 +6287,7 @@
  {
   "url": "/2-day-shillong-itinerary",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "2-Day Shillong Itinerary — Perfect Weekend Plan",
@@ -6317,7 +6317,7 @@
  {
   "url": "/3-day-arunachal-pradesh-trip",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "3 Day Arunachal Pradesh Trip Plan (2026)",
@@ -6332,7 +6332,7 @@
  {
   "url": "/3-day-assam-itinerary",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "3 Day Assam Itinerary (2026) – Day-Wise Plan & Stays",
@@ -6347,7 +6347,7 @@
  {
   "url": "/3-day-assam-trip",
   "status": 200,
-  "ms": 10,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "3 Day Assam Trip Plan (2026) – Cost, Route & Stays",
@@ -6362,7 +6362,7 @@
  {
   "url": "/3-day-meghalaya-trip",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "3 Day Meghalaya Trip Plan (2026) – Cost, Route & Stays",
@@ -6452,7 +6452,7 @@
  {
   "url": "/3-day-sikkim-trip",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "3 Day Sikkim Trip Plan (2026) – Cost, Route & Stays",
@@ -6467,7 +6467,7 @@
  {
   "url": "/4-day-arunachal-pradesh-itinerary",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "4 Day Arunachal Pradesh Itinerary (2026)",
@@ -6482,7 +6482,7 @@
  {
   "url": "/4-day-assam-itinerary",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "4 Day Assam Itinerary (2026) – Day-Wise Plan & Stays",
@@ -6497,7 +6497,7 @@
  {
   "url": "/4-day-assam-trip",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "4 Day Assam Trip Plan (2026) – Cost, Route & Stays",
@@ -6512,7 +6512,7 @@
  {
   "url": "/4-day-meghalaya-trip",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "4 Day Meghalaya Trip Plan (2026) – Cost, Route & Stays",
@@ -6537,12 +6537,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 35
+  "linksIn": 36
  },
  {
   "url": "/6-day-meghalaya-itinerary",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "6-Day Meghalaya Itinerary 2026 — Day-by-Day Guide | XTSY",
@@ -6557,7 +6557,7 @@
  {
   "url": "/8-day-meghalaya-itinerary",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "8-Day Meghalaya Itinerary 2026 — Day-by-Day Guide | XTSY",
@@ -6572,7 +6572,7 @@
  {
   "url": "/shillong-weekend-trip",
   "status": 200,
-  "ms": 9,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Shillong Weekend Trip — 2 Night 3 Day Plan",
@@ -6587,7 +6587,7 @@
  {
   "url": "/7-day-meghalaya-itinerary",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "7-Day Meghalaya Itinerary 2026: The XTSY Deep Dive",
@@ -6602,7 +6602,7 @@
  {
   "url": "/weekend-meghalaya-trip",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Weekend Meghalaya Trip 2026 — Day-by-Day Guide | XTSY",
@@ -6612,892 +6612,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 36
- },
- {
-  "url": "/best-hostel-in-cherrapunji",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Best Hostel in Cherrapunji (2026) — Stays via XTSY Partners",
-  "description": "Looking for a good hostel in Cherrapunji? XTSY arranges partner stays, transfers and sightseeing in Cherrapunji, Meghalaya.",
-  "canonical": "https://xtsy.one/best-hostel-in-cherrapunji",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/best-hostel-in-gangtok",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Best Hostel in Gangtok (2026) — Stays via XTSY Partners",
-  "description": "Looking for a good hostel in Gangtok? XTSY arranges partner stays, transfers and sightseeing in Gangtok, Sikkim. XTSY's own hostel is in New Shillong Township.",
-  "canonical": "https://xtsy.one/best-hostel-in-gangtok",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/best-hostel-in-guwahati",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Best Hostel in Guwahati (2026) — Stays via XTSY Partners",
-  "description": "Looking for a good hostel in Guwahati? XTSY arranges partner stays, transfers and sightseeing in Guwahati, Assam.",
-  "canonical": "https://xtsy.one/best-hostel-in-guwahati",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/hostels-in-meghalaya",
-  "status": 200,
-  "ms": 6,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Best Hostels in Meghalaya 2026 — Top Rated | XTSY",
-  "description": "Discover the best hostels in Meghalaya. From Shillong to Cherrapunji, find budget dorms & backpacker hostels. Top-rated stays for solo & group travel.",
-  "canonical": "https://xtsy.one/hostels-in-meghalaya",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 29
- },
- {
-  "url": "/budget-stay-shillong",
-  "status": 200,
-  "ms": 9,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Budget Stay in Shillong — Hostels & Dorms | XTSY",
-  "description": "Discover the best budget stay in Shillong with XTSY. Low-cost hostels, dorms, and private rooms from ₹399. New Shillong Township location with Wi-Fi and hot…",
-  "canonical": "https://xtsy.one/budget-stay-shillong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 39
- },
- {
-  "url": "/cheap-hostel-in-cherrapunji",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Budget-Friendly Hostel in Cherrapunji",
-  "description": "Budget-friendly hostel in Cherrapunji: Looking for a budget-friendly stay in Cherrapunji? XTSY arranges partner stays, transfers and sightseeing in",
-  "canonical": "https://xtsy.one/cheap-hostel-in-cherrapunji",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/cheap-hostel-in-gangtok",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Budget-Friendly Hostel in Gangtok",
-  "description": "Gangtok hostel: Looking for a budget-friendly stay in Gangtok? XTSY arranges partner stays, transfers and sightseeing in Gangtok, Sikkim.",
-  "canonical": "https://xtsy.one/cheap-hostel-in-gangtok",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/cheap-hostel-in-guwahati",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Budget-Friendly Hostel in Guwahati",
-  "description": "Budget-friendly hostel Guwahati: Looking for a budget-friendly stay in Guwahati? XTSY arranges partner stays, transfers and sightseeing in Guwahati, Assam.",
-  "canonical": "https://xtsy.one/cheap-hostel-in-guwahati",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/shillong-dormitory",
-  "status": 200,
-  "ms": 6,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Dormitory in Shillong — Mixed & Female Dorms | XTSY",
-  "description": "Book dormitory beds in Shillong from ₹399. Mixed & female-only dorms with lockers, hot showers, free WiFi. Best rated dorm stay in Meghalaya.",
-  "canonical": "https://xtsy.one/shillong-dormitory",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 29
- },
- {
-  "url": "/dorms-in-shillong",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Dorms in Shillong | Best Hostels & Budget Stays",
-  "description": "Book budget dorms in Shillong with mixed and female-only options. Features include lockers, hot showers, and Wi-Fi. Perfect for solo travellers and backpackers.",
-  "canonical": "https://xtsy.one/dorms-in-shillong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 1
- },
- {
-  "url": "/group-stay-shillong",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Stay in Shillong — 4 to 20 Guests | XTSY",
-  "description": "Book premium group stay in Shillong for 4-20 guests at XTSY. Enjoy bunk beds, private rooms, and full floor options with curated Meghalaya tour packages.",
-  "canonical": "https://xtsy.one/group-stay-shillong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 29
- },
- {
-  "url": "/hostel-in-shillong-last-minute",
-  "status": 200,
-  "ms": 33,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel in Shillong Last Minute — XTSY, New Shillong Township",
-  "description": "Need a bed in Shillong at the last minute? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
-  "canonical": "https://xtsy.one/hostel-in-shillong-last-minute",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 1
- },
- {
-  "url": "/hostel-in-shillong-now",
-  "status": 200,
-  "ms": 36,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel in Shillong Right Now — XTSY, New Shillong Township",
-  "description": "Need a bed in Shillong right now? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
-  "canonical": "https://xtsy.one/hostel-in-shillong-now",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 1
- },
- {
-  "url": "/hostel-in-shillong-this-weekend",
-  "status": 200,
-  "ms": 15,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel in Shillong This Weekend",
-  "description": "Need a bed in Shillong this weekend? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
-  "canonical": "https://xtsy.one/hostel-in-shillong-this-weekend",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 1
- },
- {
-  "url": "/hostels-in-shillong-today",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel in Shillong Today — XTSY, New Shillong Township",
-  "description": "Need a bed in Shillong today? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms.",
-  "canonical": "https://xtsy.one/hostels-in-shillong-today",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 55,
-  "linksIn": 5
- },
- {
-  "url": "/hostel-in-shillong-tomorrow",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel in Shillong Tomorrow — XTSY, New Shillong Township",
-  "description": "Need a bed in Shillong tomorrow? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
-  "canonical": "https://xtsy.one/hostel-in-shillong-tomorrow",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 1
- },
- {
-  "url": "/hostel-in-shillong-tonight",
-  "status": 200,
-  "ms": 6,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel in Shillong Tonight — XTSY, New Shillong Township",
-  "description": "Need a bed in Shillong tonight? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
-  "canonical": "https://xtsy.one/hostel-in-shillong-tonight",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 1
- },
- {
-  "url": "/hostel-near-police-bazar-shillong",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel near Police Bazar Shillong? Where XTSY Is | XTSY",
-  "description": "Searching for a hostel near Police Bazar? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
-  "canonical": "https://xtsy.one/hostel-near-police-bazar-shillong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 30
- },
- {
-  "url": "/hostel-near-shillong-airport",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel near Shillong Airport — XTSY, New Shillong Township",
-  "description": "Flying into Shillong Airport at Umroi? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
-  "canonical": "https://xtsy.one/hostel-near-shillong-airport",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 1
- },
- {
-  "url": "/hostel-near-cherrapunji-airport",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel near Cherrapunji Airport",
-  "description": "Hostel near Cherrapunji airport: Arriving by air for Cherrapunji? XTSY arranges partner stays, transfers and sightseeing in Cherrapunji, Meghalaya.",
-  "canonical": "https://xtsy.one/hostel-near-cherrapunji-airport",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/hostel-near-gangtok-airport",
-  "status": 200,
-  "ms": 9,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel near Gangtok Airport — Stays and Transfers via XTSY",
-  "description": "Hostels near gangtok airport: Arriving by air for Gangtok? XTSY arranges partner stays, transfers and sightseeing in Gangtok, Sikkim.",
-  "canonical": "https://xtsy.one/hostel-near-gangtok-airport",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/hostel-near-guwahati-airport",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel near Guwahati Airport — Stays and Transfers via XTSY",
-  "description": "Guwahati airport hostel: Arriving by air for Guwahati? XTSY arranges partner stays, transfers and sightseeing in Guwahati, Assam.",
-  "canonical": "https://xtsy.one/hostel-near-guwahati-airport",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/isabella-hostel-vs-xtsy",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Isabella Hostel vs XTSY Shillong Comparison 2026",
-  "description": "Compare Isabella Hostel vs XTSY in Shillong. Discover differences in location, amenities, and tour access to pick the best backpacker hostel for your 2026 trip.",
-  "canonical": "https://xtsy.one/isabella-hostel-vs-xtsy",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 10
- },
- {
-  "url": "/long-stay-hostel-shillong",
-  "status": 200,
-  "ms": 9,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Long Stay Hostel Shillong — Weekly & Monthly | XTSY",
-  "description": "Long-term hostel stay in Shillong with weekly & monthly discounts. High-speed WiFi, coworking space. Ideal for remote workers & digital nomads.",
-  "canonical": "https://xtsy.one/long-stay-hostel-shillong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 29
- },
- {
-  "url": "/stargaze-hostel-vs-xtsy",
-  "status": 200,
-  "ms": 10,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Stargaze Hostel vs XTSY Shillong — Compare Now",
-  "description": "Compare Stargaze Hostel and XTSY Shillong. Discover the best affordable stay for solo travellers, digital nomads, and groups exploring Meghalaya's beauty.",
-  "canonical": "https://xtsy.one/stargaze-hostel-vs-xtsy",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 1
- },
- {
-  "url": "/couples-hostel-shillong",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Hostel for Couples in Shillong 2026: XTSY Private Rooms",
-  "description": "Couples hostel Shillong: Searching for a couple-friendly hostel in Shillong? XTSY offers private rooms from ₹2,399. Get hotel privacy on a backpacker budget.",
-  "canonical": "https://xtsy.one/couples-hostel-shillong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 30
- },
- {
-  "url": "/solo-travel-hostel-shillong",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Solo Travel Hostel in Shillong 2026: Why XTSY is Safest",
-  "description": "Solo travel hostel Shillong: Planning a solo trip to Shillong? XTSY is the top hostel for solo travellers, offering safety, community, and easy-to-join group",
-  "canonical": "https://xtsy.one/solo-travel-hostel-shillong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 29
- },
- {
-  "url": "/zion-backpackers-vs-xtsy",
-  "status": 200,
-  "ms": 9,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Zion Backpackers vs XTSY Shillong — Compare",
-  "description": "Compare Zion Backpackers and XTSY in Shillong. Find the best hostel for your Meghalaya trip based on location, Wi-Fi, tours, and reviews. Book your stay today!",
-  "canonical": "https://xtsy.one/zion-backpackers-vs-xtsy",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 1
- },
- {
-  "url": "/zostel-vs-xtsy-shillong",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Zostel vs XTSY Shillong — Honest Comparison 2026",
-  "description": "Comparing Zostel Shillong with XTSY Travellers Hostel. See pricing, amenities, location & reviews. Find the best hostel in Shillong for your trip.",
-  "canonical": "https://xtsy.one/zostel-vs-xtsy-shillong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 53,
-  "linksIn": 29
- },
- {
-  "url": "/group-tour-agartala",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Agartala 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Agartala for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-agartala",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-aizawl",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Aizawl 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Aizawl for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-aizawl",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-arunachal-pradesh",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Arunachal Pradesh 2026 – Custom Itineraries by…",
-  "description": "Group Tour packages in Arunachal Pradesh for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-arunachal-pradesh",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-assam",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Assam 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Assam for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-assam",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-cherrapunji",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Cherrapunji 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Cherrapunji for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-cherrapunji",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 30
- },
- {
-  "url": "/group-tour-dawki",
-  "status": 200,
-  "ms": 9,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Dawki 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Dawki for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-dawki",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 30
- },
- {
-  "url": "/group-tour-gangtok",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Gangtok 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Gangtok for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-gangtok",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 10
- },
- {
-  "url": "/group-tour-guwahati",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Guwahati 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Guwahati for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-guwahati",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 30
- },
- {
-  "url": "/group-tour-imphal",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Imphal 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Imphal for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-imphal",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-jowai",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Jowai 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Jowai for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-jowai",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-kaziranga",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Kaziranga 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Kaziranga for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-kaziranga",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 30
- },
- {
-  "url": "/group-tour-kohima",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Kohima 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Kohima for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-kohima",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 30
- },
- {
-  "url": "/group-tour-manipur",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Manipur 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Manipur for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-manipur",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-mawlynnong",
-  "status": 200,
-  "ms": 13,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Mawlynnong 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Mawlynnong for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-mawlynnong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 30
- },
- {
-  "url": "/group-tour-meghalaya",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Meghalaya 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Meghalaya for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-meghalaya",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-mizoram",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Mizoram 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Mizoram for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-mizoram",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-nagaland",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Nagaland 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Nagaland for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-nagaland",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-nongjrong",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Nongjrong 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Nongjrong for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-nongjrong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-pelling",
-  "status": 200,
-  "ms": 9,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Pelling 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Pelling for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-pelling",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-shillong",
-  "status": 200,
-  "ms": 11,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Shillong 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Shillong for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-shillong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 50
- },
- {
-  "url": "/group-tour-shnongpdeng",
-  "status": 200,
-  "ms": 24,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Shnongpdeng 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Shnongpdeng for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-shnongpdeng",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-sikkim",
-  "status": 200,
-  "ms": 13,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Sikkim 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Sikkim for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-sikkim",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-tawang",
-  "status": 200,
-  "ms": 13,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Tawang 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Tawang for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-tawang",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 30
- },
- {
-  "url": "/group-tour-tripura",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Tripura 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Tripura for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-tripura",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-ziro",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Ziro 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour packages in Ziro for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-ziro",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 30
- },
- {
-  "url": "/group-tour-package-cherrapunji",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Package Cherrapunji 2026 – Custom Itineraries…",
-  "description": "Group Tour Package packages in Cherrapunji for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-package-cherrapunji",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-package-dawki",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Package Dawki 2026 – Custom Itineraries by XTSY",
-  "description": "Group Tour Package packages in Dawki for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-package-dawki",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-package-guwahati",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Package Guwahati 2026 – Custom Itineraries by…",
-  "description": "Group Tour Package packages in Guwahati for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-package-guwahati",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-package-mawlynnong",
-  "status": 200,
-  "ms": 7,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Package Mawlynnong 2026 – Custom Itineraries by…",
-  "description": "Group Tour Package packages in Mawlynnong for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-package-mawlynnong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
- },
- {
-  "url": "/group-tour-package-shillong",
-  "status": 200,
-  "ms": 8,
-  "depth": 2,
-  "inSitemap": true,
-  "title": "Group Tour Package Shillong 2026 – Custom Itineraries by…",
-  "description": "Group Tour Package packages in Shillong for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
-  "canonical": "https://xtsy.one/group-tour-package-shillong",
-  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": 1,
-  "design": "v2",
-  "linksOut": 58,
-  "linksIn": 1
+  "linksIn": 37
  },
  {
   "url": "/monsoon-in-agartala",
@@ -7572,7 +6687,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 30
+  "linksIn": 31
  },
  {
   "url": "/monsoon-in-dawki",
@@ -7587,12 +6702,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 30
+  "linksIn": 31
  },
  {
   "url": "/monsoon-in-dzukou-valley",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Dzukou Valley 2026 – XTSY Travel Guide",
@@ -7617,7 +6732,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 10
+  "linksIn": 1
  },
  {
   "url": "/monsoon-in-haflong",
@@ -7637,7 +6752,7 @@
  {
   "url": "/monsoon-in-imphal",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Imphal 2026 – XTSY Travel Guide",
@@ -7652,7 +6767,7 @@
  {
   "url": "/monsoon-in-itanagar",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Itanagar 2026 – XTSY Travel Guide",
@@ -7667,7 +6782,7 @@
  {
   "url": "/monsoon-in-jorhat",
   "status": 200,
-  "ms": 7,
+  "ms": 17,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Jorhat 2026 – XTSY Travel Guide",
@@ -7682,7 +6797,7 @@
  {
   "url": "/monsoon-in-jowai",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Jowai 2026 – XTSY Travel Guide",
@@ -7692,12 +6807,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 30
+  "linksIn": 31
  },
  {
   "url": "/monsoon-in-kaziranga",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Kaziranga 2026 – XTSY Travel Guide",
@@ -7727,7 +6842,7 @@
  {
   "url": "/monsoon-in-loktak-lake",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Loktak Lake 2026 – XTSY Travel Guide",
@@ -7742,7 +6857,7 @@
  {
   "url": "/monsoon-in-majuli",
   "status": 200,
-  "ms": 12,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Majuli 2026 – XTSY Travel Guide",
@@ -7767,12 +6882,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 30
+  "linksIn": 31
  },
  {
   "url": "/monsoon-in-mawsynram",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Mawsynram 2026 – XTSY Travel Guide",
@@ -7782,7 +6897,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 30
+  "linksIn": 31
  },
  {
   "url": "/monsoon-in-mokokchung",
@@ -7802,7 +6917,7 @@
  {
   "url": "/monsoon-in-nongjrong",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Nongjrong 2026 – XTSY Travel Guide",
@@ -7812,12 +6927,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 30
+  "linksIn": 10
  },
  {
   "url": "/monsoon-in-pasighat",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Pasighat 2026 – XTSY Travel Guide",
@@ -7832,7 +6947,7 @@
  {
   "url": "/monsoon-in-reiek",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Reiek 2026 – XTSY Travel Guide",
@@ -7857,12 +6972,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 30
+  "linksIn": 31
  },
  {
   "url": "/monsoon-in-shnongpdeng",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Shnongpdeng 2026 – XTSY Travel Guide",
@@ -7872,12 +6987,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 30
+  "linksIn": 31
  },
  {
   "url": "/monsoon-in-tawang",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Tawang 2026 – XTSY Travel Guide",
@@ -7907,7 +7022,7 @@
  {
   "url": "/monsoon-in-tura",
   "status": 200,
-  "ms": 19,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Tura 2026 – XTSY Travel Guide",
@@ -7917,12 +7032,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 59,
-  "linksIn": 30
+  "linksIn": 31
  },
  {
   "url": "/monsoon-in-unakoti",
   "status": 200,
-  "ms": 18,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Unakoti 2026 – XTSY Travel Guide",
@@ -7937,7 +7052,7 @@
  {
   "url": "/monsoon-in-ziro",
   "status": 200,
-  "ms": 13,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Monsoon in Ziro 2026 – XTSY Travel Guide",
@@ -7950,9 +7065,909 @@
   "linksIn": 1
  },
  {
+  "url": "/shillong-cherry-blossom-festival",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Shillong Cherry Blossom Festival 2026: Dates & Stay",
+  "description": "Shillong Cherry Blossom Festival 2026 runs 20-21 November at New Shillong Highland Grounds. Dates, tickets, getting there, and where to stay nearby from ₹399.",
+  "canonical": "https://xtsy.one/shillong-cherry-blossom-festival",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 60,
+  "linksIn": 32
+ },
+ {
+  "url": "/best-hostel-in-cherrapunji",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Best Hostel in Cherrapunji (2026) — Stays via XTSY Partners",
+  "description": "Looking for a good hostel in Cherrapunji? XTSY arranges partner stays, transfers and sightseeing in Cherrapunji, Meghalaya.",
+  "canonical": "https://xtsy.one/best-hostel-in-cherrapunji",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/best-hostel-in-gangtok",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Best Hostel in Gangtok (2026) — Stays via XTSY Partners",
+  "description": "Looking for a good hostel in Gangtok? XTSY arranges partner stays, transfers and sightseeing in Gangtok, Sikkim. XTSY's own hostel is in New Shillong Township.",
+  "canonical": "https://xtsy.one/best-hostel-in-gangtok",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/best-hostel-in-guwahati",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Best Hostel in Guwahati (2026) — Stays via XTSY Partners",
+  "description": "Looking for a good hostel in Guwahati? XTSY arranges partner stays, transfers and sightseeing in Guwahati, Assam.",
+  "canonical": "https://xtsy.one/best-hostel-in-guwahati",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/hostels-in-meghalaya",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Best Hostels in Meghalaya 2026 — Top Rated | XTSY",
+  "description": "Discover the best hostels in Meghalaya. From Shillong to Cherrapunji, find budget dorms & backpacker hostels. Top-rated stays for solo & group travel.",
+  "canonical": "https://xtsy.one/hostels-in-meghalaya",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 29
+ },
+ {
+  "url": "/budget-stay-shillong",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Budget Stay in Shillong — Hostels & Dorms | XTSY",
+  "description": "Discover the best budget stay in Shillong with XTSY. Low-cost hostels, dorms, and private rooms from ₹399. New Shillong Township location with Wi-Fi and hot…",
+  "canonical": "https://xtsy.one/budget-stay-shillong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 39
+ },
+ {
+  "url": "/cheap-hostel-in-cherrapunji",
+  "status": 200,
+  "ms": 6,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Budget-Friendly Hostel in Cherrapunji",
+  "description": "Budget-friendly hostel in Cherrapunji: Looking for a budget-friendly stay in Cherrapunji? XTSY arranges partner stays, transfers and sightseeing in",
+  "canonical": "https://xtsy.one/cheap-hostel-in-cherrapunji",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/cheap-hostel-in-gangtok",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Budget-Friendly Hostel in Gangtok",
+  "description": "Gangtok hostel: Looking for a budget-friendly stay in Gangtok? XTSY arranges partner stays, transfers and sightseeing in Gangtok, Sikkim.",
+  "canonical": "https://xtsy.one/cheap-hostel-in-gangtok",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/cheap-hostel-in-guwahati",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Budget-Friendly Hostel in Guwahati",
+  "description": "Budget-friendly hostel Guwahati: Looking for a budget-friendly stay in Guwahati? XTSY arranges partner stays, transfers and sightseeing in Guwahati, Assam.",
+  "canonical": "https://xtsy.one/cheap-hostel-in-guwahati",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/shillong-dormitory",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Dormitory in Shillong — Mixed & Female Dorms | XTSY",
+  "description": "Book dormitory beds in Shillong from ₹399. Mixed & female-only dorms with lockers, hot showers, free WiFi. Best rated dorm stay in Meghalaya.",
+  "canonical": "https://xtsy.one/shillong-dormitory",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 29
+ },
+ {
+  "url": "/dorms-in-shillong",
+  "status": 200,
+  "ms": 8,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Dorms in Shillong | Best Hostels & Budget Stays",
+  "description": "Book budget dorms in Shillong with mixed and female-only options. Features include lockers, hot showers, and Wi-Fi. Perfect for solo travellers and backpackers.",
+  "canonical": "https://xtsy.one/dorms-in-shillong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-stay-shillong",
+  "status": 200,
+  "ms": 9,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Stay in Shillong — 4 to 20 Guests | XTSY",
+  "description": "Book premium group stay in Shillong for 4-20 guests at XTSY. Enjoy bunk beds, private rooms, and full floor options with curated Meghalaya tour packages.",
+  "canonical": "https://xtsy.one/group-stay-shillong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 29
+ },
+ {
+  "url": "/hostel-in-shillong-last-minute",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel in Shillong Last Minute — XTSY, New Shillong Township",
+  "description": "Need a bed in Shillong at the last minute? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
+  "canonical": "https://xtsy.one/hostel-in-shillong-last-minute",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 1
+ },
+ {
+  "url": "/hostel-in-shillong-now",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel in Shillong Right Now — XTSY, New Shillong Township",
+  "description": "Need a bed in Shillong right now? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
+  "canonical": "https://xtsy.one/hostel-in-shillong-now",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 1
+ },
+ {
+  "url": "/hostel-in-shillong-this-weekend",
+  "status": 200,
+  "ms": 6,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel in Shillong This Weekend",
+  "description": "Need a bed in Shillong this weekend? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
+  "canonical": "https://xtsy.one/hostel-in-shillong-this-weekend",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 1
+ },
+ {
+  "url": "/hostels-in-shillong-today",
+  "status": 200,
+  "ms": 6,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel in Shillong Today — XTSY, New Shillong Township",
+  "description": "Need a bed in Shillong today? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms.",
+  "canonical": "https://xtsy.one/hostels-in-shillong-today",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 55,
+  "linksIn": 5
+ },
+ {
+  "url": "/hostel-in-shillong-tomorrow",
+  "status": 200,
+  "ms": 6,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel in Shillong Tomorrow — XTSY, New Shillong Township",
+  "description": "Need a bed in Shillong tomorrow? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
+  "canonical": "https://xtsy.one/hostel-in-shillong-tomorrow",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 1
+ },
+ {
+  "url": "/hostel-in-shillong-tonight",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel in Shillong Tonight — XTSY, New Shillong Township",
+  "description": "Need a bed in Shillong tonight? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
+  "canonical": "https://xtsy.one/hostel-in-shillong-tonight",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 1
+ },
+ {
+  "url": "/hostel-near-police-bazar-shillong",
+  "status": 200,
+  "ms": 6,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel near Police Bazar Shillong? Where XTSY Is | XTSY",
+  "description": "Searching for a hostel near Police Bazar? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
+  "canonical": "https://xtsy.one/hostel-near-police-bazar-shillong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 30
+ },
+ {
+  "url": "/hostel-near-shillong-airport",
+  "status": 200,
+  "ms": 6,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel near Shillong Airport — XTSY, New Shillong Township",
+  "description": "Flying into Shillong Airport at Umroi? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong.",
+  "canonical": "https://xtsy.one/hostel-near-shillong-airport",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 1
+ },
+ {
+  "url": "/hostel-near-cherrapunji-airport",
+  "status": 200,
+  "ms": 6,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel near Cherrapunji Airport",
+  "description": "Hostel near Cherrapunji airport: Arriving by air for Cherrapunji? XTSY arranges partner stays, transfers and sightseeing in Cherrapunji, Meghalaya.",
+  "canonical": "https://xtsy.one/hostel-near-cherrapunji-airport",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/hostel-near-gangtok-airport",
+  "status": 200,
+  "ms": 6,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel near Gangtok Airport — Stays and Transfers via XTSY",
+  "description": "Hostels near gangtok airport: Arriving by air for Gangtok? XTSY arranges partner stays, transfers and sightseeing in Gangtok, Sikkim.",
+  "canonical": "https://xtsy.one/hostel-near-gangtok-airport",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/hostel-near-guwahati-airport",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel near Guwahati Airport — Stays and Transfers via XTSY",
+  "description": "Guwahati airport hostel: Arriving by air for Guwahati? XTSY arranges partner stays, transfers and sightseeing in Guwahati, Assam.",
+  "canonical": "https://xtsy.one/hostel-near-guwahati-airport",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/isabella-hostel-vs-xtsy",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Isabella Hostel vs XTSY Shillong Comparison 2026",
+  "description": "Compare Isabella Hostel vs XTSY in Shillong. Discover differences in location, amenities, and tour access to pick the best backpacker hostel for your 2026 trip.",
+  "canonical": "https://xtsy.one/isabella-hostel-vs-xtsy",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 10
+ },
+ {
+  "url": "/long-stay-hostel-shillong",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Long Stay Hostel Shillong — Weekly & Monthly | XTSY",
+  "description": "Long-term hostel stay in Shillong with weekly & monthly discounts. High-speed WiFi, coworking space. Ideal for remote workers & digital nomads.",
+  "canonical": "https://xtsy.one/long-stay-hostel-shillong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 29
+ },
+ {
+  "url": "/stargaze-hostel-vs-xtsy",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Stargaze Hostel vs XTSY Shillong — Compare Now",
+  "description": "Compare Stargaze Hostel and XTSY Shillong. Discover the best affordable stay for solo travellers, digital nomads, and groups exploring Meghalaya's beauty.",
+  "canonical": "https://xtsy.one/stargaze-hostel-vs-xtsy",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 1
+ },
+ {
+  "url": "/couples-hostel-shillong",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Hostel for Couples in Shillong 2026: XTSY Private Rooms",
+  "description": "Couples hostel Shillong: Searching for a couple-friendly hostel in Shillong? XTSY offers private rooms from ₹2,399. Get hotel privacy on a backpacker budget.",
+  "canonical": "https://xtsy.one/couples-hostel-shillong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 30
+ },
+ {
+  "url": "/solo-travel-hostel-shillong",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Solo Travel Hostel in Shillong 2026: Why XTSY is Safest",
+  "description": "Solo travel hostel Shillong: Planning a solo trip to Shillong? XTSY is the top hostel for solo travellers, offering safety, community, and easy-to-join group",
+  "canonical": "https://xtsy.one/solo-travel-hostel-shillong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 29
+ },
+ {
+  "url": "/zion-backpackers-vs-xtsy",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Zion Backpackers vs XTSY Shillong — Compare",
+  "description": "Compare Zion Backpackers and XTSY in Shillong. Find the best hostel for your Meghalaya trip based on location, Wi-Fi, tours, and reviews. Book your stay today!",
+  "canonical": "https://xtsy.one/zion-backpackers-vs-xtsy",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 1
+ },
+ {
+  "url": "/zostel-vs-xtsy-shillong",
+  "status": 200,
+  "ms": 6,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Zostel vs XTSY Shillong — Honest Comparison 2026",
+  "description": "Comparing Zostel Shillong with XTSY Travellers Hostel. See pricing, amenities, location & reviews. Find the best hostel in Shillong for your trip.",
+  "canonical": "https://xtsy.one/zostel-vs-xtsy-shillong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 53,
+  "linksIn": 29
+ },
+ {
+  "url": "/group-tour-agartala",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Agartala 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Agartala for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-agartala",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-aizawl",
+  "status": 200,
+  "ms": 8,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Aizawl 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Aizawl for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-aizawl",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-arunachal-pradesh",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Arunachal Pradesh 2026 – Custom Itineraries by…",
+  "description": "Group Tour packages in Arunachal Pradesh for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-arunachal-pradesh",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-assam",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Assam 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Assam for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-assam",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-cherrapunji",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Cherrapunji 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Cherrapunji for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-cherrapunji",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 30
+ },
+ {
+  "url": "/group-tour-dawki",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Dawki 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Dawki for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-dawki",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 30
+ },
+ {
+  "url": "/group-tour-gangtok",
+  "status": 200,
+  "ms": 8,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Gangtok 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Gangtok for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-gangtok",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 10
+ },
+ {
+  "url": "/group-tour-guwahati",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Guwahati 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Guwahati for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-guwahati",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 30
+ },
+ {
+  "url": "/group-tour-imphal",
+  "status": 200,
+  "ms": 8,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Imphal 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Imphal for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-imphal",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-jowai",
+  "status": 200,
+  "ms": 8,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Jowai 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Jowai for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-jowai",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-kaziranga",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Kaziranga 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Kaziranga for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-kaziranga",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 30
+ },
+ {
+  "url": "/group-tour-kohima",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Kohima 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Kohima for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-kohima",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 30
+ },
+ {
+  "url": "/group-tour-manipur",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Manipur 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Manipur for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-manipur",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-mawlynnong",
+  "status": 200,
+  "ms": 8,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Mawlynnong 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Mawlynnong for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-mawlynnong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 30
+ },
+ {
+  "url": "/group-tour-meghalaya",
+  "status": 200,
+  "ms": 8,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Meghalaya 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Meghalaya for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-meghalaya",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-mizoram",
+  "status": 200,
+  "ms": 8,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Mizoram 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Mizoram for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-mizoram",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-nagaland",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Nagaland 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Nagaland for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-nagaland",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-nongjrong",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Nongjrong 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Nongjrong for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-nongjrong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-pelling",
+  "status": 200,
+  "ms": 6,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Pelling 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Pelling for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-pelling",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-shillong",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Shillong 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Shillong for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-shillong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 50
+ },
+ {
+  "url": "/group-tour-shnongpdeng",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Shnongpdeng 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Shnongpdeng for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-shnongpdeng",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-sikkim",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Sikkim 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Sikkim for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-sikkim",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-tawang",
+  "status": 200,
+  "ms": 8,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Tawang 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Tawang for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-tawang",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 30
+ },
+ {
+  "url": "/group-tour-tripura",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Tripura 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Tripura for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-tripura",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-ziro",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Ziro 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour packages in Ziro for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-ziro",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 30
+ },
+ {
+  "url": "/group-tour-package-cherrapunji",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Package Cherrapunji 2026 – Custom Itineraries…",
+  "description": "Group Tour Package packages in Cherrapunji for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-package-cherrapunji",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-package-dawki",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Package Dawki 2026 – Custom Itineraries by XTSY",
+  "description": "Group Tour Package packages in Dawki for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-package-dawki",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-package-guwahati",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Package Guwahati 2026 – Custom Itineraries by…",
+  "description": "Group Tour Package packages in Guwahati for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-package-guwahati",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-package-mawlynnong",
+  "status": 200,
+  "ms": 6,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Package Mawlynnong 2026 – Custom Itineraries by…",
+  "description": "Group Tour Package packages in Mawlynnong for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-package-mawlynnong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
+  "url": "/group-tour-package-shillong",
+  "status": 200,
+  "ms": 7,
+  "depth": 2,
+  "inSitemap": true,
+  "title": "Group Tour Package Shillong 2026 – Custom Itineraries by…",
+  "description": "Group Tour Package packages in Shillong for groups of 6–60. Curated stays, transport, guides and 24/7 support. Get a quote on WhatsApp +918837317070.",
+  "canonical": "https://xtsy.one/group-tour-package-shillong",
+  "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+  "h1": 1,
+  "design": "v2",
+  "linksOut": 58,
+  "linksIn": 1
+ },
+ {
   "url": "/accommodation-near-iim-shillong",
   "status": 200,
-  "ms": 14,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Accommodation IIM Shillong (2026) | XTSY",
@@ -7967,7 +7982,7 @@
  {
   "url": "/accommodation-near-nehu",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Accommodation NEHU (2026) | XTSY",
@@ -7982,7 +7997,7 @@
  {
   "url": "/accommodation-near-nift-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Accommodation NIFT Shillong (2026) | XTSY",
@@ -8012,7 +8027,7 @@
  {
   "url": "/group-booking-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Group Booking Shillong — Dorms & Rooms | XTSY",
@@ -8027,7 +8042,7 @@
  {
   "url": "/guest-house-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Guest House in Shillong — Affordable Stays | XTSY",
@@ -8057,7 +8072,7 @@
  {
   "url": "/hostel-near-iit-guwahati",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Hostel IIT Guwahati (2026) | XTSY",
@@ -8087,7 +8102,7 @@
  {
   "url": "/hostel-near-nift-shillong",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Hostel NIFT Shillong (2026) | XTSY",
@@ -8102,7 +8117,7 @@
  {
   "url": "/hotel-near-iim-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Hotel IIM Shillong (2026) | XTSY",
@@ -8117,7 +8132,7 @@
  {
   "url": "/hotel-near-nehu",
   "status": 200,
-  "ms": 11,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Hotel NEHU (2026) | XTSY — Budget Rooms, 24/7 Check-in",
@@ -8132,7 +8147,7 @@
  {
   "url": "/hotel-near-nift-shillong",
   "status": 200,
-  "ms": 12,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Hotel NIFT Shillong (2026) | XTSY",
@@ -8147,10 +8162,10 @@
  {
   "url": "/shillong-last-minute-stays",
   "status": 200,
-  "ms": 11,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
-  "title": "Last Minute Stays in Shillong — Available Now (22 October 2…",
+  "title": "Last Minute Stays in Shillong — Available Now (27 October 2…",
   "description": "Need a last-minute stay in Shillong? Rooms and dorms available right now from ₹399/night. Instant booking, real-time availability at XTSY Travellers Hostel.",
   "canonical": "https://xtsy.one/shillong-last-minute-stays",
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -8162,7 +8177,7 @@
  {
   "url": "/parent-stay-near-iim-shillong",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Parent Stay IIM Shillong (2026) | XTSY",
@@ -8177,7 +8192,7 @@
  {
   "url": "/parent-stay-near-nehu",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Parent Stay NEHU (2026) | XTSY",
@@ -8192,7 +8207,7 @@
  {
   "url": "/parent-stay-near-nift-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Parent Stay NIFT Shillong (2026) | XTSY",
@@ -8207,7 +8222,7 @@
  {
   "url": "/stay-near-iim-shillong",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Stay IIM Shillong (2026) | XTSY",
@@ -8222,7 +8237,7 @@
  {
   "url": "/stay-near-iit-guwahati",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Stay IIT Guwahati (2026) | XTSY",
@@ -8240,7 +8255,7 @@
   "ms": 6,
   "depth": 2,
   "inSitemap": true,
-  "title": "Stay in Shillong Tonight — Rooms & Beds Available (22 Octob…",
+  "title": "Stay in Shillong Tonight — Rooms & Beds Available (27 Octob…",
   "description": "Need a place to stay in Shillong tonight? Beds from ₹399, rooms from ₹2,399. Real-time availability, instant booking, WhatsApp confirmation at XTSY Hostel.",
   "canonical": "https://xtsy.one/shillong-stay-tonight",
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -8252,7 +8267,7 @@
  {
   "url": "/stay-near-nehu",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Stay NEHU (2026) | XTSY — Budget Rooms, 24/7 Check-in",
@@ -8267,7 +8282,7 @@
  {
   "url": "/stay-near-nift-shillong",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Stay NIFT Shillong (2026) | XTSY",
@@ -8282,7 +8297,7 @@
  {
   "url": "/student-accommodation-near-iim-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Student Accommodation IIM Shillong (2026) | XTSY",
@@ -8312,7 +8327,7 @@
  {
   "url": "/student-accommodation-near-nift-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Student Accommodation NIFT Shillong (2026) | XTSY",
@@ -8327,7 +8342,7 @@
  {
   "url": "/shillong-tour-package-2-days",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Shillong Tour Package 2 Days — ₹4,999 | XTSY",
@@ -8342,7 +8357,7 @@
  {
   "url": "/meghalaya-tour-package-3-days",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "3 Day Meghalaya Tour Package — ₹7,999 | XTSY",
@@ -8387,7 +8402,7 @@
  {
   "url": "/tour-operators-meghalaya",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Best Tour Operators in Meghalaya 2026 | XTSY",
@@ -8417,7 +8432,7 @@
  {
   "url": "/cherrapunji-tour-package",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Cherrapunji Tour Package 2026: XTSY Root Bridge Tours",
@@ -8432,7 +8447,7 @@
  {
   "url": "/meghalaya-adventure-package",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Meghalaya Adventure Package — Trek, Camp, Explore",
@@ -8477,7 +8492,7 @@
  {
   "url": "/nongjrong-tour-package",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Nongjrong Tour Package — Sunrise & Root Bridges",
@@ -8492,7 +8507,7 @@
  {
   "url": "/dawki-tour-package",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Dawki Tour Package 2026: Clear River & Camping | XTSY",
@@ -8507,7 +8522,7 @@
  {
   "url": "/tour-operators-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Tour Operators in Shillong 2026 — Best Rated | XTSY",
@@ -8522,7 +8537,7 @@
  {
   "url": "/arunachal-pradesh-tour-packages",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Tour packages Arunachal Pradesh (2026) | XTSY",
@@ -8537,7 +8552,7 @@
  {
   "url": "/assam-tour-packages",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Tour packages Assam (2026) | XTSY",
@@ -8552,7 +8567,7 @@
  {
   "url": "/manipur-tour-packages",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Tour packages Manipur (2026) | XTSY",
@@ -8582,7 +8597,7 @@
  {
   "url": "/nagaland-tour-packages",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Tour packages Nagaland (2026) | XTSY",
@@ -8597,7 +8612,7 @@
  {
   "url": "/sikkim-tour-packages",
   "status": 200,
-  "ms": 9,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Tour packages Sikkim (2026) | XTSY",
@@ -8612,7 +8627,7 @@
  {
   "url": "/tripura-tour-packages",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Tour packages Tripura (2026) | XTSY",
@@ -8672,7 +8687,7 @@
  {
   "url": "/corporate-retreat-assam",
   "status": 200,
-  "ms": 6,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Corporate Retreat in Assam 2026 – XTSY",
@@ -8702,7 +8717,7 @@
  {
   "url": "/corporate-retreat-dawki",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Corporate Retreat in Dawki 2026 – XTSY",
@@ -8717,7 +8732,7 @@
  {
   "url": "/corporate-retreat-gangtok",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Corporate Retreat in Gangtok 2026 – XTSY",
@@ -8762,7 +8777,7 @@
  {
   "url": "/corporate-retreat-jowai",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Corporate Retreat in Jowai 2026 – XTSY",
@@ -8807,7 +8822,7 @@
  {
   "url": "/corporate-retreat-mawlynnong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Corporate Retreat in Mawlynnong 2026 – XTSY",
@@ -8852,7 +8867,7 @@
  {
   "url": "/corporate-retreat-nongjrong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Corporate Retreat in Nongjrong 2026 – XTSY",
@@ -8882,7 +8897,7 @@
  {
   "url": "/corporate-retreat-shnongpdeng",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Corporate Retreat in Shnongpdeng 2026 – XTSY",
@@ -8897,7 +8912,7 @@
  {
   "url": "/corporate-retreat-tawang",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Corporate Retreat in Tawang 2026 – XTSY",
@@ -8912,7 +8927,7 @@
  {
   "url": "/corporate-retreat-ziro",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Corporate Retreat in Ziro 2026 – XTSY",
@@ -8942,7 +8957,7 @@
  {
   "url": "/bike-trip-aizawl",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Bike Trip Aizawl 2026 — Route, Permits & Stays",
@@ -8972,7 +8987,7 @@
  {
   "url": "/bike-trip-assam",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Bike Trip Assam 2026 — Route, Permits & Stays",
@@ -8987,7 +9002,7 @@
  {
   "url": "/bike-trip-cherrapunji",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Bike Trip Cherrapunji 2026 — Route, Permits & Stays",
@@ -9017,7 +9032,7 @@
  {
   "url": "/bike-trip-gangtok",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Bike Trip Gangtok 2026 — Route, Permits & Stays",
@@ -9092,7 +9107,7 @@
  {
   "url": "/bike-trip-kohima",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Bike Trip Kohima 2026 — Route, Permits & Stays",
@@ -9122,7 +9137,7 @@
  {
   "url": "/bike-trip-meghalaya",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Bike Trip Meghalaya 2026 — Route, Permits & Stays",
@@ -9152,7 +9167,7 @@
  {
   "url": "/bike-trip-pelling",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Bike Trip Pelling 2026 — Route, Permits & Stays",
@@ -9182,7 +9197,7 @@
  {
   "url": "/bike-trip-shnongpdeng",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Bike Trip Shnongpdeng 2026 — Route, Permits & Stays",
@@ -9197,7 +9212,7 @@
  {
   "url": "/bike-trip-tawang",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Bike Trip Tawang 2026 — Route, Permits & Stays",
@@ -9212,7 +9227,7 @@
  {
   "url": "/bike-trip-ziro",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Bike Trip Ziro 2026 — Route, Permits & Stays",
@@ -9227,7 +9242,7 @@
  {
   "url": "/living-root-bridges-meghalaya",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Living Root Bridges of Meghalaya: A 2026 Trekking Guide",
@@ -9242,7 +9257,7 @@
  {
   "url": "/cherrapunji-guide",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Cherrapunji (Sohra) — Wettest Place on Earth | Guide",
@@ -9257,7 +9272,7 @@
  {
   "url": "/dawki-guide",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Dawki — Crystal Clear Umngot River | Travel Guide",
@@ -9287,7 +9302,7 @@
  {
   "url": "/elephant-falls-shillong",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Elephant Falls — Shillong's Most Accessible Waterfall",
@@ -9302,7 +9317,7 @@
  {
   "url": "/kongthong-whistling-village",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Kongthong — The Whistling Village of Meghalaya",
@@ -9317,7 +9332,7 @@
  {
   "url": "/krang-suri-falls-meghalaya",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Krang Suri Falls — Meghalaya's Most Beautiful Swimming Hole",
@@ -9327,12 +9342,12 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 57,
-  "linksIn": 475
+  "linksIn": 476
  },
  {
   "url": "/laitlum-canyons-shillong",
   "status": 200,
-  "ms": 9,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Laitlum Canyons — Shillong's Most Dramatic Viewpoint",
@@ -9347,7 +9362,7 @@
  {
   "url": "/mawlynnong-cleanest-village",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Mawlynnong — Asia's Cleanest Village Guide 2026",
@@ -9392,7 +9407,7 @@
  {
   "url": "/mawsmai-cave-cherrapunji",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Mawsmai Cave — Cherrapunji's Easy Limestone Cave Walk",
@@ -9402,7 +9417,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 61,
-  "linksIn": 474
+  "linksIn": 475
  },
  {
   "url": "/nohkalikai-falls-meghalaya",
@@ -9417,7 +9432,7 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 60,
-  "linksIn": 479
+  "linksIn": 480
  },
  {
   "url": "/shillong-guide",
@@ -9437,7 +9452,7 @@
  {
   "url": "/shillong-peak-viewpoint",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Shillong Peak — Highest Point & 360° Panoramic Views",
@@ -9467,7 +9482,7 @@
  {
   "url": "/wei-sawdong-falls-meghalaya",
   "status": 200,
-  "ms": 11,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Wei Sawdong Falls — Meghalaya's Hidden Three-Tiered Gem",
@@ -9482,7 +9497,7 @@
  {
   "url": "/homestay-near-cherrapunji-airport",
   "status": 200,
-  "ms": 10,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Airport Homestay in Cherrapunji (Airport) (2026) | XTSY",
@@ -9542,7 +9557,7 @@
  {
   "url": "/cheap-homestay-in-cherrapunji",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Budget-Friendly Homestay in Cherrapunji? Read This Before Y…",
@@ -9587,7 +9602,7 @@
  {
   "url": "/homestay-shillong-city",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Homestay in Shillong City — Local Living | XTSY",
@@ -9647,7 +9662,7 @@
  {
   "url": "/homestay-in-shillong-today",
   "status": 200,
-  "ms": 10,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Homestay in Shillong Today (2026) | XTSY",
@@ -9662,7 +9677,7 @@
  {
   "url": "/homestay-in-shillong-tomorrow",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Homestay in Shillong Tomorrow (2026) | XTSY",
@@ -9677,7 +9692,7 @@
  {
   "url": "/homestay-in-shillong-tonight",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Homestay in Shillong Tonight (2026) | XTSY",
@@ -9692,7 +9707,7 @@
  {
   "url": "/homestay-in-dawki",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Homestay in Dawki — Near Umngot River | XTSY",
@@ -9707,7 +9722,7 @@
  {
   "url": "/homestay-in-mawlynnong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Homestay in Mawlynnong — Asia's Cleanest Village",
@@ -9737,7 +9752,7 @@
  {
   "url": "/glamping-near-shillong-airport",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Airport Glamping in Shillong (Airport) (2026) | XTSY",
@@ -9752,7 +9767,7 @@
  {
   "url": "/best-glamping-in-cherrapunji",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Best Glamping in Cherrapunji (Best) (2026) | XTSY",
@@ -9767,7 +9782,7 @@
  {
   "url": "/best-glamping-in-shillong",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Best Glamping in Shillong (Best) (2026) | XTSY",
@@ -9797,7 +9812,7 @@
  {
   "url": "/cheap-glamping-in-guwahati",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Budget-friendly Glamping in Guwahati (Budget-friendly)",
@@ -9812,7 +9827,7 @@
  {
   "url": "/cheap-glamping-in-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Budget-friendly Glamping in Shillong (Budget-friendly)",
@@ -9857,7 +9872,7 @@
  {
   "url": "/glamping-in-shillong-this-weekend",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Glamping in Shillong This Weekend (2026) | XTSY",
@@ -9872,7 +9887,7 @@
  {
   "url": "/glamping-in-shillong-today",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Glamping in Shillong Today (2026) | XTSY",
@@ -9887,7 +9902,7 @@
  {
   "url": "/glamping-in-shillong-tomorrow",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Glamping in Shillong Tomorrow (2026) | XTSY",
@@ -9917,7 +9932,7 @@
  {
   "url": "/luxury-resorts-for-couples-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Luxury Resorts for Couples in Shillong | Experience by XTSY",
@@ -9947,7 +9962,7 @@
  {
   "url": "/unique-luxury-stay-india",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Unique Luxury Stays in India — Experience by XTSY",
@@ -9962,7 +9977,7 @@
  {
   "url": "/workation-aizawl",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Workation in Aizawl 2026 – Long-Stay by XTSY",
@@ -9992,7 +10007,7 @@
  {
   "url": "/workation-dawki",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Workation in Dawki 2026 – Long-Stay by XTSY",
@@ -10022,7 +10037,7 @@
  {
   "url": "/workation-guwahati",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Workation in Guwahati 2026 – Long-Stay by XTSY",
@@ -10037,7 +10052,7 @@
  {
   "url": "/workation-kaziranga",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Workation in Kaziranga 2026 – Long-Stay by XTSY",
@@ -10067,7 +10082,7 @@
  {
   "url": "/workation-mawlynnong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Workation in Mawlynnong 2026 – Long-Stay by XTSY",
@@ -10082,7 +10097,7 @@
  {
   "url": "/workation-pelling",
   "status": 200,
-  "ms": 9,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Workation in Pelling 2026 – Long-Stay by XTSY",
@@ -10127,7 +10142,7 @@
  {
   "url": "/workation-ziro",
   "status": 200,
-  "ms": 7,
+  "ms": 19,
   "depth": 2,
   "inSitemap": true,
   "title": "Workation in Ziro 2026 – Long-Stay by XTSY",
@@ -10142,7 +10157,7 @@
  {
   "url": "/cheap-car-rental-shillong",
   "status": 200,
-  "ms": 6,
+  "ms": 11,
   "depth": 2,
   "inSitemap": true,
   "title": "Budget-Friendly Car Rental Shillong — From ₹1,200/Day | XTSY",
@@ -10157,7 +10172,7 @@
  {
   "url": "/car-booking-shillong",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Car Booking Shillong — Instant Online | XTSY Rentals",
@@ -10172,7 +10187,7 @@
  {
   "url": "/car-rental-guwahati",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Car Rental in Guwahati — Best Rates 2026 | XTSY",
@@ -10187,7 +10202,7 @@
  {
   "url": "/guwahati-to-shillong-transport",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Guwahati to Shillong — Transport Guide 2026 | XTSY",
@@ -10217,7 +10232,7 @@
  {
   "url": "/self-drive-car-guwahati",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Self Drive Car Rental Guwahati 2026 | XTSY Rentals",
@@ -10232,7 +10247,7 @@
  {
   "url": "/suv-rental-shillong",
   "status": 200,
-  "ms": 6,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "SUV Rental in Shillong — 4x4 for Meghalaya | XTSY",
@@ -10247,7 +10262,7 @@
  {
   "url": "/vehicle-rental-northeast",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Vehicle Rental Northeast India — Cars & Bikes | XTSY",
@@ -10262,7 +10277,7 @@
  {
   "url": "/elephant-falls-guide",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Elephant Falls Shillong — Three-Tiered Waterfall",
@@ -10277,7 +10292,7 @@
  {
   "url": "/krang-suri-falls-guide",
   "status": 200,
-  "ms": 9,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Krang Suri Falls — Blue Lagoon of Meghalaya | Guide",
@@ -10292,7 +10307,7 @@
  {
   "url": "/laitlum-canyons-guide",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Laitlum Canyons — Shillong's Best Viewpoint | Guide",
@@ -10307,7 +10322,7 @@
  {
   "url": "/living-root-bridge-trek",
   "status": 200,
-  "ms": 7,
+  "ms": 8,
   "depth": 2,
   "inSitemap": true,
   "title": "Living Root Bridge Trek — Double Decker Root Bridge",
@@ -10322,7 +10337,7 @@
  {
   "url": "/nohkalikai-falls-guide",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Nohkalikai Falls — India's Tallest Waterfall | Guide",
@@ -10337,7 +10352,7 @@
  {
   "url": "/rainbow-falls-guide",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Rainbow Falls Meghalaya — Nongriat Trek Guide",
@@ -10352,7 +10367,7 @@
  {
   "url": "/wei-sawdong-falls-guide",
   "status": 200,
-  "ms": 8,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
   "title": "Wei Sawdong Falls — Three-Tiered Hidden Gem",
@@ -10382,7 +10397,7 @@
  {
   "url": "/camping-in-shnongpdeng",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Camping in Shnongpdeng Meghalaya 2026 | XTSY",
@@ -10397,7 +10412,7 @@
  {
   "url": "/fishing-in-dawki",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Fishing in Dawki Meghalaya 2026 — Guide | XTSY",
@@ -10487,10 +10502,10 @@
  {
   "url": "/hotels-in-shillong-available-now",
   "status": 200,
-  "ms": 6,
+  "ms": 7,
   "depth": 2,
   "inSitemap": true,
-  "title": "Hotels in Shillong Available Now (22 October 2026)",
+  "title": "Hotels in Shillong Available Now (27 October 2026)",
   "description": "Hotels and rooms in Shillong available right now. Private rooms from ₹2,399/night, luxury suites from ₹5,999. Real-time availability, instant confirmation.",
   "canonical": "https://xtsy.one/hotels-in-shillong-available-now",
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -10502,7 +10517,7 @@
  {
   "url": "/hotel-near-police-bazar",
   "status": 200,
-  "ms": 8,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Hotel Near Police Bazar Shillong — Best Options 2026",
@@ -10517,7 +10532,7 @@
  {
   "url": "/hospital-accommodation-shillong",
   "status": 200,
-  "ms": 7,
+  "ms": 6,
   "depth": 2,
   "inSitemap": true,
   "title": "Hospital Accommodation Shillong — Near NEIGRIHMS",
@@ -10562,7 +10577,7 @@
  {
   "url": "/destinations/meghalaya/tura/nokrek-biosphere-reserve",
   "status": 200,
-  "ms": 7,
+  "ms": 5,
   "depth": 3,
   "inSitemap": true,
   "title": "Nokrek Biosphere Reserve, Tura — Timings & How to Reach",
@@ -10602,6 +10617,6 @@
   "h1": 1,
   "design": "v2",
   "linksOut": 61,
-  "linksIn": 343
+  "linksIn": 344
  }
 ]

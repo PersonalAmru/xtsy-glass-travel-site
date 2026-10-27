@@ -42,7 +42,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 604,
+   "t": 372,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-640.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -84,7 +84,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 372,
+   "t": 224,
    "tag": "P",
    "url": "",
    "cls": "m-0 text-[16px] leading-relaxed"
@@ -126,7 +126,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 356,
+   "t": 232,
    "tag": "P",
    "url": "",
    "cls": "m-0 text-[16px] leading-relaxed"
@@ -169,7 +169,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 408,
+   "t": 252,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
@@ -211,7 +211,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 392,
+   "t": 256,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
@@ -256,7 +256,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 424,
+   "t": 248,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -299,7 +299,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 308,
+   "t": 204,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm"
@@ -342,7 +342,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 368,
+   "t": 220,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -385,7 +385,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 340,
+   "t": 220,
    "tag": "P",
    "url": "",
    "cls": "m-0 max-w-[720px] text-[18px] leading-relaxed text-xt-ink"
@@ -429,7 +429,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 364,
+   "t": 196,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 m-0 text-[17px] leading-relaxed text-xt-mute"
@@ -476,7 +476,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 372,
+   "t": 208,
    "tag": "P",
    "url": "",
    "cls": "m-0"
@@ -524,7 +524,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 368,
+   "t": 196,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -571,7 +571,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 324,
+   "t": 204,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -613,7 +613,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 376,
+   "t": 220,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -662,7 +662,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 364,
+   "t": 236,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-640.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -704,7 +704,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 364,
+   "t": 220,
    "tag": "P",
    "url": "",
    "cls": "m-0 text-[16px] leading-relaxed"
@@ -746,7 +746,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 372,
+   "t": 208,
    "tag": "P",
    "url": "",
    "cls": "m-0 text-[16px] leading-relaxed"
@@ -789,7 +789,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 348,
+   "t": 216,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -831,7 +831,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 356,
+   "t": 244,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
@@ -876,7 +876,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 396,
+   "t": 240,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -920,7 +920,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 336,
+   "t": 196,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm"
@@ -963,7 +963,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 372,
+   "t": 200,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1006,7 +1006,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 352,
+   "t": 204,
    "tag": "P",
    "url": "",
    "cls": "m-0 max-w-[720px] text-[18px] leading-relaxed text-xt-ink"
@@ -1050,7 +1050,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 328,
+   "t": 196,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 m-0 text-[17px] leading-relaxed text-xt-mute"
@@ -1097,7 +1097,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 352,
+   "t": 216,
    "tag": "P",
    "url": "",
    "cls": "m-0"
@@ -1145,7 +1145,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 324,
+   "t": 180,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1192,7 +1192,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 296,
+   "t": 208,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -1234,7 +1234,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 348,
+   "t": 212,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -1283,7 +1283,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 400,
+   "t": 252,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -1325,7 +1325,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 356,
+   "t": 236,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1367,7 +1367,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 328,
+   "t": 220,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1410,10 +1410,10 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 440,
-   "tag": "H1",
-   "url": "",
-   "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
+   "t": 244,
+   "tag": "IMG",
+   "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
+   "cls": "absolute inset-0 h-full w-full object-cover"
   }
  },
  {
@@ -1452,10 +1452,10 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 416,
-   "tag": "H1",
+   "t": 248,
+   "tag": "P",
    "url": "",
-   "cls": "xt-in xt-d1 xt-display m-0 text-[72px] leading-[0.86] sm:tex"
+   "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
   }
  },
  {
@@ -1497,7 +1497,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 412,
+   "t": 244,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1542,7 +1542,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 352,
+   "t": 204,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1585,7 +1585,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 340,
+   "t": 204,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1628,7 +1628,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 376,
+   "t": 204,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "aspect-[16/11] h-auto w-full object-cover"
@@ -1673,7 +1673,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 364,
+   "t": 196,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -1721,7 +1721,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 384,
+   "t": 220,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1772,7 +1772,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 348,
+   "t": 196,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1812,7 +1812,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 392,
+   "t": 212,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -1854,7 +1854,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 368,
+   "t": 204,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -1903,7 +1903,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 428,
+   "t": 252,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -1943,9 +1943,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.004,
+  "cls": 0,
   "lcp": {
-   "t": 348,
+   "t": 240,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1985,9 +1985,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.005,
+  "cls": 0,
   "lcp": {
-   "t": 324,
+   "t": 220,
    "tag": "H1",
    "url": "",
    "cls": "xt-display m-0 text-[56px] leading-[0.9] sm:text-[88px]"
@@ -2028,12 +2028,12 @@
   "h1": 1,
   "jsonLd": 4,
   "quickAnswer": false,
-  "cls": 0.079,
+  "cls": 0.002,
   "lcp": {
-   "t": 460,
-   "tag": "H1",
-   "url": "",
-   "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
+   "t": 248,
+   "tag": "IMG",
+   "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
+   "cls": "absolute inset-0 h-full w-full object-cover"
   }
  },
  {
@@ -2072,7 +2072,7 @@
   "quickAnswer": false,
   "cls": 0.023,
   "lcp": {
-   "t": 404,
+   "t": 256,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[72px] leading-[0.86] sm:tex"
@@ -2116,7 +2116,7 @@
   "quickAnswer": false,
   "cls": 0.005,
   "lcp": {
-   "t": 440,
+   "t": 248,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[52px] leading-[0.9] sm:text"
@@ -2160,9 +2160,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": true,
-  "cls": 0.013,
+  "cls": 0,
   "lcp": {
-   "t": 348,
+   "t": 204,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
@@ -2203,9 +2203,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.01,
+  "cls": 0,
   "lcp": {
-   "t": 416,
+   "t": 204,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -2248,7 +2248,7 @@
   "quickAnswer": true,
   "cls": 0.005,
   "lcp": {
-   "t": 344,
+   "t": 232,
    "tag": "H1",
    "url": "",
    "cls": "xt-display m-0 text-[44px] leading-[0.92] sm:text-[68px]"
@@ -2291,9 +2291,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.007,
+  "cls": 0,
   "lcp": {
-   "t": 344,
+   "t": 208,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -2339,7 +2339,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 380,
+   "t": 228,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2379,9 +2379,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0.005,
+  "cls": 0,
   "lcp": {
-   "t": 364,
+   "t": 204,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2419,9 +2419,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.018,
+  "cls": 0.02,
   "lcp": {
-   "t": 332,
+   "t": 228,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -2461,9 +2461,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.057,
+  "cls": 0,
   "lcp": {
-   "t": 384,
+   "t": 228,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -2494,7 +2494,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 432,
+   "t": 260,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -2523,9 +2523,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0,
+  "cls": 0.043,
   "lcp": {
-   "t": 360,
+   "t": 232,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2554,9 +2554,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.041,
+  "cls": 0,
   "lcp": {
-   "t": 396,
+   "t": 224,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2587,7 +2587,7 @@
   "quickAnswer": false,
   "cls": 0.01,
   "lcp": {
-   "t": 392,
+   "t": 244,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2616,12 +2616,12 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0.012,
+  "cls": 0.002,
   "lcp": {
-   "t": 380,
-   "tag": "H1",
+   "t": 252,
+   "tag": "P",
    "url": "",
-   "cls": "xt-in xt-d1 xt-display m-0 text-[72px] leading-[0.86] sm:tex"
+   "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
   }
  },
  {
@@ -2649,7 +2649,7 @@
   "quickAnswer": false,
   "cls": 0.023,
   "lcp": {
-   "t": 480,
+   "t": 256,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2678,9 +2678,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": true,
-  "cls": 0.009,
+  "cls": 0,
   "lcp": {
-   "t": 448,
+   "t": 200,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2709,9 +2709,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.005,
+  "cls": 0,
   "lcp": {
-   "t": 396,
+   "t": 220,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2740,9 +2740,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.013,
+  "cls": 0.009,
   "lcp": {
-   "t": 384,
+   "t": 228,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "aspect-[16/11] h-auto w-full object-cover"
@@ -2771,9 +2771,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.007,
+  "cls": 0,
   "lcp": {
-   "t": 348,
+   "t": 216,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -2804,7 +2804,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 428,
+   "t": 228,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2833,9 +2833,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0.004,
+  "cls": 0,
   "lcp": {
-   "t": 352,
+   "t": 200,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2866,7 +2866,7 @@
   "quickAnswer": false,
   "cls": 0.012,
   "lcp": {
-   "t": 360,
+   "t": 216,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -2895,9 +2895,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.041,
+  "cls": 0,
   "lcp": {
-   "t": 432,
+   "t": 228,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -2928,7 +2928,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 432,
+   "t": 264,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1920.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -2957,9 +2957,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.003,
+  "cls": 0,
   "lcp": {
-   "t": 380,
+   "t": 224,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2988,9 +2988,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.004,
+  "cls": 0,
   "lcp": {
-   "t": 368,
+   "t": 216,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3021,7 +3021,7 @@
   "quickAnswer": false,
   "cls": 0.007,
   "lcp": {
-   "t": 412,
+   "t": 256,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3050,12 +3050,12 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0.009,
+  "cls": 0,
   "lcp": {
-   "t": 484,
-   "tag": "H1",
+   "t": 272,
+   "tag": "P",
    "url": "",
-   "cls": "xt-in xt-d1 xt-display m-0 text-[72px] leading-[0.86] sm:tex"
+   "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
   }
  },
  {
@@ -3083,7 +3083,7 @@
   "quickAnswer": false,
   "cls": 0.011,
   "lcp": {
-   "t": 416,
+   "t": 260,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3112,9 +3112,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": true,
-  "cls": 0.012,
+  "cls": 0,
   "lcp": {
-   "t": 388,
+   "t": 212,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3143,9 +3143,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.003,
+  "cls": 0,
   "lcp": {
-   "t": 388,
+   "t": 220,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3174,9 +3174,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.028,
+  "cls": 0,
   "lcp": {
-   "t": 372,
+   "t": 208,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "aspect-[16/11] h-auto w-full object-cover"
@@ -3205,9 +3205,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.005,
+  "cls": 0,
   "lcp": {
-   "t": 360,
+   "t": 212,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -3238,7 +3238,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 404,
+   "t": 224,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3267,9 +3267,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0.003,
+  "cls": 0,
   "lcp": {
-   "t": 324,
+   "t": 200,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1920.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3300,7 +3300,7 @@
   "quickAnswer": false,
   "cls": 0.009,
   "lcp": {
-   "t": 364,
+   "t": 208,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -3329,9 +3329,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.038,
+  "cls": 0,
   "lcp": {
-   "t": 412,
+   "t": 240,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -3362,7 +3362,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 480,
+   "t": 276,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1920.avif",
    "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
@@ -3391,9 +3391,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.002,
+  "cls": 0,
   "lcp": {
-   "t": 420,
+   "t": 244,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3422,9 +3422,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.002,
+  "cls": 0,
   "lcp": {
-   "t": 432,
+   "t": 256,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3453,9 +3453,9 @@
   "h1": 1,
   "jsonLd": 4,
   "quickAnswer": false,
-  "cls": 0.004,
+  "cls": 0.001,
   "lcp": {
-   "t": 468,
+   "t": 264,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3484,9 +3484,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0.049,
+  "cls": 0,
   "lcp": {
-   "t": 596,
+   "t": 304,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/sig-6n-7d-meghalaya-tour-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3517,7 +3517,7 @@
   "quickAnswer": false,
   "cls": 0.01,
   "lcp": {
-   "t": 464,
+   "t": 272,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3546,9 +3546,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": true,
-  "cls": 0.004,
+  "cls": 0,
   "lcp": {
-   "t": 392,
+   "t": 220,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3577,9 +3577,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.003,
+  "cls": 0,
   "lcp": {
-   "t": 384,
+   "t": 220,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3608,9 +3608,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": true,
-  "cls": 0.007,
+  "cls": 0,
   "lcp": {
-   "t": 372,
+   "t": 232,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "aspect-[16/11] h-auto w-full object-cover"
@@ -3639,9 +3639,9 @@
   "h1": 1,
   "jsonLd": 5,
   "quickAnswer": false,
-  "cls": 0.004,
+  "cls": 0,
   "lcp": {
-   "t": 408,
+   "t": 252,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -3672,7 +3672,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 476,
+   "t": 240,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3701,9 +3701,9 @@
   "h1": 1,
   "jsonLd": 3,
   "quickAnswer": false,
-  "cls": 0.001,
+  "cls": 0,
   "lcp": {
-   "t": 368,
+   "t": 216,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1920.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3734,7 +3734,7 @@
   "quickAnswer": false,
   "cls": 0.004,
   "lcp": {
-   "t": 404,
+   "t": 232,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -3763,9 +3763,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0.029,
+  "cls": 0,
   "lcp": {
-   "t": 428,
+   "t": 252,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
