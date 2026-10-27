@@ -53,3 +53,5 @@
 - [x] Prepare voluntary honest-review requests and labelled existing-page links/copy in the XTSY guest growth collection. Seven pages verified; no duplicate pages or completed hostel SEO edits repeated.
 - [ ] Post/share through @xtsy.one and send review requests to genuine recent guests: blocked by unavailable publishing/sending access and no eligible recipient/audience list. No messages or posts sent.
 - [x] Remove misleading online-payment/instant-confirmation copy from hostel-booking page and shared payment FAQ; primary hostel enquiry save-before-WhatsApp retained, Bistro uses a same-tab post-save redirect to avoid popup blocking. Eleven quote/request tests pass; site changes require publishing.
+- [x] Verify real Bistro test request XTH-ENQ-005 saved before same-tab WhatsApp redirect with matching 7 PM time and reference; no WhatsApp message sent.
+- [ ] QA request XTH-ENQ-005 (QA Growth Redirect) remains pending; cleanup awaits owner authorization.
