@@ -1,4 +1,5 @@
 import { readConsent } from '@/lib/consent';
+import { isSyntheticVisit } from '@/lib/analytics/isSynthetic';
 /**
  * DataLayer Service
  * 
@@ -145,6 +146,9 @@ const NON_INTERACTION_EVENTS = new Set([
  */
 export const pushToDataLayer = (event: Partial<DataLayerEvent>): void => {
   if (typeof window === 'undefined' || !readConsent()?.analytics) return;
+
+  // Our own CI browsers, Lighthouse runs and crawlers must never reach GA4 or Ads.
+  if (isSyntheticVisit()) return;
   
   // Skip tracking for admin sessions (GTM will also check this)
   if (isAdminSession()) {

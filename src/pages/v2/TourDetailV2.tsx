@@ -10,6 +10,7 @@ import TourBookingModal from '@/components/TourBookingModal';
 import TourPermitAdvisory from '@/components/TourPermitAdvisory';
 import { getAllTours, mergeItinerary, type TourPackage } from '@/data/travelData';
 import { getSignaturePackageBySlug, signaturePackageToTourPackage, upcomingDepartures, type SignaturePackage } from '@/data/signaturePackages';
+import { partnerStaysFor } from '@/data/partnerStays';
 import { useApp } from '@/contexts/AppContext';
 import { photoFor } from '@/data/v2TourImages';
 import { reviewedPhoto, reviewedAlt, photoCredit } from '@/data/tourPhotos';
@@ -169,6 +170,7 @@ export default function TourDetailV2() {
             </section>
 
             {slug && getSignaturePackageBySlug(slug)?.departures && <Departures pkg={getSignaturePackageBySlug(slug)!} onBook={() => setIsBookingOpen(true)} />}
+            {slug && getSignaturePackageBySlug(slug)?.departures && <WhereYouStay slug={slug} />}
 
             <section aria-labelledby="tour-facts-heading" className="xt-reveal overflow-hidden rounded-3xl bg-white">
               <h2 id="tour-facts-heading" className="xt-display m-0 px-6 pt-6 text-[32px] leading-none">{tour.title} at a glance</h2>
@@ -320,6 +322,36 @@ function Departures({ pkg, onBook }: { pkg: SignaturePackage; onBook: () => void
         </ul>
       )}
       <button type="button" onClick={onBook} className="xt-btn mt-4 flex h-12 items-center rounded-full bg-xt-crimson px-6 text-[15px] font-extrabold text-white">Book a seat</button>
+    </section>
+  );
+}
+
+/** Where guests sleep on a fixed-departure trip: XTSY's own hostel, then local partner stays. */
+function WhereYouStay({ slug }: { slug: string }) {
+  const partners = partnerStaysFor(slug);
+  return (
+    <section aria-labelledby="where-you-stay" className="xt-reveal rounded-3xl bg-white p-6">
+      <h2 id="where-you-stay" className="xt-display m-0 text-[32px] leading-none">Where you stay</h2>
+      <p className="m-0 mt-3 text-[15px] leading-relaxed text-xt-mute">
+        Nights in Shillong are at XTSY Travellers Hostel, our own place in New Shillong Township.
+        Away from Shillong we book homestays and guest houses run by local families, so your money
+        stays in the village you are visiting.
+      </p>
+      {partners.length > 0 ? (
+        <ul className="m-0 mt-4 flex list-none flex-col gap-3 p-0">
+          {partners.map((p) => (
+            <li key={p.name} className="rounded-xl border border-xt-line p-4">
+              <p className="m-0 text-[15px] font-extrabold text-xt-ink">{p.name} <span className="font-normal text-xt-mute">· {p.place}</span></p>
+              <p className="m-0 mt-1 text-[14px] text-xt-mute">{p.note}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="m-0 mt-3 text-[15px] leading-relaxed text-xt-mute">
+          Stays near Sohra and on the Umngot River are confirmed with our local partners closer to
+          your departure, and we tell you exactly where you are sleeping before the trip starts.
+        </p>
+      )}
     </section>
   );
 }

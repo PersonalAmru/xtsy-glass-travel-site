@@ -27,3 +27,7 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Wrangler local state and build artifacts (never commit: a stray deploy config
+# redirects every 'wrangler deploy' in this repo to another worker's build output)
+.wrangler/

@@ -7,7 +7,7 @@ import { Link } from '@/lib/router-compat';
 import { PageShell, Breadcrumbs, PAD } from '@/components/v2/blocks';
 import PageFaq from '@/components/seo/PageFaq';
 
-type Festival = { name: string; when: string; where: string; who: string; what: string; plan: string };
+type Festival = { name: string; when: string; where: string; who: string; what: string; plan: string; guide?: { to: string; label: string } };
 
 const MEGHALAYA: Festival[] = [
   {
@@ -41,6 +41,7 @@ const MEGHALAYA: Festival[] = [
     who: 'Everyone',
     what: 'Pink cherry blossoms across the city, with music, food and craft stalls. The festival has been held in some years and not others, so check the year\'s announcement.',
     plan: 'Blossoms line roads across Shillong and New Shillong; book early, as stays fill up.',
+    guide: { to: '/shillong-cherry-blossom-festival', label: 'Full Cherry Blossom Festival guide' },
   },
   {
     name: 'Wangala (100 Drums Festival)',
@@ -69,6 +70,11 @@ function FestivalCard({ f }: { f: Festival }) {
       </dl>
       <p className="m-0 text-[15px] leading-relaxed">{f.what}</p>
       <p className="m-0 text-[14px] text-xt-mute"><strong className="text-xt-ink">Getting there:</strong> {f.plan}</p>
+      {f.guide && (
+        <Link to={f.guide.to} className="font-bold text-xt-crimson underline underline-offset-4">
+          {f.guide.label}
+        </Link>
+      )}
     </article>
   );
 }

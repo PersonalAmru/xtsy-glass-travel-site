@@ -259,7 +259,7 @@ export const useAnalytics = () => {
       });
 
       navigator.sendBeacon?.(
-        `https://oidnydyyjyjfnyadhyzn.supabase.co/functions/v1/track-analytics`,
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/track-analytics`,
         data
       );
     };

@@ -19,13 +19,12 @@ const HostelBookingShillong = memo(() => {
     '@id': 'https://xtsy.one/hostel-booking#hostel',
     name: 'XTSY Travellers Hostel — Online Hostel Booking, Shillong',
     description:
-      'Direct online hostel booking in Shillong, Meghalaya. Instant confirmation, no OTA commission, one free date change. Dorm beds from ₹399, private rooms from ₹2,500. 4.7★ from 237 Google reviews.',
+      'Send a direct hostel booking enquiry in Shillong, Meghalaya. Choose dates and a room, then confirm availability with the XTSY desk on WhatsApp. Dorm beds from ₹399.',
     url: 'https://xtsy.one/hostel-booking',
     telephone: '+918837317070',
     email: 'booking@xtsy.one',
     priceRange: '₹399 - ₹9,999',
     currenciesAccepted: 'INR',
-    paymentAccepted: 'Cash, UPI, Credit Card, Debit Card, Net Banking, PayPal',
     address: {
       '@type': 'PostalAddress',
       streetAddress: 'Mawdiangdiang Road, New Shillong Township',
@@ -73,7 +72,7 @@ const HostelBookingShillong = memo(() => {
   const faqs = [
     {
       q: 'How do I book a hostel in Shillong online?',
-      a: 'Book directly at xtsy.one/book — pick dates, choose a dorm bed or private room, pay with UPI/card/net banking. Direct booking is more affordable than Booking.com or Hostelworld (no OTA commission) and gets instant WhatsApp confirmation.',
+      a: 'At xtsy.one/book, pick dates, choose a dorm bed or private room and enter your guest details. Send your enquiry to save it and open WhatsApp with the details and quote. The desk confirms availability and any payment arrangements; the site does not take payments.',
     },
     {
       q: 'How far in advance should I book?',
@@ -89,7 +88,7 @@ const HostelBookingShillong = memo(() => {
     },
     {
       q: 'What payment methods are accepted?',
-      a: 'UPI (GPay/PhonePe/Paytm), all credit/debit cards, net banking, and cash on arrival for select rooms. International: PayPal or wire transfer.',
+      a: 'There is no payment integration on this site and no payment is taken when you send an enquiry. The XTSY desk confirms availability and tells you the applicable payment arrangements on WhatsApp.',
     },
     {
       q: 'Can I cancel or modify my booking?',
@@ -121,7 +120,7 @@ const HostelBookingShillong = memo(() => {
       <Helmet>
         <meta
           name="description"
-          content="Online hostel booking in Shillong, Meghalaya. Instant confirmation, dorm beds from ₹399. Book direct — more affordable than Hostelworld & Booking.com. 4.7★ from 237 Google reviews."
+          content="Enquire about XTSY hostel stays in New Shillong Township, Shillong. Dorm beds from ₹399. Choose dates and a room, then confirm with the desk on WhatsApp."
         />
         <script type="application/ld+json">{JSON.stringify(hostelSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
@@ -137,14 +136,14 @@ const HostelBookingShillong = memo(() => {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-5">
               <BadgeCheck className="w-4 h-4 text-primary" />
               <span className="text-xs font-semibold text-primary uppercase tracking-wide">
-                Direct Hostel Booking · Instant Confirmation
+                Direct Hostel Booking · WhatsApp Enquiry
               </span>
             </div>
             <h1 className="text-3xl sm:text-5xl font-bold text-foreground font-playfair mb-4">
               Hostel Booking in Shillong — Direct from ₹399
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
-              Book XTSY Travellers Hostel direct and skip the OTA commission. Instant WhatsApp confirmation,
+              Enquire with XTSY Travellers Hostel direct. The desk confirms availability on WhatsApp;
               one free date change, 4.7★ from 237 Google reviews.
             </p>
             <div className="flex items-center justify-center gap-1 mb-6">
@@ -176,9 +175,9 @@ const HostelBookingShillong = memo(() => {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { icon: IndianRupee, title: 'More affordable than OTAs', desc: 'No commission markup vs Hostelworld / Booking.com.' },
-                { icon: Clock, title: 'Instant Confirmation', desc: 'WhatsApp confirmation within minutes.' },
+                { icon: Clock, title: 'WhatsApp Confirmation', desc: 'The desk replies to confirm availability.' },
                 { icon: Shield, title: 'One Free Date Change', desc: 'Booking amount is non-refundable; change dates once within 90 days.' },
-                { icon: CreditCard, title: 'Flexible Payment', desc: 'UPI, cards, net banking, cash on arrival.' },
+                { icon: CreditCard, title: 'No Online Payment', desc: 'Send an enquiry; payment arrangements follow desk confirmation.' },
               ].map((f) => (
                 <Card key={f.title} className="border-border/50">
                   <CardContent className="p-5">
@@ -284,11 +283,11 @@ const HostelBookingShillong = memo(() => {
               Ready to Book Your Bed in Shillong?
             </h2>
             <p className="text-sm text-muted-foreground mb-6">
-              Instant confirmation. More affordable than any OTA.
+              Send your enquiry, then confirm your stay with the desk on WhatsApp.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
-                <Link to="/book">Book Online Now</Link>
+                <Link to="/book">Send a Booking Enquiry</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <a href="tel:+918837317070"><Phone className="w-4 h-4 mr-2" /> +91 88373 17070</a>

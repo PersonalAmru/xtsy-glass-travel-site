@@ -62,7 +62,7 @@ const ShillongTourPackage = () => {
             <h2 className="text-2xl font-bold text-foreground">Book Shillong Tour — Starting ₹7,999</h2>
             <p className="mt-2 text-muted-foreground">Includes stay at XTSY, breakfast, guided tours, and transfers.</p>
             <a
-              href="https://wa.me/918787537633?text=Hi, I'm interested in the Shillong tour package."
+              href="https://wa.me/918837317070?text=Hi, I'm interested in the Shillong tour package."
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-block px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90"

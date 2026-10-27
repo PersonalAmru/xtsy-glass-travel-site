@@ -38,7 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      # Prefer the conventional name (wrangler reads it from the environment itself);
+      # fall back to CLOUDFLARE_NEW_TOKEN so a token saved under that name still works.
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN || secrets.CLOUDFLARE_NEW_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       CF_KV_PRERENDER_ID: ${{ secrets.CF_KV_PRERENDER_ID }}
       CF_KV_SLIM_MAP_ID: ${{ secrets.CF_KV_SLIM_MAP_ID }}
@@ -90,7 +92,27 @@ jobs:
             < wrangler.toml > wrangler.rendered.toml
           mv wrangler.rendered.toml wrangler.toml
           echo "── Rendered wrangler.toml ──"
-          grep -E '^(name|id|pattern|binding)' wrangler.toml || true
+          grep -E '^(name|pattern|binding)' wrangler.toml || true
+          # The two KV ids come from secrets, so GitHub masks them in the log and
+          # a bad value is invisible. Report the shape plus the last 4 characters
+          # (not a credential) so a wrong or empty id can be spotted and matched
+          # against the dashboard without printing the whole value.
+          fail=0
+          check_id() {
+            label="$1"; value="$2"
+            if [ -z "$value" ]; then
+              echo "::error::$label is empty — the secret is not set"
+              fail=1
+            elif ! printf '%s' "$value" | grep -qE '^[0-9a-f]{32}$'; then
+              echo "::error::$label is not a 32-character hex namespace id (length ${#value})"
+              fail=1
+            else
+              echo "::notice::$label looks valid, ends ...$(printf '%s' "$value" | tail -c 4)"
+            fi
+          }
+          check_id CF_KV_PRERENDER_ID "$(grep -A2 'PRERENDER_CACHE' wrangler.toml | grep '^id' | cut -d'"' -f2)"
+          check_id CF_KV_SLIM_MAP_ID  "$(grep -A2 'SEO_SLIM_MAP' wrangler.toml | grep '^id' | cut -d'"' -f2)"
+          exit $fail
 
       - name: Upload slim SEO map to KV (bulk)
         working-directory: cloudflare
@@ -102,22 +124,63 @@ jobs:
             fs.writeFileSync("kv-slim-bulk.json", JSON.stringify(out));
             console.log(`prepared ${out.length} slim-map entries`);
           '
-          npx -y wrangler@latest kv bulk put --binding=SEO_SLIM_MAP kv-slim-bulk.json
+          # --remote is required. Without it wrangler v4 writes to the runner's
+          # throwaway .wrangler/state folder and exits 0, so the production
+          # namespace never receives the map and the step still looks green.
+          set -o pipefail
+          rc=0
+          npx -y wrangler@latest kv bulk put --binding=SEO_SLIM_MAP --remote kv-slim-bulk.json 2>&1 | tee kv.log || rc=$?
           rm -f kv-slim-bulk.json
+          if [ $rc -ne 0 ]; then
+            grep -iE 'error|Authentication|\[code: [0-9]+\]' kv.log | head -20 | sed 's/^/::error::KV: /'
+            exit $rc
+          fi
+
+      - name: Show which permissions the token actually has
+        working-directory: cloudflare
+        continue-on-error: true
+        run: |
+          # `whoami` lists the token's permission groups. If the deploy fails on auth,
+          # this says exactly which one is missing (Workers Scripts needs Edit).
+          npx -y wrangler@latest whoami 2>&1 | tee whoami.log | sed 's/^/::notice::/'
 
       - name: Deploy worker
         working-directory: cloudflare
         run: |
+          set -o pipefail
+          rc=0
           if [ -n "$SUPABASE_ANON_KEY" ]; then
-            npx -y wrangler@latest deploy --var SUPABASE_ANON_KEY:"$SUPABASE_ANON_KEY"
+            npx -y wrangler@latest deploy --var SUPABASE_ANON_KEY:"$SUPABASE_ANON_KEY" 2>&1 | tee deploy.log || rc=$?
           else
-            npx -y wrangler@latest deploy
+            npx -y wrangler@latest deploy 2>&1 | tee deploy.log || rc=$?
           fi
+          # Wrangler's reason for refusing is the useful part: put it in the check annotations
+          # so a failed deploy explains itself without opening the raw log.
+          if [ $rc -ne 0 ]; then
+            grep -iE 'error|✘|unauthorized|forbidden|not found|invalid|binding|namespace|route|zone' deploy.log \
+              | head -25 | sed 's/^/::error::/'
+          fi
+          exit $rc
+
+      - name: Who owns the xtsy.one route (diagnostic, read-only)
+        continue-on-error: true
+        run: python3 scripts/whoOwnsTheRoute.py
 
       - name: Verify edge rewrite is live (samples 20 URLs)
         run: |
           export PATH="$HOME/.bun/bin:$PATH"
-          bunx tsx scripts/verifyEdgeRewrite.ts
+          set -o pipefail
+          rc=0
+          bunx tsx scripts/verifyEdgeRewrite.ts 2>&1 | tee verify.log || rc=$?
+          # The script's verdict lines are the whole diagnosis, and the raw job
+          # log is not reachable through the API here, so promote the failing
+          # lines and the summary into check annotations.
+          if [ $rc -ne 0 ]; then
+            grep -E '^(.| )*(MISSING|fetch error)' verify.log | head -10 | sed 's/^/::error::/' || true
+            sed -n '/── Summary ──/,$p' verify.log | sed 's/^/::error::/' || true
+            exit $rc
+          fi
+          sed -n '/── Summary ──/,$p' verify.log | sed 's/^/::notice::/' || true
         env:
           VERIFY_BASE_URL: https://xtsy.one
           VERIFY_SAMPLE_SIZE: "20"

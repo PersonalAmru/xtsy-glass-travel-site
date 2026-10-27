@@ -47,3 +47,9 @@
 ## Current request 2026-10-22
 - [ ] Link TAB Bistro's Google Business Profile and automatically reconcile published site hours and lunch-preorder wording, with protected scheduling and unchanged name/address/phone.
 - [ ] Verify changed and unchanged syncs, unauthorized rejection, scheduling and existing Bistro request rules; publish required to activate the live callback.
+
+## Current request 2026-10-25
+- [x] Correct website Instagram links to owner-confirmed @xtsy.one; exclude inactive Hostelworld. Google listing phone/website/locality and review links verified; street-address wording differs and needs owner confirmation before changing Google arrival directions.
+- [x] Prepare voluntary honest-review requests and labelled existing-page links/copy in the XTSY guest growth collection. Seven pages verified; no duplicate pages or completed hostel SEO edits repeated.
+- [ ] Post/share through @xtsy.one and send review requests to genuine recent guests: blocked by unavailable publishing/sending access and no eligible recipient/audience list. No messages or posts sent.
+- [x] Remove misleading online-payment/instant-confirmation copy from hostel-booking page and shared payment FAQ; primary hostel enquiry save-before-WhatsApp retained, Bistro uses a same-tab post-save redirect to avoid popup blocking. Eleven quote/request tests pass; site changes require publishing.

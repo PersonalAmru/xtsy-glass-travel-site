@@ -70,6 +70,8 @@ export const ALWAYS_KEEP_SLUGS: ReadonlySet<string> = new Set([
   'xtsy-270-glasshouse',
   'hostel-shillong',
   'things-to-do-in-meghalaya',
+  // Festival cluster — seasonal demand peaks, never capped out.
+  'shillong-cherry-blossom-festival',
   // GSC recovery — force inclusion so findSEOPage stops returning undefined.
   ...RECOVERY_FILTERED_OUT,
   ...RECOVERY_LIVE_PAGES,

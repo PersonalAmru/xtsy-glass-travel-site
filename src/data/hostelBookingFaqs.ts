@@ -31,7 +31,7 @@ export const hostelDealFaqs: HostelFaq[] = [
   },
   {
     q: 'Do I pay upfront when I book?',
-    a: 'No prepayment is required on most dorm beds — pay on arrival by UPI, card or cash. Private rooms, Experience by XTSY, group blocks and peak-season dates take a partial advance to hold the inventory. Every direct booking gets an instant WhatsApp confirmation and a GST invoice.',
+    a: 'Sending a booking enquiry does not take any payment on this site. Choose your dates and room, enter your details, then send the saved enquiry to WhatsApp. The XTSY desk confirms availability and any applicable payment arrangements; an enquiry is not a confirmed booking.',
   },
 ];
 

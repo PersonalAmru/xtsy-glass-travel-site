@@ -75,6 +75,8 @@ const FAQ_REQUIRED = new Set<string>([
   '/hotels-in-shillong',
   '/faq',
   '/things-to-do-in-meghalaya',
+  '/best-time-to-visit-meghalaya',
+  '/shillong-tour-package',
 ]);
 
 function discoverRoutes(): string[] {

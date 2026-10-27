@@ -15,11 +15,11 @@
  *
  * Import { Helmet } from '@/lib/seo/helmet' instead of 'react-helmet-async'.
  */
-import { Children, Fragment, isValidElement, type ReactElement, type ReactNode } from 'react';
+import { Children, Fragment, isValidElement, type ComponentProps, type ReactElement, type ReactNode } from 'react';
 import { Helmet as BaseHelmet } from 'react-helmet-async';
 import { useRouterState } from '@tanstack/react-router';
 
-type HelmetProps = Parameters<typeof BaseHelmet>[0];
+type HelmetProps = ComponentProps<typeof BaseHelmet>;
 
 /** CSS selector for the server-rendered tag that a Helmet child would duplicate, or null. */
 function ownedSelector(el: ReactElement): string | null {
