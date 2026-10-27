@@ -56,7 +56,7 @@ const DestinationGallery = ({ images, destinationName, className = '' }: Destina
       <div className={`grid ${gridClass} gap-3 ${className}`}>
         {validImages.map((image, index) => (
           <figure
-            key={image.src}
+            key={`${image.src}-${index}`}
             className="relative aspect-[4/3] rounded-lg overflow-hidden cursor-pointer group"
             onClick={() => openLightbox(index)}
           >
