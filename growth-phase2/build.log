@@ -73,9 +73,9 @@ computing gzip size...
 .output/public/assets/meghalaya-viewpoints-G9h1Ace1.js                           0.07 kB │ gzip:   0.08 kB │ map:     0.84 kB
 .output/public/assets/meghalaya-villages-G9h1Ace1.js                             0.07 kB │ gzip:   0.08 kB │ map:     0.84 kB
 .output/public/assets/meghalaya-waterfalls-G9h1Ace1.js                           0.07 kB │ gzip:   0.08 kB │ map:     0.85 kB
-.output/public/assets/_attraction-BiAolTFV.js                                    0.07 kB │ gzip:   0.09 kB │ map:     2.74 kB
+.output/public/assets/_attraction-DGxlEozZ.js                                    0.07 kB │ gzip:   0.09 kB │ map:     2.74 kB
 .output/public/assets/_route-BN8-ccHs.js                                         0.07 kB │ gzip:   0.09 kB │ map:     3.42 kB
-.output/public/assets/_slug-BiAolTFV.js                                          0.07 kB │ gzip:   0.09 kB │ map:     1.53 kB
+.output/public/assets/_slug-DGxlEozZ.js                                          0.07 kB │ gzip:   0.09 kB │ map:     1.53 kB
 .output/public/assets/expeditions-CB4BR3yT.js                                    0.07 kB │ gzip:   0.09 kB │ map:     1.01 kB
 .output/public/assets/bistroCover-BhdsrD6j.js                                    0.09 kB │ gzip:   0.11 kB │ map:     0.35 kB
 .output/public/assets/check-De6jny4l.js                                          0.12 kB │ gzip:   0.14 kB │ map:     0.72 kB
@@ -199,7 +199,7 @@ computing gzip size...
 .output/public/assets/nearbyAdventures-EKRCZ0q9.js                               3.47 kB │ gzip:   1.19 kB │ map:     5.73 kB
 .output/public/assets/react-dom-CQiUf--n.js                                      3.53 kB │ gzip:   1.34 kB │ map:    12.22 kB
 .output/public/assets/dataLayerService-Br0OPX-T.js                               3.58 kB │ gzip:   1.50 kB │ map:    20.23 kB
-.output/public/assets/DestinationGallery-BxjdcRHI.js                             3.59 kB │ gzip:   1.54 kB │ map:    10.53 kB
+.output/public/assets/DestinationGallery-BAAq01aD.js                             3.60 kB │ gzip:   1.54 kB │ map:    10.56 kB
 .output/public/assets/route-C_kvAkN5.js                                          3.64 kB │ gzip:   1.15 kB │ map:    18.48 kB
 .output/public/assets/primitives-DAjVh3xy.js                                     3.64 kB │ gzip:   1.83 kB │ map:     9.32 kB
 .output/public/assets/EnquiryForm-zvI-pFoU.js                                    3.80 kB │ gzip:   1.61 kB │ map:     8.41 kB
@@ -211,7 +211,7 @@ computing gzip size...
 .output/public/assets/5-day-meghalaya-itinerary-D-GfdMTa.js                      4.24 kB │ gzip:   1.77 kB │ map:     8.11 kB
 .output/public/assets/female-travellers-C3swg6Fq.js                              4.28 kB │ gzip:   2.00 kB │ map:     7.85 kB
 .output/public/assets/shillong-tour-package-D3-vJ9vW.js                          4.34 kB │ gzip:   1.68 kB │ map:     8.49 kB
-.output/public/assets/meghalaya-photo-gallery-CPPfM4YF.js                        4.58 kB │ gzip:   1.73 kB │ map:     8.77 kB
+.output/public/assets/meghalaya-photo-gallery-DVLE3dkm.js                        4.67 kB │ gzip:   1.79 kB │ map:     9.43 kB
 .output/public/assets/xtsy-vs-zostel-CvNa2QCj.js                                 4.75 kB │ gzip:   1.96 kB │ map:     8.80 kB
 .output/public/assets/meghalaya-tour-packages-DVZ_VDTX.js                        5.04 kB │ gzip:   1.86 kB │ map:    10.00 kB
 .output/public/assets/_city-DvFetLQP.js                                          5.15 kB │ gzip:   1.97 kB │ map:    11.92 kB
@@ -277,7 +277,7 @@ computing gzip size...
 .output/public/assets/xtsy-270-DoEP4IkO.js                                      17.95 kB │ gzip:   6.83 kB │ map:    43.94 kB
 .output/public/assets/privacy-policy-Cb9bTrCY.js                                17.99 kB │ gzip:   4.49 kB │ map:    33.00 kB
 .output/public/assets/backpacking-india-BW-WN2hr.js                             18.24 kB │ gzip:   5.72 kB │ map:    33.13 kB
-.output/public/assets/DestinationV2-5Scy9gqt.js                                 18.32 kB │ gzip:   5.88 kB │ map:    39.92 kB
+.output/public/assets/DestinationV2-DauyZVNG.js                                 18.32 kB │ gzip:   5.88 kB │ map:    39.92 kB
 .output/public/assets/pricing-cancellation-policy-Bz5NOaEc.js                   18.72 kB │ gzip:   4.58 kB │ map:    36.68 kB
 .output/public/assets/format-pXBKmnBV.js                                        19.38 kB │ gzip:   5.58 kB │ map:   128.68 kB
 .output/public/assets/tab-bistro-4ZVf-Z8x.js                                    19.39 kB │ gzip:   6.67 kB │ map:    42.03 kB
@@ -307,10 +307,10 @@ computing gzip size...
 .output/public/assets/travelData-DxlEhjni.js                                   138.25 kB │ gzip:  41.21 kB │ map:   244.96 kB
 .output/public/assets/sentryInit-s9KH_vqE.js                                   144.37 kB │ gzip:  48.64 kB │ map: 1,003.58 kB
 .output/public/assets/client-kMGS092h.js                                       208.98 kB │ gzip:  54.21 kB │ map: 1,141.78 kB
-.output/public/assets/index-uAo-H9sp.js                                        429.67 kB │ gzip: 135.40 kB │ map: 1,632.57 kB
+.output/public/assets/index-DS9th1-J.js                                        429.67 kB │ gzip: 135.39 kB │ map: 1,632.57 kB
 .output/public/assets/guidePageData-BSAqVE2q.js                                895.82 kB │ gzip: 229.24 kB │ map: 1,280.96 kB
 
-[32m✓ built in 3.45s[39m
+[32m✓ built in 3.37s[39m
 [33m[plugin builtin:vite-reporter] 
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
@@ -355,26 +355,26 @@ node_modules/.nitro/vite/services/ssr/assets/hostel-hero-9068-Dd5VlcR1.jpeg     
 node_modules/.nitro/vite/services/ssr/assets/styles-Bb_Zrg18.css                                      193.32 kB │ gzip:  30.13 kB
 node_modules/.nitro/vite/services/ssr/assets/bistroGoogleProfile-DwkuacNa.js                            0.12 kB │ gzip:   0.10 kB
 node_modules/.nitro/vite/services/ssr/assets/xtsy-270-stargazing-CX2tFenX.js                            0.18 kB │ gzip:   0.13 kB
-node_modules/.nitro/vite/services/ssr/assets/meghalaya-caves-BVKd3scn.js                                0.20 kB │ gzip:   0.16 kB
-node_modules/.nitro/vite/services/ssr/assets/meghalaya-villages-BOlF1g5Q.js                             0.21 kB │ gzip:   0.16 kB
+node_modules/.nitro/vite/services/ssr/assets/meghalaya-caves-8FuSI_Bj.js                                0.20 kB │ gzip:   0.16 kB
+node_modules/.nitro/vite/services/ssr/assets/meghalaya-villages-CQEIkFI0.js                             0.21 kB │ gzip:   0.16 kB
 node_modules/.nitro/vite/services/ssr/assets/catering-CEOReE0A.js                                       0.21 kB │ gzip:   0.16 kB
-node_modules/.nitro/vite/services/ssr/assets/meghalaya-viewpoints-BiTMWPs2.js                           0.21 kB │ gzip:   0.16 kB
-node_modules/.nitro/vite/services/ssr/assets/meghalaya-waterfalls-DHTgJxB4.js                           0.21 kB │ gzip:   0.16 kB
+node_modules/.nitro/vite/services/ssr/assets/meghalaya-viewpoints-CD0eIetV.js                           0.21 kB │ gzip:   0.16 kB
+node_modules/.nitro/vite/services/ssr/assets/meghalaya-waterfalls-CQtihQ2L.js                           0.21 kB │ gzip:   0.16 kB
 node_modules/.nitro/vite/services/ssr/assets/empty-plugin-adapters-D9UWiqvJ.js                          0.22 kB │ gzip:   0.16 kB
-node_modules/.nitro/vite/services/ssr/assets/expeditions-CX3FCQcw.js                                    0.22 kB │ gzip:   0.16 kB
-node_modules/.nitro/vite/services/ssr/assets/_route-O4k0PLom.js                                         0.23 kB │ gzip:   0.16 kB
-node_modules/.nitro/vite/services/ssr/assets/_attraction-B5L4v5Bq.js                                    0.23 kB │ gzip:   0.17 kB
+node_modules/.nitro/vite/services/ssr/assets/expeditions-D1INXkSk.js                                    0.22 kB │ gzip:   0.16 kB
+node_modules/.nitro/vite/services/ssr/assets/_route-D2hS_vOY.js                                         0.23 kB │ gzip:   0.16 kB
+node_modules/.nitro/vite/services/ssr/assets/_attraction-xhty2T5B.js                                    0.23 kB │ gzip:   0.17 kB
 node_modules/.nitro/vite/services/ssr/assets/searchIndex-Q1yApcIc.js                                    0.25 kB │ gzip:   0.18 kB
 node_modules/.nitro/vite/services/ssr/assets/bistroCover-B1ZTxGrc.js                                    0.27 kB │ gzip:   0.22 kB
-node_modules/.nitro/vite/services/ssr/assets/cheap-hostels-shillong-ogO9BkrG.js                         0.31 kB │ gzip:   0.23 kB
-node_modules/.nitro/vite/services/ssr/assets/best-hostel-in-shillong-Cb3eDo6Q.js                        0.31 kB │ gzip:   0.23 kB
+node_modules/.nitro/vite/services/ssr/assets/cheap-hostels-shillong-W8X-K7Iw.js                         0.31 kB │ gzip:   0.23 kB
+node_modules/.nitro/vite/services/ssr/assets/best-hostel-in-shillong-BWzKH5Wm.js                        0.31 kB │ gzip:   0.23 kB
 node_modules/.nitro/vite/services/ssr/assets/hostelPolicies-CAsfYeGI.js                                 0.32 kB │ gzip:   0.24 kB
 node_modules/.nitro/vite/services/ssr/assets/4x4-expedition-meghalaya-ilUyzEKI.js                       0.34 kB │ gzip:   0.23 kB
 node_modules/.nitro/vite/services/ssr/assets/meghalaya-adventure-tour-C9dWHwQV.js                       0.34 kB │ gzip:   0.23 kB
 node_modules/.nitro/vite/services/ssr/assets/catering-shillong-DtuWyF_m.js                              0.34 kB │ gzip:   0.23 kB
 node_modules/.nitro/vite/services/ssr/assets/adventure-tours-northeast-india-DpolXwPk.js                0.35 kB │ gzip:   0.23 kB
 node_modules/.nitro/vite/services/ssr/assets/rolldown-runtime-D7D4PA-g.js                               0.36 kB │ gzip:   0.25 kB
-node_modules/.nitro/vite/services/ssr/assets/_slug-D-Jq1i1R.js                                          0.36 kB │ gzip:   0.27 kB
+node_modules/.nitro/vite/services/ssr/assets/_slug-B1E2IDNU.js                                          0.36 kB │ gzip:   0.27 kB
 node_modules/.nitro/vite/services/ssr/assets/motorbike-expedition-northeast-india-Br7xkbH-.js           0.36 kB │ gzip:   0.24 kB
 node_modules/.nitro/vite/services/ssr/assets/xtsy-270-interior-Wp2ZJXjw.js                              0.66 kB │ gzip:   0.21 kB
 node_modules/.nitro/vite/services/ssr/assets/textarea-BTNiULDf.js                                       0.69 kB │ gzip:   0.42 kB
@@ -404,44 +404,44 @@ node_modules/.nitro/vite/services/ssr/assets/StayEatExplore-CcivTJZB.js         
 node_modules/.nitro/vite/services/ssr/assets/createCsrfMiddleware-B2To0gPJ.js                           3.19 kB │ gzip:   1.01 kB
 node_modules/.nitro/vite/services/ssr/assets/helmet-4IwdkJxF.js                                         3.22 kB │ gzip:   1.42 kB
 node_modules/.nitro/vite/services/ssr/assets/dialog-ZT2qy3Bz.js                                         3.38 kB │ gzip:   1.16 kB
-node_modules/.nitro/vite/services/ssr/assets/rooms.functions-CF1PhMqJ.js                                3.51 kB │ gzip:   1.53 kB
+node_modules/.nitro/vite/services/ssr/assets/rooms.functions-jNMIRqhE.js                                3.51 kB │ gzip:   1.53 kB
 node_modules/.nitro/vite/services/ssr/assets/guides-NZmY601d.js                                         3.57 kB │ gzip:   1.46 kB
-node_modules/.nitro/vite/services/ssr/assets/tourPageData-WA31957U.js                                   3.60 kB │ gzip:   1.45 kB
+node_modules/.nitro/vite/services/ssr/assets/tourPageData-BG0ewTto.js                                   3.60 kB │ gzip:   1.45 kB
 node_modules/.nitro/vite/services/ssr/assets/v2Images-D788Rak7.js                                       3.62 kB │ gzip:   1.35 kB
 node_modules/.nitro/vite/services/ssr/assets/PlanTripLinks-Bz3CSSmH.js                                  3.70 kB │ gzip:   1.43 kB
 node_modules/.nitro/vite/services/ssr/assets/Breadcrumbs-Bb3__LCR.js                                    3.83 kB │ gzip:   1.17 kB
 node_modules/.nitro/vite/services/ssr/assets/DestinationCard-By3aLQXM.js                                3.99 kB │ gzip:   1.39 kB
 node_modules/.nitro/vite/services/ssr/assets/properties-BxflbL2f.js                                     4.16 kB │ gzip:   1.45 kB
 node_modules/.nitro/vite/services/ssr/assets/consent-coXR9ftT.js                                        4.61 kB │ gzip:   1.91 kB
-node_modules/.nitro/vite/services/ssr/assets/_._lovable.oauth.consent-eB56wrIt.js                       4.68 kB │ gzip:   1.65 kB
+node_modules/.nitro/vite/services/ssr/assets/_._lovable.oauth.consent-BI8oA66m.js                       4.68 kB │ gzip:   1.66 kB
 node_modules/.nitro/vite/services/ssr/assets/hidden-places-in-meghalaya-641WHD2B.js                     4.72 kB │ gzip:   1.71 kB
-node_modules/.nitro/vite/services/ssr/assets/login-lTvV9Fav.js                                          5.08 kB │ gzip:   1.65 kB
+node_modules/.nitro/vite/services/ssr/assets/login-CKjVtiOJ.js                                          5.08 kB │ gzip:   1.65 kB
 node_modules/.nitro/vite/services/ssr/assets/3-day-meghalaya-itinerary-KuMsc8Hv.js                      5.09 kB │ gzip:   1.74 kB
-node_modules/.nitro/vite/services/ssr/assets/faq-Bhwirdr_.js                                            5.09 kB │ gzip:   1.93 kB
-node_modules/.nitro/vite/services/ssr/assets/plan-trip-with-ai-RIE09hvZ.js                              5.50 kB │ gzip:   2.08 kB
+node_modules/.nitro/vite/services/ssr/assets/faq-B_wCU8Wb.js                                            5.09 kB │ gzip:   1.93 kB
+node_modules/.nitro/vite/services/ssr/assets/plan-trip-with-ai-Cwj2tCCO.js                              5.50 kB │ gzip:   2.08 kB
 node_modules/.nitro/vite/services/ssr/assets/meghalaya-couple-tour-package-BhD6UEIn.js                  5.56 kB │ gzip:   1.78 kB
 node_modules/.nitro/vite/services/ssr/assets/EnquiryForm-ccltq8Mz.js                                    5.72 kB │ gzip:   1.97 kB
 node_modules/.nitro/vite/services/ssr/assets/bistroGoogleSync.server-BChJdoct.js                        5.73 kB │ gzip:   2.36 kB
 node_modules/.nitro/vite/services/ssr/assets/tripChatEvents-CVwDn3cm.js                                 5.74 kB │ gzip:   2.50 kB
 node_modules/.nitro/vite/services/ssr/assets/female-travellers-6W5YZHqo.js                              5.83 kB │ gzip:   2.38 kB
-node_modules/.nitro/vite/services/ssr/assets/DestinationGallery-C5fvDiDi.js                             5.95 kB │ gzip:   2.04 kB
+node_modules/.nitro/vite/services/ssr/assets/DestinationGallery-CCpp3xeA.js                             5.97 kB │ gzip:   2.05 kB
 node_modules/.nitro/vite/services/ssr/assets/utils-Dt9SgUF4.js                                          6.03 kB │ gzip:   2.09 kB
 node_modules/.nitro/vite/services/ssr/assets/work-from-home-hqFVdtUK.js                                 6.03 kB │ gzip:   2.59 kB
 node_modules/.nitro/vite/services/ssr/assets/5-day-meghalaya-itinerary-hIwWpZ06.js                      6.41 kB │ gzip:   2.10 kB
 node_modules/.nitro/vite/services/ssr/assets/shillong-tour-package-3nSI5zln.js                          6.45 kB │ gzip:   2.02 kB
 node_modules/.nitro/vite/services/ssr/assets/xtsy-vs-zostel-B9diWXwW.js                                 6.51 kB │ gzip:   2.36 kB
 node_modules/.nitro/vite/services/ssr/assets/dataLayerService-Dh9HF2ak.js                               6.82 kB │ gzip:   2.51 kB
-node_modules/.nitro/vite/services/ssr/assets/meghalaya-photo-gallery-CPl_S1tV.js                        7.00 kB │ gzip:   2.10 kB
+node_modules/.nitro/vite/services/ssr/assets/meghalaya-photo-gallery-CAlFwcJl.js                        7.19 kB │ gzip:   2.19 kB
 node_modules/.nitro/vite/services/ssr/assets/xtsy-adventure-campsite-dawki-COO1d_Rw.js                  7.20 kB │ gzip:   2.77 kB
 node_modules/.nitro/vite/services/ssr/assets/meghalaya-tour-packages-BuMPh7-3.js                        7.37 kB │ gzip:   2.18 kB
-node_modules/.nitro/vite/services/ssr/assets/unsubscribe-uY5817R_.js                                    7.45 kB │ gzip:   2.11 kB
+node_modules/.nitro/vite/services/ssr/assets/unsubscribe-CQXNHisl.js                                    7.45 kB │ gzip:   2.11 kB
 node_modules/.nitro/vite/services/ssr/assets/AppContext-Chxp8EZc.js                                     7.50 kB │ gzip:   2.62 kB
 node_modules/.nitro/vite/services/ssr/assets/gallery-BqvCeYR6.js                                        7.68 kB │ gzip:   2.73 kB
 node_modules/.nitro/vite/services/ssr/assets/best-time-to-visit-meghalaya-BC8J5jcX.js                   7.96 kB │ gzip:   2.48 kB
-node_modules/.nitro/vite/services/ssr/assets/_city-Bm4YCP0c.js                                          8.11 kB │ gzip:   2.50 kB
+node_modules/.nitro/vite/services/ssr/assets/_city-DRIrwRaQ.js                                          8.11 kB │ gzip:   2.51 kB
 node_modules/.nitro/vite/services/ssr/assets/budget-trip-to-meghalaya-BsOQ3OST.js                       8.20 kB │ gzip:   2.27 kB
 node_modules/.nitro/vite/services/ssr/assets/safety-house-rules-CCCrVAfC.js                             8.65 kB │ gzip:   2.92 kB
-node_modules/.nitro/vite/services/ssr/assets/hostelBookingFaqs-BbshS_zX.js                              8.84 kB │ gzip:   3.26 kB
+node_modules/.nitro/vite/services/ssr/assets/hostelBookingFaqs-D71wH3EP.js                              8.84 kB │ gzip:   3.26 kB
 node_modules/.nitro/vite/services/ssr/assets/roomInventory-BxCR-yhG.js                                  8.88 kB │ gzip:   2.29 kB
 node_modules/.nitro/vite/services/ssr/assets/meghalaya-festivals-BbVzyksa.js                            9.32 kB │ gzip:   3.13 kB
 node_modules/.nitro/vite/services/ssr/assets/xtsy-rentals-DlMsQhUi.js                                   9.61 kB │ gzip:   3.50 kB
@@ -454,70 +454,70 @@ node_modules/.nitro/vite/services/ssr/assets/SEOHead-DkKj7r49.js                
 node_modules/.nitro/vite/services/ssr/assets/franchise-BZyqcD7F.js                                     10.54 kB │ gzip:   2.98 kB
 node_modules/.nitro/vite/services/ssr/assets/partner-stays-Cj-du758.js                                 10.63 kB │ gzip:   3.40 kB
 node_modules/.nitro/vite/services/ssr/assets/about-Bq9uZE_3.js                                         10.89 kB │ gzip:   3.69 kB
-node_modules/.nitro/vite/services/ssr/assets/select-DPAdEA7t.js                                        11.12 kB │ gzip:   2.99 kB
+node_modules/.nitro/vite/services/ssr/assets/select-BRjBwBgP.js                                        11.12 kB │ gzip:   2.99 kB
 node_modules/.nitro/vite/services/ssr/assets/tours-CxBZ5mNy.js                                         11.20 kB │ gzip:   3.92 kB
 node_modules/.nitro/vite/services/ssr/assets/group-bookings-meghalaya-CW1uUFfg.js                      11.23 kB │ gzip:   3.88 kB
-node_modules/.nitro/vite/services/ssr/assets/CategoryV2-BFq9x9BY.js                                    11.48 kB │ gzip:   3.64 kB
-node_modules/.nitro/vite/services/ssr/assets/install-B_Ux1dJW.js                                       11.72 kB │ gzip:   2.84 kB
-node_modules/.nitro/vite/services/ssr/assets/install-Dt3eeP7l.js                                       12.35 kB │ gzip:   3.04 kB
+node_modules/.nitro/vite/services/ssr/assets/CategoryV2-5UKVqF1B.js                                    11.48 kB │ gzip:   3.64 kB
+node_modules/.nitro/vite/services/ssr/assets/install-D2k0gTcZ.js                                       11.72 kB │ gzip:   2.84 kB
+node_modules/.nitro/vite/services/ssr/assets/install-CqV2z69X.js                                       12.35 kB │ gzip:   3.04 kB
 node_modules/.nitro/vite/services/ssr/assets/contact-BKmCR2Ov.js                                       13.57 kB │ gzip:   3.96 kB
 node_modules/.nitro/vite/services/ssr/assets/guwahati-to-shillong-transport-DpZIDghl.js                13.78 kB │ gzip:   3.79 kB
 node_modules/.nitro/vite/services/ssr/assets/blocks-DbNUMp6F.js                                        14.02 kB │ gzip:   4.37 kB
-node_modules/.nitro/vite/services/ssr/assets/luxury-glamping-shillong-E8B08t8x.js                      14.13 kB │ gzip:   3.64 kB
+node_modules/.nitro/vite/services/ssr/assets/luxury-glamping-shillong-BU_nJ4ke.js                      14.13 kB │ gzip:   3.65 kB
 node_modules/.nitro/vite/services/ssr/assets/AdventureLanding-B18LxkJ4.js                              14.38 kB │ gzip:   5.31 kB
-node_modules/.nitro/vite/services/ssr/assets/homestays-in-shillong-DlCdTeZz.js                         14.45 kB │ gzip:   3.55 kB
-node_modules/.nitro/vite/services/ssr/assets/FoodAddonsSection-CRgRiWuX.js                             14.57 kB │ gzip:   3.02 kB
-node_modules/.nitro/vite/services/ssr/assets/hotels-in-shillong-CtNvk26Z.js                            14.71 kB │ gzip:   3.65 kB
-node_modules/.nitro/vite/services/ssr/assets/ExpeditionsV2-Bcw06Isl.js                                 15.23 kB │ gzip:   4.40 kB
-node_modules/.nitro/vite/services/ssr/assets/meghalaya-for-international-tourists-Bfn1R1f5.js          15.45 kB │ gzip:   3.33 kB
+node_modules/.nitro/vite/services/ssr/assets/homestays-in-shillong-6XVLTE57.js                         14.45 kB │ gzip:   3.55 kB
+node_modules/.nitro/vite/services/ssr/assets/FoodAddonsSection-BveVimlP.js                             14.57 kB │ gzip:   3.03 kB
+node_modules/.nitro/vite/services/ssr/assets/hotels-in-shillong-D0pmiRSb.js                            14.71 kB │ gzip:   3.66 kB
+node_modules/.nitro/vite/services/ssr/assets/ExpeditionsV2-CmKi0vGk.js                                 15.23 kB │ gzip:   4.40 kB
+node_modules/.nitro/vite/services/ssr/assets/meghalaya-for-international-tourists-CjU4Q70z.js          15.45 kB │ gzip:   3.33 kB
 node_modules/.nitro/vite/services/ssr/assets/UserAuthContext-B94SqpIy.js                               16.36 kB │ gzip:   3.85 kB
 node_modules/.nitro/vite/services/ssr/assets/neTaxonomy-BWnAbOvN.js                                    16.91 kB │ gzip:   5.91 kB
 node_modules/.nitro/vite/services/ssr/index.js                                                         18.22 kB │ gzip:   6.58 kB
 node_modules/.nitro/vite/services/ssr/assets/PageFaq-BzCnz5OC.js                                       18.76 kB │ gzip:   6.75 kB
-node_modules/.nitro/vite/services/ssr/assets/campsite-BJjN7CaZ.js                                      19.07 kB │ gzip:   4.96 kB
-node_modules/.nitro/vite/services/ssr/assets/_slug-BwP8_8h0.js                                         19.26 kB │ gzip:   5.58 kB
+node_modules/.nitro/vite/services/ssr/assets/campsite-c6H35Twu.js                                      19.07 kB │ gzip:   4.96 kB
+node_modules/.nitro/vite/services/ssr/assets/_slug-BKcvmDRt.js                                         19.26 kB │ gzip:   5.58 kB
 node_modules/.nitro/vite/services/ssr/assets/SiteFooter-DPDWEyNY.js                                    19.41 kB │ gzip:   4.72 kB
 node_modules/.nitro/vite/services/ssr/assets/planner-OvCBV37I.js                                       19.46 kB │ gzip:   6.69 kB
-node_modules/.nitro/vite/services/ssr/assets/StayHubV2-B46sPNhj.js                                     19.48 kB │ gzip:   5.47 kB
-node_modules/.nitro/vite/services/ssr/assets/hostel-booking-Dna8u8yq.js                                19.86 kB │ gzip:   4.66 kB
-node_modules/.nitro/vite/services/ssr/assets/how-to-reach-meghalaya-CEPqYN8z.js                        19.89 kB │ gzip:   3.99 kB
-node_modules/.nitro/vite/services/ssr/assets/hostel-near-me-WrrkjGc8.js                                21.16 kB │ gzip:   5.21 kB
+node_modules/.nitro/vite/services/ssr/assets/StayHubV2-Dwy-DaJ_.js                                     19.48 kB │ gzip:   5.47 kB
+node_modules/.nitro/vite/services/ssr/assets/hostel-booking-Bgx7g8_8.js                                19.86 kB │ gzip:   4.66 kB
+node_modules/.nitro/vite/services/ssr/assets/how-to-reach-meghalaya-DgjnAZLC.js                        19.89 kB │ gzip:   3.99 kB
+node_modules/.nitro/vite/services/ssr/assets/hostel-near-me-DxM7ssRs.js                                21.16 kB │ gzip:   5.21 kB
 node_modules/.nitro/vite/services/ssr/assets/routing-CND9YjtR.js                                       21.34 kB │ gzip:   6.93 kB
 node_modules/.nitro/vite/services/ssr/assets/terms-of-service-DQwa9mXG.js                              23.05 kB │ gzip:   4.98 kB
 node_modules/.nitro/vite/services/ssr/assets/useRestaurantReviews-CbKQ1I9B.js                          23.35 kB │ gzip:   6.60 kB
-node_modules/.nitro/vite/services/ssr/assets/backpacking-india-Cy258-Bf.js                             24.67 kB │ gzip:   6.29 kB
+node_modules/.nitro/vite/services/ssr/assets/backpacking-india-B21dDl69.js                             24.67 kB │ gzip:   6.29 kB
 node_modules/.nitro/vite/services/ssr/assets/privacy-policy-mytKU_Vs.js                                26.01 kB │ gzip:   4.96 kB
 node_modules/.nitro/vite/services/ssr/assets/pricing-cancellation-policy-DV9L79RJ.js                   27.41 kB │ gzip:   4.88 kB
-node_modules/.nitro/vite/services/ssr/assets/xtsy-270-DNrT6OeP.js                                      27.72 kB │ gzip:   8.09 kB
-node_modules/.nitro/vite/services/ssr/assets/DestinationV2-pyZiXQvG.js                                 27.92 kB │ gzip:   7.35 kB
+node_modules/.nitro/vite/services/ssr/assets/xtsy-270-B4h2fKaC.js                                      27.72 kB │ gzip:   8.09 kB
+node_modules/.nitro/vite/services/ssr/assets/DestinationV2-C2VVL9dz.js                                 27.92 kB │ gzip:   7.35 kB
 node_modules/.nitro/vite/services/ssr/assets/signaturePackages-BWxM0Gsb.js                             28.80 kB │ gzip:   6.50 kB
-node_modules/.nitro/vite/services/ssr/assets/things-to-do-in-meghalaya-Di_zwmsc.js                     29.31 kB │ gzip:   7.69 kB
-node_modules/.nitro/vite/services/ssr/assets/tab-bistro-BR_M29bp.js                                    29.60 kB │ gzip:   8.30 kB
-node_modules/.nitro/vite/services/ssr/assets/_state-CPk-OY5w.js                                        30.23 kB │ gzip:   8.39 kB
-node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-CSo45WFb.js                    36.77 kB │ gzip:   5.50 kB
+node_modules/.nitro/vite/services/ssr/assets/things-to-do-in-meghalaya-Bzo9VQMW.js                     29.31 kB │ gzip:   7.69 kB
+node_modules/.nitro/vite/services/ssr/assets/tab-bistro-BGNqZiTR.js                                    29.60 kB │ gzip:   8.30 kB
+node_modules/.nitro/vite/services/ssr/assets/_state-Du5dQJj0.js                                        30.23 kB │ gzip:   8.39 kB
+node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-CZmchqHD.js                    36.77 kB │ gzip:   5.50 kB
 node_modules/.nitro/vite/services/ssr/assets/TripChat-BgQg7VHT.js                                      39.73 kB │ gzip:  13.49 kB
 node_modules/.nitro/vite/services/ssr/assets/merch-B1DTiHKj.js                                         40.10 kB │ gzip:   8.55 kB
-node_modules/.nitro/vite/services/ssr/assets/auth-BmwHKr53.js                                          40.31 kB │ gzip:   7.31 kB
+node_modules/.nitro/vite/services/ssr/assets/auth-CwFm0ZRc.js                                          40.31 kB │ gzip:   7.31 kB
 node_modules/.nitro/vite/services/ssr/assets/googleReviews-BDrVXjVQ.js                                 43.10 kB │ gzip:   8.76 kB
 node_modules/.nitro/vite/services/ssr/assets/IntelligentSearchOverlay-BfK6L6zb.js                      43.37 kB │ gzip:  12.41 kB
-node_modules/.nitro/vite/services/ssr/assets/profile-DVieDIuW.js                                       45.93 kB │ gzip:  10.07 kB
-node_modules/.nitro/vite/services/ssr/assets/restaurant-in-shillong-DrmUE2Cc.js                        47.15 kB │ gzip:  10.97 kB
-node_modules/.nitro/vite/services/ssr/assets/_slug-DAQqQXH4.js                                         57.83 kB │ gzip:  13.76 kB
-node_modules/.nitro/vite/services/ssr/assets/book-DzjKyxc-.js                                          58.05 kB │ gzip:  13.39 kB
-node_modules/.nitro/vite/services/ssr/assets/routes-C5uG15Z8.js                                        59.38 kB │ gzip:  15.44 kB
-node_modules/.nitro/vite/services/ssr/assets/pet-friendly-B4XwZpGR.js                                  69.88 kB │ gzip:  16.98 kB
-node_modules/.nitro/vite/services/ssr/assets/server-DKTvtlkj.js                                        73.55 kB │ gzip:  18.76 kB
+node_modules/.nitro/vite/services/ssr/assets/profile-B3EuqrGu.js                                       45.93 kB │ gzip:  10.07 kB
+node_modules/.nitro/vite/services/ssr/assets/restaurant-in-shillong-B8YbiT1U.js                        47.15 kB │ gzip:  10.98 kB
+node_modules/.nitro/vite/services/ssr/assets/_slug-CtlRAQ6x.js                                         57.83 kB │ gzip:  13.76 kB
+node_modules/.nitro/vite/services/ssr/assets/book-B67Nod79.js                                          58.05 kB │ gzip:  13.39 kB
+node_modules/.nitro/vite/services/ssr/assets/routes-DQXvKo0e.js                                        59.38 kB │ gzip:  15.44 kB
+node_modules/.nitro/vite/services/ssr/assets/pet-friendly-BnkVLnl-.js                                  69.88 kB │ gzip:  16.98 kB
+node_modules/.nitro/vite/services/ssr/assets/server-df1iufu0.js                                        73.55 kB │ gzip:  18.77 kB
 node_modules/.nitro/vite/services/ssr/assets/meghalayaDestinations-BiHC5iFp.js                         76.59 kB │ gzip:  21.20 kB
 node_modules/.nitro/vite/services/ssr/assets/roomTypes-DaLdfsle.js                                     84.72 kB │ gzip:  15.16 kB
 node_modules/.nitro/vite/services/ssr/assets/travelData-CAhAO25V.js                                   166.47 kB │ gzip:  44.12 kB
-node_modules/.nitro/vite/services/ssr/assets/router-DcdwbSl6.js                                       274.55 kB │ gzip:  69.94 kB
+node_modules/.nitro/vite/services/ssr/assets/router-ByYHblOC.js                                       274.55 kB │ gzip:  69.94 kB
 node_modules/.nitro/vite/services/ssr/assets/guidePageData-D0orIz5n.js                              1,009.62 kB │ gzip: 244.09 kB
 
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/lib/bistroGoogleProfile.ts is dynamically imported by src/lib/bistroGoogleSync.server.ts but also statically imported by src/lib/bistroGoogleSync.server.ts, dynamic import will not move module into another chunk.
 [39m
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 1.46s[39m
+[32m✓ built in 1.43s[39m
 [start] [nitro] Building [[35mNitro[39m] [2m(preset: `cloudflare-module`, compatibility: `2026-10-27`)[22m
 [success] [nitro] Generated public [36m.output/public[39m
 [36mvite v8.2.1 [32mbuilding nitro environment for production...[36m[39m
@@ -529,20 +529,20 @@ computing gzip size...
 .output/server/_ssr/catering-CEOReE0A.mjs                                  0.22 kB │ gzip:   0.17 kB
 .output/server/_ssr/xtsy-270-stargazing-CX2tFenX.mjs                       0.22 kB │ gzip:   0.16 kB
 .output/server/_ssr/empty-plugin-adapters-D9UWiqvJ.mjs                     0.23 kB │ gzip:   0.16 kB
-.output/server/_ssr/meghalaya-caves-BVKd3scn.mjs                           0.23 kB │ gzip:   0.18 kB
-.output/server/_ssr/meghalaya-villages-BOlF1g5Q.mjs                        0.23 kB │ gzip:   0.18 kB
-.output/server/_ssr/meghalaya-viewpoints-BiTMWPs2.mjs                      0.23 kB │ gzip:   0.18 kB
-.output/server/_ssr/meghalaya-waterfalls-DHTgJxB4.mjs                      0.23 kB │ gzip:   0.19 kB
-.output/server/_attraction-B5L4v5Bq.mjs                                    0.24 kB │ gzip:   0.18 kB
-.output/server/_route-O4k0PLom.mjs                                         0.24 kB │ gzip:   0.18 kB
-.output/server/_ssr/expeditions-CX3FCQcw.mjs                               0.24 kB │ gzip:   0.18 kB
+.output/server/_ssr/meghalaya-caves-8FuSI_Bj.mjs                           0.23 kB │ gzip:   0.18 kB
+.output/server/_ssr/meghalaya-villages-CQEIkFI0.mjs                        0.23 kB │ gzip:   0.18 kB
+.output/server/_ssr/meghalaya-viewpoints-CD0eIetV.mjs                      0.23 kB │ gzip:   0.18 kB
+.output/server/_ssr/meghalaya-waterfalls-CQtihQ2L.mjs                      0.23 kB │ gzip:   0.19 kB
+.output/server/_attraction-xhty2T5B.mjs                                    0.24 kB │ gzip:   0.18 kB
+.output/server/_route-D2hS_vOY.mjs                                         0.24 kB │ gzip:   0.18 kB
+.output/server/_ssr/expeditions-D1INXkSk.mjs                               0.24 kB │ gzip:   0.18 kB
 .output/server/_ssr/searchIndex-Q1yApcIc.mjs                               0.25 kB │ gzip:   0.18 kB
 .output/server/_libs/radix-ui__number.mjs                                  0.32 kB │ gzip:   0.24 kB
 .output/server/_ssr/hostelPolicies-CAsfYeGI.mjs                            0.36 kB │ gzip:   0.27 kB
-.output/server/_slug-D-Jq1i1R.mjs                                          0.37 kB │ gzip:   0.28 kB
+.output/server/_slug-B1E2IDNU.mjs                                          0.37 kB │ gzip:   0.28 kB
 .output/server/_ssr/rolldown-runtime-D7D4PA-g.mjs                          0.41 kB │ gzip:   0.29 kB
-.output/server/_ssr/cheap-hostels-shillong-ogO9BkrG.mjs                    0.45 kB │ gzip:   0.31 kB
-.output/server/_ssr/best-hostel-in-shillong-Cb3eDo6Q.mjs                   0.45 kB │ gzip:   0.31 kB
+.output/server/_ssr/cheap-hostels-shillong-W8X-K7Iw.mjs                    0.45 kB │ gzip:   0.31 kB
+.output/server/_ssr/best-hostel-in-shillong-BWzKH5Wm.mjs                   0.45 kB │ gzip:   0.31 kB
 .output/server/_ssr/4x4-expedition-meghalaya-ilUyzEKI.mjs                  0.48 kB │ gzip:   0.30 kB
 .output/server/_ssr/meghalaya-adventure-tour-C9dWHwQV.mjs                  0.48 kB │ gzip:   0.30 kB
 .output/server/_ssr/catering-shillong-DtuWyF_m.mjs                         0.48 kB │ gzip:   0.31 kB
@@ -581,11 +581,11 @@ computing gzip size...
 .output/server/_ssr/CtaBand-CSnGE-s2.mjs                                   2.83 kB │ gzip:   1.13 kB
 .output/server/_ssr/createCsrfMiddleware-B2To0gPJ.mjs                      3.11 kB │ gzip:   1.01 kB
 .output/server/_libs/class-variance-authority+clsx.mjs                     3.17 kB │ gzip:   1.24 kB
-.output/server/_ssr/rooms.functions-CF1PhMqJ.mjs                           3.39 kB │ gzip:   1.52 kB
+.output/server/_ssr/rooms.functions-jNMIRqhE.mjs                           3.39 kB │ gzip:   1.51 kB
 .output/server/_ssr/StayEatExplore-CcivTJZB.mjs                            3.53 kB │ gzip:   1.44 kB
 .output/server/_ssr/UnifiedImage-CMZaBHu9.mjs                              3.58 kB │ gzip:   1.28 kB
 .output/server/_ssr/helmet-4IwdkJxF.mjs                                    3.62 kB │ gzip:   1.57 kB
-.output/server/_ssr/tourPageData-WA31957U.mjs                              3.66 kB │ gzip:   1.49 kB
+.output/server/_ssr/tourPageData-BG0ewTto.mjs                              3.66 kB │ gzip:   1.49 kB
 .output/server/_ssr/destinations-BHS-x3Qo.mjs                              3.67 kB │ gzip:   1.14 kB
 .output/server/_ssr/v2Images-D788Rak7.mjs                                  3.86 kB │ gzip:   1.44 kB
 .output/server/_ssr/dialog-ZT2qy3Bz.mjs                                    4.02 kB │ gzip:   1.31 kB
@@ -596,32 +596,32 @@ computing gzip size...
 .output/server/_ssr/consent-coXR9ftT.mjs                                   4.65 kB │ gzip:   1.94 kB
 .output/server/_ssr/DestinationCard-By3aLQXM.mjs                           4.79 kB │ gzip:   1.53 kB
 .output/server/_ssr/hidden-places-in-meghalaya-641WHD2B.mjs                5.37 kB │ gzip:   1.78 kB
-.output/server/_._lovable.oauth.consent-eB56wrIt.mjs                       5.46 kB │ gzip:   1.77 kB
+.output/server/_._lovable.oauth.consent-BI8oA66m.mjs                       5.46 kB │ gzip:   1.77 kB
 .output/server/_ssr/bistroGoogleSync.server-BChJdoct.mjs                   5.71 kB │ gzip:   2.38 kB
 .output/server/_ssr/3-day-meghalaya-itinerary-KuMsc8Hv.mjs                 5.75 kB │ gzip:   1.82 kB
-.output/server/_ssr/login-lTvV9Fav.mjs                                     5.92 kB │ gzip:   1.78 kB
-.output/server/_ssr/faq-Bhwirdr_.mjs                                       5.97 kB │ gzip:   2.04 kB
-.output/server/_ssr/plan-trip-with-ai-RIE09hvZ.mjs                         6.19 kB │ gzip:   2.16 kB
+.output/server/_ssr/login-CKjVtiOJ.mjs                                     5.92 kB │ gzip:   1.78 kB
+.output/server/_ssr/faq-B_wCU8Wb.mjs                                       5.97 kB │ gzip:   2.04 kB
+.output/server/_ssr/plan-trip-with-ai-Cwj2tCCO.mjs                         6.19 kB │ gzip:   2.16 kB
 .output/server/_ssr/meghalaya-couple-tour-package-BhD6UEIn.mjs             6.41 kB │ gzip:   1.86 kB
 .output/server/_ssr/female-travellers-6W5YZHqo.mjs                         6.45 kB │ gzip:   2.45 kB
 .output/server/_ssr/utils-Dt9SgUF4.mjs                                     6.46 kB │ gzip:   2.25 kB
 .output/server/_ssr/tripChatEvents-CVwDn3cm.mjs                            6.47 kB │ gzip:   2.63 kB
 .output/server/_ssr/EnquiryForm-ccltq8Mz.mjs                               6.62 kB │ gzip:   2.11 kB
 .output/server/_ssr/work-from-home-hqFVdtUK.mjs                            6.65 kB │ gzip:   2.66 kB
-.output/server/_ssr/DestinationGallery-C5fvDiDi.mjs                        6.68 kB │ gzip:   2.16 kB
+.output/server/_ssr/DestinationGallery-CCpp3xeA.mjs                        6.69 kB │ gzip:   2.17 kB
 .output/server/_ssr/5-day-meghalaya-itinerary-hIwWpZ06.mjs                 7.19 kB │ gzip:   2.18 kB
 .output/server/_ssr/xtsy-vs-zostel-B9diWXwW.mjs                            7.28 kB │ gzip:   2.43 kB
 .output/server/_ssr/shillong-tour-package-3nSI5zln.mjs                     7.37 kB │ gzip:   2.11 kB
 .output/server/_libs/radix-ui__react-switch.mjs                            7.67 kB │ gzip:   2.20 kB
 .output/server/_ssr/xtsy-adventure-campsite-dawki-COO1d_Rw.mjs             7.82 kB │ gzip:   2.84 kB
-.output/server/_ssr/meghalaya-photo-gallery-CPl_S1tV.mjs                   8.02 kB │ gzip:   2.18 kB
+.output/server/_ssr/meghalaya-photo-gallery-CAlFwcJl.mjs                   8.21 kB │ gzip:   2.26 kB
 .output/server/_ssr/meghalaya-tour-packages-BuMPh7-3.mjs                   8.30 kB │ gzip:   2.26 kB
 .output/server/_ssr/gallery-BqvCeYR6.mjs                                   8.45 kB │ gzip:   2.84 kB
-.output/server/_ssr/unsubscribe-uY5817R_.mjs                               8.85 kB │ gzip:   2.24 kB
+.output/server/_ssr/unsubscribe-CQXNHisl.mjs                               8.85 kB │ gzip:   2.24 kB
 .output/server/_ssr/best-time-to-visit-meghalaya-BC8J5jcX.mjs              8.96 kB │ gzip:   2.56 kB
-.output/server/_city-Bm4YCP0c.mjs                                          9.10 kB │ gzip:   2.58 kB
+.output/server/_city-DRIrwRaQ.mjs                                          9.10 kB │ gzip:   2.58 kB
 .output/server/_ssr/budget-trip-to-meghalaya-BsOQ3OST.mjs                  9.48 kB │ gzip:   2.36 kB
-.output/server/_ssr/hostelBookingFaqs-BbshS_zX.mjs                         9.82 kB │ gzip:   3.40 kB
+.output/server/_ssr/hostelBookingFaqs-D71wH3EP.mjs                         9.82 kB │ gzip:   3.41 kB
 .output/server/_ssr/safety-house-rules-CCCrVAfC.mjs                        9.86 kB │ gzip:   3.01 kB
 .output/server/_libs/h3-v2+rou3+srvx.mjs                                   9.89 kB │ gzip:   3.06 kB
 .output/server/_ssr/meghalaya-festivals-BbVzyksa.mjs                      10.27 kB │ gzip:   3.21 kB
@@ -642,74 +642,74 @@ computing gzip size...
 .output/server/_libs/supabase__functions-js.mjs                           12.54 kB │ gzip:   3.48 kB
 .output/server/_libs/input-otp.mjs                                        12.63 kB │ gzip:   4.46 kB
 .output/server/_libs/radix-ui__react-tooltip.mjs                          12.74 kB │ gzip:   3.20 kB
-.output/server/_ssr/CategoryV2-BFq9x9BY.mjs                               12.78 kB │ gzip:   3.74 kB
-.output/server/_ssr/select-DPAdEA7t.mjs                                   12.88 kB │ gzip:   3.15 kB
-.output/server/_ssr/install-B_Ux1dJW.mjs                                  13.58 kB │ gzip:   2.98 kB
-.output/server/_ssr/install-Dt3eeP7l.mjs                                  14.25 kB │ gzip:   3.19 kB
+.output/server/_ssr/CategoryV2-5UKVqF1B.mjs                               12.78 kB │ gzip:   3.75 kB
+.output/server/_ssr/select-BRjBwBgP.mjs                                   12.88 kB │ gzip:   3.15 kB
+.output/server/_ssr/install-D2k0gTcZ.mjs                                  13.58 kB │ gzip:   2.98 kB
+.output/server/_ssr/install-CqV2z69X.mjs                                  14.25 kB │ gzip:   3.20 kB
 .output/server/_ssr/AdventureLanding-B18LxkJ4.mjs                         15.11 kB │ gzip:   5.41 kB
 .output/server/_ssr/contact-BKmCR2Ov.mjs                                  15.37 kB │ gzip:   4.08 kB
 .output/server/_ssr/guwahati-to-shillong-transport-DpZIDghl.mjs           15.64 kB │ gzip:   3.89 kB
-.output/server/_ssr/luxury-glamping-shillong-E8B08t8x.mjs                 16.15 kB │ gzip:   3.80 kB
+.output/server/_ssr/luxury-glamping-shillong-BU_nJ4ke.mjs                 16.15 kB │ gzip:   3.80 kB
 .output/server/_ssr/blocks-DbNUMp6F.mjs                                   16.16 kB │ gzip:   4.54 kB
 .output/server/_libs/radix-ui__react-collection.mjs                       16.58 kB │ gzip:   3.69 kB
 .output/server/_libs/h3+rou3+srvx.mjs                                     16.61 kB │ gzip:   4.80 kB
-.output/server/_ssr/homestays-in-shillong-DlCdTeZz.mjs                    16.62 kB │ gzip:   3.71 kB
-.output/server/_ssr/hotels-in-shillong-CtNvk26Z.mjs                       16.90 kB │ gzip:   3.80 kB
+.output/server/_ssr/homestays-in-shillong-6XVLTE57.mjs                    16.62 kB │ gzip:   3.71 kB
+.output/server/_ssr/hotels-in-shillong-D0pmiRSb.mjs                       16.90 kB │ gzip:   3.80 kB
 .output/server/_ssr/neTaxonomy-BWnAbOvN.mjs                               16.95 kB │ gzip:   5.94 kB
-.output/server/_ssr/FoodAddonsSection-CRgRiWuX.mjs                        17.31 kB │ gzip:   3.23 kB
-.output/server/_ssr/ExpeditionsV2-Bcw06Isl.mjs                            17.33 kB │ gzip:   4.54 kB
-.output/server/_ssr/meghalaya-for-international-tourists-Bfn1R1f5.mjs     18.09 kB │ gzip:   3.43 kB
+.output/server/_ssr/FoodAddonsSection-BveVimlP.mjs                        17.31 kB │ gzip:   3.23 kB
+.output/server/_ssr/ExpeditionsV2-CmKi0vGk.mjs                            17.33 kB │ gzip:   4.54 kB
+.output/server/_ssr/meghalaya-for-international-tourists-CjU4Q70z.mjs     18.09 kB │ gzip:   3.43 kB
 .output/server/_ssr/ssr.mjs                                               18.25 kB │ gzip:   6.64 kB
 .output/server/_libs/@radix-ui/react-popover+[...].mjs                    18.63 kB │ gzip:   4.61 kB
 .output/server/_ssr/PageFaq-BzCnz5OC.mjs                                  19.03 kB │ gzip:   6.84 kB
 .output/server/_ssr/planner-OvCBV37I.mjs                                  19.51 kB │ gzip:   6.73 kB
-.output/server/_slug-BwP8_8h0.mjs                                         21.33 kB │ gzip:   5.72 kB
-.output/server/_ssr/campsite-BJjN7CaZ.mjs                                 22.00 kB │ gzip:   5.14 kB
-.output/server/_ssr/StayHubV2-B46sPNhj.mjs                                22.15 kB │ gzip:   5.65 kB
-.output/server/_ssr/hostel-booking-Dna8u8yq.mjs                           22.45 kB │ gzip:   4.83 kB
-.output/server/_ssr/how-to-reach-meghalaya-CEPqYN8z.mjs                   23.49 kB │ gzip:   4.12 kB
+.output/server/_slug-BKcvmDRt.mjs                                         21.33 kB │ gzip:   5.72 kB
+.output/server/_ssr/campsite-c6H35Twu.mjs                                 22.00 kB │ gzip:   5.14 kB
+.output/server/_ssr/StayHubV2-Dwy-DaJ_.mjs                                22.15 kB │ gzip:   5.65 kB
+.output/server/_ssr/hostel-booking-Bgx7g8_8.mjs                           22.45 kB │ gzip:   4.84 kB
+.output/server/_ssr/how-to-reach-meghalaya-DgjnAZLC.mjs                   23.49 kB │ gzip:   4.12 kB
 .output/server/_ssr/useRestaurantReviews-CbKQ1I9B.mjs                     23.80 kB │ gzip:   6.71 kB
 .output/server/_ssr/panoramaPricing-C83vbTU3.mjs                          23.89 kB │ gzip:   8.06 kB
-.output/server/_ssr/hostel-near-me-WrrkjGc8.mjs                           24.01 kB │ gzip:   5.40 kB
+.output/server/_ssr/hostel-near-me-DxM7ssRs.mjs                           24.01 kB │ gzip:   5.40 kB
 .output/server/_libs/radix-ui__react-toast.mjs                            24.67 kB │ gzip:   5.72 kB
 .output/server/_libs/@floating-ui/dom+[...].mjs                           25.39 kB │ gzip:   6.57 kB
 .output/server/_libs/@floating-ui/core+[...].mjs                          25.56 kB │ gzip:   6.32 kB
 .output/server/_ssr/terms-of-service-DQwa9mXG.mjs                         27.17 kB │ gzip:   5.06 kB
-.output/server/_ssr/backpacking-india-Cy258-Bf.mjs                        27.72 kB │ gzip:   6.47 kB
+.output/server/_ssr/backpacking-india-B21dDl69.mjs                        27.72 kB │ gzip:   6.47 kB
 .output/server/_ssr/signaturePackages-BWxM0Gsb.mjs                        28.85 kB │ gzip:   6.54 kB
 .output/server/_libs/@tanstack/router-core+[...].mjs                      29.60 kB │ gzip:   7.98 kB
 .output/server/_libs/react-helmet-async+[...].mjs                         29.83 kB │ gzip:   7.56 kB
-.output/server/_ssr/xtsy-270-DNrT6OeP.mjs                                 30.77 kB │ gzip:   8.23 kB
-.output/server/_ssr/DestinationV2-pyZiXQvG.mjs                            30.81 kB │ gzip:   7.46 kB
+.output/server/_ssr/xtsy-270-B4h2fKaC.mjs                                 30.77 kB │ gzip:   8.23 kB
+.output/server/_ssr/DestinationV2-C2VVL9dz.mjs                            30.81 kB │ gzip:   7.46 kB
 .output/server/_ssr/privacy-policy-mytKU_Vs.mjs                           31.21 kB │ gzip:   5.05 kB
 .output/server/_libs/@floating-ui/react-dom+[...].mjs                     31.30 kB │ gzip:   7.98 kB
-.output/server/_state-CPk-OY5w.mjs                                        32.21 kB │ gzip:   8.48 kB
-.output/server/_ssr/things-to-do-in-meghalaya-Di_zwmsc.mjs                32.49 kB │ gzip:   7.84 kB
+.output/server/_state-Du5dQJj0.mjs                                        32.21 kB │ gzip:   8.48 kB
+.output/server/_ssr/things-to-do-in-meghalaya-Bzo9VQMW.mjs                32.49 kB │ gzip:   7.84 kB
 .output/server/_ssr/pricing-cancellation-policy-DV9L79RJ.mjs              32.73 kB │ gzip:   5.03 kB
-.output/server/_ssr/tab-bistro-BR_M29bp.mjs                               32.93 kB │ gzip:   8.43 kB
+.output/server/_ssr/tab-bistro-BGNqZiTR.mjs                               32.93 kB │ gzip:   8.43 kB
 .output/server/_libs/@radix-ui/react-checkbox+[...].mjs                   32.99 kB │ gzip:   7.81 kB
 .output/server/_libs/supabase__supabase-js.mjs                            36.39 kB │ gzip:  10.69 kB
-.output/server/_tanstack-start-manifest_v-CSo45WFb.mjs                    36.82 kB │ gzip:   5.54 kB
+.output/server/_tanstack-start-manifest_v-CZmchqHD.mjs                    36.82 kB │ gzip:   5.54 kB
 .output/server/_ssr/SiteFooter-DPDWEyNY.mjs                               38.00 kB │ gzip:   8.44 kB
 .output/server/_ssr/merch-B1DTiHKj.mjs                                    41.36 kB │ gzip:   8.67 kB
 .output/server/_ssr/TripChat-BgQg7VHT.mjs                                 41.81 kB │ gzip:  13.64 kB
 .output/server/_ssr/googleReviews-BDrVXjVQ.mjs                            43.14 kB │ gzip:   8.79 kB
 .output/server/_ssr/IntelligentSearchOverlay-BfK6L6zb.mjs                 45.13 kB │ gzip:  12.58 kB
-.output/server/_ssr/auth-BmwHKr53.mjs                                     46.12 kB │ gzip:   7.47 kB
+.output/server/_ssr/auth-CwFm0ZRc.mjs                                     46.12 kB │ gzip:   7.48 kB
 .output/server/_libs/@radix-ui/react-select+[...].mjs                     46.47 kB │ gzip:   9.79 kB
 .output/server/_libs/tanstack__query-core.mjs                             48.19 kB │ gzip:  10.70 kB
 .output/server/_libs/fuse.js.mjs                                          49.15 kB │ gzip:  13.03 kB
 .output/server/_libs/supabase__phoenix.mjs                                50.54 kB │ gzip:  12.76 kB
-.output/server/_ssr/profile-DVieDIuW.mjs                                  52.43 kB │ gzip:  10.30 kB
-.output/server/_ssr/restaurant-in-shillong-DrmUE2Cc.mjs                   53.43 kB │ gzip:  11.21 kB
+.output/server/_ssr/profile-B3EuqrGu.mjs                                  52.43 kB │ gzip:  10.31 kB
+.output/server/_ssr/restaurant-in-shillong-B8YbiT1U.mjs                   53.43 kB │ gzip:  11.21 kB
 .output/server/_libs/sonner.mjs                                           53.63 kB │ gzip:  12.11 kB
 .output/server/_libs/lucide-react.mjs                                     60.96 kB │ gzip:  12.11 kB
-.output/server/_slug-DAQqQXH4.mjs                                         64.39 kB │ gzip:  14.01 kB
-.output/server/_ssr/book-DzjKyxc-.mjs                                     64.53 kB │ gzip:  13.57 kB
+.output/server/_slug-CtlRAQ6x.mjs                                         64.39 kB │ gzip:  14.01 kB
+.output/server/_ssr/book-B67Nod79.mjs                                     64.53 kB │ gzip:  13.57 kB
 .output/server/_libs/@radix-ui/react-dialog+[...].mjs                     65.69 kB │ gzip:  15.64 kB
-.output/server/_ssr/routes-C5uG15Z8.mjs                                   66.01 kB │ gzip:  15.68 kB
-.output/server/_ssr/server-DKTvtlkj.mjs                                   71.84 kB │ gzip:  18.64 kB
-.output/server/_ssr/pet-friendly-B4XwZpGR.mjs                             75.98 kB │ gzip:  17.12 kB
+.output/server/_ssr/routes-DQXvKo0e.mjs                                   66.01 kB │ gzip:  15.68 kB
+.output/server/_ssr/server-df1iufu0.mjs                                   71.84 kB │ gzip:  18.64 kB
+.output/server/_ssr/pet-friendly-BnkVLnl-.mjs                             75.98 kB │ gzip:  17.12 kB
 .output/server/_ssr/meghalayaDestinations-BiHC5iFp.mjs                    76.64 kB │ gzip:  21.24 kB
 .output/server/_libs/supabase__realtime-js.mjs                            80.48 kB │ gzip:  20.52 kB
 .output/server/_libs/tailwind-merge.mjs                                   88.13 kB │ gzip:  15.66 kB
@@ -720,11 +720,11 @@ computing gzip size...
 .output/server/_libs/@supabase/storage-js+[...].mjs                      119.62 kB │ gzip:  22.37 kB
 .output/server/_libs/react-day-picker.mjs                                135.54 kB │ gzip:  26.54 kB
 .output/server/_ssr/travelData-CAhAO25V.mjs                              165.19 kB │ gzip:  43.98 kB
-.output/server/_ssr/router-DcdwbSl6.mjs                                  288.47 kB │ gzip:  73.92 kB
+.output/server/_ssr/router-ByYHblOC.mjs                                  288.47 kB │ gzip:  73.93 kB
 .output/server/_libs/supabase__auth-js.mjs                               312.48 kB │ gzip:  63.71 kB
 .output/server/_libs/@sentry/browser+[...].mjs                           346.93 kB │ gzip:  82.23 kB
 .output/server/_libs/framer-motion.mjs                                   352.40 kB │ gzip:  92.38 kB
-.output/server/index.mjs                                                 416.96 kB │ gzip:  74.50 kB
+.output/server/index.mjs                                                 416.96 kB │ gzip:  74.73 kB
 .output/server/_libs/@tanstack/react-router+[...].mjs                    752.69 kB │ gzip: 159.14 kB
 .output/server/_ssr/guidePageData-D0orIz5n.mjs                         1,008.49 kB │ gzip: 243.70 kB
 
