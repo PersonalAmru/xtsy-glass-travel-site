@@ -53,3 +53,8 @@
 - [x] Prepare voluntary honest-review requests and labelled existing-page links/copy in the XTSY guest growth collection. Seven pages verified; no duplicate pages or completed hostel SEO edits repeated.
 - [ ] Post/share through @xtsy.one and send review requests to genuine recent guests: blocked by unavailable publishing/sending access and no eligible recipient/audience list. No messages or posts sent.
 - [x] Remove misleading online-payment/instant-confirmation copy from hostel-booking page and shared payment FAQ; primary hostel enquiry save-before-WhatsApp retained, Bistro uses a same-tab post-save redirect to avoid popup blocking. Eleven quote/request tests pass; site changes require publishing.
+
+## Current request 2026-10-28
+- [ ] Improve AI trip answers for accuracy and guest-first recommendations, with XTSY only where relevant.
+- [ ] Repair plan-confirmation enquiries so the saved itinerary reaches the desk through WhatsApp and an expected email notification; references must not imply confirmed bookings.
+- [ ] Verify trip answers and a saved guest itinerary handoff end to end, preserving consent and no online payments.
