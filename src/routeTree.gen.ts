@@ -92,6 +92,7 @@ import { Route as ExpeditionsTypeRouteRouteImport } from './routes/expeditions/$
 import { Route as ApiPublicHooksBistroGoogleSyncRouteImport } from './routes/api/public/hooks/bistro-google-sync'
 import { Route as DestinationsStateCityIndexRouteImport } from './routes/destinations/$state/$city/index'
 import { Route as DestinationsStateCityAttractionRouteImport } from './routes/destinations/$state/$city/$attraction'
+import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -522,6 +523,12 @@ const DestinationsStateCityAttractionRoute =
     path: '/destinations/$state/$city/$attraction',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LovableEmailQueueProcessRoute =
+  LovableEmailQueueProcessRouteImport.update({
+    id: '/lovable/email/queue/process',
+    path: '/lovable/email/queue/process',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -606,6 +613,7 @@ export interface FileRoutesByFullPath {
   '/destinations/$state/': typeof DestinationsStateIndexRoute
   '/api/public/hooks/bistro-google-sync': typeof ApiPublicHooksBistroGoogleSyncRoute
   '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/destinations/$state/$city/': typeof DestinationsStateCityIndexRoute
 }
 export interface FileRoutesByTo {
@@ -691,6 +699,7 @@ export interface FileRoutesByTo {
   '/destinations/$state': typeof DestinationsStateIndexRoute
   '/api/public/hooks/bistro-google-sync': typeof ApiPublicHooksBistroGoogleSyncRoute
   '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/destinations/$state/$city': typeof DestinationsStateCityIndexRoute
 }
 export interface FileRoutesById {
@@ -777,6 +786,7 @@ export interface FileRoutesById {
   '/destinations/$state/': typeof DestinationsStateIndexRoute
   '/api/public/hooks/bistro-google-sync': typeof ApiPublicHooksBistroGoogleSyncRoute
   '/destinations/$state/$city/$attraction': typeof DestinationsStateCityAttractionRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
   '/destinations/$state/$city/': typeof DestinationsStateCityIndexRoute
 }
 export interface FileRouteTypes {
@@ -864,6 +874,7 @@ export interface FileRouteTypes {
     | '/destinations/$state/'
     | '/api/public/hooks/bistro-google-sync'
     | '/destinations/$state/$city/$attraction'
+    | '/lovable/email/queue/process'
     | '/destinations/$state/$city/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -949,6 +960,7 @@ export interface FileRouteTypes {
     | '/destinations/$state'
     | '/api/public/hooks/bistro-google-sync'
     | '/destinations/$state/$city/$attraction'
+    | '/lovable/email/queue/process'
     | '/destinations/$state/$city'
   id:
     | '__root__'
@@ -1034,6 +1046,7 @@ export interface FileRouteTypes {
     | '/destinations/$state/'
     | '/api/public/hooks/bistro-google-sync'
     | '/destinations/$state/$city/$attraction'
+    | '/lovable/email/queue/process'
     | '/destinations/$state/$city/'
   fileRoutesById: FileRoutesById
 }
@@ -1120,6 +1133,7 @@ export interface RootRouteChildren {
   DestinationsStateIndexRoute: typeof DestinationsStateIndexRoute
   ApiPublicHooksBistroGoogleSyncRoute: typeof ApiPublicHooksBistroGoogleSyncRoute
   DestinationsStateCityAttractionRoute: typeof DestinationsStateCityAttractionRoute
+  LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
   DestinationsStateCityIndexRoute: typeof DestinationsStateCityIndexRoute
 }
 
@@ -1706,6 +1720,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DestinationsStateCityAttractionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/queue/process': {
+      id: '/lovable/email/queue/process'
+      path: '/lovable/email/queue/process'
+      fullPath: '/lovable/email/queue/process'
+      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1795,6 +1816,7 @@ const rootRouteChildren: RootRouteChildren = {
   DestinationsStateIndexRoute: DestinationsStateIndexRoute,
   ApiPublicHooksBistroGoogleSyncRoute: ApiPublicHooksBistroGoogleSyncRoute,
   DestinationsStateCityAttractionRoute: DestinationsStateCityAttractionRoute,
+  LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
   DestinationsStateCityIndexRoute: DestinationsStateCityIndexRoute,
 }
 export const routeTree = rootRouteImport
