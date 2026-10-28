@@ -1,10 +1,10 @@
 import { Link } from '@/lib/router-compat';
 import { Helmet } from '@/lib/seo/helmet';
-import PageFaqs from '@/components/seo/PageFaqs';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Heart, Check, Calendar } from 'lucide-react';
+import PageFaq from '@/components/seo/PageFaq';
 
 const MeghalayaCoupleTourPackage = () => (
   <div className="min-h-screen bg-background">
@@ -72,19 +72,8 @@ const MeghalayaCoupleTourPackage = () => (
           </div>
         </nav>
       </div>
-        <div className="container mx-auto px-4 max-w-5xl pb-12">
-        <PageFaqs
-          faqs={[
-          { q: "What is included in the Meghalaya couple tour package?", a: "The 6-day honeymoon package at \u20b926,000 per person covers stays, private transport with a driver-guide, daily breakfast, and the couple-friendly circuit through Shillong, Sohra, Mawlynnong and Dawki. Flights and trains to Guwahati are not included." },
-          { q: "Is there a private stay for couples at XTSY?", a: "Yes. The King Double room is \u20b92,399 a night, all inclusive. Experience by XTSY, a glass sky room with a queen-size bed, is \u20b95,999 a night for the stay, with an optional decoration add-on at \u20b92,500 plus \u20b9450 GST." },
-          { q: "When is the best time for a honeymoon in Meghalaya?", a: "October to April. Skies are clearest, the Umngot River at Dawki runs glass-clear, and evenings are cool rather than cold. The monsoon from June to September is dramatic and green, but rain can shorten viewpoint days." },
-          { q: "How many days do couples need in Meghalaya?", a: "Five to six days is comfortable: two nights in or near Shillong, one or two near Sohra, and a night by the river at Dawki or Shnongpdeng, with time left for slow mornings." },
-          { q: "Can you arrange a surprise or celebration?", a: "Yes. Tell the XTSY desk before you arrive and the Experience by XTSY decoration add-on can be arranged for an anniversary, proposal or birthday, at \u20b92,500 plus \u20b9450 GST, once per stay." },
-          ]}
-        />
-        </div>
-
     </main>
+    <PageFaq path="/meghalaya-couple-tour-package" />
     <Footer />
   </div>
 );

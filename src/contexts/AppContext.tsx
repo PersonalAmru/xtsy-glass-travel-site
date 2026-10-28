@@ -1,7 +1,7 @@
 import { SELF_TRACKING_ENABLED } from '@/lib/selfTracking';
 import * as React from 'react';
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { getSupabase } from '@/integrations/supabase/lazy';
 import { deferUntilIdle } from '@/utils/deferUntilIdle';
 
 interface Currency {
@@ -99,7 +99,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     }
 
     try {
-      const { data, error } = await supabase.functions.invoke('fetch-exchange-rates', {
+      const { data, error } = await (await getSupabase()).functions.invoke('fetch-exchange-rates', {
         body: {},
       });
 
@@ -154,11 +154,11 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
           
           // Log anonymized location data (GDPR compliant - only country code)
           // This is completely non-blocking and failures are silently ignored
-          if (SELF_TRACKING_ENABLED) void supabase.from('user_location_preferences').insert({
+          if (SELF_TRACKING_ENABLED) void getSupabase().then((sb) => sb.from('user_location_preferences').insert({
             country_code: locationData.country,
             detected_currency: locationData.currency,
             detected_at: new Date().toISOString()
-          });
+          }));
           
           // Set currency based on detected location
           const detectedCurrency = availableCurrencies.find(c => c.code === locationData.currency);

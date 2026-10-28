@@ -100,7 +100,7 @@ export const FESTIVAL_SEO_PAGES: SEOPageData[] = [
           'Several weeks at least. Festival weekend is the busiest of the Shillong year and beds, rooms and cabs all sell out. Book direct to avoid booking-site mark-ups.',
       },
     ],
-    relatedSlugs: ['best-time-to-visit-meghalaya', 'meghalaya-festivals', 'best-hostel-in-shillong'],
+    relatedSlugs: ['weekend-meghalaya-trip', '4-day-meghalaya-itinerary', 'xtsy-travellers-hostel'],
     ctaText: 'Book a bed for festival week',
     ctaLink: '/book',
     keywords: [
@@ -111,100 +111,4 @@ export const FESTIVAL_SEO_PAGES: SEOPageData[] = [
       'where to stay cherry blossom festival shillong',
     ],
   },
-  {
-    slug: 'meghalaya-festivals',
-    category: 'seasonal',
-    schemaType: 'TravelGuide',
-    title: 'Meghalaya Festivals: Dates, Places & How to Attend',
-    metaDescription:
-      'A traveller’s guide to Meghalaya’s festivals: Cherry Blossom, Wangala, Nongkrem, Shad Suk Mynsiem and Behdienkhlam. When they fall, where to go and how to plan.',
-    h1: 'Festivals of Meghalaya: when they fall and how to plan around them',
-    intro:
-      'Meghalaya’s calendar runs on harvests, thanksgiving and the seasons, not on tourist timetables. Most traditional festival dates are set by village authorities a few weeks ahead, so plan the trip around the month and confirm the exact days closer to the time. November is the richest month, with the Cherry Blossom Festival in Shillong and Wangala in the Garo Hills.',
-    sections: [
-      {
-        heading: 'The festival year at a glance',
-        content:
-          'Dates below were checked in October 2026. Traditional dates are announced by the Syiem or village councils and move year to year; only the Cherry Blossom Festival keeps fixed calendar dates.',
-        listItems: [
-          'April: Shad Suk Mynsiem, the Khasi spring thanksgiving dance, in Shillong',
-          'Mid-July: Behdienkhlam in Jowai, West Jaintia Hills, the Pnar monsoon festival',
-          'Mid-November: Wangala, the Garo 100 Drums harvest festival, at Asanang near Tura; the 2026 golden-jubilee edition is reported for 12-14 November, with 13 November a state holiday',
-          'Mid-November: Nongkrem Dance at Smit, near Shillong; dates are set by the Syiem each year',
-          '20-21 November 2026: Shillong Cherry Blossom Festival, New Shillong Highland Grounds',
-        ],
-      },
-      {
-        heading: 'Which festival suits which traveller',
-        content:
-          'They are very different occasions. Pick by what you want from the trip rather than by what is closest.',
-        listItems: [
-          'Live music and crowds: the Cherry Blossom Festival, with international headliners',
-          'Traditional dance and ceremony: Nongkrem at Smit and Shad Suk Mynsiem in Shillong',
-          'Drums, scale and the Garo Hills: Wangala at Asanang, a long drive west of Shillong',
-          'Monsoon ritual and village life: Behdienkhlam in Jowai',
-        ],
-      },
-      {
-        heading: 'Attending respectfully',
-        content:
-          'Traditional festivals are religious and community events, not performances put on for visitors. A few things make a real difference.',
-        listItems: [
-          'Ask before photographing people, especially dancers and elders',
-          'Dress modestly and follow instructions from organisers and village hosts',
-          'Do not step into the dance ground or ceremonial areas',
-          'Carry cash in small notes; networks are weak away from Shillong',
-          'Hire a local guide where the village offers one',
-        ],
-      },
-      {
-        heading: 'Where to base yourself',
-        content:
-          'Shillong works as a base for the Cherry Blossom Festival, Nongkrem at Smit and Shad Suk Mynsiem. Jowai is a long day trip for Behdienkhlam, and Wangala in the Garo Hills needs its own trip, with an overnight in Tura. XTSY Travellers Hostel is in New Shillong Township, near the Cherry Blossom Festival’s Highland Grounds venue, with dorm beds from ₹399 a night and the XTSY desk arranging transport through trusted local partners.',
-      },
-    ],
-    faqs: [
-      {
-        question: 'What is the biggest festival in Meghalaya?',
-        answer:
-          'By attendance, the Shillong Cherry Blossom Festival in November. Among traditional festivals, Wangala, the Garo 100 Drums festival, and Nongkrem Dance near Shillong are the largest.',
-      },
-      {
-        question: 'When is Wangala festival 2026?',
-        answer:
-          'Wangala is held in mid-November at Asanang in West Garo Hills. The 2026 golden-jubilee edition has been reported for 12-14 November, with 13 November observed as a state holiday. Confirm with Meghalaya Tourism before booking, as the state announces the dates each year.',
-      },
-      {
-        question: 'When is the Nongkrem dance festival?',
-        answer:
-          'Nongkrem is held at Smit, near Shillong, usually over five days in mid-November. The exact dates are set by the Syiem of Khyrim each year, so confirm closer to the month.',
-      },
-      {
-        question: 'Which month is best for festivals in Meghalaya?',
-        answer:
-          'November. The Cherry Blossom Festival, Wangala and Nongkrem all fall in that month, and the weather is at its best, with clear skies and waterfalls still running after the monsoon.',
-      },
-      {
-        question: 'Can tourists attend traditional Meghalaya festivals?',
-        answer:
-          'Yes, visitors are welcome at Nongkrem, Wangala, Shad Suk Mynsiem and Behdienkhlam. They are community and religious occasions rather than shows, so ask before photographing people, dress modestly and follow the organisers’ instructions.',
-      },
-      {
-        question: 'Do I need to book accommodation early for festival season?',
-        answer:
-          'Yes. Shillong fills up for Cherry Blossom weekend and beds, rooms and cabs sell out weeks ahead. Booking direct avoids booking-site mark-ups.',
-      },
-    ],
-    relatedSlugs: ['shillong-cherry-blossom-festival', 'best-time-to-visit-meghalaya', 'things-to-do-in-meghalaya'],
-    ctaText: 'Plan a festival trip',
-    ctaLink: '/book',
-    keywords: [
-      'meghalaya festivals',
-      'festivals of meghalaya',
-      'wangala festival',
-      'nongkrem dance festival',
-      'shad suk mynsiem',
-      'behdienkhlam',
-    ],
-  },
-];
+  ];

@@ -13,6 +13,7 @@
  */
 import { chromium, webkit, devices, type Browser, type BrowserContextOptions, type Page } from '@playwright/test';
 import fs from 'fs';
+import { blockAnalytics } from './no-analytics';
 
 const BASE = (process.env.SITE_URL || 'https://xtsy.one').replace(/\/$/, '');
 const OUT = process.env.OUT_DIR || 'device-audit';
@@ -107,6 +108,7 @@ async function measure(page: Page) {
 async function runDevice(browser: Browser, d: Device) {
   const rows: Record<string, unknown>[] = [];
   const ctx = await browser.newContext({ ...d.opts, locale: 'en-IN', timezoneId: 'Asia/Kolkata' });
+  await blockAnalytics(ctx);
   // tsx/esbuild wraps functions in a __name() helper that does not exist inside the page.
   await ctx.addInitScript('globalThis.__name = (f) => f;');
   for (const route of ROUTES) {

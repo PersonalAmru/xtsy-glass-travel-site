@@ -5,15 +5,27 @@ import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import DestinationGallery from '@/components/destinations/DestinationGallery';
 import { getFeaturedDestinations, getDestinationImages } from '@/data/meghalayaDestinations';
+import PageFaq from '@/components/seo/PageFaq';
 
 const MeghalayaPhotoGallery = () => {
   const featured = getFeaturedDestinations();
-  const allImages = featured.flatMap(d =>
-    getDestinationImages(d.slug, 3).map(img => ({
-      ...img,
-      alt: `${d.name} Meghalaya — ${img.alt}`,
-    }))
-  );
+  // Destinations without photos all resolve to the same placeholder, and
+  // getDestinationImages repeats a URL when a place has fewer than `count`
+  // photos. Both produce the same src twice, which renders the same picture
+  // twice and collides the gallery's React keys. Keep the first of each src.
+  const seenSrc = new Set<string>();
+  const allImages = featured
+    .flatMap(d =>
+      getDestinationImages(d.slug, 3).map(img => ({
+        ...img,
+        alt: `${d.name} Meghalaya — ${img.alt}`,
+      }))
+    )
+    .filter(img => {
+      if (!img.src || img.src === '/placeholder.svg' || seenSrc.has(img.src)) return false;
+      seenSrc.add(img.src);
+      return true;
+    });
 
   return (
     <div className="min-h-screen bg-background">
@@ -77,6 +89,7 @@ const MeghalayaPhotoGallery = () => {
           </nav>
         </div>
       </main>
+      <PageFaq path="/meghalaya-photo-gallery" />
       <Footer />
     </div>
   );

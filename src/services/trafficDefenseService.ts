@@ -6,7 +6,7 @@
  * Layer 3: Server-Side Safeguards (Behavioral validation)
  */
 
-import { supabase } from '@/integrations/supabase/client';
+import { getSupabase } from '@/integrations/supabase/lazy';
 
 // =============================================
 // TYPE DEFINITIONS
@@ -629,7 +629,7 @@ export class TrafficDefenseEngine {
         check_details: check.details || {},
       }));
       
-      await supabase
+      await (await getSupabase())
         .from('traffic_defense_logs')
         .insert(logs as any);
     } catch (err) {

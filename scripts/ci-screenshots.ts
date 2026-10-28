@@ -6,6 +6,7 @@
 import { chromium } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
+import { blockAnalytics } from './audit/no-analytics';
 
 const BASE = process.env.BASE_URL || 'http://localhost:8080';
 const OUT = process.env.OUT_DIR || 'shots';
@@ -24,6 +25,7 @@ async function main() {
   const report: Record<string, unknown>[] = [];
   for (const vp of VIEWPORTS) {
     const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height }, reducedMotion: 'reduce' });
+    await blockAnalytics(ctx);
     // Lovable CDN images (/__l5e/...) only exist on the hosted site: proxy them from xtsy.one.
     await ctx.route('**/__l5e/**', async (route) => {
       try {

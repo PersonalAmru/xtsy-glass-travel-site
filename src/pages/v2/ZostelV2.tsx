@@ -5,6 +5,7 @@
 import SEOHead from '@/components/SEOHead';
 import { PageShell, PAD } from '@/components/v2/blocks';
 import { SpinningMark } from '@/components/v2/primitives';
+import PageFaq from '@/components/seo/PageFaq';
 
 const ROWS = [
   { f: 'Luxury stay on site', x: 'Experience by XTSY, India’s First Stargaze Glamp', z: 'Varies by property' },
@@ -69,6 +70,7 @@ export default function ZostelV2() {
             </div>
           ))}
         </section>
+      <PageFaq path="/xtsy-vs-zostel" />
       </PageShell>
     </>
   );

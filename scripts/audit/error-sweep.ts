@@ -22,6 +22,7 @@
 import { chromium, devices, type Browser, type Page } from '@playwright/test';
 import fs from 'fs';
 import { sitemapUrls } from './perf-sitemap';
+import { blockAnalytics } from './no-analytics';
 
 const BASE = (process.env.BASE_URL || 'https://xtsy.one').replace(/\/$/, '');
 const OUT = process.env.OUT_DIR || 'errors';
@@ -47,6 +48,7 @@ type Row = Record<string, unknown>;
 
 async function checkPage(browser: Browser, path: string, source: string): Promise<Row> {
   const ctx = await browser.newContext({ ...devices['Pixel 7'], locale: 'en-IN', timezoneId: 'Asia/Kolkata' });
+  await blockAnalytics(ctx);
   // Treat the visitor as having chosen cookies already, so the consent bar does not hide content.
   await ctx.addInitScript(`try{localStorage.setItem('xtsy_consent_v2',JSON.stringify({necessary:true,analytics:true,marketing:false,personalization:false,timestamp:new Date().toISOString(),version:'2.0'}))}catch(e){}`);
   await ctx.addInitScript('globalThis.__name = (f) => f;');

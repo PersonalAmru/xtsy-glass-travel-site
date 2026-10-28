@@ -1,12 +1,12 @@
 import { Link } from '@/lib/router-compat';
 import { Helmet } from '@/lib/seo/helmet';
-import PageFaqs from '@/components/seo/PageFaqs';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import DestinationCard from '@/components/destinations/DestinationCard';
 import { getDestinationsByRegion } from '@/data/meghalayaDestinations';
 import { Check, Calendar } from 'lucide-react';
+import PageFaq from '@/components/seo/PageFaq';
 
 const ShillongTourPackage = () => {
   const nearShillong = getDestinationsByRegion('Near Shillong').slice(0, 6);
@@ -79,19 +79,8 @@ const ShillongTourPackage = () => {
             </div>
           </nav>
         </div>
-        <div className="container mx-auto px-4 max-w-5xl pb-12">
-        <PageFaqs
-          faqs={[
-          { q: "What does the Shillong tour package include?", a: "The 3-day Shillong package covers your stay at XTSY Travellers Hostel, transport for sightseeing, and the main Shillong circuit: Umiam Lake, Shillong Peak, Elephant Falls and Laitlum Canyons, with dinner at TAB Bistro. Flights and trains to Guwahati are not included." },
-          { q: "How much is a Shillong tour package per person?", a: "The 3-day Shillong tour starts at \u20b97,999 per person. Longer Meghalaya packages that add Sohra, Dawki and Mawlynnong start at \u20b915,500 per person for four or more travellers." },
-          { q: "How do I reach Shillong for the tour?", a: "Fly or take a train to Guwahati, then drive about 3 to 3.5 hours to Shillong. Shared taxis run all day from Guwahati's Paltan Bazar, and XTSY can arrange a private cab. Shillong also has a small airport at Umroi with limited flights." },
-          { q: "Can the Shillong package be customised?", a: "Yes. Dates, stays and the pace can be changed, and the package can be extended into Sohra, Dawki or the Jaintia Hills. Message the XTSY desk with your dates and group size." },
-          { q: "Is this package suitable for solo travellers?", a: "It can be run for one person as a private trip, which costs more per head. Solo travellers who want to share costs can join XTSY's fixed Saturday Meghalaya group departure instead, at \u20b918,500 per person for 6 nights and 7 days." },
-          ]}
-        />
-        </div>
-
       </main>
+      <PageFaq path="/shillong-tour-package" />
       <Footer />
     </div>
   );
