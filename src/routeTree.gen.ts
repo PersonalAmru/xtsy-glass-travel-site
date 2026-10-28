@@ -43,6 +43,7 @@ import { Route as LuxuryGlampingShillongRouteImport } from './routes/luxury-glam
 import { Route as MeghalayaAdventureTourRouteImport } from './routes/meghalaya-adventure-tour'
 import { Route as MeghalayaCavesRouteImport } from './routes/meghalaya-caves'
 import { Route as MeghalayaCoupleTourPackageRouteImport } from './routes/meghalaya-couple-tour-package'
+import { Route as MeghalayaFestivalsRouteImport } from './routes/meghalaya-festivals'
 import { Route as MeghalayaPhotoGalleryRouteImport } from './routes/meghalaya-photo-gallery'
 import { Route as MeghalayaTourPackagesRouteImport } from './routes/meghalaya-tour-packages'
 import { Route as MeghalayaViewpointsRouteImport } from './routes/meghalaya-viewpoints'
@@ -50,6 +51,7 @@ import { Route as MeghalayaVillagesRouteImport } from './routes/meghalaya-villag
 import { Route as MeghalayaWaterfallsRouteImport } from './routes/meghalaya-waterfalls'
 import { Route as MerchRouteImport } from './routes/merch'
 import { Route as MotorbikeExpeditionNortheastIndiaRouteImport } from './routes/motorbike-expedition-northeast-india'
+import { Route as PartnerStaysRouteImport } from './routes/partner-stays'
 import { Route as PetFriendlyRouteImport } from './routes/pet-friendly'
 import { Route as PlacesToVisitInMeghalayaRouteImport } from './routes/places-to-visit-in-meghalaya'
 import { Route as PlanTripWithAiRouteImport } from './routes/plan-trip-with-ai'
@@ -68,8 +70,6 @@ import { Route as Xtsy270RouteImport } from './routes/xtsy-270'
 import { Route as XtsyAdventureCampsiteDawkiRouteImport } from './routes/xtsy-adventure-campsite-dawki'
 import { Route as XtsyRentalsRouteImport } from './routes/xtsy-rentals'
 import { Route as XtsyVsZostelRouteImport } from './routes/xtsy-vs-zostel'
-import { Route as MeghalayaFestivalsRouteImport } from './routes/meghalaya-festivals'
-import { Route as PartnerStaysRouteImport } from './routes/partner-stays'
 import { Route as BookIndexRouteImport } from './routes/book/index'
 import { Route as BookCampsiteRouteImport } from './routes/book/campsite'
 import { Route as BookSelectRouteImport } from './routes/book/select'
@@ -267,6 +267,11 @@ const MeghalayaCoupleTourPackageRoute =
     path: '/meghalaya-couple-tour-package',
     getParentRoute: () => rootRouteImport,
   } as any)
+const MeghalayaFestivalsRoute = MeghalayaFestivalsRouteImport.update({
+  id: '/meghalaya-festivals',
+  path: '/meghalaya-festivals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MeghalayaPhotoGalleryRoute = MeghalayaPhotoGalleryRouteImport.update({
   id: '/meghalaya-photo-gallery',
   path: '/meghalaya-photo-gallery',
@@ -303,6 +308,11 @@ const MotorbikeExpeditionNortheastIndiaRoute =
     path: '/motorbike-expedition-northeast-india',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PartnerStaysRoute = PartnerStaysRouteImport.update({
+  id: '/partner-stays',
+  path: '/partner-stays',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PetFriendlyRoute = PetFriendlyRouteImport.update({
   id: '/pet-friendly',
   path: '/pet-friendly',
@@ -394,16 +404,6 @@ const XtsyRentalsRoute = XtsyRentalsRouteImport.update({
 const XtsyVsZostelRoute = XtsyVsZostelRouteImport.update({
   id: '/xtsy-vs-zostel',
   path: '/xtsy-vs-zostel',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MeghalayaFestivalsRoute = MeghalayaFestivalsRouteImport.update({
-  id: '/meghalaya-festivals',
-  path: '/meghalaya-festivals',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PartnerStaysRoute = PartnerStaysRouteImport.update({
-  id: '/partner-stays',
-  path: '/partner-stays',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookIndexRoute = BookIndexRouteImport.update({
@@ -558,6 +558,7 @@ export interface FileRoutesByFullPath {
   '/meghalaya-adventure-tour': typeof MeghalayaAdventureTourRoute
   '/meghalaya-caves': typeof MeghalayaCavesRoute
   '/meghalaya-couple-tour-package': typeof MeghalayaCoupleTourPackageRoute
+  '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
   '/meghalaya-photo-gallery': typeof MeghalayaPhotoGalleryRoute
   '/meghalaya-tour-packages': typeof MeghalayaTourPackagesRoute
   '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
@@ -565,6 +566,7 @@ export interface FileRoutesByFullPath {
   '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
   '/merch': typeof MerchRoute
   '/motorbike-expedition-northeast-india': typeof MotorbikeExpeditionNortheastIndiaRoute
+  '/partner-stays': typeof PartnerStaysRoute
   '/pet-friendly': typeof PetFriendlyRoute
   '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
   '/plan-trip-with-ai': typeof PlanTripWithAiRoute
@@ -583,8 +585,6 @@ export interface FileRoutesByFullPath {
   '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
-  '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
-  '/partner-stays': typeof PartnerStaysRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -643,6 +643,7 @@ export interface FileRoutesByTo {
   '/meghalaya-adventure-tour': typeof MeghalayaAdventureTourRoute
   '/meghalaya-caves': typeof MeghalayaCavesRoute
   '/meghalaya-couple-tour-package': typeof MeghalayaCoupleTourPackageRoute
+  '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
   '/meghalaya-photo-gallery': typeof MeghalayaPhotoGalleryRoute
   '/meghalaya-tour-packages': typeof MeghalayaTourPackagesRoute
   '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
@@ -650,6 +651,7 @@ export interface FileRoutesByTo {
   '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
   '/merch': typeof MerchRoute
   '/motorbike-expedition-northeast-india': typeof MotorbikeExpeditionNortheastIndiaRoute
+  '/partner-stays': typeof PartnerStaysRoute
   '/pet-friendly': typeof PetFriendlyRoute
   '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
   '/plan-trip-with-ai': typeof PlanTripWithAiRoute
@@ -668,8 +670,6 @@ export interface FileRoutesByTo {
   '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
-  '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
-  '/partner-stays': typeof PartnerStaysRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -729,6 +729,7 @@ export interface FileRoutesById {
   '/meghalaya-adventure-tour': typeof MeghalayaAdventureTourRoute
   '/meghalaya-caves': typeof MeghalayaCavesRoute
   '/meghalaya-couple-tour-package': typeof MeghalayaCoupleTourPackageRoute
+  '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
   '/meghalaya-photo-gallery': typeof MeghalayaPhotoGalleryRoute
   '/meghalaya-tour-packages': typeof MeghalayaTourPackagesRoute
   '/meghalaya-viewpoints': typeof MeghalayaViewpointsRoute
@@ -736,6 +737,7 @@ export interface FileRoutesById {
   '/meghalaya-waterfalls': typeof MeghalayaWaterfallsRoute
   '/merch': typeof MerchRoute
   '/motorbike-expedition-northeast-india': typeof MotorbikeExpeditionNortheastIndiaRoute
+  '/partner-stays': typeof PartnerStaysRoute
   '/pet-friendly': typeof PetFriendlyRoute
   '/places-to-visit-in-meghalaya': typeof PlacesToVisitInMeghalayaRoute
   '/plan-trip-with-ai': typeof PlanTripWithAiRoute
@@ -754,8 +756,6 @@ export interface FileRoutesById {
   '/xtsy-adventure-campsite-dawki': typeof XtsyAdventureCampsiteDawkiRoute
   '/xtsy-rentals': typeof XtsyRentalsRoute
   '/xtsy-vs-zostel': typeof XtsyVsZostelRoute
-  '/meghalaya-festivals': typeof MeghalayaFestivalsRoute
-  '/partner-stays': typeof PartnerStaysRoute
   '/book/campsite': typeof BookCampsiteRoute
   '/book/select': typeof BookSelectRoute
   '/franchise/install': typeof FranchiseInstallRoute
@@ -816,6 +816,7 @@ export interface FileRouteTypes {
     | '/meghalaya-adventure-tour'
     | '/meghalaya-caves'
     | '/meghalaya-couple-tour-package'
+    | '/meghalaya-festivals'
     | '/meghalaya-photo-gallery'
     | '/meghalaya-tour-packages'
     | '/meghalaya-viewpoints'
@@ -823,6 +824,7 @@ export interface FileRouteTypes {
     | '/meghalaya-waterfalls'
     | '/merch'
     | '/motorbike-expedition-northeast-india'
+    | '/partner-stays'
     | '/pet-friendly'
     | '/places-to-visit-in-meghalaya'
     | '/plan-trip-with-ai'
@@ -841,8 +843,6 @@ export interface FileRouteTypes {
     | '/xtsy-adventure-campsite-dawki'
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
-    | '/meghalaya-festivals'
-    | '/partner-stays'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -901,6 +901,7 @@ export interface FileRouteTypes {
     | '/meghalaya-adventure-tour'
     | '/meghalaya-caves'
     | '/meghalaya-couple-tour-package'
+    | '/meghalaya-festivals'
     | '/meghalaya-photo-gallery'
     | '/meghalaya-tour-packages'
     | '/meghalaya-viewpoints'
@@ -908,6 +909,7 @@ export interface FileRouteTypes {
     | '/meghalaya-waterfalls'
     | '/merch'
     | '/motorbike-expedition-northeast-india'
+    | '/partner-stays'
     | '/pet-friendly'
     | '/places-to-visit-in-meghalaya'
     | '/plan-trip-with-ai'
@@ -926,8 +928,6 @@ export interface FileRouteTypes {
     | '/xtsy-adventure-campsite-dawki'
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
-    | '/meghalaya-festivals'
-    | '/partner-stays'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -986,6 +986,7 @@ export interface FileRouteTypes {
     | '/meghalaya-adventure-tour'
     | '/meghalaya-caves'
     | '/meghalaya-couple-tour-package'
+    | '/meghalaya-festivals'
     | '/meghalaya-photo-gallery'
     | '/meghalaya-tour-packages'
     | '/meghalaya-viewpoints'
@@ -993,6 +994,7 @@ export interface FileRouteTypes {
     | '/meghalaya-waterfalls'
     | '/merch'
     | '/motorbike-expedition-northeast-india'
+    | '/partner-stays'
     | '/pet-friendly'
     | '/places-to-visit-in-meghalaya'
     | '/plan-trip-with-ai'
@@ -1011,8 +1013,6 @@ export interface FileRouteTypes {
     | '/xtsy-adventure-campsite-dawki'
     | '/xtsy-rentals'
     | '/xtsy-vs-zostel'
-    | '/meghalaya-festivals'
-    | '/partner-stays'
     | '/book/campsite'
     | '/book/select'
     | '/franchise/install'
@@ -1072,6 +1072,7 @@ export interface RootRouteChildren {
   MeghalayaAdventureTourRoute: typeof MeghalayaAdventureTourRoute
   MeghalayaCavesRoute: typeof MeghalayaCavesRoute
   MeghalayaCoupleTourPackageRoute: typeof MeghalayaCoupleTourPackageRoute
+  MeghalayaFestivalsRoute: typeof MeghalayaFestivalsRoute
   MeghalayaPhotoGalleryRoute: typeof MeghalayaPhotoGalleryRoute
   MeghalayaTourPackagesRoute: typeof MeghalayaTourPackagesRoute
   MeghalayaViewpointsRoute: typeof MeghalayaViewpointsRoute
@@ -1079,6 +1080,7 @@ export interface RootRouteChildren {
   MeghalayaWaterfallsRoute: typeof MeghalayaWaterfallsRoute
   MerchRoute: typeof MerchRoute
   MotorbikeExpeditionNortheastIndiaRoute: typeof MotorbikeExpeditionNortheastIndiaRoute
+  PartnerStaysRoute: typeof PartnerStaysRoute
   PetFriendlyRoute: typeof PetFriendlyRoute
   PlacesToVisitInMeghalayaRoute: typeof PlacesToVisitInMeghalayaRoute
   PlanTripWithAiRoute: typeof PlanTripWithAiRoute
@@ -1097,8 +1099,6 @@ export interface RootRouteChildren {
   XtsyAdventureCampsiteDawkiRoute: typeof XtsyAdventureCampsiteDawkiRoute
   XtsyRentalsRoute: typeof XtsyRentalsRoute
   XtsyVsZostelRoute: typeof XtsyVsZostelRoute
-  MeghalayaFestivalsRoute: typeof MeghalayaFestivalsRoute
-  PartnerStaysRoute: typeof PartnerStaysRoute
   BookCampsiteRoute: typeof BookCampsiteRoute
   BookSelectRoute: typeof BookSelectRoute
   FranchiseInstallRoute: typeof FranchiseInstallRoute
@@ -1363,6 +1363,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MeghalayaCoupleTourPackageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/meghalaya-festivals': {
+      id: '/meghalaya-festivals'
+      path: '/meghalaya-festivals'
+      fullPath: '/meghalaya-festivals'
+      preLoaderRoute: typeof MeghalayaFestivalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/meghalaya-photo-gallery': {
       id: '/meghalaya-photo-gallery'
       path: '/meghalaya-photo-gallery'
@@ -1410,6 +1417,13 @@ declare module '@tanstack/react-router' {
       path: '/motorbike-expedition-northeast-india'
       fullPath: '/motorbike-expedition-northeast-india'
       preLoaderRoute: typeof MotorbikeExpeditionNortheastIndiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner-stays': {
+      id: '/partner-stays'
+      path: '/partner-stays'
+      fullPath: '/partner-stays'
+      preLoaderRoute: typeof PartnerStaysRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pet-friendly': {
@@ -1536,20 +1550,6 @@ declare module '@tanstack/react-router' {
       path: '/xtsy-vs-zostel'
       fullPath: '/xtsy-vs-zostel'
       preLoaderRoute: typeof XtsyVsZostelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/meghalaya-festivals': {
-      id: '/meghalaya-festivals'
-      path: '/meghalaya-festivals'
-      fullPath: '/meghalaya-festivals'
-      preLoaderRoute: typeof MeghalayaFestivalsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/partner-stays': {
-      id: '/partner-stays'
-      path: '/partner-stays'
-      fullPath: '/partner-stays'
-      preLoaderRoute: typeof PartnerStaysRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/book/': {
@@ -1744,6 +1744,7 @@ const rootRouteChildren: RootRouteChildren = {
   MeghalayaAdventureTourRoute: MeghalayaAdventureTourRoute,
   MeghalayaCavesRoute: MeghalayaCavesRoute,
   MeghalayaCoupleTourPackageRoute: MeghalayaCoupleTourPackageRoute,
+  MeghalayaFestivalsRoute: MeghalayaFestivalsRoute,
   MeghalayaPhotoGalleryRoute: MeghalayaPhotoGalleryRoute,
   MeghalayaTourPackagesRoute: MeghalayaTourPackagesRoute,
   MeghalayaViewpointsRoute: MeghalayaViewpointsRoute,
@@ -1752,6 +1753,7 @@ const rootRouteChildren: RootRouteChildren = {
   MerchRoute: MerchRoute,
   MotorbikeExpeditionNortheastIndiaRoute:
     MotorbikeExpeditionNortheastIndiaRoute,
+  PartnerStaysRoute: PartnerStaysRoute,
   PetFriendlyRoute: PetFriendlyRoute,
   PlacesToVisitInMeghalayaRoute: PlacesToVisitInMeghalayaRoute,
   PlanTripWithAiRoute: PlanTripWithAiRoute,
@@ -1770,8 +1772,6 @@ const rootRouteChildren: RootRouteChildren = {
   XtsyAdventureCampsiteDawkiRoute: XtsyAdventureCampsiteDawkiRoute,
   XtsyRentalsRoute: XtsyRentalsRoute,
   XtsyVsZostelRoute: XtsyVsZostelRoute,
-  MeghalayaFestivalsRoute: MeghalayaFestivalsRoute,
-  PartnerStaysRoute: PartnerStaysRoute,
   BookCampsiteRoute: BookCampsiteRoute,
   BookSelectRoute: BookSelectRoute,
   FranchiseInstallRoute: FranchiseInstallRoute,
