@@ -34,14 +34,14 @@ export default function BistroV2() {
       <SEOHead
         structuredDataOnly
         title="TAB Bistro Shillong — Restaurant, Café & Catering"
-        description="TAB Bistro by XTSY — multi-cuisine restaurant in New Shillong Township: North Indian, Chinese, Thai, Continental, Italian, breakfast and café, catering and bulk orders. Breakfast 8:45–11:45 AM, dinner 4:30–11 PM; lunch by preorder."
+        description="TAB Bistro by XTSY — multi-cuisine restaurant in New Shillong Township: North Indian, Chinese, Thai, Continental, Italian, breakfast and café, catering and bulk orders. Breakfast 8:45 AM–12 PM, dinner 5–11 PM; lunch by preorder."
         canonicalUrl="https://xtsy.one/tab-bistro"
       />
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(restaurantSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(buildMenuSchema())}</script>
       </Helmet>
-      <PageShell bar={{ label: 'Book a table', to: '#book-a-table', note: 'TAB Bistro · Breakfast 8:45–11:45 AM · Dinner 4:30–11 PM' }} cta={{ title: 'Hungry? Dinner runs till 11 PM.', sub: 'Book a table online or order on WhatsApp. Staying at XTSY? Breakfast is a short walk away.', bookTo: '/book', bookLabel: 'Stay at XTSY' }}>
+      <PageShell bar={{ label: 'Book a table', to: '#book-a-table', note: 'TAB Bistro · Breakfast 8:45 AM–12 PM · Dinner 5–11 PM' }} cta={{ title: 'Hungry? Dinner runs till 11 PM.', sub: 'Book a table online or order on WhatsApp. Staying at XTSY? Breakfast is a short walk away.', bookTo: '/book', bookLabel: 'Stay at XTSY' }}>
         <PageHero
           size="md"
           bg="#2F4A3F"

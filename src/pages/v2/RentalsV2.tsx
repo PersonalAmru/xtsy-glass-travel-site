@@ -9,7 +9,16 @@ import { inr } from '@/components/v2/pricing';
 import { PageShell, PageHero, Btn, Section, H2, FeatureCards, FaqList } from '@/components/v2/blocks';
 import { Photo, waLink } from '@/components/v2/primitives';
 
-type Vehicle = { name: string; price: number; tag: string; specs: string[]; badge?: string };
+type Vehicle = {
+  name: string;
+  /** Per-day rate in INR. Omit for vehicles quoted on enquiry. */
+  price?: number;
+  tag: string;
+  specs: string[];
+  badge?: string;
+  /** Shown in place of a rate when the vehicle is quoted per trip. */
+  note?: string;
+};
 
 const CARS: Vehicle[] = [
   { name: 'Hyundai i10 Nios', price: 1800, tag: 'City Hatchback', specs: ['Petrol', 'Manual', '5 seats'] },
@@ -39,48 +48,65 @@ const FAQS = [
   { q: 'Is there a minimum rental period?', a: 'Minimum rental is 1 day (24 hours). Weekly and monthly discounts available - contact us for special rates.' },
 ];
 
-const bookText = (v: Vehicle) => `Hi! I'd like to rent:\n\nVehicle: ${v.name}\nRate: ${inr(v.price)}/day\nDates: [Please specify]\nPickup: New Shillong Township\n\nPlease confirm availability.`;
+// Caravans and the Urbania are quoted per trip: the rate depends on route,
+// nights and whether a driver is included, so there is no honest per-day figure
+// to publish. They are listed here with an enquiry CTA rather than left off the
+// site, because people search for both by name.
+const CARAVANS: Vehicle[] = [
+  { name: 'Caravan Camper Van', tag: 'Overland Camper', specs: ['Sleeps 2–4', 'Kitchenette', 'Driver included'], note: 'Quoted per trip', badge: 'New' },
+];
+
+const URBANIA: Vehicle[] = [
+  { name: 'Force Urbania', tag: 'Luxury Van', specs: ['13–17 seats', 'Pushback seats', 'Driver included'], note: 'Quoted per trip', badge: 'Groups' },
+];
+
+const bookText = (v: Vehicle) =>
+  `Hi! I'd like to rent:\n\nVehicle: ${v.name}\n` +
+  (v.price ? `Rate: ${inr(v.price)}/day\n` : `Rate: on request\n`) +
+  `Dates: [Please specify]\nPickup: New Shillong Township\n\nPlease confirm availability.`;
 
 export default function RentalsV2() {
-  const [tab, setTab] = useState<'cars' | 'bikes'>('cars');
-  const list = tab === 'cars' ? CARS : BIKES;
+  const [tab, setTab] = useState<'cars' | 'bikes' | 'caravan' | 'urbania'>('cars');
+  const FLEETS = { cars: CARS, bikes: BIKES, caravan: CARAVANS, urbania: URBANIA } as const;
+  const TAB_LABELS = { cars: 'Cars', bikes: 'Bikes', caravan: 'Caravan', urbania: 'Urbania' } as const;
+  const list = FLEETS[tab];
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'AutoRental',
     name: 'XTSY Rentals',
     url: 'https://xtsy.one/xtsy-rentals',
     telephone: '+918837317070',
-    priceRange: '₹1,300 - ₹4,500 per day',
+    priceRange: '₹1,300 - ₹4,500 per day; caravan and Urbania quoted per trip',
     address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road, New Shillong Township', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' },
   };
   return (
     <>
       <SEOHead
-        title="XTSY Rentals - Car & Bike Rentals in Shillong | Explore Northeast India"
-        description="Explore Northeast India at your own pace. 9 cars and 4 Royal Enfield bikes from Shillong. Fully insured, 24/7 support. Starting ₹1,300/day."
-        keywords="bike rental shillong, car rental shillong, royal enfield rental meghalaya, self drive car shillong"
+        title="Self-Drive Car, Bike, Caravan & Urbania Rentals in Shillong | XTSY Rentals"
+        description="Self-drive cars, Royal Enfield bikes, a caravan camper and a 17-seat Force Urbania from New Shillong Township. Fully insured, 24/7 roadside support, driver on request. Book on WhatsApp."
+        keywords="self drive car shillong, bike rental shillong, caravan rental shillong, urbania rental shillong, tempo traveller shillong, royal enfield rental meghalaya, car rental shillong"
         canonicalUrl="https://xtsy.one/xtsy-rentals"
       />
       <Helmet><script type="application/ld+json">{JSON.stringify(ld)}</script></Helmet>
-      <PageShell bar={{ label: 'Get a quote', to: waLink('Hi XTSY! I want to rent a vehicle. Dates: …'), note: 'Cars & Royal Enfields' }} cta={{ title: 'Keys, route, go.', sub: 'Tell us the vehicle and your dates on WhatsApp. We’ll confirm availability.', bookTo: '/expeditions', bookLabel: 'See expedition routes' }}>
+      <PageShell bar={{ label: 'Get a quote', to: waLink('Hi XTSY! I want to rent a vehicle. Dates: …'), note: 'Cars · Bikes · Caravan · Urbania' }} cta={{ title: 'Keys, route, go.', sub: 'Tell us the vehicle and your dates on WhatsApp. We’ll confirm availability.', bookTo: '/expeditions', bookLabel: 'See expedition routes' }}>
         <PageHero
           bg="#1F2230"
           fg="#F5EFE6"
           muted="#C9CDD8"
           eyebrowColor="#E07A8B"
-          eyebrow="XTSY Rentals · Cars & Royal Enfields from Shillong"
+          eyebrow="XTSY Rentals · Self-drive cars, bikes, caravan & Urbania"
           title="Your wheels for the Northeast."
-          text={`9 cars and 4 Royal Enfield bikes, from ${inr(1300)} a day. Fully insured, 24/7 roadside support and local drivers on request. Pick up at XTSY in New Shillong Township.`}
+          text={`Self-drive cars from ${inr(1800)} a day, Royal Enfields from ${inr(1300)}, plus a caravan camper and a 17-seat Force Urbania quoted per trip. Fully insured, 24/7 roadside support, driver on request. Pick up at XTSY in New Shillong Township.`}
           actions={<><Btn to="#fleet">See the fleet</Btn><Btn to={waLink('Hi XTSY! I want to rent a vehicle. Dates: …')} kind="outline-light">Ask on WhatsApp</Btn></>}
           media={<Photo src={IMG.bumla} alt="Royal Enfield on a Northeast expedition" eager tone="night" className="aspect-[628/520] rounded-[32px]" />}
         />
 
         <Section id="fleet">
-          <H2 eyebrow="Per day · fuel extra">The fleet</H2>
+          <H2 eyebrow="Per day · fuel extra · caravan and Urbania per trip">The fleet</H2>
           <div role="tablist" aria-label="Vehicle type" className="flex gap-2">
-            {(['cars', 'bikes'] as const).map((t) => (
+            {(['cars', 'bikes', 'caravan', 'urbania'] as const).map((t) => (
               <button key={t} type="button" role="tab" aria-selected={tab === t} onClick={() => setTab(t)} className={`xt-chip h-12 rounded-full border-[1.5px] px-6 text-[15px] font-extrabold ${tab === t ? 'border-xt-slate bg-xt-slate text-xt-paper' : 'border-xt-stone text-xt-ink'}`}>
-                {t === 'cars' ? `Cars · ${CARS.length}` : `Bikes · ${BIKES.length}`}
+                {`${TAB_LABELS[t]} · ${FLEETS[t].length}`}
               </button>
             ))}
           </div>
@@ -92,8 +118,12 @@ export default function RentalsV2() {
                 <h3 className="m-0 text-[24px] font-extrabold leading-tight">{v.name}</h3>
                 <div className="flex flex-wrap gap-1.5">{v.specs.map((s) => <span key={s} className="rounded-full bg-xt-sand px-3 py-1 text-[13px] font-bold">{s}</span>)}</div>
                 <div className="mt-auto flex items-center justify-between gap-3 pt-3">
-                  <span className="text-[22px] font-extrabold">{inr(v.price)}<span className="text-[13px] font-semibold text-xt-mute">/day</span></span>
-                  <Btn to={waLink(bookText(v))} className="h-11 px-5 text-[14px]">Book on WhatsApp</Btn>
+                  {v.price ? (
+                    <span className="text-[22px] font-extrabold">{inr(v.price)}<span className="text-[13px] font-semibold text-xt-mute">/day</span></span>
+                  ) : (
+                    <span className="text-[17px] font-extrabold leading-tight">{v.note ?? 'On request'}</span>
+                  )}
+                  <Btn to={waLink(bookText(v))} className="h-11 px-5 text-[14px]">{v.price ? 'Book on WhatsApp' : 'Get a quote'}</Btn>
                 </div>
               </article>
             ))}

@@ -132,7 +132,7 @@ const CategoryV2 = () => {
         <section className={`${PAD} py-10`}>
           <p className="m-0 max-w-[860px] text-[17px] leading-relaxed text-xt-mute">
             Meghalaya — the wettest place on Earth — is home to some of India's most spectacular {lcName}. Below are {destinations.length} of the best {lcName} to add to your itinerary, each with a complete travel guide covering how to reach, the best time to visit, entry details and insider tips. Most are an easy day trip from Shillong, where{' '}
-            <Link to="/best-hostel-in-shillong" className="font-bold text-xt-crimson">XTSY Travellers Hostel</Link> in New Shillong Township makes a comfortable, affordable base.
+            <Link to="/best-hostel-in-shillong" className="font-bold text-xt-crimson">XTSY Travellers Hostel</Link> in New Shillong Township makes a comfortable, well-connected base.
           </p>
         </section>
 

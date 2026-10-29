@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { menuSections } from "@/data/tabBistroMenu";
+import { menuSections, MENU_GST_NOTE } from "@/data/tabBistroMenu";
 
 const TabBistroMenu = memo(() => {
   const [activeTab, setActiveTab] = useState(menuSections[0].id);
@@ -46,15 +46,22 @@ const TabBistroMenu = memo(() => {
               key={cat.title}
               className="flex items-center justify-between gap-3 p-4 rounded-xl bg-card border border-border hover:border-amber-500/40 transition-colors"
             >
-              <h3 className="text-sm sm:text-base font-semibold text-foreground flex items-center gap-2">
-                <span className="w-1 h-5 bg-amber-500 rounded-full" />
-                {cat.title}
+              <h3 className="text-sm sm:text-base font-semibold text-foreground flex items-start gap-2">
+                <span className="mt-0.5 w-1 h-5 bg-amber-500 rounded-full shrink-0" />
+                <span>
+                  {cat.title}
+                  {cat.note && (
+                    <span className="mt-1 block text-xs font-normal text-muted-foreground">{cat.note}</span>
+                  )}
+                </span>
               </h3>
               <span className="text-sm font-medium text-amber-400 whitespace-nowrap">{range}</span>
             </div>
           );
         })}
       </div>
+
+      <p className="mt-4 text-xs text-muted-foreground">{MENU_GST_NOTE}</p>
     </section>
   );
 });

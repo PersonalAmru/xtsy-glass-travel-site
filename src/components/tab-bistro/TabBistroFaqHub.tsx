@@ -36,8 +36,8 @@ const groups: FaqGroup[] = [
       },
       {
         q: "What are TAB Bistro's opening hours?",
-        a: <>TAB Bistro is open every day for breakfast 8:45 AM – 11:45 AM and evening & dinner 4:30 PM – 11 PM. Closed for lunch — lunch preorders accepted.</>,
-        text: "TAB Bistro is open every day for breakfast 8:45 AM – 11:45 AM and evening & dinner 4:30 PM – 11 PM. Closed for lunch — lunch preorders accepted.",
+        a: <>TAB Bistro is open every day for breakfast 8:45 AM – 12 PM and evening & dinner 5 PM – 11 PM. Closed for lunch — lunch preorders accepted.</>,
+        text: "TAB Bistro is open every day for breakfast 8:45 AM – 12 PM and evening & dinner 5 PM – 11 PM. Closed for lunch — lunch preorders accepted.",
       },
       {
         q: "Does TAB Bistro have vegetarian options?",

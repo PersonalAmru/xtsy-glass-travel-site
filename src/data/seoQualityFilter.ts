@@ -64,6 +64,13 @@ export const PER_CATEGORY_CAP: Record<string, number> = {
 // Slugs we ALWAYS keep regardless of category caps (pillar + brand pages
 // + GSC-flagged "Discovered – currently not indexed" recovery list).
 export const ALWAYS_KEEP_SLUGS: ReadonlySet<string> = new Set([
+  // Institution cluster — the only coverage of the campuses and hospital that
+  // drive weekday footfall in New Shillong Township.
+  'restaurant-near-neigrims-shillong',
+  'restaurant-near-nift-shillong',
+  'restaurant-near-iim-shillong',
+  'restaurant-near-neiah-shillong',
+  'restaurant-near-mlcu-shillong',
   'best-hostel-in-shillong',
   'xtsy-travellers-hostel',
   'experience-by-xtsy',

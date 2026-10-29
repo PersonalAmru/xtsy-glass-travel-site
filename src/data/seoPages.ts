@@ -13,6 +13,7 @@ import { NE_EXPANSION_SEO_PAGES } from './seoPagesNortheastExpansion';
 import { DINING_SEO_PAGES } from './seoPagesDining';
 import { DINING_EXPANSION_SEO_PAGES } from './seoPagesDiningExpansion';
 import { DINING_SPOKE_PAGES } from './seoPagesDiningSpokes';
+import { diningInstitutionPages } from './seoPagesDiningInstitutions';
 
 export type SEOPageCategory = 
   | 'hostels' | 'hotels' | 'homestays' | 'glamping' | 'accommodation'
@@ -1104,6 +1105,7 @@ const RAW_SEO_PAGES_WITH_DUPES: SEOPageData[] = [
   ...BASE_SEO_PAGES,
   ...EXPANSION_SEO_PAGES,
   ...DINING_SPOKE_PAGES,
+  ...diningInstitutionPages,
   ...DINING_SEO_PAGES,
   ...DINING_EXPANSION_SEO_PAGES,
   ...LAST_MINUTE_SEO_PAGES,

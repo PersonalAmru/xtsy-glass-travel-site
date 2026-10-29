@@ -46,7 +46,7 @@ export function buildTopics(): Topic[] {
       ['Do groups get discounts?', 'Groups of 6+ get special rates on stays and tours. Colleges, corporates and clubs: message us for a quote.'],
     ] },
     { id: 'food', n: 'TAB Bistro', q: [
-      ['When is TAB Bistro open?', 'Every day: breakfast 8:45–11:45 AM, evening & dinner 4:30–11 PM. Lunch by preorder.'],
+      ['When is TAB Bistro open?', 'Every day: breakfast 8:45 AM–12 PM, evening & dinner 5–11 PM. Lunch by preorder.'],
       ['Do you cater events?', 'Yes. Weddings, corporate events and bulk orders, with veg, non-veg and Jain options.'],
     ] },
     { id: 'pets', n: 'Pets', q: [
