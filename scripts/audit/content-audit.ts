@@ -251,5 +251,22 @@ async function main() {
   fs.writeFileSync(`${OUT}/content.json`, JSON.stringify(pages.sort((a, b) => a.url.localeCompare(b.url)), null, 1));
   fs.writeFileSync(`${OUT}/content-summary.json`, JSON.stringify(summary, null, 1));
   console.log(`::notice::Content audit: ${pages.length} pages, ${summary.pagesWithFindings} with findings, ${Object.keys(byRule).length} rule types`);
+
+  // Findings used to exist only inside content-summary.json on the
+  // ci-screenshots branch. The audit's step is continue-on-error and the raw
+  // job log is not reachable through the API, so in practice nobody saw them:
+  // a run reporting "512 of 671 pages with findings" looked identical to a
+  // clean one. Raise the categories that carry real risk — a wrong price, a
+  // misstated policy, a wrong location — as warnings, so they appear on the
+  // check itself. The softer SEO and AEO rules stay as notices; they are
+  // advisory and too numerous to act on one by one.
+  const SERIOUS = /^(price|policy|location|rating):/;
+  const serious = Object.entries(byRule).filter(([rule]) => SERIOUS.test(rule));
+  for (const [rule, r] of serious) {
+    console.log(`::warning::${rule} — ${r.pages} page(s). e.g. ${r.examples[0] ?? ''}`.slice(0, 600));
+  }
+  if (serious.length === 0) {
+    console.log('::notice::No price, policy, location or rating discrepancies found.');
+  }
 }
 main();
