@@ -8,6 +8,9 @@
  * Route: xtsy.one/* (after pointing DNS through Cloudflare)
  */
 
+// Set at deploy time so the probe identifies which build answered.
+const BUILD_STAMP = '2026-10-30T08:45Z';
+
 // Bot user-agent patterns
 const BOT_AGENTS = [
   'googlebot', 'bingbot', 'yandexbot', 'duckduckbot', 'slurp',
@@ -198,6 +201,22 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const userAgent = request.headers.get('user-agent') || '';
+
+    // --- Liveness probe -------------------------------------------------
+    // Returns before every other code path, so a response here proves the
+    // route dispatches to this Worker. While the routes are limited to this
+    // single path it is also the only thing the Worker serves. Keep it: it is
+    // how a future deploy is verified, and it is cheap and unlinked.
+    if (url.pathname === '/__xtsy_worker_probe') {
+      return new Response(`worker-alive name=xtsy-edge-seo built=${BUILD_STAMP}`, {
+        status: 200,
+        headers: {
+          'content-type': 'text/plain;charset=utf-8',
+          'cache-control': 'no-store',
+          'x-rendered-by': 'cf-probe',
+        },
+      });
+    }
 
     // Skip for non-HTML requests (assets, API calls, etc.)
     const path = url.pathname;
