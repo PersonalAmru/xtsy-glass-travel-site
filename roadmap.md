@@ -60,4 +60,4 @@
 - [ ] Verify trip answers and a saved guest itinerary handoff end to end, preserving consent and no online payments.
 
 ## Current request 2026-10-30
-- [ ] Remove Saturday group departure from catalogue-driven SEO, FAQs, internal promotions and sitemap; permanently redirect its retired URL and verify.
+- [x] Remove Saturday group departure from catalogue-driven SEO, FAQs, internal promotions and sitemap; retired URL returns 301 to /tours. Four public pages and sitemap verified; 54 tests pass, preview clean. Publishing required.
