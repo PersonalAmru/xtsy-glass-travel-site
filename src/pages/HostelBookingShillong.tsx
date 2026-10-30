@@ -39,7 +39,7 @@ const HostelBookingShillong = memo(() => {
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.7',
-      reviewCount: '237',
+      reviewCount: '248',
       bestRating: '5',
     },
     makesOffer: [
@@ -144,11 +144,11 @@ const HostelBookingShillong = memo(() => {
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
               Enquire with XTSY Travellers Hostel direct. The desk confirms availability on WhatsApp;
-              one free date change, 4.7★ from 237 Google reviews.
+              one free date change, 4.7★ from 248 Google reviews.
             </p>
             <div className="flex items-center justify-center gap-1 mb-6">
               {[1,2,3,4,5].map(i => <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />)}
-              <span className="ml-2 text-sm text-muted-foreground">4.7 / 5 · 237 Google reviews</span>
+              <span className="ml-2 text-sm text-muted-foreground">4.7 / 5 · 248 Google reviews</span>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
