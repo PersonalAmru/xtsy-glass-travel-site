@@ -108,6 +108,23 @@ jobs:
           set -o pipefail
           ANALYZE_BUNDLE=1 bun run build 2>&1 | tee build.log || { echo "::error::$(sed 's/\x1b\[[0-9;]*m//g; s/\r/\n/g' build.log | grep -vE '^\s*at |\.output/|^\s*$|computing gzip|transforming|rendering chunks' | tail -45 | tr '\n' ' ' | cut -c1-3800)"; exit 1; }
 
+      - name: No server-only secrets in the client bundle
+        run: |
+          # Ground truth for the service-role rule in security-checks.yml: that
+          # check reads source and reasons about which code the client build
+          # drops. This reads the bundle that is actually served to browsers, so
+          # a leak fails here even if the source-level heuristic was satisfied.
+          hits=0
+          for name in SUPABASE_SERVICE_ROLE_KEY LOVABLE_API_KEY; do
+            if grep -rl "$name" .output/public 2>/dev/null | head -5 | grep -q .; then
+              echo "::error::$name appears in the client bundle (.output/public) — it is shipped to browsers"
+              grep -rl "$name" .output/public 2>/dev/null | head -5 | sed 's/^/::error::  in /'
+              hits=1
+            fi
+          done
+          [ "$hits" = 0 ] && echo "No server-only secret names found in the client bundle."
+          exit $hits
+
       - name: Hosting headers in the build output (what Cloudflare will apply)
         continue-on-error: true
         run: |

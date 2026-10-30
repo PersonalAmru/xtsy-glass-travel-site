@@ -70,10 +70,11 @@ jobs:
           check "OpenAI-style secret key" '(^|[^A-Za-z0-9])sk-(proj-)?[A-Za-z0-9]{20,}' src supabase/functions
           check "Database URL with password" 'postgres(ql)?://[^:@/ ]+:[^@/ ]+@' src supabase/functions
           check "AWS access key" 'AKIA[0-9A-Z]{16}' src supabase/functions scripts
-          # The service-role key may only be read in server-only modules (*.server.ts, src/server*).
-          if grep -rnE 'SUPABASE_SERVICE_ROLE' src --include='*.ts' --include='*.tsx' | grep -vE '\.server\.ts:|^src/server'; then
-            echo "::error::Service-role key referenced in browser code"; fail=1
-          fi
+          # The service-role key may only be read in server-only modules
+          # (*.server.ts, src/server*) or inside a createFileRoute server
+          # handler, which the client build drops. A path allowlist could not
+          # tell those apart from browser code in the same directory.
+          python3 scripts/checkServiceRoleUsage.py || fail=1
           if grep -rnE 'VITE_[A-Z_]*(SECRET|SERVICE_ROLE|PRIVATE)' supabase/functions 2>/dev/null; then
             echo "::error::VITE_ (browser-exposed) variable used for a secret in an edge function"; fail=1
           fi

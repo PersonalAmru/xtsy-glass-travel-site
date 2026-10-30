@@ -58,3 +58,6 @@
 - [ ] Improve AI trip answers for accuracy and guest-first recommendations, with XTSY only where relevant.
 - [ ] Repair plan-confirmation enquiries so the saved itinerary reaches the desk through WhatsApp and an expected email notification; references must not imply confirmed bookings.
 - [ ] Verify trip answers and a saved guest itinerary handoff end to end, preserving consent and no online payments.
+
+## Current request 2026-10-30
+- [x] Remove Saturday group departure from catalogue-driven SEO, FAQs, internal promotions and sitemap; retired URL returns 301 to /tours. Four public pages and sitemap verified; 54 tests pass, preview clean. Publishing required.

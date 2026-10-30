@@ -187,7 +187,7 @@ function HostelComparison() {
         <li><strong className="text-xt-ink">Pick Zostel Shillong</strong> if you want to be closer to the city centre, need flexible cancellation, or already collect stays across Zostel's network.</li>
         <li><strong className="text-xt-ink">Pick XTSY</strong> if you want the lowest published dorm price, a women-only dorm, a restaurant downstairs, an earlier check-in, quieter nights in the pines, or you are travelling as a bigger group or with a pet.</li>
       </ul>
-      <p className="m-0 text-[15px] text-xt-mute">Travelling solo? <Link to="/tours/meghalaya-group-trip-6n-7d" className="inline-flex min-h-12 items-center font-bold text-xt-crimson underline underline-offset-4">Join the Saturday Meghalaya group trip</Link>.</p>
+      <p className="m-0 text-[15px] text-xt-mute">Planning to explore? <Link to="/tours" className="inline-flex min-h-12 items-center font-bold text-xt-crimson underline underline-offset-4">Browse Meghalaya tour options</Link>.</p>
     </section>
   );
 }

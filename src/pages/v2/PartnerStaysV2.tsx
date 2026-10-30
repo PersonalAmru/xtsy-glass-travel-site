@@ -12,7 +12,7 @@ import { PageShell, Breadcrumbs, PAD } from '@/components/v2/blocks';
 import { waLink } from '@/components/v2/primitives';
 
 const OFFER = [
-  { t: 'Guests from XTSY', d: 'Travellers on XTSY tours and the weekly Saturday Meghalaya group trip, plus guests who ask the XTSY desk for a stay outside Shillong.' },
+  { t: 'Guests from XTSY', d: 'Travellers on XTSY tours, plus guests who ask the XTSY desk for a stay outside Shillong.' },
   { t: 'One point of contact', d: 'The XTSY desk handles the booking, the guest\'s questions and the trip leader, and shares arrival details with you ahead of time.' },
   { t: 'Listed on xtsy.one', d: 'Approved partners can be shown on xtsy.one as an XTSY partner stay, with your own photos and description.' },
 ];
