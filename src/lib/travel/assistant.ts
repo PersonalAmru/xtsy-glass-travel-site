@@ -151,12 +151,63 @@ function stayAnswer(place?: Place): string {
   return lines.join('\n\n');
 }
 
+/**
+ * General Meghalaya and Shillong knowledge, answered on its own merits.
+ *
+ * The assistant used to reply only from XTSY's own facts, so a visitor asking
+ * something ordinary — what the weather is like, whether their card will work,
+ * how to get around — got nothing useful. Someone researching a trip asks those
+ * questions long before they pick a stay, and an assistant that cannot answer
+ * them is not worth opening twice.
+ *
+ * Each answer stands alone first. XTSY is mentioned only where it genuinely
+ * bears on the answer, and left out where it does not.
+ */
+const GENERAL: [RegExp, () => string, string[]][] = [
+  [/\bweather\b|temperature|how cold|how hot|climate|rain(y|fall|s)?\b/,
+    () => 'Shillong sits at about 1,500 m, so it stays mild: roughly 15–24°C in summer and 4–15°C in winter, with a few nights near 2°C in January. Sohra (Cherrapunji) and Mawsynram are among the wettest places on earth — the monsoon runs June to September and can bring days of continuous rain and landslides on hill roads. October to April is dry and clear.',
+    ['Best time to visit?', 'Plan a 5-day trip']],
+  [/best time|which month|when (should|to) (i |we )?(visit|go|come)|peak season|off season/,
+    () => 'October to April is the comfortable window: clear skies, waterfalls still running and good light for the viewpoints. November and December are the busiest. June to September is the monsoon — everything is green and dramatic, prices drop, but expect rain most days and slow roads. March and April are quiet and pleasant.',
+    ['Plan a trip in December', 'What is the weather like?']],
+  [/\b(atms?|cash|cards?|upi|money|payment|bank)\b/,
+    () => 'Carry cash. ATMs are easy in Shillong but scarce once you are out towards Dawki, Mawlynnong, Nongstoin or the Garo Hills, and many boat operators, homestays and small eateries are cash-only. UPI works in Shillong and at most fuel pumps, patchily elsewhere. Draw what you need before leaving the city.',
+    ['Plan a 4-day trip', 'How do I get around?']],
+  [/\b(network|signal|mobile data|sim|internet|connectivity|wifi in meghalaya)\b/,
+    () => 'Jio and Airtel cover Shillong and the main roads well. Coverage thins out in the gorges around Sohra, on the Dawki road and across the Garo Hills, and drops entirely on the Nongriat trek. Download offline maps before you set out. BSNL still reaches some places the others do not.',
+    ['Plan a trek day', 'Where is XTSY?']],
+  [/how (do i|to|can i) (get around|travel around|move around)|local transport|taxi|cab|shared (taxi|sumo)|bus\b|rent a car|self.?drive/,
+    () => 'Shared taxis run set routes inside Shillong cheaply, and shared Sumos leave Police Bazar for most district towns in the morning. For day trips to Sohra, Dawki or Mawlynnong a private cab is far more practical — the sights are spread out and shared transport rarely waits. Self-drive cars and Royal Enfields are available, and XTSY rents both from New Shillong.',
+    ['XTSY rentals', 'Plan a 5-day trip']],
+  [/\bsafe|safety|is it safe|solo travel|alone\b/,
+    () => 'Meghalaya is one of the safer states in India for travellers, including women travelling alone. Khasi society is matrilineal and women are visible everywhere in public life. The usual sense applies: hill roads are poor after dark, so finish drives by evening, and trek with a local guide where trails are unmarked. Shillong itself winds down early.',
+    ['Women-only dorm', 'Plan a solo trip']],
+  [/what (to|should i) (wear|pack)|packing|clothes|shoes|umbrella/,
+    () => 'Layers and a rain shell at any time of year — the weather turns fast. Winter nights want a proper jacket. Shoes with grip matter more than people expect: the root-bridge steps and the paths at Sohra are wet and slick even in the dry months. An umbrella is more useful than a hood in the monsoon, and a dry bag for the Dawki boat.',
+    ['Plan the root bridge trek', 'What is the weather like?']],
+  [/khasi|local food|try (to eat|food)|what food|local dish|jadoh|cuisine of/,
+    () => 'Khasi food is worth seeking out: jadoh (rice cooked with pork), dohneiiong (pork with black sesame), tungrymbai, and the smoked pork you will smell in Iewduh market. Laitumkhrah and Police Bazar in Shillong have the best-known places. We deliberately do not cook local dishes at TAB Bistro — the local eateries do them properly and we would rather send you to them.',
+    ['Plan a food trail', 'Where is XTSY?']],
+  [/language|do they speak|english|hindi|khasi language/,
+    () => 'Khasi is the everyday language in and around Shillong, Garo in the west, and English is widely spoken — it is the state official language and signage is in English. Hindi is understood in the city and less so in the villages. You will have no trouble getting by in English.',
+    ['Plan a 3-day trip']],
+  [/alcohol|drink|bar|pub|dry state|liquor/,
+    () => 'Meghalaya is not a dry state. Shillong has bars and licensed restaurants, though most close by around 10:30–11 PM, and Sunday service is limited. Outside the city, expect very little. Drinking is frowned on at sacred groves and in some villages, including Mawlynnong — worth respecting.',
+    ['Plan a Shillong evening']],
+  [/altitude|sick|medical|hospital|pharmacy|doctor/,
+    () => 'At about 1,500 m, Shillong is not high enough for altitude sickness. NEIGRIMS in New Shillong Township is the main referral hospital and pharmacies are easy to find in the city; carry your own basics for the villages and the treks, where the nearest chemist can be an hour away.',
+    ['Where is XTSY?']],
+  [/\b(root bridge|nongriat|double decker|trek|trekking|hike|hiking)\b/,
+    () => 'The Double Decker living root bridge at Nongriat is about 3,000 steps down from Tyrna and the same back up — three to five hours round trip, and genuinely hard on the knees rather than technically difficult. Start early, carry water, and give it a whole day. Shorter root bridges near Mawlynnong and Riwai take twenty minutes.',
+    ['Add the root bridge trek', 'What should I pack?']],
+];
+
 const FACTS: [RegExp, () => string, string[]][] = [
   [/check.?in|check.?out|checkin|checkout|arrival time/, () => 'Standard check-in at XTSY is **11 AM** and check-out is **strictly 10 AM**. Arriving late? Message the desk with your time — our arrival desk helps around the clock.', ['Plan a 3-day trip', 'Where is XTSY?']],
   [/\b(pet|pets|dog|dogs|cat|cats)\b/, () => 'Cats and birds are most welcome at XTSY. Dogs depend on breed and size — please contact the XTSY desk about any additional charges before you book.', ['Plan a pet-friendly trip', 'Pet-friendly stays page']],
   [/women|female|girls|solo woman|safe for/, () => `XTSY has a **women-only 4-bed dorm** (${inr(roomPrice('4-bed-female-only-dorm').now)} a night) with female staff on call, lockers, CCTV in common areas and 24/7 arrival support.`, ['Plan a solo trip', 'Where is XTSY?']],
-  [/tab bistro|restaurant|food|dinner|breakfast|eat/, () => 'TAB Bistro by XTSY is our on-site restaurant (breakfast 8:45 AM–12 PM, dinner 5–11 PM; lunch by preorder): North Indian, Indo-Chinese, Thai, Continental and Northeast dishes, with veg and Jain options. Catering for groups and weddings too.', ['See the menu', 'Plan a food trail']],
-  [/where is xtsy|address|location|how (do i|to) (reach|get to) (xtsy|the hostel)|located/, () => `XTSY Travellers Hostel is on **Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018** — near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. From Guwahati airport it’s ~3–3.5 h by road; we can send a cab.`, ['How do I reach Shillong?', 'Plan a 4-day trip']],
+  [/tab bistro|\brestaurant\b|(?<!local )\bfood\b|\bdinner\b|\bbreakfast\b|\beat\b|where (can|do) (i|we) eat/, () => 'TAB Bistro by XTSY is our on-site restaurant (breakfast 8:45 AM–12 PM, dinner 5–11 PM, last order 10:30 PM; lunch by preorder): live tandoor, North Indian gravies, Indo-Chinese, XTSY dum biryani, South Indian breakfast and hand-crafted pasta, with plenty of veg. For Khasi food, the local places in Shillong do it far better than we would — ask the desk and we will point you to one.', ['See the menu', 'Plan a food trail']],
+  [/where is xtsy|address|location|how (do i|to) (reach|get to) (xtsy|the hostel)|located/, () => `XTSY Travellers Hostel is on **Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018** — near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University. From Guwahati airport it’s ~3–3.5 h by road; we can send a cab.`, ['How do I reach Shillong?', 'Plan a 4-day trip']],
   [/how (do i|to|can i) (reach|get to|go to) (shillong|meghalaya)|nearest airport|flight to shillong|train to shillong/, () => 'Fly or take a train to **Guwahati** (GAU), then drive ~3 h to Shillong (~3.25 h to XTSY in New Shillong). Shillong’s own airport at Umroi has a few flights. The XTSY desk can arrange a pick-up from Guwahati.', ['Plan 5 days from Guwahati', 'Where should I stay in Shillong?']],
   [/\b(ilp|permit|permits|pap|rap)\b/, () => `Meghalaya and Assam need no permit. **Arunachal**, **Nagaland**, **Mizoram** and **Manipur** need an Inner Line Permit for Indian travellers (foreign nationals need a Protected Area Permit for Arunachal). **Sikkim**: Tsomgo, Nathula and North Sikkim need local permits. The XTSY desk helps with paperwork for trips we plan.`, ['Tawang in 7 days', 'Kohima & Dzukou trip']],
   [/workation|work from|wifi|wi-fi|remote work|digital nomad|coworking/, () => 'XTSY runs workation stays with fast Wi-Fi, desks and long-stay rates (weekly and monthly plans on the Workation page), with TAB Bistro downstairs.', ['Workation plans', 'Plan a slow 10-day trip']],
@@ -228,6 +279,7 @@ export function respond(message: string, prev: ChatState): { reply: Reply; state
   if (bt && !parseDays(t)) return { reply: { text: bt, chips: ['Plan 5 days in December', 'Plan a monsoon trip'], actions: [] }, state };
   if (!(mentionsTrip && (parseDays(t) || places.length))) {
     for (const [re, answer, chips] of FACTS) if (re.test(t)) return { reply: { text: answer(), chips, actions: [] }, state };
+    for (const [re, answer, chips] of GENERAL) if (re.test(t)) return { reply: { text: answer(), chips, actions: [] }, state };
   }
 
   // Trip edits and requests.

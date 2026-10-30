@@ -88,7 +88,7 @@ export default function RentalsV2() {
         canonicalUrl="https://xtsy.one/xtsy-rentals"
       />
       <Helmet><script type="application/ld+json">{JSON.stringify(ld)}</script></Helmet>
-      <PageShell bar={{ label: 'Get a quote', to: waLink('Hi XTSY! I want to rent a vehicle. Dates: …'), note: 'Cars · Bikes · Caravan · Urbania' }} cta={{ title: 'Keys, route, go.', sub: 'Tell us the vehicle and your dates on WhatsApp. We’ll confirm availability.', bookTo: '/expeditions', bookLabel: 'See expedition routes' }}>
+      <PageShell bar={{ label: 'Get a quote', to: waLink('Hi XTSY! I want to rent a vehicle. Dates: …', 'xtsy-rentals'), note: 'Cars · Bikes · Caravan · Urbania' }} cta={{ title: 'Keys, route, go.', sub: 'Tell us the vehicle and your dates on WhatsApp. We’ll confirm availability.', bookTo: '/expeditions', bookLabel: 'See expedition routes' }}>
         <PageHero
           bg="#1F2230"
           fg="#F5EFE6"
@@ -97,7 +97,7 @@ export default function RentalsV2() {
           eyebrow="XTSY Rentals · Self-drive cars, bikes, caravan & Urbania"
           title="Your wheels for the Northeast."
           text={`Self-drive cars from ${inr(1800)} a day, Royal Enfields from ${inr(1300)}, plus a caravan camper and a 17-seat Force Urbania quoted per trip. Fully insured, 24/7 roadside support, driver on request. Pick up at XTSY in New Shillong Township.`}
-          actions={<><Btn to="#fleet">See the fleet</Btn><Btn to={waLink('Hi XTSY! I want to rent a vehicle. Dates: …')} kind="outline-light">Ask on WhatsApp</Btn></>}
+          actions={<><Btn to="#fleet">See the fleet</Btn><Btn to={waLink('Hi XTSY! I want to rent a vehicle. Dates: …', 'xtsy-rentals')} kind="outline-light">Ask on WhatsApp</Btn></>}
           media={<Photo src={IMG.bumla} alt="Royal Enfield on a Northeast expedition" eager tone="night" className="aspect-[628/520] rounded-[32px]" />}
         />
 
@@ -123,7 +123,7 @@ export default function RentalsV2() {
                   ) : (
                     <span className="text-[17px] font-extrabold leading-tight">{v.note ?? 'On request'}</span>
                   )}
-                  <Btn to={waLink(bookText(v))} className="h-11 px-5 text-[14px]">{v.price ? 'Book on WhatsApp' : 'Get a quote'}</Btn>
+                  <Btn to={waLink(bookText(v), 'xtsy-rentals')} className="h-11 px-5 text-[14px]">{v.price ? 'Book on WhatsApp' : 'Get a quote'}</Btn>
                 </div>
               </article>
             ))}

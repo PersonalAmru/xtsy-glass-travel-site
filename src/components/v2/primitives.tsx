@@ -10,8 +10,22 @@ export const XTSY_MARK_PATH =
 
 export const WHATSAPP_NUMBER = '918837317070';
 export const WHATSAPP_DISPLAY = '+91 88373 17070';
-export const waLink = (text?: string) =>
-  `https://wa.me/${WHATSAPP_NUMBER}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
+/**
+ * WhatsApp deep link to the XTSY desk.
+ *
+ * `source` labels where the guest came from and is appended to the message the
+ * guest sends, so the desk can see it in the chat itself. wa.me drops query
+ * parameters other than `text`, and an analytics event cannot follow a guest
+ * into WhatsApp, so carrying the label inside the message is the only
+ * attribution that survives the hop. Keep the labels short and stable: they
+ * are what the enquiry report groups by.
+ */
+export const waLink = (text?: string, source?: string) => {
+  const body = source
+    ? `${text ?? 'Hi XTSY!'}\n\n— via xtsy.one/${source}`
+    : text;
+  return `https://wa.me/${WHATSAPP_NUMBER}${body ? `?text=${encodeURIComponent(body)}` : ''}`;
+};
 
 export function XtsyMark({ className, fill = '#A12444', size = 24 }: { className?: string; fill?: string; size?: number }) {
   return (

@@ -41,7 +41,7 @@ export default function ExperienceByXtsy() {
   const [b2bOpen, setB2bOpen] = useState(false);
   const suite = roomPrice('xtsy-270');
   const now = suite.now || XTSY270_DATA.price;
-  const wa = waLink(`Hi XTSY! I'd like to book Experience by XTSY, India's first stargaze glamp. My dates are: `);
+  const wa = waLink(`Hi XTSY! I'd like to book Experience by XTSY, India's first stargaze glamp. My dates are: `, 'experience-by-xtsy');
   const couples = SIGNATURE_PACKAGES.filter((p) => /honeymoon/i.test(p.slug));
 
 
@@ -107,7 +107,7 @@ export default function ExperienceByXtsy() {
           <PriceCards
             cards={[
               { t: 'Stay only', price: inr(now), hot: true, text: `One night in the glass suite for two, all inclusive (taxes included, breakfast not included).${suite.was > now ? ` Regular ${inr(suite.was)}.` : ''}`, cta: <Btn to={wa} kind="outline" className="w-full">Reserve</Btn> },
-              { t: 'Decoration add-on', price: `+${inr(PANORAMA_DECORATION)}`, text: 'For anniversaries, proposals, honeymoons and birthdays. Book 48 hours ahead.', cta: <Btn to={waLink('Hi XTSY! I want to add the decoration package to my Experience by XTSY stay.')} kind="outline" className="w-full">Add to my stay</Btn> },
+              { t: 'Decoration add-on', price: `+${inr(PANORAMA_DECORATION)}`, text: 'For anniversaries, proposals, honeymoons and birthdays. Book 48 hours ahead.', cta: <Btn to={waLink('Hi XTSY! I want to add the decoration package to my Experience by XTSY stay.', 'experience-by-xtsy')} kind="outline" className="w-full">Add to my stay</Btn> },
             ]}
           />
           <p className="m-0 text-[14px] text-xt-mute">

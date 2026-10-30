@@ -45,13 +45,13 @@ export default function WeddingsV2() {
         canonicalUrl="https://xtsy.one/destination-wedding-shillong"
       />
       <Helmet><script type="application/ld+json">{JSON.stringify(ld)}</script></Helmet>
-      <PageShell bar={{ label: 'Get a quote', to: waLink('Hi XTSY! We are planning a wedding in Shillong. Dates: … Guests: …') }} cta={{ title: 'Say yes in the hills.', sub: 'Share your dates and guest count on WhatsApp and we’ll send a first plan.' }}>
+      <PageShell bar={{ label: 'Get a quote', to: waLink('Hi XTSY! We are planning a wedding in Shillong. Dates: … Guests: …', 'weddings') }} cta={{ title: 'Say yes in the hills.', sub: 'Share your dates and guest count on WhatsApp and we’ll send a first plan.' }}>
         <PageHero
           bg="#F6E2E6"
           eyebrow="Destination weddings · New Shillong Township"
           title="Say yes in the hills."
           text="Intimate weddings for 20–100 guests with a Khasi Hills backdrop, TAB Bistro catering, on-site guest stays and Experience by XTSY for the couple."
-          actions={<><Btn to="#enquire">Plan your wedding</Btn><Btn to={waLink('Hi XTSY! We are planning a wedding in Shillong. Dates: … Guests: …')} kind="outline">WhatsApp us</Btn></>}
+          actions={<><Btn to="#enquire">Plan your wedding</Btn><Btn to={waLink('Hi XTSY! We are planning a wedding in Shillong. Dates: … Guests: …', 'weddings')} kind="outline">WhatsApp us</Btn></>}
           media={<Photo src={COVERS.wedding} alt="Experience by XTSY, India’s First Stargaze Glamp" eager tone="crimson" className="aspect-[628/520] rounded-[32px]" />}
         />
 
