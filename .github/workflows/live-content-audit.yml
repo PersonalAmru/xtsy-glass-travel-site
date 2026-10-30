@@ -1,10 +1,13 @@
-name: Live content audit (manual)
+name: Live content audit
 
-# On-demand only — no schedule. Runs the content + facts audit (prices, rating, emails,
+# Runs daily. Runs the content + facts audit (prices, rating, emails,
 # policies, schema, SEO, AEO) against the LIVE site and saves it to ci-screenshots (live-content/).
 # Also saves the raw HTML of a few key pages for spot checks.
 
 on:
+  schedule:
+    # 02:47 UTC — 08:17 IST, staggered after the site health crawl.
+    - cron: '47 2 * * *'
   workflow_dispatch:
 
 permissions:

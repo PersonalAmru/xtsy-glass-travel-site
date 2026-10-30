@@ -1,9 +1,16 @@
-name: Site health report (manual)
+name: Site health report
 
-# On-demand only — no schedule. Crawls every sitemap URL on the live site the way
-# a search engine does and saves the report to the ci-screenshots branch (site-health/).
+# Crawls every sitemap URL on the live site the way a search engine does and saves
+# the report to the ci-screenshots branch (site-health/). Fails when any live URL has
+# an issue, so a bad day is visible without opening the report.
+#
+# Read-only: it requests pages and writes a report. It submits nothing to any search
+# engine — indexing stays manual.
 
 on:
+  schedule:
+    # 02:23 UTC — 07:53 IST, after the Search Console pull at 01:17.
+    - cron: '23 2 * * *'
   workflow_dispatch:
 
 permissions:

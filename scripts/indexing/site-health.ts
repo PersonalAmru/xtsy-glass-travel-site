@@ -91,6 +91,20 @@ async function main() {
   const summary = { checkedAt: new Date().toISOString(), site: SITE, sitemaps: sitemapRows, urlsChecked: rows.length, healthy: ok, withIssues: rows.length - ok, byIssue, medianMs: ms[Math.floor(ms.length / 2)], p95Ms: ms[Math.floor(ms.length * 0.95)], withStructuredData: rows.filter((r) => (r.jsonLd as string[]).length).length, withQuickAnswer: rows.filter((r) => r.quickAnswer).length, extra };
   fs.writeFileSync(`${OUT}/health.json`, JSON.stringify(rows, null, 1));
   fs.writeFileSync(`${OUT}/summary.json`, JSON.stringify(summary, null, 1));
-  console.log(`::notice::Checked ${rows.length} URLs: ${ok} healthy, ${rows.length - ok} with issues. ${JSON.stringify(byIssue)}`);
+  const withIssues = rows.length - ok;
+  console.log(`::notice::Checked ${rows.length} URLs: ${ok} healthy, ${withIssues} with issues. ${JSON.stringify(byIssue)}`);
+
+  // Running this daily is only worth it if a bad day looks different from a
+  // good one. Previously every run ended on the notice above and stayed green,
+  // so a crawl finding 50 broken URLs was indistinguishable from a clean one.
+  // Name each issue type, and fail so the run actually reports.
+  if (withIssues > 0) {
+    for (const [issue, n] of Object.entries(byIssue).sort((a, b) => b[1] - a[1])) {
+      const example = rows.find((r) => (r.issues as string[]).some((x) => x.startsWith(issue)));
+      console.log(`::error::${issue} — ${n} URL(s)${example ? `, e.g. ${example.url}` : ''}`);
+    }
+    console.log(`::error::Site health: ${withIssues} of ${rows.length} live URLs have issues.`);
+    process.exit(1);
+  }
 }
 main();
