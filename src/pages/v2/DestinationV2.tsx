@@ -118,10 +118,48 @@ export default function DestinationV2() {
     ],
   };
 
-  const lastUpdated = 'June 2026';
-  const titleModifiers = destination.name.length > 20 ? 'Meghalaya Travel Guide' : 'Meghalaya — How to Reach, Timings & Photos';
-  const pageTitle = destination.seoTitle ?? `${destination.name}, ${titleModifiers}`;
-  const rawDescription = destination.seoDescription ?? `${destination.name}, Meghalaya: ${destination.shortDescription} Best time to visit, how to reach, timings & travel tips — updated ${lastUpdated}.`;
+  // Search Console, 1-28 Oct 2026: the destination pages took 67% of the site's
+  // impressions and converted 0.33% of them. They rank (positions 7-10, some at
+  // 4-5) but are not clicked, and every one of them carried the same template
+  // title and the same hardcoded "updated June 2026" — a four-month-old date
+  // shown in the result. /destinations/meghalaya/dawki/dawki-umngot-river alone
+  // drew 4,716 impressions and 2 clicks.
+  //
+  // So: lead with what a searcher for this kind of place actually wants, and
+  // derive freshness from the clock instead of a string that goes stale.
+  const lastUpdated = String(new Date().getFullYear());
+
+  /** What someone searching for this category is trying to find out. */
+  const TITLE_HOOK: Record<typeof destination.category, string> = {
+    waterfall: 'Best Time, Trek & How to Reach',
+    river: 'Boat Ride, Best Time & How to Reach',
+    cave: 'Timings, Entry & How to Reach',
+    viewpoint: 'Sunrise, Best Time & How to Reach',
+    peak: 'Trek, Views & How to Reach',
+    lake: 'Boating, Best Time & How to Reach',
+    village: 'What to See, Best Time & How to Reach',
+    adventure: 'What to Do, Best Time & How to Reach',
+    wildlife: 'Best Time, Safari & How to Reach',
+    cultural: 'What to See, Timings & How to Reach',
+  };
+
+  let hook = TITLE_HOOK[destination.category] ?? 'Best Time & How to Reach';
+  // Avoid echoing a word already in the name ("Nongjrong Sunrise Viewpoint:
+  // Sunrise, ..."), which reads as keyword stuffing in the result.
+  const firstWord = hook.split(',')[0].split(' ')[0].toLowerCase();
+  if (destination.name.toLowerCase().includes(firstWord)) {
+    hook = 'Best Time, Timings & How to Reach';
+  }
+  // Keep the whole title inside roughly 60 characters so Google shows it intact;
+  // the place name must survive, the hook is what gets shortened.
+  const titled = `${destination.name}: ${hook}`;
+  const pageTitle =
+    destination.seoTitle ?? (titled.length <= 62 ? titled : `${destination.name}: Best Time & How to Reach`);
+
+  const rawDescription =
+    destination.seoDescription ??
+    `${destination.shortDescription} Best time to visit, how to reach and what it costs — ` +
+      `practical notes from XTSY, based in New Shillong. Updated ${lastUpdated}.`;
   const pageDescription = rawDescription.length > 160 ? `${rawDescription.slice(0, 157).replace(/\s+\S*$/, '')}…` : rawDescription;
   const pageKeywords = destination.seoKeywords ?? `${destination.name}, ${destination.name} Meghalaya, places to visit ${destination.region}, ${destination.category} Meghalaya`;
 

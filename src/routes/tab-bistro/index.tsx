@@ -7,11 +7,15 @@ export const Route = createFileRoute("/tab-bistro/")({
   head: () =>
     buildRouteHead({
       path: "/tab-bistro",
-      title: "Restaurant in Shillong | TAB Bistro by XTSY",
+      // GSC 1-28 Oct: 1,004 impressions, 2 clicks. The old title was a bare
+      // keyword with no reason to click; name the food instead.
+      title: "Restaurant in New Shillong: Tandoor, Biryani & Indo-Chinese",
       description:
-        "TAB Bistro, New Shillong Township: North Indian, Indo-Chinese, Thai, Continental & Italian. Breakfast 8:45 AM–12 PM, dinner 5–11 PM, lunch by preorder.",
+        // The old text advertised Thai, Continental and Italian, none of which
+        // are on the menu. Describe what the kitchen actually cooks.
+        "Live tandoor, XTSY dum biryani, Indo-Chinese, North Indian gravies, South Indian breakfast and hand-crafted pasta, in New Shillong Township. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.",
       keywords:
-        "restaurant in shillong, best restaurant shillong, multi cuisine restaurant shillong, rooftop cafe shillong, wedding catering shillong, TAB Bistro",
+        "restaurant in shillong, best restaurant shillong, multi cuisine restaurant shillong, restaurant in new shillong township, biryani in shillong, tandoor restaurant shillong, wedding catering shillong, TAB Bistro",
       jsonLd: [RESTAURANT_SCHEMA],
     }),
   component: TabBistro,

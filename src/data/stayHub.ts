@@ -7,6 +7,7 @@
  * All prices come from the live booking inventory.
  */
 import { inr, lowestDormPrice, roomPrice } from '@/components/v2/pricing';
+import { GOOGLE_RATING } from './brandFacts';
 import { PANORAMA_DECORATION, PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
 import { fromXtsy } from '@/lib/travel/routing';
 
@@ -26,7 +27,12 @@ export function stayHubCopy(v: StayHubVariant) {
   const cheap = v === 'cheap';
   return {
     path: cheap ? '/cheap-hostels-shillong' : '/best-hostel-in-shillong',
-    title: cheap ? `Budget-Friendly Hostels in Shillong from ${dorm} | XTSY` : 'Hostels in Shillong: Prices & Women-Only Dorms | XTSY',
+    // GSC 1-28 Oct: /best-hostel-in-shillong drew 893 impressions and 5 clicks
+    // at position 5.2 — it ranks, it just gives no reason to click. Lead with
+    // the rating, which is the strongest trust signal available in a result.
+    title: cheap
+      ? `Budget-Friendly Hostels in Shillong from ${dorm} | XTSY`
+      : `Hostels in Shillong: ${GOOGLE_RATING.value}★, Women-Only Dorms & Private Rooms`,
     description: cheap
       ? `XTSY dorm beds from ${dorm}, women-only dorm, lockers, Wi-Fi and TAB Bistro on site in New Shillong Township. Book direct, no OTA mark-up.`
       : `Compare XTSY dorms from ${dorm}/night, women-only dorms and private rooms in New Shillong Township. View room prices and send a WhatsApp booking enquiry.`,
