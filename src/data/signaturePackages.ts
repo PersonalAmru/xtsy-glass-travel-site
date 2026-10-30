@@ -77,26 +77,6 @@ export const SIGNATURE_PACKAGES: SignaturePackage[] = [
     ],
   },
   {
-    slug: "meghalaya-group-trip-6n-7d",
-    title: "Meghalaya Group Trip, Saturday Departures",
-    region: "Meghalaya",
-    pricePerPerson: 18500,
-    duration: "6 Nights / 7 Days",
-    nights: 6,
-    days: 7,
-    shortDescription:
-      "Join a small group on a fixed-date week in Meghalaya: Shillong, the Double Decker root bridge, Krang Suri, Dawki and Mawlynnong. Book one seat.",
-    pickupDrop: "Guwahati Airport / Railway Station",
-    idealFor: ["Solo travellers", "Friends", "Couples", "First-time visitors"],
-    highlights: [
-      "Departs every Saturday, October to May",
-      "Double Decker Living Root Bridge trek",
-      "Krang Suri Falls & Dawki on the Umngot River",
-      "Mawphlang Sacred Forest & Mawlynnong village",
-    ],
-    departures: { weekday: 6, months: [10, 11, 12, 1, 2, 3, 4, 5] },
-  },
-  {
     slug: "6d-shillong-meghalaya-tour",
     title: "6 Days Shillong Meghalaya Tour",
     region: "Meghalaya",
@@ -994,8 +974,6 @@ export const PACKAGE_ITINERARIES: Record<string, ItineraryDay[]> = {
   ],
 };
 
-PACKAGE_ITINERARIES["meghalaya-group-trip-6n-7d"] = PACKAGE_ITINERARIES["6n-7d-meghalaya-tour"];
-
 /** The next departure dates (ISO yyyy-mm-dd) for a package with fixed departures, from `from`. */
 export const upcomingDepartures = (p: SignaturePackage, from: Date, count = 8): string[] => {
   if (!p.departures) return [];
@@ -1088,7 +1066,7 @@ export const signaturePackageToTourPackage = (p: SignaturePackage): TourPackage 
       { q: "What is the pickup & drop point?", a: p.pickupDrop },
       { q: "Who is this package ideal for?", a: p.idealFor.join(", ") + "." },
       p.departures
-        ? { q: "Can I join on my own?", a: "Yes. Book one seat on any Saturday departure; you travel with the other guests on that date. For your own dates or a private group, see the 6 Nights 7 Days Meghalaya Tour." }
+        ? { q: "Can I join on my own?", a: "Ask the desk about availability for your dates before making travel arrangements." }
         : { q: "Can I customise the itinerary?", a: "Yes, dates and stays can be tailored. Message us on WhatsApp to personalise this package." },
     ],
   };
