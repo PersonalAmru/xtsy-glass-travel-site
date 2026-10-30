@@ -34,6 +34,12 @@ jobs:
           echo "$HOME/.bun/bin" >> "$GITHUB_PATH"
 
       - name: Content audit on the live site
+        env:
+          # Fail the run when the LIVE site carries a wrong price or a misstated
+          # policy. Honoured by scripts/audit/content-audit.ts. The in-build
+          # audit stays reporting-only; this is the daily guard on what guests
+          # actually see.
+          FAIL_ON_SERIOUS: '1'
         run: |
           bun scripts/audit/content-audit.ts
           mkdir -p health/html
