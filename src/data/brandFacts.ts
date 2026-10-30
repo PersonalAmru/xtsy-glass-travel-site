@@ -28,7 +28,7 @@ export const BRAND = {
 } as const;
 
 /** XTSY's Google rating — used for the hostel, tours, travel and the Dawki campsite (booked via XTSY). */
-export const GOOGLE_RATING = { value: '4.7', count: 237, label: '4.7★ · 237 Google reviews' } as const;
+export const GOOGLE_RATING = { value: '4.7', count: 248, label: '4.7★ · 248 Google reviews' } as const;
 
 export const PROPERTY_ADDRESS = 'Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018';
 export const PROPERTY_CHECK_IN = '11:00';
@@ -53,7 +53,7 @@ export const OWN_PROPERTIES = [
 
 export const AWARDS = [
   'Nominated: Best Budget-Friendly Accommodation, Northeast India Tourism Awards (NEITA 2025)',
-  "Rated 4.7★ on Google from 237 reviews",
+  "Rated 4.7★ on Google from 248 reviews",
   "Experience by XTSY — India's first stargaze glamp",
 ] as const;
 
@@ -105,7 +105,7 @@ export const whyXTSYSection = (): SEOSection => ({
   listItems: [
     'NEITA 2025 nominee — Best Budget-Friendly Accommodation in Northeast India',
     "Experience by XTSY — India's first stargaze glamp",
-    'Rated 4.7★ on Google from 237 reviews',
+    'Rated 4.7★ on Google from 248 reviews',
     'Pluxee India partner — corporate stays via employee-benefit vouchers accepted',
     `24/7 WhatsApp booking & on-trip support — ${BRAND.whatsappDisplay}`,
     'Owned operations in Shillong + vetted partner network across NE India and Sikkim',

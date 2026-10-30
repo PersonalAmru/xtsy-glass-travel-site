@@ -90,7 +90,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
         <div className="flex flex-col gap-4">
           <h2 className="xt-display m-0 text-[36px] leading-none sm:text-[48px]">Why guests pick XTSY</h2>
           <ul className="m-0 grid list-none gap-2.5 p-0 sm:grid-cols-2">
-            {['4.7★ on Google (237 reviews)', 'NEITA 2025 nominee — Best Budget-Friendly Accommodation', 'Women-only dorm with female staff on call', 'Privacy curtain, locker and charging point at every bunk', 'TAB Bistro restaurant downstairs (breakfast 8:45 AM–12 PM, dinner 5–11 PM)', 'Pet-friendly: cats & birds; dogs by breed and size', 'Fast Wi-Fi and desks for remote work', 'Travel desk for Cherrapunji, Dawki and all of Northeast India'].map((x) => (
+            {['4.7★ on Google (248 reviews)', 'NEITA 2025 nominee — Best Budget-Friendly Accommodation', 'Women-only dorm with female staff on call', 'Privacy curtain, locker and charging point at every bunk', 'TAB Bistro restaurant downstairs (breakfast 8:45 AM–12 PM, dinner 5–11 PM)', 'Pet-friendly: cats & birds; dogs by breed and size', 'Fast Wi-Fi and desks for remote work', 'Travel desk for Cherrapunji, Dawki and all of Northeast India'].map((x) => (
               <li key={x} className="rounded-2xl bg-white px-4 py-3 text-[15px] font-semibold">✓ {x}</li>
             ))}
           </ul>
@@ -152,7 +152,7 @@ const COMPARE: { label: string; xtsy: string; zostel: string }[] = [
   { label: 'Check-in / check-out', xtsy: '11 AM / 10 AM', zostel: '1 PM / 10 AM' },
   { label: 'Cancellation', xtsy: 'Non-refundable; one date change allowed (see FAQs)', zostel: 'Free cancellation more than 8 days ahead (as listed on Hostelworld)' },
   { label: 'Who can stay', xtsy: 'Groups of 6–60 welcome; cats and birds welcome, dogs by breed and size', zostel: '18+ only, groups of up to 6, no pets' },
-  { label: 'Guest rating', xtsy: '4.7★ from 237 Google reviews', zostel: '7.3/10 on ixigo (481 reviews); 8.0/10 on Hostelworld (24)' },
+  { label: 'Guest rating', xtsy: '4.7★ from 248 Google reviews', zostel: '7.3/10 on ixigo (481 reviews); 8.0/10 on Hostelworld (24)' },
 ];
 
 function HostelComparison() {

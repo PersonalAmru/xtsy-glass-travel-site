@@ -185,7 +185,7 @@ export const LAST_MINUTE_SEO_PAGES: SEOPageData[] = [
       },
       {
         heading: 'Guest Reviews',
-        content: `Rated 4.7/5 from 237 Google reviews. XTSY is one of the biggest hostels in Northeast India. Guests love our rooftop views, clean facilities, and friendly staff.`,
+        content: `Rated 4.7/5 from 248 Google reviews. XTSY is one of the biggest hostels in Northeast India. Guests love our rooftop views, clean facilities, and friendly staff.`,
       },
     ],
     faqs: [

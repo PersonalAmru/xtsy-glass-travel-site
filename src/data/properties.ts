@@ -117,7 +117,7 @@ export const PROPERTIES: Record<string, Property> = {
     amenities: ['Free WiFi', 'Common Area', 'Games Room', 'Hot Water', 'Lockers'],
     priceRange: { min: 399, max: 2399 },
     rating: 4.7,
-    reviewCount: 237,
+    reviewCount: 248,
     category: 'hostel',
     roomTypeIds: [
       'king-double-room',
@@ -141,7 +141,7 @@ export const PROPERTIES: Record<string, Property> = {
     amenities: ['Riverside Pitches', 'Shared Washrooms', 'Bonfire (chargeable)', 'Water Activities (chargeable)', 'Dinner On Request'],
     priceRange: { min: 800, max: 1000 },
     rating: 4.7,
-    reviewCount: 237, // XTSY Google reviews (campsite is booked via XTSY)
+    reviewCount: 248, // XTSY Google reviews (campsite is booked via XTSY)
     category: 'budget',
     roomTypeIds: [], // experience-based; no room cards
     isActive: true,
