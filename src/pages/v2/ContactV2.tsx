@@ -31,10 +31,10 @@ export default function ContactV2() {
     window.open(waLink(text), '_blank', 'noopener');
   };
   const ways = [
-    { k: 'WhatsApp', v: WHATSAPP_DISPLAY, cta: 'Chat now', href: waLink("Hi XTSY! I'd like to get in touch."), cls: 'bg-xt-crimson text-white' },
+    { k: 'WhatsApp', v: WHATSAPP_DISPLAY, cta: 'Chat now', href: waLink("Hi XTSY! I'd like to get in touch.", 'contact'), cls: 'bg-xt-crimson text-white' },
     { k: 'Call', v: PHONE, cta: 'Call us', href: `tel:${PHONE_TEL}`, cls: 'bg-white text-xt-ink' },
     { k: 'Email', v: EMAIL, cta: 'Write to us', href: `mailto:${EMAIL}`, cls: 'bg-white text-xt-ink' },
-    { k: 'Instagram', v: '@xtsy.one', cta: 'Follow', href: 'https://www.instagram.com/xtsy.one', cls: 'bg-xt-slate text-xt-paper' },
+    { k: 'Instagram', v: '@xtsy.one', cta: 'Follow', href: 'https://www.instagram.com/xtsy.one?utm_source=xtsy.one&utm_medium=referral&utm_campaign=contact', cls: 'bg-xt-slate text-xt-paper' },
   ];
   const input = 'h-12 w-full rounded-xl border-[1.5px] border-xt-line bg-white px-3.5 text-[15px] text-xt-ink focus:border-xt-crimson focus:outline-none';
   return (

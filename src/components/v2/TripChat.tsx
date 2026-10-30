@@ -128,7 +128,7 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
   const doAction = async (a: ChatAction, plan?: Plan) => {
     const p = plan ?? lastPlan;
     if (a === 'reset') { try { sessionStorage.removeItem(KEY); } catch { /* ignore */ } setState(INITIAL_STATE); setMsgs([{ from: 'xtsy', ...WELCOME }]); setSendFor(null); return; }
-    if (a === 'whatsapp') { window.open(waLink(p ? `Hi XTSY! Please help me book this trip:\n${planToText(p)}` : 'Hi XTSY! Please help me plan a trip.'), '_blank', 'noopener'); return; }
+    if (a === 'whatsapp') { window.open(waLink(p ? `Hi XTSY! Please help me book this trip:\n${planToText(p)}` : 'Hi XTSY! Please help me plan a trip.', 'trip-planner'), '_blank', 'noopener'); return; }
     if (a === 'book') {
       const guests = String(p?.input.travellers ?? 2);
       navigate(`/book/select?${new URLSearchParams({ location: 'shillong', guests }).toString()}`);
@@ -165,10 +165,24 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
     setSending(false);
     if (res.success) {
       setSendFor(null);
-      setMsgs((m) => [...m, { from: 'xtsy', text: `Sent to the XTSY desk${res.enquiryId ? ` (ref **${res.enquiryId}**)` : ''}. We’ll reply on WhatsApp to confirm stays, cabs and prices — usually within an hour.`, chips: ['Where should I stay in Shillong?', 'Check-in time?'] }]);
+      // Hand the confirmed itinerary to the desk through the guest's own
+      // WhatsApp. The enquiry is already saved; this puts the same plan and its
+      // reference into the desk's chat, so the thread the guest replies in
+      // already carries the itinerary instead of the desk having to look it up.
+      // It also opens the conversation from the guest's number, which is what
+      // the desk needs to reply at all.
+      const ref = res.enquiryId ? `Booking ref: ${res.enquiryId}\n` : '';
+      const handoff =
+        `Hi XTSY! I've just confirmed this trip on the AI trip planner.\n\n` +
+        `${ref}Name: ${lead.name.trim() || '—'}\n` +
+        `Dates: ${lead.dates.trim() || 'Flexible'}\n` +
+        `Travellers: ${sendFor.input.travellers}\n\n` +
+        `${text}\n\nPlease confirm stays, cabs and the final price.`;
+      window.open(waLink(handoff, 'trip-planner'), '_blank', 'noopener');
+      setMsgs((m) => [...m, { from: 'xtsy', text: `Sent to the XTSY desk${res.enquiryId ? ` (ref **${res.enquiryId}**)` : ''}, and I've opened WhatsApp with your full itinerary so the desk has it in the chat too. We’ll reply to confirm stays, cabs and prices — usually within an hour.`, chips: ['Where should I stay in Shillong?', 'Check-in time?'] }]);
     } else {
       toast.error('Could not send online — opening WhatsApp with your plan instead.');
-      window.open(waLink(`Hi XTSY! Please help me book this trip:\n${text}`), '_blank', 'noopener');
+      window.open(waLink(`Hi XTSY! Please help me book this trip:\n${text}`, 'trip-planner'), '_blank', 'noopener');
     }
   };
 

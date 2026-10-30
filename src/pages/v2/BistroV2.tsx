@@ -27,7 +27,7 @@ export default function BistroV2() {
     reviews: reviews.map((r) => ({ name: r.name, rating: r.rating, comment: r.comment, date: r.isoDate.slice(0, 10) })),
   });
   const topReviews = reviews.filter((r) => r.rating >= 4 && r.comment.length > 30).slice(0, 3);
-  const reserve = waLink('Hi TAB Bistro! I’d like to reserve a table. Date/time: … People: …');
+  const reserve = waLink('Hi TAB Bistro! I’d like to reserve a table. Date/time: … People: …', 'tab-bistro');
 
   return (
     <>

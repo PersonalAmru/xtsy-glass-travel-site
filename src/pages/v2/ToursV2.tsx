@@ -87,7 +87,7 @@ export default function ToursV2() {
         canonicalUrl="https://xtsy.one/tours"
       />
       <Helmet><script type="application/ld+json">{JSON.stringify(itemList)}</script></Helmet>
-      <PageShell bar={{ label: 'Get a quote', to: waLink('Hi XTSY! I would like a tour quote. Dates: … Travellers: …'), note: 'Meghalaya & Northeast tours' }} cta={{ title: 'Not sure which trip fits?', sub: 'Tell a travel expert your dates and budget on WhatsApp. We’ll shape a plan around you — or try the AI trip builder.', bookTo: '/plan-trip-with-ai', bookLabel: 'Build a trip with AI' }}>
+      <PageShell bar={{ label: 'Get a quote', to: waLink('Hi XTSY! I would like a tour quote. Dates: … Travellers: …', 'tours'), note: 'Meghalaya & Northeast tours' }} cta={{ title: 'Not sure which trip fits?', sub: 'Tell a travel expert your dates and budget on WhatsApp. We’ll shape a plan around you — or try the AI trip builder.', bookTo: '/plan-trip-with-ai', bookLabel: 'Build a trip with AI' }}>
         <section className={`${PAD} relative grid items-end gap-8 overflow-hidden py-14 lg:grid-cols-2 lg:gap-14 lg:py-[72px]`}>
           <SpinningMark className="-right-24 -top-36 h-[520px] w-[520px] opacity-[0.07]" />
           <div className="relative flex flex-col gap-5">
@@ -110,7 +110,7 @@ export default function ToursV2() {
                 text={p.shortDescription}
                 price={formatPackagePrice(p.pricePerPerson)}
                 img={reviewedPhoto(`sig-${p.slug}`) || photoFor(p.title, p.highlights.join(' '), p.region)}
-                enquire={waLink(`Hi XTSY! I'm interested in the ${p.title}. Dates: … Travellers: …`)}
+                enquire={waLink(`Hi XTSY! I'm interested in the ${p.title}. Dates: … Travellers: …`, 'tours')}
               />
             ))}
           </div>
@@ -140,7 +140,7 @@ export default function ToursV2() {
                 text={t.description}
                 price={t.price}
                 img={reviewedPhoto(`tour-${t.id}`) || photoFor(t.title, t.location)}
-                enquire={waLink(`Hi XTSY! I'm interested in ${t.title}. Dates: … Travellers: …`)}
+                enquire={waLink(`Hi XTSY! I'm interested in ${t.title}. Dates: … Travellers: …`, 'tours')}
               />
             ))}
           </div>
