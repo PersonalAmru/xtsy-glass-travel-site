@@ -1,14 +1,21 @@
-name = "xtsy-prerender"
+name = "xtsy-edge-seo"
 main = "worker.js"
 compatibility_date = "2024-09-01"
 workers_dev = false
 
-# Bind the worker to xtsy.one/* — handles legacy redirects, bot prerender lookups,
+# Binds the edge worker — legacy redirects, bot prerender lookups,
 # and per-route SEO head rewrite at the edge.
 # NOTE: the zone must already be on this Cloudflare account.
+# CANARY STEP. The full patterns are xtsy.one/* and www.xtsy.one/*, but this
+# Worker has never successfully executed in production: it shared the name
+# xtsy-prerender with the Cloudflare Workers Build connected to this repo, and
+# a build-connected Worker has its active deployment controlled by that
+# pipeline, so wrangler's uploads never went live. Renaming breaks that
+# collision, but the first deploy under the new name is unproven, so it is
+# bound to one unlisted probe path instead of all traffic. Widen to the full
+# patterns only once /__xtsy_worker_probe answers in production.
 routes = [
-  { pattern = "xtsy.one/*", zone_name = "xtsy.one" },
-  { pattern = "www.xtsy.one/*", zone_name = "xtsy.one" },
+  { pattern = "xtsy.one/__xtsy_worker_probe", zone_name = "xtsy.one" },
 ]
 
 # ─── KV namespaces ────────────────────────────────────────────────────────────
