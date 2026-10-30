@@ -38,7 +38,10 @@ async function token(key: { client_email: string; private_key: string }) {
     method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer', assertion: jwt }),
   });
-  if (!res.ok) throw new Error(`token request failed: HTTP ${res.status}`);
+  if (!res.ok) {
+    const body = (await res.text()).slice(0, 400);
+    throw new Error(`token request failed: HTTP ${res.status} ${body}`);
+  }
   return (await res.json()).access_token as string;
 }
 
@@ -89,4 +92,23 @@ async function main() {
   console.log(`clicks ${totals.clicks}, impressions ${totals.impressions}, ${queries.length} queries, ${pages.length} pages`);
 }
 
-main().catch((e) => { console.error(String(e)); process.exit(1); });
+main().catch((e) => {
+  const msg = String(e).replace(/\r?\n/g, ' ').slice(0, 800);
+  console.error(msg);
+  console.log(`::error::Search Console pull failed: ${msg}`);
+  // Point at the likely cause rather than leaving the reader to guess.
+  if (/HTTP 403/.test(msg)) {
+    console.log('::error::403 usually means the service account has not been added to the ' +
+      'Search Console property (Settings -> Users and permissions), or the Search Console API ' +
+      'is not enabled in the Google Cloud project.');
+  }
+  if (/HTTP 40[01]/.test(msg) && /token request/.test(msg)) {
+    console.log('::error::The key itself was rejected. Check GSC_SERVICE_ACCOUNT_JSON holds the ' +
+      'complete JSON file including the BEGIN/END PRIVATE KEY lines and its newlines.');
+  }
+  if (/HTTP 404/.test(msg)) {
+    console.log(`::error::404 means GSC_SITE does not match a property this account can see. ` +
+      `Currently "${SITE}". A URL-prefix property needs GSC_SITE=https://xtsy.one/ instead.`);
+  }
+  process.exit(1);
+});
