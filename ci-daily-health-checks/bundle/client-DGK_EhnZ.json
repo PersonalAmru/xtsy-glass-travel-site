@@ -1,0 +1,140 @@
+{
+  "results": [
+    {
+      "bundleName": ".output/public/assets/client-DGK_EhnZ.js",
+      "totalBytes": 215356,
+      "mappedBytes": 215123,
+      "unmappedBytes": 223,
+      "eolBytes": 10,
+      "sourceMapCommentBytes": 0,
+      "files": {
+        "../../../node_modules/@supabase/supabase-js/dist/tracingRegistry.mjs": {
+          "size": 98
+        },
+        "../../../node_modules/tslib/tslib.es6.mjs": {
+          "size": 1038
+        },
+        "../../../node_modules/@supabase/functions-js/dist/module/helper.js": {
+          "size": 47
+        },
+        "../../../node_modules/@supabase/functions-js/dist/module/types.js": {
+          "size": 902
+        },
+        "../../../node_modules/@supabase/functions-js/dist/module/FunctionsClient.js": {
+          "size": 1894
+        },
+        "../../../node_modules/@supabase/postgrest-js/dist/index.mjs": {
+          "size": 16404
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/lib/websocket-factory.js": {
+          "size": 1834
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/lib/constants.js": {
+          "size": 361
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/lib/serializer.js": {
+          "size": 3280
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/lib/transformers.js": {
+          "size": 1967
+        },
+        "../../../node_modules/@supabase/phoenix/priv/static/phoenix.mjs": {
+          "size": 25657
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/phoenix/presenceAdapter.js": {
+          "size": 1064
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/RealtimePresence.js": {
+          "size": 227
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/lib/normalizeChannelError.js": {
+          "size": 369
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/phoenix/channelAdapter.js": {
+          "size": 1574
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/RealtimePostgresFilterBuilder.js": {
+          "size": 1165
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js": {
+          "size": 8768
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/phoenix/socketAdapter.js": {
+          "size": 1621
+        },
+        "../../../node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js": {
+          "size": 8462
+        },
+        "../../../node_modules/iceberg-js/dist/index.mjs": {
+          "size": 5365
+        },
+        "../../../node_modules/@supabase/storage-js/dist/index.mjs": {
+          "size": 22780
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/version.js": {
+          "size": 13
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/constants.js": {
+          "size": 298
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/errors.js": {
+          "size": 2565
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/base64url.js": {
+          "size": 2212
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/helpers.js": {
+          "size": 7117
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/fetch.js": {
+          "size": 3107
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/types.js": {
+          "size": 35
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js": {
+          "size": 7242
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/local-storage.js": {
+          "size": 100
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/locks.js": {
+          "size": 187
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/polyfills.js": {
+          "size": 259
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/web3/ethereum.js": {
+          "size": 1809
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/webauthn.errors.js": {
+          "size": 4072
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/lib/webauthn.js": {
+          "size": 7800
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/GoTrueClient.js": {
+          "size": 62447
+        },
+        "../../../node_modules/@supabase/auth-js/dist/module/AuthClient.js": {
+          "size": 10
+        },
+        "../../../node_modules/@supabase/supabase-js/dist/index.mjs": {
+          "size": 10577
+        },
+        "../../../src/integrations/supabase/client.ts": {
+          "size": 396
+        },
+        "[sourceMappingURL]": {
+          "size": 0
+        },
+        "[unmapped]": {
+          "size": 223
+        },
+        "[EOLs]": {
+          "size": 10
+        }
+      }
+    }
+  ]
+}
