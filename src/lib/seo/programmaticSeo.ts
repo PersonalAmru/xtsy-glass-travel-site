@@ -177,7 +177,7 @@ function mainEntity(page: SEOPageData, url: string, hero: Hero): Record<string, 
     };
   }
   if (page.schemaType === 'TouristTrip') return { ...base, provider: { '@id': `${SITE}/#organization` }, touristType: CATEGORY_LABELS[page.category] };
-  if (page.schemaType === 'Restaurant') return { ...base, '@id': `${SITE}/tab-bistro#restaurant`, name: 'TAB Bistro by XTSY', servesCuisine: ['North Indian', 'Indo-Chinese', 'Thai', 'Continental', 'Northeast Indian'], telephone: '+91-8837317070', address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road, New Shillong Township', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' } };
+  if (page.schemaType === 'Restaurant') return { ...base, '@id': `${SITE}/tab-bistro#restaurant`, name: 'TAB Bistro by XTSY', servesCuisine: ['North Indian', 'Tandoor', 'Indo-Chinese', 'Biryani', 'South Indian', 'Pasta'], telephone: '+91-8837317070', address: { '@type': 'PostalAddress', streetAddress: 'Mawdiangdiang Road, New Shillong Township', addressLocality: 'Shillong', addressRegion: 'Meghalaya', postalCode: '793018', addressCountry: 'IN' } };
   if (page.schemaType === 'TouristAttraction') {
     const p = placesOf(page)[0];
     return { ...base, ...(p ? { geo: { '@type': 'GeoCoordinates', latitude: p.lat, longitude: p.lng } } : {}), isAccessibleForFree: true, address: { '@type': 'PostalAddress', addressRegion: 'Meghalaya', addressCountry: 'IN' } };

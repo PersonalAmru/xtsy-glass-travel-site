@@ -18,15 +18,17 @@ export const TAB_BISTRO_INSTAGRAM = "https://www.instagram.com/tabbistrobyxtsy";
 export const TAB_BISTRO_GOOGLE = "https://g.page/tabbistrobyxtsy";
 export const TAB_BISTRO_SAME_AS = [TAB_BISTRO_INSTAGRAM, TAB_BISTRO_GOOGLE];
 
+// Only cuisines the kitchen actually serves. Checked against tabBistroMenu.ts:
+// there is no Thai, no Khasi/Northeast cooking (a deliberate decision, so as not
+// to compete with local eateries) and no fish, so "Seafood" overstated four prawn
+// dishes. Google publishes this list, so an aspirational entry is a false claim.
 export const TAB_BISTRO_CUISINES = [
   "North Indian",
   "Tandoor",
   "Indo-Chinese",
-  "Thai",
-  "Continental",
-  "Italian",
-  "Seafood",
-  "Northeast Indian",
+  "Biryani",
+  "South Indian",
+  "Pasta",
   "Cafe",
   "Breakfast",
 ];

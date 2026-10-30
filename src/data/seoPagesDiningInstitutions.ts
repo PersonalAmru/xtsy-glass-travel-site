@@ -10,8 +10,9 @@
 // Two rules were applied when writing these pages:
 //
 //  1. Only dishes that are actually on the printed menu are named. The older
-//     dining pages advertise pizza, momos, burgers, sizzlers and Khasi food,
-//     none of which TAB Bistro serves; that mistake is not repeated here.
+//     dining pages advertised food the kitchen has never served; those were
+//     withdrawn on 30 Oct 2026 and the rest corrected against tabBistroMenu.ts.
+//     tests/diningClaims.test.ts now enforces this across every restaurant page.
 //  2. The lunch position is stated honestly. The kitchen is closed for walk-in
 //     lunch and takes preorders only, which is exactly what a student or a
 //     hospital attendant needs to know before walking over.

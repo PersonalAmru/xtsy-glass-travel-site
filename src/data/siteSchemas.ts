@@ -64,7 +64,7 @@ export const RESTAURANT_SCHEMA: Record<string, unknown> = {
   name: "TAB Bistro by XTSY",
   url: "https://xtsy.one/tab-bistro",
   image: "https://xtsy.one/lovable-uploads/160f683c-a41c-41fd-8bdb-700d74a7e027.png",
-  servesCuisine: ["Indian", "Continental", "Khasi", "Cafe"],
+  servesCuisine: ["North Indian", "Tandoor", "Indo-Chinese", "Biryani", "South Indian", "Cafe"],
   priceRange: "₹₹",
   telephone: "+91-8837317070",
   address: {
