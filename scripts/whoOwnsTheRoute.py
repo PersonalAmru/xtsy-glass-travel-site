@@ -114,6 +114,8 @@ def main():
                 cf_ray = h.get("cf-ray")
                 server = h.get("server", "")
                 rendered = h.get("x-rendered-by", "")
+                cache = h.get("cf-cache-status", "")
+                age = h.get("age", "")
             if cf_ray:
                 note(
                     f"{host}: PROXIED by Cloudflare (server={server}), "
@@ -124,6 +126,20 @@ def main():
                         f"{host} is proxied and the route points at xtsy-prerender, "
                         "but the Worker set no header - it is not executing"
                     )
+                # Whether the HTML is a cached copy decides whether a fresh
+                # origin build is even reachable. A publish cannot show up
+                # behind a HIT, so this distinguishes "not deployed" from
+                # "deployed but not being served".
+                if cache:
+                    note(f"{host}: cf-cache-status={cache}" + (f", age={age}s" if age else ""))
+                    if cache.upper() in ("HIT", "STALE", "UPDATING", "REVALIDATED"):
+                        warn(
+                            f"{host} served its HTML from the Cloudflare cache "
+                            f"({cache}" + (f", age {age}s" if age else "") + ") - a new "
+                            "origin build stays invisible until that cache is purged"
+                        )
+                else:
+                    note(f"{host}: no cf-cache-status header (HTML not cached by this zone)")
             else:
                 warn(
                     f"{host}: NOT proxied by Cloudflare (no cf-ray, server={server or 'unknown'}) "
@@ -135,6 +151,27 @@ def main():
     if not ACCOUNT:
         warn("CLOUDFLARE_ACCOUNT_ID not set; cannot list Worker custom domains")
         return 0
+
+    # A Cloudflare Pages project with a custom domain on this hostname outranks
+    # a Worker route for it, so the Worker never runs however correct the route
+    # looks. Nothing else in this script would reveal that.
+    projects, err = api(f"accounts/{ACCOUNT}/pages/projects")
+    if err:
+        warn(f"could not list Pages projects (token may lack Pages:Read): {err}")
+    elif not projects:
+        note("no Cloudflare PAGES projects on this account")
+    else:
+        for p in projects:
+            name = p.get("name")
+            doms = [d for d in (p.get("domains") or [])]
+            note(f"pages project {name} -> domains {', '.join(doms) if doms else '(none)'}")
+            clash = [d for d in doms if d in (ZONE_NAME, f"www.{ZONE_NAME}")]
+            if clash:
+                warn(
+                    f"Pages project {name} claims {', '.join(clash)} - a Pages custom "
+                    "domain takes precedence over a Worker route on the same hostname, "
+                    "which would stop the Worker executing however correct its route is"
+                )
 
     domains, err = api(f"accounts/{ACCOUNT}/workers/domains")
     if err:
