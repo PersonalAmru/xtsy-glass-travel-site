@@ -69,7 +69,7 @@ export default function DestinationV2() {
     { q: `How do I reach ${destination.name} from Shillong?`, a: destination.howToReach },
     { q: `What are the top things to do at ${destination.name}?`, a: `Popular things to do at ${destination.name} include ${topThings}. ${destination.shortDescription}` },
     ...(destination.extraFaqs ?? []),
-    { q: `Where can I stay near ${destination.name}?`, a: `XTSY Travellers Hostel in New Shillong Township is an affordable base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ${inr(lowestDormPrice())}/night and curated Meghalaya tours that cover the region's top sights. Outside New Shillong, XTSY arranges stays and transport through trusted travel partners.` },
+    { q: `Where can I stay near ${destination.name}?`, a: `XTSY Travellers Hostel in New Shillong Township is a well-placed base for exploring ${destination.name} and the rest of ${destination.region}, with dorms from ${inr(lowestDormPrice())}/night and curated Meghalaya tours that cover the region's top sights. Outside New Shillong, XTSY arranges stays and transport through trusted travel partners.` },
   ].map((f) => ({ q: f.q, a: livePrice(f.a) }));
 
   const faqSchema = {

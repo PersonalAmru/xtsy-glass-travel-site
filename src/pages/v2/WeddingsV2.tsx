@@ -10,7 +10,7 @@ import { Photo, waLink } from '@/components/v2/primitives';
 
 const FAQS = [
   { q: 'Can I have a destination wedding in Shillong?', a: 'Yes! Shillong is emerging as a top destination wedding location in India. XTSY offers intimate wedding packages with mountain backdrops, forest dining by TAB Bistro, guest accommodation, and event coordination for up to 100 guests.' },
-  { q: 'How much does a destination wedding in Meghalaya cost?', a: 'A destination wedding at XTSY Shillong starts from ₹3-5 lakhs for an intimate gathering of 30-50 guests, including venue, accommodation, catering, and basic decor. Custom packages are available for larger events. Compared to Goa or Rajasthan, a Meghalaya destination wedding typically costs 30-40% less for a comparable experience.' },
+  { q: 'How much does a destination wedding in Meghalaya cost?', a: 'A destination wedding at XTSY Shillong starts from ₹6 lakh, covering the venue, guest accommodation, TAB Bistro catering, décor and day-of coordination. A full celebration for 30–50 guests typically sits in the ₹8 lakh range, and larger multi-day events are quoted individually. Every wedding is planned around your guest list and the season rather than sold from a fixed package.' },
   { q: 'What is the best time for a destination wedding in Meghalaya?', a: 'October to April is the ideal season for a Meghalaya destination wedding — clear skies, golden light, and pleasant 15-22°C weather perfect for open-air ceremonies and photography. We recommend avoiding the June-September monsoon for outdoor events, though our covered spaces can host year-round.' },
   { q: 'How many guests can XTSY host for a wedding?', a: 'XTSY specialises in intimate weddings of 20-100 guests. With on-site dorms, private rooms, and Experience by XTSY for the couple, most of your guests can stay on-property — making it a true multi-day wedding experience rather than a single-day event.' },
   { q: 'Does XTSY offer event catering in Shillong?', a: 'Yes. TAB Bistro by XTSY provides full-service catering for weddings, corporate events, birthday parties, and private gatherings. Multi-cuisine menu including Indian, Continental, Chinese, and Northeast specialties.' },
@@ -74,8 +74,8 @@ export default function WeddingsV2() {
           <H2 eyebrow="Starting points · fully customisable">Wedding packages</H2>
           <PriceCards
             cards={[
-              { t: 'Intimate elopement', price: 'From ₹1.5 lakh', per: '2–15 guests', text: 'Just the two of you (and your closest few). Experience by XTSY stay, private ceremony setup, couple photography and a curated dinner.', cta: <Btn to="#enquire" kind="outline" className="w-full">Enquire</Btn> },
-              { t: 'Classic mountain wedding', price: 'From ₹3–5 lakh', per: '30–50 guests', text: 'Open-air ceremony, TAB Bistro catering, guest accommodation, décor and day-of coordination.', hot: true, badge: 'MOST POPULAR', cta: <Btn to="#enquire" className="w-full">Enquire</Btn> },
+              { t: 'Intimate elopement', price: 'From ₹6 lakh', per: '2–15 guests', text: 'Just the two of you (and your closest few). Experience by XTSY stay, private ceremony setup, couple photography and a curated dinner.', cta: <Btn to="#enquire" kind="outline" className="w-full">Enquire</Btn> },
+              { t: 'Classic mountain wedding', price: 'From ₹8 lakh', per: '30–50 guests', text: 'Open-air ceremony, TAB Bistro catering, guest accommodation, décor and day-of coordination.', hot: true, badge: 'MOST POPULAR', cta: <Btn to="#enquire" className="w-full">Enquire</Btn> },
               { t: 'Grand celebration', price: 'Custom quote', per: '50–100 guests', text: 'Multi-day mehendi, sangeet, ceremony and reception across the property, full event production and stays for all guests.', cta: <Btn to="#enquire" kind="outline" className="w-full">Enquire</Btn> },
             ]}
           />
