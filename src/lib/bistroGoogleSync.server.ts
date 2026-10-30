@@ -5,6 +5,20 @@ const LOCATION = 'locations/1512849057338858758';
 const GATEWAY_URL = 'https://connector-gateway.lovable.dev/google_business_profile/business_information/v1';
 
 export async function handleBistroGoogleSync(request: Request): Promise<Response> {
+  // Switched off by the owner on 30 October 2026.
+  //
+  // This endpoint writes TAB Bistro's opening hours and its listing description to the LIVE
+  // Google Business Profile. That profile is maintained by hand, and a wrong write is visible
+  // to every customer who looks the restaurant up, so it must not happen on a timer: it was
+  // added as an "hourly background sync" and the trigger lives outside this repository, where
+  // it cannot be reviewed.
+  //
+  // The refusal is first, before the shared secret is read, before the lease is claimed and
+  // before any Google call, so an hourly caller changes nothing at all. To run it again,
+  // deliberately and once, set BISTRO_GOOGLE_SYNC_ENABLED=true; leaving it unset is off.
+  if (process.env['BISTRO_GOOGLE_SYNC_ENABLED'] !== 'true')
+    return Response.json({ status: 'disabled', detail: 'Google Business Profile sync is switched off.' }, { status: 503 });
+
   const secret = process.env['BISTRO_GOOGLE_SYNC_SECRET'];
   const supplied = request.headers.get('authorization')?.replace(/^Bearer /, '') ?? '';
   if (!secret) return Response.json({ error: 'Sync credentials unavailable' }, { status: 503 });
