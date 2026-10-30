@@ -2,13 +2,16 @@ import { describe, expect, it, vi } from 'vitest';
 import { buildBistroGoogleFields, matchingBistroGoogleFields, reconcileBistroGoogleProfile } from '../src/lib/bistroGoogleProfile';
 
 describe('Bistro Google sync rules', () => {
-  it('publishes 8:45–11:45 breakfast and 16:30–23:00 dinner on all seven days, never lunch hours', () => {
+  // These are deliberate literals, not derived from tabBistroHours.ts. The point of this test is
+  // to pin the exact hours that would reach the live Google listing, so changing the hours has to
+  // be a conscious two-file edit rather than something that rides along with a copy change.
+  it('publishes 8:45–12:00 breakfast and 17:00–23:00 dinner on all seven days, never lunch hours', () => {
     const periods = buildBistroGoogleFields().regularHours?.periods ?? [];
     expect(periods).toHaveLength(14);
     for (const day of ['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY']) {
       expect(periods.filter(p => p.openDay === day).map(p => [p.openTime, p.closeTime])).toEqual([
-        [{ hours: 8, minutes: 45 }, { hours: 11, minutes: 45 }],
-        [{ hours: 16, minutes: 30 }, { hours: 23, minutes: 0 }],
+        [{ hours: 8, minutes: 45 }, { hours: 12, minutes: 0 }],
+        [{ hours: 17, minutes: 0 }, { hours: 23, minutes: 0 }],
       ]);
     }
   });

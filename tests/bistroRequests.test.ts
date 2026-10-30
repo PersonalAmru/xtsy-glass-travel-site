@@ -20,6 +20,9 @@ describe('TAB Bistro lunch preorder requests', () => {
   });
   it('keeps breakfast and dinner table requests available', () => {
     expect(isValidBistroRequestTime('table', '08:45', tableTimes)).toBe(true);
-    expect(isValidBistroRequestTime('table', '16:30', tableTimes)).toBe(true);
+    expect(isValidBistroRequestTime('table', '17:00', tableTimes)).toBe(true);
+  });
+  it('no longer offers 16:30, which was the pre-correction dinner opening', () => {
+    expect(isValidBistroRequestTime('table', '16:30', tableTimes)).toBe(false);
   });
 });
