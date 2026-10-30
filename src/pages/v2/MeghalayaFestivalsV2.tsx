@@ -111,7 +111,7 @@ export default function MeghalayaFestivalsV2() {
           <li>Many festivals are religious ceremonies first. Dress modestly, follow the organisers' instructions and ask before photographing people.</li>
           <li>Stays near festival grounds fill up early; book as soon as dates are announced.</li>
           <li>Roads around festival venues get crowded. Leave early and carry cash.</li>
-          <li>Travelling solo? The <Link to="/tours/meghalaya-group-trip-6n-7d" className="font-bold text-xt-crimson underline underline-offset-4">Saturday Meghalaya group trip</Link> runs from October to May, and the <Link to="/best-time-to-visit-meghalaya" className="font-bold text-xt-crimson underline underline-offset-4">best time to visit guide</Link> covers the weather month by month.</li>
+          <li>The <Link to="/best-time-to-visit-meghalaya" className="font-bold text-xt-crimson underline underline-offset-4">best time to visit guide</Link> covers the weather month by month; confirm festival dates before planning your trip.</li>
         </ul>
       </section>
 

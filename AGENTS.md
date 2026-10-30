@@ -1,5 +1,7 @@
 # Architecture rules
 
+- Retired tour offers must leave the shared catalogue and sitemap and redirect before metadata loading; this prevents stale offer schemas and indexed duplicate pages.
+
 - Resolve booking catalogue labels and calculate GST-inclusive quotes through the shared booking quote utilities; this keeps displayed, persisted and WhatsApp amounts consistent without bypassing server validation.
 - Keep shared hostel policies in a browser-safe data module and reuse them in guest information pages; this prevents policy copy from drifting between pages.
 - Extend the existing `/faq` page rather than creating a duplicate hostel FAQ URL; public safety rules have their own route and route-owned metadata.

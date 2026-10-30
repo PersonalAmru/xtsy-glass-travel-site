@@ -6,18 +6,18 @@
  */
 export type PageFaq = { q: string; a: string };
 
-const GROUP_TRIP = 'XTSY runs a 6-night Meghalaya group trip that departs every Saturday from October to May, with pick-up in Guwahati. You can book a single seat; there is no minimum group size.';
+const TOUR_OPTIONS = 'XTSY offers private Meghalaya itineraries with pick-up in Guwahati. Share your dates and group size with the desk for availability and a quote; no shared departure is guaranteed.';
 
 export const PAGE_FAQS: Record<string, PageFaq[]> = {
   '/5-day-meghalaya-itinerary': [
     { q: 'Is 5 days enough for Meghalaya?', a: 'Five days covers the classic circuit: Shillong, Sohra (Cherrapunjee), Dawki and Mawlynnong, plus one root-bridge trek. Add a day or two for the Jaintia Hills or a slower pace.' },
     { q: 'Where should I base myself?', a: 'Shillong works as a base for most day trips. From XTSY Travellers Hostel in New Shillong Township, Sohra is about 2 hours by road and Dawki about 2.5 hours. For the Double Decker root-bridge trek, spend a night near Tyrna or Sohra so you can start early.' },
     { q: 'How do I get from Guwahati to Shillong?', a: 'By road it takes about 3 hours from Guwahati city and about 3¼ hours from Guwahati airport. Shared taxis run all day, or the XTSY desk can arrange a cab.' },
-    { q: 'Can I do this itinerary with a group?', a: GROUP_TRIP },
+    { q: 'Can I do this itinerary with a group?', a: TOUR_OPTIONS },
     { q: 'Where should I base myself for a 5-day Meghalaya trip?', a: 'Shillong works as the main base, with one night near Sohra or Shnongpdeng so you are not driving back late. XTSY Travellers Hostel is in New Shillong Township, which gives faster morning starts towards Sohra and Dawki than central Shillong does.' },
     { q: 'How much does a 5-day Meghalaya trip cost?', a: 'Budget travellers can do it on roughly \\u20b91,500-2,500 a day including a dorm bed, shared transport and meals. XTSY\'s fixed 4-night, 5-day Shillong and Meghalaya package is \\u20b915,500 per person for a group of four or more, including stays, private transport, a driver-guide and daily breakfast.' },
     { q: 'Should I hire a car or use shared taxis?', a: 'A private car costs more but saves hours every day, because shared taxis run on their own schedules and rarely reach viewpoints. For a five-day loop with fixed stops, a private vehicle or a package is usually better value than piecing together shared transport.' },
-    { q: 'Can I do this itinerary solo?', a: 'Yes. Solo travellers can stay in dorms and join XTSY\'s Saturday group departure, a 6-night, 7-day Meghalaya trip at \\u20b918,500 per person with no minimum group size, so you share transport and costs with other travellers.' },
+    { q: 'Can I do this itinerary solo?', a: 'Yes. Stay in dorms and use shared taxis on main routes, or request a private vehicle for remote stops. Confirm transport availability and costs before travelling.' },
   ],
   '/best-time-to-visit-meghalaya': [
     { q: 'What is the best month to visit Meghalaya?', a: 'October to April is the most comfortable time: clearer skies, cooler days and good road conditions. November to April is also when the Umngot River at Dawki is clearest.' },
@@ -28,13 +28,13 @@ export const PAGE_FAQS: Record<string, PageFaq[]> = {
     { q: 'When is the Umngot River at Dawki clearest?', a: 'November to April. After the monsoon silt settles, the water turns glass-clear and boats appear to float. During and just after heavy rain the river runs brown and boating can be suspended.' },
     { q: 'What is the weather like in Shillong through the year?', a: 'Shillong sits at about 1,500 m, so it is mild year-round: roughly 15-24\\u00b0C in summer and 4-15\\u00b0C in winter, with cold nights from December to February. Carry a jacket in every season and a rain layer from May to September.' },
     { q: 'Which months are cheapest to travel in Meghalaya?', a: 'June to September, the monsoon, is the low season, and stays and cabs are at their cheapest. At XTSY, dorm beds start at \\u20b9399 a night all year, with a women-only dorm at \\u20b9599 and the King Double at \\u20b92,399.' },
-    { q: 'How many days do you need for Meghalaya?', a: 'Five days covers Shillong, Sohra and Dawki comfortably. Seven days adds the Double Decker root-bridge trek and the Jaintia Hills without rushing. XTSY runs a 6-night, 7-day Meghalaya group trip that departs every Saturday from October to May at \\u20b918,500 per person, which a solo traveller can join.' },
+    { q: 'How many days do you need for Meghalaya?', a: 'Five days covers Shillong, Sohra and Dawki comfortably. Seven days adds the Double Decker root-bridge trek and the Jaintia Hills without rushing.' },
   ],
   '/budget-trip-to-meghalaya': [
     { q: 'What is the cheapest place to stay in Shillong?', a: 'At XTSY Travellers Hostel, an 8-bed dorm bed costs ₹399 a night and a 6-bed dorm ₹499, all inclusive. A 4-bed women-only dorm is ₹599.' },
     { q: 'How can I save on transport?', a: 'Use shared taxis between Guwahati and Shillong and for the main routes, travel in a group to split a cab for day trips, and plan Sohra and Dawki on separate days to avoid long return drives.' },
     { q: 'Is it cheaper to book the hostel direct?', a: 'Yes. Booking sites add their commission to the price you see; booking on xtsy.one gives you the base rate.' },
-    { q: 'Is there a budget group trip?', a: GROUP_TRIP },
+    { q: 'Is there a budget group trip?', a: TOUR_OPTIONS },
   ],
   '/hidden-places-in-meghalaya': [
     { q: 'How do I reach offbeat places in Meghalaya?', a: 'Most hidden spots have little or no public transport. Hire a cab or a scooter for the day, start early, and ask locally about road and trail conditions.' },
@@ -60,24 +60,24 @@ export const PAGE_FAQS: Record<string, PageFaq[]> = {
   ],
   '/meghalaya-tour-packages': [
     { q: 'How many days do I need for Meghalaya?', a: 'Five to seven days covers Shillong, Sohra, Dawki, Mawlynnong and a root-bridge trek. Shorter trips work if you focus on Shillong and Sohra.' },
-    { q: 'Can I join a group if I am travelling alone?', a: GROUP_TRIP },
+    { q: 'Can I join a group if I am travelling alone?', a: TOUR_OPTIONS },
     { q: 'Where do the tours start?', a: 'XTSY tours pick up and drop in Guwahati, at the airport or railway station.' },
     { q: 'Are the tour prices fixed?', a: 'Each package lists a fixed per-person price on its page. Tour bookings are non-refundable once confirmed.' },
   ],
   '/shillong-tour-package': [
     { q: 'What can I see in 3 days around Shillong?', a: 'Umiam Lake, Shillong Peak, Elephant Falls, Laitlum Canyons and Ward\'s Lake, with a day trip to Sohra (Cherrapunjee) for waterfalls and caves.' },
     { q: 'How far is XTSY from Police Bazaar?', a: 'About 30 minutes by road. XTSY is in New Shillong Township, near IIM and NIFT Shillong.' },
-    { q: 'Can I extend the trip?', a: 'Yes. Add Dawki and Mawlynnong for a fourth day, or join the weekly 6-night Meghalaya group trip that departs every Saturday from October to May.' },
+    { q: 'Can I extend the trip?', a: 'Yes. Add Dawki and Mawlynnong for a fourth day, or ask the desk about a longer private Meghalaya itinerary for your dates.' },
     { q: 'What does the Shillong tour package include?', a: 'The 3-day Shillong package covers your stay at XTSY Travellers Hostel, transport for sightseeing, and the main Shillong circuit: Umiam Lake, Shillong Peak, Elephant Falls and Laitlum Canyons, with dinner at TAB Bistro. Flights and trains to Guwahati are not included.' },
     { q: 'How much is a Shillong tour package per person?', a: 'The 3-day Shillong tour starts at \\u20b97,999 per person. Longer Meghalaya packages that add Sohra, Dawki and Mawlynnong start at \\u20b915,500 per person for four or more travellers.' },
     { q: 'How do I reach Shillong for the tour?', a: 'Fly or take a train to Guwahati, then drive about 3 to 3.5 hours to Shillong. Shared taxis run all day from Guwahati\'s Paltan Bazar, and XTSY can arrange a private cab. Shillong also has a small airport at Umroi with limited flights.' },
     { q: 'Can the Shillong package be customised?', a: 'Yes. Dates, stays and the pace can be changed, and the package can be extended into Sohra, Dawki or the Jaintia Hills. Message the XTSY desk with your dates and group size.' },
-    { q: 'Is this package suitable for solo travellers?', a: 'It can be run for one person as a private trip, which costs more per head. Solo travellers who want to share costs can join XTSY\'s fixed Saturday Meghalaya group departure instead, at \\u20b918,500 per person for 6 nights and 7 days.' },
+    { q: 'Is this package suitable for solo travellers?', a: 'It can be run for one person as a private trip, which costs more per head. Ask the desk for a quote for your dates before making arrangements.' },
   ],
   '/meghalaya-photo-gallery': [
     { q: 'Where are these photos from?', a: 'From featured places across Meghalaya: Shillong, Sohra (Cherrapunjee), Dawki, Mawlynnong and the Khasi and Jaintia Hills. Each place is listed under "Where these photos were taken".' },
     { q: 'When is the best light for photography?', a: 'October to December gives the clearest skies. In the monsoon, shoot waterfalls early before mist rolls in.' },
-    { q: 'Can I visit these places on a tour?', a: GROUP_TRIP },
+    { q: 'Can I visit these places on a tour?', a: TOUR_OPTIONS },
   ],
   '/destinations': [
     { q: 'Which places should I visit first in Meghalaya?', a: 'Start with Shillong, Sohra (Cherrapunjee) and Dawki. Together they cover waterfalls, caves, living root bridges and the clear Umngot River.' },
@@ -89,7 +89,7 @@ export const PAGE_FAQS: Record<string, PageFaq[]> = {
     { q: 'Which is cheaper?', a: 'XTSY publishes all-inclusive dorm prices from ₹399 a night. Zostel does not publish its Shillong dorm prices on its own website, so check its listing for your dates.' },
     { q: 'Which has a women-only dorm?', a: 'XTSY has a 4-bed women-only dorm at ₹599 a night.' },
     { q: 'Which is better for groups and pets?', a: 'XTSY takes groups of 6 to 60 and welcomes cats and birds (dogs depending on breed and size). Zostel Shillong lists an 18+ rule, groups of up to 6 and no pets.' },
-    { q: 'Do both run group trips?', a: 'Yes. Zostel sells fixed-date Zo Trips. ' + GROUP_TRIP },
+    { q: 'Does XTSY arrange trips for groups?', a: 'Yes. XTSY offers private itineraries for your group. Check each package for its minimum group size and ask the desk to confirm availability for your dates.' },
   ],
   '/meghalaya-festivals': [
     { q: 'What is the most famous festival in Meghalaya?', a: 'Wangala, the Garo 100 Drums Festival near Tura, and Shad Suk Mynsiem, the Khasi spring dance in Shillong, are the best known. Behdienkhlam in Jowai is the biggest Pnar festival.' },
