@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Helmet } from '@/lib/seo/helmet';
 import SEOHead from '@/components/SEOHead';
 import { Link } from '@/lib/router-compat';
-import { menuSections } from '@/data/tabBistroMenu';
+import { menuSections, MENU_GST_NOTE } from '@/data/tabBistroMenu';
 import { tabBistroFaqs } from '@/components/tab-bistro/TabBistroFAQ';
 import { useRestaurantReviews } from '@/hooks/useRestaurantReviews';
 import { buildRestaurantSchema, buildMenuSchema } from '@/data/tabBistroSchema';
@@ -96,10 +96,11 @@ export default function BistroV2() {
                     </li>
                   ))}
                 </ul>
+                {c.note && <p className="m-0 text-[13px] text-xt-mute">{c.note}</p>}
               </div>
             ))}
           </div>
-          <p className="m-0 text-[13px] text-xt-mute">Prices in INR from the official TAB Bistro menu. Taxes as applicable.</p>
+          <p className="m-0 text-[13px] text-xt-mute">Prices in INR from the official TAB Bistro menu. {MENU_GST_NOTE}</p>
         </Section>
 
         <Section id="book-a-table" className="scroll-mt-24 pt-0">
