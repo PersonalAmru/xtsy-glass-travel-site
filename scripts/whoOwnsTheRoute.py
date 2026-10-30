@@ -84,6 +84,28 @@ def main():
                 script = r.get("script") or "(none)"
                 note(f"route {pattern} -> worker {script}")
 
+        # What the hostname actually resolves to decides everything above it.
+        # A CNAME to another provider that fronts its own Cloudflare answers
+        # with server=cloudflare while this zone never sees the request, which
+        # makes every route here inert and is indistinguishable from the
+        # symptoms of a broken Worker. Needs Zone:DNS:Read on the token.
+        records, err = api(f"zones/{zid}/dns_records?name={ZONE_NAME}")
+        if err:
+            warn(f"could not read DNS records (token likely lacks Zone:DNS:Read): {err}")
+        elif not records:
+            warn(f"no DNS record for {ZONE_NAME} in this zone")
+        else:
+            for rec in records:
+                note(
+                    f"dns {rec.get('name')} {rec.get('type')} -> {rec.get('content')} "
+                    f"(proxied={rec.get('proxied')})"
+                )
+                if rec.get("type") == "CNAME" and not rec.get("proxied"):
+                    warn(
+                        f"{ZONE_NAME} is an unproxied CNAME to {rec.get('content')} - "
+                        "this zone never sees the traffic and its Worker routes cannot fire"
+                    )
+
     # Whether Cloudflare proxies this hostname needs no API permission: a
     # proxied response always carries cf-ray. Absent cf-ray means the record is
     # "DNS only", the edge never sees the request, and the Worker route above is
