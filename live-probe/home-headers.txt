@@ -1,0 +1,18 @@
+HTTP/2 200 
+date: Fri, 30 Oct 2026 10:11:04 GMT
+content-type: text/html; charset=utf-8
+cache-control: no-cache, must-revalidate, max-age=0
+link: </img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-images-8-480.avif 480w, /img/o/xtsy-property-images-8-640.avif 640w, /img/o/xtsy-property-images-8-828.avif 828w, /img/o/xtsy-property-images-8-1280.avif 1280w, /img/o/xtsy-property-images-8-1920.avif 1920w"; imagesizes="100vw"; media="(min-width: 768px)"; type="image/avif", </img/o/xtsy-property-images-8-portrait-828.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-images-8-portrait-640.avif 640w, /img/o/xtsy-property-images-8-portrait-828.avif 828w, /img/o/xtsy-property-images-8-portrait-1080.avif 1080w"; imagesizes="100vw"; media="(max-width: 767px)"; type="image/avif"
+strict-transport-security: max-age=31536000; includeSubDomains
+content-security-policy: frame-ancestors 'self' https://tagassistant.google.com https://tagmanager.google.com
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-frame-options: SAMEORIGIN
+x-deployment-id: psr2.6ecabd0b-aa3b-48d3-bc0a-41c32d905bf6.1793959864.ILye5jMZqQ5zt0AA6QZtVYhlI3xbLjwRV3ilXbiDSzs
+x-xtsy-cache: HIT
+x-xtsy-edge: put-error:Error: Cache API is not yet supported for dynamically-loaded
+set-cookie: __cf_bm=U7nkLFVDx5JisvUoNrY_iAQvQIzEqhXascJlAaxLsbU-1793355063.9867988-1.0.1.1-3Sl73OaIjENlORTUQk3XK8pswa03jEmfxbUBgtdlameCjdzzoWx.U4XYn4RgL_kHZJk4rNKa37FPTZpBmZZGu4Puc6aeFBjer5XXcE_F3RIHQBY2rilZyj2jrN3v_bWT; HttpOnly; SameSite=None; Secure; Path=/; Domain=xtsy.one; Expires=Fri, 30 Oct 2026 10:41:04 GMT
+content-encoding: gzip
+server: cloudflare
+cf-ray: a529a23dec87710e-MSP
+

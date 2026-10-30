@@ -1,25 +1,43 @@
 url	try	status	ttfb_s	total_s	bytes	cache-control	cf-cache-status	age	server	x-xtsy-cache	link
-/img/o/xtsy-property-images-8-828.avif	1	200	0.506988	0.508019	33261				cloudflare		
-/img/o/xtsy-property-images-8-828.avif	2	200	0.110374	0.111502	33261				cloudflare		
-/img/o/xtsy-property-images-8-828.avif	3	200	0.389342	0.390039	33261				cloudflare		
-/fonts/manrope-latin.woff2	1	200	0.358935	0.359298	24836				cloudflare		
-/fonts/manrope-latin.woff2	2	200	0.079726	0.080230	24836				cloudflare		
-/fonts/manrope-latin.woff2	3	200	0.294618	0.295443	24836				cloudflare		
-/assets/styles-BzelrVhN.css	1	200	0.344761	0.345360	28971	public, max-age=31536000, immutable			cloudflare		
-/assets/styles-BzelrVhN.css	2	200	0.319388	0.320082	28971	public, max-age=31536000, immutable			cloudflare		
-/assets/styles-BzelrVhN.css	3	200	0.094420	0.095300	28971	public, max-age=31536000, immutable			cloudflare		
-/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif	1	200	0.405937	0.406045	14492				cloudflare		
-/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif	2	200	0.092789	0.093087	14492				cloudflare		
-/lovable-uploads/8059ea95-b64d-4eba-8b12-52e002c59567.avif	3	200	0.086510	0.086635	14492				cloudflare		
-/assets/styles-BzelrVhN.css	1	200	0.085889	0.086719	28879	public, max-age=31536000, immutable			cloudflare		
-/assets/styles-BzelrVhN.css	2	200	0.374533	0.375400	28971	public, max-age=31536000, immutable			cloudflare		
-/assets/styles-BzelrVhN.css	3	200	0.075333	0.076008	28971	public, max-age=31536000, immutable			cloudflare		
-/assets/index-CgwZ-ACd.js	1	200	0.411299	0.422913	132801	public, max-age=31536000, immutable			cloudflare		
-/assets/index-CgwZ-ACd.js	2	200	0.104745	0.116142	132540	public, max-age=31536000, immutable			cloudflare		
-/assets/index-CgwZ-ACd.js	3	200	0.101958	0.112080	132801	public, max-age=31536000, immutable			cloudflare		
-/img/o/xtsy-property-images-8-portrait-828.webp	1	200	0.728255	0.739911	127832				cloudflare		
-/img/o/xtsy-property-images-8-portrait-828.webp	2	200	0.310459	0.323053	127832				cloudflare		
-/img/o/xtsy-property-images-8-portrait-828.webp	3	200	0.271478	0.281543	127832				cloudflare		
-/fonts/manrope-latin.woff2	1	200	0.318373	0.318997	24836				cloudflare		
-/fonts/manrope-latin.woff2	2	200	0.070953	0.071306	24836				cloudflare		
-/fonts/manrope-latin.woff2	3	200	0.287578	0.287988	24836				cloudflare		
+/	1	200	0.265767	0.274174	26199	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
+/	2	200	0.349980	0.351406	25957	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
+/	3	200	0.244187	0.249475	26179	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
+/best-hostel-in-shillong	1	200	1.071122	1.075764	19923	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
+/best-hostel-in-shillong	2	200	0.232828	0.235766	19933	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
+/best-hostel-in-shillong	3	200	0.276574	0.281326	19920	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-property-images-8-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-
+/xtsy-270	1	200	0.274385	0.278878	17720	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsy-270-xtsy270-480.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-270-xtsy270-480.
+/xtsy-270	2	200	0.344976	0.349794	17713	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsy-270-xtsy270-480.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-270-xtsy270-480.
+/xtsy-270	3	200	0.243382	0.246138	17715	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-270-xtsy270-480.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-270-xtsy270-480.
+/tours	1	200	0.288711	0.295349	30331	no-cache, must-revalidate, max-age=0			cloudflare	MISS	
+/tours	2	200	0.246472	0.252312	30160	no-cache, must-revalidate, max-age=0			cloudflare	HIT	
+/tours	3	200	1.376267	1.392539	30215	no-cache, must-revalidate, max-age=0			cloudflare	MISS	
+/tours/5n-6d-tawang-tour	1	200	0.325308	0.328026	19721	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/px/sig-5n-6d-tawang-tour-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/px/sig-5n-6d-taw
+/tours/5n-6d-tawang-tour	2	200	0.180644	0.185476	19596	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/px/sig-5n-6d-tawang-tour-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/px/sig-5n-6d-taw
+/tours/5n-6d-tawang-tour	3	200	0.246555	0.248882	19622	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/px/sig-5n-6d-tawang-tour-1280.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/px/sig-5n-6d-taw
+/living-root-bridges-meghalaya	1	200	0.792643	0.797378	27597	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset=
+/living-root-bridges-meghalaya	2	200	0.602796	0.614695	27434	no-cache, must-revalidate, max-age=0			cloudflare	MISS	</img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset=
+/living-root-bridges-meghalaya	3	200	0.392479	0.396648	27535	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsyvoyage-nongriat-double-decker-root-bridge-736.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset=
+/faq	1	200	0.382916	0.388947	20862	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-property-images-8-480.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-i
+/faq	2	200	0.261619	0.266689	20775	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-property-images-8-480.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-i
+/faq	3	200	0.282505	0.286950	20821	no-cache, must-revalidate, max-age=0			cloudflare	HIT	</img/o/xtsy-property-images-8-480.avif>; rel=preload; as=image; fetchpriority=high; imagesrcset="/img/o/xtsy-property-i
+/book	1	200	0.278496	0.281099	10973	no-cache, must-revalidate, max-age=0			cloudflare		
+/book	2	200	0.096635	0.100543	11004	no-cache, must-revalidate, max-age=0			cloudflare		
+/book	3	200	0.079915	0.082455	10954	no-cache, must-revalidate, max-age=0			cloudflare		
+/guides	1	200	0.297049	0.308366	37494	no-cache, must-revalidate, max-age=0			cloudflare	MISS	
+/guides	2	200	0.289288	0.299207	37414	no-cache, must-revalidate, max-age=0			cloudflare	HIT	
+/guides	3	200	0.247398	0.258570	37510	no-cache, must-revalidate, max-age=0			cloudflare	HIT	
+/destinations/meghalaya/shillong	1	200	0.097574	0.100686	15514	no-cache, must-revalidate, max-age=0			cloudflare	MISS	
+/destinations/meghalaya/shillong	2	200	0.259464	0.262098	15563	no-cache, must-revalidate, max-age=0			cloudflare	MISS	
+/destinations/meghalaya/shillong	3	200	0.292006	0.297995	15589	no-cache, must-revalidate, max-age=0			cloudflare	MISS	
+/assets/styles-Bb_Zrg18.css	1	200	0.346075	0.346779	29463	public, max-age=31536000, immutable			cloudflare		
+/assets/styles-Bb_Zrg18.css	2	200	0.323086	0.323780	29463	public, max-age=31536000, immutable			cloudflare		
+/assets/styles-Bb_Zrg18.css	3	200	0.092454	0.092661	29463	public, max-age=31536000, immutable			cloudflare		
+/assets/index-DlLgkwxw.js	1	200	0.459625	0.467722	133905	public, max-age=31536000, immutable			cloudflare		
+/assets/index-DlLgkwxw.js	2	200	0.371512	0.402010	133650	public, max-age=31536000, immutable			cloudflare		
+/assets/index-DlLgkwxw.js	3	200	0.336199	0.343421	133905	public, max-age=31536000, immutable			cloudflare		
+/img/o/xtsy-property-images-8-portrait-828.webp	1	200	0.472055	0.479197	127832				cloudflare		
+/img/o/xtsy-property-images-8-portrait-828.webp	2	200	0.261260	0.269236	127832				cloudflare		
+/img/o/xtsy-property-images-8-portrait-828.webp	3	200	0.089925	0.097058	127832				cloudflare		
+/fonts/manrope-latin.woff2	1	200	0.705921	0.706192	24836				cloudflare		
+/fonts/manrope-latin.woff2	2	200	0.245913	0.246317	24836				cloudflare		
+/fonts/manrope-latin.woff2	3	200	0.072713	0.073464	24836				cloudflare		
