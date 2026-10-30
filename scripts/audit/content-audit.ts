@@ -267,6 +267,14 @@ async function main() {
   }
   if (serious.length === 0) {
     console.log('::notice::No price, policy, location or rating discrepancies found.');
+  } else if (process.env.FAIL_ON_SERIOUS === '1') {
+    // The live-content-audit runs this daily against production. A wrong price
+    // or a misstated policy on the live site is worth interrupting someone for,
+    // so that run opts in to failing. The in-build run does not: it reports
+    // against a preview and would block unrelated PRs.
+    const pages = serious.reduce((n, [, r]) => n + r.pages, 0);
+    console.log(`::error::${pages} page(s) carry a price, policy, location or rating discrepancy.`);
+    process.exit(1);
   }
 }
 main();
