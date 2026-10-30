@@ -2,7 +2,7 @@
  {
   "url": "/",
   "status": 200,
-  "words": 1729,
+  "words": 1723,
   "findings": [],
   "seo": {
    "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
@@ -1856,7 +1856,7 @@
  {
   "url": "/5-day-meghalaya-itinerary",
   "status": 200,
-  "words": 846,
+  "words": 833,
   "findings": [],
   "seo": {
    "title": "5 Day Meghalaya Itinerary: Route, Cost, Stays | XTSY",
@@ -3252,7 +3252,7 @@
  {
   "url": "/best-hostel-in-shillong",
   "status": 200,
-  "words": 1527,
+  "words": 1526,
   "findings": [
    {
     "rule": "price:king/private room",
@@ -3509,7 +3509,7 @@
  {
   "url": "/best-time-to-visit-meghalaya",
   "status": 200,
-  "words": 931,
+  "words": 905,
   "findings": [],
   "seo": {
    "title": "Best Time to Visit Meghalaya (Month by Month) | XTSY",
@@ -5116,7 +5116,7 @@
  {
   "url": "/budget-trip-to-meghalaya",
   "status": 200,
-  "words": 630,
+  "words": 627,
   "findings": [],
   "seo": {
    "title": "Budget Trip to Meghalaya: Costs & Plan | XTSY",
@@ -20600,7 +20600,7 @@
    }
   ],
   "seo": {
-   "title": "Hotels in Shillong Available Now (29 October 2026)",
+   "title": "Hotels in Shillong Available Now (30 October 2026)",
    "titleLen": 50,
    "desc": "Hotels and rooms in Shillong available right now. Private rooms from ₹2,399/night, luxury suites from ₹5,999. Real-time availability, instant confirmation.",
    "descLen": 155,
@@ -22811,7 +22811,7 @@
  {
   "url": "/meghalaya-festivals",
   "status": 200,
-  "words": 997,
+  "words": 991,
   "findings": [],
   "seo": {
    "title": "Meghalaya Festivals: When and Where to See Them | XTSY",
@@ -23821,7 +23821,7 @@
  {
   "url": "/meghalaya-photo-gallery",
   "status": 200,
-  "words": 837,
+  "words": 834,
   "findings": [],
   "seo": {
    "title": "Meghalaya Photo Gallery: Real Trip Photos | XTSY",
@@ -24150,7 +24150,7 @@
  {
   "url": "/meghalaya-tour-packages",
   "status": 200,
-  "words": 570,
+  "words": 567,
   "findings": [],
   "seo": {
    "title": "Meghalaya Tour Packages 2026 — Starting ₹7,999 | XTSY",
@@ -28982,7 +28982,7 @@
    }
   ],
   "seo": {
-   "title": "Last Minute Stays in Shillong — Available Now (29 October 2…",
+   "title": "Last Minute Stays in Shillong — Available Now (30 October 2…",
    "titleLen": 60,
    "desc": "Need a last-minute stay in Shillong? Rooms and dorms available right now from ₹399/night. Instant booking, real-time availability at XTSY Travellers Hostel.",
    "descLen": 156,
@@ -29108,7 +29108,7 @@
    }
   ],
   "seo": {
-   "title": "Stay in Shillong Tonight — Rooms & Beds Available (29 Octob…",
+   "title": "Stay in Shillong Tonight — Rooms & Beds Available (30 Octob…",
    "titleLen": 60,
    "desc": "Need a place to stay in Shillong tonight? Beds from ₹399, rooms from ₹2,399. Real-time availability, instant booking, WhatsApp confirmation at XTSY Hostel.",
    "descLen": 155,
@@ -29359,7 +29359,7 @@
  {
   "url": "/shillong-tour-package",
   "status": 200,
-  "words": 804,
+  "words": 787,
   "findings": [],
   "seo": {
    "title": "Shillong Tour Package with Stay & Cab | XTSY",
@@ -31185,7 +31185,7 @@
  {
   "url": "/tours",
   "status": 200,
-  "words": 2913,
+  "words": 2870,
   "findings": [],
   "seo": {
    "title": "Northeast India Tour Packages from ₹7,999 | XTSY Travel",
@@ -31198,7 +31198,7 @@
     "Tour packages"
    ],
    "ogImage": true,
-   "imgs": 69,
+   "imgs": 68,
    "imgsNoAlt": 0
   },
   "aeo": {
@@ -32921,50 +32921,6 @@
    "faqSchemaQuestions": 4,
    "questionHeadings": 6,
    "firstParagraphWords": 51,
-   "mentionsBrand": true,
-   "mentionsLocation": true,
-   "updatedDate": false
-  },
-  "info": []
- },
- {
-  "url": "/tours/meghalaya-group-trip-6n-7d",
-  "status": 200,
-  "words": 1034,
-  "findings": [],
-  "seo": {
-   "title": "Meghalaya Group Trip, Saturday Departures | XTSY Tours",
-   "titleLen": 54,
-   "desc": "Join a small group on a fixed-date week in Meghalaya: Shillong, the Double Decker root bridge, Krang Suri, Dawki and Mawlynnong. Book one seat.",
-   "descLen": 143,
-   "canonical": "https://xtsy.one/tours/meghalaya-group-trip-6n-7d",
-   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-   "h1": [
-    "Meghalaya Group Trip, Saturday Departures"
-   ],
-   "ogImage": true,
-   "imgs": 3,
-   "imgsNoAlt": 0
-  },
-  "aeo": {
-   "schemaTypes": [
-    "WebSite",
-    "Organization",
-    "PostalAddress",
-    "ContactPoint",
-    "TouristTrip",
-    "ItemList",
-    "ListItem",
-    "TravelAgency",
-    "Offer",
-    "BreadcrumbList",
-    "FAQPage",
-    "Question",
-    "Answer"
-   ],
-   "faqSchemaQuestions": 4,
-   "questionHeadings": 7,
-   "firstParagraphWords": 54,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": false
@@ -36150,11 +36106,11 @@
  {
   "url": "/xtsy-vs-zostel",
   "status": 200,
-  "words": 664,
+  "words": 654,
   "findings": [
    {
     "rule": "policy:pets",
-    "detail": "d and size). Zostel Shillong lists an 18+ rule, groups of up to 6 and no pets. Do both run group trips? Yes. Zostel se"
+    "detail": "d and size). Zostel Shillong lists an 18+ rule, groups of up to 6 and no pets. Does XTSY arrange trips for groups? Yes"
    },
    {
     "rule": "stale:year",

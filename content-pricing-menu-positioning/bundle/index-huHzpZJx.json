@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-titgsTvr.js",
-      "totalBytes": 429723,
-      "mappedBytes": 418160,
+      "bundleName": ".output/public/assets/index-huHzpZJx.js",
+      "totalBytes": 429829,
+      "mappedBytes": 418266,
       "unmappedBytes": 11537,
       "eolBytes": 26,
       "sourceMapCommentBytes": 0,
@@ -516,7 +516,7 @@
           "size": 564
         },
         "../../../src/routes/tours/$slug.tsx": {
-          "size": 732
+          "size": 838
         },
         "../../../src/routes/travel-guide/guwahati-to-shillong-transport.tsx": {
           "size": 653
