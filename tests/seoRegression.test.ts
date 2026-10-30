@@ -84,11 +84,16 @@ describe('SEO regression: programmatic JSON-LD', () => {
   it('publishes one consistent, non-stale priceRange across every programmatic page', async () => {
     const { ALL_SEO_PAGES }: any = await import('../src/data/seoPages');
     const { schemaFor }: any = await import('../src/lib/seo/programmaticSeo');
+    // schemaFor() returns a single @context wrapper whose '@graph' holds the real nodes, so the
+    // priceRange lives one level down. Reading it off the wrapper found nothing and the
+    // greater-than-zero guard below is what caught that, which is the reason it is here.
     const found = new Set<string>();
     for (const page of ALL_SEO_PAGES) {
-      for (const node of schemaFor(page)) {
-        const range = (node as any).priceRange;
-        if (typeof range === 'string' && range.includes('₹') && range.includes('-')) found.add(range);
+      for (const wrapper of schemaFor(page)) {
+        for (const node of ((wrapper as any)['@graph'] ?? [wrapper]) as any[]) {
+          const range = node?.priceRange;
+          if (typeof range === 'string' && range.includes('₹') && range.includes('-')) found.add(range);
+        }
       }
     }
     // Guards against a vacuous pass if the Hostel schema branch ever stops emitting a range.

@@ -60,8 +60,13 @@ jobs:
       # that is worthless if it only runs when someone remembers. It writes nothing — every call
       # expects a rejection — and its two authenticated cases self-skip without
       # LOVABLE_BROWSER_SUPABASE_SESSION_JSON. The cost is that a Supabase outage fails this job.
+      #
+      # tests/*.test.ts, not tests/ — vitest's default include also matches *.spec.ts, which
+      # picks up tests/visual/modals/*.spec.ts. Those are Playwright specs and abort with
+      # "Playwright Test did not expect test.describe() to be called here" under vitest. They
+      # need a Playwright runner, which this job does not have.
       - name: Run unit tests
-        run: bunx vitest run tests/
+        run: bunx vitest run tests/*.test.ts
 
   live-smoke:
     name: Live /cs/uxa proxy smoke
