@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/guidePageData-CiS55tFx.js",
-      "totalBytes": 909109,
-      "mappedBytes": 908624,
+      "bundleName": ".output/public/assets/guidePageData-CiUS60lC.js",
+      "totalBytes": 909491,
+      "mappedBytes": 909006,
       "unmappedBytes": 485,
       "eolBytes": 0,
       "sourceMapCommentBytes": 0,
@@ -24,7 +24,7 @@
           "size": 79
         },
         "../../../src/data/seoPageFactory.ts": {
-          "size": 33424
+          "size": 33449
         },
         "../../../scripts/generate-seo-slugs.ts": {
           "size": 6302
@@ -51,10 +51,10 @@
           "size": 246
         },
         "../../../src/data/seoPagesDining.ts": {
-          "size": 21534
+          "size": 21737
         },
         "../../../src/data/seoPagesDiningExpansion.ts": {
-          "size": 72134
+          "size": 72177
         },
         "../../../src/data/seoPagesDiningSpokes.ts": {
           "size": 28747
@@ -78,7 +78,7 @@
           "size": 165028
         },
         "../../../src/data/seoNormalize.ts": {
-          "size": 10464
+          "size": 10575
         },
         "../../../src/data/seoPages.ts": {
           "size": 118599
