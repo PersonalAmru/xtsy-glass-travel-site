@@ -379,7 +379,7 @@ const experiencePages: SEOPageData[] = [
     'Unique Luxury Stay in India — Experience by XTSY', 'Looking for a truly unique luxury stay in India? Experience by XTSY in Shillong offers a one-of-a-kind experience — sleep in a glass room surrounded by pine forests.',
     [
       { heading: 'Why It\'s Unique', content: 'What makes XTSY 270° special:', listItems: ['India\'s only 270° panoramic glass room', 'Located in Meghalaya\'s pine forests', 'Unobstructed views of hills & sky', 'Star-gazing from bed', 'Instagram-worthy design'] },
-      { heading: 'The Experience', content: 'A stay at XTSY 270° includes:', listItems: ['Premium queen-size bed', 'Private bathroom with hot shower', 'Complimentary breakfast at TAB Bistro', 'Access to all XTSY amenities', 'Guided nature walk on request'] },
+      { heading: 'The Experience', content: 'A stay at XTSY 270° includes:', listItems: ['Premium queen-size bed', 'Private bathroom with hot shower', 'Breakfast available at TAB Bistro (charged separately)', 'Access to all XTSY amenities', 'Guided nature walk on request'] },
     ],
     [
       { question: 'Where is Experience by XTSY?', answer: 'On Mawdiangdiang Road, New Shillong Township, Meghalaya (793018), surrounded by pine forests — at the same address as XTSY Travellers Hostel.' },
@@ -778,7 +778,7 @@ const foodPages: SEOPageData[] = [
       { heading: 'Khasi Cuisine Must-Try', content: 'Traditional dishes to try:', listItems: ['Jadoh — Khasi rice & pork', 'Tungrymbai — fermented soybean curry', 'Doh Khlieh — spiced pork salad', 'Ki Kpu — Khasi blood sausage', 'Kwai — betel nut (local custom)'] },
     ],
     [
-      { question: 'Where to eat near XTSY?', answer: 'TAB Bistro, our in-house restaurant, serves breakfast, lunch, and dinner. For variety, Police Bazaar (a cab ride away) has dozens of restaurants.' },
+      { question: 'Where to eat near XTSY?', answer: 'TAB Bistro, our in-house restaurant, serves breakfast 8:45 AM–12 PM and dinner 5–11 PM; it is closed for walk-in lunch, though lunch preorders are accepted. For variety, Police Bazaar is a cab ride away and has dozens of restaurants.' },
     ],
     ['shillong-vacation-planner', 'budget-stay-shillong'],
     ['best restaurants shillong', 'restaurants in shillong', 'where to eat shillong', 'shillong food guide'],
@@ -800,14 +800,14 @@ const foodPages: SEOPageData[] = [
   ),
 
   mkPage('khasi-food-guide', 'restaurants', 'Restaurant',
-    'Khasi Food Guide — Traditional Meghalaya Cuisine', 'Complete guide to Khasi food. Traditional dishes, where to eat, recipes. Experience authentic Meghalaya cuisine with XTSY.',
+    'Khasi Food Guide — Traditional Meghalaya Cuisine', 'Complete guide to Khasi food \u2014 the traditional dishes, what is in them, and where in Shillong to eat them.',
     'Khasi Food Guide — Meghalaya Cuisine', 'Khasi cuisine is one of India\'s most underrated food cultures. Rich in flavors, heavy on meat, and full of fermented goodness — discover the food of Meghalaya.',
     [
       { heading: 'Essential Khasi Dishes', content: 'Must-try traditional dishes:', listItems: ['Jadoh — signature Khasi rice with pork/chicken', 'Tungrymbai — fermented soybean curry', 'Doh Khlieh — spiced minced pork salad', 'Doh Jem — sweet pork with sesame', 'Nakham Bitchi — fermented fish chutney', 'Ki Kpu — blood sausage'] },
-      { heading: 'Where to Eat Khasi Food', content: 'Best places for authentic Khasi cuisine:', listItems: ['Iewduh Market (Bara Bazaar) — street stalls', 'Local restaurants in Laitumkhrah', 'TAB Bistro at XTSY — fusion Khasi dishes', 'Village homestays for authentic experience'] },
+      { heading: 'Where to Eat Khasi Food', content: 'Best places for authentic Khasi cuisine:', listItems: ['Iewduh Market (Bara Bazaar) — street stalls', 'Local restaurants in Laitumkhrah', 'Local Khasi eateries around Mawlai and Nongthymmai', 'Village homestays for authentic experience'] },
     ],
     [
-      { question: 'Is Khasi food vegetarian-friendly?', answer: 'Khasi cuisine is predominantly non-vegetarian. Vegetarians can enjoy rice dishes, bamboo shoot preparations, and local greens. TAB Bistro at XTSY offers both veg and non-veg options.' },
+      { question: 'Is Khasi food vegetarian-friendly?', answer: 'Khasi cuisine is predominantly non-vegetarian. Vegetarians can enjoy rice dishes, bamboo shoot preparations and local greens; jadoh stalls will usually point you to the veg plates they keep.' },
     ],
     ['best-restaurants-shillong', 'street-food-police-bazar'],
     ['khasi food', 'khasi cuisine', 'meghalaya food', 'traditional food meghalaya', 'jadoh recipe']
@@ -825,7 +825,7 @@ const foodPages: SEOPageData[] = [
       { question: 'Which is the best café in Shillong for coffee?', answer: 'For specialty coffee, ML 05 Café in Laitumkhrah is the strongest pick (pour-over and espresso, ₹150–220). For a café with live music, Café Shillong and Dylan\'s Café — both in Laitumkhrah — are the long-running favourites.' },
       { question: 'How much does coffee cost in Shillong cafés?', answer: 'Expect ₹120–180 for a cappuccino or latte and ₹180–220 for specialty pour-over. A breakfast plate with coffee for two runs about ₹250–400.' },
       { question: 'Which Shillong cafés are good for working on a laptop?', answer: 'Laitumkhrah cafés such as ML 05 and Lamplight have the most reliable WiFi and plug points. TAB Bistro by XTSY in New Shillong Township is quieter and stays open until 10:30 PM.' },
-      { question: 'Does XTSY have a café?', answer: 'Yes — TAB Bistro by XTSY is our in-house café and restaurant serving coffee from ₹100, all-day breakfast and desserts, open 9 AM to 10:30 PM to guests and locals alike.' },
+      { question: 'Does XTSY have a café?', answer: 'Yes — TAB Bistro by XTSY is our in-house café and restaurant. Espresso from ₹60 and cappuccino from ₹100, with breakfast 8:45 AM–12 PM and dinner 5–11 PM, open to guests and locals alike. The kitchen is closed for walk-in lunch.' },
     ],
     ['best-restaurants-shillong', 'restaurant-in-shillong', 'best-hostel-in-shillong'],
     ['cafes in shillong', 'best cafe shillong', 'coffee shillong', 'shillong cafe culture']

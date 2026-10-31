@@ -93,9 +93,9 @@ const TabBistroSpecials = memo(() => {
         Multi-Cuisine Dining in Shillong — XTSY Specials
       </h2>
       <p className="text-muted-foreground text-sm mb-6 max-w-3xl leading-relaxed">
-        One kitchen, every craving. TAB Bistro by XTSY brings North Indian, Indo-Chinese, Thai,
-        Continental, Italian, seafood and Northeast flavours together — making it one of the most
-        versatile multi-cuisine restaurants in Shillong. Filter by cuisine to find your favourite for
+        One kitchen, several cuisines. TAB Bistro by XTSY brings North Indian and a live tandoor,
+        Indo-Chinese, XTSY dum biriyani, South Indian and hand-crafted pasta together — making it one
+        of the most versatile multi-cuisine restaurants in Shillong. Filter by cuisine to find your favourite for
         dine-in, food orders or catering.
       </p>
 
