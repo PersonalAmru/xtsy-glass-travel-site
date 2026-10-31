@@ -4,7 +4,7 @@ import { Coffee, Sunrise, Building2, Mountain } from "lucide-react";
 const highlights = [
   {
     title: "Breakfast in Shillong",
-    desc: "One of the best breakfast places in Shillong — fresh Assam tea, filter coffee, English breakfast, parathas, eggs to order and pancakes, served 8:45 AM–12 PM in a calm pine-forest setting.",
+    desc: "One of the best breakfast places in Shillong — fresh Assam tea, espresso and cappuccino, omelettes, parathas, poha, masala dosa and pancakes, served 8:45 AM–12 PM in a calm pine-forest setting.",
     icon: <Sunrise className="w-5 h-5" />,
   },
   {
@@ -15,7 +15,7 @@ const highlights = [
   },
   {
     title: "All-Day Café",
-    desc: "A relaxed café for remote workers and travellers — espresso, cold brew, fast WiFi corners and light bites through the day.",
+    desc: "A relaxed café for remote workers and travellers — espresso, cappuccino, fast WiFi corners and light bites through both service windows.",
     icon: <Coffee className="w-5 h-5" />,
   },
   {

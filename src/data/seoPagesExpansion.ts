@@ -379,7 +379,7 @@ const experiencePages: SEOPageData[] = [
     'Unique Luxury Stay in India — Experience by XTSY', 'Looking for a truly unique luxury stay in India? Experience by XTSY in Shillong offers a one-of-a-kind experience — sleep in a glass room surrounded by pine forests.',
     [
       { heading: 'Why It\'s Unique', content: 'What makes XTSY 270° special:', listItems: ['India\'s only 270° panoramic glass room', 'Located in Meghalaya\'s pine forests', 'Unobstructed views of hills & sky', 'Star-gazing from bed', 'Instagram-worthy design'] },
-      { heading: 'The Experience', content: 'A stay at XTSY 270° includes:', listItems: ['Premium queen-size bed', 'Private bathroom with hot shower', 'Complimentary breakfast at TAB Bistro', 'Access to all XTSY amenities', 'Guided nature walk on request'] },
+      { heading: 'The Experience', content: 'A stay at XTSY 270° includes:', listItems: ['Premium queen-size bed', 'Private bathroom with hot shower', 'Breakfast not included — TAB Bistro opens at 8:45 AM', 'Access to all XTSY amenities', 'Guided nature walk on request'] },
     ],
     [
       { question: 'Where is Experience by XTSY?', answer: 'On Mawdiangdiang Road, New Shillong Township, Meghalaya (793018), surrounded by pine forests — at the same address as XTSY Travellers Hostel.' },
@@ -778,7 +778,7 @@ const foodPages: SEOPageData[] = [
       { heading: 'Khasi Cuisine Must-Try', content: 'Traditional dishes to try:', listItems: ['Jadoh — Khasi rice & pork', 'Tungrymbai — fermented soybean curry', 'Doh Khlieh — spiced pork salad', 'Ki Kpu — Khasi blood sausage', 'Kwai — betel nut (local custom)'] },
     ],
     [
-      { question: 'Where to eat near XTSY?', answer: 'TAB Bistro, our in-house restaurant, serves breakfast, lunch, and dinner. For variety, Police Bazaar (a cab ride away) has dozens of restaurants.' },
+      { question: 'Where to eat near XTSY?', answer: 'TAB Bistro, our in-house restaurant, serves breakfast 8:45 AM–12 PM and dinner 5–11 PM; it is closed for walk-in lunch, though lunch preorders are accepted. For variety, Police Bazaar is a cab ride away and has dozens of restaurants.' },
     ],
     ['shillong-vacation-planner', 'budget-stay-shillong'],
     ['best restaurants shillong', 'restaurants in shillong', 'where to eat shillong', 'shillong food guide'],
@@ -800,14 +800,14 @@ const foodPages: SEOPageData[] = [
   ),
 
   mkPage('khasi-food-guide', 'restaurants', 'Restaurant',
-    'Khasi Food Guide — Traditional Meghalaya Cuisine', 'Complete guide to Khasi food. Traditional dishes, where to eat, recipes. Experience authentic Meghalaya cuisine with XTSY.',
+    'Khasi Food Guide — Traditional Meghalaya Cuisine', 'Complete guide to Khasi food \u2014 the traditional dishes, what is in them, and where in Shillong to eat them.',
     'Khasi Food Guide — Meghalaya Cuisine', 'Khasi cuisine is one of India\'s most underrated food cultures. Rich in flavors, heavy on meat, and full of fermented goodness — discover the food of Meghalaya.',
     [
       { heading: 'Essential Khasi Dishes', content: 'Must-try traditional dishes:', listItems: ['Jadoh — signature Khasi rice with pork/chicken', 'Tungrymbai — fermented soybean curry', 'Doh Khlieh — spiced minced pork salad', 'Doh Jem — sweet pork with sesame', 'Nakham Bitchi — fermented fish chutney', 'Ki Kpu — blood sausage'] },
-      { heading: 'Where to Eat Khasi Food', content: 'Best places for authentic Khasi cuisine:', listItems: ['Iewduh Market (Bara Bazaar) — street stalls', 'Local restaurants in Laitumkhrah', 'TAB Bistro at XTSY — fusion Khasi dishes', 'Village homestays for authentic experience'] },
+      { heading: 'Where to Eat Khasi Food', content: 'Best places for authentic Khasi cuisine:', listItems: ['Iewduh Market (Bara Bazaar) — street stalls', 'Local restaurants in Laitumkhrah', 'Local Khasi eateries around Mawlai and Nongthymmai', 'Village homestays for authentic experience'] },
     ],
     [
-      { question: 'Is Khasi food vegetarian-friendly?', answer: 'Khasi cuisine is predominantly non-vegetarian. Vegetarians can enjoy rice dishes, bamboo shoot preparations, and local greens. TAB Bistro at XTSY offers both veg and non-veg options.' },
+      { question: 'Is Khasi food vegetarian-friendly?', answer: 'Khasi cuisine is predominantly non-vegetarian. Vegetarians can enjoy rice dishes, bamboo shoot preparations and local greens; jadoh stalls will usually point you to the veg plates they keep.' },
     ],
     ['best-restaurants-shillong', 'street-food-police-bazar'],
     ['khasi food', 'khasi cuisine', 'meghalaya food', 'traditional food meghalaya', 'jadoh recipe']
@@ -817,15 +817,15 @@ const foodPages: SEOPageData[] = [
     '12 Best Cafés in Shillong (2026): Prices & Picks', 'Our 2026 shortlist of 12 Shillong cafés — ML 05, Dylan\'s, Café Shillong, TAB Bistro. Coffee ₹100–220, timings, WiFi and the best spots for live music.',
     'Best Cafés in Shillong', 'Twelve cafés worth your morning in Shillong, checked for 2026 — what a flat white actually costs, which ones have plug points and WiFi that holds, and where live music happens on weekends. Most sit in Laitumkhrah, Police Bazar or Laban; TAB Bistro by XTSY is the forest-side option in New Shillong Township.',
     [
-      { heading: '12 Best Cafés in Shillong (2026)', content: 'Names, neighbourhood and what to order:', listItems: ['ML 05 Café, Laitumkhrah — specialty pour-over & espresso, ₹150–220', 'Dylan\'s Café, Laitumkhrah — Dylan memorabilia, live music Fri–Sun, ₹120–200', 'Café Shillong, Laitumkhrah — the original live-music room, book a table after 7 PM', 'Café Shillong Heritage, Laban — colonial bungalow setting, all-day breakfast', 'Cloud 9, Upper Shillong — valley views, best in clear October weather', 'TAB Bistro by XTSY, New Shillong Township — forest-side café, coffee ₹100–180, 9 AM–10:30 PM', 'Kavya Café, Police Bazar — budget-friendly filter coffee and quick breakfasts under ₹150', 'Dejavu Café, Police Bazar — late-evening desserts and shakes', 'Lamplight Café, Laitumkhrah — quiet, plug points, good for laptop work', 'The Evening Club, Laban — sundowner coffee and Khasi snacks', 'Trattoria-adjacent bakeries, Police Bazar — jadoh-and-coffee style local breakfasts', 'Cafés along Ward\'s Lake Road — walk-in stops between sightseeing'] },
-      { heading: 'What It Costs & When to Go (2026)', content: 'Practical numbers before you set out:', listItems: ['Cappuccino/latte: ₹120–180; specialty pour-over: ₹180–220', 'Breakfast plate with coffee: ₹250–400 for two', 'Most cafés open 9–10 AM and close 8–9 PM; TAB Bistro runs to 10:30 PM', 'Live music: Friday to Sunday evenings, mainly in Laitumkhrah', 'WiFi is reliable in Laitumkhrah cafés; carry a hotspot for Upper Shillong', 'Sunday mornings are slow — many Police Bazar spots open after 11 AM'] },
+      { heading: '12 Best Cafés in Shillong (2026)', content: 'Names, neighbourhood and what to order:', listItems: ['ML 05 Café, Laitumkhrah — specialty pour-over & espresso, ₹150–220', 'Dylan\'s Café, Laitumkhrah — Dylan memorabilia, live music Fri–Sun, ₹120–200', 'Café Shillong, Laitumkhrah — the original live-music room, book a table after 7 PM', 'Café Shillong Heritage, Laban — colonial bungalow setting, all-day breakfast', 'Cloud 9, Upper Shillong — valley views, best in clear October weather', 'TAB Bistro by XTSY, New Shillong Township — forest-side café, coffee ₹60–180, breakfast 8:45 AM–12 PM & dinner 5–11 PM', 'Kavya Café, Police Bazar — budget-friendly filter coffee and quick breakfasts under ₹150', 'Dejavu Café, Police Bazar — late-evening desserts and shakes', 'Lamplight Café, Laitumkhrah — quiet, plug points, good for laptop work', 'The Evening Club, Laban — sundowner coffee and Khasi snacks', 'Trattoria-adjacent bakeries, Police Bazar — jadoh-and-coffee style local breakfasts', 'Cafés along Ward\'s Lake Road — walk-in stops between sightseeing'] },
+      { heading: 'What It Costs & When to Go (2026)', content: 'Practical numbers before you set out:', listItems: ['Cappuccino/latte: ₹120–180; specialty pour-over: ₹180–220', 'Breakfast plate with coffee: ₹250–400 for two', 'Most cafés open 9–10 AM and close 8–9 PM; TAB Bistro serves dinner to 11 PM, last order 10:30 PM', 'Live music: Friday to Sunday evenings, mainly in Laitumkhrah', 'WiFi is reliable in Laitumkhrah cafés; carry a hotspot for Upper Shillong', 'Sunday mornings are slow — many Police Bazar spots open after 11 AM'] },
       { heading: 'Café-Hopping From Your Stay', content: 'Backpackers usually base themselves near the café belt. XTSY Travellers Hostel puts dorm beds from ₹399 per night within an easy ride of Laitumkhrah and Police Bazar, with TAB Bistro on site for late coffee — use the booking link above to check tonight\'s availability.', listItems: ['Laitumkhrah: 4–5 cafés walkable in one evening', 'Police Bazar: best budget-friendly breakfasts, busiest after 11 AM', 'Upper Shillong: pair Cloud 9 with Elephant Falls', 'New Shillong Township: TAB Bistro, quietest and latest-closing'] },
     ],
     [
       { question: 'Which is the best café in Shillong for coffee?', answer: 'For specialty coffee, ML 05 Café in Laitumkhrah is the strongest pick (pour-over and espresso, ₹150–220). For a café with live music, Café Shillong and Dylan\'s Café — both in Laitumkhrah — are the long-running favourites.' },
       { question: 'How much does coffee cost in Shillong cafés?', answer: 'Expect ₹120–180 for a cappuccino or latte and ₹180–220 for specialty pour-over. A breakfast plate with coffee for two runs about ₹250–400.' },
       { question: 'Which Shillong cafés are good for working on a laptop?', answer: 'Laitumkhrah cafés such as ML 05 and Lamplight have the most reliable WiFi and plug points. TAB Bistro by XTSY in New Shillong Township is quieter and stays open until 10:30 PM.' },
-      { question: 'Does XTSY have a café?', answer: 'Yes — TAB Bistro by XTSY is our in-house café and restaurant serving coffee from ₹100, all-day breakfast and desserts, open 9 AM to 10:30 PM to guests and locals alike.' },
+      { question: 'Does XTSY have a café?', answer: 'Yes — TAB Bistro by XTSY is our in-house café and restaurant. Espresso from ₹60 and cappuccino from ₹100, with breakfast 8:45 AM–12 PM and dinner 5–11 PM, open to guests and locals alike. The kitchen is closed for walk-in lunch.' },
     ],
     ['best-restaurants-shillong', 'restaurant-in-shillong', 'best-hostel-in-shillong'],
     ['cafes in shillong', 'best cafe shillong', 'coffee shillong', 'shillong cafe culture']

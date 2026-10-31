@@ -4,7 +4,7 @@ import { Helmet } from '@/lib/seo/helmet';
 export const tabBistroFaqs = [
   {
     q: "Does TAB Bistro serve breakfast in Shillong?",
-    a: "Yes. TAB Bistro by XTSY serves a multi-cuisine breakfast daily, 8:45 AM – 12 PM — Assam tea, filter coffee, English breakfast, parathas, eggs to order and pancakes, in a pine-forest setting.",
+    a: "Yes. TAB Bistro by XTSY serves a multi-cuisine breakfast daily, 8:45 AM – 12 PM — Assam tea, espresso and cappuccino, omelettes, parathas, poha, masala dosa and pancakes, in a pine-forest setting.",
   },
   {
     q: "Is TAB Bistro a rooftop restaurant in Shillong?",
@@ -20,7 +20,7 @@ export const tabBistroFaqs = [
   },
   {
     q: "Can I work from the café at TAB Bistro?",
-    a: "Yes. TAB Bistro doubles as a café in Shillong with WiFi-friendly corners, espresso and cold brew during both service windows — popular with remote workers and travellers.",
+    a: "Yes. TAB Bistro doubles as a café in Shillong with WiFi-friendly corners, espresso and cappuccino during both service windows — popular with remote workers and travellers.",
   },
   {
     q: "Does TAB Bistro offer wedding catering and events?",
@@ -32,11 +32,11 @@ export const tabBistroFaqs = [
   },
   {
     q: "Do you provide corporate and event catering in Shillong?",
-    a: "Absolutely. We cater corporate events, conferences, offsites and private functions across Shillong and Meghalaya with Indian, Chinese, Continental, Thai and Northeast spreads, plus live counters and buffets tailored to your budget.",
+    a: "Absolutely. We cater corporate events, conferences, offsites and private functions across Shillong and Meghalaya with North Indian, tandoor, Indo-Chinese, biriyani and South Indian spreads, plus live counters tailored to your budget.",
   },
   {
     q: "What cuisines can I order from TAB Bistro?",
-    a: "TAB Bistro is a multi-cuisine restaurant serving North Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian (pizza & pasta), seafood, sizzlers and Northeast Indian dishes — all under the XTSY Specials menu.",
+    a: "TAB Bistro is a multi-cuisine restaurant serving North Indian, Tandoor, Indo-Chinese, XTSY dum biriyani, South Indian and hand-crafted pasta — all under the XTSY Specials menu.",
   },
 ];
 

@@ -27,12 +27,12 @@ const groups: FaqGroup[] = [
         a: (
           <>
             TAB Bistro by XTSY is one of Shillong's most versatile multi-cuisine restaurants, serving North
-            Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian, seafood and Northeast dishes. Browse
+            North Indian, Tandoor, Indo-Chinese, XTSY dum biriyani, South Indian and hand-crafted pasta. Browse
             the full range under{" "}
             <a href="#xtsy-specials" className="text-amber-400 underline">XTSY Specials</a>.
           </>
         ),
-        text: "TAB Bistro by XTSY is one of Shillong's most versatile multi-cuisine restaurants, serving North Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian, seafood and Northeast dishes. Browse the full range under XTSY Specials.",
+        text: "TAB Bistro by XTSY is one of Shillong's most versatile multi-cuisine restaurants, serving North Indian, Tandoor, Indo-Chinese, XTSY dum biriyani, South Indian and hand-crafted pasta. Browse the full range under XTSY Specials.",
       },
       {
         q: "What are TAB Bistro's opening hours?",
@@ -45,10 +45,10 @@ const groups: FaqGroup[] = [
           <>
             Yes — there is a large, clearly labelled vegetarian selection across every cuisine in the{" "}
             <a href="#xtsy-specials" className="text-amber-400 underline">XTSY Specials</a> menu, from paneer
-            tandoor to Thai veg curries and wood-style pizzas.
+            tandoor to veg manchurian and hand-crafted pasta.
           </>
         ),
-        text: "Yes — there is a large, clearly labelled vegetarian selection across every cuisine in the XTSY Specials menu, from paneer tandoor to Thai veg curries and wood-style pizzas.",
+        text: "Yes — there is a large, clearly labelled vegetarian selection across every cuisine in the XTSY Specials menu, from paneer tandoor to veg manchurian and hand-crafted pasta.",
       },
     ],
   },
@@ -73,12 +73,12 @@ const groups: FaqGroup[] = [
         q: "What cuisines are available for takeaway?",
         a: (
           <>
-            All of them — North Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian (pizza & pasta),
-            seafood, sizzlers, café bites and beverages are available to take away. See{" "}
+            All of them — North Indian, Tandoor, Indo-Chinese, XTSY dum biriyani, South Indian, hand-crafted pasta,
+            café bites and beverages are available to take away. See{" "}
             <a href="#xtsy-specials" className="text-amber-400 underline">XTSY Specials</a>.
           </>
         ),
-        text: "All of them — North Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian (pizza & pasta), seafood, sizzlers, café bites and beverages are available to take away. See XTSY Specials.",
+        text: "All of them — North Indian, Tandoor, Indo-Chinese, XTSY dum biriyani, South Indian, hand-crafted pasta, café bites and beverages are available to take away. See XTSY Specials.",
       },
     ],
   },

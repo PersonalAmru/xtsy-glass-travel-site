@@ -107,7 +107,7 @@ const thingsToDoSection = (destination: string, activity?: string): SEOSection =
       'Boat ride on Dawki\'s glass-clear Umngot river',
       'Explore Mawsmai and Krem Liat Prah caves',
       'Catch sunrise from Laitlum Canyons or Nongjrong',
-      'Experience local Khasi cuisine at TAB Bistro',
+      'Eat at TAB Bistro — tandoor, Indo-Chinese, biryani and South Indian',
     ],
   };
 };
@@ -577,7 +577,7 @@ const workationInclusionsSection = (scope: string): SEOSection => ({
 
 const workationLifeSection = (scope: string): SEOSection => ({
   heading: `What a Workation in ${scope} Is Really Like`,
-  content: `A workation in ${scope} blends focused remote-work days with weekends spent exploring Northeast India. Mornings are quiet and cool — ideal for deep work — while evenings open up to forest walks, live music and a community of other long-stay travellers. XTSY is built for nomads who want reliable WiFi and a proper desk without giving up the mountains outside the window.`,
+  content: `A workation in ${scope} blends focused remote-work days with weekends spent exploring Northeast India. Mornings are quiet and cool — ideal for deep work — while evenings open up to forest walks, bonfires and a community of other long-stay travellers. XTSY is built for nomads who want reliable WiFi and a proper desk without giving up the mountains outside the window.`,
   listItems: [
     `Cool, low-distraction mornings perfect for deep work`,
     `Power backup so calls and deadlines never drop`,
