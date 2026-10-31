@@ -203,10 +203,10 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Café in Shillong',
     'Shillong is India\'s rock capital, and its café culture matches the music — artisan coffee, cozy interiors and weekend gigs. TAB Bistro by XTSY adds a forest-side café experience to the mix.',
     [
-      { heading: 'Shillong Café Culture', content: 'What to expect:', listItems: ['Specialty coffee & espresso', 'Live music on weekends at Laitumkhrah cafés', 'Breakfast spreads', 'Cozy work-friendly corners', 'Continental snacks & desserts'] },
+      { heading: 'Shillong Café Culture', content: 'What to expect:', listItems: ['Specialty coffee & espresso', 'Bands play the Laitumkhrah cafés on weekends', 'Breakfast spreads', 'Cozy work-friendly corners', 'Continental snacks & desserts'] },
       { heading: 'Café & Bistro at XTSY', content: 'TAB Bistro doubles as a café:', listItems: ['Coffee, teas & cold beverages', 'Breakfast served all morning', 'Light bites & desserts', 'WiFi-friendly seating', 'Forest views'] },
     ],
-    [{ question: 'Is there a good café in Shillong?', answer: 'Yes — Shillong has a rich café culture, with live music at the Laitumkhrah cafés. TAB Bistro by XTSY is the forest-side option, with coffee, breakfast and light bites.' }, tabFaq],
+    [{ question: 'Is there a good café in Shillong?', answer: 'Yes — Shillong has a rich café culture, and bands play the Laitumkhrah cafés at weekends. TAB Bistro by XTSY is the forest-side option, with coffee, breakfast and light bites.' }, tabFaq],
     ['cafes-in-shillong', 'restaurant-in-shillong', 'best-place-to-eat-in-shillong'],
     ['cafe shillong', 'best cafes in shillong', 'best cafe shillong', 'coffee shillong', 'breakfast near me'],
   ),
