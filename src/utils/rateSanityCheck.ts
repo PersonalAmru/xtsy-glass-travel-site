@@ -14,7 +14,6 @@ export const SHILLONG_CANONICAL_RATES: Record<string, number> = {
   'xtsy-270': 5999,
   'king-double-room': 2399,
   '4-bed-female-only-dorm': 599,
-  '6-bed-mixed-female-dorm': 389,
   '6-bed-mixed-dorm': 499,
   '8-bed-mixed-dorm': 399,
 };

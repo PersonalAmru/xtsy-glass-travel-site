@@ -122,7 +122,6 @@ export const PROPERTIES: Record<string, Property> = {
     roomTypeIds: [
       'king-double-room',
       '4-bed-female-only-dorm',
-      '6-bed-mixed-female-dorm',
       '6-bed-mixed-dorm',
       '8-bed-mixed-dorm',
     ],

@@ -42,7 +42,6 @@ const EXPECTED_LEAD_PHOTO: Record<string, string> = {
   'xtsy-270': 'xtsy-270/XTSY270.JPG',
   '4-bed-female-only-dorm': 'xtsy/4 Bed Female Dormitory.jpg',
   '4-bed-mixed-female-dorm': 'xtsy/4 Bed Mixed Dormitory 1.JPG',
-  '6-bed-mixed-female-dorm': 'xtsy/6 Bed Mixed Dormitory 1.JPG',
   '6-bed-mixed-dorm': 'xtsy/6 Bed Mixed Dormitory 1.JPG',
   'king-double-room': 'xtsy/King Double Room.jpg',
   '8-bed-mixed-dorm': 'xtsy/6 Bed Mixed Dormitory 2.JPG',
