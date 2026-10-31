@@ -65,6 +65,10 @@ const CITY_GUIDES = new Set([
   'restaurants-in-police-bazar-shillong',
   // A ranked guide to twelve Shillong cafes by name, with their prices and hours.
   'cafes-in-shillong',
+  // Surveys where vegetarians eat in Shillong. Its "Top Veg Restaurants" list names
+  // categories of other venues — pure-veg thali houses, pizza and pasta spots — with
+  // TAB Bistro as one entry among them, not as the thing serving thali or pizza.
+  'best-veg-restaurants-shillong',
 ]);
 
 async function allRestaurantPages() {
