@@ -2,11 +2,11 @@
  {
   "route": "/",
   "status": 200,
-  "wallMs": 9683,
-  "ttfb": 15,
-  "fcp": 1360,
+  "wallMs": 9574,
+  "ttfb": 14,
+  "fcp": 1380,
   "lcp": {
-   "t": 1384,
+   "t": 1380,
    "size": 249600,
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-828.avif",
    "tag": "IMG",
@@ -15,15 +15,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1360,
-    "size": 38540,
-    "url": "",
-    "tag": "H1",
-    "cls": "xt-display m-0 h-[2em] text-6xl leading-none sm:text-8xl lg:text-9xl",
-    "text": "XTSY Travellers Hostel"
-   },
-   {
-    "t": 1384,
+    "t": 1380,
     "size": 249600,
     "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-828.avif",
     "tag": "IMG",
@@ -31,24 +23,11 @@
     "text": ""
    }
   ],
-  "cls": 0.01,
+  "cls": 0.009,
   "shifts": [
    {
-    "v": 0.0007,
-    "t": 3053,
-    "nodes": [
-     "#text."
-    ],
-    "rects": [
-     "18,418 355x171 -> 18,415 355x171"
-    ],
-    "text": [
-     "XTSY Travellers Hostel"
-    ]
-   },
-   {
     "v": 0.0086,
-    "t": 3187,
+    "t": 3033,
     "nodes": [
      "DIV.max-w-5xl"
     ],
@@ -61,7 +40,7 @@
    },
    {
     "v": 0.0003,
-    "t": 3286,
+    "t": 3137,
     "nodes": [
      "A.xt-btn flex h-14 items-center gap-2.5 rounded-full bg-xt-paper pl-4 pr-6 text-[1",
      "DIV.flex items-center gap-2"
@@ -76,7 +55,7 @@
     ]
    }
   ],
-  "requests": 96,
+  "requests": 97,
   "byType": {
    "document": {
     "n": 1,
@@ -92,24 +71,24 @@
    },
    "stylesheet": {
     "n": 2,
-    "kb": 199
+    "kb": 200
    },
    "font": {
     "n": 5,
-    "kb": 92
+    "kb": 86
    },
    "fetch": {
     "n": 2,
     "kb": 0
    },
    "other": {
-    "n": 2,
+    "n": 3,
     "kb": 0
    }
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-BWg29u6g.js",
+    "url": "http://localhost:4174/assets/index-Do6H1BQe.js",
     "type": "script",
     "bytes": 429945,
     "kb": 420
@@ -185,11 +164,11 @@
  {
   "route": "/best-hostel-in-shillong",
   "status": 200,
-  "wallMs": 9786,
-  "ttfb": 8,
-  "fcp": 1180,
+  "wallMs": 9792,
+  "ttfb": 7,
+  "fcp": 1196,
   "lcp": {
-   "t": 1180,
+   "t": 1196,
    "size": 72910,
    "url": "",
    "tag": "P",
@@ -198,7 +177,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1180,
+    "t": 1196,
     "size": 72910,
     "url": "",
     "tag": "P",
@@ -210,7 +189,7 @@
   "shifts": [
    {
     "v": 0.0005,
-    "t": 2724,
+    "t": 2748,
     "nodes": [
      "#text."
     ],
@@ -223,7 +202,7 @@
    },
    {
     "v": 0.0172,
-    "t": 2783,
+    "t": 2817,
     "nodes": [
      "DIV.rounded-[22px] bg-xt-blush p-5",
      "H1.xt-display m-0 text-[56px] leading-[0.9] sm:text-[88px]",
@@ -248,7 +227,7 @@
    },
    {
     "v": 0.0004,
-    "t": 2881,
+    "t": 2908,
     "nodes": [
      "DIV.flex items-center gap-2",
      "A.xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-ink px-6 tex",
@@ -302,7 +281,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-BWg29u6g.js",
+    "url": "http://localhost:4174/assets/index-Do6H1BQe.js",
     "type": "script",
     "bytes": 429945,
     "kb": 420
@@ -378,11 +357,11 @@
  {
   "route": "/cheap-hostels-shillong",
   "status": 200,
-  "wallMs": 9773,
-  "ttfb": 21,
-  "fcp": 1208,
+  "wallMs": 9809,
+  "ttfb": 20,
+  "fcp": 1152,
   "lcp": {
-   "t": 1208,
+   "t": 1152,
    "size": 65892,
    "url": "",
    "tag": "P",
@@ -391,7 +370,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1208,
+    "t": 1152,
     "size": 65892,
     "url": "",
     "tag": "P",
@@ -399,38 +378,28 @@
     "text": "The best budget-friendly bed in Shillong at XTSY Travellers "
    }
   ],
-  "cls": 0.031,
+  "cls": 0.042,
   "shifts": [
    {
-    "v": 0.0009,
-    "t": 2751,
-    "nodes": [
-     "#text."
-    ],
-    "rects": [
-     "14,211 362x221 -> 14,208 362x221"
-    ],
-    "text": [
-     "Budget-friendly hostels in Shillong"
-    ]
-   },
-   {
-    "v": 0.0295,
-    "t": 2811,
+    "v": 0.0417,
+    "t": 2779,
     "nodes": [
      "DIV.rounded-[22px] bg-xt-blush p-5",
+     "#text.",
      "IMG.absolute inset-0 h-full w-full object-cover",
      "DIV.flex flex-wrap gap-2",
      "svg.[object SVGAnimatedString]"
     ],
     "rects": [
      "14,437 362x270 -> 14,386 362x270",
+     "14,211 362x171 -> 14,208 362x171",
      "14,794 362x50 -> 14,743 362x101",
      "14,724 362x42 -> 14,673 362x42",
      "166,743 210x101 -> 166,743 210x101"
     ],
     "text": [
      "Quick answerThe best budget-friendly bed",
+     "Budget-friendly hostels in Shillong",
      "",
      "Book a stayBook on WhatsApp",
      ""
@@ -438,7 +407,7 @@
    },
    {
     "v": 0.0005,
-    "t": 2894,
+    "t": 2869,
     "nodes": [
      "DIV.flex items-center gap-2",
      "A.xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-ink px-6 tex",
@@ -492,7 +461,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-BWg29u6g.js",
+    "url": "http://localhost:4174/assets/index-Do6H1BQe.js",
     "type": "script",
     "bytes": 429945,
     "kb": 420
@@ -568,11 +537,11 @@
  {
   "route": "/shillong-dormitory",
   "status": 200,
-  "wallMs": 9456,
+  "wallMs": 9453,
   "ttfb": 16,
-  "fcp": 1200,
+  "fcp": 1216,
   "lcp": {
-   "t": 1200,
+   "t": 1216,
    "size": 81295,
    "url": "",
    "tag": "P",
@@ -581,7 +550,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1200,
+    "t": 1216,
     "size": 81295,
     "url": "",
     "tag": "P",
@@ -593,7 +562,7 @@
   "shifts": [
    {
     "v": 0.004,
-    "t": 2804,
+    "t": 2824,
     "nodes": [
      "#text.",
      "#text."
@@ -609,7 +578,7 @@
    },
    {
     "v": 0.001,
-    "t": 2889,
+    "t": 2910,
     "nodes": [
      "DIV.flex items-center gap-2",
      "A.xt-btn flex h-11 items-center rounded-full border-[1.5px] border-xt-ink px-5 tex",
@@ -666,7 +635,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-BWg29u6g.js",
+    "url": "http://localhost:4174/assets/index-Do6H1BQe.js",
     "type": "script",
     "bytes": 429945,
     "kb": 420
@@ -742,11 +711,11 @@
  {
   "route": "/xtsy-270",
   "status": 200,
-  "wallMs": 10362,
+  "wallMs": 10452,
   "ttfb": 6,
-  "fcp": 1232,
+  "fcp": 1244,
   "lcp": {
-   "t": 1352,
+   "t": 1356,
    "size": 64074,
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-900.avif",
    "tag": "IMG",
@@ -755,7 +724,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 1232,
+    "t": 1244,
     "size": 48927,
     "url": "",
     "tag": "H1",
@@ -763,7 +732,7 @@
     "text": "Experience by XTSY"
    },
    {
-    "t": 1352,
+    "t": 1356,
     "size": 64074,
     "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-900.avif",
     "tag": "IMG",
@@ -775,7 +744,7 @@
   "shifts": [
    {
     "v": 0.0094,
-    "t": 3265,
+    "t": 3266,
     "nodes": [
      "#text.",
      "#text.",
@@ -794,7 +763,7 @@
    },
    {
     "v": 0.0006,
-    "t": 3440,
+    "t": 3454,
     "nodes": [
      "DIV.flex items-center gap-2",
      "A.xt-btn inline-flex h-14 items-center justify-center gap-2 rounded-full px-7 text",
@@ -845,7 +814,7 @@
   },
   "biggest": [
    {
-    "url": "http://localhost:4174/assets/index-BWg29u6g.js",
+    "url": "http://localhost:4174/assets/index-Do6H1BQe.js",
     "type": "script",
     "bytes": 429945,
     "kb": 420
@@ -921,11 +890,11 @@
  {
   "route": "https://xtsy.one/",
   "status": 200,
-  "wallMs": 11100,
-  "ttfb": 1544,
-  "fcp": 3820,
+  "wallMs": 10494,
+  "ttfb": 1067,
+  "fcp": 3332,
   "lcp": {
-   "t": 4140,
+   "t": 3652,
    "size": 249600,
    "url": "https://xtsy.one/img/o/xtsy-property-images-8-portrait-828.avif",
    "tag": "IMG",
@@ -934,7 +903,7 @@
   },
   "lcpCandidates": [
    {
-    "t": 3820,
+    "t": 3332,
     "size": 2618,
     "url": "",
     "tag": "A",
@@ -942,7 +911,7 @@
     "text": "Dorm beds from ₹399/night"
    },
    {
-    "t": 3872,
+    "t": 3384,
     "size": 38556,
     "url": "",
     "tag": "H1",
@@ -950,7 +919,7 @@
     "text": "XTSY Travellers Hostel"
    },
    {
-    "t": 4140,
+    "t": 3652,
     "size": 249600,
     "url": "https://xtsy.one/img/o/xtsy-property-images-8-portrait-828.avif",
     "tag": "IMG",
