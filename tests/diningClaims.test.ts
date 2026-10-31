@@ -34,12 +34,21 @@ const NOT_ON_THE_MENU: [RegExp, string][] = [
   [/\bwood-fired\b/i, 'nothing is wood-fired'],
 ];
 
-/** 'buffet' and 'live counter' are real catering formats, not restaurant service. */
-const CATERING = /catering|bulk|party-food|office-lunch|event/;
+/**
+ * City-guide pages describe OTHER restaurants in Shillong by name and
+ * speciality — momo specialists, Khasi food stalls, cafes with live music.
+ * Saying the city has Khasi food stalls is true and useful; the rule being
+ * enforced here is that TAB BISTRO must not claim those dishes as its own, so
+ * these two are exempt. Anything else that mentions them is making the claim
+ * in its own voice.
+ */
+const CITY_GUIDES = new Set(['top-restaurants-in-shillong', 'famous-restaurants-in-shillong']);
 
 async function restaurantPages() {
   const { ALL_SEO_PAGES }: any = await import('../src/data/seoPages');
-  return ALL_SEO_PAGES.filter((p: any) => p.category === 'restaurants' || p.schemaType === 'Restaurant');
+  return ALL_SEO_PAGES.filter(
+    (p: any) => (p.category === 'restaurants' || p.schemaType === 'Restaurant') && !CITY_GUIDES.has(p.slug),
+  );
 }
 
 describe('dining pages never advertise food TAB Bistro does not serve', () => {
