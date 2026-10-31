@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-10-16T16:22:57.219Z",
+ "checkedAt": "2026-10-31T08:29:17.342Z",
  "site": "https://xtsy.one",
  "sitemaps": [
   {
@@ -30,17 +30,17 @@
   {
    "sitemap": "https://xtsy.one/sitemap-guides.xml",
    "status": 200,
-   "urls": 139
+   "urls": 140
   },
   {
    "sitemap": "https://xtsy.one/sitemap-programmatic.xml",
    "status": 200,
-   "urls": 25
+   "urls": 44
   },
   {
    "sitemap": "https://xtsy.one/sitemap-dining.xml",
    "status": 200,
-   "urls": 70
+   "urls": 57
   },
   {
    "sitemap": "https://xtsy.one/sitemap-misc.xml",
@@ -53,17 +53,16 @@
    "urls": 2
   }
  ],
- "urlsChecked": 684,
- "healthy": 1,
- "withIssues": 683,
+ "urlsChecked": 691,
+ "healthy": 690,
+ "withIssues": 1,
  "byIssue": {
-  "old dorm price  on page": 683,
-  "long title": 3
+  "HTTP 301": 1
  },
- "medianMs": 90,
- "p95Ms": 618,
- "withStructuredData": 684,
- "withQuickAnswer": 495,
+ "medianMs": 58,
+ "p95Ms": 412,
+ "withStructuredData": 690,
+ "withQuickAnswer": 500,
  "extra": {
   "robots": 200,
   "llms": 200,
