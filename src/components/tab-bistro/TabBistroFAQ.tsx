@@ -20,7 +20,7 @@ export const tabBistroFaqs = [
   },
   {
     q: "Can I work from the café at TAB Bistro?",
-    a: "Yes. TAB Bistro doubles as a café in Shillong with WiFi-friendly corners, espresso and cold brew during both service windows — popular with remote workers and travellers.",
+    a: "Yes. TAB Bistro doubles as a café in Shillong with WiFi-friendly corners, espresso and cappuccino during both service windows — popular with remote workers and travellers.",
   },
   {
     q: "Does TAB Bistro offer wedding catering and events?",
@@ -32,7 +32,7 @@ export const tabBistroFaqs = [
   },
   {
     q: "Do you provide corporate and event catering in Shillong?",
-    a: "Absolutely. We cater corporate events, conferences, offsites and private functions across Shillong and Meghalaya with Indian, Chinese, Continental, Thai and Northeast spreads, plus live counters and buffets tailored to your budget.",
+    a: "Absolutely. We cater corporate events, conferences, offsites and private functions across Shillong and Meghalaya with North Indian, tandoor, Indo-Chinese, biriyani and South Indian spreads, plus live counters tailored to your budget.",
   },
   {
     q: "What cuisines can I order from TAB Bistro?",

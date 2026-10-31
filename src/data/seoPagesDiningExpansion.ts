@@ -739,7 +739,7 @@ const generals: Occasion[] = [
     title: 'Affordable Restaurants in Shillong — Value Dining | TAB Bistro',
     metaWord: 'affordable restaurants in Shillong',
     intro: 'Eat well without overspending. TAB Bistro by XTSY offers value-packed multi-cuisine meals in Shillong with generous portions and an in-house guest discount.',
-    points1: { h: 'Value Picks', items: ['Combo & set menus', 'Veg & non-veg thalis', 'Noodles & fried rice', 'Snacks & quick bites', 'Family-size portions'] },
+    points1: { h: 'Value Picks', items: ['Combo & set menus', 'Dal, rice & roti plates', 'Noodles & fried rice', 'Fries, pakoda & quick bites', 'Family-size portions'] },
     points2: { h: 'Save More', items: ['In-house guest discount of 15%', 'Group & bulk pricing', 'Generous portions', 'Takeaway available', 'Transparent prices'] },
     keywords: ['cheap restaurants shillong', 'budget restaurants shillong', 'food deals today', 'affordable food shillong', 'food places near me'],
     quick: 'TAB Bistro by XTSY offers affordable, value-packed multi-cuisine meals in Shillong with combos and an in-house guest discount, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
@@ -818,7 +818,7 @@ localities.forEach((l) => {
       `Restaurants ${l.area.startsWith('near') ? l.area : `in ${l.area}`}, Shillong`,
       `${l.area.startsWith('near') ? `Eating ${l.area}` : `${l.area} is one of Shillong's`} ${l.area.startsWith('near') ? 'in Shillong gives you' : 'food-friendly areas, known for'} ${l.known}. For a full multi-cuisine experience, TAB Bistro by XTSY in New Shillong Township is a short hop away.`,
       [
-        { heading: `Dining ${l.area.startsWith('near') ? l.area : `in ${l.area}`}`, content: 'What the area offers:', listItems: ['Local cafés & casual eateries', 'Chinese & momo joints', 'Quick bites & street food', 'Family-friendly options', 'Easy access to TAB Bistro nearby'] },
+        { heading: `Dining ${l.area.startsWith('near') ? l.area : `in ${l.area}`}`, content: 'What the area offers:', listItems: ['Local cafés & casual eateries', 'Indo-Chinese & quick bites', 'Street food nearby', 'Family-friendly options', 'Easy access to TAB Bistro nearby'] },
         { heading: 'Pair It With TAB Bistro', content: 'When you want more variety:', listItems: ['Multi-cuisine forest dining', 'Barbecue & tandoor', 'Veg & non-veg menus', 'Reservations & catering', 'In-house guest discount of 15%'] },
       ],
       [

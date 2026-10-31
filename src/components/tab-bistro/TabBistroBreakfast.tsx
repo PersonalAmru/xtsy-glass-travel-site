@@ -15,7 +15,7 @@ const highlights = [
   },
   {
     title: "All-Day Café",
-    desc: "A relaxed café for remote workers and travellers — espresso, cold brew, fast WiFi corners and light bites through the day.",
+    desc: "A relaxed café for remote workers and travellers — espresso, cappuccino, fast WiFi corners and light bites through both service windows.",
     icon: <Coffee className="w-5 h-5" />,
   },
   {

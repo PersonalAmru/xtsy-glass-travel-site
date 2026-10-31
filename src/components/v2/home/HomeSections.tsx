@@ -229,7 +229,7 @@ export function BistroFeature() {
         <h2 className="xt-display m-0 text-[56px] leading-[0.92] sm:text-[84px]">Forest dining under the pines.</h2>
         <p className="m-0 text-[17px] leading-relaxed text-xt-mute sm:text-[18px]">Breakfast, live tandoor, wok-tossed Indo-Chinese, dum biriyani and hand-crafted pasta, next door to your bed. Breakfast 8:45 AM–12 PM, dinner 5–11 PM daily; lunch by preorder.</p>
         <div className="flex flex-wrap gap-2">
-          {['North Indian', 'Indo-Chinese', 'Thai', 'Continental', 'Italian', 'Northeast Indian'].map((c) => (
+          {['North Indian', 'Tandoor', 'Indo-Chinese', 'Dum Biriyani', 'South Indian', 'Pasta'].map((c) => (
             <span key={c} className="rounded-full border-[1.5px] border-xt-stone px-3.5 py-2 text-[14px] font-bold">{c}</span>
           ))}
         </div>

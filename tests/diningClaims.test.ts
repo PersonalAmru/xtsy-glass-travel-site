@@ -63,6 +63,8 @@ const CITY_GUIDES = new Set([
   'famous-restaurants-in-shillong',
   'restaurants-in-laitumkhrah',
   'restaurants-in-police-bazar-shillong',
+  // A ranked guide to twelve Shillong cafes by name, with their prices and hours.
+  'cafes-in-shillong',
 ]);
 
 async function allRestaurantPages() {

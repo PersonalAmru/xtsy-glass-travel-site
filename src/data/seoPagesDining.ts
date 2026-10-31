@@ -45,7 +45,7 @@ const dish = (
 const tabFaq = {
   question: 'Where can I eat near XTSY in Shillong?',
   answer:
-    'TAB Bistro by XTSY is a multi-cuisine forest-dining restaurant in New Shillong Township serving North Indian, tandoor, Indo-Chinese, Thai, Continental, Italian, seafood and Northeast cuisine. It is open for breakfast 8:45 AM–12 PM & dinner 5–11 PM, takes reservations, and also handles catering and bulk orders.',
+    'TAB Bistro by XTSY is a multi-cuisine restaurant in New Shillong Township serving North Indian gravies and live tandoor, Indo-Chinese, XTSY dum biriyani, South Indian and hand-crafted pasta. It is open for breakfast 8:45 AM–12 PM & dinner 5–11 PM, closed for walk-in lunch though lunch preorders are accepted, takes reservations, and also handles catering and bulk orders.',
 };
 
 export const DINING_SEO_PAGES: SEOPageData[] = [
@@ -112,15 +112,15 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
   // ===== CUISINE CLUSTER ===================================================
   dish(
     'best-chinese-restaurant-shillong',
-    'Best Chinese Restaurant in Shillong — Indo-Chinese & Thai',
-    'Best Chinese restaurant in Shillong for Indo-Chinese, Thai & Asian food. Noodles, dumplings, chilli & more at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
+    'Best Chinese Restaurant in Shillong — Indo-Chinese',
+    'Best Chinese restaurant in Shillong for Indo-Chinese. Hakka noodles, chilli chicken, manchurian and chopsuey at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
     'Best Chinese Restaurant in Shillong',
-    'Craving noodles, dumplings or fiery chilli chicken? Shillong has a strong Indo-Chinese tradition, and TAB Bistro by XTSY plates up Chinese and Thai favourites alongside its multi-cuisine menu.',
+    'Craving noodles, dumplings or fiery chilli chicken? Shillong has a strong Indo-Chinese tradition, and TAB Bistro by XTSY plates up Indo-Chinese favourites alongside its multi-cuisine menu.',
     [
       { heading: 'Best Chinese & Asian Dishes', content: 'What to order:', listItems: ['Hakka & Schezwan noodles', 'American & Chinese garlic chopsuey', 'Chilli chicken & paneer', 'Honey chilli chicken', 'Manchurian & fried rice'] },
-      { heading: 'Why TAB Bistro for Chinese Food', content: 'A reliable Indo-Chinese stop in Shillong:', listItems: ['Authentic wok-tossed flavours', 'Veg & non-veg options', 'Thai curries & Asian sides', 'Generous portions', 'Dine-in, catering & bulk orders'] },
+      { heading: 'Why TAB Bistro for Chinese Food', content: 'A reliable Indo-Chinese stop in Shillong:', listItems: ['Authentic wok-tossed flavours', 'Veg, chicken & seafood versions', 'Dry starters & full gravies', 'Generous portions', 'Dine-in, catering & bulk orders'] },
     ],
-    [{ question: 'Where is the best Chinese restaurant in Shillong?', answer: 'TAB Bistro by XTSY serves popular Indo-Chinese and Thai dishes — noodles, dumplings, chilli chicken and curries — as part of its multi-cuisine menu, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.' }, tabFaq],
+    [{ question: 'Where is the best Chinese restaurant in Shillong?', answer: 'TAB Bistro by XTSY serves popular Indo-Chinese dishes — hakka noodles, chilli chicken, manchurian and chopsuey — as part of its multi-cuisine menu, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.' }, tabFaq],
     ['restaurant-in-shillong', 'best-restaurants-shillong', 'best-place-to-eat-in-shillong'],
     ['best chinese restaurant in shillong', 'chinese restaurant in shillong', 'chinese food', 'chinese food near me', 'chinese restaurant near me'],
   ),
@@ -131,7 +131,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Barbecue Restaurant in Shillong',
     'For smoky, char-grilled flavour, TAB Bistro by XTSY is a standout grill destination in Shillong — a live charcoal tandoor turning out chicken, paneer, mushroom, malai broccoli and prawns in a pine-forest setting.',
     [
-      { heading: 'Barbecue & Grill Highlights', content: 'Fire-kissed favourites:', listItems: ['Charcoal barbecue platters', 'Tandoori chicken, fish & paneer', 'Sizzlers with sides', 'Grilled kebabs & skewers', 'Veg barbecue options'] },
+      { heading: 'Barbecue & Grill Highlights', content: 'Fire-kissed favourites:', listItems: ['Charcoal barbecue platters', 'Tandoori chicken, paneer & prawns', 'Tandoori malai broccoli', 'Mushroom tikka & chicken tikka', 'Veg barbecue options'] },
       { heading: 'Barbecue Nights & Events', content: 'Perfect for groups and celebrations:', listItems: ['Group barbecue bookings', 'Catering for parties & events', 'Bulk & corporate orders', 'Forest-side ambiance', 'In-house guest discount of 15%'] },
     ],
     [{ question: 'Is there a barbecue restaurant in Shillong?', answer: 'Yes — TAB Bistro by XTSY runs a live charcoal tandoor in a pine-forest setting, with group bookings and catering available.' }, tabFaq],
@@ -141,7 +141,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
   dish(
     'pure-veg-restaurant-shillong',
     'Pure Veg Restaurant in Shillong — Vegetarian Food Guide',
-    'Pure veg & vegetarian restaurants in Shillong — thalis, South Indian, Chinese & continental veg. Dine at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
+    'Pure veg & vegetarian options in Shillong — tandoori paneer, veg Indo-Chinese, South Indian and veg pasta. Dine at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
     'Pure Veg Restaurant in Shillong',
     'Vegetarian travellers are well looked after in Shillong. From tandoori paneer to veg Indo-Chinese and pasta, TAB Bistro by XTSY offers an extensive vegetarian menu alongside its multi-cuisine spread.',
     [
@@ -155,7 +155,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
   dish(
     'best-veg-restaurants-shillong',
     'Best Veg Restaurants in Shillong — Top Vegetarian Dining',
-    'Best vegetarian restaurants in Shillong with thalis, Chinese, Italian & South Indian veg food. Dine at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
+    'Best vegetarian restaurants in Shillong — veg Indo-Chinese, tandoori paneer, South Indian and veg pasta. Dine at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
     'Best Veg Restaurants in Shillong',
     'Shillong\'s best vegetarian dining combines variety with value. TAB Bistro by XTSY leads with a broad veg menu spanning Indian, Chinese, Italian and continental favourites.',
     [
@@ -234,7 +234,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Planning a wedding or big celebration in Shillong? TAB Bistro by XTSY offers full-service catering — multi-cuisine menus, live counters and barbecue stations tailored to your guest count and budget.',
     [
       { heading: 'Catering Services', content: 'What we cater:', listItems: ['Weddings & receptions', 'Engagements & pre-wedding events', 'Corporate & office events', 'Birthday & private parties', 'Bulk & party food orders'] },
-      { heading: 'Menus & Live Counters', content: 'Crafted for every palate:', listItems: ['North Indian, Chinese, Continental & Thai', 'Live tandoor & barbecue counters', 'Veg, non-veg & Jain options', 'Custom set menus by headcount', 'Dessert & beverage stations'] },
+      { heading: 'Menus & Live Counters', content: 'Crafted for every palate:', listItems: ['North Indian, Indo-Chinese, biriyani & South Indian', 'Live tandoor counters', 'Veg, non-veg & Jain options', 'Custom set menus by headcount', 'Dessert & beverage stations'] },
     ],
     [{ question: 'Does TAB Bistro offer wedding catering in Shillong?', answer: 'Yes — TAB Bistro by XTSY provides multi-cuisine wedding and event catering in Shillong, with live counters, barbecue stations and custom menus by guest count.' }],
     ['bulk-food-order-shillong', 'corporate-catering-shillong', 'destination-wedding-shillong'],
