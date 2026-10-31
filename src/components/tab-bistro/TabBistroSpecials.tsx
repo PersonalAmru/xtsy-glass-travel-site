@@ -1,7 +1,7 @@
 import { memo, useState } from "react";
 import { Link } from "@/lib/router-compat";
 import {
-  Star, Soup, Beef, Pizza, Fish, Salad, Drumstick, Globe2, Leaf, ShoppingBag, PartyPopper,
+  Star, Soup, Salad, Drumstick, Globe2, Leaf, ShoppingBag, PartyPopper,
 } from "lucide-react";
 
 /**
@@ -19,50 +19,50 @@ interface Cuisine {
 const cuisines: Cuisine[] = [
   {
     title: "North Indian & Tandoor",
-    desc: "Paneer Butter Masala, Kadhai Chicken, Dal Makhani, Murgh Malai Tikka and clay-oven naans — the best North Indian restaurant flavours in Shillong.",
+    desc: "Paneer Butter Masala, Kadhai Chicken, XTSY Chicken Kosha and Dal Makhani, with Tandoori Chicken, Paneer Tikka, Malai Broccoli and Tandoori Prawns off the live clay oven.",
     icon: <Drumstick className="w-5 h-5" />,
-    tags: ["indian", "veg"],
+    tags: ["indian", "tandoor", "veg"],
   },
   {
     title: "Indo-Chinese",
-    desc: "Chilli Chicken, Hakka noodles, Schezwan fried rice, Manchurian and Kung Pao — Shillong's go-to Chinese food, wok-tossed to order.",
+    desc: "Chilli Chicken, Burned Garlic and Hot Schezwan Hakka noodles, fried rice, Manchurian and Kung Pao — wok-tossed to order, in veg, chicken or seafood.",
     icon: <Soup className="w-5 h-5" />,
     tags: ["chinese", "veg"],
   },
   {
-    title: "Thai & Pan-Asian",
-    desc: "Thai basil chicken, Thai curries and Bangkok fusion plates — rare pan-Asian dining you won't easily find elsewhere in Shillong.",
-    icon: <Globe2 className="w-5 h-5" />,
-    tags: ["thai", "veg"],
-  },
-  {
-    title: "Continental & Grills",
-    desc: "Fish & Chips, Chicken Stroganoff, Schnitzel, grilled fish and steaks with sauces — proper continental food in the pines.",
-    icon: <Beef className="w-5 h-5" />,
-    tags: ["continental"],
-  },
-  {
-    title: "Italian — Pizza & Pasta",
-    desc: "Wood-style pizzas, Alfredo and Arrabiata pastas, lasagne-rich flavours — the cosy Italian corner of TAB Bistro.",
-    icon: <Pizza className="w-5 h-5" />,
-    tags: ["italian", "veg"],
-  },
-  {
-    title: "Seafood & Sizzlers",
-    desc: "Butter-garlic prawns, chilli fish, grilled prawns and live sizzlers served on cast iron — a seafood menu that's hard to find in the hills.",
-    icon: <Fish className="w-5 h-5" />,
-    tags: ["seafood"],
-  },
-  {
-    title: "Northeast & Khasi Flavours",
-    desc: "Smoked, fiery local-style plates and regional specials that celebrate Northeast India's cuisine alongside global favourites.",
+    title: "XTSY Dum Biriyani",
+    desc: "Veg, egg and chicken dum biriyani, plus Chicken Mandi in half and full portions that serve two or four — the thing to order for a table.",
     icon: <Star className="w-5 h-5" />,
-    tags: ["northeast"],
+    tags: ["biryani", "veg"],
   },
   {
-    title: "Salads, Café & Breakfast",
-    desc: "Caesar and loaded salads, all-day café bites, breakfast spreads, shakes and mocktails — light, fresh and made for slow mornings.",
+    title: "South Indian",
+    desc: "Masala and egg dosa, Kerala Parotta plain or with chicken gravy, steamed rice with tomato rasam, and curd rice with Chicken 65.",
+    icon: <Globe2 className="w-5 h-5" />,
+    tags: ["southindian", "veg"],
+  },
+  {
+    title: "Hand-Crafted Pasta",
+    desc: "Alfredo white and Al Arrabiata red, made to order in veg, chicken or seafood — the quiet favourite of the evening menu.",
     icon: <Salad className="w-5 h-5" />,
+    tags: ["pasta", "veg"],
+  },
+  {
+    title: "Soups & Appetizers",
+    desc: "Manchow, Hot & Sour and Lemon Coriander soups; Paneer and Mushroom Manchurian, Crispy Chicken 65, Wings and Drums of Heaven, and Hot Chilli Prawns.",
+    icon: <Leaf className="w-5 h-5" />,
+    tags: ["veg", "chinese"],
+  },
+  {
+    title: "Café & Breakfast",
+    desc: "Assam tea, espresso and cappuccino, thick shakes and mojitos, with omelettes, parathas, poha, puri sabji and pancakes served 8:45 AM to 12 PM.",
+    icon: <ShoppingBag className="w-5 h-5" />,
+    tags: ["cafe", "veg"],
+  },
+  {
+    title: "Desserts & Snack Corner",
+    desc: "Ice cream, fruit bowls and fruit salad, with Peri Peri Fries, Peri Peri Cheesy Fries and veg, chicken or paneer pakoda alongside.",
+    icon: <PartyPopper className="w-5 h-5" />,
     tags: ["cafe", "veg"],
   },
 ];
@@ -71,12 +71,11 @@ const filters: { key: string; label: string; icon?: React.ReactNode }[] = [
   { key: "all", label: "All Cuisines" },
   { key: "veg", label: "Veg-Friendly", icon: <Leaf className="w-3.5 h-3.5" /> },
   { key: "indian", label: "North Indian" },
-  { key: "chinese", label: "Chinese" },
-  { key: "thai", label: "Thai" },
-  { key: "continental", label: "Continental" },
-  { key: "italian", label: "Italian" },
-  { key: "seafood", label: "Seafood" },
-  { key: "northeast", label: "Northeast" },
+  { key: "tandoor", label: "Tandoor" },
+  { key: "chinese", label: "Indo-Chinese" },
+  { key: "biryani", label: "Biriyani" },
+  { key: "southindian", label: "South Indian" },
+  { key: "pasta", label: "Pasta" },
   { key: "cafe", label: "Café & Breakfast" },
 ];
 

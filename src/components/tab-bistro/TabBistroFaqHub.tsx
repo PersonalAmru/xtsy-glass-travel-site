@@ -73,12 +73,12 @@ const groups: FaqGroup[] = [
         q: "What cuisines are available for takeaway?",
         a: (
           <>
-            All of them — North Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian (pizza & pasta),
-            seafood, sizzlers, café bites and beverages are available to take away. See{" "}
+            All of them — North Indian, Tandoor, Indo-Chinese, XTSY dum biriyani, South Indian, hand-crafted pasta,
+            café bites and beverages are available to take away. See{" "}
             <a href="#xtsy-specials" className="text-amber-400 underline">XTSY Specials</a>.
           </>
         ),
-        text: "All of them — North Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian (pizza & pasta), seafood, sizzlers, café bites and beverages are available to take away. See XTSY Specials.",
+        text: "All of them — North Indian, Tandoor, Indo-Chinese, XTSY dum biriyani, South Indian, hand-crafted pasta, café bites and beverages are available to take away. See XTSY Specials.",
       },
     ],
   },

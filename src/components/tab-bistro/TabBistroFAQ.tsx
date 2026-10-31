@@ -4,7 +4,7 @@ import { Helmet } from '@/lib/seo/helmet';
 export const tabBistroFaqs = [
   {
     q: "Does TAB Bistro serve breakfast in Shillong?",
-    a: "Yes. TAB Bistro by XTSY serves a multi-cuisine breakfast daily, 8:45 AM – 12 PM — Assam tea, filter coffee, English breakfast, parathas, eggs to order and pancakes, in a pine-forest setting.",
+    a: "Yes. TAB Bistro by XTSY serves a multi-cuisine breakfast daily, 8:45 AM – 12 PM — Assam tea, espresso and cappuccino, omelettes, parathas, poha, masala dosa and pancakes, in a pine-forest setting.",
   },
   {
     q: "Is TAB Bistro a rooftop restaurant in Shillong?",
@@ -36,7 +36,7 @@ export const tabBistroFaqs = [
   },
   {
     q: "What cuisines can I order from TAB Bistro?",
-    a: "TAB Bistro is a multi-cuisine restaurant serving North Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian (pizza & pasta), seafood, sizzlers and Northeast Indian dishes — all under the XTSY Specials menu.",
+    a: "TAB Bistro is a multi-cuisine restaurant serving North Indian, Tandoor, Indo-Chinese, XTSY dum biriyani, South Indian and hand-crafted pasta — all under the XTSY Specials menu.",
   },
 ];
 

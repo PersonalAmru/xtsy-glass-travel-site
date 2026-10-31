@@ -9,7 +9,7 @@ const TabBistroMenu = memo(() => {
     <section id="menu">
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground font-playfair mb-2">Our Menu</h2>
-        <p className="text-muted-foreground text-sm">From Assam teas to sizzlers — explore the full TAB Bistro experience.</p>
+        <p className="text-muted-foreground text-sm">From Assam teas to dum biriyani — explore the full TAB Bistro menu.</p>
       </div>
 
       {/* Tabs */}

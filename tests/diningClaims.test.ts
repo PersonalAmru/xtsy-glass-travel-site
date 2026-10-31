@@ -15,6 +15,8 @@
  * This checks the restaurant pages against src/data/tabBistroMenu.ts.
  */
 import { describe, it, expect } from 'vitest';
+import fs from 'node:fs';
+import path from 'node:path';
 
 /** Phrases that may not appear on a restaurant page: none is on the menu. */
 const NOT_ON_THE_MENU: [RegExp, string][] = [
@@ -116,4 +118,40 @@ describe('dining pages never advertise food TAB Bistro does not serve', () => {
     expect(BISTRO_BREAKFAST.label).toBe('8:45 AM – 12 PM');
     expect(offenders).toEqual([]);
   });
+});
+
+/**
+ * The SEO registry is not the whole site. The homepage and the /tab-bistro
+ * components are hand-written React, so nothing above looks at them — and that
+ * is where the worst of it was: the homepage advertised "wood-fired pizzas ...
+ * and Thai plates", /tab-bistro targeted the keyword "pizza in shillong", and
+ * XTSY Specials carried whole showcase cards for Thai & Pan-Asian, Fish &
+ * Chips with Schnitzel, and Seafood & Sizzlers. None of it exists.
+ *
+ * These files are checked as source text, which is blunt but right for them:
+ * they speak only for TAB Bistro, so there is no city-guide case to allow.
+ */
+const BISTRO_SOURCES = [
+  'src/components/v2/home/HomeSections.tsx',
+  'src/pages/TabBistro.tsx',
+  'src/components/tab-bistro/TabBistroSpecials.tsx',
+  'src/components/tab-bistro/TabBistroFAQ.tsx',
+  'src/components/tab-bistro/TabBistroFaqHub.tsx',
+  'src/components/tab-bistro/TabBistroBreakfast.tsx',
+  'src/components/tab-bistro/TabBistroMenu.tsx',
+];
+
+describe('the homepage and TAB Bistro components claim only real dishes', () => {
+  for (const file of BISTRO_SOURCES) {
+    it(`${file} names nothing that is not on the menu`, () => {
+      const full = path.resolve(__dirname, '..', file);
+      // A missing file must fail loudly rather than silently pass.
+      expect(fs.existsSync(full), `${file} not found — update BISTRO_SOURCES`).toBe(true);
+      const src = fs.readFileSync(full, 'utf-8');
+      const found = NOT_ON_THE_MENU
+        .filter(([pattern]) => pattern.test(src))
+        .map(([pattern, why]) => `${pattern.source} (${why})`);
+      expect(found).toEqual([]);
+    });
+  }
 });
