@@ -15,9 +15,9 @@ const cateringServices = [
 
 const weddingOfferings = [
   "Custom Wedding Menus",
-  "Live BBQ Stations",
-  "Multi-Cuisine Buffet",
-  "Dessert Counters",
+  "Live Tandoor",
+  "Multi-Cuisine Set Menus",
+  "Ice Cream & Fruit Bowls",
   "Mocktail Bars",
   "Outdoor Dining Setups",
 ];

@@ -131,12 +131,12 @@ const groups: FaqGroup[] = [
         q: "Do you cater corporate events and conferences?",
         a: (
           <>
-            Yes — we cater corporate offsites, conferences and office parties with multi-cuisine buffets, live
-            counters and packed meal boxes. See the{" "}
+            Yes — we cater corporate offsites, conferences and office parties with multi-cuisine set menus,
+            dishes cooked to order and packed meal boxes. See the{" "}
             <Link to="/tab-bistro/catering" className="text-amber-400 underline">corporate catering details</Link>.
           </>
         ),
-        text: "Yes — we cater corporate offsites, conferences and office parties with multi-cuisine buffets, live counters and packed meal boxes. See the corporate catering details.",
+        text: "Yes — we cater corporate offsites, conferences and office parties with multi-cuisine set menus, dishes cooked to order and packed meal boxes. See the corporate catering details.",
       },
     ],
   },
