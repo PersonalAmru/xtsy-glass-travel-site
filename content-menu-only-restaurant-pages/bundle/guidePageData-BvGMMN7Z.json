@@ -1,0 +1,107 @@
+{
+  "results": [
+    {
+      "bundleName": ".output/public/assets/guidePageData-BvGMMN7Z.js",
+      "totalBytes": 910556,
+      "mappedBytes": 910071,
+      "unmappedBytes": 485,
+      "eolBytes": 0,
+      "sourceMapCommentBytes": 0,
+      "files": {
+        "../../../src/data/seoPagesExpansion.ts": {
+          "size": 89961
+        },
+        "../../../src/data/seoPillarPages.ts": {
+          "size": 57179
+        },
+        "../../../src/data/seoDestinationPages.ts": {
+          "size": 39438
+        },
+        "../../../src/data/seoLastMinutePages.ts": {
+          "size": 11392
+        },
+        "../../../src/utils/seoDate.ts": {
+          "size": 79
+        },
+        "../../../src/data/seoPageFactory.ts": {
+          "size": 33447
+        },
+        "../../../scripts/generate-seo-slugs.ts": {
+          "size": 6302
+        },
+        "../../../src/data/seoPagesRoutes.ts": {
+          "size": 20
+        },
+        "../../../src/data/seoPagesIntent.ts": {
+          "size": 16
+        },
+        "../../../src/data/seoPagesInstitutions.ts": {
+          "size": 144
+        },
+        "../../../src/data/seoPagesActivities.ts": {
+          "size": 16
+        },
+        "../../../src/data/seoPagesDurations.ts": {
+          "size": 16
+        },
+        "../../../src/data/seoPagesGlobalNE.ts": {
+          "size": 16
+        },
+        "../../../src/data/seoPagesNortheastExpansion.ts": {
+          "size": 246
+        },
+        "../../../src/data/seoPagesDining.ts": {
+          "size": 21836
+        },
+        "../../../src/data/seoPagesDiningExpansion.ts": {
+          "size": 72822
+        },
+        "../../../src/data/seoPagesDiningSpokes.ts": {
+          "size": 28791
+        },
+        "../../../src/data/seoPagesDiningInstitutions.ts": {
+          "size": 6817
+        },
+        "../../../src/data/seoAffectedSlugs.ts": {
+          "size": 7613
+        },
+        "../../../src/data/seoQualityFilter.ts": {
+          "size": 1218
+        },
+        "../../../src/data/seoPagesFestivals.ts": {
+          "size": 4956
+        },
+        "../../../src/data/seoPagesOverridesBottom50.ts": {
+          "size": 218089
+        },
+        "../../../src/data/seoPagesOverrides.ts": {
+          "size": 165028
+        },
+        "../../../src/data/seoNormalize.ts": {
+          "size": 10575
+        },
+        "../../../src/data/seoPages.ts": {
+          "size": 118599
+        },
+        "../../../src/data/seoIndexPolicy.ts": {
+          "size": 276
+        },
+        "../../../src/lib/seo/programmaticSeo.ts": {
+          "size": 9432
+        },
+        "../../../src/data/seoLinkingWheel.ts": {
+          "size": 4813
+        },
+        "../../../src/lib/seo/guidePageData.ts": {
+          "size": 934
+        },
+        "[sourceMappingURL]": {
+          "size": 0
+        },
+        "[unmapped]": {
+          "size": 485
+        }
+      }
+    }
+  ]
+}
