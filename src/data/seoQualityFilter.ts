@@ -78,11 +78,12 @@ export const ALWAYS_KEEP_SLUGS: ReadonlySet<string> = new Set([
   'restaurant-near-mlcu-shillong',
   // Institution STAY cluster — the accommodation counterpart to the restaurant
   // slugs above. Pinned individually rather than by enabling the `hospitals`
-  // category, because that category also generates Guwahati pages (GMCH,
-  // AIIMS, IIT) where XTSY has no property, and a per-category cap would admit
-  // them by array order. These six cover the New Shillong Township institutions
-  // XTSY actually sits beside, which carry year-round, monsoon-independent
-  // demand (patient attendants, visiting parents, placement season).
+  // category, so that the indexable set stays deliberate: Guwahati is served by
+  // a partner hostel and is not a priority, so its institution pages should not
+  // arrive here as a side effect of a per-category cap and array order. These
+  // six cover the New Shillong Township institutions XTSY sits beside, which
+  // carry year-round, monsoon-independent demand (patient attendants, visiting
+  // parents, placement season).
   'stay-near-neigrims',
   'patient-attendant-stay-neigrims',
   'budget-stay-near-neigrims',

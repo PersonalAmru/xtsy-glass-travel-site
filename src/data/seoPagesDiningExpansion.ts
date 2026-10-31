@@ -99,7 +99,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Masala dosa & egg dosa', 'Kerala parotta, plain or with chicken gravy', 'Steamed rice with tomato rasam', 'Steamed rice with chicken kosha', 'Curd rice with chicken 65'],
     why: ['Dosas on the daily breakfast menu', 'Kerala parotta made fresh', 'Light rice-and-rasam plates', 'Veg and non-veg options', 'Served 8:45 AM to 12 PM'],
     keywords: ['south indian restaurant shillong', 'south indian restaurants near me', 'dosa shillong', 'vegetarian food near me', 'breakfast places in shillong'],
-    quick: 'TAB Bistro by XTSY serves South Indian favourites in Shillong — dosa, idli, vada and filter coffee — alongside its multi-cuisine menu, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
+    quick: 'TAB Bistro by XTSY serves South Indian favourites in Shillong — including egg dosa — alongside its multi-cuisine menu, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
   },
   {
     slug: 'thai-restaurant-shillong',
@@ -339,7 +339,7 @@ const occasions: Occasion[] = [
     h1: 'Breakfast in Shillong',
     title: 'Breakfast in Shillong — Best Morning Cafés & Spots | TAB Bistro',
     metaWord: 'breakfast spots in Shillong',
-    intro: 'Start your Shillong morning right. From hearty all-day breakfast to filter coffee and continental plates, TAB Bistro by XTSY serves breakfast in a pine-forest setting.',
+    intro: 'Start your Shillong morning right. From hearty all-day breakfast to fresh espresso and continental plates, TAB Bistro by XTSY serves breakfast in a pine-forest setting.',
     points1: { h: 'Breakfast Menu Highlights', items: ['Eggs your way & omelettes', 'Toast, pancakes & waffles', 'Dosa, idli & paratha', 'Fresh juices & coffee', 'Continental breakfast platters'] },
     points2: { h: 'Why Breakfast Here', items: ['Served fresh all morning', 'Veg & non-veg options', 'Coffee & teas', 'Quiet forest views', 'Work-friendly seating'] },
     keywords: ['breakfast in shillong', 'breakfast places in shillong', 'breakfast near me', 'breakfast places near me', 'best breakfast near me'],
