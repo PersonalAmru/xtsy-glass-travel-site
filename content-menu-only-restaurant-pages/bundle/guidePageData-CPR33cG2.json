@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/guidePageData-BvGMMN7Z.js",
-      "totalBytes": 910556,
-      "mappedBytes": 910071,
+      "bundleName": ".output/public/assets/guidePageData-CPR33cG2.js",
+      "totalBytes": 910544,
+      "mappedBytes": 910059,
       "unmappedBytes": 485,
       "eolBytes": 0,
       "sourceMapCommentBytes": 0,
@@ -54,7 +54,7 @@
           "size": 21836
         },
         "../../../src/data/seoPagesDiningExpansion.ts": {
-          "size": 72822
+          "size": 72810
         },
         "../../../src/data/seoPagesDiningSpokes.ts": {
           "size": 28791
