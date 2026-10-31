@@ -37,6 +37,13 @@ const NOT_ON_THE_MENU: [RegExp, string][] = [
   // Confirmed by the owner 31 Oct 2026: XTSY hosts bonfires and private parties, not live
   // music. The Laitumkhrah cafes do, which is why the city guides are exempt from this.
   [/live (music|band|gig)/i, 'XTSY does not host live music'],
+  // Owner instruction, 31 Oct 2026: restaurant pages carry ONLY what is on the printed
+  // menu. The kitchen has a clay TANDOOR, not a barbecue or a grill, and it serves no
+  // kebabs, skewers, sizzlers, steaks, buffets, live counters, chaat or bakery.
+  [/\bbarbe(c|q)ue\b|\bbbq\b/i, 'the kitchen has a tandoor, not a barbecue'],
+  [/\bkebabs?\b|\bskewers?\b/i, 'not on the tandoori section'],
+  [/\bbuffets?\b|live counters?\b/i, 'no buffet or live-counter service'],
+  [/\bsteaks?\b|\bchaat\b|\bbakery\b/i, 'not on the menu'],
 ];
 
 /**
