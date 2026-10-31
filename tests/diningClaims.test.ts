@@ -35,20 +35,42 @@ const NOT_ON_THE_MENU: [RegExp, string][] = [
 ];
 
 /**
- * City-guide pages describe OTHER restaurants in Shillong by name and
- * speciality — momo specialists, Khasi food stalls, cafes with live music.
- * Saying the city has Khasi food stalls is true and useful; the rule being
- * enforced here is that TAB BISTRO must not claim those dishes as its own, so
- * these two are exempt. Anything else that mentions them is making the claim
- * in its own voice.
+ * Guides to eating in Shillong. These survey the CITY and name other places by
+ * speciality — the jadoh stalls at Iewduh, the momo counters and street food
+ * around Police Bazaar, the cafes in Laitumkhrah. All of that is true, useful
+ * to a reader, and must not be scrubbed just to satisfy a keyword filter.
+ *
+ * The rule being enforced is narrower than "never say the word": TAB BISTRO
+ * must not claim these dishes as its own. Any page not on this list is
+ * speaking in TAB Bistro's voice, so a mention there is a claim and fails.
+ *
+ * Hours are checked on every page regardless, because an opening time is
+ * always a statement about TAB Bistro.
  */
-const CITY_GUIDES = new Set(['top-restaurants-in-shillong', 'famous-restaurants-in-shillong']);
+const CITY_GUIDES = new Set([
+  'khasi-food-guide',
+  'street-food-police-bazar',
+  'best-restaurants-shillong',
+  'best-place-to-eat-in-shillong',
+  'places-to-eat-in-shillong',
+  'good-restaurants-in-shillong',
+  'best-food-in-shillong',
+  'best-food-places-in-shillong',
+  'where-to-eat-in-shillong',
+  'top-restaurants-in-shillong',
+  'famous-restaurants-in-shillong',
+  'restaurants-in-laitumkhrah',
+  'restaurants-in-police-bazar-shillong',
+]);
 
-async function restaurantPages() {
+async function allRestaurantPages() {
   const { ALL_SEO_PAGES }: any = await import('../src/data/seoPages');
-  return ALL_SEO_PAGES.filter(
-    (p: any) => (p.category === 'restaurants' || p.schemaType === 'Restaurant') && !CITY_GUIDES.has(p.slug),
-  );
+  return ALL_SEO_PAGES.filter((p: any) => p.category === 'restaurants' || p.schemaType === 'Restaurant');
+}
+
+/** Pages speaking in TAB Bistro's own voice. */
+async function restaurantPages() {
+  return (await allRestaurantPages()).filter((p: any) => !CITY_GUIDES.has(p.slug));
 }
 
 describe('dining pages never advertise food TAB Bistro does not serve', () => {
@@ -87,7 +109,7 @@ describe('dining pages never advertise food TAB Bistro does not serve', () => {
     const { BISTRO_BREAKFAST }: any = await import('../src/data/tabBistroHours');
     const stale = ['9 AM', '9:00 AM', '11:45 AM', '4:30 PM', '16:30'];
     const offenders: string[] = [];
-    for (const page of await restaurantPages()) {
+    for (const page of await allRestaurantPages()) {
       const text = JSON.stringify([page.metaDescription, page.intro, page.sections, page.faqs, page.quickAnswer]);
       if (stale.some((t) => text.includes(t))) offenders.push(page.slug);
     }

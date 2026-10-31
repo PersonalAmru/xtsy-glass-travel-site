@@ -107,7 +107,7 @@ const thingsToDoSection = (destination: string, activity?: string): SEOSection =
       'Boat ride on Dawki\'s glass-clear Umngot river',
       'Explore Mawsmai and Krem Liat Prah caves',
       'Catch sunrise from Laitlum Canyons or Nongjrong',
-      'Experience local Khasi cuisine at TAB Bistro',
+      'Eat at TAB Bistro — tandoor, Indo-Chinese, biryani and South Indian',
     ],
   };
 };

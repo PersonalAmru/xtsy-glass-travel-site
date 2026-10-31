@@ -79,10 +79,10 @@ const enrichmentFor = (cat: SEOPageCategory): Enrichment => {
     return {
       heading: (t) => `Where to Eat: ${t} & TAB Bistro`,
       content: (t) =>
-        `Beyond ${t.toLowerCase()}, XTSY guests enjoy TAB Bistro — our in-house kitchen serving Khasi, North Indian, Continental and Pan-Asian plates. It's a reliable, hygienic option for travellers who want great food without hunting across the city.`,
+        `Beyond ${t.toLowerCase()}, XTSY guests enjoy TAB Bistro — our in-house kitchen serving North Indian gravies and live tandoor, Indo-Chinese, XTSY dum biriyani, South Indian and hand-crafted pasta. It's a reliable, hygienic option for travellers who want great food without hunting across the city.`,
       items: () => [
-        `TAB Bistro: multi-cuisine menu, vegetarian & Jain options`,
-        `Fresh local Khasi specialities cooked to order`,
+        `TAB Bistro: multi-cuisine menu with full vegetarian sections`,
+        `Everything cooked to order, not held in a counter`,
         `Bulk, group and event catering available`,
         `Hygiene-first kitchen with consistent quality`,
         `Open to walk-ins and in-house guests alike`,
@@ -161,7 +161,7 @@ const extraFaqsFor = (cat: SEOPageCategory, topic: string): SEOFaq[] => {
   }
   if (cat === 'restaurants' || cat === 'food-dining') {
     return [
-      { question: `Does XTSY have an in-house restaurant?`, answer: `Yes — TAB Bistro serves Khasi, North Indian, Continental and Pan-Asian dishes, with vegetarian and Jain options, plus group and event catering.` },
+      { question: `Does XTSY have an in-house restaurant?`, answer: `Yes — TAB Bistro serves North Indian gravies and live tandoor, Indo-Chinese, XTSY dum biriyani, South Indian and hand-crafted pasta, with full vegetarian sections, plus group and event catering.` },
       { question: `Can I order food on WhatsApp?`, answer: `Yes, you can reserve a table or place a bulk/catering order with TAB Bistro on WhatsApp ${WA}.` },
     ];
   }
