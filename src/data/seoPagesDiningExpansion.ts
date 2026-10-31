@@ -99,7 +99,7 @@ const cuisines: Cuisine[] = [
     dishes: ['Masala dosa & egg dosa', 'Kerala parotta, plain or with chicken gravy', 'Steamed rice with tomato rasam', 'Steamed rice with chicken kosha', 'Curd rice with chicken 65'],
     why: ['Dosas on the daily breakfast menu', 'Kerala parotta made fresh', 'Light rice-and-rasam plates', 'Veg and non-veg options', 'Served 8:45 AM to 12 PM'],
     keywords: ['south indian restaurant shillong', 'south indian restaurants near me', 'dosa shillong', 'vegetarian food near me', 'breakfast places in shillong'],
-    quick: 'TAB Bistro by XTSY serves South Indian favourites in Shillong — including egg dosa — alongside its multi-cuisine menu, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
+    quick: 'TAB Bistro by XTSY serves South Indian favourites in Shillong — egg dosa and masala dosa — alongside its multi-cuisine menu, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
   },
   {
     slug: 'thai-restaurant-shillong',
@@ -125,8 +125,8 @@ const cuisines: Cuisine[] = [
     noun: 'Italian restaurant',
     dishes: ['Alfredo white pasta — veg, chicken or seafood', 'Al arrabiata red pasta', 'Italian cheese omelette at breakfast', 'Cream of tomato soup', 'Espresso & cappuccino'],
     why: ['Pasta hand-crafted to order', 'Both white and red sauces', 'Veg, chicken and seafood versions', 'Italian coffee from the bar', 'Pasta made to order, not pre-cooked'],
-    keywords: ['italian restaurant shillong', 'pizza in shillong', 'italian restaurants near me', 'pasta shillong', 'best food places in shillong'],
-    quick: 'TAB Bistro by XTSY is an Italian-friendly restaurant in Shillong serving wood-fired pizza and pasta, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
+    keywords: ['italian restaurant shillong', 'pasta in shillong', 'italian restaurants near me', 'pasta shillong', 'best food places in shillong'],
+    quick: 'TAB Bistro by XTSY serves hand-crafted pasta in Shillong — Alfredo white and arrabiata, veg, chicken or seafood — open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
   },
   {
     slug: 'seafood-restaurant-shillong',
@@ -162,7 +162,7 @@ const cuisines: Cuisine[] = [
     dishes: ['North Indian gravies & live tandoor', 'Indo-Chinese noodles, fried rice & chopsuey', 'XTSY dum biriyani & chicken mandi', 'South Indian dosa & Kerala parotta', 'Hand-crafted pasta, shakes & mojitos'],
     why: ['Several cuisines on one menu', 'A mixed table rarely has to agree', 'Full veg sections, not a token dish', 'Forest-side setting', 'Reservations, catering and bulk orders'],
     keywords: ['multi cuisine restaurant shillong', 'cuisine restaurant shillong', 'best restaurant in shillong', 'restaurants in shillong', 'restaurants near me'],
-    quick: 'TAB Bistro by XTSY is a multi-cuisine restaurant in Shillong with 10+ cuisines — North Indian, Chinese, Thai, Continental, Italian and more, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
+    quick: 'TAB Bistro by XTSY is a multi-cuisine restaurant in Shillong — North Indian, tandoor, Indo-Chinese, Continental and seafood, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
   },
   {
     slug: 'khasi-food-restaurant-shillong',

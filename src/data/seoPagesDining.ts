@@ -45,7 +45,7 @@ const dish = (
 const tabFaq = {
   question: 'Where can I eat near XTSY in Shillong?',
   answer:
-    'TAB Bistro by XTSY is a multi-cuisine forest-dining restaurant in New Shillong Township serving North Indian, tandoor, Indo-Chinese, Thai, Continental, Italian, seafood and Northeast cuisine. It is open for breakfast 8:45 AM–12 PM & dinner 5–11 PM, takes reservations, and also handles catering and bulk orders.',
+    'TAB Bistro by XTSY is a multi-cuisine forest-dining restaurant in New Shillong Township serving North Indian, tandoor, Indo-Chinese, Continental, seafood and Northeast cuisine. It is open for breakfast 8:45 AM–12 PM & dinner 5–11 PM, takes reservations, and also handles catering and bulk orders.',
 };
 
 export const DINING_SEO_PAGES: SEOPageData[] = [
@@ -113,7 +113,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
   dish(
     'best-chinese-restaurant-shillong',
     'Best Chinese Restaurant in Shillong — Indo-Chinese & Thai',
-    'Best Chinese restaurant in Shillong for Indo-Chinese, Thai & Asian food. Noodles, dumplings, chilli & more at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
+    'Best Chinese restaurant in Shillong for Indo-Chinese & Asian food. Noodles, chilli & more at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
     'Best Chinese Restaurant in Shillong',
     'Craving noodles, dumplings or fiery chilli chicken? Shillong has a strong Indo-Chinese tradition, and TAB Bistro by XTSY plates up Chinese and Thai favourites alongside its multi-cuisine menu.',
     [

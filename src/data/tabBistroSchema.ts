@@ -91,7 +91,7 @@ export function buildRestaurantSchema(opts: {
     name: TAB_BISTRO_NAME,
     image: TAB_BISTRO_IMAGE,
     description:
-      "Multi-cuisine forest dining restaurant in Shillong serving North Indian, Tandoor, Indo-Chinese, Thai, Continental, Italian, seafood and Northeast cuisine. Breakfast, café, wedding catering, bulk & corporate orders.",
+      "Multi-cuisine forest dining restaurant in Shillong serving North Indian, Tandoor, Indo-Chinese, Continental, seafood and Northeast cuisine. Breakfast, café, wedding catering, bulk & corporate orders.",
     url: TAB_BISTRO_URL,
     telephone: TAB_BISTRO_PHONE,
     sameAs: TAB_BISTRO_SAME_AS,
