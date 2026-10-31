@@ -34,7 +34,6 @@ const SEASONAL_PRICES: Record<string, SeasonalPrice> = {
   'xtsy-270':              { april: 5999, may: 5999, originalApril: 11999, originalMay: 11999 },
   'king-double-room':      { april: 2399, may: 2399, originalApril: 3499,  originalMay: 3499 },
   '4-bed-female-only-dorm':{ april: 599,  may: 599,  originalApril: 679,   originalMay: 679 },
-  '6-bed-mixed-female-dorm':{ april: 389, may: 389,  originalApril: 599,   originalMay: 599 },
   '6-bed-mixed-dorm':      { april: 499, may: 499,  originalApril: 699,   originalMay: 699 },
   '8-bed-mixed-dorm':      { april: 399, may: 399,  originalApril: 550,   originalMay: 550 },
 };
@@ -212,31 +211,6 @@ export const ROOM_INVENTORY: Record<string, RoomType> = {
     tags: ['preferred_by_female'],
   },
 
-  // 6-Bed Female Dorm (SOLD OUT - Closed)
-  '6-bed-mixed-female-dorm': {
-    id: '6-bed-mixed-female-dorm',
-    name: 'Bed in 6-Bed Female Dormitory',
-    shortName: '6-Bed Female Dorm',
-    category: 'hostel',
-    kind: 'dorm',
-    basePrice: getSeasonalPrice('6-bed-mixed-female-dorm').discounted,
-    weekdayPrice: getSeasonalPrice('6-bed-mixed-female-dorm').discounted,
-    weekendPrice: getSeasonalPrice('6-bed-mixed-female-dorm').discounted,
-    discountedPrice: getSeasonalPrice('6-bed-mixed-female-dorm').discounted,
-    originalPrice: getSeasonalPrice('6-bed-mixed-female-dorm').original,
-    capacity: 6,
-    totalUnits: 6,
-    description: 'Spacious female dormitory with modern amenities',
-    features: generateStandardizedFeatures('hostel', 'Bed in 6-Bed Female Dormitory', 'dorm'),
-    image: ROOM_IMAGES['6-bed-mixed-female-dorm'][0],
-    images: ROOM_IMAGES['6-bed-mixed-female-dorm'],
-    isBookable: false,
-    propertyType: 'XTSY Travellers Hostel',
-    displayOrder: 40,
-    tags: ['sold_out'],
-  },
-
-  // 6-Bed Mixed Dorm (Recommended)
   '6-bed-mixed-dorm': {
     id: '6-bed-mixed-dorm',
     name: 'Bed in 6-Bed Mixed Dormitory',

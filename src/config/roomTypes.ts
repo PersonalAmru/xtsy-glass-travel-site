@@ -48,7 +48,6 @@ export interface RoomTypeConfig {
  * - xtsy-270
  * - 4-bed-female-only-dorm
  * - 4-bed-mixed-female-dorm
- * - 6-bed-mixed-female-dorm
  * - 6-bed-mixed-dorm
  * - king-double-room
  * - 8-bed-mixed-dorm (NEW - XTSY Travellers Hostel)
@@ -87,14 +86,6 @@ export const ROOM_IMAGES: Record<string, string[]> = {
     'xtsy/4 Bed Mixed Dormitory 4.JPG',
     'xtsy/4 Bed Mixed Dormitory 5.jpg',
     'xtsy/4 Bed Mixed Dormitory 7.jpg',
-  ]),
-  '6-bed-mixed-female-dorm': cdnMany([
-    'xtsy/6 Bed Mixed Dormitory 1.JPG',
-    'xtsy/6 Bed Mixed Dormitory 2.JPG',
-    'xtsy/6 Bed Mixed Dormitory 3.jpg',
-    'xtsy/6 Bed Mixed Dormitory 4.jpg',
-    'xtsy/6 Bed Mixed Dormitory 5.JPG',
-    'xtsy/6 Bed Mixed Dormitory 6.JPG',
   ]),
   '6-bed-mixed-dorm': cdnMany([
     'xtsy/6 Bed Mixed Dormitory 1.JPG',
@@ -212,24 +203,6 @@ export const ROOM_TYPES: Record<string, RoomTypeConfig> = {
     images: ROOM_IMAGES['4-bed-female-only-dorm'],
   },
 
-  // 6-Bed Female Dorm (SOLD OUT)
-  '6-bed-mixed-female-dorm': {
-    id: '6-bed-mixed-female-dorm',
-    name: 'Bed in 6-Bed Female Dormitory',
-    shortName: '6-Bed Female Dorm',
-    category: 'hostel',
-    unitType: 'bed',
-    capacity: 6,
-    totalUnits: 6,
-    propertyType: 'XTSY Travellers Hostel',
-    isBookable: false,
-    basePrice: 369,
-    displayOrder: 40,
-    tags: ['sold_out'],
-    image: ROOM_IMAGES['6-bed-mixed-female-dorm'][0],
-    images: ROOM_IMAGES['6-bed-mixed-female-dorm'],
-  },
-
   // 6-Bed Mixed Dorm (Recommended)
   '6-bed-mixed-dorm': {
     id: '6-bed-mixed-dorm',
@@ -283,11 +256,6 @@ export const ROOM_NAME_TO_ID: Record<string, string> = {
   'Bed in 4-Bed Mixed Dormitory': '4-bed-mixed-female-dorm',
   '4-Bed Mixed Dorm': '4-bed-mixed-female-dorm',
   '4 Bed Mixed Dormitory': '4-bed-mixed-female-dorm',
-  'Bed in 6-Bed Female Dormitory': '6-bed-mixed-female-dorm',
-  '6-Bed Female Dorm': '6-bed-mixed-female-dorm',
-  '6 Bed Female Dormitory': '6-bed-mixed-female-dorm',
-  'Bed in 6-Bed Female Only Dormitory': '6-bed-mixed-female-dorm',
-  '6-bed-female-dorm': '6-bed-mixed-female-dorm', // Legacy ID
   'Bed in 6-Bed Mixed Dormitory': '6-bed-mixed-dorm',
   '6-Bed Mixed Dorm': '6-bed-mixed-dorm',
   '6 Bed Mixed Dormitory': '6-bed-mixed-dorm',
