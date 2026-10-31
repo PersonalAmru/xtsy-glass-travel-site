@@ -8,7 +8,7 @@ export const tabBistroFaqs = [
   },
   {
     q: "Is TAB Bistro a rooftop restaurant in Shillong?",
-    a: "TAB Bistro is launching a rooftop dining deck with panoramic pine-valley views, alongside its forest dining and BBQ experiences.",
+    a: "TAB Bistro is launching a rooftop dining deck with panoramic pine-valley views, alongside its forest dining and live tandoor.",
   },
   {
     q: "What are the opening hours of TAB Bistro?",
@@ -16,7 +16,7 @@ export const tabBistroFaqs = [
   },
   {
     q: "What cuisines does TAB Bistro serve?",
-    a: "TAB Bistro is a multi-cuisine restaurant serving Indian, Continental, Chinese and Northeast Indian dishes, plus forest BBQ, handcrafted beverages and curated dining experiences.",
+    a: "TAB Bistro is a multi-cuisine restaurant serving North Indian gravies and live tandoor, Indo-Chinese, XTSY dum biriyani, South Indian and hand-crafted pasta, with shakes, mojitos and fresh lemonades from the bar.",
   },
   {
     q: "Can I work from the café at TAB Bistro?",
@@ -32,7 +32,7 @@ export const tabBistroFaqs = [
   },
   {
     q: "Do you provide corporate and event catering in Shillong?",
-    a: "Absolutely. We cater corporate events, conferences, offsites and private functions across Shillong and Meghalaya with North Indian, tandoor, Indo-Chinese, biriyani and South Indian spreads, plus live counters tailored to your budget.",
+    a: "Absolutely. We cater corporate events, conferences, offsites and private functions across Shillong and Meghalaya with North Indian, tandoor, Indo-Chinese, biriyani and South Indian spreads, cooked to order and tailored to your budget.",
   },
   {
     q: "What cuisines can I order from TAB Bistro?",

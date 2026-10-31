@@ -155,6 +155,10 @@ const BISTRO_SOURCES = [
   'src/components/tab-bistro/TabBistroFaqHub.tsx',
   'src/components/tab-bistro/TabBistroBreakfast.tsx',
   'src/components/tab-bistro/TabBistroMenu.tsx',
+  // Added 31 Oct after these two were found advertising "Pine Forest BBQ Nights" and
+  // "Live BBQ Stations / Multi-Cuisine Buffet" on the live /tab-bistro page.
+  'src/components/tab-bistro/TabBistroDining.tsx',
+  'src/components/tab-bistro/TabBistroCatering.tsx',
 ];
 
 describe('the homepage and TAB Bistro components claim only real dishes', () => {

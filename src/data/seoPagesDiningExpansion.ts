@@ -210,7 +210,7 @@ const cuisines: Cuisine[] = [
     quick: 'TAB Bistro by XTSY serves burgers, fried chicken and fast-food bites in Shillong, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
   },
   {
-    slug: 'tandoori dishes-in-shillong',
+    slug: 'sizzlers-in-shillong',
     label: 'Tandoori dishes',
     noun: 'sizzler restaurant',
     dishes: ['Chicken & fish tandoori dishes', 'Paneer & veg tandoori dishes', 'Sizzling brownie', 'Tandoori sides', 'Loaded rice/noodle base'],
@@ -264,7 +264,7 @@ const cuisines: Cuisine[] = [
     quick: 'TAB Bistro by XTSY serves hearty veg and non-veg thalis in Shillong, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
   },
   {
-    slug: 'café-and-desserts-shillong',
+    slug: 'bakery-and-desserts-shillong',
     label: 'Bakery & Desserts',
     noun: 'dessert café',
     dishes: ['Cakes & pastries', 'Brownies & cookies', 'Sizzling brownie', 'Ice cream & shakes', 'Coffee & hot chocolate'],
@@ -479,7 +479,7 @@ const occasions: Occasion[] = [
     faqQ: 'Where can I have an anniversary dinner in Shillong?',
   },
   {
-    slug: 'set menu-restaurant-shillong',
+    slug: 'buffet-restaurant-shillong',
     h1: 'Set menu & Spreads in Shillong',
     title: 'Set menu Restaurant in Shillong — Group Spreads | TAB Bistro',
     metaWord: 'set menu-style dining in Shillong',
@@ -849,7 +849,7 @@ const combos: Combo[] = [
   { slug: 'veg-restaurant-in-police-bazar-shillong', food: 'pure veg restaurant', area: 'Police Bazar', dishes: ['Veg thali & curries', 'Paneer tikka & tandoori veg', 'Veg Hakka noodles', 'Veggie pizza & pasta', 'Dosa & idli'], keywords: ['veg restaurant in police bazar shillong', 'pure veg restaurant in shillong', 'best veg restaurants in shillong', 'restaurants in shillong police bazar', 'vegetarian food near me'] },
   { slug: 'cafe-in-laitumkhrah-shillong', food: 'café', area: 'Laitumkhrah', dishes: ['Specialty coffee & cold brew', 'All-day breakfast', 'Cakes & desserts', 'Sandwiches & bites', 'Teas & shakes'], keywords: ['cafe in laitumkhrah', 'cafe shillong', 'best cafes in shillong', 'restaurants in laitumkhrah', 'brunch near me'] },
   { slug: 'cafe-in-police-bazar-shillong', food: 'café', area: 'Police Bazar', dishes: ['Espresso & cold coffee', 'Breakfast & bakes', 'Cakes & desserts', 'Light snacks', 'Teas & shakes'], keywords: ['cafe in police bazar shillong', 'cafe shillong', 'best cafes in shillong', 'restaurants in shillong police bazar', 'breakfast near me'] },
-  { slug: 'tandoor-restaurant-in-police-bazar-shillong', food: 'tandoor restaurant', area: 'Police Bazar', dishes: ['Tandoori chicken, paneer & prawns', 'Tandoori chicken & fish', 'Tandoori chicken & paneer tikka', 'Tandoori paneer & mushroom', 'Tandoori sides'], keywords: ['tandoor restaurant in police bazar shillong', 'tandoor restaurant shillong', 'tandoor restaurant shillong', 'restaurants in shillong police bazar', 'best food near me'] },
+  { slug: 'barbecue-restaurant-in-police-bazar-shillong', food: 'tandoor restaurant', area: 'Police Bazar', dishes: ['Tandoori chicken, paneer & prawns', 'Tandoori chicken & fish', 'Tandoori chicken & paneer tikka', 'Tandoori paneer & mushroom', 'Tandoori sides'], keywords: ['tandoor restaurant in police bazar shillong', 'tandoor restaurant shillong', 'tandoor restaurant shillong', 'restaurants in shillong police bazar', 'best food near me'] },
   { slug: 'north-indian-restaurant-in-police-bazar-shillong', food: 'North Indian restaurant', area: 'Police Bazar', dishes: ['Butter chicken & dal makhani', 'Tandoori platters', 'Paneer & kadhai dishes', 'Biryani & pulao', 'Naan & roti'], keywords: ['north indian restaurant in police bazar shillong', 'indian restaurant in shillong', 'restaurants in shillong police bazar', 'indian food near me', 'best food in shillong'] },
   { slug: 'family-restaurant-in-police-bazar-shillong', food: 'family restaurant', area: 'Police Bazar', dishes: ['Multi-cuisine spreads', 'Veg & non-veg thalis', 'Pizza & pasta', 'Indo-Chinese', 'Kid-friendly dishes'], keywords: ['family restaurant in police bazar shillong', 'family restaurants near me', 'restaurants in shillong police bazar', 'best places to eat near me', 'restaurants near me'] },
   { slug: 'multi-cuisine-restaurant-in-laitumkhrah', food: 'multi-cuisine restaurant', area: 'Laitumkhrah', dishes: ['North Indian & tandoor', 'Indo-Chinese & Thai', 'Continental & Italian', 'Tandoori chicken & paneer tikka', 'Café & desserts'], keywords: ['multi cuisine restaurant shillong', 'restaurants in laitumkhrah', 'best restaurants in laitumkhrah', 'restaurants in shillong', 'best food in shillong'] },
@@ -860,7 +860,7 @@ const combos: Combo[] = [
   { slug: 'momos-in-laitumkhrah', food: 'momo spot', area: 'Laitumkhrah', dishes: ['Steamed veg & chicken momos', 'Pan-fried momos', 'Tandoori momos', 'Thukpa', 'Spicy chutney'], keywords: ['momos in laitumkhrah', 'momos in shillong', 'street food shillong', 'restaurants in laitumkhrah', 'chinese food near me'] },
   { slug: 'veg-restaurant-in-laitumkhrah', food: 'pure veg restaurant', area: 'Laitumkhrah', dishes: ['Veg thali & curries', 'Paneer tikka & tandoori veg', 'Veg Hakka noodles', 'Veggie pizza & pasta', 'Dosa & idli'], keywords: ['veg restaurant in laitumkhrah', 'pure veg restaurant in shillong', 'best veg restaurants in shillong', 'restaurants in laitumkhrah', 'vegetarian food near me'] },
   { slug: 'north-indian-restaurant-in-laitumkhrah', food: 'North Indian restaurant', area: 'Laitumkhrah', dishes: ['Butter chicken & dal makhani', 'Tandoori platters', 'Paneer & kadhai dishes', 'Biryani & pulao', 'Naan & roti'], keywords: ['north indian restaurant in laitumkhrah', 'indian restaurant in shillong', 'restaurants in laitumkhrah', 'indian food near me', 'best food in shillong'] },
-  { slug: 'tandoor-restaurant-in-laitumkhrah', food: 'tandoor restaurant', area: 'Laitumkhrah', dishes: ['Tandoori chicken, paneer & prawns', 'Tandoori chicken & fish', 'Tandoori chicken & paneer tikka', 'Tandoori paneer & mushroom', 'Tandoori sides'], keywords: ['tandoor restaurant in laitumkhrah', 'tandoor restaurant shillong', 'tandoor restaurant shillong', 'restaurants in laitumkhrah', 'best food near me'] },
+  { slug: 'barbecue-restaurant-in-laitumkhrah', food: 'tandoor restaurant', area: 'Laitumkhrah', dishes: ['Tandoori chicken, paneer & prawns', 'Tandoori chicken & fish', 'Tandoori chicken & paneer tikka', 'Tandoori paneer & mushroom', 'Tandoori sides'], keywords: ['tandoor restaurant in laitumkhrah', 'tandoor restaurant shillong', 'tandoor restaurant shillong', 'restaurants in laitumkhrah', 'best food near me'] },
   { slug: 'biryani-in-police-bazar-shillong', food: 'biryani restaurant', area: 'Police Bazar', dishes: ['Chicken & mutton biryani', 'Veg & paneer biryani', 'Egg biryani', 'Raita & salan', 'Pulao'], keywords: ['biryani in police bazar shillong', 'biryani in shillong', 'best biryani near me', 'restaurants in shillong police bazar', 'indian food near me'] },
   { slug: 'family-restaurant-in-laitumkhrah', food: 'family restaurant', area: 'Laitumkhrah', dishes: ['Multi-cuisine spreads', 'Veg & non-veg thalis', 'Pizza & pasta', 'Indo-Chinese', 'Kid-friendly dishes'], keywords: ['family restaurant in laitumkhrah', 'family restaurants near me', 'restaurants in laitumkhrah', 'best places to eat near me', 'restaurants near me'] },
 ];
@@ -1024,7 +1024,7 @@ export const RETIRED_DINING_SLUGS: ReadonlySet<string> = new Set<string>([
   'veg-restaurant-in-police-bazar-shillong',
   'cafe-in-laitumkhrah-shillong',
   'cafe-in-police-bazar-shillong',
-  'tandoor-restaurant-in-police-bazar-shillong',
+  'barbecue-restaurant-in-police-bazar-shillong',
   'north-indian-restaurant-in-police-bazar-shillong',
   'family-restaurant-in-police-bazar-shillong',
   'multi-cuisine-restaurant-in-laitumkhrah',
@@ -1035,7 +1035,7 @@ export const RETIRED_DINING_SLUGS: ReadonlySet<string> = new Set<string>([
   'momos-in-laitumkhrah',
   'veg-restaurant-in-laitumkhrah',
   'north-indian-restaurant-in-laitumkhrah',
-  'tandoor-restaurant-in-laitumkhrah',
+  'barbecue-restaurant-in-laitumkhrah',
   'biryani-in-police-bazar-shillong',
   'family-restaurant-in-laitumkhrah',
   // Group 3 — added 31 Oct 2026, confirmed by the owner
@@ -1046,10 +1046,10 @@ export const RETIRED_DINING_SLUGS: ReadonlySet<string> = new Set<string>([
   'pizza-in-shillong',                              // no pizza on the menu
   'momos-in-shillong',                              // no momos on the menu
   'burger-and-fast-food-shillong',                  // no burgers, sandwiches or wraps
-  'tandoori dishes-in-shillong',                           // no tandoori dishes on the menu
+  'sizzlers-in-shillong',                           // no tandoori dishes on the menu
   'thali-restaurant-shillong',                      // no thali on the menu
-  'set menu-restaurant-shillong',                     // no set menu service
-  'café-and-desserts-shillong',                   // no café; desserts are ice cream and fruit only
+  'buffet-restaurant-shillong',                     // no set menu service
+  'bakery-and-desserts-shillong',                   // no café; desserts are ice cream and fruit only
   'seafood-restaurant-shillong',                    // no fish; prawns are the only seafood
   'rooftop-restaurant-shillong',                    // the rooftop terrace is not a working restaurant yet
   'rooftop-cafe-shillong',                          // the rooftop terrace is not a working cafe yet

@@ -3,8 +3,8 @@ import { Flame, Heart, Sunset, Globe, TreePine } from "lucide-react";
 
 const experiences = [
   {
-    title: "Pine Forest BBQ Nights",
-    desc: "Open-fire BBQ dining surrounded by pine forests.",
+    title: "Pine Forest Tandoor Nights",
+    desc: "Tandoori chicken, paneer tikka and malai broccoli off the live clay oven, surrounded by pine forest.",
     icon: <Flame className="w-5 h-5" />,
   },
   {
