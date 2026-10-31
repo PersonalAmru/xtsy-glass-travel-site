@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-10-31T09:06:35.874Z",
+ "checkedAt": "2026-10-31T16:43:05.576Z",
  "site": "http://localhost:4174",
  "sitemaps": [
   {
@@ -54,15 +54,16 @@
   }
  ],
  "urlsChecked": 691,
- "healthy": 690,
- "withIssues": 1,
+ "healthy": 689,
+ "withIssues": 2,
  "byIssue": {
+  "HTTP 404": 1,
   "HTTP 301": 1
  },
- "medianMs": 38,
- "p95Ms": 79,
- "withStructuredData": 690,
- "withQuickAnswer": 500,
+ "medianMs": 41,
+ "p95Ms": 86,
+ "withStructuredData": 689,
+ "withQuickAnswer": 499,
  "extra": {
   "robots": 200,
   "llms": 200,

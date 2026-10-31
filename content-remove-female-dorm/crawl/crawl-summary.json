@@ -1,15 +1,15 @@
 {
  "site": "http://localhost:4174",
  "crawled": 712,
- "ok": 711,
+ "ok": 710,
  "sitemapUrls": 691,
- "broken": 0,
+ "broken": 1,
  "internalRedirects": 0,
- "orphans": 1,
+ "orphans": 2,
  "depthHistogram": {
   "0": 1,
   "1": 66,
-  "2": 640,
+  "2": 639,
   "3": 4
  },
  "deepPages": [],
@@ -105,9 +105,17 @@
   "/terms-of-service",
   "/install"
  ],
- "brokenList": [],
+ "brokenList": [
+  {
+   "url": "/barbeque-restaurant-shillong",
+   "status": 404,
+   "from": [],
+   "fromCount": 0
+  }
+ ],
  "redirectList": [],
  "orphanList": [
+  "/barbeque-restaurant-shillong",
   "/live-music-restaurant-shillong"
  ]
 }

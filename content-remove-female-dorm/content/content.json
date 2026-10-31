@@ -2727,38 +2727,30 @@
  },
  {
   "url": "/barbeque-restaurant-shillong",
-  "status": 200,
-  "words": 1017,
+  "status": 404,
+  "words": 313,
   "findings": [
    {
-    "rule": "rating:review count",
-    "detail": "248 — \"t India ✓ Experience by XTSY — India's first stargaze glamp ✓ Rated 4.7★ on Google from 248 reviews ✓ Pluxee India partner — co\""
+    "rule": "seo:status",
+    "detail": "404"
    },
    {
-    "rule": "stale:year",
-    "detail": "2025 — \"hillong Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\""
-   },
-   {
-    "rule": "stale:year",
-    "detail": "2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\""
-   },
-   {
-    "rule": "stale:year",
-    "detail": "2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
+    "rule": "seo:canonical missing",
+    "detail": ""
    }
   ],
   "seo": {
-   "title": "Barbecue Restaurant in Shillong — BBQ & Grill | TAB Bistro",
-   "titleLen": 58,
-   "desc": "Best barbecue restaurant in Shillong for grilled platters and live tandoor. Smoky BBQ in a pine forest at TAB Bistro by XTSY.",
-   "descLen": 125,
-   "canonical": "https://xtsy.one/barbeque-restaurant-shillong",
-   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+   "title": "Page Not Found (404) | XTSY Travel",
+   "titleLen": 34,
+   "desc": "The page you're looking for doesn't exist. Explore XTSY's hostels, tours and Meghalaya travel guides instead.",
+   "descLen": 109,
+   "canonical": "",
+   "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
    "h1": [
-    "Barbecue Restaurant in Shillong"
+    "This trail doesn’t go anywhere."
    ],
    "ogImage": true,
-   "imgs": 3,
+   "imgs": 8,
    "imgsNoAlt": 0
   },
   "aeo": {
@@ -2766,23 +2758,14 @@
     "WebSite",
     "Organization",
     "PostalAddress",
-    "ContactPoint",
-    "WebPage",
-    "ImageObject",
-    "SpeakableSpecification",
-    "Restaurant",
-    "BreadcrumbList",
-    "ListItem",
-    "FAQPage",
-    "Question",
-    "Answer"
+    "ContactPoint"
    ],
-   "faqSchemaQuestions": 4,
-   "questionHeadings": 2,
-   "firstParagraphWords": 26,
+   "faqSchemaQuestions": 0,
+   "questionHeadings": 0,
+   "firstParagraphWords": 13,
    "mentionsBrand": true,
    "mentionsLocation": true,
-   "updatedDate": true
+   "updatedDate": false
   },
   "info": []
  },
@@ -2846,7 +2829,7 @@
  {
   "url": "/best-chinese-restaurant-shillong",
   "status": 200,
-  "words": 1064,
+  "words": 1066,
   "findings": [
    {
     "rule": "rating:review count",
@@ -2897,7 +2880,7 @@
    ],
    "faqSchemaQuestions": 4,
    "questionHeadings": 3,
-   "firstParagraphWords": 52,
+   "firstParagraphWords": 53,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
@@ -2925,8 +2908,8 @@
   "seo": {
    "title": "Best Food in Shillong — What & Where to Eat | TAB Bistro",
    "titleLen": 56,
-   "desc": "The best food in Shillong, from Khasi jadoh to barbecue, Chinese & Italian. Discover top dishes and dine at TAB Bistro by XTSY.",
-   "descLen": 127,
+   "desc": "The best food in Shillong, from Khasi jadoh to tandoor, Chinese & Italian. Discover top dishes and dine at TAB Bistro by XTSY.",
+   "descLen": 126,
    "canonical": "https://xtsy.one/best-food-in-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -2982,8 +2965,8 @@
   "seo": {
    "title": "Best Food Places in Shillong | TAB Bistro",
    "titleLen": 41,
-   "desc": "Best the best food places in Shillong at TAB Bistro by XTSY — forest-side multi-cuisine dining. TAB Bistro by XTSY — multi-cuisine & barbecue, police bazaar…",
-   "descLen": 157,
+   "desc": "Best the best food places in Shillong at TAB Bistro by XTSY — forest-side multi-cuisine dining. TAB Bistro by XTSY — multi-cuisine & tandoor, police bazaar…",
+   "descLen": 156,
    "canonical": "https://xtsy.one/best-food-places-in-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -3534,7 +3517,7 @@
  {
   "url": "/best-place-to-eat-in-shillong",
   "status": 200,
-  "words": 917,
+  "words": 914,
   "findings": [
    {
     "rule": "rating:review count",
@@ -3552,8 +3535,8 @@
   "seo": {
    "title": "Best Place to Eat in Shillong 2026 — Top Restaurant Guide",
    "titleLen": 57,
-   "desc": "Looking for the best place to eat in Shillong? Multi-cuisine dining, cafés, barbecue & Khasi food. Eat at TAB Bistro by XTSY — open for breakfast 8:45 AM–12…",
-   "descLen": 157,
+   "desc": "Looking for the best place to eat in Shillong? Multi-cuisine dining, cafés, tandoor & Khasi food. Eat at TAB Bistro by XTSY — open for breakfast 8:45 AM–12…",
+   "descLen": 156,
    "canonical": "https://xtsy.one/best-place-to-eat-in-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -3591,7 +3574,7 @@
  {
   "url": "/best-restaurant-in-shillong",
   "status": 200,
-  "words": 1045,
+  "words": 1044,
   "findings": [
    {
     "rule": "rating:review count",
@@ -3648,7 +3631,7 @@
  {
   "url": "/best-restaurant-shillong",
   "status": 200,
-  "words": 1166,
+  "words": 1164,
   "findings": [
    {
     "rule": "rating:review count",
@@ -5068,7 +5051,7 @@
  {
   "url": "/birthday-party-catering-shillong",
   "status": 200,
-  "words": 944,
+  "words": 943,
   "findings": [
    {
     "rule": "rating:review count",
@@ -5086,8 +5069,8 @@
   "seo": {
    "title": "Birthday Party Catering in Shillong — Menus | TAB Bistro",
    "titleLen": 56,
-   "desc": "Birthday party catering in Shillong by TAB Bistro by XTSY — party platters & combos, live counters & custom menus.",
-   "descLen": 114,
+   "desc": "Birthday party catering in Shillong by TAB Bistro by XTSY — party platters & combos, dishes cooked to order & custom menus.",
+   "descLen": 123,
    "canonical": "https://xtsy.one/birthday-party-catering-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -5582,7 +5565,7 @@
  {
   "url": "/bulk-food-order-shillong",
   "status": 200,
-  "words": 962,
+  "words": 961,
   "findings": [
    {
     "rule": "rating:review count",
@@ -5643,7 +5626,7 @@
  {
   "url": "/bulk-food-supply-shillong",
   "status": 200,
-  "words": 948,
+  "words": 947,
   "findings": [
    {
     "rule": "rating:review count",
@@ -5661,8 +5644,8 @@
   "seo": {
    "title": "Bulk Food Supply in Shillong | TAB Bistro",
    "titleLen": 41,
-   "desc": "Bulk food supply in Shillong by TAB Bistro by XTSY — party & event platters, live counters & custom menus. open for breakfast 8:45 AM – 12 PM & dinner 5 PM –…",
-   "descLen": 158,
+   "desc": "Bulk food supply in Shillong by TAB Bistro by XTSY — party & event platters, dishes cooked to order & custom menus.",
+   "descLen": 115,
    "canonical": "https://xtsy.one/bulk-food-supply-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -6010,7 +5993,7 @@
  {
   "url": "/catering-services-in-shillong",
   "status": 200,
-  "words": 1175,
+  "words": 1183,
   "findings": [
    {
     "rule": "rating:review count",
@@ -6057,7 +6040,7 @@
    ],
    "faqSchemaQuestions": 5,
    "questionHeadings": 2,
-   "firstParagraphWords": 34,
+   "firstParagraphWords": 36,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
@@ -7126,7 +7109,7 @@
  {
   "url": "/corporate-catering-shillong",
   "status": 200,
-  "words": 967,
+  "words": 969,
   "findings": [
    {
     "rule": "rating:review count",
@@ -8888,7 +8871,7 @@
  {
   "url": "/destination-wedding-catering-shillong",
   "status": 200,
-  "words": 957,
+  "words": 962,
   "findings": [
    {
     "rule": "rating:review count",
@@ -8906,8 +8889,8 @@
   "seo": {
    "title": "Destination Wedding Catering in Shillong | TAB Bistro",
    "titleLen": 53,
-   "desc": "Destination wedding catering in Shillong by TAB Bistro by XTSY — north indian, chinese & continental, live counters & custom menus.",
-   "descLen": 131,
+   "desc": "Destination wedding catering in Shillong by TAB Bistro by XTSY — north indian, chinese & continental, dishes cooked to order & custom menus.",
+   "descLen": 140,
    "canonical": "https://xtsy.one/destination-wedding-catering-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -8935,7 +8918,7 @@
    ],
    "faqSchemaQuestions": 3,
    "questionHeadings": 2,
-   "firstParagraphWords": 22,
+   "firstParagraphWords": 24,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
@@ -12666,7 +12649,7 @@
  {
   "url": "/event-catering-shillong",
   "status": 200,
-  "words": 933,
+  "words": 939,
   "findings": [
    {
     "rule": "rating:review count",
@@ -12684,8 +12667,8 @@
   "seo": {
    "title": "Event Catering in Shillong | TAB Bistro",
    "titleLen": 39,
-   "desc": "Event catering in Shillong by TAB Bistro by XTSY — weddings & receptions, live counters & custom menus. open for breakfast 8:45 AM – 12 PM & dinner 5 PM – 11…",
-   "descLen": 158,
+   "desc": "Event catering in Shillong by TAB Bistro by XTSY — weddings & receptions, dishes cooked to order & custom menus.",
+   "descLen": 112,
    "canonical": "https://xtsy.one/event-catering-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -12713,7 +12696,7 @@
    ],
    "faqSchemaQuestions": 3,
    "questionHeadings": 2,
-   "firstParagraphWords": 22,
+   "firstParagraphWords": 24,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
@@ -12824,7 +12807,7 @@
  {
   "url": "/famous-restaurants-in-shillong",
   "status": 200,
-  "words": 1027,
+  "words": 1028,
   "findings": [
    {
     "rule": "rating:review count",
@@ -12871,7 +12854,7 @@
    ],
    "faqSchemaQuestions": 4,
    "questionHeadings": 3,
-   "firstParagraphWords": 29,
+   "firstParagraphWords": 30,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
@@ -13093,7 +13076,7 @@
  {
   "url": "/food-delivery-shillong",
   "status": 200,
-  "words": 1021,
+  "words": 1061,
   "findings": [
    {
     "rule": "rating:review count",
@@ -13140,7 +13123,7 @@
    ],
    "faqSchemaQuestions": 4,
    "questionHeadings": 4,
-   "firstParagraphWords": 26,
+   "firstParagraphWords": 46,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
@@ -13677,8 +13660,8 @@
   "seo": {
    "title": "Good Restaurants in Shillong — Top Rated Dining 2026",
    "titleLen": 52,
-   "desc": "Find good restaurants in Shillong with great food and ambiance. Multi-cuisine, barbecue, Chinese & veg options. TAB Bistro by XTSY.",
-   "descLen": 131,
+   "desc": "Find good restaurants in Shillong with great food and ambiance. Multi-cuisine, tandoor, Chinese & veg options. TAB Bistro by XTSY.",
+   "descLen": 130,
    "canonical": "https://xtsy.one/good-restaurants-in-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -15729,7 +15712,7 @@
  {
   "url": "/guides",
   "status": 200,
-  "words": 2418,
+  "words": 2413,
   "findings": [],
   "seo": {
    "title": "All Shillong & Meghalaya Travel Guides A–Z | XTSY",
@@ -28616,8 +28599,8 @@
   "seo": {
    "title": "Office Lunch Catering in Shillong — Daily Meals | TAB Bistro",
    "titleLen": 60,
-   "desc": "Office lunch catering in Shillong by TAB Bistro by XTSY — daily lunch packs, live counters & custom menus. open for breakfast 8:45 AM – 12 PM & dinner 5 PM –…",
-   "descLen": 158,
+   "desc": "Office lunch catering in Shillong by TAB Bistro by XTSY — daily lunch packs, dishes cooked to order & custom menus.",
+   "descLen": 115,
    "canonical": "https://xtsy.one/office-lunch-catering-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -28655,7 +28638,7 @@
  {
   "url": "/online-food-order-shillong",
   "status": 200,
-  "words": 1017,
+  "words": 1059,
   "findings": [
    {
     "rule": "rating:review count",
@@ -28702,7 +28685,7 @@
    ],
    "faqSchemaQuestions": 4,
    "questionHeadings": 2,
-   "firstParagraphWords": 28,
+   "firstParagraphWords": 49,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
@@ -28950,7 +28933,7 @@
  {
   "url": "/party-catering-shillong",
   "status": 200,
-  "words": 1158,
+  "words": 1165,
   "findings": [
    {
     "rule": "rating:review count",
@@ -28997,7 +28980,7 @@
    ],
    "faqSchemaQuestions": 5,
    "questionHeadings": 2,
-   "firstParagraphWords": 32,
+   "firstParagraphWords": 34,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
@@ -29007,7 +28990,7 @@
  {
   "url": "/party-food-order-shillong",
   "status": 200,
-  "words": 1016,
+  "words": 1015,
   "findings": [
    {
     "rule": "rating:review count",
@@ -29025,8 +29008,8 @@
   "seo": {
    "title": "Party Food Orders in Shillong | TAB Bistro",
    "titleLen": 42,
-   "desc": "Party food orders in Shillong from TAB Bistro by XTSY — multi-cuisine meals, barbecue & tandoor trays & more. open for breakfast 8:45 AM – 12 PM & dinner 5…",
-   "descLen": 156,
+   "desc": "Party food orders in Shillong from TAB Bistro by XTSY — multi-cuisine meals, live tandoor trays & more. open for breakfast 8:45 AM – 12 PM & dinner 5 PM – 11…",
+   "descLen": 158,
    "canonical": "https://xtsy.one/party-food-order-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -29247,10 +29230,10 @@
    }
   ],
   "seo": {
-   "title": "Places to Eat in Shillong — Restaurants, Cafés & Barbecue",
-   "titleLen": 57,
-   "desc": "Best places to eat in Shillong for every budget — restaurants, cafés, barbecue & Khasi food. Dine at TAB Bistro by XTSY.",
-   "descLen": 120,
+   "title": "Places to Eat in Shillong — Restaurants, Cafés & Tandoor",
+   "titleLen": 56,
+   "desc": "Best places to eat in Shillong for every budget — restaurants, cafés, tandoor & Khasi food. Dine at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.",
+   "descLen": 160,
    "canonical": "https://xtsy.one/places-to-eat-in-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -29730,7 +29713,7 @@
  {
   "url": "/restaurant-in-police-bazar",
   "status": 200,
-  "words": 1210,
+  "words": 1208,
   "findings": [
    {
     "rule": "rating:review count",
@@ -30121,7 +30104,7 @@
  {
   "url": "/restaurants-in-laitumkhrah",
   "status": 200,
-  "words": 1046,
+  "words": 1045,
   "findings": [
    {
     "rule": "rating:review count",
@@ -30143,8 +30126,8 @@
   "seo": {
    "title": "Restaurants in Laitumkhrah Shillong — Cafés & Dining Guide",
    "titleLen": 58,
-   "desc": "Best restaurants in Laitumkhrah, Shillong — cafés, Chinese, barbecue & multi-cuisine. Plan your meal and dine at TAB Bistro by XTSY.",
-   "descLen": 132,
+   "desc": "Best restaurants in Laitumkhrah, Shillong — cafés, Chinese, tandoor & multi-cuisine. Plan your meal and dine at TAB Bistro by XTSY.",
+   "descLen": 131,
    "canonical": "https://xtsy.one/restaurants-in-laitumkhrah",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -30182,7 +30165,7 @@
  {
   "url": "/restaurants-in-new-shillong-township",
   "status": 200,
-  "words": 1078,
+  "words": 1077,
   "findings": [
    {
     "rule": "rating:review count",
@@ -30239,7 +30222,7 @@
  {
   "url": "/restaurants-in-police-bazar-shillong",
   "status": 200,
-  "words": 1057,
+  "words": 1054,
   "findings": [
    {
     "rule": "rating:review count",
@@ -32548,7 +32531,7 @@
  {
   "url": "/tab-bistro-by-xtsy-restaurant",
   "status": 200,
-  "words": 1245,
+  "words": 1242,
   "findings": [
    {
     "rule": "rating:review count",
@@ -32605,7 +32588,7 @@
  {
   "url": "/takeaway-food-shillong",
   "status": 200,
-  "words": 1011,
+  "words": 1049,
   "findings": [
    {
     "rule": "rating:review count",
@@ -32652,7 +32635,7 @@
    ],
    "faqSchemaQuestions": 4,
    "questionHeadings": 2,
-   "firstParagraphWords": 24,
+   "firstParagraphWords": 43,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
@@ -32662,11 +32645,15 @@
  {
   "url": "/tandoor-restaurant-shillong",
   "status": 200,
-  "words": 1063,
+  "words": 1019,
   "findings": [
    {
     "rule": "rating:review count",
     "detail": "248 — \"t India ✓ Experience by XTSY — India's first stargaze glamp ✓ Rated 4.7★ on Google from 248 reviews ✓ Pluxee India partner — co\""
+   },
+   {
+    "rule": "stale:year",
+    "detail": "2025 — \"hillong Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\""
    },
    {
     "rule": "stale:year",
@@ -32678,14 +32665,14 @@
    }
   ],
   "seo": {
-   "title": "Tandoor & Grill Restaurant in Shillong | TAB Bistro",
-   "titleLen": 51,
-   "desc": "Tandoor restaurant Shillong: Best tandoor & grill in Shillong at TAB Bistro by XTSY — tandoori chicken, half or full, tandoori chicken tikka & more.",
-   "descLen": 148,
+   "title": "Tandoor Restaurant in Shillong | TAB Bistro",
+   "titleLen": 43,
+   "desc": "Best tandoor restaurant in Shillong for tandoori dishes and live tandoor. Smoky tandoor in a pine forest at TAB Bistro by XTSY.",
+   "descLen": 127,
    "canonical": "https://xtsy.one/tandoor-restaurant-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
-    "Tandoor & Grill in Shillong"
+    "Tandoor Restaurant in Shillong"
    ],
    "ogImage": true,
    "imgs": 3,
@@ -32708,8 +32695,8 @@
     "Answer"
    ],
    "faqSchemaQuestions": 4,
-   "questionHeadings": 3,
-   "firstParagraphWords": 29,
+   "questionHeadings": 2,
+   "firstParagraphWords": 26,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
@@ -37282,7 +37269,7 @@
  {
   "url": "/wedding-catering-services-shillong",
   "status": 200,
-  "words": 1176,
+  "words": 1183,
   "findings": [
    {
     "rule": "rating:review count",
@@ -37300,8 +37287,8 @@
   "seo": {
    "title": "Wedding Catering Services in Shillong | TAB Bistro",
    "titleLen": 50,
-   "desc": "Wedding catering services in Shillong & Meghalaya by TAB Bistro by XTSY. Multi-cuisine wedding menus, live counters & destination-wedding catering. Get a quote.",
-   "descLen": 160,
+   "desc": "Wedding catering services in Shillong & Meghalaya by TAB Bistro by XTSY. Multi-cuisine wedding menus, dishes cooked to order & destination-wedding catering.",
+   "descLen": 156,
    "canonical": "https://xtsy.one/wedding-catering-services-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
@@ -37329,7 +37316,7 @@
    ],
    "faqSchemaQuestions": 5,
    "questionHeadings": 2,
-   "firstParagraphWords": 30,
+   "firstParagraphWords": 32,
    "mentionsBrand": true,
    "mentionsLocation": true,
    "updatedDate": true
@@ -37339,7 +37326,7 @@
  {
   "url": "/wedding-catering-shillong",
   "status": 200,
-  "words": 965,
+  "words": 967,
   "findings": [
    {
     "rule": "rating:review count",
@@ -37361,8 +37348,8 @@
   "seo": {
    "title": "Wedding Catering in Shillong — Menus & Packages | TAB Bistro",
    "titleLen": 60,
-   "desc": "Wedding & event catering in Shillong by TAB Bistro by XTSY. Multi-cuisine menus, live counters & bulk orders for weddings, parties & corporate events.",
-   "descLen": 150,
+   "desc": "Wedding & event catering in Shillong by TAB Bistro by XTSY. Multi-cuisine menus, dishes cooked to order & bulk orders for weddings, parties & corporate events.",
+   "descLen": 159,
    "canonical": "https://xtsy.one/wedding-catering-shillong",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
    "h1": [
