@@ -385,13 +385,13 @@ const occasions: Occasion[] = [
   {
     slug: 'late-night-food-shillong',
     h1: 'Late Night Food in Shillong',
-    title: 'Late Night Food in Shillong — Dinner Till Late | TAB Bistro',
+    title: 'Late Night in Shillong — Dinner, Bonfires & Parties | TAB Bistro',
     metaWord: 'late night food in Shillong',
-    intro: 'Shillong winds down early, but TAB Bistro by XTSY keeps the kitchen open till 11 PM for late dinners, barbecue and comfort food.',
+    intro: 'Shillong winds down early. TAB Bistro by XTSY serves dinner until 11 PM, last order 10:30 PM, and the evening carries on after that — bonfires and private parties run late on the property.',
     points1: { h: 'Late Evening Menu', items: ['Tandoori platters off the live tandoor', 'Hakka noodles & fried rice', 'Peri peri fries & pakoda', 'Alfredo & arrabiata pasta', 'Coffee, shakes & ice cream'] },
-    points2: { h: 'Good to Know', items: ['Kitchen open till 11 PM', 'Veg & non-veg options', 'Takeaway available', 'Group bookings welcome', 'Forest-side seating'] },
+    points2: { h: 'Good to Know', items: ['Dinner to 11 PM, last order 10:30 PM', 'Bonfires and private parties run later', 'Veg & non-veg options', 'Takeaway available', 'Group bookings welcome'] },
     keywords: ['late night food shillong', 'late night food near me', 'food near me open now', 'food near me open', 'restaurants near me'],
-    quick: 'TAB Bistro by XTSY serves late-night food in Shillong with the kitchen open till 11 PM — barbecue, noodles, burgers and more.',
+    quick: 'TAB Bistro by XTSY serves dinner until 11 PM in Shillong, last order 10:30 PM — tandoor, hakka noodles, biriyani and pasta. Bonfires and private parties on the property run later.',
     faqQ: 'Where can I get late night food in Shillong?',
   },
   {
@@ -1038,6 +1038,8 @@ export const RETIRED_DINING_SLUGS: ReadonlySet<string> = new Set<string>([
   'barbecue-restaurant-in-laitumkhrah',
   'biryani-in-police-bazar-shillong',
   'family-restaurant-in-laitumkhrah',
+  // Group 3 — added 31 Oct 2026, confirmed by the owner
+  'live-music-restaurant-shillong',            // XTSY does not host live music
   // Group 2 — food not on the menu
   'khasi-food-restaurant-shillong',                 // no Khasi dishes are served, deliberately
   'thai-restaurant-shillong',                       // no Thai dishes on the menu

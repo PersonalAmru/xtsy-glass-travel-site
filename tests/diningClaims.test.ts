@@ -34,6 +34,9 @@ const NOT_ON_THE_MENU: [RegExp, string][] = [
   [/\bcold brew\b/i, 'no cold brew'],
   [/\bbruschetta\b|\bgarlic bread\b/i, 'not on the pasta section'],
   [/\bwood-fired\b/i, 'nothing is wood-fired'],
+  // Confirmed by the owner 31 Oct 2026: XTSY hosts bonfires and private parties, not live
+  // music. The Laitumkhrah cafes do, which is why the city guides are exempt from this.
+  [/live (music|band|gig)/i, 'XTSY does not host live music'],
 ];
 
 /**

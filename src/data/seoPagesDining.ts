@@ -199,14 +199,14 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
   dish(
     'cafe-shillong',
     'Café in Shillong — Best Coffee, Music & Bites | XTSY',
-    'Best café in Shillong for coffee, live music & cozy bites. Discover Shillong café culture and visit TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
+    'Shillong café culture, and where TAB Bistro by XTSY fits: espresso, cappuccino, thick shakes and mojitos in a forest setting. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
     'Café in Shillong',
     'Shillong is India\'s rock capital, and its café culture matches the music — artisan coffee, cozy interiors and weekend gigs. TAB Bistro by XTSY adds a forest-side café experience to the mix.',
     [
-      { heading: 'Shillong Café Culture', content: 'What to expect:', listItems: ['Specialty coffee & espresso', 'Live music on weekends', 'All-day breakfast & bakes', 'Cozy work-friendly corners', 'Continental snacks & desserts'] },
+      { heading: 'Shillong Café Culture', content: 'What to expect:', listItems: ['Specialty coffee & espresso', 'Live music on weekends at Laitumkhrah cafés', 'Breakfast spreads', 'Cozy work-friendly corners', 'Continental snacks & desserts'] },
       { heading: 'Café & Bistro at XTSY', content: 'TAB Bistro doubles as a café:', listItems: ['Coffee, teas & cold beverages', 'Breakfast served all morning', 'Light bites & desserts', 'WiFi-friendly seating', 'Forest views'] },
     ],
-    [{ question: 'Is there a good café in Shillong?', answer: 'Yes — Shillong has a rich café culture with live music and specialty coffee. TAB Bistro by XTSY offers a forest-side café with coffee, breakfast and light bites.' }, tabFaq],
+    [{ question: 'Is there a good café in Shillong?', answer: 'Yes — Shillong has a rich café culture, with live music at the Laitumkhrah cafés. TAB Bistro by XTSY is the forest-side option, with coffee, breakfast and light bites.' }, tabFaq],
     ['cafes-in-shillong', 'restaurant-in-shillong', 'best-place-to-eat-in-shillong'],
     ['cafe shillong', 'best cafes in shillong', 'best cafe shillong', 'coffee shillong', 'breakfast near me'],
   ),

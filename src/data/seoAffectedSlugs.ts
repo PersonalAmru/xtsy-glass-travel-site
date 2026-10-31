@@ -202,6 +202,7 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'barbecue-restaurant-in-laitumkhrah': '/tab-bistro',
   'biryani-in-police-bazar-shillong': '/tab-bistro',
   'family-restaurant-in-laitumkhrah': '/tab-bistro',
+  'live-music-restaurant-shillong': '/tab-bistro',
   'khasi-food-restaurant-shillong': '/tab-bistro',
   'thai-restaurant-shillong': '/tab-bistro',
   'pizza-in-shillong': '/tab-bistro',
