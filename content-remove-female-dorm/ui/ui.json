@@ -1783,9 +1783,8 @@
    "menuOpens": true,
    "menuLinks": 25,
    "menuClosesOnEscape": true,
-   "searchOpens": false,
-   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
-   "chatOpens": false,
+   "searchOpens": true,
+   "chatOpens": true,
    "whatsapp": true,
    "bookAboveFold": true
   },

@@ -311,7 +311,7 @@ computing gzip size...
 .output/public/assets/index-Bb-GRVpw.js                                        429.94 kB │ gzip: 135.48 kB
 .output/public/assets/guidePageData-NFQ6F0Q3.js                                910.27 kB │ gzip: 233.15 kB
 
-[32m✓ built in 1.95s[39m
+[32m✓ built in 2.23s[39m
 [33m[plugin builtin:vite-reporter] 
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
@@ -518,14 +518,14 @@ node_modules/.nitro/vite/services/ssr/assets/guidePageData-DcaGZQnK.js          
 [39m
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 984ms[39m
+[32m✓ built in 1.04s[39m
 [start] [nitro] Building [[35mNitro[39m] [2m(preset: `node-server`, compatibility: `2026-10-31`)[22m
 [success] [nitro] Generated public [36m.output/public[39m
 [36mvite v8.2.1 [32mbuilding nitro environment for production...[36m[39m
 [2Ktransforming...✓ 3933 modules transformed.
 [info] Tracing dependencies:
 - `tslib` (2.8.1)
-[success] Traced 1 dependencies (4 files) in 42ms.
+[success] Traced 1 dependencies (4 files) in 46ms.
 [info] Ensure your production environment matches the builder OS and architecture (`linux-x64`) to avoid native module issues.
 rendering chunks...
 computing gzip size...
@@ -729,10 +729,10 @@ computing gzip size...
 .output/server/_libs/supabase__auth-js.mjs                               319.51 kB │ gzip:  64.74 kB
 .output/server/_libs/@sentry/browser+[...].mjs                           335.44 kB │ gzip:  79.58 kB
 .output/server/_libs/framer-motion.mjs                                   352.31 kB │ gzip:  92.36 kB
-.output/server/index.mjs                                                 360.83 kB │ gzip:  66.02 kB
+.output/server/index.mjs                                                 360.83 kB │ gzip:  66.03 kB
 .output/server/_libs/@tanstack/react-router+[...].mjs                    760.12 kB │ gzip: 159.99 kB
 .output/server/_ssr/guidePageData-DcaGZQnK.mjs                         1,024.39 kB │ gzip: 248.12 kB
 
-[32m✓ built in 1.07s[39m
+[32m✓ built in 1.12s[39m
 [info] Generated [36m.output/nitro.json[39m
 [success] [nitro] You can preview this build using `npx vite preview`
