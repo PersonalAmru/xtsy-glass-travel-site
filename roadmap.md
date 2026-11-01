@@ -61,3 +61,8 @@
 
 ## Current request 2026-10-30
 - [x] Remove Saturday group departure from catalogue-driven SEO, FAQs, internal promotions and sitemap; retired URL returns 301 to /tours. Four public pages and sitemap verified; 54 tests pass, preview clean. Publishing required.
+
+## Approved analytics corrections 2026-11-01
+- [ ] Enforce the four approved conversion events and validation at the shared event boundary; preserve admin-first diagnostics and consent.
+- [ ] Correct GTM consent/event mappings and duplicate Contentsquare loaders; account access required before external container edits.
+- [ ] Verify consent rejection, analytics-only delivery and qualified-event safeguards; GA4 property settings require report/admin access. Leave sitemaps unchanged.
