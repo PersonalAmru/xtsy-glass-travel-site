@@ -66,3 +66,8 @@
 - [ ] Enforce the four approved conversion events and validation at the shared event boundary; preserve admin-first diagnostics and consent.
 - [ ] Correct GTM consent/event mappings and duplicate Contentsquare loaders; account access required before external container edits.
 - [ ] Verify consent rejection, analytics-only delivery and qualified-event safeguards; GA4 property settings require report/admin access. Leave sitemaps unchanged.
+
+## Current request 2026-11-02
+- [ ] Complete site-side event validation and consent-safe mapping safeguards, then run regression tests.
+- [ ] Apply external GTM corrections: blocked by unavailable GTM editing connection (earlier connection declined); do not change Google Ads connection or sitemaps.
+- [ ] Check analytics-only GA4 collection responses and rejection on the live site; report ingestion separately from report visibility.
