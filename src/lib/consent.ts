@@ -39,7 +39,7 @@ export const CONSENT_BOOTSTRAP_SCRIPT = `
   w.__xtsyConsent=denied;
   function clearCookies(p){
     if(!p.analytics){
-      ['xtsy_vid','xtsy_visitor_id','xtsy_visit_count'].forEach(function(k){try{w.localStorage.removeItem(k);}catch(e){}});
+      ['xtsy_vid','xtsy_visitor_id','xtsy_visit_count','xtsy_session_count'].forEach(function(k){try{w.localStorage.removeItem(k);}catch(e){}});
       ['xtsy_sid','xtsy_last_activity','xtsy_session','xtsy_session_id','xtsy_session_ts','xtsy_visit_counted','xtsy_ai_referral_source'].forEach(function(k){try{w.sessionStorage.removeItem(k);}catch(e){}});
     }
     var names=d.cookie.split(';').map(function(c){return c.split('=')[0].trim();});

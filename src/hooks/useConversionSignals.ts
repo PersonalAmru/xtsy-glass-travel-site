@@ -17,6 +17,7 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useLocation } from '@/lib/router-compat';
 import { routeGTMEvent } from '@/utils/gtmEventRouter';
+import { readConsent } from '@/lib/consent';
 
 interface SessionSignals {
   pagesViewed: number;
@@ -71,6 +72,7 @@ export const useConversionSignals = () => {
   // Periodic engagement scoring
   useEffect(() => {
     const interval = setInterval(() => {
+      if (!readConsent()?.analytics) return;
       const timeOnSite = Math.round((Date.now() - startTime.current) / 1000);
       signals.current.timeOnSiteSeconds = timeOnSite;
 
@@ -154,6 +156,7 @@ export const useConversionSignals = () => {
 
   // Increment session count on mount
   useEffect(() => {
+    if (!readConsent()?.analytics) return;
     const key = 'xtsy_session_count';
     const current = parseInt(localStorage.getItem(key) || '0');
     localStorage.setItem(key, String(current + 1));
