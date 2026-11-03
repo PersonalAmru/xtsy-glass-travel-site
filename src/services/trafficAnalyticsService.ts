@@ -1,4 +1,5 @@
 import { readConsent } from '@/lib/consent';
+import { pushToDataLayer } from '@/utils/dataLayerService';
 /**
  * Traffic Analytics Service
  * Core tracking engine for the Smart Analytics & Traffic Defense System
@@ -841,6 +842,8 @@ class TrafficAnalyticsService {
       if (event.validation_passed && this.getConsentState().analytics) {
         this.sendToGA4(event.event_name, {
           session_id: this.sessionId,
+          validation_passed: event.validation_passed,
+          validation_reason: event.validation_reason,
           value: adjustedValue,
           currency: 'INR',
           traffic_quality: this.computeTrafficQuality(),
@@ -947,15 +950,7 @@ class TrafficAnalyticsService {
    * NO direct gtag calls - GTM is the sole routing authority
    */
   private sendToGA4(eventName: string, params: Record<string, unknown>): void {
-    if (typeof window !== 'undefined') {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: eventName,
-        timestamp: new Date().toISOString(),
-        ...params,
-      });
-      console.log('[Analytics→DataLayer] Event pushed:', eventName, params);
-    }
+    pushToDataLayer({ ...params, event: eventName });
   }
   
   /**
