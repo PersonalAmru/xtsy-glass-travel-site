@@ -63,15 +63,15 @@
 - [x] Remove Saturday group departure from catalogue-driven SEO, FAQs, internal promotions and sitemap; retired URL returns 301 to /tours. Four public pages and sitemap verified; 54 tests pass, preview clean. Publishing required.
 
 ## Approved analytics corrections 2026-11-01
-- [ ] Enforce the four approved conversion events and validation at the shared event boundary; preserve admin-first diagnostics and consent.
+- [x] Enforce the four approved conversion events and validation at the shared event boundary; preserve admin-first diagnostics and consent. Nineteen consent/conversion regression tests pass.
 - [ ] Correct GTM consent/event mappings and duplicate Contentsquare loaders; account access required before external container edits.
 - [ ] Verify consent rejection, analytics-only delivery and qualified-event safeguards; GA4 property settings require report/admin access. Leave sitemaps unchanged.
 
 ## Current request 2026-11-02
-- [ ] Complete site-side event validation and consent-safe mapping safeguards, then run regression tests.
+- [x] Complete site-side event validation and consent-safe mapping safeguards, then run regression tests. Stable event_name/eventName aliases added; admin, synthetic and unvalidated external pushes blocked; internal diagnostics retained.
 - [ ] Apply external GTM corrections: blocked by unavailable GTM editing connection (earlier connection declined); do not change Google Ads connection or sitemaps.
-- [ ] Check analytics-only GA4 collection responses and rejection on the live site; report ingestion separately from report visibility.
+- [x] Check analytics-only GA4 collection responses and rejection on the live site: 3 November, analytics-only loads GTM but produces no observed GA4 collect request or GA cookie; duplicate Contentsquare errors remain in the external container. No tracking requests/cookies before consent or after rejection/reload. GA4 ingestion/report visibility remain unverified.
 
 ## Current request 2026-11-03
-- [ ] Finish shared tracking validation and stable event-name mappings; verify consent and conversion rules.
-- [ ] Verify live analytics-only GA4 collection; external GTM editing remains blocked by missing authorized access.
+- [x] Finish shared tracking validation and stable event-name mappings; verify consent and conversion rules. Pending/missing confirmation evidence cannot become booking_confirmed; legacy conversion actions stay internal. Existing signal hook no longer writes session count without analytics consent.
+- [ ] Verify successful live analytics-only GA4 collection after external GTM corrections: blocked by missing authorized GTM editing access. Existing custom-connector creation was declined; no replacement created, Google Ads and sitemaps unchanged. Website safeguards require publishing.
