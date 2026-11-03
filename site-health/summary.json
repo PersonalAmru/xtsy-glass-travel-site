@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-11-02T09:35:44.438Z",
+ "checkedAt": "2026-11-03T09:38:35.892Z",
  "site": "https://xtsy.one",
  "sitemaps": [
   {
@@ -60,8 +60,8 @@
   "HTTP 404": 1,
   "HTTP 301": 1
  },
- "medianMs": 75,
- "p95Ms": 412,
+ "medianMs": 73,
+ "p95Ms": 644,
  "withStructuredData": 689,
  "withQuickAnswer": 499,
  "extra": {
