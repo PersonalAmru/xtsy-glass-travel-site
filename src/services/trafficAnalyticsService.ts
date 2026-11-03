@@ -76,6 +76,8 @@ export interface ValidatedEvent {
   validation_reason?: string;
   validation_rules_met?: string[];
   conversion_value?: number;
+  transaction_id?: string;
+  booking_status?: 'confirmed' | 'pending';
 }
 
 export interface BotSignal {
@@ -790,6 +792,7 @@ class TrafficAnalyticsService {
     booking_id: string;
     booking_value: number;
     room_type?: string;
+    booking_status?: 'confirmed' | 'pending';
   }): Promise<void> {
     if (!this.isInitialized) return;
     
@@ -812,6 +815,8 @@ class TrafficAnalyticsService {
         validation_passed: true,
         validation_reason: 'Booking confirmed',
         conversion_value: bookingData.booking_value,
+        transaction_id: bookingData.booking_id,
+        booking_status: bookingData.booking_status,
       });
     } catch (err) {
       console.error('[Analytics] Booking tracking error:', err);
@@ -829,7 +834,13 @@ class TrafficAnalyticsService {
       await (await getSupabase())
         .from('traffic_validated_events')
         .insert({
-          ...event,
+          session_id: event.session_id,
+          event_name: event.event_name,
+          event_category: event.event_category,
+          validation_passed: event.validation_passed,
+          validation_reason: event.validation_reason,
+          validation_rules_met: event.validation_rules_met,
+          conversion_value: event.conversion_value,
           value_multiplier: valueMultiplier,
           adjusted_conversion_value: adjustedValue,
           click_quality_score: this.computeClickQualityScore(),
@@ -844,6 +855,8 @@ class TrafficAnalyticsService {
           session_id: this.sessionId,
           validation_passed: event.validation_passed,
           validation_reason: event.validation_reason,
+          transaction_id: event.transaction_id,
+          booking_status: event.booking_status,
           value: adjustedValue,
           currency: 'INR',
           traffic_quality: this.computeTrafficQuality(),
