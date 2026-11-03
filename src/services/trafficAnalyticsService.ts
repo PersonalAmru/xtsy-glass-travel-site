@@ -1,4 +1,5 @@
 import { readConsent } from '@/lib/consent';
+import { pushToDataLayer } from '@/utils/dataLayerService';
 /**
  * Traffic Analytics Service
  * Core tracking engine for the Smart Analytics & Traffic Defense System
@@ -75,6 +76,8 @@ export interface ValidatedEvent {
   validation_reason?: string;
   validation_rules_met?: string[];
   conversion_value?: number;
+  transaction_id?: string;
+  booking_status?: 'confirmed' | 'pending';
 }
 
 export interface BotSignal {
@@ -789,6 +792,7 @@ class TrafficAnalyticsService {
     booking_id: string;
     booking_value: number;
     room_type?: string;
+    booking_status?: 'confirmed' | 'pending';
   }): Promise<void> {
     if (!this.isInitialized) return;
     
@@ -811,6 +815,8 @@ class TrafficAnalyticsService {
         validation_passed: true,
         validation_reason: 'Booking confirmed',
         conversion_value: bookingData.booking_value,
+        transaction_id: bookingData.booking_id,
+        booking_status: bookingData.booking_status,
       });
     } catch (err) {
       console.error('[Analytics] Booking tracking error:', err);
@@ -828,7 +834,13 @@ class TrafficAnalyticsService {
       await (await getSupabase())
         .from('traffic_validated_events')
         .insert({
-          ...event,
+          session_id: event.session_id,
+          event_name: event.event_name,
+          event_category: event.event_category,
+          validation_passed: event.validation_passed,
+          validation_reason: event.validation_reason,
+          validation_rules_met: event.validation_rules_met,
+          conversion_value: event.conversion_value,
           value_multiplier: valueMultiplier,
           adjusted_conversion_value: adjustedValue,
           click_quality_score: this.computeClickQualityScore(),
@@ -841,6 +853,10 @@ class TrafficAnalyticsService {
       if (event.validation_passed && this.getConsentState().analytics) {
         this.sendToGA4(event.event_name, {
           session_id: this.sessionId,
+          validation_passed: event.validation_passed,
+          validation_reason: event.validation_reason,
+          transaction_id: event.transaction_id,
+          booking_status: event.booking_status,
           value: adjustedValue,
           currency: 'INR',
           traffic_quality: this.computeTrafficQuality(),
@@ -947,15 +963,7 @@ class TrafficAnalyticsService {
    * NO direct gtag calls - GTM is the sole routing authority
    */
   private sendToGA4(eventName: string, params: Record<string, unknown>): void {
-    if (typeof window !== 'undefined') {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: eventName,
-        timestamp: new Date().toISOString(),
-        ...params,
-      });
-      console.log('[Analytics→DataLayer] Event pushed:', eventName, params);
-    }
+    pushToDataLayer({ ...params, event: eventName });
   }
   
   /**

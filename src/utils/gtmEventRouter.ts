@@ -15,6 +15,7 @@
 
 import { pushToDataLayer } from './dataLayerService';
 import { isLovableSession } from './analyticsFilters';
+import { canForwardExternalEvent, hasValidatedIntent, isApprovedConversion } from './conversionPolicy';
 
 // =============================================
 // EVENT CATEGORIES & TYPES
@@ -175,7 +176,7 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     eventName: 'form_submit',
     category: 'form_interaction',
     priority: 'high',
-    isConversion: true,
+    isConversion: false,
     requiresValidation: true,
     valueMultiplier: 0.5,
   },
@@ -230,7 +231,7 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     eventName: 'booking_initiated',
     category: 'conversion',
     priority: 'critical',
-    isConversion: true,
+    isConversion: false,
     requiresValidation: true,
     valueMultiplier: 0.8,
   },
@@ -246,7 +247,7 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     eventName: 'get_directions_click',
     category: 'conversion',
     priority: 'high',
-    isConversion: true,
+    isConversion: false,
     requiresValidation: false,
     valueMultiplier: 0.3,
   },
@@ -254,7 +255,7 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     eventName: 'app_download',
     category: 'conversion',
     priority: 'high',
-    isConversion: true,
+    isConversion: false,
     requiresValidation: false,
     valueMultiplier: 0.4,
   },
@@ -287,7 +288,7 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     eventName: 'booking_created',
     category: 'conversion',
     priority: 'critical',
-    isConversion: true,
+    isConversion: false,
     requiresValidation: true,
     valueMultiplier: 0.9,
   },
@@ -302,7 +303,7 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     eventName: 'booking_payment_initiated',
     category: 'conversion',
     priority: 'critical',
-    isConversion: true,
+    isConversion: false,
     requiresValidation: true,
     valueMultiplier: 0.8,
   },
@@ -387,7 +388,7 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     eventName: 'whatsapp_hot_lead',
     category: 'conversion',
     priority: 'critical',
-    isConversion: true,
+    isConversion: false,
     requiresValidation: true,
     valueMultiplier: 1.3,
   },
@@ -395,7 +396,7 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     eventName: 'qualified_booking_intent',
     category: 'conversion',
     priority: 'critical',
-    isConversion: true,
+    isConversion: false,
     requiresValidation: true,
     valueMultiplier: 0.7,
   },
@@ -412,7 +413,7 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     eventName: 'group_enquiry_submit',
     category: 'conversion',
     priority: 'critical',
-    isConversion: true,
+    isConversion: false,
     requiresValidation: true,
     valueMultiplier: 1.5,
   },
@@ -427,7 +428,7 @@ export const GTM_TRIGGERS: Record<string, GTMEventConfig> = {
     eventName: 'b2b_enquiry_submit',
     category: 'conversion',
     priority: 'critical',
-    isConversion: true,
+    isConversion: false,
     requiresValidation: true,
     valueMultiplier: 2.0,
   },
@@ -512,7 +513,9 @@ export interface RouteEventParams {
  * This is the SINGLE ENTRY POINT for all trackable events
  */
 export const routeGTMEvent = (config: RouteEventParams): boolean => {
-  const { eventName, params, skipDataLayer = false } = config;
+  if (typeof window === 'undefined') return false;
+  const { eventName, skipDataLayer = false } = config;
+  const params = { ...config.params };
   
   // 1. TAG ADMIN TRAFFIC (routed to separate GTM container GTM-MS23NHMF)
   const isAdmin = isLovableSession();
@@ -542,15 +545,19 @@ export const routeGTMEvent = (config: RouteEventParams): boolean => {
     },
   }));
   
+  // Internal diagnostics above are retained even when external forwarding is blocked.
+  if (isAdmin || !canForwardExternalEvent(eventName, params) ||
+      (eventConfig?.requiresValidation && !hasValidatedIntent(params))) return false;
+
   // 5. PUSH TO DATALAYER (unless skipped)
   if (!skipDataLayer) {
     pushToDataLayer({
+      ...params,
       event: eventName,
       event_category: eventConfig?.category,
       event_priority: eventConfig?.priority,
       is_conversion: eventConfig?.isConversion,
-      // Preserve non_interaction from params if explicitly set
-      ...params,
+      is_validated_conversion: isApprovedConversion(eventName),
     });
   }
   
@@ -648,7 +655,7 @@ export const routeFormEvent = (
  * Track validated conversion events
  */
 export const routeConversionEvent = (
-  eventName: 'whatsapp_engaged_validated' | 'call_engaged_validated' | 'lead_qualified' | 'booking_initiated' | 'booking_confirmed' | 'booking_created' | 'booking_cancelled' | 'booking_payment_initiated' | 'whatsapp_hot_lead' | 'qualified_booking_intent',
+  eventName: 'whatsapp_engaged_validated' | 'call_engaged_validated' | 'lead_qualified' | 'booking_confirmed',
   params: {
     value: number;
     currency?: string;
@@ -665,7 +672,7 @@ export const routeConversionEvent = (
       ...params,
       value: adjustedValue,
       currency: params.currency || 'INR',
-      is_validated_conversion: true,
+      // Validation must come from the caller's actual validation result.
     },
   });
 };

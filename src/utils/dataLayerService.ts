@@ -1,5 +1,7 @@
 import { readConsent } from '@/lib/consent';
 import { isSyntheticVisit } from '@/lib/analytics/isSynthetic';
+import { canForwardExternalEvent, isApprovedConversion } from './conversionPolicy';
+import { isLovableSession } from './analyticsFilters';
 /**
  * DataLayer Service
  * 
@@ -151,11 +153,13 @@ export const pushToDataLayer = (event: Partial<DataLayerEvent>): void => {
   if (isSyntheticVisit()) return;
   
   // Skip tracking for admin sessions (GTM will also check this)
-  if (isAdminSession()) {
+  if (isAdminSession() || isLovableSession() || event.is_admin_session === true) {
     console.log('[DataLayer] Skipped (admin session):', event.event);
     return;
   }
   
+  if (!canForwardExternalEvent(event.event || 'custom_event', event)) return;
+
   // Ensure dataLayer exists
   (window as any).dataLayer = (window as any).dataLayer || [];
   
@@ -175,6 +179,12 @@ export const pushToDataLayer = (event: Partial<DataLayerEvent>): void => {
     // GTM must read this via DLV and pass to GA4 Event tags
     non_interaction: isNonInteraction,
     ...event,
+    event_name: event.event || 'custom_event',
+    eventName: event.event || 'custom_event',
+    is_conversion: isApprovedConversion(event.event || ''),
+    is_validated_conversion: isApprovedConversion(event.event || ''),
+    analytics_storage: 'granted',
+    ad_storage: readConsent()?.marketing ? 'granted' : 'denied',
   };
   
   (window as any).dataLayer.push(fullEvent);
@@ -469,6 +479,7 @@ export const trackLeadQualified = (params: {
 }): void => {
   pushToDataLayer({
     event: 'lead_qualified',
+    validated: true,
     lead_source: params.leadSource,
     contact_type: params.contactType,
     intent_score: params.intentScore,

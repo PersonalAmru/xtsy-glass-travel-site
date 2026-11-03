@@ -33,6 +33,7 @@ describe('optional analytics consent', () => {
     expect(result.scripts).toEqual([]);
     expect(result.window.dataLayer.at(-1).analytics_storage).toBe('denied');
     expect(result.deleted).toContain('xtsy_visitor_id');
+    expect(result.deleted).toContain('xtsy_session_count');
   });
   it('does not restore the old forced analytics opt-in', () => {
     expect(parseConsent(record(true, { version: '2.0' }))).toBeNull();
