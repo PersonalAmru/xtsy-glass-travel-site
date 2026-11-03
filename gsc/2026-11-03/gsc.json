@@ -1,0 +1,2241 @@
+{
+ "site": "sc-domain:xtsy.one",
+ "startDate": "2026-10-05",
+ "endDate": "2026-11-01",
+ "pulledAt": "2026-11-03T07:56:17.025Z",
+ "totals": {
+  "clicks": 326,
+  "impressions": 31061
+ },
+ "byDate": [
+  {
+   "keys": [
+    "2026-10-05"
+   ],
+   "clicks": 10,
+   "impressions": 890,
+   "ctr": 0.011235955056179775,
+   "position": 8.321348314606741
+  },
+  {
+   "keys": [
+    "2026-10-06"
+   ],
+   "clicks": 12,
+   "impressions": 801,
+   "ctr": 0.0149812734082397,
+   "position": 8.95880149812734
+  },
+  {
+   "keys": [
+    "2026-10-07"
+   ],
+   "clicks": 10,
+   "impressions": 848,
+   "ctr": 0.01179245283018868,
+   "position": 8.97877358490566
+  },
+  {
+   "keys": [
+    "2026-10-08"
+   ],
+   "clicks": 7,
+   "impressions": 1285,
+   "ctr": 0.005447470817120622,
+   "position": 7.544747081712062
+  },
+  {
+   "keys": [
+    "2026-10-09"
+   ],
+   "clicks": 12,
+   "impressions": 886,
+   "ctr": 0.013544018058690745,
+   "position": 8.141083521444695
+  },
+  {
+   "keys": [
+    "2026-10-10"
+   ],
+   "clicks": 11,
+   "impressions": 983,
+   "ctr": 0.011190233977619531,
+   "position": 9.268565615462869
+  },
+  {
+   "keys": [
+    "2026-10-11"
+   ],
+   "clicks": 14,
+   "impressions": 882,
+   "ctr": 0.015873015873015872,
+   "position": 8.639455782312925
+  },
+  {
+   "keys": [
+    "2026-10-12"
+   ],
+   "clicks": 19,
+   "impressions": 908,
+   "ctr": 0.02092511013215859,
+   "position": 8.508810572687224
+  },
+  {
+   "keys": [
+    "2026-10-13"
+   ],
+   "clicks": 14,
+   "impressions": 937,
+   "ctr": 0.014941302027748132,
+   "position": 9.458911419423693
+  },
+  {
+   "keys": [
+    "2026-10-14"
+   ],
+   "clicks": 8,
+   "impressions": 904,
+   "ctr": 0.008849557522123894,
+   "position": 8.857300884955752
+  },
+  {
+   "keys": [
+    "2026-10-15"
+   ],
+   "clicks": 14,
+   "impressions": 1015,
+   "ctr": 0.013793103448275862,
+   "position": 9.008866995073891
+  },
+  {
+   "keys": [
+    "2026-10-16"
+   ],
+   "clicks": 14,
+   "impressions": 1190,
+   "ctr": 0.011764705882352941,
+   "position": 8.477310924369748
+  },
+  {
+   "keys": [
+    "2026-10-17"
+   ],
+   "clicks": 23,
+   "impressions": 1575,
+   "ctr": 0.014603174603174604,
+   "position": 8.63809523809524
+  },
+  {
+   "keys": [
+    "2026-10-18"
+   ],
+   "clicks": 12,
+   "impressions": 1717,
+   "ctr": 0.006988934187536401,
+   "position": 8.292952824694234
+  },
+  {
+   "keys": [
+    "2026-10-19"
+   ],
+   "clicks": 10,
+   "impressions": 1800,
+   "ctr": 0.005555555555555556,
+   "position": 8.652777777777779
+  },
+  {
+   "keys": [
+    "2026-10-20"
+   ],
+   "clicks": 11,
+   "impressions": 1560,
+   "ctr": 0.007051282051282051,
+   "position": 7.971153846153846
+  },
+  {
+   "keys": [
+    "2026-10-21"
+   ],
+   "clicks": 9,
+   "impressions": 1460,
+   "ctr": 0.0061643835616438354,
+   "position": 8.736301369863014
+  },
+  {
+   "keys": [
+    "2026-10-22"
+   ],
+   "clicks": 12,
+   "impressions": 1596,
+   "ctr": 0.007518796992481203,
+   "position": 8.38408521303258
+  },
+  {
+   "keys": [
+    "2026-10-23"
+   ],
+   "clicks": 8,
+   "impressions": 1567,
+   "ctr": 0.005105296745373325,
+   "position": 8.292278238672623
+  },
+  {
+   "keys": [
+    "2026-10-24"
+   ],
+   "clicks": 13,
+   "impressions": 1119,
+   "ctr": 0.01161751563896336,
+   "position": 8.89454870420018
+  },
+  {
+   "keys": [
+    "2026-10-25"
+   ],
+   "clicks": 15,
+   "impressions": 1056,
+   "ctr": 0.014204545454545454,
+   "position": 9.509469696969697
+  },
+  {
+   "keys": [
+    "2026-10-26"
+   ],
+   "clicks": 19,
+   "impressions": 1048,
+   "ctr": 0.01812977099236641,
+   "position": 9.426526717557252
+  },
+  {
+   "keys": [
+    "2026-10-27"
+   ],
+   "clicks": 14,
+   "impressions": 1010,
+   "ctr": 0.013861386138613862,
+   "position": 10.223762376237623
+  },
+  {
+   "keys": [
+    "2026-10-28"
+   ],
+   "clicks": 9,
+   "impressions": 1024,
+   "ctr": 0.0087890625,
+   "position": 10.4599609375
+  },
+  {
+   "keys": [
+    "2026-10-29"
+   ],
+   "clicks": 5,
+   "impressions": 975,
+   "ctr": 0.005128205128205128,
+   "position": 10.632820512820512
+  },
+  {
+   "keys": [
+    "2026-10-30"
+   ],
+   "clicks": 12,
+   "impressions": 991,
+   "ctr": 0.012108980827447022,
+   "position": 9.731584258324924
+  },
+  {
+   "keys": [
+    "2026-10-31"
+   ],
+   "clicks": 9,
+   "impressions": 1034,
+   "ctr": 0.008704061895551257,
+   "position": 9.775628626692457
+  }
+ ],
+ "queries": [
+  {
+   "keys": [
+    "xtsy travellers hostel"
+   ],
+   "clicks": 27,
+   "impressions": 262,
+   "ctr": 0.10305343511450382,
+   "position": 1.1946564885496183
+  },
+  {
+   "keys": [
+    "xtsy"
+   ],
+   "clicks": 14,
+   "impressions": 60,
+   "ctr": 0.23333333333333334,
+   "position": 1.8333333333333335
+  },
+  {
+   "keys": [
+    "xtsy hostel"
+   ],
+   "clicks": 10,
+   "impressions": 117,
+   "ctr": 0.08547008547008547,
+   "position": 1.1282051282051282
+  },
+  {
+   "keys": [
+    "xtsy travellers hostel meghalaya"
+   ],
+   "clicks": 8,
+   "impressions": 47,
+   "ctr": 0.1702127659574468,
+   "position": 1.1063829787234043
+  },
+  {
+   "keys": [
+    "hostels in shillong"
+   ],
+   "clicks": 2,
+   "impressions": 157,
+   "ctr": 0.012738853503184714,
+   "position": 1.8280254777070064
+  },
+  {
+   "keys": [
+    "kynrem falls"
+   ],
+   "clicks": 2,
+   "impressions": 562,
+   "ctr": 0.0035587188612099642,
+   "position": 9.38967971530249
+  },
+  {
+   "keys": [
+    "meghalaya workation"
+   ],
+   "clicks": 2,
+   "impressions": 3,
+   "ctr": 0.6666666666666666,
+   "position": 2.666666666666667
+  },
+  {
+   "keys": [
+    "mizoram tour itinerary 3 days"
+   ],
+   "clicks": 2,
+   "impressions": 26,
+   "ctr": 0.07692307692307693,
+   "position": 5.269230769230769
+  },
+  {
+   "keys": [
+    "workation in meghalaya"
+   ],
+   "clicks": 2,
+   "impressions": 7,
+   "ctr": 0.2857142857142857,
+   "position": 2.857142857142857
+  },
+  {
+   "keys": [
+    "xtsy travellers hostel shillong"
+   ],
+   "clicks": 2,
+   "impressions": 29,
+   "ctr": 0.06896551724137931,
+   "position": 1.1724137931034484
+  },
+  {
+   "keys": [
+    "assam tour package for 3 days"
+   ],
+   "clicks": 1,
+   "impressions": 2,
+   "ctr": 0.5,
+   "position": 9
+  },
+  {
+   "keys": [
+    "at shillong"
+   ],
+   "clicks": 1,
+   "impressions": 1,
+   "ctr": 1,
+   "position": 2
+  },
+  {
+   "keys": [
+    "in shillong"
+   ],
+   "clicks": 1,
+   "impressions": 1,
+   "ctr": 1,
+   "position": 1
+  },
+  {
+   "keys": [
+    "krem liat prah cave photos"
+   ],
+   "clicks": 1,
+   "impressions": 23,
+   "ctr": 0.043478260869565216,
+   "position": 8.652173913043478
+  },
+  {
+   "keys": [
+    "langshiang falls meghalaya"
+   ],
+   "clicks": 1,
+   "impressions": 36,
+   "ctr": 0.027777777777777776,
+   "position": 7.388888888888889
+  },
+  {
+   "keys": [
+    "list things to do in dawki"
+   ],
+   "clicks": 1,
+   "impressions": 2,
+   "ctr": 0.5,
+   "position": 5
+  },
+  {
+   "keys": [
+    "meghalaya itinerary for 10 days"
+   ],
+   "clicks": 1,
+   "impressions": 9,
+   "ctr": 0.1111111111111111,
+   "position": 9.666666666666666
+  },
+  {
+   "keys": [
+    "meghalaya pre wedding shoot"
+   ],
+   "clicks": 1,
+   "impressions": 12,
+   "ctr": 0.08333333333333333,
+   "position": 2.916666666666667
+  },
+  {
+   "keys": [
+    "mizoram itinerary 3 days"
+   ],
+   "clicks": 1,
+   "impressions": 21,
+   "ctr": 0.047619047619047616,
+   "position": 5.142857142857143
+  },
+  {
+   "keys": [
+    "nagaland tour plan for 3 days"
+   ],
+   "clicks": 1,
+   "impressions": 63,
+   "ctr": 0.015873015873015872,
+   "position": 5.111111111111111
+  },
+  {
+   "keys": [
+    "name of this restaurant"
+   ],
+   "clicks": 1,
+   "impressions": 1,
+   "ctr": 1,
+   "position": 1
+  },
+  {
+   "keys": [
+    "northeast backpacking trips"
+   ],
+   "clicks": 1,
+   "impressions": 3,
+   "ctr": 0.3333333333333333,
+   "position": 9.666666666666666
+  },
+  {
+   "keys": [
+    "ranikor"
+   ],
+   "clicks": 1,
+   "impressions": 342,
+   "ctr": 0.0029239766081871343,
+   "position": 8.88888888888889
+  },
+  {
+   "keys": [
+    "shillong workation"
+   ],
+   "clicks": 1,
+   "impressions": 6,
+   "ctr": 0.16666666666666666,
+   "position": 5.5
+  },
+  {
+   "keys": [
+    "work from there"
+   ],
+   "clicks": 1,
+   "impressions": 1,
+   "ctr": 1,
+   "position": 6
+  },
+  {
+   "keys": [
+    "workation in shillong"
+   ],
+   "clicks": 1,
+   "impressions": 2,
+   "ctr": 0.5,
+   "position": 5
+  },
+  {
+   "keys": [
+    "xsty"
+   ],
+   "clicks": 1,
+   "impressions": 3,
+   "ctr": 0.3333333333333333,
+   "position": 2
+  },
+  {
+   "keys": [
+    "xtsy shillong"
+   ],
+   "clicks": 1,
+   "impressions": 7,
+   "ctr": 0.14285714285714285,
+   "position": 1
+  },
+  {
+   "keys": [
+    "xtsy travellers hostel prices"
+   ],
+   "clicks": 1,
+   "impressions": 35,
+   "ctr": 0.02857142857142857,
+   "position": 7.4
+  },
+  {
+   "keys": [
+    "xtsy travellers hostel reviews"
+   ],
+   "clicks": 1,
+   "impressions": 31,
+   "ctr": 0.03225806451612903,
+   "position": 9.258064516129032
+  },
+  {
+   "keys": [
+    "xtxy"
+   ],
+   "clicks": 1,
+   "impressions": 20,
+   "ctr": 0.05,
+   "position": 6.55
+  },
+  {
+   "keys": [
+    "yes"
+   ],
+   "clicks": 1,
+   "impressions": 12,
+   "ctr": 0.08333333333333333,
+   "position": 5.333333333333333
+  },
+  {
+   "keys": [
+    "youth hostel, shillong"
+   ],
+   "clicks": 1,
+   "impressions": 2,
+   "ctr": 0.5,
+   "position": 1.5
+  },
+  {
+   "keys": [
+    "*xtsy"
+   ],
+   "clicks": 0,
+   "impressions": 6,
+   "ctr": 0,
+   "position": 6
+  },
+  {
+   "keys": [
+    "10 days"
+   ],
+   "clicks": 0,
+   "impressions": 2,
+   "ctr": 0,
+   "position": 11
+  },
+  {
+   "keys": [
+    "10 days couple"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 3
+  },
+  {
+   "keys": [
+    "10 days meghalaya itinerary"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 1
+  },
+  {
+   "keys": [
+    "16 bistro"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 9
+  },
+  {
+   "keys": [
+    "2 day itinerary"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 5
+  },
+  {
+   "keys": [
+    "2 day trip"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 8
+  },
+  {
+   "keys": [
+    "2 days itinerary"
+   ],
+   "clicks": 0,
+   "impressions": 2,
+   "ctr": 0,
+   "position": 10.5
+  },
+  {
+   "keys": [
+    "2 days itinerary for shillong"
+   ],
+   "clicks": 0,
+   "impressions": 2,
+   "ctr": 0,
+   "position": 7
+  },
+  {
+   "keys": [
+    "2day trip plan"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 7
+  },
+  {
+   "keys": [
+    "3 day itinerary"
+   ],
+   "clicks": 0,
+   "impressions": 4,
+   "ctr": 0,
+   "position": 6.5
+  },
+  {
+   "keys": [
+    "3 days meghalaya itinerary"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 8
+  },
+  {
+   "keys": [
+    "3 days trip places"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 10
+  },
+  {
+   "keys": [
+    "4"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 25
+  },
+  {
+   "keys": [
+    "4 bed mixed dormitory room"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 5
+  },
+  {
+   "keys": [
+    "4 person room"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 9
+  },
+  {
+   "keys": [
+    "4 star restaurants near me"
+   ],
+   "clicks": 0,
+   "impressions": 2,
+   "ctr": 0,
+   "position": 13
+  },
+  {
+   "keys": [
+    "40 people catering"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 7
+  },
+  {
+   "keys": [
+    "45 students"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 7
+  },
+  {
+   "keys": [
+    "60 people catering"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 6
+  },
+  {
+   "keys": [
+    "7 sister waterfall location"
+   ],
+   "clicks": 0,
+   "impressions": 2,
+   "ctr": 0,
+   "position": 12
+  },
+  {
+   "keys": [
+    "accommodation in shillong"
+   ],
+   "clicks": 0,
+   "impressions": 5,
+   "ctr": 0,
+   "position": 40.6
+  },
+  {
+   "keys": [
+    "activity zones"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 1
+  },
+  {
+   "keys": [
+    "aesthetic and affordable cafes near me"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 6
+  },
+  {
+   "keys": [
+    "affordable cafe near me ₹1-₹200"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 7
+  },
+  {
+   "keys": [
+    "affordable hostels"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 13
+  },
+  {
+   "keys": [
+    "aizawl itinerary 3 days"
+   ],
+   "clicks": 0,
+   "impressions": 3,
+   "ctr": 0,
+   "position": 7.666666666666667
+  },
+  {
+   "keys": [
+    "all terrain bikes in shillong"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 38
+  },
+  {
+   "keys": [
+    "and date"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 11
+  },
+  {
+   "keys": [
+    "and return?"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 6
+  },
+  {
+   "keys": [
+    "anxtsy"
+   ],
+   "clicks": 0,
+   "impressions": 5,
+   "ctr": 0,
+   "position": 7.6
+  },
+  {
+   "keys": [
+    "area"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 2
+  },
+  {
+   "keys": [
+    "arunachal pradesh nearest state"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 13
+  },
+  {
+   "keys": [
+    "arwah cave"
+   ],
+   "clicks": 0,
+   "impressions": 2,
+   "ctr": 0,
+   "position": 1.5
+  },
+  {
+   "keys": [
+    "arwah cave meghalaya"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 2
+  },
+  {
+   "keys": [
+    "arwah caves"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 3
+  },
+  {
+   "keys": [
+    "assam best time to visit"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 3
+  },
+  {
+   "keys": [
+    "assam itinerary"
+   ],
+   "clicks": 0,
+   "impressions": 11,
+   "ctr": 0,
+   "position": 28.545454545454547
+  },
+  {
+   "keys": [
+    "assam itinerary for 3 days"
+   ],
+   "clicks": 0,
+   "impressions": 7,
+   "ctr": 0,
+   "position": 7.857142857142857
+  },
+  {
+   "keys": [
+    "assam meghalaya weather in november"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 3
+  },
+  {
+   "keys": [
+    "assam to meghalaya"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 1
+  },
+  {
+   "keys": [
+    "assam to meghalaya distance by train"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 1
+  },
+  {
+   "keys": [
+    "assam to shillong"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 59
+  },
+  {
+   "keys": [
+    "assam tour package with kamakhya temple"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 7
+  },
+  {
+   "keys": [
+    "assam tourist places"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 6
+  },
+  {
+   "keys": [
+    "assam trip itinerary"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 4
+  },
+  {
+   "keys": [
+    "assam trip plan"
+   ],
+   "clicks": 0,
+   "impressions": 5,
+   "ctr": 0,
+   "position": 19.6
+  },
+  {
+   "keys": [
+    "assam trip plan for 3 days"
+   ],
+   "clicks": 0,
+   "impressions": 35,
+   "ctr": 0,
+   "position": 9.17142857142857
+  },
+  {
+   "keys": [
+    "backpacker"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 7
+  },
+  {
+   "keys": [
+    "backpackers hostel"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 10
+  },
+  {
+   "keys": [
+    "backpackers hostel shillong"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 7
+  },
+  {
+   "keys": [
+    "backpacking north east india"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 9
+  },
+  {
+   "keys": [
+    "balpakram national park photos"
+   ],
+   "clicks": 0,
+   "impressions": 2,
+   "ctr": 0,
+   "position": 11.5
+  },
+  {
+   "keys": [
+    "bamboo trail meghalaya"
+   ],
+   "clicks": 0,
+   "impressions": 9,
+   "ctr": 0,
+   "position": 11.777777777777779
+  },
+  {
+   "keys": [
+    "bamboo trek meghalaya distance"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 48
+  },
+  {
+   "keys": [
+    "bamboo trek shillong"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 53
+  },
+  {
+   "keys": [
+    "bamon farms"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 43
+  },
+  {
+   "keys": [
+    "bar in police bazar shillong"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 10
+  },
+  {
+   "keys": [
+    "bara pani shillong"
+   ],
+   "clicks": 0,
+   "impressions": 11,
+   "ctr": 0,
+   "position": 10.363636363636363
+  },
+  {
+   "keys": [
+    "barapani"
+   ],
+   "clicks": 0,
+   "impressions": 8,
+   "ctr": 0,
+   "position": 12
+  },
+  {
+   "keys": [
+    "barapani dam"
+   ],
+   "clicks": 0,
+   "impressions": 5,
+   "ctr": 0,
+   "position": 10.2
+  },
+  {
+   "keys": [
+    "barapani direction"
+   ],
+   "clicks": 0,
+   "impressions": 15,
+   "ctr": 0,
+   "position": 7.6
+  },
+  {
+   "keys": [
+    "barapani island resort"
+   ],
+   "clicks": 0,
+   "impressions": 2,
+   "ctr": 0,
+   "position": 27
+  },
+  {
+   "keys": [
+    "barapani lake"
+   ],
+   "clicks": 0,
+   "impressions": 5,
+   "ctr": 0,
+   "position": 10.4
+  },
+  {
+   "keys": [
+    "barapani park"
+   ],
+   "clicks": 0,
+   "impressions": 1,
+   "ctr": 0,
+   "position": 27
+  },
+  {
+   "keys": [
+    "barapani resort"
+   ],
+   "clicks": 0,
+   "impressions": 2,
+   "ctr": 0,
+   "position": 20.5
+  },
+  {
+   "keys": [
+    "barapani shillong"
+   ],
+   "clicks": 0,
+   "impressions": 10,
+   "ctr": 0,
+   "position": 9.3
+  }
+ ],
+ "pages": [
+  {
+   "keys": [
+    "https://xtsy.one/"
+   ],
+   "clicks": 105,
+   "impressions": 1675,
+   "ctr": 0.0626865671641791,
+   "position": 3.176716417910448
+  },
+  {
+   "keys": [
+    "https://xtsy.one/pre-wedding-shoot-meghalaya"
+   ],
+   "clicks": 22,
+   "impressions": 257,
+   "ctr": 0.08560311284046693,
+   "position": 4.482490272373541
+  },
+  {
+   "keys": [
+    "https://xtsy.one/work-from-home"
+   ],
+   "clicks": 22,
+   "impressions": 191,
+   "ctr": 0.11518324607329843,
+   "position": 8.136125654450261
+  },
+  {
+   "keys": [
+    "https://xtsy.one/xtsy-270"
+   ],
+   "clicks": 21,
+   "impressions": 226,
+   "ctr": 0.09292035398230089,
+   "position": 4.371681415929204
+  },
+  {
+   "keys": [
+    "https://xtsy.one/luxury-glamping-shillong"
+   ],
+   "clicks": 12,
+   "impressions": 149,
+   "ctr": 0.08053691275167785,
+   "position": 5.738255033557047
+  },
+  {
+   "keys": [
+    "https://xtsy.one/workation-tawang"
+   ],
+   "clicks": 12,
+   "impressions": 72,
+   "ctr": 0.16666666666666666,
+   "position": 5.402777777777778
+  },
+  {
+   "keys": [
+    "https://xtsy.one/10-day-meghalaya-itinerary"
+   ],
+   "clicks": 6,
+   "impressions": 156,
+   "ctr": 0.038461538461538464,
+   "position": 9.711538461538462
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-mizoram-itinerary"
+   ],
+   "clicks": 6,
+   "impressions": 247,
+   "ctr": 0.024291497975708502,
+   "position": 6.728744939271255
+  },
+  {
+   "keys": [
+    "https://xtsy.one/workation-cherrapunji"
+   ],
+   "clicks": 6,
+   "impressions": 80,
+   "ctr": 0.075,
+   "position": 6.625
+  },
+  {
+   "keys": [
+    "https://xtsy.one/backpacking-northeast-india"
+   ],
+   "clicks": 5,
+   "impressions": 52,
+   "ctr": 0.09615384615384616,
+   "position": 7.4423076923076925
+  },
+  {
+   "keys": [
+    "https://xtsy.one/best-hostel-in-shillong"
+   ],
+   "clicks": 5,
+   "impressions": 842,
+   "ctr": 0.0059382422802850355,
+   "position": 5.276722090261282
+  },
+  {
+   "keys": [
+    "https://xtsy.one/tours"
+   ],
+   "clicks": 5,
+   "impressions": 38,
+   "ctr": 0.13157894736842105,
+   "position": 7.2631578947368425
+  },
+  {
+   "keys": [
+    "https://xtsy.one/travel-guide/guwahati-to-shillong-transport"
+   ],
+   "clicks": 5,
+   "impressions": 512,
+   "ctr": 0.009765625,
+   "position": 19.515625
+  },
+  {
+   "keys": [
+    "https://xtsy.one/budget-trip-meghalaya"
+   ],
+   "clicks": 4,
+   "impressions": 357,
+   "ctr": 0.011204481792717087,
+   "position": 7.529411764705882
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destination-wedding-shillong"
+   ],
+   "clicks": 3,
+   "impressions": 243,
+   "ctr": 0.012345679012345678,
+   "position": 9.440329218106996
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/shillong/elephant-falls"
+   ],
+   "clicks": 3,
+   "impressions": 1427,
+   "ctr": 0.002102312543798178,
+   "position": 7.953048353188508
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/shillong/umiam-lake"
+   ],
+   "clicks": 3,
+   "impressions": 874,
+   "ctr": 0.003432494279176201,
+   "position": 9.549199084668192
+  },
+  {
+   "keys": [
+    "https://xtsy.one/merch"
+   ],
+   "clicks": 3,
+   "impressions": 52,
+   "ctr": 0.057692307692307696,
+   "position": 7.0576923076923075
+  },
+  {
+   "keys": [
+    "https://xtsy.one/workation-shillong"
+   ],
+   "clicks": 3,
+   "impressions": 16,
+   "ctr": 0.1875,
+   "position": 6.5
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-meghalaya-itinerary"
+   ],
+   "clicks": 2,
+   "impressions": 50,
+   "ctr": 0.04,
+   "position": 8.42
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-shillong-itinerary"
+   ],
+   "clicks": 2,
+   "impressions": 443,
+   "ctr": 0.004514672686230248,
+   "position": 4.505643340857787
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-sikkim-itinerary"
+   ],
+   "clicks": 2,
+   "impressions": 121,
+   "ctr": 0.01652892561983471,
+   "position": 9.975206611570249
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-assam-itinerary"
+   ],
+   "clicks": 2,
+   "impressions": 206,
+   "ctr": 0.009708737864077669,
+   "position": 8.815533980582524
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-nagaland-itinerary"
+   ],
+   "clicks": 2,
+   "impressions": 214,
+   "ctr": 0.009345794392523364,
+   "position": 6.266355140186916
+  },
+  {
+   "keys": [
+    "https://xtsy.one/book"
+   ],
+   "clicks": 2,
+   "impressions": 70,
+   "ctr": 0.02857142857142857,
+   "position": 5.6
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/cherrapunji/kynrem-falls"
+   ],
+   "clicks": 2,
+   "impressions": 947,
+   "ctr": 0.0021119324181626186,
+   "position": 9.173178458289335
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/dawki/dawki-umngot-river"
+   ],
+   "clicks": 2,
+   "impressions": 4824,
+   "ctr": 0.00041459369817578774,
+   "position": 6.90257048092869
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/nongstoin/langshiang-falls"
+   ],
+   "clicks": 2,
+   "impressions": 452,
+   "ctr": 0.004424778761061947,
+   "position": 7.727876106194691
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/shillong/nongjrong-sunrise-viewpoint"
+   ],
+   "clicks": 2,
+   "impressions": 1261,
+   "ctr": 0.0015860428231562252,
+   "position": 9.149088025376685
+  },
+  {
+   "keys": [
+    "https://xtsy.one/guwahati-to-williamnagar"
+   ],
+   "clicks": 2,
+   "impressions": 11,
+   "ctr": 0.18181818181818182,
+   "position": 6.7272727272727275
+  },
+  {
+   "keys": [
+    "https://xtsy.one/install"
+   ],
+   "clicks": 2,
+   "impressions": 86,
+   "ctr": 0.023255813953488372,
+   "position": 5.0813953488372094
+  },
+  {
+   "keys": [
+    "https://xtsy.one/meghalaya-itinerary"
+   ],
+   "clicks": 2,
+   "impressions": 29,
+   "ctr": 0.06896551724137931,
+   "position": 11.689655172413794
+  },
+  {
+   "keys": [
+    "https://xtsy.one/pet-friendly"
+   ],
+   "clicks": 2,
+   "impressions": 43,
+   "ctr": 0.046511627906976744,
+   "position": 11.232558139534884
+  },
+  {
+   "keys": [
+    "https://xtsy.one/places-to-visit-meghalaya"
+   ],
+   "clicks": 2,
+   "impressions": 150,
+   "ctr": 0.013333333333333334,
+   "position": 17.933333333333334
+  },
+  {
+   "keys": [
+    "https://xtsy.one/restaurant-in-police-bazar"
+   ],
+   "clicks": 2,
+   "impressions": 682,
+   "ctr": 0.002932551319648094,
+   "position": 10.008797653958945
+  },
+  {
+   "keys": [
+    "https://xtsy.one/suv-rental-shillong"
+   ],
+   "clicks": 2,
+   "impressions": 18,
+   "ctr": 0.1111111111111111,
+   "position": 4.777777777777778
+  },
+  {
+   "keys": [
+    "https://xtsy.one/tab-bistro"
+   ],
+   "clicks": 2,
+   "impressions": 905,
+   "ctr": 0.0022099447513812156,
+   "position": 10.264088397790056
+  },
+  {
+   "keys": [
+    "https://xtsy.one/travel-guide/how-to-reach-meghalaya"
+   ],
+   "clicks": 2,
+   "impressions": 347,
+   "ctr": 0.005763688760806916,
+   "position": 7.780979827089337
+  },
+  {
+   "keys": [
+    "https://xtsy.one/trekking-in-meghalaya"
+   ],
+   "clicks": 2,
+   "impressions": 12,
+   "ctr": 0.16666666666666666,
+   "position": 7.666666666666667
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-arunachal-pradesh-trip"
+   ],
+   "clicks": 1,
+   "impressions": 10,
+   "ctr": 0.1,
+   "position": 7.3
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-mizoram-itinerary"
+   ],
+   "clicks": 1,
+   "impressions": 43,
+   "ctr": 0.023255813953488372,
+   "position": 6.069767441860465
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-nagaland-itinerary"
+   ],
+   "clicks": 1,
+   "impressions": 52,
+   "ctr": 0.019230769230769232,
+   "position": 6.596153846153846
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-meghalaya-itinerary"
+   ],
+   "clicks": 1,
+   "impressions": 37,
+   "ctr": 0.02702702702702703,
+   "position": 21.027027027027028
+  },
+  {
+   "keys": [
+    "https://xtsy.one/4x4-expedition-meghalaya"
+   ],
+   "clicks": 1,
+   "impressions": 15,
+   "ctr": 0.06666666666666667,
+   "position": 5.066666666666666
+  },
+  {
+   "keys": [
+    "https://xtsy.one/about"
+   ],
+   "clicks": 1,
+   "impressions": 210,
+   "ctr": 0.004761904761904762,
+   "position": 4.961904761904762
+  },
+  {
+   "keys": [
+    "https://xtsy.one/adventure-tours-northeast-india"
+   ],
+   "clicks": 1,
+   "impressions": 4,
+   "ctr": 0.25,
+   "position": 7.75
+  },
+  {
+   "keys": [
+    "https://xtsy.one/bike-trip-meghalaya"
+   ],
+   "clicks": 1,
+   "impressions": 12,
+   "ctr": 0.08333333333333333,
+   "position": 7.5
+  },
+  {
+   "keys": [
+    "https://xtsy.one/cafes-in-shillong"
+   ],
+   "clicks": 1,
+   "impressions": 524,
+   "ctr": 0.0019083969465648854,
+   "position": 9.351145038167939
+  },
+  {
+   "keys": [
+    "https://xtsy.one/cheap-hostels-shillong"
+   ],
+   "clicks": 1,
+   "impressions": 91,
+   "ctr": 0.01098901098901099,
+   "position": 7.626373626373627
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations"
+   ],
+   "clicks": 1,
+   "impressions": 9,
+   "ctr": 0.1111111111111111,
+   "position": 11
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/arunachal-pradesh"
+   ],
+   "clicks": 1,
+   "impressions": 10,
+   "ctr": 0.1,
+   "position": 8.8
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/arunachal-pradesh/dirang"
+   ],
+   "clicks": 1,
+   "impressions": 2,
+   "ctr": 0.5,
+   "position": 2
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/cherrapunji/seven-sisters-falls"
+   ],
+   "clicks": 1,
+   "impressions": 314,
+   "ctr": 0.0031847133757961785,
+   "position": 7.143312101910828
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/dawki/dawki-suspension-bridge"
+   ],
+   "clicks": 1,
+   "impressions": 347,
+   "ctr": 0.002881844380403458,
+   "position": 6.893371757925072
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/jowai/krem-liat-prah"
+   ],
+   "clicks": 1,
+   "impressions": 305,
+   "ctr": 0.003278688524590164,
+   "position": 9.455737704918032
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/jowai/thadlaskein-lake"
+   ],
+   "clicks": 1,
+   "impressions": 25,
+   "ctr": 0.04,
+   "position": 8.68
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/mawlynnong/mawlynnong-village"
+   ],
+   "clicks": 1,
+   "impressions": 115,
+   "ctr": 0.008695652173913044,
+   "position": 9.68695652173913
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/mawsynram/mawjymbuin-cave"
+   ],
+   "clicks": 1,
+   "impressions": 287,
+   "ctr": 0.003484320557491289,
+   "position": 9.547038327526133
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/nongstoin/ranikor"
+   ],
+   "clicks": 1,
+   "impressions": 630,
+   "ctr": 0.0015873015873015873,
+   "position": 7.938095238095238
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/shillong/bishop-falls"
+   ],
+   "clicks": 1,
+   "impressions": 174,
+   "ctr": 0.005747126436781609,
+   "position": 9.96551724137931
+  },
+  {
+   "keys": [
+    "https://xtsy.one/destinations/meghalaya/tura/siju-cave"
+   ],
+   "clicks": 1,
+   "impressions": 189,
+   "ctr": 0.005291005291005291,
+   "position": 10.100529100529101
+  },
+  {
+   "keys": [
+    "https://xtsy.one/guides"
+   ],
+   "clicks": 1,
+   "impressions": 42,
+   "ctr": 0.023809523809523808,
+   "position": 19.285714285714285
+  },
+  {
+   "keys": [
+    "https://xtsy.one/homestays-in-shillong"
+   ],
+   "clicks": 1,
+   "impressions": 154,
+   "ctr": 0.006493506493506494,
+   "position": 14.207792207792208
+  },
+  {
+   "keys": [
+    "https://xtsy.one/hostel-in-cherrapunji-last-minute"
+   ],
+   "clicks": 1,
+   "impressions": 35,
+   "ctr": 0.02857142857142857,
+   "position": 8.485714285714286
+  },
+  {
+   "keys": [
+    "https://xtsy.one/kongthong-whistling-village"
+   ],
+   "clicks": 1,
+   "impressions": 63,
+   "ctr": 0.015873015873015872,
+   "position": 13.365079365079366
+  },
+  {
+   "keys": [
+    "https://xtsy.one/meghalaya-caves"
+   ],
+   "clicks": 1,
+   "impressions": 149,
+   "ctr": 0.006711409395973154,
+   "position": 8.691275167785236
+  },
+  {
+   "keys": [
+    "https://xtsy.one/meghalaya-tour-packages"
+   ],
+   "clicks": 1,
+   "impressions": 21,
+   "ctr": 0.047619047619047616,
+   "position": 27.761904761904763
+  },
+  {
+   "keys": [
+    "https://xtsy.one/monsoon-in-champhai"
+   ],
+   "clicks": 1,
+   "impressions": 3,
+   "ctr": 0.3333333333333333,
+   "position": 9
+  },
+  {
+   "keys": [
+    "https://xtsy.one/restaurant-in-shillong"
+   ],
+   "clicks": 1,
+   "impressions": 108,
+   "ctr": 0.009259259259259259,
+   "position": 7.944444444444445
+  },
+  {
+   "keys": [
+    "https://xtsy.one/shillong-cherry-blossom-festival"
+   ],
+   "clicks": 1,
+   "impressions": 86,
+   "ctr": 0.011627906976744186,
+   "position": 11.813953488372093
+  },
+  {
+   "keys": [
+    "https://xtsy.one/shillong-dormitory"
+   ],
+   "clicks": 1,
+   "impressions": 397,
+   "ctr": 0.0025188916876574307,
+   "position": 7.833753148614609
+  },
+  {
+   "keys": [
+    "https://xtsy.one/shillong-peak-viewpoint"
+   ],
+   "clicks": 1,
+   "impressions": 8,
+   "ctr": 0.125,
+   "position": 7.375
+  },
+  {
+   "keys": [
+    "https://xtsy.one/stay-near-iim-shillong"
+   ],
+   "clicks": 1,
+   "impressions": 193,
+   "ctr": 0.0051813471502590676,
+   "position": 8.77720207253886
+  },
+  {
+   "keys": [
+    "https://xtsy.one/things-to-do-meghalaya"
+   ],
+   "clicks": 1,
+   "impressions": 55,
+   "ctr": 0.01818181818181818,
+   "position": 23.8
+  },
+  {
+   "keys": [
+    "https://xtsy.one/tours/double-decker-root-bridge-cherrapunji"
+   ],
+   "clicks": 1,
+   "impressions": 35,
+   "ctr": 0.02857142857142857,
+   "position": 6.9714285714285715
+  },
+  {
+   "keys": [
+    "https://xtsy.one/tours/kerala-temple-trail-guruvayur-to-padmanabhaswamy"
+   ],
+   "clicks": 1,
+   "impressions": 165,
+   "ctr": 0.006060606060606061,
+   "position": 6.927272727272728
+  },
+  {
+   "keys": [
+    "https://xtsy.one/tours/meghalaya-group-trip-6n-7d"
+   ],
+   "clicks": 1,
+   "impressions": 5,
+   "ctr": 0.2,
+   "position": 2
+  },
+  {
+   "keys": [
+    "https://xtsy.one/tours/pelling-kanchenjunga-winter-views"
+   ],
+   "clicks": 1,
+   "impressions": 12,
+   "ctr": 0.08333333333333333,
+   "position": 18.5
+  },
+  {
+   "keys": [
+    "https://xtsy.one/travel-guide/meghalaya-for-international-tourists"
+   ],
+   "clicks": 1,
+   "impressions": 137,
+   "ctr": 0.0072992700729927005,
+   "position": 6.802919708029197
+  },
+  {
+   "keys": [
+    "https://xtsy.one/weekend-meghalaya-trip"
+   ],
+   "clicks": 1,
+   "impressions": 2,
+   "ctr": 0.5,
+   "position": 8.5
+  },
+  {
+   "keys": [
+    "https://xtsy.one/workation-dawki"
+   ],
+   "clicks": 1,
+   "impressions": 3,
+   "ctr": 0.3333333333333333,
+   "position": 5.333333333333333
+  },
+  {
+   "keys": [
+    "https://xtsy.one/workation-gangtok"
+   ],
+   "clicks": 1,
+   "impressions": 4,
+   "ctr": 0.25,
+   "position": 5
+  },
+  {
+   "keys": [
+    "https://xtsy.one/workation-kaziranga"
+   ],
+   "clicks": 1,
+   "impressions": 2,
+   "ctr": 0.5,
+   "position": 1
+  },
+  {
+   "keys": [
+    "https://xtsy.one/xtsy-vs-zostel"
+   ],
+   "clicks": 1,
+   "impressions": 45,
+   "ctr": 0.022222222222222223,
+   "position": 8.4
+  },
+  {
+   "keys": [
+    "https://www.xtsy.one/book?checkIn=2026-09-27&checkOut=2026-09-28&guests=1"
+   ],
+   "clicks": 0,
+   "impressions": 7,
+   "ctr": 0,
+   "position": 25
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-arunachal-pradesh-itinerary"
+   ],
+   "clicks": 0,
+   "impressions": 25,
+   "ctr": 0,
+   "position": 6.4
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-assam-itinerary"
+   ],
+   "clicks": 0,
+   "impressions": 5,
+   "ctr": 0,
+   "position": 6.6
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-assam-trip"
+   ],
+   "clicks": 0,
+   "impressions": 79,
+   "ctr": 0,
+   "position": 13.89873417721519
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-meghalaya-trip"
+   ],
+   "clicks": 0,
+   "impressions": 107,
+   "ctr": 0,
+   "position": 9.429906542056075
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-mizoram-trip"
+   ],
+   "clicks": 0,
+   "impressions": 45,
+   "ctr": 0,
+   "position": 7.377777777777778
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-nagaland-trip"
+   ],
+   "clicks": 0,
+   "impressions": 24,
+   "ctr": 0,
+   "position": 6.583333333333333
+  },
+  {
+   "keys": [
+    "https://xtsy.one/2-day-sikkim-trip"
+   ],
+   "clicks": 0,
+   "impressions": 35,
+   "ctr": 0,
+   "position": 7.942857142857143
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-arunachal-pradesh-itinerary"
+   ],
+   "clicks": 0,
+   "impressions": 8,
+   "ctr": 0,
+   "position": 7.75
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-arunachal-pradesh-trip"
+   ],
+   "clicks": 0,
+   "impressions": 6,
+   "ctr": 0,
+   "position": 8.166666666666668
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-assam-trip"
+   ],
+   "clicks": 0,
+   "impressions": 40,
+   "ctr": 0,
+   "position": 10.5
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-meghalaya-trip"
+   ],
+   "clicks": 0,
+   "impressions": 2,
+   "ctr": 0,
+   "position": 10
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-mizoram-trip"
+   ],
+   "clicks": 0,
+   "impressions": 24,
+   "ctr": 0,
+   "position": 6.916666666666667
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-nagaland-trip"
+   ],
+   "clicks": 0,
+   "impressions": 2,
+   "ctr": 0,
+   "position": 8.5
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-sikkim-itinerary"
+   ],
+   "clicks": 0,
+   "impressions": 3,
+   "ctr": 0,
+   "position": 6
+  },
+  {
+   "keys": [
+    "https://xtsy.one/3-day-sikkim-trip"
+   ],
+   "clicks": 0,
+   "impressions": 11,
+   "ctr": 0,
+   "position": 8.818181818181818
+  }
+ ],
+ "countries": [
+  {
+   "keys": [
+    "ind"
+   ],
+   "clicks": 301,
+   "impressions": 27573,
+   "ctr": 0.010916476263010916,
+   "position": 8.541943205309542
+  },
+  {
+   "keys": [
+    "usa"
+   ],
+   "clicks": 4,
+   "impressions": 554,
+   "ctr": 0.007220216606498195,
+   "position": 12.391696750902527
+  },
+  {
+   "keys": [
+    "are"
+   ],
+   "clicks": 2,
+   "impressions": 63,
+   "ctr": 0.031746031746031744,
+   "position": 8.285714285714285
+  },
+  {
+   "keys": [
+    "bgd"
+   ],
+   "clicks": 2,
+   "impressions": 224,
+   "ctr": 0.008928571428571428,
+   "position": 9.816964285714286
+  },
+  {
+   "keys": [
+    "irl"
+   ],
+   "clicks": 2,
+   "impressions": 20,
+   "ctr": 0.1,
+   "position": 8.9
+  },
+  {
+   "keys": [
+    "nld"
+   ],
+   "clicks": 2,
+   "impressions": 47,
+   "ctr": 0.0425531914893617,
+   "position": 9.042553191489361
+  },
+  {
+   "keys": [
+    "aus"
+   ],
+   "clicks": 1,
+   "impressions": 76,
+   "ctr": 0.013157894736842105,
+   "position": 8.75
+  },
+  {
+   "keys": [
+    "bel"
+   ],
+   "clicks": 1,
+   "impressions": 10,
+   "ctr": 0.1,
+   "position": 9.1
+  },
+  {
+   "keys": [
+    "bhr"
+   ],
+   "clicks": 1,
+   "impressions": 11,
+   "ctr": 0.09090909090909091,
+   "position": 10.181818181818182
+  },
+  {
+   "keys": [
+    "can"
+   ],
+   "clicks": 1,
+   "impressions": 69,
+   "ctr": 0.014492753623188406,
+   "position": 11.81159420289855
+  },
+  {
+   "keys": [
+    "col"
+   ],
+   "clicks": 1,
+   "impressions": 22,
+   "ctr": 0.045454545454545456,
+   "position": 8.636363636363637
+  },
+  {
+   "keys": [
+    "deu"
+   ],
+   "clicks": 1,
+   "impressions": 63,
+   "ctr": 0.015873015873015872,
+   "position": 9.301587301587302
+  },
+  {
+   "keys": [
+    "dnk"
+   ],
+   "clicks": 1,
+   "impressions": 13,
+   "ctr": 0.07692307692307693,
+   "position": 10.076923076923077
+  },
+  {
+   "keys": [
+    "esp"
+   ],
+   "clicks": 1,
+   "impressions": 40,
+   "ctr": 0.025,
+   "position": 10.3
+  },
+  {
+   "keys": [
+    "jpn"
+   ],
+   "clicks": 1,
+   "impressions": 15,
+   "ctr": 0.06666666666666667,
+   "position": 7.466666666666667
+  },
+  {
+   "keys": [
+    "mmr"
+   ],
+   "clicks": 1,
+   "impressions": 11,
+   "ctr": 0.09090909090909091,
+   "position": 9.272727272727273
+  },
+  {
+   "keys": [
+    "mys"
+   ],
+   "clicks": 1,
+   "impressions": 13,
+   "ctr": 0.07692307692307693,
+   "position": 14
+  },
+  {
+   "keys": [
+    "pak"
+   ],
+   "clicks": 1,
+   "impressions": 40,
+   "ctr": 0.025,
+   "position": 9.375
+  },
+  {
+   "keys": [
+    "rou"
+   ],
+   "clicks": 1,
+   "impressions": 10,
+   "ctr": 0.1,
+   "position": 9.4
+  },
+  {
+   "keys": [
+    "abw"
+   ],
+   "clicks": 0,
+   "impressions": 4,
+   "ctr": 0,
+   "position": 11
+  }
+ ]
+}
