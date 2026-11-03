@@ -71,3 +71,7 @@
 - [ ] Complete site-side event validation and consent-safe mapping safeguards, then run regression tests.
 - [ ] Apply external GTM corrections: blocked by unavailable GTM editing connection (earlier connection declined); do not change Google Ads connection or sitemaps.
 - [ ] Check analytics-only GA4 collection responses and rejection on the live site; report ingestion separately from report visibility.
+
+## Current request 2026-11-03
+- [ ] Finish shared tracking validation and stable event-name mappings; verify consent and conversion rules.
+- [ ] Verify live analytics-only GA4 collection; external GTM editing remains blocked by missing authorized access.
