@@ -15,9 +15,13 @@
 Set the OpenAI API key as a server-side Supabase secret. Do not expose it through a `VITE_*` variable or commit it to Git.
 
 ```bash
-supabase secrets set OPENAI_API_KEY=YOUR_OPENAI_API_KEY
-supabase secrets set XTSY_AI_MODEL=gpt-6-luna
-supabase secrets set XTSY_AI_RATE_LIMIT_SALT=YOUR_LONG_RANDOM_SECRET
+Create a local environment file outside the Git working tree with the OpenAI key and a long random rate-limit salt. Then upload it with:
+
+```bash
+supabase secrets set --env-file /secure/path/xtsy-ai-secrets.env
+```
+
+Set `XTSY_AI_MODEL=gpt-6-luna` in that file as well if you want to pin the model explicitly.
 ```
 
 The Edge Function defaults to `gpt-6-luna` when `XTSY_AI_MODEL` is not set. Confirm the model is enabled for the OpenAI API project used by XTSY.
