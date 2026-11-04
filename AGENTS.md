@@ -1,5 +1,6 @@
 # Architecture rules
 
+- Keep voluntary AI content-use guidance in both public LLM reference files and link it from robots comments without changing crawl directives or rendering; this preserves search access without claiming technical protection for public assets.
 - Retired tour offers must leave the shared catalogue and sitemap and redirect before metadata loading; this prevents stale offer schemas and indexed duplicate pages.
 
 - Resolve booking catalogue labels and calculate GST-inclusive quotes through the shared booking quote utilities; this keeps displayed, persisted and WhatsApp amounts consistent without bypassing server validation.
