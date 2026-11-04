@@ -16,14 +16,9 @@ Local Operator coverage needs verification
 XTSY AI does not yet have a live verified-Operator listing for these regions:
 Meghalaya: Dawki & the Umngot River, Mawsmai Cave, Nohkalikai Falls
 
-The XTSY Booking Desk will check existing local support and source or coordinate a suitable local Operator/host where needed. We will update the plan before confirming services. This is a platform coverage check, not a claim that local providers do not exist.
+The XTSY Booking Desk will check its current local network. If a suitable verified Operator is not yet available, we will ask the team to identify and coordinate appropriate local support for this destination. The Booking Desk will update you shortly after checking feasibility and availability. This is a platform coverage check, not a claim that local providers do not exist.
 
-Booking status: This is a draft itinerary. Nothing has been booked yet. The XTSY Booking Desk must verify service availability, local support, permits, transport and final pricing before confirming your trip.
-
-DAY
-1
-Arrive in the pines
-Pick-up at Guwahati airport or station · Umiam Lake viewpoint on the way in · Drive ~3.25 h to New Shillong · Check in at XTSY Travellers Hostel (check-in 11 A
+Booking status: This is a draft itinerary. Nothing has been booked yet. The XTSY Booking Desk must verify service availability, local support, permits, transport and final pricing before confirming your trip. If a region does not yet have verified XTSY Operator coverage, the d
 
 chip: Make it 8 days
 > How far is Wari Chora from Shillong?
@@ -62,14 +57,9 @@ Local Operator coverage needs verification
 XTSY AI does not yet have a live verified-Operator listing for these regions:
 Arunachal Pradesh: Bumla Pass, Sela Pass, Tawang Monastery
 
-The XTSY Booking Desk will check existing local support and source or coordinate a suitable local Operator/host where needed. We will update the plan before confirming services. This is a platform coverage check, not a claim that local providers do not exist.
+The XTSY Booking Desk will check its current local network. If a suitable verified Operator is not yet available, we will ask the team to identify and coordinate appropriate local support for this destination. The Booking Desk will update you shortly after checking feasibility and availability. This is a platform coverage check, not a claim that local providers do not exist.
 
-Booking status: This is a draft itinerary. Nothing has been booked yet. The XTSY Booking Desk must verify service availability, local support, permits, transport and final pricing before confirming your trip.
-
-DAY
-1
-Arrive in the pines
-Pick-up at Guwahati 
+Booking status: This is a draft itinerary. Nothing has been booked yet. The XTSY Booking Desk must verify service availability, local supp
 
 lead form visible: true
 popup open: true
