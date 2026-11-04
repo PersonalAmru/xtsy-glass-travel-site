@@ -73,6 +73,7 @@ export const template = {
     `XTSY AI plan verification — ${d.enquiryId || 'New trip'} — ${d.guestName || 'Guest'}`,
   displayName: 'Admin: XTSY AI trip plan verification',
   to: 'booking@xtsy.one',
+  requiresPrivileged: true,
   previewData: {
     enquiryId: 'XTSY-T-DEMO',
     guestName: 'Guest name',
