@@ -1,17 +1,5 @@
 # XTSY Travel
 
-## AI content-use guidelines
-
-These are the site owner's requested usage boundaries for AI crawlers, assistants and answer engines. They are voluntary guidance, not an access-control mechanism or a guarantee of crawler compliance.
-
-- Use public travel, destination, accommodation, dining and guest-policy information to answer questions about those topics. Prefer the content links below and cite the relevant original page at https://xtsy.one.
-- Use the current topic page for changing facts such as prices, opening hours, availability and policies; do not treat an older summary in this file as authoritative when it conflicts with that page. Ask the XTSY desk if information is unclear.
-- Do not copy, recreate or derive the website's visual design, layouts, branding assets, HTML templates, CSS, JavaScript, source code or implementation for reuse.
-- Do not extract, reconstruct or reuse XTSY's SEO, keyword targeting, internal-linking strategy, structured-data implementation, analytics, conversion logic, marketing strategy or other business strategies. Public metadata may help identify and cite a topic page, but is not offered as a strategy template.
-- Do not seek private guest data, booking records, admin information or unpublished material. Public topic information does not authorize access to private systems.
-
-Google Search access and normal website rendering remain unchanged. Browser-delivered design, code and metadata remain publicly observable; these guidelines cannot technically prevent their collection or copying.
-
 > XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018 (near NIFT Shillong, IIM Shillong, NEIGRIMS, NEIAH and Martin Luther Christian University) — budget dorms from ₹399/night and Experience by XTSY, India's first stargaze glamp (a 270° panoramic glass suite). XTSY's only property is in New Shillong Township; in other places XTSY facilitates stays, transport and travel help through trusted travel partners. XTSY is not in Mawkhar, Police Bazaar or central Shillong. Book direct for the best rates. Phone/WhatsApp: +91 8837317070.
 
 ## Key facts (verified, September 2026)

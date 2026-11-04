@@ -65,11 +65,7 @@ Allow: /
 User-agent: PinterestBot
 Allow: /
 
-# ── AI crawlers & answer engines (topic information use) ─────────
-# Voluntary AI content-use guidelines: https://xtsy.one/llms.txt
-# Full topic reference: https://xtsy.one/llms-full.txt
-# No authorization to reuse design, code, SEO or business strategies.
-# These comments do not enforce usage restrictions; crawl rules below are unchanged.
+# ── AI crawlers & answer engines (explicitly welcomed) ───────────
 User-agent: GPTBot
 Allow: /
 
