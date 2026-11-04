@@ -265,7 +265,7 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
           </span>
           <div className="min-w-0">
             <div className="truncate font-display text-[22px] leading-none tracking-wide">{title ?? 'Plan a trip with AI'}</div>
-            <div className="mt-1 text-[12px] font-semibold text-xt-fog">Shillong · Meghalaya · Northeast India — real drive times</div>
+            <div className="mt-1 text-[12px] font-semibold text-xt-fog">Shillong · Meghalaya · Northeast India — estimated drive times</div>
           </div>
         </div>
         <div className="flex items-center gap-1.5">
