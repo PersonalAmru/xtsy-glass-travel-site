@@ -22,11 +22,11 @@ scripts/indexing/indexnow-submit.ts:generic-api-key:14
 scripts/indexing/indexnow-submit.ts:generic-secret:14
 scripts/optimize-and-upload-images.ts:generic-secret:13
 scripts/storage-cache-control.ts:generic-secret:11
-src/components/v2/TripChat.tsx:generic-secret:20
+src/components/v2/TripChat.tsx:generic-secret:23
 src/contexts/UserAuthContext.tsx:generic-secret:12
 src/contexts/UserAuthContext.tsx:generic-secret:13
 src/contexts/UserAuthContext.tsx:generic-secret:14
-src/hooks/useConversionSignals.ts:generic-secret:157
+src/hooks/useConversionSignals.ts:generic-secret:160
 src/lib/seo/tourPageData.ts:generic-secret:24
 src/utils/aiReferralTracking.ts:generic-secret:45
 supabase/functions/fetch-exchange-rates/index.ts:generic-secret:9
