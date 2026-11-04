@@ -132,7 +132,7 @@ Deno.serve(async (req) => {
     console.warn('Privilege check failed; treating caller as unprivileged', e)
   }
 
-  if (!template.to && !isPrivilegedCaller) {
+  if ((!template.to || template.requiresPrivileged) && !isPrivilegedCaller) {
     console.warn('Rejected non-privileged send to caller-supplied recipient', {
       templateName,
     })
