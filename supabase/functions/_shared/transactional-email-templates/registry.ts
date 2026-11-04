@@ -10,7 +10,9 @@ export interface TemplateEntry {
 }
 
 import { template as adminBookingNotification } from './admin-booking-notification.tsx'
+import { template as adminTripPlanReview } from './admin-trip-plan-review.tsx'
 
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'admin-booking-notification': adminBookingNotification,
+  'admin-trip-plan-review': adminTripPlanReview,
 }
