@@ -8,3 +8,9 @@ verify_jwt = true
 [functions.seo-position-cron]
 verify_jwt = false
 
+
+[functions.xtsy-ai-assistant]
+verify_jwt = true
+
+[functions.request-trip-verification]
+verify_jwt = true
