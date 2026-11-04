@@ -54,3 +54,7 @@ No road-closure feed, live weather provider, live ILP/PAP application interface,
 - Simulate email-queue failure and verify the guest is not told that the Booking Desk was successfully notified.
 - Verify no screen says a booking is confirmed until the Booking Desk actually confirms it.
 - Confirm that repeated API calls are rejected after the configured rate limit is reached.
+
+## Multilingual boundary in this version
+
+The model can interpret non-English requests and answer open-ended chat questions in the detected reply language. The existing deterministic itinerary card, route labels and day-by-day stops remain English in this release. Full itinerary translation, voice STT/TTS and human-language Operator assignment remain later phases.
