@@ -5,6 +5,8 @@ export interface TemplateEntry {
   component: React.ComponentType<any>
   subject: string | ((data: Record<string, any>) => string)
   to?: string
+  /** Restrict even fixed-recipient templates to admins or trusted service-role callers. */
+  requiresPrivileged?: boolean
   displayName?: string
   previewData?: Record<string, any>
 }
