@@ -61,8 +61,16 @@ export default function AboutV2() {
           <StatRow stats={[{ v: '10,786+', l: 'Happy guests' }, { v: '4.7', l: 'Google rating (248)' }, { v: '9.4', l: 'Booking.com' }, { v: '30+', l: 'Tour packages' }]} />
         </section>
 
+        <section className={`${PAD} pt-12`}>
+          <div className="xt-reveal flex flex-col gap-3 rounded-[32px] bg-xt-cream p-8 sm:p-12">
+            <Eyebrow>The company</Eyebrow>
+            <h2 className="xt-display m-0 text-[36px] leading-none sm:text-[48px]">XTSY<sup className="text-[18px]">™</sup> Ventures Private Limited</h2>
+            <p className="m-0 max-w-3xl text-[17px] leading-relaxed text-xt-mute">XTSY Ventures Private Limited is a DPIIT-recognised startup focused on travel tech and linguistic AI models, and on hostel and restaurant franchising. XTSY™ is a trademark of XTSY Ventures Private Limited.</p>
+          </div>
+        </section>
+
         <Section>
-          <H2 eyebrow="The XTSY family">One address, many ways in</H2>
+          <H2 eyebrow="The XTSY™ family">One address, many ways in</H2>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {brands.map((b) => (
               <Link key={b.t} to={b.to} className="xt-reveal xt-lift flex min-h-[220px] flex-col gap-3 rounded-3xl p-7" style={{ background: b.bg, color: b.fg }}>
