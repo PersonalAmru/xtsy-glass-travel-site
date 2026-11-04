@@ -1,5 +1,6 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import { getCorsHeaders } from '../_shared/cors.ts';
+import { checkXtsyRateLimit } from '../_shared/xtsyRateLimit.ts';
 
 function jsonResponse(body: unknown, status: number, headers: Record<string, string>) {
   return new Response(JSON.stringify(body), {
@@ -29,6 +30,17 @@ Deno.serve(async (req) => {
     if (!enquiryId || enquiryId.length > 80 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(guestEmail)) {
       return jsonResponse({ error: 'A valid enquiry reference and guest email are required.' }, 400, corsHeaders);
     }
+
+    let rateAllowed = false;
+    try {
+      rateAllowed = await checkXtsyRateLimit(req, 'trip-verification', 10);
+    } catch {
+      return jsonResponse({ error: 'Booking Desk request protection is temporarily unavailable. Please contact XTSY on WhatsApp.' }, 503, corsHeaders);
+    }
+    if (!rateAllowed) {
+      return jsonResponse({ error: 'Too many verification requests. Please retry later.' }, 429, corsHeaders);
+    }
+
 
     // The email is always sent to the fixed XTSY Booking Desk address by the
     // registered template. Caller-supplied recipient addresses are never used.
