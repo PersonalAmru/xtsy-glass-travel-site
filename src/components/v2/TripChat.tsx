@@ -226,20 +226,20 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
         console.warn('[XTSY AI] Trip saved but Booking Desk notification could not be confirmed', error);
       }
 
-      const ref = res.enquiryId ? \`Enquiry ref: \${res.enquiryId}\\n\` : '';
+      const ref = res.enquiryId ? `Enquiry ref: ${res.enquiryId}\n` : '';
       const handoff =
-        \`Hi XTSY! I have submitted this AI-generated itinerary for Booking Desk verification.\\n\\n\` +
-        \`\${ref}Name: \${lead.name.trim() || '—'}\\n\` +
-        \`Email: \${lead.email.trim()}\\n\` +
-        \`WhatsApp: \${lead.phone.trim()}\\n\` +
-        \`Dates: \${lead.dates.trim() || 'Flexible'}\\n\` +
-        \`Travellers: \${sendFor.input.travellers}\\n\\n\` +
-        \`\${text}\\n\\nPlease verify Operator coverage, stays, guides, transport, permit requirements, availability and final pricing. This is not yet a confirmed booking.\`;
+        `Hi XTSY! I have submitted this AI-generated itinerary for Booking Desk verification.\n\n` +
+        `${ref}Name: ${lead.name.trim() || '—'}\n` +
+        `Email: ${lead.email.trim()}\n` +
+        `WhatsApp: ${lead.phone.trim()}\n` +
+        `Dates: ${lead.dates.trim() || 'Flexible'}\n` +
+        `Travellers: ${sendFor.input.travellers}\n\n` +
+        `${text}\n\nPlease verify Operator coverage, stays, guides, transport, permit requirements, availability and final pricing. This is not yet a confirmed booking.`;
       window.open(waLink(handoff, 'trip-planner'), '_blank', 'noopener');
 
       const confirmationText = deskNotified
-        ? \`Your itinerary has been submitted under reference **\${res.enquiryId}**. The XTSY Booking Desk has been notified to verify route feasibility, local Operator coverage, stays, guides, transport, permit requirements, availability and final pricing. Where verified Operator coverage is not yet listed, the team will check local support and coordinate a suitable regional partner. **This is not a booking confirmation; nothing has been booked or paid yet.** The desk will confirm the final arrangements before you proceed.\`
-        : \`Your itinerary has been saved under reference **\${res.enquiryId}**, but I could not confirm that the automated Booking Desk notification was queued. Please use the WhatsApp message I opened to send the plan directly to the desk. **This is not a booking confirmation; nothing has been booked or paid yet.**\`;
+        ? `Your itinerary has been submitted under reference **${res.enquiryId}**. The XTSY Booking Desk has been notified to verify route feasibility, local Operator coverage, stays, guides, transport, permit requirements, availability and final pricing. Where verified Operator coverage is not yet listed, the team will check local support and coordinate a suitable regional partner. **This is not a booking confirmation; nothing has been booked or paid yet.** The desk will confirm the final arrangements before you proceed.`
+        : `Your itinerary has been saved under reference **${res.enquiryId}**, but I could not confirm that the automated Booking Desk notification was queued. Please use the WhatsApp message I opened to send the plan directly to the desk. **This is not a booking confirmation; nothing has been booked or paid yet.**`;
       setMsgs((m) => [...m, {
         from: 'xtsy',
         text: confirmationText,
