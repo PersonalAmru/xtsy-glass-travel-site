@@ -9,7 +9,7 @@ const highlights = [
   },
   {
     title: "Rooftop Dining",
-    desc: "An upcoming rooftop restaurant in Shillong with panoramic pine-valley views — sunset platters, grills and handcrafted beverages above the treeline.",
+    desc: "An upcoming rooftop restaurant in Shillong with panoramic pine-valley views — sunset platters and handcrafted beverages above the treeline.",
     icon: <Building2 className="w-5 h-5" />,
     badge: "Upcoming",
   },
