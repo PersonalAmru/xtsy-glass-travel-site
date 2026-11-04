@@ -16,6 +16,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { interpretTripMessage } from '@/services/xtsyAiAssistantService';
 import { INITIAL_STATE, WELCOME, respond, type ChatAction, type ChatState, type Reply } from '@/lib/travel/assistant';
 import { planToText, type Plan } from '@/lib/travel/planner';
+import { PLACE_BY_ID } from '@/lib/travel/places';
 import { waLink } from './primitives';
 
 interface Msg { from: 'you' | 'xtsy'; text: string; plan?: Plan; chips?: string[]; actions?: ChatAction[] }
@@ -202,7 +203,7 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
       packageDuration: `${sendFor.input.days} days`,
       packageDifficulty: 'custom',
       packageCategory: 'custom',
-      packageLocation: [...new Set(sendFor.days.map((d) => d.title))].slice(1, 4).join(', ') || 'Meghalaya',
+      packageLocation: [...new Set(sendFor.input.placeIds.map((id) => PLACE_BY_ID[id]?.name).filter((name): name is string => Boolean(name)))].join(', ') || 'Northeast India',
       travellers: sendFor.input.travellers,
       preferredDate: lead.dates.trim() || 'Flexible',
       groupType: sendFor.input.travellers > 1 ? 'group' : 'solo',
@@ -211,7 +212,7 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
       guestName: lead.name.trim(),
       email: lead.email.trim(),
       whatsappNumber: lead.phone.trim(),
-      specialRequests: text.slice(0, 1900),
+      specialRequests: text.slice(0, 8000),
     });
     setSending(false);
     if (res.success) {
@@ -238,7 +239,7 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
       window.open(waLink(handoff, 'trip-planner'), '_blank', 'noopener');
 
       const confirmationText = deskNotified
-        ? `Your itinerary has been submitted under reference **${res.enquiryId}**. The XTSY Booking Desk has been notified to verify route feasibility, local Operator coverage, stays, guides, transport, permit requirements, availability and final pricing. Where verified Operator coverage is not yet listed, the team will check local support and coordinate a suitable regional partner. **This is not a booking confirmation; nothing has been booked or paid yet.** The desk will confirm the final arrangements before you proceed.`
+        ? `Your itinerary has been submitted under reference **${res.enquiryId}**. A notification email has been queued for the XTSY Booking Desk to verify route feasibility, local Operator coverage, stays, guides, transport, permit requirements, availability and final pricing. Where verified Operator coverage is not yet listed, the team will check its local network and ask the team to identify and coordinate suitable regional support, then update you shortly. **This is not a booking confirmation; nothing has been booked or paid yet.** The desk will confirm the final arrangements before you proceed.`
         : `Your itinerary has been saved under reference **${res.enquiryId}**, but I could not confirm that the automated Booking Desk notification was queued. Please use the WhatsApp message I opened to send the plan directly to the desk. **This is not a booking confirmation; nothing has been booked or paid yet.**`;
       setMsgs((m) => [...m, {
         from: 'xtsy',
