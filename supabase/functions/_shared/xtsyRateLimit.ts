@@ -7,8 +7,9 @@ export async function checkXtsyRateLimit(
 ): Promise<boolean> {
   const supabaseUrl = Deno.env.get('SUPABASE_URL');
   const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
-  if (!supabaseUrl || !serviceRoleKey) {
-    throw new Error('Rate-limit service is not configured');
+  const rateLimitSalt = Deno.env.get('XTSY_AI_RATE_LIMIT_SALT');
+  if (!supabaseUrl || !serviceRoleKey || !rateLimitSalt) {
+    throw new Error('Rate-limit service or dedicated salt is not configured');
   }
 
   const forwarded = req.headers.get('x-forwarded-for')
@@ -20,8 +21,7 @@ export async function checkXtsyRateLimit(
     || forwarded?.at(-1)
     || 'unknown';
 
-  const salt = Deno.env.get('XTSY_AI_RATE_LIMIT_SALT') || supabaseUrl;
-  const keyMaterial = new TextEncoder().encode(`${salt}:${scope}:${ip}`);
+  const keyMaterial = new TextEncoder().encode(`${rateLimitSalt}:${scope}:${ip}`);
   const digest = await crypto.subtle.digest('SHA-256', keyMaterial);
   const keyHash = Array.from(new Uint8Array(digest))
     .map((byte) => byte.toString(16).padStart(2, '0'))
