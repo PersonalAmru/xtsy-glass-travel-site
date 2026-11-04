@@ -341,7 +341,7 @@ function planReply(plan: Plan, state: ChatState): Reply {
   for (const n of plan.notes) lines.push(`• ${n}`);
   const coverageNotice = formatOperatorCoverageNotice(getOperatorCoverageNotices(plan.input.placeIds));
   if (coverageNotice) lines.push(coverageNotice);
-  lines.push('**Booking status:** This is a draft itinerary. Nothing has been booked yet. The XTSY Booking Desk must verify service availability, local support, permits, transport and final pricing before confirming your trip.');
+  lines.push('**Booking status:** This is a draft itinerary. Nothing has been booked yet. The XTSY Booking Desk must verify service availability, local support, permits, transport and final pricing before confirming your trip. If a region does not yet have verified XTSY Operator coverage, the desk will ask the team to identify suitable local support and update you shortly.');
 
   const chips: string[] = [];
   if (plan.dropped.length) chips.push(`Make it ${plan.input.days + plan.dropped[0].extraDays} days`);
