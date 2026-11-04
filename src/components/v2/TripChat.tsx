@@ -212,7 +212,7 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
       guestName: lead.name.trim(),
       email: lead.email.trim(),
       whatsappNumber: lead.phone.trim(),
-      specialRequests: text.slice(0, 8000),
+      specialRequests: text.slice(0, 1900),
     });
     setSending(false);
     if (res.success) {
