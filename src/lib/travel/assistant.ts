@@ -43,7 +43,7 @@ export interface Reply {
 export const INITIAL_STATE: ChatState = { placeIds: [], styles: [], hasPlan: false, avoid: [], latest: [] };
 
 export const WELCOME: Reply = {
-  text: `Hi! I’m the XTSY trip assistant. Tell me where you’d like to go in Shillong, Meghalaya or anywhere in Northeast India, how many days you have and who’s coming, and I’ll plan it day by day with real drive times.\n\nI can also answer questions about stays, prices, permits and the best time to visit.`,
+  text: `Hi! I’m the XTSY trip assistant. Tell me where you’d like to go in Shillong, Meghalaya or anywhere in Northeast India, how many days you have and who’s coming, and I’ll plan it day by day with estimated drive times.\n\nI can also answer questions about stays, prices, permits and the best time to visit.`,
   chips: ['5 days in Meghalaya', 'Weekend in Shillong for a couple', 'Dawki + Cherrapunji, 4 friends', 'Tawang in 7 days', 'Where should I stay in Shillong?'],
   actions: [],
 };
