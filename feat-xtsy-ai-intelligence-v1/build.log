@@ -311,7 +311,7 @@ computing gzip size...
 .output/public/assets/index-DtwaYfZQ.js                                        430.00 kB │ gzip: 135.51 kB │ map: 1,633.48 kB
 .output/public/assets/guidePageData-CPR33cG2.js                                910.54 kB │ gzip: 233.10 kB │ map: 1,304.94 kB
 
-[32m✓ built in 3.35s[39m
+[32m✓ built in 1.73s[39m
 [33m[plugin builtin:vite-reporter] 
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
@@ -518,7 +518,7 @@ node_modules/.nitro/vite/services/ssr/assets/guidePageData-BD1mM98i.js          
 [39m
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 1.63s[39m
+[32m✓ built in 821ms[39m
 [start] [nitro] Building [[35mNitro[39m] [2m(preset: `cloudflare-module`, compatibility: `2026-11-04`)[22m
 [success] [nitro] Generated public [36m.output/public[39m
 [36mvite v8.2.1 [32mbuilding nitro environment for production...[36m[39m
@@ -661,7 +661,7 @@ computing gzip size...
 .output/server/_ssr/FoodAddonsSection-BrXUoy6u.mjs                        17.31 kB │ gzip:   3.23 kB
 .output/server/_ssr/ExpeditionsV2-Bhwz4z3Y.mjs                            17.33 kB │ gzip:   4.54 kB
 .output/server/_ssr/meghalaya-for-international-tourists-DQMG7vI_.mjs     18.09 kB │ gzip:   3.43 kB
-.output/server/_ssr/ssr.mjs                                               18.25 kB │ gzip:   6.65 kB
+.output/server/_ssr/ssr.mjs                                               18.25 kB │ gzip:   6.64 kB
 .output/server/_libs/@radix-ui/react-popover+[...].mjs                    18.63 kB │ gzip:   4.61 kB
 .output/server/_ssr/PageFaq-CApV1X8b.mjs                                  18.66 kB │ gzip:   6.80 kB
 .output/server/_slug-CM0ayk5T.mjs                                         21.33 kB │ gzip:   5.72 kB
@@ -726,11 +726,11 @@ computing gzip size...
 .output/server/_libs/supabase__auth-js.mjs                               319.55 kB │ gzip:  64.77 kB
 .output/server/_libs/@sentry/browser+[...].mjs                           346.93 kB │ gzip:  82.23 kB
 .output/server/_libs/framer-motion.mjs                                   352.40 kB │ gzip:  92.38 kB
-.output/server/index.mjs                                                 417.45 kB │ gzip:  74.77 kB
+.output/server/index.mjs                                                 417.45 kB │ gzip:  74.52 kB
 .output/server/_libs/@tanstack/react-router+[...].mjs                    752.69 kB │ gzip: 159.14 kB
 .output/server/_ssr/guidePageData-BD1mM98i.mjs                         1,024.67 kB │ gzip: 248.09 kB
 
-[32m✓ built in 1.68s[39m
+[32m✓ built in 918ms[39m
 [info] [nitro] Using auto generated worker name: `personalamru-xtsy-glass-travel-site`
 [info] Generated [36m.output/server/wrangler.json[39m
 [info] Generated [36m.wrangler/deploy/config.json[39m
