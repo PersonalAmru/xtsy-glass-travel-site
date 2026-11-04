@@ -64,16 +64,6 @@ Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
   if (req.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405, corsHeaders);
 
-  let rateAllowed = false;
-  try {
-    rateAllowed = await checkXtsyRateLimit(req, 'ai-assistant', 30);
-  } catch {
-    return jsonResponse({ error: 'XTSY AI rate-limit service is unavailable. Please retry shortly.', code: 'rate_limit_unavailable' }, 503, corsHeaders);
-  }
-  if (!rateAllowed) {
-    return jsonResponse({ error: 'You have reached the XTSY AI message limit for this hour. Please try again later.', code: 'rate_limited' }, 429, corsHeaders);
-  }
-
   const apiKey = Deno.env.get('OPENAI_API_KEY');
   if (!apiKey) {
     return jsonResponse({
@@ -87,6 +77,16 @@ Deno.serve(async (req) => {
     const message = typeof body?.message === 'string' ? body.message.trim() : '';
     if (!message || message.length > 2000) {
       return jsonResponse({ error: 'Message must be between 1 and 2,000 characters.' }, 400, corsHeaders);
+    }
+
+    let rateAllowed = false;
+    try {
+      rateAllowed = await checkXtsyRateLimit(req, 'ai-assistant', 30);
+    } catch {
+      return jsonResponse({ error: 'XTSY AI rate-limit service is unavailable. Please retry shortly.', code: 'rate_limit_unavailable' }, 503, corsHeaders);
+    }
+    if (!rateAllowed) {
+      return jsonResponse({ error: 'You have reached the XTSY AI message limit for this hour. Please try again later.', code: 'rate_limited' }, 429, corsHeaders);
     }
 
     const history = Array.isArray(body.history)
