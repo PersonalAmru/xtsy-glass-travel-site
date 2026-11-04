@@ -21,14 +21,14 @@ export default function PlanTripV2() {
     <>
       <SEOHead
         title="Plan a Meghalaya & Northeast India Trip with AI | XTSY"
-        description="Free trip planner for Shillong, Meghalaya and Northeast India: day-by-day plans with real drive times, realistic overnight stays and XTSY Travellers Hostel in New Shillong as your base."
+        description="Free trip planner for Shillong, Meghalaya and Northeast India: day-by-day plans with estimated drive times, realistic overnight stays and XTSY Travellers Hostel in New Shillong as your base."
         keywords="meghalaya trip planner, shillong itinerary, northeast india itinerary planner, ai trip planner meghalaya, wari chora how to reach, dawki day trip"
         canonicalUrl="https://xtsy.one/plan-trip-with-ai"
       />
       <PageShell bar={false} cta={{ title: 'Rather talk to a person?', sub: 'The XTSY desk plans trips on WhatsApp every day, 24/7.' }}>
         <section className={`${PAD} grid gap-8 py-10 lg:grid-cols-12 lg:py-14`}>
           <div className="flex flex-col gap-5 lg:col-span-4">
-            <div className="xt-in xt-eyebrow text-[15px] sm:text-[18px]">Free · instant · real drive times</div>
+            <div className="xt-in xt-eyebrow text-[15px] sm:text-[18px]">Free · instant · estimated drive times</div>
             <h1 className="xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:text-[88px]">Plan a trip with AI</h1>
             <p className="xt-in xt-d2 m-0 text-[17px] leading-relaxed text-xt-mute">Type the way you’d text a friend: “6 days, Dawki and Cherrapunji, 4 of us in March”. The XTSY trip assistant builds a day-by-day plan, keeps far-off places realistic and books your Shillong nights at XTSY Travellers Hostel.</p>
             <ul className="xt-in xt-d3 m-0 flex list-none flex-col gap-2 p-0 text-[15px] font-bold">
