@@ -46,6 +46,6 @@ export function formatOperatorCoverageNotice(notices: OperatorCoverageNotice[]):
   return [
     '**Local Operator coverage needs verification**',
     `XTSY AI does not yet have a live verified-Operator listing for these regions:\n${regions}`,
-    'The XTSY Booking Desk will check existing local support and source or coordinate a suitable local Operator/host where needed. We will update the plan before confirming services. This is a platform coverage check, not a claim that local providers do not exist.',
+    'The XTSY Booking Desk will check its current local network. If a suitable verified Operator is not yet available, we will ask the team to identify and coordinate appropriate local support for this destination. The Booking Desk will update you shortly after checking feasibility and availability. This is a platform coverage check, not a claim that local providers do not exist.',
   ].join('\n\n');
 }
