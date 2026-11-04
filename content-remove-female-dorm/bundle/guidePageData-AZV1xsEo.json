@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/guidePageData-BvGMMN7Z.js",
-      "totalBytes": 910556,
-      "mappedBytes": 910071,
+      "bundleName": ".output/public/assets/guidePageData-AZV1xsEo.js",
+      "totalBytes": 911061,
+      "mappedBytes": 910576,
       "unmappedBytes": 485,
       "eolBytes": 0,
       "sourceMapCommentBytes": 0,
@@ -51,13 +51,13 @@
           "size": 246
         },
         "../../../src/data/seoPagesDining.ts": {
-          "size": 21836
+          "size": 21982
         },
         "../../../src/data/seoPagesDiningExpansion.ts": {
-          "size": 72822
+          "size": 73050
         },
         "../../../src/data/seoPagesDiningSpokes.ts": {
-          "size": 28791
+          "size": 28922
         },
         "../../../src/data/seoPagesDiningInstitutions.ts": {
           "size": 6817

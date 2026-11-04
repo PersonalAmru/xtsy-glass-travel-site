@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-BJTlb9cG.js",
-      "totalBytes": 429945,
-      "mappedBytes": 418382,
+      "bundleName": ".output/public/assets/index-D5S9N8CF.js",
+      "totalBytes": 430008,
+      "mappedBytes": 418445,
       "unmappedBytes": 11537,
       "eolBytes": 26,
       "sourceMapCommentBytes": 0,
@@ -273,7 +273,7 @@
           "size": 4396
         },
         "../../../src/hooks/useConversionSignals.ts": {
-          "size": 4723
+          "size": 4777
         },
         "../../../src/providers/ConversionSignalsProvider.tsx": {
           "size": 111
@@ -381,7 +381,7 @@
           "size": 458
         },
         "../../../src/routes/install.tsx": {
-          "size": 400
+          "size": 403
         },
         "../../../src/routes/luxury-glamping-shillong.tsx": {
           "size": 484
@@ -480,7 +480,7 @@
           "size": 408
         },
         "../../../src/routes/book/index.tsx": {
-          "size": 610
+          "size": 613
         },
         "../../../src/routes/book/campsite.tsx": {
           "size": 470
@@ -498,7 +498,7 @@
           "size": 425
         },
         "../../../src/routes/franchise/install.tsx": {
-          "size": 407
+          "size": 410
         },
         "../../../src/routes/franchise/login.tsx": {
           "size": 360
