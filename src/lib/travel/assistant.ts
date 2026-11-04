@@ -1,8 +1,8 @@
 /**
  * XTSY trip assistant — the "Plan a trip with AI" brain.
  *
- * Runs entirely in the browser (no paid model calls): it understands free-text
- * trip requests and follow-ups ("5 days, Dawki and Cherrapunji, 4 of us in
+ * Deterministic browser-side planner and fallback. An optional server-side
+ * AI interpretation service understands free-text requests and follow-ups ("5 days, Dawki and Cherrapunji, 4 of us in
  * December", "add Kaziranga", "make it 7 days", "how far is Wari Chora?"),
  * keeps the conversation state, builds a feasible plan with the geo planner
  * and answers common questions from XTSY's own facts.
