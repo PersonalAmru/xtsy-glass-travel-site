@@ -81,7 +81,7 @@ export default function SiteFooter() {
           <div className="flex flex-col gap-4 md:col-span-3 lg:col-span-2">
             <div className="flex items-center gap-3.5">
               <XtsyMark size={44} fill="#BD2E30" />
-              <span className="font-display text-[40px] tracking-[0.15em] text-xt-paper">XTSY<sup className="text-[14px] tracking-normal">™</sup></span>
+              <span className="font-display text-[40px] tracking-[0.15em] text-xt-paper">XTSY<sup className="text-[14px] tracking-normal">®</sup></span>
             </div>
             <address className="text-[14px] not-italic leading-relaxed">
               <strong className="text-xt-paper">XTSY Travellers Hostel</strong>
@@ -117,7 +117,7 @@ export default function SiteFooter() {
           ))}
         </div>
         <div className="mt-12 flex flex-col gap-3 border-t border-[#383D52] pt-5 text-[13px] text-[#A3ABC2] md:flex-row md:items-center md:justify-between">
-          <span>© {new Date().getFullYear()} XTSY™ is a trademark of, and is Owned and Operated by XTSY Ventures Private Limited including XTSY Travellers Hostel · Experience by XTSY · TAB Bistro by XTSY · XTSY Voyage · Travel by XTSY</span>
+          <span>© {new Date().getFullYear()} XTSY® is a registered trademark of, and is Owned and Operated by XTSY Ventures Private Limited including XTSY Travellers Hostel · Experience by XTSY · TAB Bistro by XTSY · XTSY Voyage · Travel by XTSY</span>
           <span className="font-display text-[20px] tracking-[0.25em] text-xt-rose">Travel.Sleep.Binge</span>
         </div>
       </footer>
