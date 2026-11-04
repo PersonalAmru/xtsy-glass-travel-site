@@ -246,7 +246,8 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
         text: confirmationText,
         chips: ['Where should I stay in Shillong?', 'Check-in time?'],
         actions: deskNotified ? [] : ['whatsapp'],
-      }]);    } else {
+      }]);
+    } else {
       toast.error('Could not send online — opening WhatsApp with your plan instead.');
       window.open(waLink(`Hi XTSY! Please help me book this trip:\n${text}`, 'trip-planner'), '_blank', 'noopener');
     }
