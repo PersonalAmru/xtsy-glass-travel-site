@@ -45,7 +45,12 @@ export const PER_CATEGORY_CAP: Record<string, number> = {
   hostels: 40,
   homestays: 25,
   glamping: 25,
-  accommodation: 20,
+  // Lowered 20 -> 17 alongside pinning the three Shillong campus stay slugs
+  // below. Pinned slugs bypass this cap, so leaving it at 20 would free three
+  // slots and admit the next pages in iteration order — which are
+  // `*-near-iit-guwahati` stay pages for a city with no XTSY property. 17 keeps
+  // the non-pinned accommodation set byte-identical to before this change.
+  accommodation: 17,
   tours: 21,
   destinations: 18,
   attractions: 7,
@@ -71,6 +76,20 @@ export const ALWAYS_KEEP_SLUGS: ReadonlySet<string> = new Set([
   'restaurant-near-iim-shillong',
   'restaurant-near-neiah-shillong',
   'restaurant-near-mlcu-shillong',
+  // Institution STAY cluster — the accommodation counterpart to the restaurant
+  // slugs above. Pinned individually rather than by enabling the `hospitals`
+  // category, so that the indexable set stays deliberate: Guwahati is served by
+  // a partner hostel and is not a priority, so its institution pages should not
+  // arrive here as a side effect of a per-category cap and array order. These
+  // six cover the New Shillong Township institutions XTSY sits beside, which
+  // carry year-round, monsoon-independent demand (patient attendants, visiting
+  // parents, placement season).
+  'stay-near-neigrims',
+  'patient-attendant-stay-neigrims',
+  'budget-stay-near-neigrims',
+  'stay-near-nift-shillong',
+  'student-accommodation-near-iim-shillong',
+  'parent-stay-near-iim-shillong',
   'best-hostel-in-shillong',
   'xtsy-travellers-hostel',
   'experience-by-xtsy',
