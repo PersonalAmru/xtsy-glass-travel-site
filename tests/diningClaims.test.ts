@@ -41,8 +41,9 @@ const NOT_ON_THE_MENU: [RegExp, string][] = [
   // menu. The kitchen has a clay TANDOOR, not a barbecue or a grill, and it serves no
   // kebabs, skewers, sizzlers, steaks, buffets, live counters, chaat or bakery.
   [/\bbarbe(c|q)ue\b|\bbbq\b/i, 'the kitchen has a tandoor, not a barbecue'],
+  [/\bgrill(?:s|ed|ing)?\b/i, 'the kitchen has a clay tandoor, not a grill'],
   [/\bkebabs?\b|\bskewers?\b/i, 'not on the tandoori section'],
-  [/\bbuffets?\b|live counters?\b/i, 'no buffet or live-counter service'],
+  [/\bbuffets?\b|\blive(?:\s+\w+){0,2}\s+counters?\b/i, 'no buffet or live-counter service'],
   [/\bsteaks?\b|\bchaat\b|\bbakery\b/i, 'not on the menu'],
 ];
 
