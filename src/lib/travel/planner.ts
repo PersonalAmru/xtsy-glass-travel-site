@@ -369,10 +369,10 @@ export function buildPlan(input: PlanInput): Plan {
 }
 
 export function planToText(plan: Plan): string {
-  const lines = plan.days.map((d) => \`Day \${d.n}: \${d.title} — \${d.stops.join('; ')} | Night: \${d.overnight}\`);
+  const lines = plan.days.map((d) => `Day ${d.n}: ${d.title} — ${d.stops.join('; ')} | Night: ${d.overnight}`);
   const coverage = getOperatorCoverageNotices(plan.input.placeIds);
   const coverageText = coverage.length
-    ? \`\\n\\nOperator coverage to verify with XTSY Booking Desk:\\n\${coverage.map((x) => \`- \${x.state}: \${x.destinations.join(', ')}\`).join('\\n')}\\nXTSY will check its verified network and coordinate suitable local support where needed.\`
+    ? `\n\nOperator coverage to verify with XTSY Booking Desk:\n${coverage.map((x) => `- ${x.state}: ${x.destinations.join(', ')}`).join('\n')}\nXTSY will check its verified network and coordinate suitable local support where needed.`
     : '';
-  return \`\${plan.input.days}-day trip for \${plan.input.travellers} (draft plan from XTSY AI; not a booking confirmation)\\n\${lines.join('\\n')}\\n~\${plan.driveHours} h on the road in total\${coverageText}\\n\\nFinal availability, permits, local support and pricing must be verified by XTSY Booking Desk before confirmation.\`;
+  return `${plan.input.days}-day trip for ${plan.input.travellers} (draft plan from XTSY AI; not a booking confirmation)\n${lines.join('\n')}\n~${plan.driveHours} h on the road in total${coverageText}\n\nFinal availability, permits, local support and pricing must be verified by XTSY Booking Desk before confirmation.`;
 }
