@@ -102,7 +102,7 @@ export default function SiteHeader() {
       <header className="flex h-[68px] items-center justify-between gap-4 border-b border-xt-line bg-xt-sand/95 px-4 backdrop-blur sm:h-[84px] sm:px-8 lg:px-14">
         <Link to="/" aria-label="XTSY home" className="flex min-h-[44px] shrink-0 items-center">
           <img src={xtsyLogo} alt="XTSY" width={120} height={28} className="h-6 w-auto sm:h-7" />
-          <sup aria-label="trademark" className="ml-0.5 text-[10px] font-bold">™</sup>
+          <sup aria-label="registered trademark" className="ml-0.5 text-[10px] font-bold">®</sup>
         </Link>
         <nav aria-label="Main" className="hidden items-center gap-6 text-[14px] font-bold xl:flex">
           {MAIN_NAV.map((l) => {
@@ -168,7 +168,7 @@ export default function SiteHeader() {
           <div className="flex h-[68px] items-center justify-between px-4 sm:h-[84px] sm:px-8 lg:px-14">
             <span className="flex items-center gap-3">
               <XtsyMark size={32} fill="#BD2E30" />
-              <span className="font-display text-[30px] tracking-[0.2em]">XTSY<sup className="text-[12px] tracking-normal">™</sup></span>
+              <span className="font-display text-[30px] tracking-[0.2em]">XTSY<sup className="text-[12px] tracking-normal">®</sup></span>
             </span>
             <button
               type="button"
