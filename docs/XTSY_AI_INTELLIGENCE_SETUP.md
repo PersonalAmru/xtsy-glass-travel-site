@@ -57,4 +57,4 @@ No road-closure feed, live weather provider, live ILP/PAP application interface,
 
 ## Multilingual boundary in this version
 
-The model can interpret non-English requests and answer open-ended chat questions in the detected reply language. The existing deterministic itinerary card, route labels and day-by-day stops remain English in this release. Full itinerary translation, voice STT/TTS and human-language Operator assignment remain later phases.
+The model can interpret non-English requests. Open-ended question responses may use the detected reply language, but all deterministic planner summaries, itinerary cards, route labels and day-by-day stops remain English in this release. Full itinerary translation, voice STT/TTS and human-language Operator assignment remain later phases.
