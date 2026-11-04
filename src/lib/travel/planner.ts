@@ -16,6 +16,7 @@
 import { CLUSTERS, PLACE_BY_ID, XTSY, type ClusterId, type Place } from './places';
 import { EXIT_GATEWAYS, HUBS, XTSY_POINT, pointOfHub, pointOfPlace, travel, type Leg, type Point } from './routing';
 import type { HubId } from './places';
+import { getOperatorCoverageNotices } from './operatorCoverage';
 
 export type TripStyle = 'backpacking' | 'adventure' | 'nature' | 'romantic' | 'pets' | 'photography' | 'family' | 'culture' | 'solo-female' | 'budget';
 
@@ -368,6 +369,10 @@ export function buildPlan(input: PlanInput): Plan {
 }
 
 export function planToText(plan: Plan): string {
-  const lines = plan.days.map((d) => `Day ${d.n}: ${d.title} — ${d.stops.join('; ')} | Night: ${d.overnight}`);
-  return `${plan.input.days}-day trip for ${plan.input.travellers} (planned with the XTSY trip assistant)\n${lines.join('\n')}\n~${plan.driveHours} h on the road in total`;
+  const lines = plan.days.map((d) => \`Day \${d.n}: \${d.title} — \${d.stops.join('; ')} | Night: \${d.overnight}\`);
+  const coverage = getOperatorCoverageNotices(plan.input.placeIds);
+  const coverageText = coverage.length
+    ? \`\\n\\nOperator coverage to verify with XTSY Booking Desk:\\n\${coverage.map((x) => \`- \${x.state}: \${x.destinations.join(', ')}\`).join('\\n')}\\nXTSY will check its verified network and coordinate suitable local support where needed.\`
+    : '';
+  return \`\${plan.input.days}-day trip for \${plan.input.travellers} (draft plan from XTSY AI; not a booking confirmation)\\n\${lines.join('\\n')}\\n~\${plan.driveHours} h on the road in total\${coverageText}\\n\\nFinal availability, permits, local support and pricing must be verified by XTSY Booking Desk before confirmation.\`;
 }
