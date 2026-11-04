@@ -1,4 +1,5 @@
 import { getCorsHeaders } from '../_shared/cors.ts';
+import { checkXtsyRateLimit } from '../_shared/xtsyRateLimit.ts';
 
 const RESPONSE_SCHEMA = {
   type: 'object',
@@ -27,7 +28,7 @@ CLASSIFICATION
 
 PLANNER NORMALIZATION
 - Rewrite the latest request as short, plain English that the existing deterministic XTSY planner can parse.
-- Use canonical destination names from destinationCatalogue only. Preserve the user's intended order and all explicit constraints.
+- Use canonical destination names from destination_catalogue only. Preserve the user's intended order and all explicit constraints.
 - Preserve whether the user is adding, removing, skipping or replacing destinations. Do not turn an edit into a brand-new trip.
 - Preserve days, nights, traveller count, month, trip style, camping, budget hints, arrival/departure points and other requirements when they are explicitly stated.
 - Translate the request into English for the planner if the traveller writes in another language, but set reply_language to the language the traveller used.
@@ -62,6 +63,16 @@ Deno.serve(async (req) => {
   const corsHeaders = getCorsHeaders(req);
   if (req.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
   if (req.method !== 'POST') return jsonResponse({ error: 'Method not allowed' }, 405, corsHeaders);
+
+  let rateAllowed = false;
+  try {
+    rateAllowed = await checkXtsyRateLimit(req, 'ai-assistant', 30);
+  } catch {
+    return jsonResponse({ error: 'XTSY AI rate-limit service is unavailable. Please retry shortly.', code: 'rate_limit_unavailable' }, 503, corsHeaders);
+  }
+  if (!rateAllowed) {
+    return jsonResponse({ error: 'You have reached the XTSY AI message limit for this hour. Please try again later.', code: 'rate_limited' }, 429, corsHeaders);
+  }
 
   const apiKey = Deno.env.get('OPENAI_API_KEY');
   if (!apiKey) {
