@@ -1,15 +1,15 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/guidePageData-TSjdsgYb.js",
-      "totalBytes": 908845,
-      "mappedBytes": 908360,
+      "bundleName": ".output/public/assets/guidePageData-RMCQAztf.js",
+      "totalBytes": 910727,
+      "mappedBytes": 910242,
       "unmappedBytes": 485,
       "eolBytes": 0,
       "sourceMapCommentBytes": 0,
       "files": {
         "../../../src/data/seoPagesExpansion.ts": {
-          "size": 89729
+          "size": 89961
         },
         "../../../src/data/seoPillarPages.ts": {
           "size": 57179
@@ -24,7 +24,7 @@
           "size": 79
         },
         "../../../src/data/seoPageFactory.ts": {
-          "size": 33424
+          "size": 33447
         },
         "../../../scripts/generate-seo-slugs.ts": {
           "size": 6302
@@ -51,19 +51,19 @@
           "size": 246
         },
         "../../../src/data/seoPagesDining.ts": {
-          "size": 21534
+          "size": 21836
         },
         "../../../src/data/seoPagesDiningExpansion.ts": {
-          "size": 71764
+          "size": 72810
         },
         "../../../src/data/seoPagesDiningSpokes.ts": {
-          "size": 28670
+          "size": 28791
         },
         "../../../src/data/seoPagesDiningInstitutions.ts": {
           "size": 6817
         },
         "../../../src/data/seoAffectedSlugs.ts": {
-          "size": 7566
+          "size": 7613
         },
         "../../../src/data/seoQualityFilter.ts": {
           "size": 1401
@@ -78,7 +78,7 @@
           "size": 165028
         },
         "../../../src/data/seoNormalize.ts": {
-          "size": 10464
+          "size": 10575
         },
         "../../../src/data/seoPages.ts": {
           "size": 118599
