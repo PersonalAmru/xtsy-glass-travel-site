@@ -15,6 +15,7 @@ import { XTSY_POINT, pointOfHub, pointOfPlace, travel } from './routing';
 import { buildPlan, fmtH, type Plan, type TripStyle } from './planner';
 import { inr, lowestDormPrice, roomPrice } from '@/components/v2/pricing';
 import { PANORAMA_DECORATION, PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
+import { formatOperatorCoverageNotice, getOperatorCoverageNotices } from './operatorCoverage';
 
 export interface ChatState {
   days?: number;
@@ -338,6 +339,9 @@ function planReply(plan: Plan, state: ChatState): Reply {
   if (plan.added.length) lines.push(`You had spare time, so I added: ${plan.added.join(', ')}. Say “remove …” to drop any.`);
   for (const p of plan.permits) lines.push(`🪪 ${p}`);
   for (const n of plan.notes) lines.push(`• ${n}`);
+  const coverageNotice = formatOperatorCoverageNotice(getOperatorCoverageNotices(plan.input.placeIds));
+  if (coverageNotice) lines.push(coverageNotice);
+  lines.push('**Booking status:** This is a draft itinerary. Nothing has been booked yet. The XTSY Booking Desk must verify service availability, local support, permits, transport and final pricing before confirming your trip.');
 
   const chips: string[] = [];
   if (plan.dropped.length) chips.push(`Make it ${plan.input.days + plan.dropped[0].extraDays} days`);
