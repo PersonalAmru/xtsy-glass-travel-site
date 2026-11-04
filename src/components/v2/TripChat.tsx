@@ -12,6 +12,8 @@ import { toast } from 'sonner';
 import { Link, useNavigate } from '@/lib/router-compat';
 import { cn } from '@/lib/utils';
 import { createTourEnquiry } from '@/services/tourBookingService';
+import { supabase } from '@/integrations/supabase/client';
+import { interpretTripMessage } from '@/services/xtsyAiAssistantService';
 import { INITIAL_STATE, WELCOME, respond, type ChatAction, type ChatState, type Reply } from '@/lib/travel/assistant';
 import { planToText, type Plan } from '@/lib/travel/planner';
 import { waLink } from './primitives';
@@ -93,21 +95,70 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
 
   const lastPlan = [...msgs].reverse().find((m) => m.plan)?.plan;
 
-  const ask = (text: string) => {
+  const ask = async (text: string) => {
     const q = text.trim();
-    if (!q) return;
+    if (!q || typing) return;
     setInput('');
     setSendFor(null);
     setMsgs((m) => [...m, { from: 'you', text: q }]);
     setTyping(true);
-    window.setTimeout(() => {
-      let reply: Reply;
-      let next = state;
-      try { const r = respond(q, state); reply = r.reply; next = r.state; } catch { reply = { text: 'Sorry, something went wrong on my side. Please try again, or message the XTSY desk on WhatsApp.', chips: [], actions: ['whatsapp'] }; }
-      setState(next);
-      setMsgs((m) => [...m, { from: 'xtsy', ...reply }]);
-      setTyping(false);
-    }, 420);
+
+    let reply: Reply;
+    let next = state;
+    try {
+      // AI handles language, intent and conversational context. The existing
+      // deterministic planner still validates and builds every itinerary.
+      const interpretation = await interpretTripMessage({
+        message: q,
+        history: msgs.slice(-10).map((item) => ({
+          role: item.from === 'you' ? 'user' as const : 'assistant' as const,
+          content: item.text,
+        })),
+        state,
+      });
+
+      if (interpretation.kind === 'planner') {
+        const normalized = interpretation.normalizedMessage.trim() || q;
+        const result = respond(normalized, state);
+        reply = result.reply;
+        next = result.state;
+      } else if (interpretation.kind === 'question') {
+        // Retain curated XTSY answers for topics the local knowledge base knows.
+        const known = respond(q, state);
+        reply = known.reply.text.startsWith('I didn’t quite catch that.')
+          ? {
+              text: interpretation.assistantMessage || 'Tell me a little more about the trip you have in mind.',
+              chips: [],
+              actions: [],
+            }
+          : known.reply;
+      } else {
+        reply = {
+          text: interpretation.assistantMessage || 'Tell me where you would like to travel and I will help you plan it.',
+          chips: [],
+          actions: [],
+        };
+      }
+    } catch (error) {
+      // Model endpoint unavailable, not configured or rate-limited: preserve
+      // the existing browser planner as a dependable fallback.
+      console.warn('[XTSY AI] Using deterministic planner fallback', error);
+      try {
+        const result = respond(q, state);
+        reply = result.reply;
+        next = result.state;
+      } catch {
+        reply = {
+          text: 'Sorry, something went wrong on my side. Please try again, or message the XTSY desk on WhatsApp.',
+          chips: [],
+          actions: ['whatsapp'],
+        };
+      }
+    }
+
+    setState(next);
+    setMsgs((m) => [...m, { from: 'xtsy', ...reply }]);
+    setTyping(false);
   };
 
   useEffect(() => {
@@ -165,22 +216,36 @@ export default function TripChat({ variant = 'embedded', className, onClose, ini
     setSending(false);
     if (res.success) {
       setSendFor(null);
-      // Hand the confirmed itinerary to the desk through the guest's own
-      // WhatsApp. The enquiry is already saved; this puts the same plan and its
-      // reference into the desk's chat, so the thread the guest replies in
-      // already carries the itinerary instead of the desk having to look it up.
-      // It also opens the conversation from the guest's number, which is what
-      // the desk needs to reply at all.
-      const ref = res.enquiryId ? `Booking ref: ${res.enquiryId}\n` : '';
+      let deskNotified = false;
+      try {
+        const { data, error } = await supabase.functions.invoke('request-trip-verification', {
+          body: { enquiryId: res.enquiryId, guestEmail: lead.email.trim() },
+        });
+        deskNotified = !error && data?.success === true && data?.notified === true;
+      } catch (error) {
+        console.warn('[XTSY AI] Trip saved but Booking Desk notification could not be confirmed', error);
+      }
+
+      const ref = res.enquiryId ? \`Enquiry ref: \${res.enquiryId}\\n\` : '';
       const handoff =
-        `Hi XTSY! I've just confirmed this trip on the AI trip planner.\n\n` +
-        `${ref}Name: ${lead.name.trim() || '—'}\n` +
-        `Dates: ${lead.dates.trim() || 'Flexible'}\n` +
-        `Travellers: ${sendFor.input.travellers}\n\n` +
-        `${text}\n\nPlease confirm stays, cabs and the final price.`;
+        \`Hi XTSY! I have submitted this AI-generated itinerary for Booking Desk verification.\\n\\n\` +
+        \`\${ref}Name: \${lead.name.trim() || '—'}\\n\` +
+        \`Email: \${lead.email.trim()}\\n\` +
+        \`WhatsApp: \${lead.phone.trim()}\\n\` +
+        \`Dates: \${lead.dates.trim() || 'Flexible'}\\n\` +
+        \`Travellers: \${sendFor.input.travellers}\\n\\n\` +
+        \`\${text}\\n\\nPlease verify Operator coverage, stays, guides, transport, permit requirements, availability and final pricing. This is not yet a confirmed booking.\`;
       window.open(waLink(handoff, 'trip-planner'), '_blank', 'noopener');
-      setMsgs((m) => [...m, { from: 'xtsy', text: `Sent to the XTSY desk${res.enquiryId ? ` (ref **${res.enquiryId}**)` : ''}, and I've opened WhatsApp with your full itinerary so the desk has it in the chat too. We’ll reply to confirm stays, cabs and prices — usually within an hour.`, chips: ['Where should I stay in Shillong?', 'Check-in time?'] }]);
-    } else {
+
+      const confirmationText = deskNotified
+        ? \`Your itinerary has been submitted under reference **\${res.enquiryId}**. The XTSY Booking Desk has been notified to verify route feasibility, local Operator coverage, stays, guides, transport, permit requirements, availability and final pricing. Where verified Operator coverage is not yet listed, the team will check local support and coordinate a suitable regional partner. **This is not a booking confirmation; nothing has been booked or paid yet.** The desk will confirm the final arrangements before you proceed.\`
+        : \`Your itinerary has been saved under reference **\${res.enquiryId}**, but I could not confirm that the automated Booking Desk notification was queued. Please use the WhatsApp message I opened to send the plan directly to the desk. **This is not a booking confirmation; nothing has been booked or paid yet.**\`;
+      setMsgs((m) => [...m, {
+        from: 'xtsy',
+        text: confirmationText,
+        chips: ['Where should I stay in Shillong?', 'Check-in time?'],
+        actions: deskNotified ? [] : ['whatsapp'],
+      }]);    } else {
       toast.error('Could not send online — opening WhatsApp with your plan instead.');
       window.open(waLink(`Hi XTSY! Please help me book this trip:\n${text}`, 'trip-planner'), '_blank', 'noopener');
     }
