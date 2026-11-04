@@ -45,7 +45,7 @@ const dish = (
 const tabFaq = {
   question: 'Where can I eat near XTSY in Shillong?',
   answer:
-    'TAB Bistro by XTSY is a multi-cuisine restaurant in New Shillong Township serving North Indian gravies and live tandoor, Indo-Chinese, XTSY dum biriyani, South Indian and hand-crafted pasta. It is open for breakfast 8:45 AM–12 PM & dinner 5–11 PM, closed for walk-in lunch though lunch preorders are accepted, takes reservations, and also handles catering and bulk orders.',
+    'TAB Bistro by XTSY is a multi-cuisine restaurant in New Shillong Township serving North Indian gravies and clay-oven tandoor, Indo-Chinese, XTSY dum biriyani, South Indian and hand-crafted pasta. It is open for breakfast 8:45 AM–12 PM & dinner 5–11 PM, closed for walk-in lunch though lunch preorders are accepted, takes reservations, and also handles catering and bulk orders.',
 };
 
 export const DINING_SEO_PAGES: SEOPageData[] = [
@@ -55,25 +55,25 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Best Place to Eat in Shillong 2026 — Top Restaurant Guide',
     'Looking for the best place to eat in Shillong? Multi-cuisine dining, cafés, tandoor & Khasi food. Eat at TAB Bistro by XTSY — open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
     'Best Place to Eat in Shillong',
-    'From smoky live tandoor to Thai, Italian and authentic Khasi flavours, Shillong rewards hungry travellers. If you want one place that does it all, TAB Bistro by XTSY is a multi-cuisine forest-dining restaurant loved by guests and locals alike.',
+    'Shillong rewards hungry travellers with Khasi specialities, street food and cafés across town. At TAB Bistro by XTSY in New Shillong Township, the focus is North Indian gravies, Indo-Chinese favourites, clay-oven tandoor dishes, biryani, South Indian breakfast and hand-crafted pasta.',
     [
-      { heading: 'Best Places to Eat in Shillong', content: 'Top dining picks for every craving:', listItems: ['TAB Bistro by XTSY — multi-cuisine, forest dining, live tandoor', 'Police Bazaar — cafés, momos and street food', 'Laitumkhrah — pubs, cafés and casual eateries', 'Iewduh (Bara Bazaar) — authentic Khasi jadoh stalls', 'Ward\'s Lake area — heritage cafés'] },
-      { heading: 'Why TAB Bistro Tops the List', content: 'TAB Bistro brings global flavours to the pine forests of Shillong:', listItems: ['Six kitchens on one menu', 'Live live tandoor grill', 'Veg and non-veg menus', 'In-house guest discount of 15%', 'Reservations, catering & bulk orders'] },
+      { heading: 'Best Places to Eat in Shillong', content: 'Top dining picks for every craving:', listItems: ['TAB Bistro by XTSY — multi-cuisine, forest dining, clay-oven tandoor', 'Police Bazaar — cafés, momos and street food', 'Laitumkhrah — pubs, cafés and casual eateries', 'Iewduh (Bara Bazaar) — authentic Khasi jadoh stalls', 'Ward\'s Lake area — heritage cafés'] },
+      { heading: 'Why TAB Bistro Tops the List', content: 'TAB Bistro brings global flavours to the pine forests of Shillong:', listItems: ['Multi-cuisine menu', 'Clay-oven tandoor dishes prepared to order', 'Veg and non-veg options', 'In-house guest discount of 15%', 'Reservations, catering & bulk orders'] },
     ],
-    [tabFaq, { question: 'What food is Shillong famous for?', answer: 'Shillong is famous for Khasi dishes like jadoh, doh khlieh and tungrymbai, plus a vibrant café and tandoor scene. TAB Bistro serves both regional and global cuisines.' }],
+    [tabFaq, { question: 'What food is Shillong famous for?', answer: 'Shillong is famous for Khasi dishes like jadoh, doh khlieh and tungrymbai, plus a vibrant café scene. TAB Bistro serves its own multi-cuisine menu of North Indian, Indo-Chinese, tandoor and pasta dishes.' }],
     ['best-food-in-shillong', 'restaurant-in-shillong', 'places-to-eat-in-shillong', 'cafe-shillong'],
     ['best place to eat in shillong', 'places to eat in shillong', 'where to eat in shillong', 'good food in shillong', 'best food near me'],
-    'TAB Bistro by XTSY is one of the best places to eat in Shillong — a multi-cuisine forest restaurant serving tandoor, tandoor and global flavours, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
+    'TAB Bistro by XTSY is one of the best places to eat in Shillong — a multi-cuisine forest restaurant serving tandoori dishes and multi-cuisine favourites, open for breakfast 8:45 AM–12 PM & dinner 5–11 PM.',
   ),
   dish(
     'best-food-in-shillong',
     'Best Food in Shillong — What & Where to Eat | TAB Bistro',
-    'The best food in Shillong, from Khasi jadoh to tandoor, Chinese & Italian. Discover top dishes and dine at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
+    'The best food in Shillong, from Khasi jadoh to Indo-Chinese favourites and hand-crafted pasta. Discover top dishes and dine at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
     'Best Food in Shillong',
     'Shillong\'s food scene blends Khasi tradition with global influence. Jadoh stalls, momo counters and cafés all have their place here — this is what the city does well, and where TAB Bistro by XTSY, with its tandoor, Indo-Chinese and biryani, fits into your food map.',
     [
       { heading: 'Must-Try Food in Shillong', content: 'Dishes you should not miss:', listItems: ['Jadoh — Khasi rice with pork or chicken', 'Doh Khlieh — spiced pork salad', 'Momos & thukpa — Tibetan favourites', 'Tandoori platters at TAB Bistro', 'Hand-crafted Alfredo & arrabiata pasta'] },
-      { heading: 'Best Food at TAB Bistro', content: 'Signature multi-cuisine plates loved by travellers:', listItems: ['Live tandoor — chicken, paneer, prawns', 'North Indian gravies & dal makhani', 'Indo-Chinese noodles, fried rice & chopsuey', 'Hand-crafted Alfredo & arrabiata pasta', 'Breakfast 8:45 AM–12 PM'] },
+      { heading: 'Best Food at TAB Bistro', content: 'Signature multi-cuisine plates loved by travellers:', listItems: ['Clay-oven tandoor — chicken, paneer, prawns', 'North Indian gravies & dal makhani', 'Indo-Chinese noodles, fried rice & chopsuey', 'Hand-crafted Alfredo & arrabiata pasta', 'Breakfast 8:45 AM–12 PM'] },
     ],
     [tabFaq],
     ['best-place-to-eat-in-shillong', 'best-restaurants-shillong', 'khasi-food-guide', 'restaurant-in-shillong'],
@@ -87,7 +87,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Places to Eat in Shillong',
     'Planning where to eat in Shillong? From buzzing Police Bazaar cafés to forest-side fine dining, here are the best places to eat — with TAB Bistro by XTSY as a multi-cuisine all-rounder.',
     [
-      { heading: 'Top Places to Eat', content: 'Eateries for every mood:', listItems: ['TAB Bistro by XTSY — multi-cuisine forest dining', 'Cafés in Laitumkhrah — coffee & live music', 'Police Bazaar — street food & quick bites', 'Family restaurants for groups & kids', 'Tandoor & grill nights'] },
+      { heading: 'Top Places to Eat', content: 'Eateries for every mood:', listItems: ['TAB Bistro by XTSY — multi-cuisine forest dining', 'Cafés in Laitumkhrah — coffee & live music', 'Police Bazaar — street food & quick bites', 'Family restaurants for groups & kids', 'Tandoori dinner favourites'] },
       { heading: 'Plan Your Meal', content: 'Tips for dining out in Shillong:', listItems: ['Most kitchens close by 10:30 PM', 'Reserve ahead on weekends', 'TAB Bistro offers catering & bulk orders', 'Veg and non-veg options widely available', 'In-house XTSY guests get 15% off'] },
     ],
     [tabFaq],
@@ -102,7 +102,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Want a reliably good meal in Shillong? These restaurants consistently deliver on taste, service and ambiance — led by TAB Bistro by XTSY, a multi-cuisine forest-dining favourite.',
     [
       { heading: 'Good Restaurants to Try', content: 'Dependable picks across the city:', listItems: ['TAB Bistro by XTSY — multi-cuisine & tandoor', 'Chinese & Indo-Chinese specialists', 'Pure-veg & thali restaurants', 'Cafés with continental menus', 'Family-friendly dining spots'] },
-      { heading: 'What Makes a Restaurant Good Here', content: 'TAB Bistro ticks every box:', listItems: ['Fresh ingredients & live grill', 'Wide multi-cuisine menu', 'Clean, scenic forest setting', '4.7★ XTSY hospitality standard', 'Easy reservations & catering'] },
+      { heading: 'What Makes a Restaurant Good Here', content: 'TAB Bistro ticks every box:', listItems: ['Fresh ingredients & clay-oven tandoori dishes', 'Wide multi-cuisine menu', 'Clean, scenic forest setting', '4.7★ XTSY hospitality standard', 'Easy reservations & catering'] },
     ],
     [tabFaq],
     ['best-restaurants-shillong', 'restaurant-in-shillong', 'best-place-to-eat-in-shillong'],
@@ -126,15 +126,15 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
   ),
   dish(
     'tandoor-restaurant-shillong',
-    'Tandoor Restaurant in Shillong — tandoor & Grill | TAB Bistro',
-    'Best tandoor restaurant in Shillong for tandoori dishes and live tandoor. Smoky tandoor in a pine forest at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
+    'Tandoor Restaurant in Shillong — Clay-Oven Specialities | TAB Bistro',
+    'Best tandoor restaurant in Shillong for tandoori dishes and clay-oven tandoor. Smoky tandoor in a pine forest at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
     'Tandoor Restaurant in Shillong',
-    'For smoky, char-grilled flavour, TAB Bistro by XTSY is a standout grill destination in Shillong — a live tandoor turning out chicken, paneer, mushroom, malai broccoli and prawns in a pine-forest setting.',
+    'TAB Bistro by XTSY serves clay-oven tandoori dishes in Shillong, including chicken, paneer, mushroom, malai broccoli and prawns, in a pine-forest setting.',
     [
-      { heading: 'Tandoor & Grill Highlights', content: 'Fire-kissed favourites:', listItems: ['Tandoori chicken, paneer & prawns', 'Tandoori chicken, paneer & prawns', 'Tandoori malai broccoli', 'Mushroom tikka & chicken tikka', 'Tandoori paneer & mushroom options'] },
-      { heading: 'Tandoor Nights & Events', content: 'Perfect for groups and celebrations:', listItems: ['Group tandoor bookings', 'Catering for parties & events', 'Bulk & corporate orders', 'Forest-side ambiance', 'In-house guest discount of 15%'] },
+      { heading: 'Tandoori Highlights', content: 'Fire-kissed favourites:', listItems: ['Tandoori chicken, paneer & prawns', 'Tandoori chicken, paneer & prawns', 'Tandoori malai broccoli', 'Mushroom tikka & chicken tikka', 'Tandoori paneer & mushroom options'] },
+      { heading: 'Group Meals & Catering', content: 'Perfect for groups and celebrations:', listItems: ['Group tandoor bookings', 'Catering for parties & events', 'Bulk & corporate orders', 'Forest-side ambiance', 'In-house guest discount of 15%'] },
     ],
-    [{ question: 'Is there a tandoor restaurant in Shillong?', answer: 'Yes — TAB Bistro by XTSY runs a live tandoor in a pine-forest setting, with group bookings and catering available.' }, tabFaq],
+    [{ question: 'Is there a tandoor restaurant in Shillong?', answer: 'Yes — TAB Bistro by XTSY runs a clay-oven tandoor in a pine-forest setting, with group bookings and catering available.' }, tabFaq],
     ['restaurant-in-shillong', 'best-restaurants-shillong', 'wedding-catering-shillong'],
     ['tandoor restaurant shillong', 'tandoori chicken shillong', 'paneer tikka shillong', 'biriyani in shillong', 'best food near me'],
   ),
@@ -157,7 +157,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Best Veg Restaurants in Shillong — Top Vegetarian Dining',
     'Best vegetarian restaurants in Shillong — veg Indo-Chinese, tandoori paneer, South Indian and veg pasta. Dine at TAB Bistro by XTSY. Breakfast 8:45 AM–12 PM, dinner 5–11 PM.',
     'Best Veg Restaurants in Shillong',
-    'Shillong\'s best vegetarian dining combines variety with value. TAB Bistro by XTSY leads with a broad veg menu spanning Indian, Chinese, Italian and continental favourites.',
+    'Shillong\'s best vegetarian dining combines variety with value. TAB Bistro by XTSY leads with a broad veg menu spanning Indian, Chinese, hand-crafted pasta and continental favourites.',
     [
       { heading: 'Top Veg Restaurants', content: 'Where vegetarians eat well:', listItems: ['TAB Bistro by XTSY — multi-cuisine veg menu', 'Pure-veg thali houses', 'South Indian veg eateries', 'Veg-friendly cafés', 'Pizza & pasta spots'] },
       { heading: 'Veg Menu Highlights', content: 'Crowd-pleasing vegetarian plates:', listItems: ['Veg tandoor & paneer specials', 'Veg Indo-Chinese', 'Tandoori malai broccoli', 'Veg Alfredo & arrabiata pasta', 'Soups & fruit bowls'] },
@@ -176,9 +176,9 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Laitumkhrah is one of Shillong\'s liveliest food neighbourhoods — packed with cafés, pubs and casual eateries. For a full multi-cuisine experience, TAB Bistro by XTSY is a short hop away in New Shillong Township.',
     [
       { heading: 'Dining in Laitumkhrah', content: 'What the area is known for:', listItems: ['Buzzing café culture & live music', 'Casual Chinese & momo joints', 'Continental & fast food', 'Student-friendly pricing', 'Late-evening hangouts'] },
-      { heading: 'Pair It With TAB Bistro', content: 'When you want more variety:', listItems: ['Multi-cuisine forest dining', 'Live tandoor', 'Veg & non-veg menus', 'Reservations & catering', 'In-house guest discount of 15%'] },
+      { heading: 'Pair It With TAB Bistro', content: 'When you want more variety:', listItems: ['Multi-cuisine forest dining', 'Clay-oven tandoor', 'Veg & non-veg menus', 'Reservations & catering', 'In-house guest discount of 15%'] },
     ],
-    [{ question: 'Which are the best restaurants in Laitumkhrah?', answer: 'Laitumkhrah is famous for its cafés, Chinese eateries and casual dining. For a full multi-cuisine spread, TAB Bistro by XTSY in New Shillong Township serves tandoor, tandoor and global cuisine.' }, tabFaq],
+    [{ question: 'Which are the best restaurants in Laitumkhrah?', answer: 'Laitumkhrah is famous for its cafés, Chinese eateries and casual dining. For a full multi-cuisine spread, TAB Bistro by XTSY in New Shillong Township serves tandoor dishes and global cuisine.' }, tabFaq],
     ['restaurants-in-police-bazar-shillong', 'restaurant-in-shillong', 'cafe-shillong'],
     ['restaurants in laitumkhrah', 'best restaurants in laitumkhrah', 'restaurant in laitumkhrah', 'restaurants in laitumkhrah shillong', 'best restaurants in shillong laitumkhrah'],
   ),
@@ -190,9 +190,9 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Police Bazar is the beating heart of Shillong\'s food scene — restaurants, cafés and street food in every direction. For multi-cuisine forest dining away from the crowds, TAB Bistro by XTSY is a short drive away.',
     [
       { heading: 'Dining in Police Bazar', content: 'The area\'s food highlights:', listItems: ['Multi-cuisine & family restaurants', 'Indo-Chinese & momo stalls', 'Cafés', 'Quick street-food bites', 'Late-evening dining'] },
-      { heading: 'Why Add TAB Bistro', content: 'A scenic alternative for a full meal:', listItems: ['Several cuisines on one menu', 'Live tandoor', 'Veg & non-veg across every section', 'Catering & bulk orders', 'In-house guest discount of 15%'] },
+      { heading: 'Why Add TAB Bistro', content: 'A scenic alternative for a full meal:', listItems: ['Several cuisines on one menu', 'Clay-oven tandoor', 'Veg & non-veg across every section', 'Catering & bulk orders', 'In-house guest discount of 15%'] },
     ],
-    [{ question: 'Which is the best restaurant in Police Bazar Shillong?', answer: 'Police Bazar has many multi-cuisine and Chinese restaurants. For tandoor, tandoor and global cuisine in a forest setting, TAB Bistro by XTSY nearby is a top pick.' }, tabFaq],
+    [{ question: 'Which is the best restaurant in Police Bazar Shillong?', answer: 'Police Bazar has many multi-cuisine and Chinese restaurants. For tandoor dishes and global cuisine in a forest setting, TAB Bistro by XTSY nearby is a top pick.' }, tabFaq],
     ['restaurants-in-laitumkhrah', 'restaurant-in-shillong', 'street-food-police-bazar'],
     ['best restaurant in police bazar shillong', 'restaurants in shillong police bazar', 'restaurant in police bazar shillong', 'police bazar restaurant', 'pb restaurant shillong'],
   ),
@@ -234,7 +234,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Planning a wedding or big celebration in Shillong? TAB Bistro by XTSY offers full-service catering — multi-cuisine menus, dishes cooked to order and tandoor stations tailored to your guest count and budget.',
     [
       { heading: 'Catering Services', content: 'What we cater:', listItems: ['Weddings & receptions', 'Engagements & pre-wedding events', 'Corporate & office events', 'Birthday & private parties', 'Bulk & party food orders'] },
-      { heading: 'Catering Menus', content: 'Crafted for every palate:', listItems: ['North Indian, Indo-Chinese, biriyani & South Indian', 'Live tandoor counters', 'Veg, non-veg & Jain options', 'Custom set menus by headcount', 'Dessert & beverage stations'] },
+      { heading: 'Catering Menus', content: 'Crafted for every palate:', listItems: ['North Indian, Indo-Chinese, biriyani & South Indian', 'Tandoori dishes cooked to order', 'Veg, non-veg & Jain options', 'Custom set menus by headcount', 'Dessert & beverage stations'] },
     ],
     [{ question: 'Does TAB Bistro offer wedding catering in Shillong?', answer: 'Yes — TAB Bistro by XTSY provides multi-cuisine wedding and event catering in Shillong, with dishes cooked to order, tandoor stations and custom menus by guest count.' }],
     ['bulk-food-order-shillong', 'corporate-catering-shillong', 'destination-wedding-shillong'],
@@ -247,7 +247,7 @@ export const DINING_SEO_PAGES: SEOPageData[] = [
     'Bulk Food Orders in Shillong',
     'Need food for a crowd? TAB Bistro by XTSY handles bulk and party food orders in Shillong — multi-cuisine spreads, tandoor platters and packed meals delivered for events of any size.',
     [
-      { heading: 'Bulk Order Options', content: 'What you can order in bulk:', listItems: ['Party & event platters', 'Corporate lunch packs', 'Live tandoor trays', 'Veg & non-veg combos', 'Packed individual meals'] },
+      { heading: 'Bulk Order Options', content: 'What you can order in bulk:', listItems: ['Party & event platters', 'Corporate lunch packs', 'Clay-oven tandoor trays', 'Veg & non-veg combos', 'Packed individual meals'] },
       { heading: 'How It Works', content: 'Simple bulk ordering:', listItems: ['Share headcount & cuisine', 'Choose a custom menu', 'Confirm date & delivery', 'On-time bulk preparation', 'Catering add-ons available'] },
     ],
     [{ question: 'Can I order food in bulk in Shillong?', answer: 'Yes — TAB Bistro by XTSY accepts bulk and party food orders in Shillong for events, offices and celebrations, with custom multi-cuisine menus.' }],
