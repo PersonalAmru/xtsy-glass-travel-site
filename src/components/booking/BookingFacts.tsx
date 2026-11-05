@@ -3,12 +3,15 @@
  * rooms, prices and policies before choosing dates. Prices are the owner-approved, all-inclusive
  * rates; keep them in sync with the room data if they ever change.
  */
+import { inr, roomPrice } from '@/components/v2/pricing';
+import { PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
+
 const ROOMS = [
-  { name: '8-bed dorm', price: '₹399', note: 'per bed per night' },
-  { name: '6-bed dorm', price: '₹499', note: 'per bed per night' },
-  { name: '4-bed women-only dorm', price: '₹599', note: 'per bed per night' },
-  { name: 'King Double', price: '₹2,399', note: 'per room per night' },
-  { name: 'Experience by XTSY', price: '₹5,999', note: 'per night, stay only' },
+  { name: '8-bed dorm', price: inr(roomPrice('8-bed-mixed-dorm').now), note: 'per bed per night' },
+  { name: '6-bed dorm', price: inr(roomPrice('6-bed-mixed-dorm').now), note: 'per bed per night' },
+  { name: '4-bed women-only dorm', price: inr(roomPrice('4-bed-female-only-dorm').now), note: 'per bed per night' },
+  { name: 'King Double', price: inr(roomPrice('king-double-room').now), note: 'per room per night' },
+  { name: 'Experience by XTSY', price: inr(PANORAMA_STAY_ONLY), note: 'per night, stay only' },
 ];
 
 export default function BookingFacts() {
@@ -22,7 +25,7 @@ export default function BookingFacts() {
           <h2 id="booking-facts" className="text-lg font-semibold text-white">Before you book</h2>
           <p className="mt-2 text-sm">
             XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township, near NIFT and IIM Shillong.
-            Every price below is all inclusive, with no booking-site mark-up when you book here.
+            Every price below is an indicative live-inventory rate, all inclusive. Final availability and total are calculated for your selected dates before you submit the enquiry.
           </p>
         </div>
 
@@ -39,6 +42,11 @@ export default function BookingFacts() {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Booking and arrival</h3>
+          <p className="mt-2 text-sm">Choose your property and dates, select the room or dorm beds available for that stay, review the total including applicable taxes, and submit your guest details. The XTSY Booking Desk follows up to confirm the reservation. The hostel is at Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya 793018; it is outside Police Bazaar, so allow road-transfer time when planning arrival.</p>
         </div>
 
         <div>
