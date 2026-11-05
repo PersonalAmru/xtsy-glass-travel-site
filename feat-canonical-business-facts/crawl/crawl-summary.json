@@ -1,0 +1,83 @@
+{
+ "site": "http://localhost:4174",
+ "crawled": 713,
+ "ok": 711,
+ "sitemapUrls": 699,
+ "broken": 0,
+ "internalRedirects": 2,
+ "orphans": 1,
+ "depthHistogram": {
+  "0": 1,
+  "unreachable": 710
+ },
+ "deepPages": [],
+ "unreachableFromHome": 698,
+ "legacyDesignPages": [
+  "/",
+  "/book",
+  "/auth",
+  "/install",
+  "/book?property=xtsy-experience"
+ ],
+ "h1Problems": [
+  "0 /"
+ ],
+ "duplicateTitles": [
+  {
+   "value": "northeast india tour packages from ₹7,999 | xtsy travel",
+   "urls": [
+    "/tours",
+    "/tours?group=northeast"
+   ]
+  },
+  {
+   "value": "best restaurant in shillong 2026 | tab bistro",
+   "urls": [
+    "/best-restaurant-in-shillong",
+    "/best-restaurant-shillong"
+   ]
+  }
+ ],
+ "duplicateDescriptions": [
+  {
+   "value": "30+ curated meghalaya, nagaland, assam, arunachal & sikkim tours from ₹7,999. living root bridges, dawki, tribal festivals. book direct and save 20-30% vs otas.",
+   "urls": [
+    "/tours",
+    "/tours?group=northeast"
+   ]
+  }
+ ],
+ "navLinks": [],
+ "menuLinks": [],
+ "footerLinks": [],
+ "brokenList": [],
+ "redirectList": [
+  {
+   "url": "/tab-bistro/catering",
+   "to": "/catering-shillong",
+   "fromCount": 178,
+   "from": [
+    "/tab-bistro",
+    "/group-bookings-meghalaya",
+    "/restaurant-in-shillong",
+    "/destinations/meghalaya/cherrapunji/nohkalikai-falls",
+    "/destinations/meghalaya/cherrapunji/wei-sawdong-falls"
+   ]
+  },
+  {
+   "url": "/cheap-hostels-shillong",
+   "to": "/budget-hostels-shillong",
+   "fromCount": 28,
+   "from": [
+    "/shillong-dormitory",
+    "/budget-stay-shillong",
+    "/hostels-in-meghalaya",
+    "/couples-hostel-shillong",
+    "/group-stay-shillong"
+   ]
+  }
+ ],
+ "orphanList": [
+  "/backpacking-india"
+ ]
+}
