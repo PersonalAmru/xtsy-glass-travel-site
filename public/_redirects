@@ -1,16 +1,10 @@
-# NOTE: Lovable hosting does NOT process this file.
-# Kept only as documentation for self-hosted/Cloudflare/Netlify deploys.
-# Active redirects in production are handled by:
-#   - cloudflare/worker.js (edge layer)
-#   - src/data/seoAffectedSlugs.ts (RECOVERY_REDIRECTS, client-side)
-#   - scripts/generateSEOInlineScript.ts (pre-hydration script)
-
-# www → non-www (301 permanent)
-https://www.xtsy.one/* https://xtsy.one/:splat 301!
-http://www.xtsy.one/*  https://xtsy.one/:splat 301!
-
-# http → https
-http://xtsy.one/* https://xtsy.one/:splat 301!
+# Workers Static Assets _redirects file.
+# This file supports path-based redirects only; host and scheme canonicalization
+# are handled at the Cloudflare zone level:
+#   - Always Use HTTPS: zone setting
+#   - www.xtsy.one -> https://xtsy.one/*: Single Redirect rule
+#
+# Do not add absolute hostname source patterns or the unsupported "!" suffix.
 
 # Strip /index.html
-/index.html / 301!
+/index.html / 301
