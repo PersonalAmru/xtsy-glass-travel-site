@@ -35,7 +35,7 @@ const FAQS = [
   },
   {
     q: 'Where should I stay to visit these places?',
-    a: 'Shillong is the ideal base \u2014 it is central to Cherrapunji, Dawki and Mawlynnong. XTSY Travellers Hostel in Shillong offers dorm beds from \u20b9369, private rooms and glamping.',
+    a: 'Shillong is the ideal base \u2014 it is central to Cherrapunji, Dawki and Mawlynnong. XTSY Travellers Hostel in Shillong offers dorm beds from \u20b9399, private rooms and glamping.',
   },
 ];
 
