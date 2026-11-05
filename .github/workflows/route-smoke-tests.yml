@@ -45,16 +45,20 @@ jobs:
         run: bun install --frozen-lockfile || bun install
       - name: Install Playwright Chromium
         run: bunx playwright install --with-deps chromium
-      - name: Start dev server
+      - name: Build production Node server for smoke tests
+        if: ${{ github.event.inputs.base_url == '' }}
+        run: NITRO_PRESET=node-server bun run build
+      - name: Start production Node server
         if: ${{ github.event.inputs.base_url == '' }}
         run: |
-          # Public Supabase settings come from .env (empty secrets would override them).
-          (bun run dev > dev.log 2>&1 &)
+          # TanStack Start's Vite preview plugin expects dist/server/server.js;
+          # this project emits Nitro's node-server entry at .output/server/index.mjs.
+          (PORT=8080 node .output/server/index.mjs > preview.log 2>&1 &)
           for i in $(seq 1 90); do
-            curl -sf -o /dev/null http://localhost:8080/ && { echo "dev server up after ${i}x2s"; exit 0; }
+            curl -sf -o /dev/null http://localhost:8080/ && { echo "production Node server up after ${i}x2s"; exit 0; }
             sleep 2
           done
-          echo "::error::dev server did not start"; tail -60 dev.log; exit 1
+          echo "::error::production Node server did not start"; tail -60 preview.log; exit 1
       - name: Run SSR + hydration smoke tests
         run: |
           set -o pipefail

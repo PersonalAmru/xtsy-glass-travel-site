@@ -23,3 +23,11 @@ For new or refreshed page imagery, use only images retrieved through the Pexels 
 
 - 2026-11-05: Added a documentation-only GitHub commit on `main` to test whether the connected Lovable project detects new upstream commits after the organization reconnection.
 - This is a sync diagnostic marker, not an application change or deployment.
+
+
+## Deliverable 1 implementation note
+
+- The homepage now uses the route-level `HOSTEL_SCHEMA` from `src/data/siteSchemas.ts` as its single Hostel JSON-LD source; the duplicate page-level Hostel entity was removed.
+- Keep entity identity, address, coordinates, contact details, check-in/out, amenity claims, price range and rating snapshot aligned in that file.
+- Before publishing changes to prices or ratings, verify them against the current booking inventory and Google Business Profile. The schema values are not live-connected data.
+- Homepage FAQ JSON-LD remains separately emitted from the visible FAQ content.
