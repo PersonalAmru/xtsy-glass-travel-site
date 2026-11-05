@@ -176,7 +176,13 @@ describe('SEO regression: budget hostel canonical migration', () => {
     expect(RECOVERY_REDIRECTS['cheap-hostel-shillong']).toBe('/budget-hostels-shillong');
     expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostels-shillong');
     expect(RECOVERY_REDIRECTS['cheap-hostels-shillong']).toBe('/budget-hostels-shillong');
+    expect(RECOVERY_REDIRECTS['budget-hostel-shillong']).toBe('/budget-hostels-shillong');
     expect(RECOVERY_REDIRECTS['remote-work-stay-shillong']).toBe('/work-from-home');
+  });
+
+  it('does not publish a singular budget-hostel duplicate page', async () => {
+    const { ALL_SEO_PAGES } = await import('../src/data/seoPages');
+    expect(ALL_SEO_PAGES.some(page => page.slug === 'budget-hostel-shillong')).toBe(false);
   });
 
   it('registers public static pages and data-driven expedition routes for sitemap generation', async () => {
