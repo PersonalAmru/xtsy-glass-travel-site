@@ -40,15 +40,14 @@ jobs:
           # audit stays reporting-only; this is the daily guard on what guests
           # actually see.
           FAIL_ON_SERIOUS: '1'
+          SITE_URL: https://xtsy.one
+          OUT_DIR: health
         run: |
           bun scripts/audit/content-audit.ts
           mkdir -p health/html
           for p in contact privacy-policy luxury-glamping-shillong tours/5n-6d-tawang-tour xtsy-adventure-campsite-dawki tab-bistro; do
             curl -fsSL "https://xtsy.one/$p?live-check=$(date +%s)" -o "health/html/$(echo $p | tr / _).html" || true
           done
-        env:
-          SITE_URL: https://xtsy.one
-          OUT_DIR: health
 
       - name: Publish report
         if: always()
