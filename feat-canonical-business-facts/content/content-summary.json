@@ -37,18 +37,18 @@
     "/merch — "
    ]
   },
-  "placeholder:coming soon": {
-   "pages": 2,
-   "examples": [
-    "/tab-bistro — on. Book a table View the menu WhatsApp us Rooftop terrace · café coming soon North Indian Indo-Chinese Thai Contin",
-    "/restaurant-in-shillong —  Dining A rooftop terrace with panoramic views — the rooftop café is coming soon. Traveller's Feast Multi-cuisine din"
-   ]
-  },
   "policy:pets": {
    "pages": 2,
    "examples": [
     "/xtsy-vs-zostel — d and size). Zostel Shillong lists an 18+ rule, groups of up to 6 and no pets. Does XTSY arrange trips for groups? Yes",
     "/best-hostel-in-shillong — nd birds welcome, dogs by breed and size 18+ only, groups of up to 6, no pets Guest rating 4.7★ from 252 Google reviews"
+   ]
+  },
+  "placeholder:coming soon": {
+   "pages": 2,
+   "examples": [
+    "/tab-bistro — on. Book a table View the menu WhatsApp us Rooftop terrace · café coming soon North Indian Indo-Chinese Thai Contin",
+    "/restaurant-in-shillong —  Dining A rooftop terrace with panoramic views — the rooftop café is coming soon. Traveller's Feast Multi-cuisine din"
    ]
   },
   "rating:review count": {
