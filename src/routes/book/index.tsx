@@ -8,6 +8,8 @@ export const Route = createFileRoute("/book/")({
   head: () =>
     buildRouteHead({
       path: "/book",
+      noIndex: true,
+      noIndexFollow: true,
       title: "Hostel Booking Shillong — Book Dorms & Rooms Online | XTSY",
       description:
         `Book XTSY in New Shillong Township: dorms from ${inr(roomPrice("8-bed-mixed-dorm").now)}, King Double ${inr(roomPrice("king-double-room").now)}, Experience by XTSY ${inr(PANORAMA_STAY_ONLY)}. Check-in 11 AM, check-out 10 AM.`,
