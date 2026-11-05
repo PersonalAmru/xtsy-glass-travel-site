@@ -292,5 +292,15 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'police-bazaar-shillong': '/shillong-travel-guide',
   'ward-lake-shillong': '/shillong-travel-guide',
   'things-to-do-in-shillong': '/shillong-travel-guide',
-  'best-cafes-shillong': '/cafes-in-shillong',
+  'best-cafes-shillong': '/cafes-in-shillong',  // Legacy “cheap-*” intent pages now use budget-* slugs. Preserve every old city/stay URL as a 301.
+  ...Object.fromEntries(
+    ['hostel', 'hotel', 'homestay', 'guesthouse', 'budget-stay', 'glamping'].flatMap((stay) =>
+      ['shillong', 'cherrapunji', 'guwahati', 'gangtok', 'kohima', 'imphal'].map((city) => [
+        `cheap-${stay}-in-${city}`,
+        stay === 'budget-stay' ? `/budget-stay-in-${city}` : `/budget-${stay}-in-${city}`,
+      ]),
+    ),
+  ),
+  'cheap-car-rental-shillong': '/budget-car-rental-shillong',
+
 };
