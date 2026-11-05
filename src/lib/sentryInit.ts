@@ -6,9 +6,13 @@
 import { init, browserTracingIntegration, captureMessage } from '@sentry/react';
 
 export function initSentry() {
-  const dsn =
-    import.meta.env.VITE_SENTRY_DSN ||
-    'https://de60ec1c757d6d0b6fd991d42d4b8e06@o4510659453911040.ingest.us.sentry.io/4510659499982848';
+  // Do not ship a fallback DSN: an invalid/stale project key produces repeated
+  // 403s in production. Enable Sentry only when the deployment supplies a valid DSN.
+  const dsn = import.meta.env.VITE_SENTRY_DSN;
+  if (!dsn) {
+    if (import.meta.env.DEV) console.info('[Sentry] Disabled — VITE_SENTRY_DSN is not configured.');
+    return;
+  }
   init({
     dsn,
     environment: import.meta.env.MODE,

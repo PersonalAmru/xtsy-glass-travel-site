@@ -50,12 +50,18 @@ interface VitalsSample {
 }
 
 const sendSample = async (sample: VitalsSample) => {
+  // RUM ingestion is temporarily opt-in until the production table policy or
+  // authenticated ingestion endpoint is confirmed. This prevents anonymous
+  // 401 requests without weakening Supabase RLS.
+  if (import.meta.env.VITE_RUM_ENABLED !== 'true') return;
   if (!SELF_TRACKING_ENABLED || !readConsent()?.analytics) return;
   try {
-    // Prefer fire-and-forget insert to avoid blocking on edge cold-starts
-    await (await getSupabase()).from('route_performance_metrics').insert(sample as any);
+    const result = await (await getSupabase()).from('route_performance_metrics').insert(sample as any);
+    if (result.error && import.meta.env.DEV) {
+      console.warn('[WebVitals] RUM insert rejected; verify the table insert policy or ingestion endpoint.', result.error.message);
+    }
   } catch {
-    // Silently swallow — RUM must never break the page
+    // RUM must never break the page.
   }
 };
 
