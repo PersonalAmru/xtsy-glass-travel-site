@@ -1054,6 +1054,10 @@ export const RETIRED_DINING_SLUGS: ReadonlySet<string> = new Set<string>([
   'rooftop-restaurant-shillong',                    // the rooftop terrace is not a working restaurant yet
   'rooftop-cafe-shillong',                          // the rooftop terrace is not a working cafe yet
   'pure-vegetarian-restaurant-shillong',            // the kitchen is not pure vegetarian
+  // Group 4 — narrow service-intent pages consolidated onto the verified catering hub
+  'bulk-food-supply-shillong',
+  'office-lunch-catering-shillong',
+  'cheap-restaurants-in-shillong',
 ]);
 
 // ===========================================================================
