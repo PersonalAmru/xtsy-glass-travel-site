@@ -1,5 +1,5 @@
 /**
- * /best-hostel-in-shillong and /cheap-hostels-shillong — the Shillong stay hubs.
+ * /best-hostel-in-shillong and /budget-hostels-shillong — the Shillong stay hubs.
  * JSON-LD is rendered by the route head (server-side); this page shows the same
  * facts, prices (live inventory) and FAQs.
  */
@@ -134,7 +134,7 @@ export default function StayHubV2({ variant }: { variant: StayHubVariant }) {
         <div className="flex flex-wrap gap-2">
           <button type="button" onClick={() => openTripChat('Plan 5 days in Meghalaya staying at XTSY')} className="xt-btn h-12 rounded-full bg-xt-crimson px-6 text-[15px] font-extrabold text-white">✦ Plan a trip with AI</button>
           <Link to="/tours" className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-paper px-6 text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">Tour packages</Link>
-          <Link to={variant === 'cheap' ? '/best-hostel-in-shillong' : '/cheap-hostels-shillong'} className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-paper/50 px-6 text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">{variant === 'cheap' ? 'Hostels in Shillong guide' : 'Best budget-friendly beds in Shillong'}</Link>
+          <Link to={variant === 'budget' ? '/best-hostel-in-shillong' : '/budget-hostels-shillong'} className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-paper/50 px-6 text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">{variant === 'budget' ? 'Hostels in Shillong guide' : 'Best budget-friendly beds in Shillong'}</Link>
           <Link to="/female-travellers" className="xt-btn flex h-12 items-center rounded-full border-[1.5px] border-xt-paper/50 px-6 text-[15px] font-extrabold text-xt-paper hover:text-xt-paper">Women-safe stays</Link>
         </div>
       </section>
