@@ -49,6 +49,7 @@ describe('production CSP headers', () => {
     expect(c).toContain("'self'");
     expect(c).toContain('t.contentsquare.net');
     expect(c).toContain('hotjar.com');
+    expect(c).toContain('https://ipapi.co');
   });
 
   it('keeps hardening directives intact', () => {
