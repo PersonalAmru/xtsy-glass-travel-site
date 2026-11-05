@@ -199,7 +199,7 @@ async function main() {
     const xml = await (await fetch(SITE + m[1].replace(HOST_RE, ''))).text();
     for (const u of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) urls.add(u[1].replace(HOST_RE, '') || '/');
   }
-  for (const extra of (process.env.EXTRA_ROUTES || '/book,/guides,/faq,/contact,/about,/pricing-cancellation-policy,/tab-bistro,/xtsy-270,/pet-friendly,/female-travellers').split(',')) urls.add(extra);
+  for (const extra of (process.env.EXTRA_ROUTES || '/book,/book/select,/book/campsite,/guides,/faq,/contact,/about,/pricing-cancellation-policy,/tab-bistro,/xtsy-270,/pet-friendly,/female-travellers').split(',')) urls.add(extra);
 
   const pages: PageOut[] = [];
   const descs = new Map<string, string[]>();
