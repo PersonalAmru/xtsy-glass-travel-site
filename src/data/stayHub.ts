@@ -1,7 +1,7 @@
 /**
  * Content + JSON-LD for the two Shillong stay hubs:
  *   /best-hostel-in-shillong  → "hostels in Shillong" (guide / comparison intent)
- *   /cheap-hostels-shillong   → "cheap hostel in Shillong" (budget intent)
+ *   /budget-hostels-shillong   → "budget hostel in Shillong" (budget intent)
  * The homepage owns "best hostel in Shillong" (brand + head term), so these
  * pages support it instead of competing with it.
  * All prices come from the live booking inventory.
@@ -11,7 +11,7 @@ import { GOOGLE_RATING } from './brandFacts';
 import { PANORAMA_DECORATION, PANORAMA_STAY_ONLY } from '@/data/panoramaPricing';
 import { fromXtsy } from '@/lib/travel/routing';
 
-export type StayHubVariant = 'hostels' | 'cheap';
+export type StayHubVariant = 'hostels' | 'budget';
 const SITE = 'https://xtsy.one';
 
 export const rooms = () => [
@@ -24,25 +24,25 @@ export const rooms = () => [
 
 export function stayHubCopy(v: StayHubVariant) {
   const dorm = inr(lowestDormPrice());
-  const cheap = v === 'cheap';
+  const budget = v === 'budget';
   return {
-    path: cheap ? '/cheap-hostels-shillong' : '/best-hostel-in-shillong',
+    path: budget ? '/budget-hostels-shillong' : '/best-hostel-in-shillong',
     // GSC 1-28 Oct: /best-hostel-in-shillong drew 893 impressions and 5 clicks
     // at position 5.2 — it ranks, it just gives no reason to click. Lead with
     // the rating, which is the strongest trust signal available in a result.
-    title: cheap
+    title: budget
       ? `Budget-Friendly Hostels in Shillong from ${dorm} | XTSY`
       : `Hostels in Shillong: ${GOOGLE_RATING.value}★, Women-Only Dorms & Private Rooms`,
-    description: cheap
+    description: budget
       ? `XTSY dorm beds from ${dorm}, women-only dorm, lockers, Wi-Fi and TAB Bistro on site in New Shillong Township. Book direct, no OTA mark-up.`
       : `Compare XTSY dorms from ${dorm}/night, women-only dorms and private rooms in New Shillong Township. View room prices and send a WhatsApp booking enquiry.`,
-    h1: cheap ? 'Budget-friendly hostels in Shillong' : 'Hostels in Shillong',
-    eyebrow: cheap ? `Budget beds from ${dorm} · book direct` : 'The 2026 guide · by the team that runs XTSY',
-    quick: cheap
+    h1: budget ? 'Budget-friendly hostels in Shillong' : 'Hostels in Shillong',
+    eyebrow: budget ? `Budget beds from ${dorm} · book direct` : 'The 2026 guide · by the team that runs XTSY',
+    quick: budget
       ? `The best budget-friendly bed in Shillong at XTSY Travellers Hostel is an 8-bed dorm bunk at ${dorm} a night, with a curtain, locker and charging point. Women can pick the women-only dorm at ${inr(roomPrice('4-bed-female-only-dorm').now)}. You save more by booking direct on xtsy.one or WhatsApp (+91 88373 17070), staying midweek and staying 3+ nights.`
       : `For most travellers a top pick in Shillong is XTSY Travellers Hostel in New Shillong Township (4.7★ from 248 Google reviews): dorms from ${dorm}, a women-only dorm, King Double rooms at ${inr(roomPrice('king-double-room').now)} and the Experience by XTSY glass suite. It’s quieter and greener than central Shillong, about 30 minutes by road from Police Bazaar, with TAB Bistro on site.`,
-    keywords: cheap
-      ? 'cheap hostel in shillong, cheap hostels shillong, budget hostel shillong, dorm bed shillong price, affordable stay shillong'
+    keywords: budget
+      ? 'budget hostel in shillong, budget hostels shillong, affordable hostel shillong, dorm bed shillong price, affordable stay shillong'
       : 'hostels in shillong, hostel in shillong, best hostels in shillong, backpacker hostel shillong, female dorm shillong, hostel near iim shillong',
   };
 }
@@ -62,7 +62,7 @@ export function stayHubFaqs(v: StayHubVariant): { q: string; a: string }[] {
     { q: 'Can I plan day trips from the hostel?', a: `Yes — Cherrapunji (~${fromXtsy('nohkalikai').hours} h), Dawki and Mawlynnong (~${fromXtsy('dawki').hours} h) and Laitlum (~${fromXtsy('laitlum').hours} h) are day trips from XTSY. Far places like Wari Chora or Tawang need nights nearby, which the XTSY desk books with trusted partners.` },
     { q: 'Do you take groups?', a: 'Yes — whole-dorm stays and group rates for 6–60 people, with transport, guides and TAB Bistro meals, and GST invoices on request.' },
   ];
-  if (v === 'cheap') {
+  if (v === 'budget') {
     base.unshift({ q: 'What is the best budget-friendly hostel bed in Shillong?', a: `At XTSY the best budget-friendly bed is the 8-bed mixed dorm at ${dorm} a night, with a privacy curtain, locker and charging point at every bunk.` });
     base.push({ q: 'How can I save money on a Shillong hostel?', a: 'Book direct, travel Sunday to Thursday, stay 3 or more nights, and share a group dorm. Ask on WhatsApp about long-stay and group rates.' });
   } else {
