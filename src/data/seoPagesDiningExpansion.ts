@@ -399,7 +399,7 @@ const occasions: Occasion[] = [
     h1: 'Rooftop & Open-Air Dining in Shillong',
     title: 'Rooftop Restaurant in Shillong — Open-Air Dining | TAB Bistro',
     metaWord: 'rooftop & open-air dining in Shillong',
-    intro: 'For open-air dining with a view, TAB Bistro by XTSY offers forest-side and open seating in Shillong — perfect for a relaxed meal under the pines. A rooftop terrace café is coming soon.',
+    intro: 'For open-air dining with a view, TAB Bistro by XTSY offers forest-side and open seating in Shillong — perfect for a relaxed meal under the pines. The current offer is forest-side and open-air seating; no rooftop café is advertised.',
     points1: { h: 'Open-Air Experience', items: ['Forest-side seating', 'Fresh mountain air', 'Tandoori dishes nights', 'Coffee & sundowners', 'Great for photos'] },
     points2: { h: 'Menu to Match', items: ['Clay-oven tandoor', 'Multi-cuisine mains', 'Veg & non-veg', 'Desserts & beverages', 'Reservations recommended'] },
     keywords: ['rooftop restaurants in shillong', 'rooftop cafe in shillong', 'open air restaurant shillong', 'best food in shillong', 'romantic restaurants near me'],
