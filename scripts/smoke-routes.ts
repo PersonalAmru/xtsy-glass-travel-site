@@ -173,7 +173,11 @@ async function main() {
 
   let hydrationFailures: Failure[] = [];
   if (DO_HYDRATE) {
-    const ssrRoutes = routes.filter((r) => !clientOnlyRoutes.has(r));
+    // Franchise dashboard routes require an authenticated franchise account.
+    // Anonymous CI sessions redirect/blank these protected screens by design;
+    // their public login/install routes are covered separately by SSR smoke.
+    const authGatedRoutes = new Set(['/franchise', '/franchise/bookings', '/franchise/availability', '/franchise/messages', '/franchise/more']);
+    const ssrRoutes = routes.filter((r) => !clientOnlyRoutes.has(r) && !authGatedRoutes.has(r));
     const step = Math.max(1, Math.floor(ssrRoutes.length / Math.max(1, SAMPLE - 5)));
     const sample = [
       ...ssrRoutes.filter((_, i) => i % step === 0),
