@@ -207,14 +207,14 @@ describe('SEO regression: budget hostel canonical migration', () => {
     expect(slugs).not.toContain('budget-stay-in-shillong');
     expect(slugs).not.toContain('cheap-budget-stay-in-shillong');
     const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
-    expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostel-in-shillong');
+    expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostels-shillong');
     expect(RECOVERY_REDIRECTS['cheap-hotel-in-gangtok']).toBe('/destinations/sikkim/gangtok');
     expect(RECOVERY_REDIRECTS['cheap-car-rental-shillong']).toBe('/xtsy-rentals');
     expect(RECOVERY_REDIRECTS['budget-car-rental-shillong']).toBe('/xtsy-rentals');
   });
 
 
-  it('renders generated budget-intent pages with the right city and stay labels', async () => {
+  it('renders budget-intent copy with the right city and stay labels', async () => {
     const { buildIntentStayPage } = await import('../src/data/seoPageFactory');
     const page = buildIntentStayPage('budget-hostel-in-shillong');
     expect(page.slug).toBe('budget-hostel-in-shillong');
