@@ -31,8 +31,8 @@
   "aeo:no FAQ or question headings": {
    "pages": 4,
    "examples": [
-    "/privacy-policy — ",
     "/terms-of-service — ",
+    "/privacy-policy — ",
     "/expeditions — ",
     "/merch — "
    ]
