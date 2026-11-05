@@ -48,7 +48,6 @@ const STATIC_ROUTES: { path: string; priority: string; changefreq: string; lastm
   { path: '/4x4-expedition-meghalaya', priority: '0.8', changefreq: 'monthly', lastmod: TODAY },
   { path: '/merch', priority: '0.6', changefreq: 'monthly', lastmod: TODAY },
   { path: '/plan-trip-with-ai', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
-  { path: '/travel', priority: '0.9', changefreq: 'daily', lastmod: TODAY },
   { path: '/xtsy-270', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
   { path: '/xtsy-rentals', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
   { path: '/work-from-home', priority: '0.7', changefreq: 'monthly', lastmod: TODAY },
@@ -82,7 +81,15 @@ const STATIC_ROUTES: { path: string; priority: string; changefreq: string; lastm
   { path: '/privacy-policy', priority: '0.3', changefreq: 'yearly', lastmod: TODAY },
   { path: '/terms-of-service', priority: '0.3', changefreq: 'yearly', lastmod: TODAY },
   { path: '/pricing-cancellation-policy', priority: '0.4', changefreq: 'monthly', lastmod: TODAY },
-  { path: '/all-pages', priority: '0.5', changefreq: 'weekly', lastmod: TODAY },
+  { path: '/contact', priority: '0.6', changefreq: 'monthly', lastmod: TODAY },
+  { path: '/catering-shillong', priority: '0.7', changefreq: 'weekly', lastmod: TODAY },
+  { path: '/meghalaya-festivals', priority: '0.8', changefreq: 'monthly', lastmod: TODAY },
+  { path: '/partner-stays', priority: '0.6', changefreq: 'monthly', lastmod: TODAY },
+  { path: '/backpacking-india', priority: '0.7', changefreq: 'monthly', lastmod: TODAY },
+  { path: '/places-to-visit-in-meghalaya', priority: '0.8', changefreq: 'weekly', lastmod: TODAY },
+  { path: '/travel-guide/guwahati-to-shillong-transport', priority: '0.8', changefreq: 'monthly', lastmod: TODAY },
+  { path: '/travel-guide/how-to-reach-meghalaya', priority: '0.8', changefreq: 'monthly', lastmod: TODAY },
+  { path: '/travel-guide/meghalaya-for-international-tourists', priority: '0.7', changefreq: 'monthly', lastmod: TODAY },
 ];
 
 function xmlUrl(loc: string, lastmod: string, changefreq: string, priority: string): string {
