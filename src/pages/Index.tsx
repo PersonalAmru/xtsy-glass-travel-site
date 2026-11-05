@@ -37,7 +37,6 @@ const Index = memo(() => {
         canonicalUrl="https://xtsy.one/"
       />
       <Helmet>
-        <script type="application/ld+json">{JSON.stringify(hostelSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(homeFaqSchema)}</script>
       </Helmet>
       
