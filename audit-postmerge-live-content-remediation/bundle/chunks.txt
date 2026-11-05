@@ -1,5 +1,5 @@
 .output/public/assets/guidePageData-B_oGHTUP.js
-.output/public/assets/index-xMElzqUw.js
+.output/public/assets/index-B2u6a6QW.js
 .output/public/assets/client-DGK_EhnZ.js
 .output/public/assets/sentryInit-s9KH_vqE.js
 .output/public/assets/travelData-DxlEhjni.js

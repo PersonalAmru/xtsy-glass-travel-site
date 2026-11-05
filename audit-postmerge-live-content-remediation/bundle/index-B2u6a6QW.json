@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-xMElzqUw.js",
-      "totalBytes": 429991,
-      "mappedBytes": 418481,
+      "bundleName": ".output/public/assets/index-B2u6a6QW.js",
+      "totalBytes": 430012,
+      "mappedBytes": 418502,
       "unmappedBytes": 11484,
       "eolBytes": 26,
       "sourceMapCommentBytes": 0,
@@ -537,7 +537,7 @@
           "size": 560
         },
         "../../../src/routes/expeditions/$type/$route.tsx": {
-          "size": 1974
+          "size": 1995
         },
         "../../../src/routes/destinations/$state/$city/index.tsx": {
           "size": 896
