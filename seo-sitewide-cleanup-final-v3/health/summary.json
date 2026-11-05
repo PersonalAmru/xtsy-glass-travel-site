@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-11-05T07:17:44.436Z",
+ "checkedAt": "2026-11-05T09:21:44.877Z",
  "site": "http://localhost:4174",
  "sitemaps": [
   {
@@ -57,12 +57,12 @@
  "healthy": 700,
  "withIssues": 15,
  "byIssue": {
-  "old dorm price  on page": 1,
   "long title": 5,
+  "old dorm price  on page": 1,
   "HTTP 301": 9
  },
- "medianMs": 37,
- "p95Ms": 77,
+ "medianMs": 30,
+ "p95Ms": 64,
  "withStructuredData": 706,
  "withQuickAnswer": 502,
  "extra": {

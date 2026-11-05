@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/guidePageData-CFEEqqT3.js",
-      "totalBytes": 909660,
-      "mappedBytes": 909176,
+      "bundleName": ".output/public/assets/guidePageData-K6x2Ulfl.js",
+      "totalBytes": 901657,
+      "mappedBytes": 901173,
       "unmappedBytes": 484,
       "eolBytes": 0,
       "sourceMapCommentBytes": 0,
@@ -63,7 +63,7 @@
           "size": 6814
         },
         "../../../src/data/seoAffectedSlugs.ts": {
-          "size": 9323
+          "size": 9345
         },
         "../../../src/data/seoQualityFilter.ts": {
           "size": 1426
@@ -75,7 +75,7 @@
           "size": 214697
         },
         "../../../src/data/seoPagesOverrides.ts": {
-          "size": 165035
+          "size": 157010
         },
         "../../../src/data/seoNormalize.ts": {
           "size": 10575
