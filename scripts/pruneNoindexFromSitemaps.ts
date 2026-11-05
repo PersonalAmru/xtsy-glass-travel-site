@@ -1,6 +1,7 @@
 /**
- * Removes URLs that are served `noindex` (see src/data/seoIndexPolicy.ts) from
- * every sitemap in public/. A sitemap must only list canonical, indexable URLs.
+ * Removes non-indexable URLs from every sitemap in public/: consolidated noindex pages,
+ * transactional noindex routes, and registered legacy 301 aliases. Sitemaps should only
+ * advertise canonical URLs that resolve directly to an indexable 200 response.
  */
 import fs from 'fs';
 import path from 'path';
@@ -27,4 +28,4 @@ for (const f of fs.readdirSync(PUBLIC).filter((x) => /^sitemap.*\.xml$/.test(x))
   });
   if (out !== xml) fs.writeFileSync(file, out);
 }
-console.log(`pruned ${removed} noindex URLs from sitemaps`);
+console.log(`pruned ${removed} noindex/redirect URLs from sitemaps`);
