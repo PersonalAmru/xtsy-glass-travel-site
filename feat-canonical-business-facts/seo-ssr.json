@@ -6,7 +6,7 @@
   "description": "XTSY Travellers Hostel, New Shillong Township: dorms from ₹399, women-only dorm, King Double ₹2,399, glass suite ₹5,999 and TAB Bistro on site.",
   "canonical": "https://xtsy.one/",
   "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-  "h1": "",
+  "h1": "XTSY Travellers Hostel",
   "quickAnswer": false,
   "jsonLdTypes": [
    "WebSite",
@@ -16,10 +16,13 @@
    "Hostel",
    "LocationFeatureSpecification",
    "GeoCoordinates",
-   "AggregateRating"
+   "AggregateRating",
+   "FAQPage",
+   "Question",
+   "Answer"
   ],
-  "words": 18,
-  "preload": 2
+  "words": 1743,
+  "preload": 3
  },
  {
   "route": "/best-hostel-in-shillong",

@@ -5,23 +5,22 @@
  "sitemapUrls": 699,
  "broken": 0,
  "internalRedirects": 2,
- "orphans": 1,
+ "orphans": 0,
  "depthHistogram": {
   "0": 1,
-  "unreachable": 710
+  "1": 64,
+  "2": 642,
+  "3": 4
  },
  "deepPages": [],
- "unreachableFromHome": 698,
+ "unreachableFromHome": 0,
  "legacyDesignPages": [
-  "/",
   "/book",
   "/auth",
   "/install",
   "/book?property=xtsy-experience"
  ],
- "h1Problems": [
-  "0 /"
- ],
+ "h1Problems": [],
  "duplicateTitles": [
   {
    "value": "northeast india tour packages from ₹7,999 | xtsy travel",
@@ -33,8 +32,8 @@
   {
    "value": "best restaurant in shillong 2026 | tab bistro",
    "urls": [
-    "/best-restaurant-in-shillong",
-    "/best-restaurant-shillong"
+    "/best-restaurant-shillong",
+    "/best-restaurant-in-shillong"
    ]
   }
  ],
@@ -47,37 +46,77 @@
    ]
   }
  ],
- "navLinks": [],
+ "navLinks": [
+  "/best-hostel-in-shillong",
+  "/xtsy-270",
+  "/tours",
+  "/tab-bistro",
+  "/work-from-home",
+  "/things-to-do-in-meghalaya",
+  "/merch"
+ ],
  "menuLinks": [],
- "footerLinks": [],
+ "footerLinks": [
+  "/book",
+  "/xtsy-270",
+  "/xtsy-adventure-campsite-dawki",
+  "/pet-friendly",
+  "/female-travellers",
+  "/work-from-home",
+  "/best-hostel-in-shillong",
+  "/tours",
+  "/expeditions",
+  "/group-bookings-meghalaya",
+  "/xtsy-rentals",
+  "/plan-trip-with-ai",
+  "/destinations",
+  "/things-to-do-in-meghalaya",
+  "/meghalaya-waterfalls",
+  "/places-to-visit-in-meghalaya",
+  "/guides",
+  "/gallery",
+  "/tab-bistro",
+  "/catering-shillong",
+  "/merch",
+  "/destination-wedding-shillong",
+  "/xtsy-vs-zostel",
+  "/partner-stays",
+  "/meghalaya-festivals",
+  "/about",
+  "/faq",
+  "/safety-house-rules",
+  "/contact",
+  "/pricing-cancellation-policy",
+  "/privacy-policy",
+  "/terms-of-service",
+  "/install"
+ ],
  "brokenList": [],
  "redirectList": [
   {
    "url": "/tab-bistro/catering",
    "to": "/catering-shillong",
-   "fromCount": 178,
+   "fromCount": 179,
    "from": [
+    "/",
     "/tab-bistro",
     "/group-bookings-meghalaya",
-    "/restaurant-in-shillong",
     "/destinations/meghalaya/cherrapunji/nohkalikai-falls",
-    "/destinations/meghalaya/cherrapunji/wei-sawdong-falls"
+    "/destinations/meghalaya/dawki/dawki-umngot-river"
    ]
   },
   {
    "url": "/cheap-hostels-shillong",
    "to": "/budget-hostels-shillong",
-   "fromCount": 28,
+   "fromCount": 29,
    "from": [
-    "/shillong-dormitory",
-    "/budget-stay-shillong",
-    "/hostels-in-meghalaya",
-    "/couples-hostel-shillong",
-    "/group-stay-shillong"
+    "/",
+    "/hostel-near-imphal-airport",
+    "/hostel-near-kohima-airport",
+    "/best-hostel-in-imphal",
+    "/best-hostel-in-kohima"
    ]
   }
  ],
- "orphanList": [
-  "/backpacking-india"
- ]
+ "orphanList": []
 }

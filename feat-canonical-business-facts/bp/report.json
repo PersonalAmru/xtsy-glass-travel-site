@@ -9,31 +9,43 @@
   "W": 360,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 3,
+  "smallTargets": 82,
   "smallEx": [
    "button.justify-center.gap-2.whitespace-nowrap 79x42 \"Settings\"",
    "button.gap-2.whitespace-nowrap.ring-offset-background 97x42 \"Accept all\"",
-   "button.gap-2.whitespace-nowrap.ring-offset-background 176x42 \"Reject non-essential\""
+   "button.gap-2.whitespace-nowrap.ring-offset-background 176x42 \"Reject non-essential\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹399/nigh\"",
+   "input.h-12.w-full.rounded 325x42 \"\"",
+   "input.h-12.w-full.rounded 325x42 \"\"",
+   "select.h-12.w-full.rounded 325x42 \"1 guest2 guests3 guests4\"",
+   "button.inline-flex.items-center.justify-center 325x42 \"Check availability\""
   ],
-  "under24": 1,
+  "under24": 28,
   "under24Ex": [
-   "a.font-bold.text-xt-crimson.underline 86x18 \"Privacy Policy\""
+   "a.font-bold.text-xt-crimson.underline 86x18 \"Privacy Policy\"",
+   "a.font-bold.text-primary.underline 97x17 \"Group bookings\"",
+   "a.font-bold.text-xt-fog.underline 73x17 \"How it works\"",
+   "a.mt-2.text-[15px].font-extrabold 332x23 \"All FAQs →\"",
+   "a.text-[14px].font-semibold.text-xt-ink 281x21 \"Best hostel in Shillong\"",
+   "a.text-[14px].font-semibold.text-xt-ink 281x21 \"Budget-friendly hostels \"",
+   "a.text-[14px].font-semibold.text-xt-ink 281x21 \"Hotels in Shillong\"",
+   "a.text-[14px].font-semibold.text-xt-ink 281x21 \"Homestays in Shillong\""
   ],
   "tinyText": 0,
   "tinyEx": [],
-  "images": 1,
+  "images": 34,
   "broken": [],
   "noAlt": [],
   "stretched": [],
   "h1": 1,
-  "jsonLd": 3,
+  "jsonLd": 4,
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 564,
-   "tag": "P",
-   "url": "",
-   "cls": "m-0 flex-1 text-[13px] leading-snug sm:text-[14px]"
+   "t": 352,
+   "tag": "IMG",
+   "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-640.avif",
+   "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
   }
  },
  {
@@ -72,7 +84,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 220,
+   "t": 264,
    "tag": "P",
    "url": "",
    "cls": "m-0 text-[16px] leading-relaxed"
@@ -114,7 +126,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 152,
+   "t": 220,
    "tag": "P",
    "url": "",
    "cls": "m-0 text-[16px] leading-relaxed"
@@ -157,7 +169,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 188,
+   "t": 252,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
@@ -199,7 +211,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 308,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
@@ -244,7 +256,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 208,
+   "t": 268,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -287,7 +299,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 164,
+   "t": 200,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm"
@@ -330,7 +342,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 160,
+   "t": 212,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -373,7 +385,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 184,
+   "t": 224,
    "tag": "P",
    "url": "",
    "cls": "m-0 max-w-[720px] text-[18px] leading-relaxed text-xt-ink"
@@ -417,7 +429,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 164,
+   "t": 208,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 m-0 text-[17px] leading-relaxed text-xt-mute"
@@ -464,7 +476,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 168,
+   "t": 232,
    "tag": "P",
    "url": "",
    "cls": "m-0"
@@ -512,7 +524,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 160,
+   "t": 208,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -559,7 +571,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 172,
+   "t": 216,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -601,7 +613,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 176,
+   "t": 196,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -617,31 +629,43 @@
   "W": 390,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 3,
+  "smallTargets": 82,
   "smallEx": [
    "button.justify-center.gap-2.whitespace-nowrap 79x42 \"Settings\"",
    "button.gap-2.whitespace-nowrap.ring-offset-background 97x42 \"Accept all\"",
-   "button.gap-2.whitespace-nowrap.ring-offset-background 176x42 \"Reject non-essential\""
+   "button.gap-2.whitespace-nowrap.ring-offset-background 176x42 \"Reject non-essential\"",
+   "a.flex.h-full.items-center 153x32 \"Dorm beds from ₹399/nigh\"",
+   "input.h-12.w-full.rounded 355x42 \"\"",
+   "input.h-12.w-full.rounded 355x42 \"\"",
+   "select.h-12.w-full.rounded 355x42 \"1 guest2 guests3 guests4\"",
+   "button.inline-flex.items-center.justify-center 355x42 \"Check availability\""
   ],
-  "under24": 1,
+  "under24": 27,
   "under24Ex": [
-   "a.font-bold.text-xt-crimson.underline 86x18 \"Privacy Policy\""
+   "a.font-bold.text-xt-crimson.underline 86x18 \"Privacy Policy\"",
+   "a.font-bold.text-primary.underline 97x17 \"Group bookings\"",
+   "a.mt-2.text-[15px].font-extrabold 362x23 \"All FAQs →\"",
+   "a.text-[14px].font-semibold.text-xt-ink 311x21 \"Best hostel in Shillong\"",
+   "a.text-[14px].font-semibold.text-xt-ink 311x21 \"Budget-friendly hostels \"",
+   "a.text-[14px].font-semibold.text-xt-ink 311x21 \"Hotels in Shillong\"",
+   "a.text-[14px].font-semibold.text-xt-ink 311x21 \"Homestays in Shillong\"",
+   "a.text-[14px].font-semibold.text-xt-ink 311x21 \"Hostel near me\""
   ],
   "tinyText": 0,
   "tinyEx": [],
-  "images": 1,
+  "images": 34,
   "broken": [],
   "noAlt": [],
   "stretched": [],
   "h1": 1,
-  "jsonLd": 3,
+  "jsonLd": 4,
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 504,
-   "tag": "P",
-   "url": "",
-   "cls": "m-0 flex-1 text-[13px] leading-snug sm:text-[14px]"
+   "t": 248,
+   "tag": "IMG",
+   "url": "http://localhost:4174/img/o/xtsy-property-images-8-portrait-640.avif",
+   "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
   }
  },
  {
@@ -680,7 +704,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 200,
+   "t": 204,
    "tag": "P",
    "url": "",
    "cls": "m-0 text-[16px] leading-relaxed"
@@ -722,7 +746,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 168,
+   "t": 208,
    "tag": "P",
    "url": "",
    "cls": "m-0 text-[16px] leading-relaxed"
@@ -765,7 +789,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 204,
+   "t": 236,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -807,7 +831,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 192,
+   "t": 232,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
@@ -852,7 +876,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 200,
+   "t": 260,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -896,7 +920,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 176,
+   "t": 200,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 m-0 max-w-[560px] text-[17px] leading-relaxed sm"
@@ -939,7 +963,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 204,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -982,7 +1006,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 224,
    "tag": "P",
    "url": "",
    "cls": "m-0 max-w-[720px] text-[18px] leading-relaxed text-xt-ink"
@@ -1026,7 +1050,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 188,
+   "t": 236,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 m-0 text-[17px] leading-relaxed text-xt-mute"
@@ -1073,7 +1097,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 188,
+   "t": 228,
    "tag": "P",
    "url": "",
    "cls": "m-0"
@@ -1121,7 +1145,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 172,
+   "t": 188,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-480.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1168,7 +1192,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 176,
+   "t": 216,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -1210,7 +1234,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 212,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -1226,27 +1250,43 @@
   "W": 768,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 0,
-  "smallEx": [],
-  "under24": 1,
+  "smallTargets": 71,
+  "smallEx": [
+   "a.flex.h-full.items-center 188x40 \"Dorm beds from ₹399/nigh\"",
+   "button.h-9.rounded-full.px-3 82x36 \"Start over\"",
+   "button.xt-chip.h-9.rounded-full 155x36 \"5 days in Meghalaya\"",
+   "button.xt-chip.h-9.rounded-full 237x36 \"Weekend in Shillong for \"",
+   "button.xt-chip.h-9.rounded-full 218x36 \"Dawki + Cherrapunji, 4 f\"",
+   "button.xt-chip.h-9.rounded-full 134x36 \"Tawang in 7 days\"",
+   "button.xt-chip.h-9.rounded-full 233x36 \"Where should I stay in S\"",
+   "a.text-[16px].font-extrabold.hover:text-xt-crimson 126x24 \"See all rooms →\""
+  ],
+  "under24": 28,
   "under24Ex": [
-   "a.font-bold.text-xt-crimson.underline 96x19 \"Privacy Policy\""
+   "a.font-bold.text-xt-crimson.underline 96x19 \"Privacy Policy\"",
+   "a.font-bold.text-primary.underline 111x19 \"Group bookings\"",
+   "a.font-bold.text-xt-fog.underline 73x17 \"How it works\"",
+   "a.mt-2.text-[15px].font-extrabold 704x23 \"All FAQs →\"",
+   "a.text-[14px].font-semibold.text-xt-ink 297x21 \"Best hostel in Shillong\"",
+   "a.text-[14px].font-semibold.text-xt-ink 297x21 \"Budget-friendly hostels \"",
+   "a.text-[14px].font-semibold.text-xt-ink 297x21 \"Hotels in Shillong\"",
+   "a.text-[14px].font-semibold.text-xt-ink 297x21 \"Homestays in Shillong\""
   ],
   "tinyText": 0,
   "tinyEx": [],
-  "images": 1,
+  "images": 34,
   "broken": [],
   "noAlt": [],
   "stretched": [],
   "h1": 1,
-  "jsonLd": 3,
+  "jsonLd": 4,
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 504,
-   "tag": "P",
-   "url": "",
-   "cls": "m-0 flex-1 text-[13px] leading-snug sm:text-[14px]"
+   "t": 260,
+   "tag": "IMG",
+   "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
+   "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
   }
  },
  {
@@ -1285,7 +1325,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 160,
+   "t": 232,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1327,7 +1367,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 192,
+   "t": 208,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1370,7 +1410,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 172,
+   "t": 264,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1412,7 +1452,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 192,
+   "t": 252,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
@@ -1457,7 +1497,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 192,
+   "t": 248,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1502,7 +1542,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 164,
+   "t": 208,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1545,7 +1585,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 168,
+   "t": 212,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1588,7 +1628,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 160,
+   "t": 208,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "aspect-[16/11] h-auto w-full object-cover"
@@ -1633,7 +1673,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 144,
+   "t": 212,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -1681,7 +1721,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 172,
+   "t": 236,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1732,7 +1772,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 140,
+   "t": 216,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1772,7 +1812,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 164,
+   "t": 220,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -1814,7 +1854,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 236,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -1830,27 +1870,43 @@
   "W": 1024,
   "overflow": false,
   "overflowers": [],
-  "smallTargets": 0,
-  "smallEx": [],
-  "under24": 1,
+  "smallTargets": 57,
+  "smallEx": [
+   "a.flex.h-full.items-center 188x40 \"Dorm beds from ₹399/nigh\"",
+   "button.h-9.rounded-full.px-3 82x36 \"Start over\"",
+   "button.xt-chip.h-9.rounded-full 155x36 \"5 days in Meghalaya\"",
+   "button.xt-chip.h-9.rounded-full 237x36 \"Weekend in Shillong for \"",
+   "button.xt-chip.h-9.rounded-full 218x36 \"Dawki + Cherrapunji, 4 f\"",
+   "button.xt-chip.h-9.rounded-full 134x36 \"Tawang in 7 days\"",
+   "button.xt-chip.h-9.rounded-full 233x36 \"Where should I stay in S\"",
+   "a.text-[16px].font-extrabold.hover:text-xt-crimson 126x24 \"See all rooms →\""
+  ],
+  "under24": 21,
   "under24Ex": [
-   "a.font-bold.text-xt-crimson.underline 96x19 \"Privacy Policy\""
+   "a.font-bold.text-xt-crimson.underline 96x19 \"Privacy Policy\"",
+   "a.font-bold.text-primary.underline 111x19 \"Group bookings\"",
+   "a.font-bold.text-xt-fog.underline 73x17 \"How it works\"",
+   "a.mt-2.text-[15px].font-extrabold 595x23 \"All FAQs →\"",
+   "a.text-[14px].font-semibold.text-xt-ink 187x21 \"Best hostel in Shillong\"",
+   "a.text-[14px].font-semibold.text-xt-ink 187x21 \"Hotels in Shillong\"",
+   "a.text-[14px].font-semibold.text-xt-ink 187x21 \"Homestays in Shillong\"",
+   "a.text-[14px].font-semibold.text-xt-ink 187x21 \"Hostel near me\""
   ],
   "tinyText": 0,
   "tinyEx": [],
-  "images": 1,
+  "images": 34,
   "broken": [],
   "noAlt": [],
   "stretched": [],
   "h1": 1,
-  "jsonLd": 3,
+  "jsonLd": 4,
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 488,
-   "tag": "P",
-   "url": "",
-   "cls": "m-0 flex-1 text-[13px] leading-snug sm:text-[14px]"
+   "t": 260,
+   "tag": "IMG",
+   "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
+   "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
   }
  },
  {
@@ -1889,7 +1945,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 156,
+   "t": 232,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -1931,7 +1987,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 208,
    "tag": "H1",
    "url": "",
    "cls": "xt-display m-0 text-[56px] leading-[0.9] sm:text-[88px]"
@@ -1972,9 +2028,9 @@
   "h1": 1,
   "jsonLd": 4,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.002,
   "lcp": {
-   "t": 192,
+   "t": 232,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2016,7 +2072,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 196,
+   "t": 264,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
@@ -2058,9 +2114,9 @@
   "h1": 1,
   "jsonLd": 7,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.006,
   "lcp": {
-   "t": 184,
+   "t": 252,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[52px] leading-[0.9] sm:text"
@@ -2106,7 +2162,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 152,
+   "t": 212,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[68px] sm:text-[104px] lg:te"
@@ -2149,7 +2205,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 168,
+   "t": 220,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -2192,7 +2248,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 176,
+   "t": 208,
    "tag": "H1",
    "url": "",
    "cls": "xt-display m-0 text-[44px] leading-[0.92] sm:text-[68px]"
@@ -2237,7 +2293,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 160,
+   "t": 220,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -2283,7 +2339,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 240,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2325,7 +2381,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 164,
+   "t": 200,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2363,9 +2419,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.02,
   "lcp": {
-   "t": 180,
+   "t": 224,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -2407,7 +2463,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 172,
+   "t": 220,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -2429,19 +2485,19 @@
   "under24Ex": [],
   "tinyText": 0,
   "tinyEx": [],
-  "images": 1,
+  "images": 34,
   "broken": [],
   "noAlt": [],
   "stretched": [],
   "h1": 1,
-  "jsonLd": 3,
+  "jsonLd": 4,
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 488,
-   "tag": "P",
-   "url": "",
-   "cls": "m-0 flex-1 text-[13px] leading-snug sm:text-[14px]"
+   "t": 256,
+   "tag": "IMG",
+   "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
+   "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
   }
  },
  {
@@ -2469,7 +2525,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 196,
+   "t": 228,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2500,7 +2556,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 216,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2529,9 +2585,9 @@
   "h1": 1,
   "jsonLd": 4,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.01,
   "lcp": {
-   "t": 184,
+   "t": 244,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2562,7 +2618,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 196,
+   "t": 288,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
@@ -2593,7 +2649,7 @@
   "quickAnswer": false,
   "cls": 0.023,
   "lcp": {
-   "t": 216,
+   "t": 252,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2624,7 +2680,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 160,
+   "t": 196,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2655,7 +2711,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 164,
+   "t": 228,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2686,7 +2742,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 164,
+   "t": 216,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "aspect-[16/11] h-auto w-full object-cover"
@@ -2717,7 +2773,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 172,
+   "t": 212,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -2748,7 +2804,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 236,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2779,7 +2835,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 212,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2808,9 +2864,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.012,
   "lcp": {
-   "t": 168,
+   "t": 220,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -2841,7 +2897,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 172,
+   "t": 240,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -2863,19 +2919,19 @@
   "under24Ex": [],
   "tinyText": 0,
   "tinyEx": [],
-  "images": 1,
+  "images": 34,
   "broken": [],
   "noAlt": [],
   "stretched": [],
   "h1": 1,
-  "jsonLd": 3,
+  "jsonLd": 4,
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 496,
-   "tag": "P",
-   "url": "",
-   "cls": "m-0 flex-1 text-[13px] leading-snug sm:text-[14px]"
+   "t": 288,
+   "tag": "IMG",
+   "url": "http://localhost:4174/img/o/xtsy-property-images-8-1920.avif",
+   "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
   }
  },
  {
@@ -2903,7 +2959,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 176,
+   "t": 236,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2934,7 +2990,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 168,
+   "t": 228,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2963,9 +3019,9 @@
   "h1": 1,
   "jsonLd": 4,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.001,
   "lcp": {
-   "t": 176,
+   "t": 252,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -2996,7 +3052,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 280,
    "tag": "P",
    "url": "",
    "cls": "xt-in xt-d2 relative m-0 text-[17px] leading-relaxed text-xt"
@@ -3025,9 +3081,9 @@
   "h1": 1,
   "jsonLd": 7,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.011,
   "lcp": {
-   "t": 188,
+   "t": 256,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3058,7 +3114,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 160,
+   "t": 216,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3089,7 +3145,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 248,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3120,7 +3176,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 188,
+   "t": 220,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-640.avif",
    "cls": "aspect-[16/11] h-auto w-full object-cover"
@@ -3151,7 +3207,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 228,
+   "t": 208,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -3182,7 +3238,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 180,
+   "t": 236,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3213,7 +3269,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 156,
+   "t": 196,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1920.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3242,9 +3298,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.009,
   "lcp": {
-   "t": 176,
+   "t": 244,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -3275,7 +3331,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 188,
+   "t": 240,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"
@@ -3297,19 +3353,19 @@
   "under24Ex": [],
   "tinyText": 0,
   "tinyEx": [],
-  "images": 1,
+  "images": 34,
   "broken": [],
   "noAlt": [],
   "stretched": [],
   "h1": 1,
-  "jsonLd": 3,
+  "jsonLd": 4,
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 496,
-   "tag": "P",
-   "url": "",
-   "cls": "m-0 flex-1 text-[13px] leading-snug sm:text-[14px]"
+   "t": 292,
+   "tag": "IMG",
+   "url": "http://localhost:4174/img/o/xtsy-property-images-8-1920.avif",
+   "cls": "absolute inset-0 -z-20 h-full w-full object-cover"
   }
  },
  {
@@ -3337,7 +3393,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 176,
+   "t": 228,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3368,7 +3424,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 188,
+   "t": 248,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3399,7 +3455,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 204,
+   "t": 260,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-270-xtsy270-640.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3430,7 +3486,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 244,
+   "t": 312,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/sig-6n-7d-meghalaya-tour-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3459,9 +3515,9 @@
   "h1": 1,
   "jsonLd": 7,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.01,
   "lcp": {
-   "t": 256,
+   "t": 288,
    "tag": "IMG",
    "url": "http://localhost:4174/img/px/tour-29-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3492,7 +3548,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 252,
+   "t": 240,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-bumla-pass-bike-expedition-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3523,7 +3579,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 192,
+   "t": 264,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsyvoyage-nohkalikai-falls-736.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3554,7 +3610,7 @@
   "quickAnswer": true,
   "cls": 0,
   "lcp": {
-   "t": 184,
+   "t": 236,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-828.avif",
    "cls": "aspect-[16/11] h-auto w-full object-cover"
@@ -3585,7 +3641,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 168,
+   "t": 240,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[60px] leading-[0.88] sm:tex"
@@ -3616,7 +3672,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 196,
+   "t": 280,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-tab-bistro-by-xtsy-1-1280.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3647,7 +3703,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 176,
+   "t": 228,
    "tag": "IMG",
    "url": "http://localhost:4174/img/o/xtsy-property-images-8-1920.avif",
    "cls": "absolute inset-0 h-full w-full object-cover"
@@ -3676,9 +3732,9 @@
   "h1": 1,
   "jsonLd": 2,
   "quickAnswer": false,
-  "cls": 0,
+  "cls": 0.004,
   "lcp": {
-   "t": 192,
+   "t": 248,
    "tag": "H1",
    "url": "",
    "cls": "mt-1 font-['Staatliches',Impact,sans-serif] text-[40px] font"
@@ -3709,7 +3765,7 @@
   "quickAnswer": false,
   "cls": 0,
   "lcp": {
-   "t": 188,
+   "t": 236,
    "tag": "H1",
    "url": "",
    "cls": "xt-in xt-d1 xt-display m-0 text-[64px] leading-[0.86] sm:tex"

@@ -2,27 +2,11 @@
  {
   "url": "/",
   "status": 200,
-  "words": 8,
+  "words": 1733,
   "findings": [
    {
-    "rule": "seo:h1 count",
-    "detail": "0: "
-   },
-   {
-    "rule": "seo:thin (<300 words)",
-    "detail": "8"
-   },
-   {
-    "rule": "aeo:no FAQ or question headings",
-    "detail": ""
-   },
-   {
-    "rule": "aeo:no \"New Shillong Township\" entity mention",
-    "detail": ""
-   },
-   {
-    "rule": "aeo:no concise answer paragraph under H1",
-    "detail": "0"
+    "rule": "policy:check-in time",
+    "detail": " Check-out strictly 10 AM Check-in Check-out Guests 1 guest 2 guests 3 guests 4"
    }
   ],
   "seo": {
@@ -32,9 +16,11 @@
    "descLen": 143,
    "canonical": "https://xtsy.one/",
    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
-   "h1": [],
+   "h1": [
+    "XTSY Travellers Hostel"
+   ],
    "ogImage": true,
-   "imgs": 1,
+   "imgs": 3,
    "imgsNoAlt": 0
   },
   "aeo": {
@@ -46,16 +32,28 @@
     "Hostel",
     "LocationFeatureSpecification",
     "GeoCoordinates",
-    "AggregateRating"
+    "AggregateRating",
+    "FAQPage",
+    "Question",
+    "Answer"
    ],
-   "faqSchemaQuestions": 0,
-   "questionHeadings": 0,
-   "firstParagraphWords": 0,
-   "mentionsBrand": false,
-   "mentionsLocation": false,
+   "faqSchemaQuestions": 6,
+   "questionHeadings": 2,
+   "firstParagraphWords": 16,
+   "mentionsBrand": true,
+   "mentionsLocation": true,
    "updatedDate": false
   },
-  "info": []
+  "info": [
+   {
+    "rule": "info:check-in time seen",
+    "detail": "11a"
+   },
+   {
+    "rule": "info:check-out time seen",
+    "detail": "10a"
+   }
+  ]
  },
  {
   "url": "/10-day-meghalaya-itinerary",

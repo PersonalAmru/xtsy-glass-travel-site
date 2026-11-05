@@ -4,36 +4,21 @@
   "route": "/",
   "status": 200,
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
-  "design": "legacy",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 1,
-    "examples": [
-     "div:nth-child(4) > button"
-    ],
-    "detail": [
-     "Fix any of the following:\n  Element has insufficient color contrast of 2.8 (foreground color: #ffffff, background color: #f97316, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
-    ]
-   }
-  ],
+  "design": "v2",
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
-   "menuButton": "missing",
-   "searchButton": "missing",
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
    "chatOpens": true,
    "whatsapp": true,
-   "bookAboveFold": false
+   "bookAboveFold": true
   },
   "errors": [
-   "ReferenceError: hostelSchema is not defined\n    at http://localhost:4174/assets/routes-DFH8JxB4.js:2:38153\n    at Eo (http://localhost:4174/assets/index-sPeDMehs.js:9:47510)\n    at vc (http://localhos",
-   "ErrorBoundary caught an error: hostelSchema is not defined",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Minified React error #419; visit https://react.dev/errors/419 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
-   "Minified React error #419; visit https://react.dev/errors/419 for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -756,36 +741,21 @@
   "route": "/",
   "status": 200,
   "title": "Best Hostel in Shillong | XTSY Travellers Hostel, from ₹399",
-  "design": "legacy",
-  "axe": [
-   {
-    "id": "color-contrast",
-    "impact": "serious",
-    "help": "Elements must meet minimum color contrast ratio thresholds",
-    "count": 1,
-    "examples": [
-     "div:nth-child(4) > button"
-    ],
-    "detail": [
-     "Fix any of the following:\n  Element has insufficient color contrast of 2.8 (foreground color: #ffffff, background color: #f97316, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
-    ]
-   }
-  ],
+  "design": "v2",
+  "axe": [],
   "ui": {
    "firstTab": "Skip to content",
    "focusVisible": true,
-   "menuButton": "missing",
-   "searchButton": "missing",
+   "menuOpens": true,
+   "menuLinks": 25,
+   "menuClosesOnEscape": true,
+   "searchOpens": true,
    "chatOpens": true,
    "whatsapp": true,
-   "bookAboveFold": false
+   "bookAboveFold": true
   },
   "errors": [
-   "ReferenceError: hostelSchema is not defined\n    at http://localhost:4174/assets/routes-DFH8JxB4.js:2:38153\n    at Eo (http://localhost:4174/assets/index-sPeDMehs.js:9:47510)\n    at vc (http://localhos",
-   "ErrorBoundary caught an error: hostelSchema is not defined",
-   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h",
-   "Minified React error #419; visit https://react.dev/errors/419 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
-   "Minified React error #419; visit https://react.dev/errors/419 for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+   "Access to fetch at 'https://kzhsxemkntfwsakhkylt.supabase.co/functions/v1/fetch-exchange-rates' from origin 'http://localhost:4174' has been blocked by CORS policy: The 'Access-Control-Allow-Origin' h"
   ]
  },
  {
@@ -953,8 +923,9 @@
    "menuOpens": true,
    "menuLinks": 25,
    "menuClosesOnEscape": true,
-   "searchOpens": true,
-   "chatOpens": true,
+   "searchOpens": false,
+   "chatClickError": "      - <div class=\"flex-1 overflow-y-auto overscroll-contain\">…</div> from <div role=\"dialog\" aria-label=\"Search XTSY\" class=\"fixed inset-0 z-[9999] flex flex-col bg-background/98 backdrop-blur-xl\">…</div> subtree intercepts pointer events |       - <div class=\"flex-1 overflow-y-auto overscroll-con",
+   "chatOpens": false,
    "whatsapp": true,
    "bookAboveFold": true
   },

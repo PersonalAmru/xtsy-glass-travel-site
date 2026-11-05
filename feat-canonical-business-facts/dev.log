@@ -1,20 +1,9 @@
 $ vite dev
 [33mThe plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the [1mresolve.tsconfigPaths[22m option. You can remove the plugin and set [1mresolve.tsconfigPaths: true[22m in your Vite config instead.[39m
 
-  [32m[1mVITE[22m v8.2.1[39m  [2mready in [0m[1m787[22m[2m[0m ms[22m
+  [32m[1mVITE[22m v8.2.1[39m  [2mready in [0m[1m1025[22m[2m[0m ms[22m
 
   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m8080[22m/[39m
-  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.1.0.240:[1m8080[22m/[39m  [2meth0[22m
-[2m3:03:58 PM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m connected.
-Error in renderToReadableStream: ReferenceError: hostelSchema is not defined
-    at Index (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/src/pages/Index.tsx:40:43)
-    at Object.react_stack_bottom_frame (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/react-dom/cjs/react-dom-server.node.development.js:10288:18)
-    at renderWithHooks (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/react-dom/cjs/react-dom-server.node.development.js:5298:19)
-    at renderElement (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/react-dom/cjs/react-dom-server.node.development.js:5733:23)
-    at renderElement (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/react-dom/cjs/react-dom-server.node.development.js:6273:15)
-    at retryNode (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/react-dom/cjs/react-dom-server.node.development.js:6664:31)
-    at renderNodeDestructive (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/react-dom/cjs/react-dom-server.node.development.js:6614:11)
-    at finishFunctionComponent (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/react-dom/cjs/react-dom-server.node.development.js:5342:13)
-    at renderElement (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/react-dom/cjs/react-dom-server.node.development.js:5788:11)
-    at retryNode (/home/runner/work/xtsy-glass-travel-site/xtsy-glass-travel-site/node_modules/react-dom/cjs/react-dom-server.node.development.js:6664:31) { componentStack: [Getter] }
-[2m3:05:52 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2m.output/public/google26fc7f8979f6290c.html[22m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.1.0.52:[1m8080[22m/[39m  [2meth0[22m
+[2m3:35:40 PM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m connected.
+[2m3:37:10 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2m.output/public/google26fc7f8979f6290c.html[22m
