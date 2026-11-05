@@ -1,8 +1,8 @@
 $ tsx scripts/generateWorkerSlimMap.ts && bun run sitemaps:rebuild
 ✅ seo-slim-map.json: 620 entries → 135.1 KB
 $ tsx scripts/generateProgrammaticSitemap.ts && tsx scripts/generateSitemaps.ts && tsx scripts/dedupeSitemapsCrossBranch.ts && tsx scripts/generate-image-sitemap.ts && tsx scripts/pruneNoindexFromSitemaps.ts && tsx scripts/writeSitemapIndex.ts
-✅ sitemap-programmatic.xml: 57 URLs (skipped 435 owned by curated branches)
- ↳ Skipped (owned by other branch) : 467
+✅ sitemap-programmatic.xml: 58 URLs (skipped 435 owned by curated branches)
+ ↳ Skipped (owned by other branch) : 468
  ↳ Skipped (in-branch duplicate)   : 0
  ↳ Skipped (legacy places redirect): 39
 ═══════════════════════════════════════════════
