@@ -160,3 +160,50 @@ describe('SEO regression: rateSanityCheck integrity', () => {
     expect(mod.SHILLONG_CANONICAL_RATES['4-bed-female-only-dorm']).toBe(599);
   });
 });
+
+
+describe('SEO regression: budget hostel canonical migration', () => {
+  it('uses the budget wording and canonical route for the hostel hub', async () => {
+    const { stayHubCopy } = await import('../src/data/stayHub');
+    const copy = stayHubCopy('budget');
+    expect(copy.path).toBe('/budget-hostels-shillong');
+    expect(copy.h1.toLowerCase()).toContain('budget');
+    expect(copy.keywords.toLowerCase()).not.toContain('cheap');
+  });
+
+  it('redirects legacy hostel slugs to the canonical budget hub', async () => {
+    const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
+    expect(RECOVERY_REDIRECTS['cheap-hostel-shillong']).toBe('/budget-hostels-shillong');
+    expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostels-shillong');
+    expect(RECOVERY_REDIRECTS['cheap-hostels-shillong']).toBe('/budget-hostels-shillong');
+    expect(RECOVERY_REDIRECTS['remote-work-stay-shillong']).toBe('/work-from-home');
+  });
+
+  it('registers public static pages and data-driven expedition routes for sitemap generation', async () => {
+    const { STATIC_ROUTES } = await import('../src/utils/seoSlugRegistry');
+    for (const route of ['/contact', '/guides', '/catering-shillong', '/meghalaya-festivals', '/partner-stays', '/backpacking-india', '/places-to-visit-in-meghalaya', '/travel-guide/guwahati-to-shillong-transport', '/travel-guide/how-to-reach-meghalaya', '/travel-guide/meghalaya-for-international-tourists', '/budget-hostels-shillong']) {
+      expect(STATIC_ROUTES).toContain(route);
+    }
+    expect(STATIC_ROUTES).toContain('/expeditions/motorbike/guwahati-to-shillong');
+    expect(STATIC_ROUTES).toContain('/expeditions/4x4/guwahati-to-shillong');
+  });
+
+  it('publishes only the canonical budget hub in static sitemap data', () => {
+    const sitemap = fs.readFileSync(path.join(ROOT, 'public/sitemap-static.xml'), 'utf-8');
+    expect(sitemap).toContain('https://xtsy.one/budget-hostels-shillong');
+    expect(sitemap).not.toContain('https://xtsy.one/cheap-hostels-shillong');
+  });
+
+  it('does not advertise retired dining URLs in the sitemap', () => {
+    const sitemap = fs.readFileSync(path.join(ROOT, 'public/sitemap-dining.xml'), 'utf-8');
+    expect(sitemap).not.toContain('https://xtsy.one/barbeque-restaurant-shillong');
+    expect(sitemap).not.toContain('https://xtsy.one/live-music-restaurant-shillong');
+  });
+
+  it('does not ship the shared rooftop café coming-soon claim', () => {
+    const sharedBlock = fs.readFileSync(path.join(ROOT, 'src/components/seo/StayEatExplore.tsx'), 'utf-8');
+    const diningPages = fs.readFileSync(path.join(ROOT, 'src/data/seoPagesDiningExpansion.ts'), 'utf-8');
+    expect(sharedBlock.toLowerCase()).not.toContain('coming soon');
+    expect(diningPages.toLowerCase()).not.toContain('coming soon');
+  });
+});
