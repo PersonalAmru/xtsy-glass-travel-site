@@ -174,7 +174,7 @@ describe('SEO regression: budget hostel canonical migration', () => {
   it('redirects legacy hostel slugs to the canonical budget hub', async () => {
     const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
     expect(RECOVERY_REDIRECTS['cheap-hostel-shillong']).toBe('/budget-hostels-shillong');
-    expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostel-in-shillong');
+    expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostels-shillong');
     expect(RECOVERY_REDIRECTS['cheap-hostels-shillong']).toBe('/budget-hostels-shillong');
     expect(RECOVERY_REDIRECTS['budget-hostel-shillong']).toBe('/budget-hostels-shillong');
     expect(RECOVERY_REDIRECTS['remote-work-stay-shillong']).toBe('/work-from-home');
@@ -199,17 +199,18 @@ describe('SEO regression: budget hostel canonical migration', () => {
   });
 
 
-  it('migrates generated cheap-intent URLs to budget slugs and preserves 301s', async () => {
+  it('retires generic cheap-intent variants and preserves relevant 301s', async () => {
     const { generateIntentStaySlugs } = await import('../scripts/generate-seo-slugs');
     const slugs = generateIntentStaySlugs();
-    expect(slugs).toContain('budget-hostel-in-shillong');
+    expect(slugs).not.toContain('budget-hostel-in-shillong');
     expect(slugs).not.toContain('cheap-hostel-in-shillong');
-    expect(slugs).toContain('budget-stay-in-shillong');
+    expect(slugs).not.toContain('budget-stay-in-shillong');
     expect(slugs).not.toContain('cheap-budget-stay-in-shillong');
     const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
     expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostel-in-shillong');
-    expect(RECOVERY_REDIRECTS['cheap-hotel-in-gangtok']).toBe('/budget-hotel-in-gangtok');
-    expect(RECOVERY_REDIRECTS['cheap-car-rental-shillong']).toBe('/budget-car-rental-shillong');
+    expect(RECOVERY_REDIRECTS['cheap-hotel-in-gangtok']).toBe('/destinations/sikkim/gangtok');
+    expect(RECOVERY_REDIRECTS['cheap-car-rental-shillong']).toBe('/xtsy-rentals');
+    expect(RECOVERY_REDIRECTS['budget-car-rental-shillong']).toBe('/xtsy-rentals');
   });
 
 
