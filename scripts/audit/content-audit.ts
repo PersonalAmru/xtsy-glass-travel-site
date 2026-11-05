@@ -267,6 +267,10 @@ async function main() {
   }
   if (serious.length === 0) {
     console.log('::notice::No price, policy, location or rating discrepancies found.');
+  } else if (process.env.FAIL_ON_SERIOUS === '1') {
+    const count = serious.reduce((sum, [, r]) => sum + r.pages, 0);
+    console.error(`::error::Live content audit found ${serious.length} serious rule type(s) across ${count} page finding(s). See content-summary.json for examples.`);
+    process.exitCode = 1;
   }
 }
 main();
