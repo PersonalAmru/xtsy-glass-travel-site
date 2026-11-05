@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-ntQUNp26.js",
-      "totalBytes": 429907,
-      "mappedBytes": 418397,
+      "bundleName": ".output/public/assets/index-CmA7nEz8.js",
+      "totalBytes": 429991,
+      "mappedBytes": 418481,
       "unmappedBytes": 11484,
       "eolBytes": 26,
       "sourceMapCommentBytes": 0,
@@ -483,13 +483,13 @@
           "size": 408
         },
         "../../../src/routes/book/index.tsx": {
-          "size": 655
+          "size": 683
         },
         "../../../src/routes/book/campsite.tsx": {
-          "size": 470
+          "size": 498
         },
         "../../../src/routes/book/select.tsx": {
-          "size": 427
+          "size": 455
         },
         "../../../src/routes/destinations/index.tsx": {
           "size": 444
