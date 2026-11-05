@@ -24,7 +24,6 @@ export function planTripSchema() {
     url: 'https://xtsy.one/plan-trip-with-ai',
     applicationCategory: 'TravelApplication',
     operatingSystem: 'Web',
-    offers: { '@type': 'Offer', price: 0, priceCurrency: 'INR' },
     provider: { '@id': 'https://xtsy.one/#organization' },
     about: { '@id': 'https://xtsy.one/#hostel' },
   };
