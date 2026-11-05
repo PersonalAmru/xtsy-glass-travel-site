@@ -185,6 +185,19 @@ describe('SEO regression: budget hostel canonical migration', () => {
     expect(ALL_SEO_PAGES.some(page => page.slug === 'budget-hostel-shillong')).toBe(false);
   });
 
+
+  it('maps click-positive legacy GSC URLs to relevant canonical destinations', async () => {
+    const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
+    expect(RECOVERY_REDIRECTS['monthly-stay-mizoram']).toBe('/destinations/mizoram');
+    expect(RECOVERY_REDIRECTS['remote-work-stay-nongjrong']).toBe('/destinations/meghalaya/shillong/nongjrong-sunrise-viewpoint');
+    expect(RECOVERY_REDIRECTS['remote-work-stay-dawki']).toBe('/destinations/meghalaya/dawki');
+    expect(RECOVERY_REDIRECTS['bike-tour-package-nagaland']).toBe('/expeditions/motorbike/guwahati-to-kohima');
+    expect(RECOVERY_REDIRECTS['school-tour-mizoram']).toBe('/group-bookings-meghalaya');
+    expect(RECOVERY_REDIRECTS['self-drive-itinerary-shillong']).toBe('/xtsy-rentals');
+    expect(RECOVERY_REDIRECTS['family-tour-tawang']).toBe('/destinations/arunachal-pradesh/tawang');
+    expect(RECOVERY_REDIRECTS['photography-tour-tripura']).toBe('/destinations/tripura');
+  });
+
   it('registers public static pages and data-driven expedition routes for sitemap generation', async () => {
     const { STATIC_ROUTES } = await import('../src/utils/seoSlugRegistry');
     for (const route of ['/contact', '/guides', '/catering-shillong', '/meghalaya-festivals', '/partner-stays', '/backpacking-india', '/places-to-visit-in-meghalaya', '/travel-guide/guwahati-to-shillong-transport', '/travel-guide/how-to-reach-meghalaya', '/travel-guide/meghalaya-for-international-tourists', '/budget-hostels-shillong']) {
