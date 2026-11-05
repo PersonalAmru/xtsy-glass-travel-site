@@ -15,6 +15,7 @@ import { SEO_YEAR } from '@/utils/seoDate';
 // =============================================================
 const LABEL_OVERRIDES: Record<string, string> = {
   cheap: 'Budget-friendly',
+  budget: 'Budget-friendly',
   cheapest: 'Best budget-friendly',
   cheaper: 'More affordable',
   neigrims: 'NEIGRIHMS',
