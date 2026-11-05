@@ -76,9 +76,9 @@ function factChecks(url: string, text: string, f: Finding[]) {
   for (const m of text.matchAll(/([\d,]{2,6})\+?\s*(?:google\s+|verified\s+|guest\s+|5-star\s+)?reviews/gi)) {
     const v = m[1].replace(/,/g, '');
     const around = ctx(text, m.index!, 90, 40);
-    const bistro = /bistro|restaurant|tab\\b/i.test(around);
+    const bistro = /bistro|restaurant|tab\b/i.test(around);
     const expected = bistro ? RATING.bistro[1] : RATING.hostel[1];
-    if (v !== expected && !/zostel|hosteller|oyo|vs\\b|other/i.test(around)) f.push({ rule: 'rating:review count', detail: `${v} (expected ${expected}) — "${around}"` });
+    if (v !== expected && !/zostel|hosteller|oyo|vs\b|other/i.test(around)) f.push({ rule: 'rating:review count', detail: `${v} (expected ${expected}) — "${around}"` });
   }
   for (const m of text.matchAll(/([\d,]{3,7})\+?\s*(?:happy\s+|global\s+|satisfied\s+)?(?:guests|travell?ers|backpackers|visitors)\b/gi)) {
     const v = num(m[1]);
