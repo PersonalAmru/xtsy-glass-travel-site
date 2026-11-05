@@ -52,10 +52,16 @@ interface VitalsSample {
 const sendSample = async (sample: VitalsSample) => {
   if (!SELF_TRACKING_ENABLED || !readConsent()?.analytics) return;
   try {
-    // Prefer fire-and-forget insert to avoid blocking on edge cold-starts
-    await (await getSupabase()).from('route_performance_metrics').insert(sample as any);
+    // This table is admin-read / public-write by design, but production currently
+    // returns 401 for anonymous inserts. Do not retry or bypass RLS from the
+    // browser; leave RUM disabled until the intended public insert policy or
+    // authenticated ingestion endpoint is deployed.
+    const result = await (await getSupabase()).from('route_performance_metrics').insert(sample as any);
+    if (result.error && import.meta.env.DEV) {
+      console.warn('[WebVitals] RUM insert rejected; verify the table insert policy or ingestion endpoint.', result.error.message);
+    }
   } catch {
-    // Silently swallow — RUM must never break the page
+    // RUM must never break the page.
   }
 };
 
