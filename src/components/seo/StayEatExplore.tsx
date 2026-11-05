@@ -37,7 +37,7 @@ const StayEatExplore = ({
     {
       icon: UtensilsCrossed,
       title: 'Where to Eat',
-      desc: 'Refuel at TAB Bistro by XTSY — multi-cuisine dining, breakfast and café favourites, with a rooftop terrace café coming soon.',
+      desc: 'Refuel at TAB Bistro by XTSY — multi-cuisine dining, breakfast and café favourites, with forest-side and open-air seating under the pines.',
       to: '/tab-bistro',
       cta: 'Explore the Menu',
     },
