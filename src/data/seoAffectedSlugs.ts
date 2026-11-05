@@ -198,6 +198,8 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   // Retired dining pages (30 Oct 2026) — see RETIRED_DINING_SLUGS in
   // seoPagesDiningExpansion.ts for why each one was withdrawn. They are dropped
   // from the registry, so without a target here they would render a real 404.
+  // Historical misspelling discovered in the live dining sitemap crawl.
+  'barbeque-restaurant-shillong': '/tab-bistro',
   'cheap-restaurants-in-shillong': '/tab-bistro',
   'bulk-food-supply-shillong': '/catering-shillong',
   'office-lunch-catering-shillong': '/catering-shillong',
