@@ -157,6 +157,34 @@ export const RECOVERY_PLACES_PATHS: ReadonlyArray<string> = [
  * checks this map BEFORE rendering NotFound and issues a 301-style
  * <Navigate replace> so Google consolidates equity into the canonical URL.
  */
+
+const INTENT_STAY_CITIES = ['shillong', 'cherrapunji', 'guwahati', 'gangtok', 'kohima', 'imphal'] as const;
+const INTENT_STAY_TYPES = ['hostel', 'hotel', 'homestay', 'guesthouse', 'budget-stay', 'glamping'] as const;
+const INTENT_STAY_DESTINATIONS: Record<string, string> = {
+  cherrapunji: '/destinations/meghalaya/cherrapunji',
+  guwahati: '/destinations/assam/guwahati',
+  gangtok: '/destinations/sikkim/gangtok',
+  kohima: '/destinations/nagaland/kohima',
+  imphal: '/destinations/manipur/imphal',
+};
+const intentStayTarget = (stay: string, city: string): string => {
+  if (city !== 'shillong') return INTENT_STAY_DESTINATIONS[city] ?? '/destinations';
+  if (stay === 'hostel' || stay === 'budget-stay') return '/budget-hostels-shillong';
+  if (stay === 'hotel') return '/hotels-in-shillong';
+  if (stay === 'homestay' || stay === 'guesthouse') return '/homestays-in-shillong';
+  return '/luxury-glamping-shillong';
+};
+const LEGACY_CHEAP_INTENT_REDIRECTS: Record<string, string> = Object.fromEntries(
+  INTENT_STAY_TYPES.flatMap((stay) =>
+    INTENT_STAY_CITIES.flatMap((city) => {
+      const target = intentStayTarget(stay, city);
+      const oldSlug = `cheap-${stay}-in-${city}`;
+      const budgetSlug = stay === 'budget-stay' ? `budget-stay-in-${city}` : `budget-${stay}-in-${city}`;
+      return [[oldSlug, target], [budgetSlug, target]];
+    }),
+  ),
+) as Record<string, string>;
+
 export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   // Retired dining pages (30 Oct 2026) — see RETIRED_DINING_SLUGS in
   // seoPagesDiningExpansion.ts for why each one was withdrawn. They are dropped
@@ -292,15 +320,9 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'police-bazaar-shillong': '/shillong-travel-guide',
   'ward-lake-shillong': '/shillong-travel-guide',
   'things-to-do-in-shillong': '/shillong-travel-guide',
-  'best-cafes-shillong': '/cafes-in-shillong',  // Legacy “cheap-*” intent pages now use budget-* slugs. Preserve every old city/stay URL as a 301.
-  ...Object.fromEntries(
-    ['hostel', 'hotel', 'homestay', 'guesthouse', 'budget-stay', 'glamping'].flatMap((stay) =>
-      ['shillong', 'cherrapunji', 'guwahati', 'gangtok', 'kohima', 'imphal'].map((city) => [
-        `cheap-${stay}-in-${city}`,
-        stay === 'budget-stay' ? `/budget-stay-in-${city}` : `/budget-${stay}-in-${city}`,
-      ]),
-    ),
-  ),
-  'cheap-car-rental-shillong': '/budget-car-rental-shillong',
+  'best-cafes-shillong': '/cafes-in-shillong',  // Generated legacy intent slugs are retired to accurate canonical city/property pages.
+  ...LEGACY_CHEAP_INTENT_REDIRECTS,
+  'cheap-car-rental-shillong': '/xtsy-rentals',
+  'budget-car-rental-shillong': '/xtsy-rentals',
 
 };
