@@ -1,0 +1,17 @@
+$ tsx scripts/generateWorkerSlimMap.ts && bun run sitemaps:rebuild
+✅ seo-slim-map.json: 620 entries → 135.2 KB
+$ tsx scripts/generateProgrammaticSitemap.ts && tsx scripts/generateSitemaps.ts && tsx scripts/dedupeSitemapsCrossBranch.ts && tsx scripts/generate-image-sitemap.ts && tsx scripts/pruneNoindexFromSitemaps.ts && tsx scripts/writeSitemapIndex.ts
+✅ sitemap-programmatic.xml: 50 URLs (skipped 443 owned by curated branches)
+ ↳ Skipped (owned by other branch) : 468
+ ↳ Skipped (in-branch duplicate)   : 0
+ ↳ Skipped (legacy places redirect): 39
+═══════════════════════════════════════════════
+ SITEMAP GENERATION REPORT
+═══════════════════════════════════════════════
+ Static URLs        : 49
+ Priority URLs      : 0
+ GSC coverage slugs : 99
+ Missing from map   : 1
+───────────────────────────────────────────────
+ ⚠️  GSC coverage slugs missing from generated sitemap:
+   - cheap-car-rental-shillong
