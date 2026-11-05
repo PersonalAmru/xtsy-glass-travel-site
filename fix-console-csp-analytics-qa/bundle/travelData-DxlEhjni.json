@@ -1,0 +1,86 @@
+{
+  "results": [
+    {
+      "bundleName": ".output/public/assets/travelData-DxlEhjni.js",
+      "totalBytes": 138253,
+      "mappedBytes": 138199,
+      "unmappedBytes": 54,
+      "eolBytes": 0,
+      "sourceMapCommentBytes": 0,
+      "files": {
+        "../../../src/data/tourItineraries.ts": {
+          "size": 84231
+        },
+        "../../../src/data/indiaExpansionTours.ts": {
+          "size": 21720
+        },
+        "../../../src/assets/meghalaya-biodiversity-authentic.jpg": {
+          "size": 58
+        },
+        "../../../src/assets/wilderness-survival-authentic.jpg": {
+          "size": 55
+        },
+        "../../../src/assets/wari-chora-authentic.jpg": {
+          "size": 46
+        },
+        "../../../src/assets/krem-chympe-cave-expedition.jpg": {
+          "size": 53
+        },
+        "../../../src/assets/dawki-crystal-clear-authentic.jpg": {
+          "size": 55
+        },
+        "../../../src/assets/shillong-cherry-blossom.jpg": {
+          "size": 49
+        },
+        "../../../src/assets/phi-phi-waterfall-meghalaya.jpg": {
+          "size": 53
+        },
+        "../../../src/assets/moopun-waterfall.jpg": {
+          "size": 42
+        },
+        "../../../src/assets/assam-tea-gardens-premium.jpg": {
+          "size": 51
+        },
+        "../../../src/assets/arunachal-tribal-premium.jpg": {
+          "size": 50
+        },
+        "../../../src/assets/tripura-bamboo-heritage.jpg": {
+          "size": 49
+        },
+        "../../../src/assets/mizoram-bamboo-premium.jpg": {
+          "size": 48
+        },
+        "../../../src/assets/bumla-pass-bike-expedition.jpg": {
+          "size": 52
+        },
+        "../../../src/assets/motorcycle-mountain-road.jpg": {
+          "size": 50
+        },
+        "../../../src/assets/gurudongmar-lake-high-altitude-stock.jpg": {
+          "size": 62
+        },
+        "../../../src/assets/nainital-lake-district.jpg": {
+          "size": 48
+        },
+        "../../../src/assets/char-dham-yatra.jpg": {
+          "size": 41
+        },
+        "../../../src/assets/kullu-valley-adventure-stock.jpg": {
+          "size": 54
+        },
+        "../../../src/assets/re-himalayan-expedition-cover.jpg": {
+          "size": 55
+        },
+        "../../../src/data/travelData.ts": {
+          "size": 31277
+        },
+        "[sourceMappingURL]": {
+          "size": 0
+        },
+        "[unmapped]": {
+          "size": 54
+        }
+      }
+    }
+  ]
+}

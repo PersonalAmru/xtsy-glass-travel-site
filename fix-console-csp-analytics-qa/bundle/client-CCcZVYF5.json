@@ -1,10 +1,10 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/client-DGK_EhnZ.js",
-      "totalBytes": 215356,
+      "bundleName": ".output/public/assets/client-CCcZVYF5.js",
+      "totalBytes": 215362,
       "mappedBytes": 215123,
-      "unmappedBytes": 223,
+      "unmappedBytes": 229,
       "eolBytes": 10,
       "sourceMapCommentBytes": 0,
       "files": {
@@ -129,7 +129,7 @@
           "size": 0
         },
         "[unmapped]": {
-          "size": 223
+          "size": 229
         },
         "[EOLs]": {
           "size": 10
