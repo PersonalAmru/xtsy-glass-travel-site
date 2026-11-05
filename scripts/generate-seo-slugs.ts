@@ -85,7 +85,7 @@ export function generateIntentStaySlugs(): string[] {
       for (const intent of INTENT_MODIFIERS) {
         slugs.add(`${stay}-in-${city}-${intent}`);
       }
-      slugs.add(`cheap-${stay}-in-${city}`);
+      slugs.add(stay === 'budget-stay' ? `budget-stay-in-${city}` : `budget-${stay}-in-${city}`);
       slugs.add(`best-${stay}-in-${city}`);
       slugs.add(`${stay}-near-${city}-airport`);
     }
