@@ -78,6 +78,7 @@ export const RECOVERY_LIVE_PAGES: ReadonlyArray<string> = [
   '4-day-meghalaya-itinerary',
   '6-day-meghalaya-itinerary',
   '8-day-meghalaya-itinerary',
+  'budget-hostels-shillong',
   'cherrapunji-tour-package',
   'couples-hostel-shillong',
   'dawki-tour-package',
@@ -275,7 +276,7 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'cheap-hostel-shillong': '/budget-hostels-shillong',
   'budget-hostel-shillong': '/budget-hostels-shillong',
   'cheap-hostels-shillong': '/budget-hostels-shillong',
-  'cheap-hostel-in-shillong': '/budget-hostel-in-shillong',
+  'cheap-hostel-in-shillong': '/budget-hostels-shillong',
   // Stays → consolidated hostel pillar
   'oyo-rooms-shillong-alternative': '/best-hostel-in-shillong',
   'guest-house-neigrihms-shillong': '/best-hostel-in-shillong',
