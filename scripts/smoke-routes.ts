@@ -45,6 +45,8 @@ function extractRoutes(): string[] {
   const paths = [...block.matchAll(/^\s*'([^']+)':/gm)].map((m) => m[1]);
   return [...new Set(paths)]
     .filter((p) => !p.startsWith('/api/'))
+    // Lovable control-plane routes are authenticated/internal endpoints, not public app pages.
+    .filter((p) => !p.startsWith('/lovable/'))
     .filter((p) => !p.includes('$_') && !p.endsWith('/$'))
     .map((p) =>
       p.replace(/\$([A-Za-z0-9_]+)/g, (_m, name: string) => PARAM_SAMPLES[name] ?? 'sample'),
@@ -122,6 +124,8 @@ async function checkHydration(routes: string[]): Promise<Failure[]> {
       const text = msg.text();
       // Third-party/analytics noise must not fail the build.
       if (/contentsquare|googletagmanager|gtag|favicon|net::ERR/i.test(text)) return;
+      // Public pages may make anonymous Supabase/auth probes; 401/403 is expected without a user session.
+      if (/\b(401|403)\b/.test(text)) return;
       problems.push(text.slice(0, 200));
     });
     page.on('pageerror', (err) => problems.push(`uncaught: ${err.message.slice(0, 200)}`));

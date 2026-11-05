@@ -128,25 +128,11 @@ const hostelPages: SEOPageData[] = [
       { question: 'Is there a female-only dorm?', answer: 'Yes, we have a dedicated 4-bed female-only dormitory with secure lockers and private bathroom.' },
       { question: 'Do you provide meals?', answer: 'TAB Bistro, our in-house restaurant, serves breakfast, lunch, and dinner. We also have a common kitchen for self-cooking.' },
     ],
-    ['cheap-hostel-shillong', 'shillong-dormitory', 'budget-stay-shillong', 'hostel-near-police-bazar-shillong'],
+    ['budget-hostels-shillong', 'shillong-dormitory', 'budget-stay-shillong', 'hostel-near-police-bazar-shillong'],
     ['backpacker hostel shillong', 'hostel in shillong', 'shillong backpacker hostel', 'best hostel shillong for backpackers']
   ),
 
-  hostel('cheap-hostel-shillong', 'Budget-Friendly Hostel in Shillong — Beds from ₹399 | XTSY', 'Best budget-friendly hostel in Shillong with beds from ₹399/night. Clean dorms, free WiFi, hot showers. Best value budget accommodation in Meghalaya.', 'Best Budget-Friendly Hostel in Shillong — Starting ₹399', 'Find the most affordable hostel stay in Shillong at XTSY Travellers Hostel. With dormitory beds starting at just ₹399 per night, enjoy clean rooms, hot showers, free WiFi, and a social atmosphere without breaking the bank.',
-    [
-      { heading: 'Budget-Friendly Pricing', content: 'At XTSY, we believe great experiences shouldn\'t cost a fortune. Our competitive pricing makes Shillong accessible to every traveler.', listItems: ['Dorm beds from ₹399/night — the lowest in Shillong', 'No hidden charges — WiFi, hot water included', 'Weekly & monthly discounts available', 'Group booking discounts for 4+ guests'] },
-      { heading: 'What You Get for ₹399', content: 'Every bed at XTSY comes with a comfortable mattress, clean linen, personal locker, reading light, charging point, and access to all common facilities including kitchen, lounge, and outdoor areas.' },
-      { heading: 'Compare Shillong Budget Stays', content: 'XTSY consistently offers the best value compared to other budget options in Shillong. While most hotels charge ₹1,500+ for basic rooms, our dorm beds provide a superior social experience at a fraction of the cost.' },
-    ],
-    [
-      { question: 'What is the best budget-friendly room at XTSY?', answer: 'Our 8-bed mixed dormitory starts at ₹399 per night per bed, making it the most affordable option in Shillong.' },
-      { question: 'Are there any hidden charges?', answer: 'No hidden charges. WiFi, hot water, common kitchen access, and locker usage are all included in the room price.' },
-      { question: 'Can I get a discount for longer stays?', answer: 'Yes! We offer weekly and monthly discounts. Contact us on WhatsApp for special long-stay rates.' },
-    ],
-    ['backpacker-hostel-shillong', 'budget-stay-shillong', 'shillong-dormitory'],
-    ['budget-friendly hostel shillong', 'best budget-friendly hostel in shillong', 'affordable hostel shillong', 'low budget stay shillong']
-  ),
-
+  
   hostel('shillong-dormitory', 'Dormitory in Shillong — Mixed & Female Dorms | XTSY', 'Book dormitory beds in Shillong from ₹399. Mixed & female-only dorms with lockers, hot showers, free WiFi. Best rated dorm stay in Meghalaya.', 'Dormitory Accommodation in Shillong', 'XTSY offers the best dormitory experience in Shillong with both mixed and female-only options. Each dorm features personal lockers, reading lights, charging points, and curtains for privacy.',
     [
       { heading: 'Dorm Options at XTSY', content: 'Choose from our carefully designed dormitories:', listItems: ['8-Bed Mixed Dorm — ₹399/night, ideal for budget travelers', '6-Bed Mixed Dorm — ₹499/night, more space & comfort', '4-Bed Female-Only Dorm — ₹599/night, safe & secure'] },
@@ -156,7 +142,7 @@ const hostelPages: SEOPageData[] = [
       { question: 'Do dorms have lockers?', answer: 'Yes, every bed has a personal locker. Bring your own lock or buy one at reception for ₹100.' },
       { question: 'Are the dorms co-ed?', answer: 'We have both mixed (co-ed) dormitories and a dedicated female-only dormitory for solo women travelers.' },
     ],
-    ['backpacker-hostel-shillong', 'cheap-hostel-shillong', 'budget-stay-shillong'],
+    ['backpacker-hostel-shillong', 'budget-hostels-shillong', 'budget-stay-shillong'],
     ['dormitory in shillong', 'shillong dorm', 'mixed dormitory shillong', 'female dormitory shillong']
   ),
 
@@ -174,7 +160,7 @@ const hostelPages: SEOPageData[] = [
       { question: 'Is Shillong expensive for tourists?', answer: 'Shillong is quite affordable compared to other tourist destinations. Budget travelers can explore comfortably on ₹1,500-2,500 per day including stay, food, and local transport.' },
       { question: 'Do budget stays in Shillong include WiFi and hot water?', answer: 'At XTSY, yes — free high-speed WiFi and hot water are included in every room and dorm at no extra cost. Always confirm with smaller budget hotels, as some charge extra for these.' },
     ],
-    ['cheap-hostel-shillong', 'backpacker-hostel-shillong', 'shillong-dormitory', 'hotels-in-shillong', 'hostel-near-police-bazar-shillong'],
+    ['budget-hostels-shillong', 'backpacker-hostel-shillong', 'shillong-dormitory', 'hotels-in-shillong', 'hostel-near-police-bazar-shillong'],
     ['budget stay shillong', 'budget hotels in shillong', 'budget hotel shillong', 'affordable accommodation shillong', 'budget-friendly stay shillong']
   ),
 
@@ -201,7 +187,7 @@ const hostelPages: SEOPageData[] = [
       { question: 'Are there hostels in Cherrapunji?', answer: 'Currently, Shillong has the best hostel infrastructure. XTSY in Shillong serves as the ideal base for Cherrapunji day trips (2 hours away).' },
       { question: 'What is the best hostel in Meghalaya?', answer: 'XTSY Travellers Hostel in New Shillong Township is one of the highest-rated hostels in Meghalaya, with 4.7 stars from 252 Google reviews.' },
     ],
-    ['backpacker-hostel-shillong', 'cheap-hostel-shillong', 'budget-stay-shillong'],
+    ['backpacker-hostel-shillong', 'budget-hostels-shillong', 'budget-stay-shillong'],
     ['hostels in meghalaya', 'best hostels meghalaya', 'meghalaya hostel', 'backpacker hostel meghalaya']
   ),
 
@@ -240,7 +226,7 @@ const hostelPages: SEOPageData[] = [
       { question: 'Is Shillong safe for solo travelers?', answer: 'Yes! Shillong is one of the safest cities in India for solo travelers. The locals are friendly and helpful, and XTSY provides a safe, social environment.' },
       { question: 'Can I join group trips from the hostel?', answer: 'Absolutely! We organize daily group trips to Cherrapunji, Dawki, Mawlynnong, and other destinations. You can join other travelers and split costs.' },
     ],
-    ['backpacker-hostel-shillong', 'cheap-hostel-shillong'],
+    ['backpacker-hostel-shillong', 'budget-hostels-shillong'],
     ['solo travel hostel shillong', 'solo traveler shillong', 'shillong solo trip', 'solo backpacking meghalaya']
   ),
 
@@ -758,7 +744,7 @@ const guidePages: SEOPageData[] = [
     [
       { question: 'Can I visit Meghalaya in ₹10,000?', answer: 'Absolutely! With hostel dorms at ₹399, shared transport, and budget eating, a 5-day Meghalaya trip costs under ₹10,000.' },
     ],
-    ['meghalaya-backpacking-guide', 'meghalaya-trip-cost', 'cheap-hostel-shillong'],
+    ['meghalaya-backpacking-guide', 'meghalaya-trip-cost', 'budget-hostels-shillong'],
     ['budget trip meghalaya', 'budget-friendly meghalaya tour', 'meghalaya in budget', 'meghalaya trip under 10000']
   ),
 

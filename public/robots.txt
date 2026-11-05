@@ -154,4 +154,3 @@ Disallow: /api/
 
 # Sitemap
 Sitemap: https://xtsy.one/sitemap_index.xml
-Sitemap: https://xtsy.one/sitemap.xml
