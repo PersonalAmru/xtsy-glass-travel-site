@@ -1,0 +1,87 @@
+{
+ "site": "http://localhost:4174",
+ "pages": 702,
+ "pagesWithFindings": 10,
+ "siteFiles": {
+  "/robots.txt": {
+   "status": 200,
+   "bytes": 2394,
+   "blocksAIBots": false
+  },
+  "/llms.txt": {
+   "status": 200,
+   "bytes": 6421
+  },
+  "/llms-full.txt": {
+   "status": 200,
+   "bytes": 10559
+  }
+ },
+ "info": {
+  "info:check-in time seen": {
+   "11a": 49
+  },
+  "info:check-out time seen": {
+   "10a": 50,
+   "10p": 1,
+   "11a": 1
+  }
+ },
+ "rules": {
+  "aeo:no FAQ or question headings": {
+   "pages": 4,
+   "examples": [
+    "/privacy-policy — ",
+    "/terms-of-service — ",
+    "/expeditions — ",
+    "/merch — "
+   ]
+  },
+  "placeholder:coming soon": {
+   "pages": 2,
+   "examples": [
+    "/tab-bistro — on. Book a table View the menu WhatsApp us Rooftop terrace · café coming soon North Indian Indo-Chinese Thai Contin",
+    "/restaurant-in-shillong —  Dining A rooftop terrace with panoramic views — the rooftop café is coming soon. Traveller's Feast Multi-cuisine din"
+   ]
+  },
+  "policy:pets": {
+   "pages": 2,
+   "examples": [
+    "/xtsy-vs-zostel — d and size). Zostel Shillong lists an 18+ rule, groups of up to 6 and no pets. Does XTSY arrange trips for groups? Yes",
+    "/best-hostel-in-shillong — nd birds welcome, dogs by breed and size 18+ only, groups of up to 6, no pets Guest rating 4.7★ from 252 Google reviews"
+   ]
+  },
+  "rating:review count": {
+   "pages": 2,
+   "examples": [
+    "/hostel-near-me — 252 (expected 142) — \"University — a quiet, green base with TAB Bistro on site. Dorm beds from ₹399 , 4.7★ from 252 Google reviews. Get Directions Che\"",
+    "/best-hostel-in-shillong — 481 (expected 252) — \"y, groups of up to 6, no pets Guest rating 4.7★ from 252 Google reviews 7.3/10 on ixigo (481 reviews); 8.0/10 on Hostelworld (24)\""
+   ]
+  },
+  "policy:cancellation/refund claim": {
+   "pages": 2,
+   "examples": [
+    "/best-hostel-in-shillong — M 1 PM / 10 AM Cancellation Non-refundable; one date change allowed (see FAQs) Free cancellation more than 8 days ahead (as listed on Hoste",
+    "/best-hostel-in-shillong — ld (24) Pick Zostel Shillong if you want to be closer to the city centre, need flexible cancellation, or already collect stays across Zoste"
+   ]
+  },
+  "policy:check-in time": {
+   "pages": 1,
+   "examples": [
+    "/ —  Check-out strictly 10 AM Check-in Check-out Guests 1 guest 2 guests 3 guests 4"
+   ]
+  },
+  "seo:description > 160 chars": {
+   "pages": 1,
+   "examples": [
+    "/tab-bistro — 181: Live tandoor, XTSY dum biryani, Indo-Chinese, North Indian gravies, South Indian breakfast…"
+   ]
+  },
+  "price:king/private room": {
+   "pages": 1,
+   "examples": [
+    "/best-hostel-in-shillong — ₹2993 — \"Double ₹2,399, all inclusive Private rooms; deluxe room listed around ₹2,993 plus taxes on booking sites Women-only dor\""
+   ]
+  }
+ }
+}

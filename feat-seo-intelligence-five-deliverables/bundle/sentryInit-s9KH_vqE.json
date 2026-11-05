@@ -1,0 +1,527 @@
+{
+  "results": [
+    {
+      "bundleName": ".output/public/assets/sentryInit-s9KH_vqE.js",
+      "totalBytes": 144377,
+      "mappedBytes": 144186,
+      "unmappedBytes": 171,
+      "eolBytes": 20,
+      "sourceMapCommentBytes": 0,
+      "files": {
+        "../../../node_modules/@sentry/core/build/esm/debug-build.js": {
+          "size": 52
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/worldwide.js": {
+          "size": 13
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/version.js": {
+          "size": 12
+        },
+        "../../../node_modules/@sentry/core/build/esm/carrier.js": {
+          "size": 241
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/debug-logger.js": {
+          "size": 653
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/stacktrace.js": {
+          "size": 1040
+        },
+        "../../../node_modules/@sentry/core/build/esm/instrument/handlers.js": {
+          "size": 376
+        },
+        "../../../node_modules/@sentry/core/build/esm/instrument/globalError.js": {
+          "size": 238
+        },
+        "../../../node_modules/@sentry/core/build/esm/instrument/globalUnhandledRejection.js": {
+          "size": 258
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/is.js": {
+          "size": 967
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/object.js": {
+          "size": 893
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/randomSafeContext.js": {
+          "size": 267
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/normalizationHints.js": {
+          "size": 188
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/normalize.js": {
+          "size": 1468
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/string.js": {
+          "size": 493
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/misc.js": {
+          "size": 949
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/time.js": {
+          "size": 495
+        },
+        "../../../node_modules/@sentry/core/build/esm/session.js": {
+          "size": 1526
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/merge.js": {
+          "size": 208
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/propagationContext.js": {
+          "size": 63
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/weakRef.js": {
+          "size": 219
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/spanOnScope.js": {
+          "size": 99
+        },
+        "../../../node_modules/@sentry/core/build/esm/scope.js": {
+          "size": 5726
+        },
+        "../../../node_modules/@sentry/core/build/esm/defaultScopes.js": {
+          "size": 116
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/chain-and-copy-promiselike.js": {
+          "size": 412
+        },
+        "../../../node_modules/@sentry/core/build/esm/asyncContext/stackStrategy.js": {
+          "size": 1089
+        },
+        "../../../node_modules/@sentry/core/build/esm/asyncContext/index.js": {
+          "size": 50
+        },
+        "../../../node_modules/@sentry/core/build/esm/attributes.js": {
+          "size": 698
+        },
+        "../../../node_modules/@sentry/core/build/esm/currentScopes.js": {
+          "size": 590
+        },
+        "../../../node_modules/@sentry/core/build/esm/semanticAttributes.js": {
+          "size": 342
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/spanstatus.js": {
+          "size": 850
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/utils.js": {
+          "size": 392
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/baggage.js": {
+          "size": 990
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/dsn.js": {
+          "size": 1429
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/parseSampleRate.js": {
+          "size": 150
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/tracing.js": {
+          "size": 799
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/spanUtils.js": {
+          "size": 3212
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/errors.js": {
+          "size": 213
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/hasSpansEnabled.js": {
+          "size": 168
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/should-ignore-span.js": {
+          "size": 888
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/sentryNonRecordingSpan.js": {
+          "size": 526
+        },
+        "../../../node_modules/@sentry/core/build/esm/constants.js": {
+          "size": 20
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/dynamicSamplingContext.js": {
+          "size": 1144
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/spans/beforeSendSpan.js": {
+          "size": 79
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/envelope.js": {
+          "size": 1607
+        },
+        "../../../node_modules/@sentry/core/build/esm/envelope.js": {
+          "size": 1230
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/logSpans.js": {
+          "size": 673
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/measurement.js": {
+          "size": 335
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/segmentSpanCaptureStrategy.js": {
+          "size": 55
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/spans/hasSpanStreamingEnabled.js": {
+          "size": 62
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/sentrySpan.js": {
+          "size": 4753
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/sampling.js": {
+          "size": 965
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/trace.js": {
+          "size": 3318
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/idleSpan.js": {
+          "size": 2614
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/scopeData.js": {
+          "size": 1856
+        },
+        "../../../node_modules/@sentry/conventions/dist/attributes.mjs": {
+          "size": 81
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/spans/captureSpan.js": {
+          "size": 108
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/syncpromise.js": {
+          "size": 922
+        },
+        "../../../node_modules/@sentry/core/build/esm/eventProcessors.js": {
+          "size": 277
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/debug-ids.js": {
+          "size": 464
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/prepareEvent.js": {
+          "size": 2458
+        },
+        "../../../node_modules/@sentry/core/build/esm/exports.js": {
+          "size": 754
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/timer.js": {
+          "size": 82
+        },
+        "../../../node_modules/@sentry/core/build/esm/api.js": {
+          "size": 413
+        },
+        "../../../node_modules/@sentry/core/build/esm/integration.js": {
+          "size": 1250
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/env.js": {
+          "size": 113
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/node.js": {
+          "size": 109
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/isBrowser.js": {
+          "size": 104
+        },
+        "../../../node_modules/@sentry/core/build/esm/logs/envelope.js": {
+          "size": 344
+        },
+        "../../../node_modules/@sentry/core/build/esm/logs/internal.js": {
+          "size": 308
+        },
+        "../../../node_modules/@sentry/core/build/esm/metrics/envelope.js": {
+          "size": 362
+        },
+        "../../../node_modules/@sentry/core/build/esm/metrics/internal.js": {
+          "size": 314
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/spans/spanJsonToStreamedSpan.js": {
+          "size": 322
+        },
+        "../../../node_modules/@sentry/core/build/esm/tracing/spans/extractGenAiSpans.js": {
+          "size": 510
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/promisebuffer.js": {
+          "size": 457
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/ratelimit.js": {
+          "size": 611
+        },
+        "../../../node_modules/@sentry/core/build/esm/transports/base.js": {
+          "size": 999
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/clientreport.js": {
+          "size": 117
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/eventUtils.js": {
+          "size": 195
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/transactionEvent.js": {
+          "size": 781
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/data-collection/filtering-snippets.js": {
+          "size": 51
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/data-collection/defaultPiiToCollectionOptions.js": {
+          "size": 574
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/data-collection/resolveDataCollectionOptions.js": {
+          "size": 1073
+        },
+        "../../../node_modules/@sentry/core/build/esm/client.js": {
+          "size": 9270
+        },
+        "../../../node_modules/@sentry/core/build/esm/sdk.js": {
+          "size": 246
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/url.js": {
+          "size": 1048
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/ipAddress.js": {
+          "size": 154
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/sdkMetadata.js": {
+          "size": 205
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/traceData.js": {
+          "size": 642
+        },
+        "../../../node_modules/@sentry/core/build/esm/breadcrumbs.js": {
+          "size": 259
+        },
+        "../../../node_modules/@sentry/core/build/esm/integrations/functiontostring.js": {
+          "size": 276
+        },
+        "../../../node_modules/@sentry/core/build/esm/integrations/eventFilters.js": {
+          "size": 2520
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/aggregate-errors.js": {
+          "size": 852
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/eventbuilder.js": {
+          "size": 192
+        },
+        "../../../node_modules/@sentry/core/build/esm/instrument/console.js": {
+          "size": 381
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/severity.js": {
+          "size": 112
+        },
+        "../../../node_modules/@sentry/core/build/esm/integrations/dedupe.js": {
+          "size": 947
+        },
+        "../../../node_modules/@sentry/core/build/esm/integrations/conversationId.js": {
+          "size": 309
+        },
+        "../../../node_modules/@sentry/core/build/esm/fetch.js": {
+          "size": 2880
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/breadcrumb-log-level.js": {
+          "size": 88
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/supports.js": {
+          "size": 693
+        },
+        "../../../node_modules/@sentry/core/build/esm/instrument/fetch.js": {
+          "size": 2006
+        },
+        "../../../node_modules/@sentry/core/build/esm/utils/browser.js": {
+          "size": 349
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/helpers.js": {
+          "size": 1053
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/eventbuilder.js": {
+          "size": 2835
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/client.js": {
+          "size": 965
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/debug-build.js": {
+          "size": 53
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/types.js": {
+          "size": 4
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/bindReporter.js": {
+          "size": 200
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/getNavigationEntry.js": {
+          "size": 142
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/getActivationStart.js": {
+          "size": 32
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/globalListeners.js": {
+          "size": 117
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/getVisibilityWatcher.js": {
+          "size": 718
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/generateUniqueID.js": {
+          "size": 81
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/initMetric.js": {
+          "size": 247
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/initUnique.js": {
+          "size": 100
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/LayoutShiftManager.js": {
+          "size": 442
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/observe.js": {
+          "size": 216
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/runOnce.js": {
+          "size": 42
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/whenActivated.js": {
+          "size": 87
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/onFCP.js": {
+          "size": 281
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/getCLS.js": {
+          "size": 325
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/polyfills/interactionCountPolyfill.js": {
+          "size": 306
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/InteractionManager.js": {
+          "size": 1168
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/whenIdleOrHidden.js": {
+          "size": 268
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/getINP.js": {
+          "size": 534
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/LCPEntryManager.js": {
+          "size": 63
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/getLCP.js": {
+          "size": 496
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/onTTFB.js": {
+          "size": 300
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/instrument.js": {
+          "size": 1064
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/htmlTreeAsString.js": {
+          "size": 1622
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/web-vitals/lib/onHidden.js": {
+          "size": 175
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/utils.js": {
+          "size": 1478
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/cls.js": {
+          "size": 635
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/lcp.js": {
+          "size": 905
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/resourceTiming.js": {
+          "size": 1022
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/browserMetrics.js": {
+          "size": 7506
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/inp.js": {
+          "size": 1867
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/metrics/webVitalSpans.js": {
+          "size": 2493
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/instrument/dom.js": {
+          "size": 1613
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/instrument/history.js": {
+          "size": 509
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/getNativeImplementation.js": {
+          "size": 437
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/instrument/xhr.js": {
+          "size": 1184
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/networkUtils.js": {
+          "size": 229
+        },
+        "../../../node_modules/@sentry/browser-utils/build/esm/is.js": {
+          "size": 94
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/transports/fetch.js": {
+          "size": 476
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/debug-build.js": {
+          "size": 52
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/stack-parsers.js": {
+          "size": 1377
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/integrations/breadcrumbs.js": {
+          "size": 2725
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/integrations/browserapierrors.js": {
+          "size": 2479
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/integrations/browsersession.js": {
+          "size": 483
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/integrations/culturecontext.js": {
+          "size": 441
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/integrations/globalhandlers.js": {
+          "size": 1544
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/integrations/httpcontext.js": {
+          "size": 452
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/integrations/linkederrors.js": {
+          "size": 164
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/normalizeStringifyValue.js": {
+          "size": 317
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/utils/detectBrowserExtension.js": {
+          "size": 439
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/sdk.js": {
+          "size": 377
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/tracing/utils.js": {
+          "size": 373
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/tracing/request.js": {
+          "size": 2557
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/integrations/fetchStreamPerformance.js": {
+          "size": 830
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/integrations/webVitals.js": {
+          "size": 614
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/tracing/backgroundtab.js": {
+          "size": 467
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/tracing/linkedTraces.js": {
+          "size": 1531
+        },
+        "../../../node_modules/@sentry/browser/build/npm/esm/prod/tracing/browserTracingIntegration.js": {
+          "size": 6148
+        },
+        "../../../node_modules/@sentry/react/build/esm/isSyntheticEvent.js": {
+          "size": 106
+        },
+        "../../../node_modules/@sentry/react/build/esm/sdk.js": {
+          "size": 156
+        },
+        "../../../src/lib/sentryInit.ts": {
+          "size": 519
+        },
+        "[sourceMappingURL]": {
+          "size": 0
+        },
+        "[unmapped]": {
+          "size": 171
+        },
+        "[EOLs]": {
+          "size": 20
+        }
+      }
+    }
+  ]
+}
