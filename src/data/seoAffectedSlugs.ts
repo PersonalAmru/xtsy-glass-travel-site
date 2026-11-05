@@ -157,6 +157,34 @@ export const RECOVERY_PLACES_PATHS: ReadonlyArray<string> = [
  * checks this map BEFORE rendering NotFound and issues a 301-style
  * <Navigate replace> so Google consolidates equity into the canonical URL.
  */
+
+const INTENT_STAY_CITIES = ['shillong', 'cherrapunji', 'guwahati', 'gangtok', 'kohima', 'imphal'] as const;
+const INTENT_STAY_TYPES = ['hostel', 'hotel', 'homestay', 'guesthouse', 'budget-stay', 'glamping'] as const;
+const INTENT_STAY_DESTINATIONS: Record<string, string> = {
+  cherrapunji: '/destinations/meghalaya/cherrapunji',
+  guwahati: '/destinations/assam/guwahati',
+  gangtok: '/destinations/sikkim/gangtok',
+  kohima: '/destinations/nagaland/kohima',
+  imphal: '/destinations/manipur/imphal',
+};
+const intentStayTarget = (stay: string, city: string): string => {
+  if (city !== 'shillong') return INTENT_STAY_DESTINATIONS[city] ?? '/destinations';
+  if (stay === 'hostel' || stay === 'budget-stay') return '/budget-hostels-shillong';
+  if (stay === 'hotel') return '/hotels-in-shillong';
+  if (stay === 'homestay' || stay === 'guesthouse') return '/homestays-in-shillong';
+  return '/luxury-glamping-shillong';
+};
+const LEGACY_CHEAP_INTENT_REDIRECTS: Record<string, string> = Object.fromEntries(
+  INTENT_STAY_TYPES.flatMap((stay) =>
+    INTENT_STAY_CITIES.flatMap((city) => {
+      const target = intentStayTarget(stay, city);
+      const oldSlug = `cheap-${stay}-in-${city}`;
+      const budgetSlug = stay === 'budget-stay' ? `budget-stay-in-${city}` : `budget-${stay}-in-${city}`;
+      return [[oldSlug, target], [budgetSlug, target]];
+    }),
+  ),
+) as Record<string, string>;
+
 export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   // Retired dining pages (30 Oct 2026) — see RETIRED_DINING_SLUGS in
   // seoPagesDiningExpansion.ts for why each one was withdrawn. They are dropped
@@ -217,6 +245,21 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'pure-vegetarian-restaurant-shillong': '/tab-bistro',
   // Real routes that Google sees but render as homepage / 404 due to typo
   'faq': '/about',
+  // Workation intent alias → canonical work-from-home page
+  'remote-work-stay-shillong': '/work-from-home',
+  'monthly-stay-mizoram': '/destinations/mizoram',
+  'remote-work-stay-meghalaya': '/work-from-home',
+  'remote-work-stay-nongjrong': '/destinations/meghalaya/shillong/nongjrong-sunrise-viewpoint',
+  'remote-work-stay-dawki': '/destinations/meghalaya/dawki',
+  'remote-work-stay-mawlynnong': '/destinations/meghalaya/mawlynnong',
+  'remote-work-stay-ziro': '/destinations/arunachal-pradesh/ziro',
+  'bike-tour-package-nagaland': '/expeditions/motorbike/guwahati-to-kohima',
+  'school-tour-mizoram': '/group-bookings-meghalaya',
+  'self-drive-itinerary-shillong': '/xtsy-rentals',
+  'family-tour-tawang': '/destinations/arunachal-pradesh/tawang',
+  'leadership-retreat-assam': '/group-bookings-meghalaya',
+  'photography-tour-tripura': '/destinations/tripura',
+  'winter-in-jowai': '/destinations/meghalaya/jowai',
   // Vehicle rentals → consolidated rental landing
   'car-rental-shillong': '/xtsy-rentals',
   'car-rental-northeast-india': '/xtsy-rentals',
@@ -231,6 +274,8 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'youth-hostel-shillong': '/best-hostel-in-shillong',
   'backpacker-hostel-shillong': '/best-hostel-in-shillong',
   'cheap-hostel-shillong': '/budget-hostels-shillong',
+  'budget-hostel-shillong': '/budget-hostels-shillong',
+  'cheap-hostels-shillong': '/budget-hostels-shillong',
   'cheap-hostel-in-shillong': '/budget-hostels-shillong',
   // Stays → consolidated hostel pillar
   'oyo-rooms-shillong-alternative': '/best-hostel-in-shillong',
@@ -275,5 +320,9 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'police-bazaar-shillong': '/shillong-travel-guide',
   'ward-lake-shillong': '/shillong-travel-guide',
   'things-to-do-in-shillong': '/shillong-travel-guide',
-  'best-cafes-shillong': '/cafes-in-shillong',
+  'best-cafes-shillong': '/cafes-in-shillong',  // Generated legacy intent slugs are retired to accurate canonical city/property pages.
+  ...LEGACY_CHEAP_INTENT_REDIRECTS,
+  'cheap-car-rental-shillong': '/xtsy-rentals',
+  'budget-car-rental-shillong': '/xtsy-rentals',
+
 };

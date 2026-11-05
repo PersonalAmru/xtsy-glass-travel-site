@@ -160,3 +160,111 @@ describe('SEO regression: rateSanityCheck integrity', () => {
     expect(mod.SHILLONG_CANONICAL_RATES['4-bed-female-only-dorm']).toBe(599);
   });
 });
+
+
+describe('SEO regression: budget hostel canonical migration', () => {
+  it('uses the budget wording and canonical route for the hostel hub', async () => {
+    const { stayHubCopy } = await import('../src/data/stayHub');
+    const copy = stayHubCopy('budget');
+    expect(copy.path).toBe('/budget-hostels-shillong');
+    expect(copy.h1.toLowerCase()).toContain('budget');
+    expect(copy.keywords.toLowerCase()).not.toContain('cheap');
+  });
+
+  it('redirects legacy hostel slugs to the canonical budget hub', async () => {
+    const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
+    expect(RECOVERY_REDIRECTS['cheap-hostel-shillong']).toBe('/budget-hostels-shillong');
+    expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostels-shillong');
+    expect(RECOVERY_REDIRECTS['cheap-hostels-shillong']).toBe('/budget-hostels-shillong');
+    expect(RECOVERY_REDIRECTS['budget-hostel-shillong']).toBe('/budget-hostels-shillong');
+    expect(RECOVERY_REDIRECTS['remote-work-stay-shillong']).toBe('/work-from-home');
+  });
+
+  it('does not publish a singular budget-hostel duplicate page', async () => {
+    const { ALL_SEO_PAGES } = await import('../src/data/seoPages');
+    expect(ALL_SEO_PAGES.some(page => page.slug === 'budget-hostel-shillong')).toBe(false);
+  });
+
+
+  it('maps click-positive legacy GSC URLs to relevant canonical destinations', async () => {
+    const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
+    expect(RECOVERY_REDIRECTS['monthly-stay-mizoram']).toBe('/destinations/mizoram');
+    expect(RECOVERY_REDIRECTS['remote-work-stay-nongjrong']).toBe('/destinations/meghalaya/shillong/nongjrong-sunrise-viewpoint');
+    expect(RECOVERY_REDIRECTS['remote-work-stay-dawki']).toBe('/destinations/meghalaya/dawki');
+    expect(RECOVERY_REDIRECTS['bike-tour-package-nagaland']).toBe('/expeditions/motorbike/guwahati-to-kohima');
+    expect(RECOVERY_REDIRECTS['school-tour-mizoram']).toBe('/group-bookings-meghalaya');
+    expect(RECOVERY_REDIRECTS['self-drive-itinerary-shillong']).toBe('/xtsy-rentals');
+    expect(RECOVERY_REDIRECTS['family-tour-tawang']).toBe('/destinations/arunachal-pradesh/tawang');
+    expect(RECOVERY_REDIRECTS['photography-tour-tripura']).toBe('/destinations/tripura');
+  });
+
+
+  it('retires generic cheap-intent variants and preserves relevant 301s', async () => {
+    const { generateIntentStaySlugs } = await import('../scripts/generate-seo-slugs');
+    const slugs = generateIntentStaySlugs();
+    expect(slugs).not.toContain('budget-hostel-in-shillong');
+    expect(slugs).not.toContain('cheap-hostel-in-shillong');
+    expect(slugs).not.toContain('budget-stay-in-shillong');
+    expect(slugs).not.toContain('cheap-budget-stay-in-shillong');
+    const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
+    expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostels-shillong');
+    expect(RECOVERY_REDIRECTS['cheap-hotel-in-gangtok']).toBe('/destinations/sikkim/gangtok');
+    expect(RECOVERY_REDIRECTS['cheap-car-rental-shillong']).toBe('/xtsy-rentals');
+    expect(RECOVERY_REDIRECTS['budget-car-rental-shillong']).toBe('/xtsy-rentals');
+  });
+
+
+  it('renders budget-intent copy with the right city and stay labels', async () => {
+    const { buildIntentStayPage } = await import('../src/data/seoPageFactory');
+    const page = buildIntentStayPage('budget-hostel-in-shillong');
+    expect(page.slug).toBe('budget-hostel-in-shillong');
+    expect(page.title).toContain('Budget-friendly Hostel in Shillong');
+    expect(page.h1).toBe('Budget-friendly Hostel in Shillong');
+    expect(page.category).toBe('hostels');
+  });
+
+
+  it('removes cheap wording from indexable programmatic page copy', async () => {
+    const { ALL_SEO_PAGES } = await import('../src/data/seoPages');
+    const visibleCopy = ALL_SEO_PAGES.flatMap(page => [
+      page.title,
+      page.metaDescription,
+      page.h1,
+      page.intro,
+      page.quickAnswer,
+      ...(page.keywords ? (Array.isArray(page.keywords) ? page.keywords : [page.keywords]) : []),
+      ...(page.sections ?? []).flatMap(section => [section.heading, section.content, ...(section.listItems ?? [])]),
+      ...(page.faqs ?? []).flatMap(faq => [faq.question, faq.answer]),
+    ]).filter((value): value is string => typeof value === 'string');
+    expect(visibleCopy.some(value => /\\bcheap\\b/i.test(value))).toBe(false);
+    expect(ALL_SEO_PAGES.some(page => page.slug.startsWith('cheap-'))).toBe(false);
+  });
+
+  it('registers public static pages and data-driven expedition routes for sitemap generation', async () => {
+    const { STATIC_ROUTES } = await import('../src/utils/seoSlugRegistry');
+    for (const route of ['/contact', '/guides', '/catering-shillong', '/meghalaya-festivals', '/partner-stays', '/backpacking-india', '/places-to-visit-in-meghalaya', '/travel-guide/guwahati-to-shillong-transport', '/travel-guide/how-to-reach-meghalaya', '/travel-guide/meghalaya-for-international-tourists', '/budget-hostels-shillong']) {
+      expect(STATIC_ROUTES).toContain(route);
+    }
+    expect(STATIC_ROUTES).toContain('/expeditions/motorbike/guwahati-to-shillong');
+    expect(STATIC_ROUTES).toContain('/expeditions/4x4/guwahati-to-shillong');
+  });
+
+  it('publishes only the canonical budget hub in static sitemap data', () => {
+    const sitemap = fs.readFileSync(path.join(ROOT, 'public/sitemap-static.xml'), 'utf-8');
+    expect(sitemap).toContain('https://xtsy.one/budget-hostels-shillong');
+    expect(sitemap).not.toContain('https://xtsy.one/cheap-hostels-shillong');
+  });
+
+  it('does not advertise retired dining URLs in the sitemap', () => {
+    const sitemap = fs.readFileSync(path.join(ROOT, 'public/sitemap-dining.xml'), 'utf-8');
+    expect(sitemap).not.toContain('https://xtsy.one/barbeque-restaurant-shillong');
+    expect(sitemap).not.toContain('https://xtsy.one/live-music-restaurant-shillong');
+  });
+
+  it('does not ship the shared rooftop café coming-soon claim', () => {
+    const sharedBlock = fs.readFileSync(path.join(ROOT, 'src/components/seo/StayEatExplore.tsx'), 'utf-8');
+    const diningPages = fs.readFileSync(path.join(ROOT, 'src/data/seoPagesDiningExpansion.ts'), 'utf-8');
+    expect(sharedBlock.toLowerCase()).not.toContain('coming soon');
+    expect(diningPages.toLowerCase()).not.toContain('coming soon');
+  });
+});

@@ -49,7 +49,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
           "Zion offers basic internet suitable for light browsing.",
           "Dedicated workstations are a standard feature at XTSY.",
           "Zion focuses on essential bedding and shared lockers.",
-          "XTSY has a rooftop terrace for relaxing; a rooftop café is coming soon."
+          "XTSY offers forest-side and open-air seating; no rooftop café is currently advertised."
         ],
         "heading": "Amenities and Connectivity",
         "content": "Modern travellers often prioritise connectivity and comfort features when choosing their Shillong base."
@@ -1645,70 +1645,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     ],
     "metaDescription": "Need a bed in Shillong right now? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070."
   },
-  {
-    "slug": "cheap-hostel-in-shillong",
-    "sections": [
-      {
-        "heading": "Where XTSY is",
-        "content": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. It is a quieter, greener part of Shillong rather than the busy Police Bazaar area — take a cab into the city centre when you want to shop or eat out."
-      },
-      {
-        "heading": "What you can book",
-        "content": "All rooms are on one property, with TAB Bistro on site.",
-        "listItems": [
-          "Mixed dorm beds from ₹399 a night",
-          "Female-only dorm",
-          "King Double private rooms",
-          "Experience by XTSY — India's first stargaze glamp (270° panoramic glass suite)",
-          "Pet friendly: cats and birds welcome; dogs depending on breed and size (ask the desk about any extra charges)"
-        ]
-      },
-      {
-        "heading": "Good to know",
-        "content": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Message the XTSY desk with your arrival time so someone is ready for you.",
-        "listItems": [
-          "Book direct at xtsy.one/book or on WhatsApp +91 88373 17070",
-          "Travel desk for Cherrapunji, Dawki and Mawlynnong day trips",
-          "Bike and car rentals on request"
-        ]
-      }
-    ],
-    "metaDescription": "Looking for a budget-friendly hostel in Shillong? XTSY Travellers Hostel is in New Shillong Township, near NIFT and IIM Shillong. Dorms from ₹399, female-only dorm, private rooms. WhatsApp +91 88373 17070.",
-    "quickAnswer": "XTSY Travellers Hostel is on Mawdiangdiang Road, New Shillong Township (793018), near NIFT Shillong and IIM Shillong. Book a bed on a budget at xtsy.one/book or on WhatsApp +91 88373 17070; dorm beds start at ₹399.",
-    "intro": "Looking for a budget-friendly hostel in Shillong? XTSY Travellers Hostel is on Mawdiangdiang Road in New Shillong Township, Shillong, near NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University. You can book a mixed or female-only dorm bed, a King Double room or Experience by XTSY, with TAB Bistro on site. For a bed on a budget, book at xtsy.one/book or message the XTSY desk on WhatsApp +91 88373 17070 for live availability.",
-    "h1": "Budget-Friendly Hostel in Shillong",
-    "title": "Budget-Friendly Hostel in Shillong — Dorm Beds from ₹399 | XTSY",
-    "keywords": [
-      "shillong hostels",
-      "budget accommodation shillong",
-      "budget-friendly stay meghalaya",
-      "backpacker hostel shillong village",
-      "shillong dormitories",
-      "last minute shillong stay"
-    ],
-    "faqs": [
-      {
-        "question": "Where exactly is XTSY Travellers Hostel?",
-        "answer": "XTSY Travellers Hostel, Mawdiangdiang Road, New Shillong Township, Shillong, Meghalaya – 793018. Nearby landmarks: NIFT Shillong, IIM Shillong, NEIGRIHMS, NEIAH and Martin Luther Christian University."
-      },
-      {
-        "question": "Is XTSY near Police Bazar?",
-        "answer": "No. XTSY is in New Shillong Township, not central Shillong. Police Bazar is a cab ride away; the XTSY desk can book one for you."
-      },
-      {
-        "question": "Can I book a bed on a budget?",
-        "answer": "Yes, subject to availability. Check live availability at xtsy.one/book or message +91 88373 17070 on WhatsApp."
-      },
-      {
-        "question": "What are the check-in and check-out times?",
-        "answer": "Standard check-in is 11 AM and check-out is strictly 10 AM. Arriving late? Tell the XTSY desk your arrival time in advance."
-      },
-      {
-        "question": "Does XTSY have hostels in other towns?",
-        "answer": "No. XTSY's own property is only in New Shillong Township. In other places, XTSY arranges stays, transport and travel help through trusted travel partners."
-      }
-    ]
-  },
+
   {
     "slug": "hostel-near-shillong-airport",
     "title": "Hostel near Shillong Airport — XTSY, New Shillong Township",
@@ -2012,7 +1949,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     ]
   },
   {
-    "slug": "cheap-homestay-in-cherrapunji",
+    "slug": "budget-homestay-in-cherrapunji",
     "title": "Budget-Friendly Homestay in Cherrapunji? Read This Before You Book",
     "h1": "Budget-Friendly Homestay in Cherrapunji: An Honest Guide",
     "metaDescription": "Cherrapunji homestays are basic and limited. For a more affordable, more reliable stay, book XTSY Travellers Hostel in Shillong (dorms from ₹399, 24/7 check-in) and day-trip to Sohra. WhatsApp +91 8837317070.",
@@ -2304,7 +2241,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     ]
   },
   {
-    "slug": "cheap-hostel-in-cherrapunji",
+    "slug": "budget-hostel-in-cherrapunji",
     "h1": "Budget-Friendly Hostels and Budget Stays in Cherrapunji",
     "sections": [
       {
@@ -2890,7 +2827,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "title": "Hostel in Guwahati Right Now — Book via XTSY Partners"
   },
   {
-    "slug": "cheap-hostel-in-guwahati",
+    "slug": "budget-hostel-in-guwahati",
     "quickAnswer": "XTSY's own property is only in New Shillong Township, Meghalaya. In Guwahati, XTSY arranges stays on a budget, transport and travel help through trusted travel partners — WhatsApp +91 88373 17070 with your dates for live options.",
     "title": "Budget-Friendly Hostel in Guwahati — Budget Stays via XTSY Partners",
     "sections": [
@@ -3481,7 +3418,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "h1": "Hostel in Gangtok Right Now"
   },
   {
-    "slug": "cheap-hostel-in-gangtok",
+    "slug": "budget-hostel-in-gangtok",
     "title": "Budget-Friendly Hostel in Gangtok — Budget Stays via XTSY Partners",
     "quickAnswer": "XTSY's own property is only in New Shillong Township, Meghalaya. In Gangtok, XTSY arranges stays on a budget, transport and travel help through trusted travel partners — WhatsApp +91 88373 17070 with your dates for live options.",
     "h1": "Budget-Friendly Hostels and Budget Stays in Gangtok",

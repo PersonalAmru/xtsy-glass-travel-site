@@ -38,7 +38,7 @@ const competitorPages: SEOPageData[] = [
       { question: 'Is XTSY better than Zostel in Shillong?', answer: 'XTSY is independently rated 4.7★ on Google with 252 Google reviews. We offer comparable dorm pricing, an in-house restaurant, and unique experiences like Experience by XTSY stay.' },
       { question: 'Does XTSY have a female-only dorm?', answer: 'Yes, we have a dedicated 4-bed female-only dormitory with enhanced security, personal lockers, and attached bathroom.' },
     ],
-    ['backpacker-hostel-shillong', 'cheap-hostels-shillong', 'hostels-in-meghalaya'],
+    ['backpacker-hostel-shillong', 'budget-hostels-shillong', 'hostels-in-meghalaya'],
     ['zostel shillong', 'zostel vs xtsy', 'zostel meghalaya', 'zostel prices shillong', 'best hostel shillong']
   ),
 
@@ -52,7 +52,7 @@ const competitorPages: SEOPageData[] = [
     [
       { question: 'Which hostel is more affordable — Isabella or XTSY?', answer: 'XTSY dorms start at ₹399/night, making it one of the most affordable options in Shillong with premium amenities included.' },
     ],
-    ['zostel-vs-xtsy-shillong', 'backpacker-hostel-shillong', 'cheap-hostels-shillong'],
+    ['zostel-vs-xtsy-shillong', 'backpacker-hostel-shillong', 'budget-hostels-shillong'],
     ['isabella hostel shillong', 'isabella vs xtsy', 'hostels in shillong comparison']
   ),
 
@@ -93,7 +93,7 @@ const competitorPages: SEOPageData[] = [
       { question: 'Is XTSY suitable for students?', answer: 'Absolutely! XTSY is popular with college students and young travelers. We offer student-friendly pricing, group discounts, and a social atmosphere perfect for making new friends.' },
       { question: 'Is there an age limit for hostels?', answer: 'XTSY welcomes guests of all ages. While most guests are between 18-35, we have no upper age limit and welcome anyone with a traveler\'s spirit.' },
     ],
-    ['backpacker-hostel-shillong', 'cheap-hostels-shillong', 'shillong-dormitory'],
+    ['backpacker-hostel-shillong', 'budget-hostels-shillong', 'shillong-dormitory'],
     ['youth hostel shillong', 'student hostel shillong', 'young traveler hostel meghalaya']
   ),
 ];
@@ -162,7 +162,7 @@ const transportPages: SEOPageData[] = [
     ['suv rental shillong', 'suv rental near me', '4x4 rental shillong', 'fortuner rental shillong']
   ),
 
-  mkPage('cheap-car-rental-shillong', 'rentals', 'AutoRental',
+  mkPage('budget-car-rental-shillong', 'rentals', 'AutoRental',
     'Budget-Friendly Car Rental Shillong — From ₹1,200/Day | XTSY', 'Best budget-friendly car rental in Shillong from ₹1,200/day. Hatchbacks, sedans, SUVs. Self-drive & chauffeur options. No hidden charges.',
     'Best Budget-Friendly Car Rental in Shillong', 'Looking for affordable car rental in Shillong? XTSY offers the best rates starting at ₹1,200/day for hatchbacks with no hidden charges. Perfect for budget Meghalaya road trips.',
     [
@@ -202,7 +202,7 @@ const transportPages: SEOPageData[] = [
     [
       { question: 'Can I book a car for a one-way trip?', answer: 'Yes! We offer one-way rentals between Guwahati, Shillong, Cherrapunji, and Dawki. One-way charges apply.' },
     ],
-    ['car-rental-shillong', 'self-drive-car-shillong', 'cheap-car-rental-shillong'],
+    ['car-rental-shillong', 'self-drive-car-shillong', 'budget-car-rental-shillong'],
     ['car booking shillong', 'car hire shillong', 'book car online shillong', 'rent car shillong']
   ),
 
@@ -432,7 +432,7 @@ const accommodationExpansionPages: SEOPageData[] = [
     [
       { question: 'Are dorms safe?', answer: 'Yes! XTSY dorms have personal lockers, CCTV in common areas, and 24/7 reception. Our female-only dorm provides an extra layer of security.' },
     ],
-    ['shillong-dormitory', 'cheap-hostels-shillong', 'budget-stay-shillong'],
+    ['shillong-dormitory', 'budget-hostels-shillong', 'budget-stay-shillong'],
     ['dorms in shillong', 'dormitory room shillong', 'dorm stay shillong', 'shared room shillong']
   ),
 

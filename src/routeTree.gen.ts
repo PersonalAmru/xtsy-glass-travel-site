@@ -25,7 +25,6 @@ import { Route as BudgetTripToMeghalayaRouteImport } from './routes/budget-trip-
 import { Route as CateringShillongRouteImport } from './routes/catering-shillong'
 import { Route as CheapHostelInShillongRouteImport } from './routes/cheap-hostel-in-shillong'
 import { Route as CheapHostelShillongRouteImport } from './routes/cheap-hostel-shillong'
-import { Route as BudgetHostelsShillongRouteImport } from './routes/budget-hostels-shillong'
 import { Route as CheapHostelsShillongRouteImport } from './routes/cheap-hostels-shillong'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DestinationWeddingShillongRouteImport } from './routes/destination-wedding-shillong'
@@ -180,11 +179,6 @@ const CheapHostelShillongRoute = CheapHostelShillongRouteImport.update({
 const CheapHostelsShillongRoute = CheapHostelsShillongRouteImport.update({
   id: '/cheap-hostels-shillong',
   path: '/cheap-hostels-shillong',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BudgetHostelsShillongRoute = BudgetHostelsShillongRouteImport.update({
-  id: '/budget-hostels-shillong',
-  path: '/budget-hostels-shillong',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -554,7 +548,6 @@ export interface FileRoutesByFullPath {
   '/cheap-hostel-in-shillong': typeof CheapHostelInShillongRoute
   '/cheap-hostel-shillong': typeof CheapHostelShillongRoute
   '/cheap-hostels-shillong': typeof CheapHostelsShillongRoute
-  '/budget-hostels-shillong': typeof BudgetHostelsShillongRoute
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
@@ -641,7 +634,6 @@ export interface FileRoutesByTo {
   '/cheap-hostel-in-shillong': typeof CheapHostelInShillongRoute
   '/cheap-hostel-shillong': typeof CheapHostelShillongRoute
   '/cheap-hostels-shillong': typeof CheapHostelsShillongRoute
-  '/budget-hostels-shillong': typeof BudgetHostelsShillongRoute
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
@@ -729,7 +721,6 @@ export interface FileRoutesById {
   '/cheap-hostel-in-shillong': typeof CheapHostelInShillongRoute
   '/cheap-hostel-shillong': typeof CheapHostelShillongRoute
   '/cheap-hostels-shillong': typeof CheapHostelsShillongRoute
-  '/budget-hostels-shillong': typeof BudgetHostelsShillongRoute
   '/contact': typeof ContactRoute
   '/destination-wedding-shillong': typeof DestinationWeddingShillongRoute
   '/faq': typeof FaqRoute
@@ -1077,7 +1068,6 @@ export interface RootRouteChildren {
   CheapHostelInShillongRoute: typeof CheapHostelInShillongRoute
   CheapHostelShillongRoute: typeof CheapHostelShillongRoute
   CheapHostelsShillongRoute: typeof CheapHostelsShillongRoute
-  BudgetHostelsShillongRoute: typeof BudgetHostelsShillongRoute
   ContactRoute: typeof ContactRoute
   DestinationWeddingShillongRoute: typeof DestinationWeddingShillongRoute
   FaqRoute: typeof FaqRoute
@@ -1266,13 +1256,6 @@ declare module '@tanstack/react-router' {
       path: '/cheap-hostels-shillong'
       fullPath: '/cheap-hostels-shillong'
       preLoaderRoute: typeof CheapHostelsShillongRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/budget-hostels-shillong': {
-      id: '/budget-hostels-shillong'
-      path: '/budget-hostels-shillong'
-      fullPath: '/budget-hostels-shillong'
-      preLoaderRoute: typeof BudgetHostelsShillongRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -1765,7 +1748,6 @@ const rootRouteChildren: RootRouteChildren = {
   CheapHostelInShillongRoute: CheapHostelInShillongRoute,
   CheapHostelShillongRoute: CheapHostelShillongRoute,
   CheapHostelsShillongRoute: CheapHostelsShillongRoute,
-  BudgetHostelsShillongRoute: BudgetHostelsShillongRoute,
   ContactRoute: ContactRoute,
   DestinationWeddingShillongRoute: DestinationWeddingShillongRoute,
   FaqRoute: FaqRoute,

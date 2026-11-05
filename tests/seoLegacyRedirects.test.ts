@@ -44,14 +44,6 @@ function runHeadScript() {
 const REDIRECTS = generateRedirectMap();
 const MAP = generateSEOMap();
 
-describe('Budget hostel canonical migration', () => {
-  it('redirects every legacy Shillong cheap-hostel slug to the budget canonical', () => {
-    const redirects = generateRedirectMap();
-    expect(redirects['cheap-hostel-shillong']).toBe('budget-hostels-shillong');
-    expect(redirects['cheap-hostel-in-shillong']).toBe('budget-hostels-shillong');
-  });
-});
-
 describe('Legacy slug rewrites', () => {
   const samples = Object.entries(REDIRECTS).slice(0, 50); // hard-cap so suite runs fast
   if (samples.length === 0) {

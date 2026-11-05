@@ -15,6 +15,7 @@ import { SEO_YEAR } from '@/utils/seoDate';
 // =============================================================
 const LABEL_OVERRIDES: Record<string, string> = {
   cheap: 'Budget-friendly',
+  budget: 'Budget-friendly',
   cheapest: 'Best budget-friendly',
   cheaper: 'More affordable',
   neigrims: 'NEIGRIHMS',
@@ -270,7 +271,7 @@ export function buildIntentStayPage(slug: string): SEOPageData {
     stay = stayWord;
     city = cityWord;
     modifier = 'airport';
-  } else if (parts[0] === 'cheap' || parts[0] === 'best') {
+  } else if (parts[0] === 'cheap' || parts[0] === 'budget' || parts[0] === 'best') {
     modifier = parts[0];
     stay = parts[1];
     city = parts[3];
@@ -282,7 +283,7 @@ export function buildIntentStayPage(slug: string): SEOPageData {
 
   const stayLabel = slugToLabel(stay);
   const cityLabel = slugToLabel(city);
-  const intentLabel = intent ? ` ${slugToLabel(intent)}` : modifier ? ` (${slugToLabel(modifier)})` : '';
+  const intentLabel = intent ? ` ${slugToLabel(intent)}` : '';
   const title = seoTitle(`${modifier ? slugToLabel(modifier) + ' ' : ''}${stayLabel} in ${cityLabel}${intentLabel}`);
   const metaDescription = `Book a ${modifier ? slugToLabel(modifier).toLowerCase() + ' ' : ''}${stayLabel.toLowerCase()} in ${cityLabel}${intent ? ' for ' + intent.replace('-', ' ') : ''}. Live availability, best rates and 24/7 check-in. Get instant help on WhatsApp.`;
 
