@@ -45,16 +45,19 @@ jobs:
         run: bun install --frozen-lockfile || bun install
       - name: Install Playwright Chromium
         run: bunx playwright install --with-deps chromium
-      - name: Start dev server
+      - name: Build production app for smoke tests
+        if: ${{ github.event.inputs.base_url == '' }}
+        run: bun run build
+      - name: Start production preview
         if: ${{ github.event.inputs.base_url == '' }}
         run: |
-          # Public Supabase settings come from .env (empty secrets would override them).
-          (bun run dev > dev.log 2>&1 &)
+          # Smoke the production bundle, not Vite's mutable dev dependency optimizer.
+          (bun run preview -- --host 0.0.0.0 --port 8080 > preview.log 2>&1 &)
           for i in $(seq 1 90); do
-            curl -sf -o /dev/null http://localhost:8080/ && { echo "dev server up after ${i}x2s"; exit 0; }
+            curl -sf -o /dev/null http://localhost:8080/ && { echo "production preview up after ${i}x2s"; exit 0; }
             sleep 2
           done
-          echo "::error::dev server did not start"; tail -60 dev.log; exit 1
+          echo "::error::production preview did not start"; tail -60 preview.log; exit 1
       - name: Run SSR + hydration smoke tests
         run: |
           set -o pipefail
