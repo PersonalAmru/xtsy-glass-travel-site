@@ -58,7 +58,7 @@ const MENU_GROUPS = [
     title: 'XTSY',
     links: [
       { to: '/tab-bistro', label: 'TAB Bistro' },
-      { to: '/tab-bistro/catering', label: 'Catering' },
+      { to: '/catering-shillong', label: 'Catering' },
       { to: '/destination-wedding-shillong', label: 'Destination weddings' },
       { to: '/merch', label: 'XTSY merch' },
       { to: '/about', label: 'About us' },

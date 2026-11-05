@@ -43,7 +43,7 @@ const COLS = [
     title: 'XTSY',
     links: [
       { to: '/tab-bistro', label: 'TAB Bistro' },
-      { to: '/tab-bistro/catering', label: 'Catering' },
+      { to: '/catering-shillong', label: 'Catering' },
       { to: '/merch', label: 'Merch' },
       { to: '/destination-wedding-shillong', label: 'Destination weddings' },
       { to: '/xtsy-vs-zostel', label: 'XTSY vs Zostel' },

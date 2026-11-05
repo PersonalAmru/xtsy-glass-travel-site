@@ -56,7 +56,7 @@ export default function CateringV2({ canonical = 'https://xtsy.one/tab-bistro/ca
         <PageHero
           eyebrow="TAB Bistro Catering · Shillong"
           title="Feeding the whole party."
-          text="Weddings, corporate events and bulk orders. Multi-cuisine buffets, custom menus and live stations from the TAB kitchen, with veg, non-veg and Jain options."
+          text="Weddings, corporate events and bulk orders. Multi-cuisine buffets, custom menus and live stations from the TAB kitchen, with veg, non-veg and Jain options. Barbecue and grill options can be arranged for catering orders on request; they are not part of the regular TAB Bistro restaurant menu."
           actions={<><Btn to="#quote">Get a catering quote</Btn><Btn to="/tab-bistro" kind="outline">See the bistro menu</Btn></>}
           media={<Photo src={first(IMG.bistro)} alt="TAB Bistro by XTSY" eager tone="crimson" className="aspect-[628/520] rounded-[32px]" />}
         />

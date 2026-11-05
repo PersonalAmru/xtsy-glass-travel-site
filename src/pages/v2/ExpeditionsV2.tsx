@@ -90,6 +90,7 @@ export function ExpeditionRouteV2() {
     ...(detail ? [{ label: 'From', value: `${inr(detail.priceFrom)} per person` }] : []),
   ];
   const others = EXPEDITION_ROUTES.filter((r) => r.slug !== expedition.slug && r.types.includes(type as ExpeditionType));
+  const intro = `${expedition.summary}${detail ? ` By ${label.toLowerCase()} it takes ${detail.duration} and starts from ₹${detail.priceFrom.toLocaleString('en-IN')} per person with XTSY support.` : ''}`;
   const wa = waLink(`Hi! I'd like details on the ${expedition.name} ${label.toLowerCase()} expedition.`);
 
   return (
@@ -99,7 +100,7 @@ export function ExpeditionRouteV2() {
         size="md"
         eyebrow={`${label} expedition · ${expedition.name.split(' — ')[1] ?? `${expedition.distanceKm} km`}`}
         title={expedition.name.split(' — ')[0]}
-        text={<>{expedition.summary}{detail ? ` By ${label.toLowerCase()} it takes ${detail.duration} and starts from ${inr(detail.priceFrom)} per person with XTSY support.` : ''}</>}
+        text={intro}
         actions={<><Btn to={wa}>Ask on WhatsApp</Btn><Btn to="/book" kind="outline">Check availability</Btn></>}
         media={<Photo src={reviewedPhoto(`exp-${expedition.slug}`) || photoFor(expedition.name, expedition.highlights.join(' '))} alt={expedition.name} eager tone="slate" className="aspect-[628/480] rounded-[32px]" />}
       />

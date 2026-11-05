@@ -81,7 +81,8 @@ export function ConsentModal() {
               type="button"
               aria-expanded={showSettings}
               onClick={() => setShowSettings((v) => !v)}
-              className="inline-flex min-h-12 items-center font-bold text-xt-ink underline underline-offset-2 hover:text-xt-crimson"
+              variant="ghost"
+              className="inline-flex min-h-12 items-center bg-transparent font-bold text-xt-ink underline underline-offset-2 hover:bg-transparent hover:text-xt-crimson"
             >
               {showSettings ? 'Hide settings' : 'Settings'}
             </Button>

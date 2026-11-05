@@ -198,6 +198,8 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   // Retired dining pages (30 Oct 2026) — see RETIRED_DINING_SLUGS in
   // seoPagesDiningExpansion.ts for why each one was withdrawn. They are dropped
   // from the registry, so without a target here they would render a real 404.
+  // Historical misspelling discovered in the live dining sitemap crawl.
+  'barbeque-restaurant-shillong': '/catering-shillong',
   'cheap-restaurants-in-shillong': '/tab-bistro',
   'bulk-food-supply-shillong': '/catering-shillong',
   'office-lunch-catering-shillong': '/catering-shillong',
@@ -227,7 +229,7 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'veg-restaurant-in-police-bazar-shillong': '/tab-bistro',
   'cafe-in-laitumkhrah-shillong': '/tab-bistro',
   'cafe-in-police-bazar-shillong': '/tab-bistro',
-  'barbecue-restaurant-in-police-bazar-shillong': '/tab-bistro',
+  'barbecue-restaurant-in-police-bazar-shillong': '/catering-shillong',
   'north-indian-restaurant-in-police-bazar-shillong': '/tab-bistro',
   'family-restaurant-in-police-bazar-shillong': '/tab-bistro',
   'multi-cuisine-restaurant-in-laitumkhrah': '/tab-bistro',
@@ -238,7 +240,7 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'momos-in-laitumkhrah': '/tab-bistro',
   'veg-restaurant-in-laitumkhrah': '/tab-bistro',
   'north-indian-restaurant-in-laitumkhrah': '/tab-bistro',
-  'barbecue-restaurant-in-laitumkhrah': '/tab-bistro',
+  'barbecue-restaurant-in-laitumkhrah': '/catering-shillong',
   'biryani-in-police-bazar-shillong': '/tab-bistro',
   'family-restaurant-in-laitumkhrah': '/tab-bistro',
   'live-music-restaurant-shillong': '/tab-bistro',

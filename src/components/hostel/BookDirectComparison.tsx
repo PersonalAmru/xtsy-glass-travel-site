@@ -38,7 +38,12 @@ const BookDirectComparison = memo(({ className = '' }: { className?: string }) =
         flexible stay on top.
       </p>
 
-      <div className="mt-8 overflow-x-auto rounded-2xl border border-border/60">
+      <div
+        role="region"
+        aria-label="Book direct and online travel agency comparison"
+        tabIndex={0}
+        className="mt-8 overflow-x-auto rounded-2xl border border-border/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      >
         <table className="w-full text-sm min-w-[560px]">
           <thead>
             <tr className="bg-muted/50">
