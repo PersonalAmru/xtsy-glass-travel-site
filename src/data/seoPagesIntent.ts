@@ -1,5 +1,5 @@
 /**
- * Auto-generated SEO pages for intent-based stays (last-minute / today / tonight / budget / best) — 324 pages.
+ * Auto-generated SEO pages for intent-based stays (last-minute / today / tonight / best) — 288 pages.
  */
 import type { SEOPageData } from './seoPages';
 import { buildIntentStayPage } from './seoPageFactory';
