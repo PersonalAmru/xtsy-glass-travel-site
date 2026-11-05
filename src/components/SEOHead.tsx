@@ -28,32 +28,32 @@ interface SEOHeadProps {
 }
 
 const DEFAULT_TITLE = "XTSY — Best Hostel in Shillong, Meghalaya";
-const DEFAULT_DESCRIPTION = "India's biggest hostel in Shillong, Meghalaya. Budget dorms, Experience by XTSY, tours & experiences. Book direct for best rates.";
+const DEFAULT_DESCRIPTION = "Stay at XTSY Travellers Hostel in New Shillong Township, Shillong. Book dorm beds, private rooms and Experience by XTSY directly, or plan a Meghalaya trip with our travel desk.";
 const DEFAULT_OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/social-images/social-1765259372136-with_padding.png";
 const SEO_CONFIG: Record<string, { title: string; description: string; keywords?: string }> = {
   home: {
     title: "Best Hostel in Shillong from ₹399/night | XTSY",
-    description: "India's biggest hostel in Shillong. Dorms from ₹399, Experience by XTSY ₹5,999, curated Meghalaya tours from ₹7,999. Book direct — save 20-30% vs Booking.com.",
+    description: "XTSY Travellers Hostel in New Shillong Township, Shillong — dorm beds, private rooms, Experience by XTSY and curated Meghalaya travel experiences. Check live rates and book direct.",
     keywords: "best hostel Shillong, biggest hostel northeast India, Shillong hostel, Meghalaya accommodation, budget stay Shillong",
   },
   travel: {
     title: "Meghalaya Tour Packages from ₹13,999 | XTSY",
-    description: "30+ Meghalaya & Northeast India tour packages from ₹13,999. Living root bridges, Dawki, Cherrapunji, caving, bike rides. Direct booking saves up to 30%.",
+    description: "Explore Meghalaya and Northeast India with curated itineraries, local experiences, transport and stays arranged by XTSY. Plan a trip around Dawki, Cherrapunji, living root bridges and more.",
     keywords: "Meghalaya tour packages, Northeast India tours, living root bridges tour, Cherrapunji tour, Dawki trip",
   },
   gallery: {
     title: "XTSY Photo Gallery — Hostel & Experience by XTSY Photos",
-    description: "See inside XTSY Shillong — Experience by XTSY, dormitories, common areas, mountain views. Real photos from India's biggest hostel.",
+    description: "Browse photos of Meghalaya waterfalls, rivers, villages and viewpoints, alongside real images from XTSY stays and travel experiences in Shillong.",
     keywords: "XTSY photos, Shillong hostel gallery, glass suite photos, hostel rooms Meghalaya",
   },
   about: {
     title: "About XTSY — India's Biggest Hostel in Northeast",
-    description: "XTSY Travellers Hostel, Shillong. Experience by XTSY, India's first stargaze glamp, NEITA 2025 nominated. 2.5 hrs from Guwahati airport. Learn our story.",
+    description: "Meet XTSY, a Shillong-based travel and hospitality brand operating XTSY Travellers Hostel and Experience by XTSY, with curated trips and services across Northeast India.",
     keywords: "XTSY about, biggest hostel northeast, Shillong hostel story, NEITA 2025",
   },
   booking: {
     title: "Book Shillong Hostel — Dorms ₹399+ | XTSY",
-    description: "Book dorms from ₹399, King Double rooms from ₹2,399, Experience by XTSY at ₹5,999. Best price guaranteed at XTSY Shillong.",
+    description: "Check availability for XTSY dorm beds, private rooms and Experience by XTSY in New Shillong Township. Review your stay details and submit a direct booking enquiry.",
     keywords: "book hostel Shillong, hostel booking Meghalaya, Shillong room booking",
   },
   search: {
@@ -108,7 +108,7 @@ const SEO_CONFIG: Record<string, { title: string; description: string; keywords?
   },
   'privacy-policy': {
     title: "Privacy Policy | XTSY Travel",
-    description: "How XTSY protects your personal data. GDPR and India DPDP compliant privacy policy for hostel bookings and travel services.",
+    description: "Read how XTSY collects, uses, stores and protects personal information for accommodation bookings, travel enquiries and related services.",
     keywords: "XTSY privacy policy, data protection, DPDP compliance",
   },
   'terms-of-service': {
