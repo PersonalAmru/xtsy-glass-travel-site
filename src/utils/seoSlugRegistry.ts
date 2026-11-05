@@ -9,6 +9,7 @@
  */
 import { ALL_SEO_PAGES } from '@/data/seoPages';
 import { RECOVERY_REDIRECTS } from '@/data/seoAffectedSlugs';
+import { EXPEDITION_ROUTES } from '@/data/neTaxonomy';
 
 /** Hand-coded React Router routes (kept in sync with App.tsx). */
 export const STATIC_ROUTES: ReadonlyArray<string> = [
@@ -72,6 +73,8 @@ export const STATIC_ROUTES: ReadonlyArray<string> = [
   '/travel-guide/how-to-reach-meghalaya',
   '/travel-guide/meghalaya-for-international-tourists',
   '/hostel-near-me',
+  // Every route detail is data-driven; keep all valid type × route paths in the sitemap.
+  ...EXPEDITION_ROUTES.flatMap((route) => route.types.map((type) => `/expeditions/${type}/${route.slug}`)),
 ];
 
 /** Returns true if `path` resolves to a real React route, programmatic SEO
