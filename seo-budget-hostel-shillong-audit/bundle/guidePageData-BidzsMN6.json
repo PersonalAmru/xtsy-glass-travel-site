@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/guidePageData-BGJJATN6.js",
-      "totalBytes": 901076,
-      "mappedBytes": 900591,
+      "bundleName": ".output/public/assets/guidePageData-BidzsMN6.js",
+      "totalBytes": 901050,
+      "mappedBytes": 900565,
       "unmappedBytes": 485,
       "eolBytes": 0,
       "sourceMapCommentBytes": 0,
@@ -63,7 +63,7 @@
           "size": 6817
         },
         "../../../src/data/seoAffectedSlugs.ts": {
-          "size": 7616
+          "size": 7590
         },
         "../../../src/data/seoQualityFilter.ts": {
           "size": 1401
