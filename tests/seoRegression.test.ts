@@ -212,6 +212,16 @@ describe('SEO regression: budget hostel canonical migration', () => {
     expect(RECOVERY_REDIRECTS['cheap-car-rental-shillong']).toBe('/budget-car-rental-shillong');
   });
 
+
+  it('renders generated budget-intent pages with the right city and stay labels', async () => {
+    const { buildIntentStayPage } = await import('../src/data/seoPageFactory');
+    const page = buildIntentStayPage('budget-hostel-in-shillong');
+    expect(page.slug).toBe('budget-hostel-in-shillong');
+    expect(page.title).toContain('Budget-friendly Hostel in Shillong');
+    expect(page.h1).toBe('Budget-friendly Hostel in Shillong');
+    expect(page.category).toBe('hostels');
+  });
+
   it('registers public static pages and data-driven expedition routes for sitemap generation', async () => {
     const { STATIC_ROUTES } = await import('../src/utils/seoSlugRegistry');
     for (const route of ['/contact', '/guides', '/catering-shillong', '/meghalaya-festivals', '/partner-stays', '/backpacking-india', '/places-to-visit-in-meghalaya', '/travel-guide/guwahati-to-shillong-transport', '/travel-guide/how-to-reach-meghalaya', '/travel-guide/meghalaya-for-international-tourists', '/budget-hostels-shillong']) {
