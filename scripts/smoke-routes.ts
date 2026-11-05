@@ -128,6 +128,16 @@ async function checkHydration(routes: string[]): Promise<Failure[]> {
       if (/\b(401|403)\b/.test(text)) return;
       problems.push(text.slice(0, 200));
     });
+    page.on('response', (response) => {
+      const status = response.status();
+      if (status < 400) return;
+      const request = response.request();
+      const url = response.url();
+      // Analytics noise and expected anonymous auth probes are not hydration failures.
+      if (/contentsquare|googletagmanager|google-analytics|favicon/i.test(url)) return;
+      if (status === 401 || status === 403) return;
+      problems.push(`HTTP ${status} [${request.resourceType()}] ${url.slice(0, 240)}`);
+    });
     page.on('pageerror', (err) => problems.push(`uncaught: ${err.message.slice(0, 200)}`));
 
     try {
