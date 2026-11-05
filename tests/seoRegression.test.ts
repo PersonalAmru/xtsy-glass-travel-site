@@ -223,6 +223,23 @@ describe('SEO regression: budget hostel canonical migration', () => {
     expect(page.category).toBe('hostels');
   });
 
+
+  it('removes cheap wording from indexable programmatic page copy', async () => {
+    const { ALL_SEO_PAGES } = await import('../src/data/seoPages');
+    const visibleCopy = ALL_SEO_PAGES.flatMap(page => [
+      page.title,
+      page.metaDescription,
+      page.h1,
+      page.intro,
+      page.quickAnswer,
+      ...(page.keywords ? (Array.isArray(page.keywords) ? page.keywords : [page.keywords]) : []),
+      ...(page.sections ?? []).flatMap(section => [section.heading, section.content, ...(section.listItems ?? [])]),
+      ...(page.faqs ?? []).flatMap(faq => [faq.question, faq.answer]),
+    ]).filter((value): value is string => typeof value === 'string');
+    expect(visibleCopy.some(value => /\\bcheap\\b/i.test(value))).toBe(false);
+    expect(ALL_SEO_PAGES.some(page => page.slug.startsWith('cheap-'))).toBe(false);
+  });
+
   it('registers public static pages and data-driven expedition routes for sitemap generation', async () => {
     const { STATIC_ROUTES } = await import('../src/utils/seoSlugRegistry');
     for (const route of ['/contact', '/guides', '/catering-shillong', '/meghalaya-festivals', '/partner-stays', '/backpacking-india', '/places-to-visit-in-meghalaya', '/travel-guide/guwahati-to-shillong-transport', '/travel-guide/how-to-reach-meghalaya', '/travel-guide/meghalaya-for-international-tourists', '/budget-hostels-shillong']) {
