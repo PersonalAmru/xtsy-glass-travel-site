@@ -49,7 +49,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
           "Zion offers basic internet suitable for light browsing.",
           "Dedicated workstations are a standard feature at XTSY.",
           "Zion focuses on essential bedding and shared lockers.",
-          "XTSY has a rooftop terrace for relaxing; a rooftop café is coming soon."
+          "XTSY offers forest-side and open-air seating; no rooftop café is currently advertised."
         ],
         "heading": "Amenities and Connectivity",
         "content": "Modern travellers often prioritise connectivity and comfort features when choosing their Shillong base."
@@ -2012,7 +2012,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     ]
   },
   {
-    "slug": "cheap-homestay-in-cherrapunji",
+    "slug": "budget-homestay-in-cherrapunji",
     "title": "Budget-Friendly Homestay in Cherrapunji? Read This Before You Book",
     "h1": "Budget-Friendly Homestay in Cherrapunji: An Honest Guide",
     "metaDescription": "Cherrapunji homestays are basic and limited. For a more affordable, more reliable stay, book XTSY Travellers Hostel in Shillong (dorms from ₹399, 24/7 check-in) and day-trip to Sohra. WhatsApp +91 8837317070.",
@@ -2304,7 +2304,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     ]
   },
   {
-    "slug": "cheap-hostel-in-cherrapunji",
+    "slug": "budget-hostel-in-cherrapunji",
     "h1": "Budget-Friendly Hostels and Budget Stays in Cherrapunji",
     "sections": [
       {
@@ -2890,7 +2890,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "title": "Hostel in Guwahati Right Now — Book via XTSY Partners"
   },
   {
-    "slug": "cheap-hostel-in-guwahati",
+    "slug": "budget-hostel-in-guwahati",
     "quickAnswer": "XTSY's own property is only in New Shillong Township, Meghalaya. In Guwahati, XTSY arranges stays on a budget, transport and travel help through trusted travel partners — WhatsApp +91 88373 17070 with your dates for live options.",
     "title": "Budget-Friendly Hostel in Guwahati — Budget Stays via XTSY Partners",
     "sections": [
@@ -3481,7 +3481,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
     "h1": "Hostel in Gangtok Right Now"
   },
   {
-    "slug": "cheap-hostel-in-gangtok",
+    "slug": "budget-hostel-in-gangtok",
     "title": "Budget-Friendly Hostel in Gangtok — Budget Stays via XTSY Partners",
     "quickAnswer": "XTSY's own property is only in New Shillong Township, Meghalaya. In Gangtok, XTSY arranges stays on a budget, transport and travel help through trusted travel partners — WhatsApp +91 88373 17070 with your dates for live options.",
     "h1": "Budget-Friendly Hostels and Budget Stays in Gangtok",
