@@ -233,6 +233,7 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'youth-hostel-shillong': '/best-hostel-in-shillong',
   'backpacker-hostel-shillong': '/best-hostel-in-shillong',
   'cheap-hostel-shillong': '/budget-hostels-shillong',
+  'cheap-hostels-shillong': '/budget-hostels-shillong',
   'cheap-hostel-in-shillong': '/budget-hostels-shillong',
   // Stays → consolidated hostel pillar
   'oyo-rooms-shillong-alternative': '/best-hostel-in-shillong',
