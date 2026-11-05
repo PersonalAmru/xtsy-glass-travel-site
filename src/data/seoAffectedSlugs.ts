@@ -158,12 +158,12 @@ export const RECOVERY_PLACES_PATHS: ReadonlyArray<string> = [
  * <Navigate replace> so Google consolidates equity into the canonical URL.
  */
 
-const INTENT_STAY_CITIES = ['shillong', 'cherrapunji', 'guwahati', 'gangtok', 'kohima', 'imphal'] as const;
+// Only include destinations present in neTaxonomy; Sikkim/Gangtok has no city hub yet.
+const INTENT_STAY_CITIES = ['shillong', 'cherrapunji', 'guwahati', 'kohima', 'imphal'] as const;
 const INTENT_STAY_TYPES = ['hostel', 'hotel', 'homestay', 'guesthouse', 'budget-stay', 'glamping'] as const;
 const INTENT_STAY_DESTINATIONS: Record<string, string> = {
   cherrapunji: '/destinations/meghalaya/cherrapunji',
   guwahati: '/destinations/assam/guwahati',
-  gangtok: '/destinations/sikkim/gangtok',
   kohima: '/destinations/nagaland/kohima',
   imphal: '/destinations/manipur/imphal',
 };
@@ -189,6 +189,9 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   // Retired dining pages (30 Oct 2026) — see RETIRED_DINING_SLUGS in
   // seoPagesDiningExpansion.ts for why each one was withdrawn. They are dropped
   // from the registry, so without a target here they would render a real 404.
+  'cheap-restaurants-in-shillong': '/tab-bistro',
+  'bulk-food-supply-shillong': '/catering-shillong',
+  'office-lunch-catering-shillong': '/catering-shillong',
   'best-restaurant-in-police-bazar-shillong': '/tab-bistro',
   'best-restaurants-in-laitumkhrah': '/tab-bistro',
   'restaurants-near-police-bazar': '/tab-bistro',
