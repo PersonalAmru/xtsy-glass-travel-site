@@ -79,7 +79,6 @@ export const RECOVERY_LIVE_PAGES: ReadonlyArray<string> = [
   '4-day-meghalaya-itinerary',
   '6-day-meghalaya-itinerary',
   '8-day-meghalaya-itinerary',
-  'cheap-hostels-shillong',
   'cherrapunji-tour-package',
   'couples-hostel-shillong',
   'dawki-tour-package',
@@ -218,6 +217,8 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'pure-vegetarian-restaurant-shillong': '/tab-bistro',
   // Real routes that Google sees but render as homepage / 404 due to typo
   'faq': '/about',
+  // Workation intent alias → canonical work-from-home page
+  'remote-work-stay-shillong': '/work-from-home',
   // Vehicle rentals → consolidated rental landing
   'car-rental-shillong': '/xtsy-rentals',
   'car-rental-northeast-india': '/xtsy-rentals',
@@ -231,8 +232,8 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'hostels-in-shillong': '/best-hostel-in-shillong',
   'youth-hostel-shillong': '/best-hostel-in-shillong',
   'backpacker-hostel-shillong': '/best-hostel-in-shillong',
-  'cheap-hostel-shillong': '/cheap-hostels-shillong',
-  'cheap-hostel-in-shillong': '/cheap-hostels-shillong',
+  'cheap-hostel-shillong': '/budget-hostels-shillong',
+  'cheap-hostel-in-shillong': '/budget-hostels-shillong',
   // Stays → consolidated hostel pillar
   'oyo-rooms-shillong-alternative': '/best-hostel-in-shillong',
   'guest-house-neigrihms-shillong': '/best-hostel-in-shillong',
