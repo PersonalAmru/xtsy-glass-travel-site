@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-11-05T12:19:30.000Z",
+ "checkedAt": "2026-11-05T12:26:30.121Z",
  "site": "http://localhost:4174",
  "sitemaps": [
   {
@@ -35,7 +35,7 @@
   {
    "sitemap": "https://xtsy.one/sitemap-programmatic.xml",
    "status": 200,
-   "urls": 55
+   "urls": 57
   },
   {
    "sitemap": "https://xtsy.one/sitemap-dining.xml",
@@ -53,17 +53,17 @@
    "urls": 2
   }
  ],
- "urlsChecked": 715,
+ "urlsChecked": 717,
  "healthy": 699,
- "withIssues": 16,
+ "withIssues": 18,
  "byIssue": {
   "noindex but listed in sitemap": 1,
   "old dorm price  on page": 1,
   "long title": 5,
-  "HTTP 301": 9
+  "HTTP 301": 11
  },
  "medianMs": 24,
- "p95Ms": 51,
+ "p95Ms": 52,
  "withStructuredData": 706,
  "withQuickAnswer": 502,
  "extra": {

@@ -4,6 +4,6 @@ $ vite dev
   [32m[1mVITE[22m v8.2.1[39m  [2mready in [0m[1m726[22m[2m[0m ms[22m
 
   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m8080[22m/[39m
-  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.1.1.110:[1m8080[22m/[39m  [2meth0[22m
-[2m12:18:01 PM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m connected.
-[2m12:19:19 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2m.output/public/google26fc7f8979f6290c.html[22m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.1.1.27:[1m8080[22m/[39m  [2meth0[22m
+[2m12:25:00 PM[22m [36m[1m[vite][22m[39m [34m[2m(ssr)[22m[39m connected.
+[2m12:26:19 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2m.output/public/google26fc7f8979f6290c.html[22m
