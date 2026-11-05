@@ -15,6 +15,7 @@ interface DestinationGalleryProps {
 
 const DestinationGallery = ({ images, destinationName, className = '' }: DestinationGalleryProps) => {
   const { validImages, loading } = useValidatedImages(images);
+  const displayImages = loading ? images : validImages;
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
@@ -23,16 +24,14 @@ const DestinationGallery = ({ images, destinationName, className = '' }: Destina
   const navigate = (direction: 'prev' | 'next') => {
     if (lightboxIndex === null) return;
     if (direction === 'prev') {
-      setLightboxIndex(lightboxIndex === 0 ? validImages.length - 1 : lightboxIndex - 1);
+      setLightboxIndex(lightboxIndex === 0 ? displayImages.length - 1 : lightboxIndex - 1);
     } else {
-      setLightboxIndex(lightboxIndex === validImages.length - 1 ? 0 : lightboxIndex + 1);
+      setLightboxIndex(lightboxIndex === displayImages.length - 1 ? 0 : lightboxIndex + 1);
     }
   };
 
   // Emit the supplied images in server HTML immediately; remove broken URLs after hydration.
   // This keeps destination/gallery imagery discoverable to crawlers without trusting bad CDN links forever.
-  const displayImages = loading ? images : validImages;
-
   // Determine grid columns based on image count
   const gridClass = useMemo(() => {
     const count = displayImages.length;
