@@ -208,7 +208,8 @@ describe('SEO regression: budget hostel canonical migration', () => {
     expect(slugs).not.toContain('cheap-budget-stay-in-shillong');
     const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
     expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostels-shillong');
-    expect(RECOVERY_REDIRECTS['cheap-hotel-in-gangtok']).toBe('/destinations/sikkim/gangtok');
+    expect(RECOVERY_REDIRECTS['cheap-hotel-in-gangtok']).toBe('/destinations');
+    expect(RECOVERY_REDIRECTS['cheap-hostel-in-gangtok']).toBe('/destinations');
     expect(RECOVERY_REDIRECTS['cheap-car-rental-shillong']).toBe('/xtsy-rentals');
     expect(RECOVERY_REDIRECTS['budget-car-rental-shillong']).toBe('/xtsy-rentals');
   });
