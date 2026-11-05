@@ -217,6 +217,8 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'pure-vegetarian-restaurant-shillong': '/tab-bistro',
   // Real routes that Google sees but render as homepage / 404 due to typo
   'faq': '/about',
+  // Workation intent alias → canonical work-from-home page
+  'remote-work-stay-shillong': '/work-from-home',
   // Vehicle rentals → consolidated rental landing
   'car-rental-shillong': '/xtsy-rentals',
   'car-rental-northeast-india': '/xtsy-rentals',
