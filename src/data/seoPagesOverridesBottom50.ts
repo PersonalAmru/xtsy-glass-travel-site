@@ -49,7 +49,7 @@ export const BOTTOM50_SEO_REWRITES: SEOOverride[] = [
           "Zion offers basic internet suitable for light browsing.",
           "Dedicated workstations are a standard feature at XTSY.",
           "Zion focuses on essential bedding and shared lockers.",
-          "XTSY has a rooftop terrace for relaxing; a rooftop café is coming soon."
+          "XTSY offers forest-side and open-air seating; no rooftop café is currently advertised."
         ],
         "heading": "Amenities and Connectivity",
         "content": "Modern travellers often prioritise connectivity and comfort features when choosing their Shillong base."
