@@ -31,27 +31,27 @@
   "stale:year": {
    "pages": 1109,
    "examples": [
-    "/xtsy-vs-zostel — 2025 — \"9.4 Booking.com rating 50+ Guests at once NEITA 2025 Nominated, Best Budget-Fr\"",
     "/xtsy-rentals — 2025 — \"al 7 seats ₹4,000 /day Book on WhatsApp Top End 2025 Premium SUV Mahindra XUV \"",
     "/privacy-policy — 2023 — \"nt with the Digital Personal Data Protection Act, 2023 (DPDP Act) of India, Gene\"",
     "/about — 2025 — \"y XTSY, India's first stargaze glamp, and a NEITA 2025 nomination..\"",
     "/about — 2025 — \"om ₹399 a night. Recognition Nominated at NEITA 2025 XTSY Traveller’s Hostel \"",
     "/about — 2025 — \"lence Award at the Northeast India Tourism Awards 2025, an initiative of the Eme\"",
     "/about — 2025 — \" North-East Eco Forum (ENEEF), held on 11 October 2025 in Guwahati. Location & \"",
+    "/xtsy-vs-zostel — 2025 — \"9.4 Booking.com rating 50+ Guests at once NEITA 2025 Nominated, Best Budget-Fr\"",
     "/budget-hostels-shillong — 2025 — \"ick XTSY ✓ 4.7★ on Google (252 reviews) ✓ NEITA 2025 nominee — Best Budget-Fri\"",
-    "/hostel-near-police-bazar-shillong — 2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
-    "/hostel-near-police-bazar-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
     "/shillong-dormitory — 2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
-    "/shillong-dormitory — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
+    "/shillong-dormitory — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\"",
+    "/hostel-near-police-bazar-shillong — 2025 — \"details Backed by XTSY — Northeast India's NEITA 2025-nominated hospitality bra\"",
+    "/hostel-near-police-bazar-shillong — 2025 — \"d tours, weddings, catering and rentals. ✓ NEITA 2025 nominee — Best Budget-Fri\""
    ]
   },
   "rating:review count": {
    "pages": 588,
    "examples": [
     "/ — 252 — \"oad come from trusted travel partners. See the routes Guest reviews 4.7 on Google from 252 reviews 9.4 on Booking.com ★★★★★ \"",
-    "/xtsy-vs-zostel — 252 — \"illong Township, with trusted travel partners wherever the road goes. 4.7 Google rating (252 reviews) 9.4 Booking.com rating 50\"",
     "/xtsy-adventure-campsite-dawki — 252 — \"erch Plan with AI Sign in Book now Dawki riverside camping · booked via XTSY · 4.7★ · 252 Google reviews Sleep beside the cle\"",
     "/about — 252 — \" travel partners. How highly rated is XTSY? + XTSY Travellers Hostel is rated 4.7★ from 252 Google reviews and has hosted 10,786\"",
+    "/xtsy-vs-zostel — 252 — \"illong Township, with trusted travel partners wherever the road goes. 4.7 Google rating (252 reviews) 9.4 Booking.com rating 50\"",
     "/budget-hostels-shillong — 252 — \"dates; check-in 11 AM, check-out strictly 10 AM. Why guests pick XTSY ✓ 4.7★ on Google (252 reviews) ✓ NEITA 2025 nominee — Bes\"",
     "/budget-hostels-shillong — 252 — \"s Hostel in New Shillong Township is one of the best-rated hostels in Shillong (4.7★ from 252 Google reviews). Dorms start at ₹399\"",
     "/hostel-booking — 252 — \"ostel direct. The desk confirms availability on WhatsApp; one free date change, 4.7★ from 252 Google reviews. 4.7 / 5 · 252 Googl\"",
@@ -66,11 +66,11 @@
    "pages": 6,
    "examples": [
     "/expeditions/4x4/guwahati-to-shillong — 111",
-    "/expeditions/motorbike/guwahati-to-kohima — 154",
-    "/expeditions/motorbike/meghalaya-loop — 137",
-    "/expeditions/4x4/guwahati-to-kohima — 154",
     "/expeditions/motorbike/guwahati-to-shillong — 110",
-    "/expeditions/4x4/meghalaya-loop — 137"
+    "/expeditions/motorbike/guwahati-to-kohima — 154",
+    "/expeditions/4x4/guwahati-to-kohima — 154",
+    "/expeditions/4x4/meghalaya-loop — 137",
+    "/expeditions/motorbike/meghalaya-loop — 137"
    ]
   },
   "policy:cancellation/refund claim": {
@@ -86,11 +86,11 @@
   "seo:title > 60 chars": {
    "pages": 5,
    "examples": [
-    "/expeditions/motorbike/guwahati-to-tawang — 65: Guwahati to Tawang via Assam Motorbike Route: Permits, Season, Co",
-    "/expeditions/4x4/guwahati-to-tawang — 61: Guwahati to Tawang via Assam 4x4 Route: Permits, Season, Cost",
     "/expeditions/motorbike/guwahati-to-kohima — 65: Guwahati to Kohima via Assam Motorbike Route: Permits, Season, Co",
+    "/expeditions/4x4/guwahati-to-kohima — 61: Guwahati to Kohima via Assam 4x4 Route: Permits, Season, Cost",
     "/expeditions/motorbike/meghalaya-loop — 65: Meghalaya Loop — Shillong · Dawki · Mawlynnong · Cherrapunji Moto",
-    "/expeditions/4x4/guwahati-to-kohima — 61: Guwahati to Kohima via Assam 4x4 Route: Permits, Season, Cost"
+    "/expeditions/motorbike/guwahati-to-tawang — 65: Guwahati to Tawang via Assam Motorbike Route: Permits, Season, Co",
+    "/expeditions/4x4/guwahati-to-tawang — 61: Guwahati to Tawang via Assam 4x4 Route: Permits, Season, Cost"
    ]
   },
   "schema:aggregateRating": {
@@ -111,18 +111,18 @@
     "/merch — "
    ]
   },
-  "policy:pets": {
-   "pages": 2,
-   "examples": [
-    "/xtsy-vs-zostel — d and size). Zostel Shillong lists an 18+ rule, groups of up to 6 and no pets. Does XTSY arrange trips for groups? Yes",
-    "/best-hostel-in-shillong — nd birds welcome, dogs by breed and size 18+ only, groups of up to 6, no pets Guest rating 4.7★ from 252 Google reviews"
-   ]
-  },
   "placeholder:coming soon": {
    "pages": 2,
    "examples": [
     "/tab-bistro — on. Book a table View the menu WhatsApp us Rooftop terrace · café coming soon North Indian Indo-Chinese Thai Contin",
     "/restaurant-in-shillong —  Dining A rooftop terrace with panoramic views — the rooftop café is coming soon. Traveller's Feast Multi-cuisine din"
+   ]
+  },
+  "policy:pets": {
+   "pages": 2,
+   "examples": [
+    "/xtsy-vs-zostel — d and size). Zostel Shillong lists an 18+ rule, groups of up to 6 and no pets. Does XTSY arrange trips for groups? Yes",
+    "/best-hostel-in-shillong — nd birds welcome, dogs by breed and size 18+ only, groups of up to 6, no pets Guest rating 4.7★ from 252 Google reviews"
    ]
   },
   "location:\"heart of Shillong\"": {
@@ -132,16 +132,16 @@
     "/restaurants-in-police-bazar-shillong — rgaze glamping ensuite, both in Shillong. Police Bazar is the beating heart of Shillong's food scene — restaurants, café"
    ]
   },
-  "seo:description > 160 chars": {
-   "pages": 1,
-   "examples": [
-    "/tab-bistro — 181: Live tandoor, XTSY dum biryani, Indo-Chinese, North Indian gravies, South Indian breakfast…"
-   ]
-  },
   "policy:check-in time": {
    "pages": 1,
    "examples": [
     "/safety-house-rules — n-only stays, 11 AM check-in, strict 10 AM check-out and quiet hours 10 PM–7 AM "
+   ]
+  },
+  "seo:description > 160 chars": {
+   "pages": 1,
+   "examples": [
+    "/tab-bistro — 181: Live tandoor, XTSY dum biryani, Indo-Chinese, North Indian gravies, South Indian breakfast…"
    ]
   },
   "seo:thin (<300 words)": {

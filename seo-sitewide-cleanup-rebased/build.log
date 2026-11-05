@@ -309,7 +309,7 @@ computing gzip size...
 .output/public/assets/index-CEWhz-T7.js                                        429.90 kB │ gzip: 135.44 kB │ map: 1,634.29 kB
 .output/public/assets/guidePageData-DBOG5m44.js                                911.42 kB │ gzip: 233.11 kB │ map: 1,307.03 kB
 
-[32m✓ built in 3.36s[39m
+[32m✓ built in 3.50s[39m
 [33m[plugin builtin:vite-reporter] 
 (!) Some chunks are larger than 500 kB after minification. Consider:
 - Using dynamic import() to code-split the application
@@ -514,7 +514,7 @@ node_modules/.nitro/vite/services/ssr/assets/guidePageData-DhlM0zfl.js          
 [39m
 [33m[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/data/searchIndex.ts is dynamically imported by src/hooks/useIntelligentSearch.ts but also statically imported by src/components/IntelligentSearchOverlay.tsx, dynamic import will not move module into another chunk.
 [39m
-[32m✓ built in 1.64s[39m
+[32m✓ built in 1.59s[39m
 [start] [nitro] Building [[35mNitro[39m] [2m(preset: `cloudflare-module`, compatibility: `2026-11-05`)[22m
 [success] [nitro] Generated public [36m.output/public[39m
 [36mvite v8.2.1 [32mbuilding nitro environment for production...[36m[39m
@@ -724,7 +724,7 @@ computing gzip size...
 .output/server/_libs/@tanstack/react-router+[...].mjs                    752.69 kB │ gzip: 159.14 kB
 .output/server/_ssr/guidePageData-DhlM0zfl.mjs                         1,025.57 kB │ gzip: 248.09 kB
 
-[32m✓ built in 1.55s[39m
+[32m✓ built in 1.54s[39m
 [info] [nitro] Using auto generated worker name: `personalamru-xtsy-glass-travel-site`
 [info] Generated [36m.output/server/wrangler.json[39m
 [info] Generated [36m.wrangler/deploy/config.json[39m
