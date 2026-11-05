@@ -45,6 +45,8 @@ function extractRoutes(): string[] {
   const paths = [...block.matchAll(/^\s*'([^']+)':/gm)].map((m) => m[1]);
   return [...new Set(paths)]
     .filter((p) => !p.startsWith('/api/'))
+    // Lovable control-plane routes are authenticated/internal endpoints, not public app pages.
+    .filter((p) => !p.startsWith('/lovable/'))
     .filter((p) => !p.includes('$_') && !p.endsWith('/$'))
     .map((p) =>
       p.replace(/\$([A-Za-z0-9_]+)/g, (_m, name: string) => PARAM_SAMPLES[name] ?? 'sample'),
