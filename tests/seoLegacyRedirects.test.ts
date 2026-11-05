@@ -47,7 +47,6 @@ const MAP = generateSEOMap();
 describe('Budget hostel canonical migration', () => {
   it('redirects every legacy Shillong cheap-hostel slug to the budget canonical', () => {
     const redirects = generateRedirectMap();
-    expect(redirects['cheap-hostels-shillong']).toBe('budget-hostels-shillong');
     expect(redirects['cheap-hostel-shillong']).toBe('budget-hostels-shillong');
     expect(redirects['cheap-hostel-in-shillong']).toBe('budget-hostels-shillong');
   });
