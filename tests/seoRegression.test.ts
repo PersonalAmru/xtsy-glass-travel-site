@@ -198,6 +198,20 @@ describe('SEO regression: budget hostel canonical migration', () => {
     expect(RECOVERY_REDIRECTS['photography-tour-tripura']).toBe('/destinations/tripura');
   });
 
+
+  it('migrates generated cheap-intent URLs to budget slugs and preserves 301s', async () => {
+    const { generateIntentStaySlugs } = await import('../scripts/generate-seo-slugs');
+    const slugs = generateIntentStaySlugs();
+    expect(slugs).toContain('budget-hostel-in-shillong');
+    expect(slugs).not.toContain('cheap-hostel-in-shillong');
+    expect(slugs).toContain('budget-stay-in-shillong');
+    expect(slugs).not.toContain('cheap-budget-stay-in-shillong');
+    const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
+    expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostel-in-shillong');
+    expect(RECOVERY_REDIRECTS['cheap-hotel-in-gangtok']).toBe('/budget-hotel-in-gangtok');
+    expect(RECOVERY_REDIRECTS['cheap-car-rental-shillong']).toBe('/budget-car-rental-shillong');
+  });
+
   it('registers public static pages and data-driven expedition routes for sitemap generation', async () => {
     const { STATIC_ROUTES } = await import('../src/utils/seoSlugRegistry');
     for (const route of ['/contact', '/guides', '/catering-shillong', '/meghalaya-festivals', '/partner-stays', '/backpacking-india', '/places-to-visit-in-meghalaya', '/travel-guide/guwahati-to-shillong-transport', '/travel-guide/how-to-reach-meghalaya', '/travel-guide/meghalaya-for-international-tourists', '/budget-hostels-shillong']) {
