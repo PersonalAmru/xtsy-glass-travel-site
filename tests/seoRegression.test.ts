@@ -176,6 +176,16 @@ describe('SEO regression: budget hostel canonical migration', () => {
     expect(RECOVERY_REDIRECTS['cheap-hostel-shillong']).toBe('/budget-hostels-shillong');
     expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostels-shillong');
     expect(RECOVERY_REDIRECTS['cheap-hostels-shillong']).toBe('/budget-hostels-shillong');
+    expect(RECOVERY_REDIRECTS['remote-work-stay-shillong']).toBe('/work-from-home');
+  });
+
+  it('registers public static pages and data-driven expedition routes for sitemap generation', async () => {
+    const { STATIC_ROUTES } = await import('../src/utils/seoSlugRegistry');
+    for (const route of ['/contact', '/guides', '/catering-shillong', '/meghalaya-festivals', '/partner-stays', '/backpacking-india', '/places-to-visit-in-meghalaya', '/travel-guide/guwahati-to-shillong-transport', '/travel-guide/how-to-reach-meghalaya', '/travel-guide/meghalaya-for-international-tourists', '/budget-hostels-shillong']) {
+      expect(STATIC_ROUTES).toContain(route);
+    }
+    expect(STATIC_ROUTES).toContain('/expeditions/motorbike/guwahati-to-shillong');
+    expect(STATIC_ROUTES).toContain('/expeditions/4x4/guwahati-to-shillong');
   });
 
   it('publishes only the canonical budget hub in static sitemap data', () => {
