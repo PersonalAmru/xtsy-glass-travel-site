@@ -21,7 +21,6 @@ export const RECOVERY_FILTERED_OUT: ReadonlyArray<string> = [
   'camping-in-shnongpdeng',
   'car-booking-shillong',
   'car-rental-guwahati',
-  'cheap-car-rental-shillong',
   'corporate-retreat-shillong',
   'dawki-umngot-river-guide',
   'fishing-in-dawki',
