@@ -2,7 +2,7 @@
  * Content + facts audit over every page's server HTML (what Google and AI crawlers read).
  *
  * Checks each page against the owner-confirmed facts:
- *  - prices (per room type), rating 4.7 / 237 reviews (TAB Bistro 4.7 / 142), 10,786+ guests
+ *  - prices (per room type), rating 4.7 / 252 reviews (TAB Bistro 4.7 / 142), 10,786+ guests
  *  - location (New Shillong Township, Mawdiangdiang Road, 793018), phone, email
  *  - no free cancellation / booking amount non-refundable, pet policy, check-in/out
  * plus placeholders, stale years, JSON-LD validity and facts, SEO and AEO signals.
@@ -23,7 +23,7 @@ const PRICES: { key: string; re: RegExp; ok: number[] }[] = [
   { key: 'Experience by XTSY', re: /270|panorama|glass (suite|room|ensuite|house)|experience by xtsy|stargaze/i, ok: [5999, 2500, 11999] },
   { key: 'dorm "from" price', re: /(dorm|bed)s?\s*(beds?\s*)?(from|starting|start at|at just|for just|only)/i, ok: [399] },
 ];
-const RATING = { hostel: ['4.7', '237'], bistro: ['4.7', '142'] };
+const RATING = { hostel: ['4.7', '252'], bistro: ['4.7', '142'] };
 const PHONE_OK = /8837317070/;
 const EMAIL_OK = /^(admin|info|hello|bookings?|support)@xtsy\.one$/i;
 /** Own properties only: partner stays (e.g. the Dawki campsite) have their own address. */
@@ -56,8 +56,11 @@ function factChecks(url: string, text: string, f: Finding[]) {
       const g = new RegExp(p.re.source, p.re.flags.includes('g') ? p.re.flags : p.re.flags + 'g');
       for (const mm of own.matchAll(g)) if (mm.index! > bestAt) { bestAt = mm.index!; best = p; }
     }
-    if (best) {
-      // Only judge amounts in the plausible range for that room type.
+    const rangeContext = ctx(text, m.index!, 45, 45);
+    const isPriceRange = /₹\s?[\d,]+\s*(?:-|–|—|\bto\b)\s*₹?\s?[\d,]+/i.test(rangeContext);
+    if (best && !isPriceRange) {
+      // Only judge exact amounts in the plausible range for that room type.
+      // Generic market/experience ranges (e.g. ₹5,000–15,000 per night) are not room-rate claims.
       const lo = Math.min(...best.ok) * 0.6, hi = Math.max(...best.ok) * 1.5;
       if (v >= lo && v <= hi && !best.ok.includes(v)) f.push({ rule: `price:${best.key}`, detail: `₹${v} — "${ctx(text, m.index!)}"` });
     }
@@ -76,26 +79,49 @@ function factChecks(url: string, text: string, f: Finding[]) {
   for (const m of text.matchAll(/([\d,]{2,6})\+?\s*(?:google\s+|verified\s+|guest\s+|5-star\s+)?reviews/gi)) {
     const v = m[1].replace(/,/g, '');
     const around = ctx(text, m.index!, 90, 40);
-    if (!['237', '142'].includes(v) && !/zostel|hosteller|oyo|vs\b|other/i.test(around)) f.push({ rule: 'rating:review count', detail: `${v} — "${around}"` });
+    const bistro = /bistro|restaurant|tab\b/i.test(around);
+    const expected = bistro ? RATING.bistro[1] : RATING.hostel[1];
+    if (v !== expected && !/zostel|hosteller|oyo|vs\b|other/i.test(around)) f.push({ rule: 'rating:review count', detail: `${v} (expected ${expected}) — "${around}"` });
   }
   for (const m of text.matchAll(/([\d,]{3,7})\+?\s*(?:happy\s+|global\s+|satisfied\s+)?(?:guests|travell?ers|backpackers|visitors)\b/gi)) {
     const v = num(m[1]);
     if (v >= 500 && v !== 10786) f.push({ rule: 'guests:count', detail: `${m[1]} — "${ctx(text, m.index!)}"` });
   }
-  // Location
-  for (const m of text.matchAll(/(located|situated|based|nestled|we are|hostel is|stay)\s+(in|at|near|on)\s+(the heart of\s+)?(Mawkhar|Police Baza[a]?r|Laitumkhrah|central Shillong|Shillong city cent(re|er)|Upper Shillong|Mawlai|Lachumiere)/gi))
-    f.push({ rule: 'location:wrong area', detail: ctx(text, m.index!, 60, 80) });
-  if (/heart of shillong/i.test(text)) f.push({ rule: 'location:"heart of Shillong"', detail: ctx(text, text.search(/heart of shillong/i)) });
+  // Location: only flag a wrong-area claim when the same sentence explicitly places
+  // XTSY/our property there. General descriptions of Shillong neighbourhoods are valid.
+  const sentenceAt = (source: string, index: number) => {
+    const start = Math.max(source.lastIndexOf('.', index - 1), source.lastIndexOf('\n', index - 1)) + 1;
+    const stops = [source.indexOf('.', index), source.indexOf('\n', index)].filter((n) => n >= 0);
+    const end = stops.length ? Math.min(...stops) : source.length;
+    return source.slice(start, end);
+  };
+  const isOwnLocationSentence = (sentence: string) =>
+    /\b(?:XTSY|our\s+(?:hostel|property|hotel|rooms?|stay|address)|we\s+are)\b/i.test(sentence);
+  for (const m of text.matchAll(/(located|situated|based|nestled|we are|hostel is|stay)\s+(in|at|near|on)\s+(the heart of\s+)?(Mawkhar|Police Baza[a]?r|Laitumkhrah|central Shillong|Shillong city cent(re|er)|Upper Shillong|Mawlai|Lachumiere)/gi)) {
+    const sentence = sentenceAt(text, m.index!);
+    if (isOwnLocationSentence(sentence)) f.push({ rule: 'location:wrong area', detail: sentence.replace(/\s+/g, ' ').trim().slice(0, 220) });
+  }
   for (const m of text.matchAll(/\b7930\d\d\b/g)) if (m[0] !== '793018' && /xtsy|hostel|address|mawdiangdiang/i.test(ctx(text, m.index!, 120, 10))) f.push({ rule: 'location:pincode', detail: ctx(text, m.index!) });
-  // Policies
+  // Policies: distinguish booking cancellation rights from refundable rental/security deposits
+  // and the narrow remedy when XTSY itself cannot provide the booked accommodation.
   for (const m of text.matchAll(/(free cancell?ation|fully refundable|full refund|100% refund|refundable|cancel (for free|anytime)|flexible cancell?ation|money[- ]back)/gi)) {
-    const around = ctx(text, m.index!, 60, 40);
-    if (!/\b(no|not|non|isn't|aren't|without|never)\b[^.]{0,25}$/i.test(text.slice(Math.max(0, m.index! - 30), m.index!)) && !/non-refundable/i.test(m[0]))
+    const around = ctx(text, m.index!, 80, 60);
+    const sentence = sentenceAt(text, m.index!);
+    const isNegated = /\b(no|not|non|isn't|aren't|without|never)\b[^.]{0,25}$/i.test(text.slice(Math.max(0, m.index! - 30), m.index!)) || /non-refundable/i.test(m[0]);
+    const isDepositRefund = /\b(?:security\s+)?deposit\b/i.test(sentence);
+    const isProviderFailureException =
+      /\b(?:accommodation|room|stay)\b[^.]{0,70}\b(?:cannot|can't|unable|not able)\b/i.test(sentence) ||
+      /\b(?:cannot|can't|unable|not able|fail(?:s|ed)?\s+to)\b[^.]{0,70}\b(?:provide|arrange|honour|supply)\b[^.]{0,50}\b(?:accommodation|room|stay)\b/i.test(sentence);
+    if (!isNegated && !isDepositRefund && !isProviderFailureException)
       f.push({ rule: 'policy:cancellation/refund claim', detail: around });
   }
   for (const m of text.matchAll(/(no pets|pets? (are )?not allowed|pet-free|we do not allow pets)/gi)) f.push({ rule: 'policy:pets', detail: ctx(text, m.index!) });
-  for (const m of text.matchAll(/check[- ]?in[^.\n]{0,25}?(\d{1,2})(:\d\d)?\s?(am|pm|a\.m\.|p\.m\.)/gi)) {
-    const h = `${m[1]}${(m[3][0]).toLowerCase()}`;
+  const checkInPatterns = [
+    /check[- ]?in(?:\s+time)?\s*(?:(?:is|starts?|begins?|from)\s*)?(?:at\s*)?[:\-]?\s*(\d{1,2})(?::\d\d)?\s*(am|pm|a\.m\.|p\.m\.)/gi,
+    /(\d{1,2})(?::\d\d)?\s*(am|pm|a\.m\.|p\.m\.)\s*check[- ]?in/gi,
+  ];
+  for (const pattern of checkInPatterns) for (const m of text.matchAll(pattern)) {
+    const h = `${m[1]}${m[2][0].toLowerCase()}`;
     if (!['11a', '12p', '1p', '2p'].includes(h)) f.push({ rule: 'policy:check-in time', detail: ctx(text, m.index!, 20, 60) });
     else f.push({ rule: 'info:check-in time seen', detail: h });
   }
@@ -109,8 +135,13 @@ function factChecks(url: string, text: string, f: Finding[]) {
   for (const m of text.matchAll(/\b(lorem ipsum|TODO|TBD|undefined|NaN|\[object Object\]|null null|coming soon)\b/g)) f.push({ rule: `placeholder:${m[1]}`, detail: ctx(text, m.index!) });
   for (const m of text.matchAll(/\{\{?[a-z_]+\}?\}/gi)) f.push({ rule: 'placeholder:template token', detail: ctx(text, m.index!) });
   for (const m of text.matchAll(/\b(2023|2024|2025)\b/g)) {
-    const around = ctx(text, m.index!, 50, 30);
-    if (!/since|founded|opened|established|in 20\d\d,|history|©|launched|started|began|back in|was|were|record/i.test(around)) f.push({ rule: 'stale:year', detail: `${m[1]} — "${around}"` });
+    const around = ctx(text, m.index!, 70, 45);
+    const recognizedHistoricalReference =
+      /NEITA\s*2025|Northeast India Tourism Awards\s*2025|Digital Personal Data Protection Act(?:\s+of India)?,?\s*2023|DPDP Act,?\s*2023|held\b[^.]{0,70}\b2025\b/i.test(around);
+    const modelYear = /\b(?:model|model year|top end|top-end|premium suv|edition)\b/i.test(around);
+    const historicalContext = /since|founded|opened|established|in 20\d\d,|history|©|launched|started|began|back in|was|were|record/i.test(around);
+    if (!recognizedHistoricalReference && !modelYear && !historicalContext)
+      f.push({ rule: 'stale:year', detail: `${m[1]} — "${around}"` });
   }
 }
 
@@ -168,7 +199,7 @@ async function main() {
     const xml = await (await fetch(SITE + m[1].replace(HOST_RE, ''))).text();
     for (const u of xml.matchAll(/<loc>([^<]+)<\/loc>/g)) urls.add(u[1].replace(HOST_RE, '') || '/');
   }
-  for (const extra of (process.env.EXTRA_ROUTES || '/book,/guides,/faq,/contact,/about,/pricing-cancellation-policy,/tab-bistro,/xtsy-270,/pet-friendly,/female-travellers').split(',')) urls.add(extra);
+  for (const extra of (process.env.EXTRA_ROUTES || '/book,/book/select,/book/campsite,/guides,/faq,/contact,/about,/pricing-cancellation-policy,/tab-bistro,/xtsy-270,/pet-friendly,/female-travellers').split(',')) urls.add(extra);
 
   const pages: PageOut[] = [];
   const descs = new Map<string, string[]>();
@@ -209,7 +240,9 @@ async function main() {
           if (!canonical) f.push({ rule: 'seo:canonical missing', detail: '' });
           if (!seo.ogImage) f.push({ rule: 'seo:og:image missing', detail: '' });
           if ((seo.imgsNoAlt as number) > 0) f.push({ rule: 'seo:images without alt', detail: String(seo.imgsNoAlt) });
-          if (words < 300) f.push({ rule: 'seo:thin (<300 words)', detail: String(words) });
+          // A genuine photo gallery is judged by crawlable, labelled imagery as well as copy length.
+          const isImageRichGallery = /gallery/i.test(url) && imgs.length >= 6 && (seo.imgsNoAlt as number) === 0;
+          if (words < 300 && !isImageRichGallery) f.push({ rule: 'seo:thin (<300 words)', detail: String(words) });
           if (desc) descs.set(desc.toLowerCase(), [...(descs.get(desc.toLowerCase()) ?? []), url]);
           // Facts in title / description too
           factChecks(url, `${title}.\n${desc}.`, f);
@@ -260,13 +293,17 @@ async function main() {
   // misstated policy, a wrong location — as warnings, so they appear on the
   // check itself. The softer SEO and AEO rules stay as notices; they are
   // advisory and too numerous to act on one by one.
-  const SERIOUS = /^(price|policy|location|rating):/;
+  const SERIOUS = /^(price|policy|location|rating):|^schema:(aggregateRating|address|geo|telephone|offer price 0|invalid JSON-LD)/;
   const serious = Object.entries(byRule).filter(([rule]) => SERIOUS.test(rule));
   for (const [rule, r] of serious) {
     console.log(`::warning::${rule} — ${r.pages} page(s). e.g. ${r.examples[0] ?? ''}`.slice(0, 600));
   }
   if (serious.length === 0) {
     console.log('::notice::No price, policy, location or rating discrepancies found.');
+  } else if (process.env.FAIL_ON_SERIOUS === '1') {
+    const count = serious.reduce((sum, [, r]) => sum + r.pages, 0);
+    console.error(`::error::Live content audit found ${serious.length} serious rule type(s) across ${count} page finding(s). See content-summary.json for examples.`);
+    process.exitCode = 1;
   }
 }
 main();

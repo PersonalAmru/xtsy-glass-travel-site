@@ -79,7 +79,8 @@ export function generateRouteSlugs(): string[] {
 
 export function generateIntentStaySlugs(): string[] {
   const slugs = new Set<string>();
-  const cities = ['shillong', 'cherrapunji', 'guwahati', 'gangtok', 'kohima', 'imphal'];
+  // Gangtok has no XTSY-owned location; do not generate unsupported local-stay intent pages.
+  const cities = ['shillong', 'cherrapunji', 'guwahati', 'kohima', 'imphal'];
   for (const stay of STAY_TYPES) {
     for (const city of cities) {
       for (const intent of INTENT_MODIFIERS) {

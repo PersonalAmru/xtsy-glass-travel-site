@@ -206,9 +206,16 @@ describe('SEO regression: budget hostel canonical migration', () => {
     expect(slugs).not.toContain('cheap-hostel-in-shillong');
     expect(slugs).not.toContain('budget-stay-in-shillong');
     expect(slugs).not.toContain('cheap-budget-stay-in-shillong');
+    // XTSY does not operate a Gangtok property, so these generated city-intent pages must stay retired.
+    expect(slugs).not.toContain('hostel-in-gangtok-tonight');
+    expect(slugs).not.toContain('best-hostel-in-gangtok');
+    expect(slugs).not.toContain('hostel-near-gangtok-airport');
     const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
     expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostels-shillong');
-    expect(RECOVERY_REDIRECTS['cheap-hotel-in-gangtok']).toBe('/destinations/sikkim/gangtok');
+    expect(RECOVERY_REDIRECTS['cheap-hotel-in-gangtok']).toBe('/destinations');
+    expect(RECOVERY_REDIRECTS['cheap-hostel-in-gangtok']).toBe('/destinations');
+    expect(RECOVERY_REDIRECTS['hostel-in-gangtok-tonight']).toBe('/destinations');
+    expect(RECOVERY_REDIRECTS['best-hostel-in-gangtok']).toBe('/destinations');
     expect(RECOVERY_REDIRECTS['cheap-car-rental-shillong']).toBe('/xtsy-rentals');
     expect(RECOVERY_REDIRECTS['budget-car-rental-shillong']).toBe('/xtsy-rentals');
   });

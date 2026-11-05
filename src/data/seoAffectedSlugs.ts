@@ -158,12 +158,12 @@ export const RECOVERY_PLACES_PATHS: ReadonlyArray<string> = [
  * <Navigate replace> so Google consolidates equity into the canonical URL.
  */
 
+// Gangtok remains a legacy keyword target, but without a Sikkim city hub it falls back to /destinations.
 const INTENT_STAY_CITIES = ['shillong', 'cherrapunji', 'guwahati', 'gangtok', 'kohima', 'imphal'] as const;
 const INTENT_STAY_TYPES = ['hostel', 'hotel', 'homestay', 'guesthouse', 'budget-stay', 'glamping'] as const;
 const INTENT_STAY_DESTINATIONS: Record<string, string> = {
   cherrapunji: '/destinations/meghalaya/cherrapunji',
   guwahati: '/destinations/assam/guwahati',
-  gangtok: '/destinations/sikkim/gangtok',
   kohima: '/destinations/nagaland/kohima',
   imphal: '/destinations/manipur/imphal',
 };
@@ -184,11 +184,23 @@ const LEGACY_CHEAP_INTENT_REDIRECTS: Record<string, string> = Object.fromEntries
     }),
   ),
 ) as Record<string, string>;
+// Every generated Gangtok stay-intent URL is legacy-only: XTSY has no local property there.
+// Redirect these aliases to the destinations hub rather than presenting fabricated local inventory.
+const LEGACY_GANGTOK_INTENT_REDIRECTS: Record<string, string> = Object.fromEntries(
+  INTENT_STAY_TYPES.flatMap((stay) => [
+    ...['today', 'tonight', 'this-weekend', 'tomorrow', 'last-minute', 'now'].map((intent) => [`${stay}-in-gangtok-${intent}`, '/destinations']),
+    [`best-${stay}-in-gangtok`, '/destinations'],
+    [`${stay}-near-gangtok-airport`, '/destinations'],
+  ]),
+) as Record<string, string>;
 
 export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   // Retired dining pages (30 Oct 2026) — see RETIRED_DINING_SLUGS in
   // seoPagesDiningExpansion.ts for why each one was withdrawn. They are dropped
   // from the registry, so without a target here they would render a real 404.
+  'cheap-restaurants-in-shillong': '/tab-bistro',
+  'bulk-food-supply-shillong': '/catering-shillong',
+  'office-lunch-catering-shillong': '/catering-shillong',
   'best-restaurant-in-police-bazar-shillong': '/tab-bistro',
   'best-restaurants-in-laitumkhrah': '/tab-bistro',
   'restaurants-near-police-bazar': '/tab-bistro',
@@ -322,6 +334,7 @@ export const RECOVERY_REDIRECTS: Readonly<Record<string, string>> = {
   'things-to-do-in-shillong': '/shillong-travel-guide',
   'best-cafes-shillong': '/cafes-in-shillong',  // Generated legacy intent slugs are retired to accurate canonical city/property pages.
   ...LEGACY_CHEAP_INTENT_REDIRECTS,
+  ...LEGACY_GANGTOK_INTENT_REDIRECTS,
   'cheap-car-rental-shillong': '/xtsy-rentals',
   'budget-car-rental-shillong': '/xtsy-rentals',
 

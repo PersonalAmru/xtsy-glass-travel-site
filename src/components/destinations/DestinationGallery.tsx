@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Skeleton } from '@/components/ui/skeleton';
 import { useValidatedImages } from '@/hooks/useValidatedImages';
 
 interface GalleryImage {
@@ -16,6 +15,7 @@ interface DestinationGalleryProps {
 
 const DestinationGallery = ({ images, destinationName, className = '' }: DestinationGalleryProps) => {
   const { validImages, loading } = useValidatedImages(images);
+  const displayImages = loading ? images : validImages;
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
@@ -24,37 +24,29 @@ const DestinationGallery = ({ images, destinationName, className = '' }: Destina
   const navigate = (direction: 'prev' | 'next') => {
     if (lightboxIndex === null) return;
     if (direction === 'prev') {
-      setLightboxIndex(lightboxIndex === 0 ? validImages.length - 1 : lightboxIndex - 1);
+      setLightboxIndex(lightboxIndex === 0 ? displayImages.length - 1 : lightboxIndex - 1);
     } else {
-      setLightboxIndex(lightboxIndex === validImages.length - 1 ? 0 : lightboxIndex + 1);
+      setLightboxIndex(lightboxIndex === displayImages.length - 1 ? 0 : lightboxIndex + 1);
     }
   };
 
+  // Emit the supplied images in server HTML immediately; remove broken URLs after hydration.
+  // This keeps destination/gallery imagery discoverable to crawlers without trusting bad CDN links forever.
   // Determine grid columns based on image count
   const gridClass = useMemo(() => {
-    const count = validImages.length;
+    const count = displayImages.length;
     if (count === 0) return '';
     if (count === 1) return 'grid-cols-1';
     if (count === 2) return 'grid-cols-2';
     return 'grid-cols-2 md:grid-cols-3';
-  }, [validImages.length]);
+  }, [displayImages.length]);
 
-  if (loading) {
-    return (
-      <div className={`grid grid-cols-2 md:grid-cols-3 gap-3 ${className}`}>
-        {Array.from({ length: Math.min(images.length, 6) }).map((_, i) => (
-          <Skeleton key={i} className="aspect-[4/3] rounded-lg" shimmer />
-        ))}
-      </div>
-    );
-  }
-
-  if (validImages.length === 0) return null;
+  if (displayImages.length === 0) return null;
 
   return (
     <>
       <div className={`grid ${gridClass} gap-3 ${className}`}>
-        {validImages.map((image, index) => (
+        {displayImages.map((image, index) => (
           <figure
             key={`${image.src}-${index}`}
             className="relative aspect-[4/3] rounded-lg overflow-hidden cursor-pointer group"
@@ -74,7 +66,7 @@ const DestinationGallery = ({ images, destinationName, className = '' }: Destina
 
       {lightboxIndex !== null && (
         <LightboxOverlay
-          images={validImages}
+          images={displayImages}
           index={lightboxIndex}
           onClose={closeLightbox}
           onNavigate={navigate}
