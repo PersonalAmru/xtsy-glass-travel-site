@@ -158,8 +158,8 @@ export const RECOVERY_PLACES_PATHS: ReadonlyArray<string> = [
  * <Navigate replace> so Google consolidates equity into the canonical URL.
  */
 
-// Only include destinations present in neTaxonomy; Sikkim/Gangtok has no city hub yet.
-const INTENT_STAY_CITIES = ['shillong', 'cherrapunji', 'guwahati', 'kohima', 'imphal'] as const;
+// Gangtok remains a legacy keyword target, but without a Sikkim city hub it falls back to /destinations.
+const INTENT_STAY_CITIES = ['shillong', 'cherrapunji', 'guwahati', 'gangtok', 'kohima', 'imphal'] as const;
 const INTENT_STAY_TYPES = ['hostel', 'hotel', 'homestay', 'guesthouse', 'budget-stay', 'glamping'] as const;
 const INTENT_STAY_DESTINATIONS: Record<string, string> = {
   cherrapunji: '/destinations/meghalaya/cherrapunji',
