@@ -60,6 +60,21 @@ const tips = [
   { icon: MapPin, title: 'Base and day-trip', text: 'Instead of a new bed every night, base in one hostel for 4–6 days and day-trip out. More affordable, less exhausting, and unlocks long-stay discounts.' },
 ];
 
+const backpackingFaqs = [
+  {
+    q: 'How much does backpacking India cost per day?',
+    a: 'Budget ₹1,200–₹1,800 (about $15–$22) per day for a hostel dorm bed, three local meals, shared transport and one paid activity. Northeast India, including Meghalaya, sits at the lower end — dorm beds start at ₹399 a night in Shillong.',
+  },
+  {
+    q: 'How long do you need to backpack India?',
+    a: 'Thirty days is the sweet spot for one region plus one long hop — for example Delhi, Rajasthan, Varanasi and then Meghalaya and Assam in the Northeast. Two weeks is enough for a single region; anything less and you spend most of it on trains.',
+  },
+  {
+    q: 'Is Northeast India good for backpackers?',
+    a: 'Yes — it is a strong-value backpacking region in India. Meghalaya has living root bridges, the Umngot river at Dawki and Nohkalikai Falls, with fewer crowds than Goa or Rajasthan and dorm beds under ₹500.',
+  },
+];
+
 const BackpackingIndia = memo(() => {
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -104,30 +119,11 @@ const BackpackingIndia = memo(() => {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
-      {
+      ...backpackingFaqs.map((faq) => ({
         '@type': 'Question',
-        name: 'How much does backpacking India cost per day?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Budget ₹1,200–₹1,800 (about $15–$22) per day for a hostel dorm bed, three local meals, shared transport and one paid activity. Northeast India, including Meghalaya, sits at the lower end — dorm beds start at ₹399 a night in Shillong.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How long do you need to backpack India?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Thirty days is the sweet spot for one region plus one long hop — for example Delhi, Rajasthan, Varanasi and then Meghalaya and Assam in the Northeast. Two weeks is enough for a single region; anything less and you spend most of it on trains.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Is Northeast India good for backpackers?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes — it is the best-value backpacking region in India right now. Meghalaya has living root bridges, Asia’s cleanest village, the clear Umngot river at Dawki and Nohkalikai Falls, with far fewer crowds than Goa or Rajasthan and dorm beds under ₹500.',
-        },
-      },
+        name: faq.q,
+        acceptedAnswer: { '@type': 'Answer', text: faq.a },
+      })),
       ...hostelDealFaqEntities,
     ],
   };
@@ -219,7 +215,12 @@ const BackpackingIndia = memo(() => {
             <p className="mt-3 text-center text-sm text-muted-foreground">
               Real 2026 numbers for a solo backpacker travelling on dorms, trains and street food.
             </p>
-            <div className="mt-8 overflow-x-auto rounded-2xl border border-border/60 bg-background">
+            <div
+              role="region"
+              aria-label="Backpacking India estimated travel costs"
+              tabIndex={0}
+              className="mt-8 overflow-x-auto rounded-2xl border border-border/60 bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
               <table className="w-full text-sm min-w-[520px]">
                 <thead>
                   <tr className="bg-muted/50">
@@ -261,6 +262,26 @@ const BackpackingIndia = memo(() => {
                     <p className="text-sm text-muted-foreground leading-relaxed">{t.text}</p>
                   </CardContent>
                 </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* The visible questions mirror the backpacking-specific FAQPage schema above. */}
+        <section className="py-14 px-4">
+          <div className="container mx-auto max-w-3xl">
+            <h2 className="text-2xl sm:text-3xl font-bold font-playfair text-foreground text-center">
+              Backpacking India FAQs
+            </h2>
+            <div className="mt-8 space-y-3">
+              {backpackingFaqs.map((faq) => (
+                <details key={faq.q} className="group rounded-lg border border-border/60 bg-background p-4">
+                  <summary className="flex min-h-6 cursor-pointer items-start justify-between gap-4 font-semibold text-foreground">
+                    <span>{faq.q}</span>
+                    <span className="text-primary text-xl leading-none" aria-hidden="true">+</span>
+                  </summary>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{faq.a}</p>
+                </details>
               ))}
             </div>
           </div>
