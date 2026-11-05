@@ -143,7 +143,6 @@ function factChecks(url: string, text: string, f: Finding[]) {
     if (!recognizedHistoricalReference && !modelYear && !historicalContext)
       f.push({ rule: 'stale:year', detail: `${m[1]} — "${around}"` });
   }
-  }
 }
 
 function jsonLdChecks(html: string, text: string, f: Finding[], aeo: Record<string, unknown>) {
