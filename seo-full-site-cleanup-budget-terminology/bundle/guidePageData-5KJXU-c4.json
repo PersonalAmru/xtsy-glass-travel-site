@@ -1,9 +1,9 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/guidePageData-Dl7btEpS.js",
-      "totalBytes": 911329,
-      "mappedBytes": 910844,
+      "bundleName": ".output/public/assets/guidePageData-5KJXU-c4.js",
+      "totalBytes": 911330,
+      "mappedBytes": 910845,
       "unmappedBytes": 485,
       "eolBytes": 0,
       "sourceMapCommentBytes": 0,
@@ -75,7 +75,7 @@
           "size": 218108
         },
         "../../../src/data/seoPagesOverrides.ts": {
-          "size": 165034
+          "size": 165035
         },
         "../../../src/data/seoNormalize.ts": {
           "size": 10575

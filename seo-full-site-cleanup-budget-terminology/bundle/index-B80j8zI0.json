@@ -1,10 +1,10 @@
 {
   "results": [
     {
-      "bundleName": ".output/public/assets/index-3nWX8y5B.js",
-      "totalBytes": 430249,
-      "mappedBytes": 418685,
-      "unmappedBytes": 11538,
+      "bundleName": ".output/public/assets/index-B80j8zI0.js",
+      "totalBytes": 430313,
+      "mappedBytes": 418741,
+      "unmappedBytes": 11546,
       "eolBytes": 26,
       "sourceMapCommentBytes": 0,
       "files": {
@@ -15,7 +15,7 @@
           "size": 28
         },
         "../../../node_modules/react-dom/cjs/react-dom-client.production.js": {
-          "size": 174649
+          "size": 174669
         },
         "../../../node_modules/react-dom/client.js": {
           "size": 217
@@ -48,7 +48,7 @@
           "size": 16386
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/load-client.js": {
-          "size": 19485
+          "size": 19497
         },
         "../../../node_modules/@tanstack/router-core/dist/esm/defer.js": {
           "size": 258
@@ -78,7 +78,7 @@
           "size": 1886
         },
         "../../../node_modules/@tanstack/store/dist/atom.js": {
-          "size": 1843
+          "size": 1850
         },
         "../../../node_modules/@tanstack/react-router/dist/esm/fileRoute.js": {
           "size": 59
@@ -150,7 +150,7 @@
           "size": 267
         },
         "../../../node_modules/@tanstack/query-core/build/modern/notifyManager.js": {
-          "size": 379
+          "size": 378
         },
         "../../../node_modules/@tanstack/query-core/build/modern/onlineManager.js": {
           "size": 617
@@ -162,25 +162,25 @@
           "size": 324
         },
         "../../../node_modules/@tanstack/query-core/build/modern/infiniteQueryBehavior.js": {
-          "size": 1214
+          "size": 1217
         },
         "../../../node_modules/@tanstack/query-core/build/modern/query.js": {
-          "size": 6264
+          "size": 6265
         },
         "../../../node_modules/@tanstack/query-core/build/modern/mutation.js": {
-          "size": 3305
+          "size": 3304
         },
         "../../../node_modules/@tanstack/query-core/build/modern/mutationCache.js": {
-          "size": 1429
+          "size": 1426
         },
         "../../../node_modules/@tanstack/query-core/build/modern/queryCache.js": {
-          "size": 1012
+          "size": 1007
         },
         "../../../node_modules/@tanstack/query-core/build/modern/queryClient.js": {
-          "size": 4023
+          "size": 4017
         },
         "../../../src/utils/aiReferralTracking.ts": {
-          "size": 1711
+          "size": 1712
         },
         "../../../src/utils/chunkRecovery.ts": {
           "size": 1082
@@ -240,7 +240,7 @@
           "size": 1024
         },
         "../../../node_modules/@radix-ui/react-switch/dist/index.mjs": {
-          "size": 3386
+          "size": 3393
         },
         "../../../src/components/ui/switch.tsx": {
           "size": 705
@@ -285,10 +285,10 @@
           "size": 486
         },
         "../../../src/components/debug/OptionalConsentDebugPanel.tsx": {
-          "size": 558
+          "size": 557
         },
         "../../../src/routes/__root.tsx": {
-          "size": 10296
+          "size": 10294
         },
         "../../../src/lib/seo-head.ts": {
           "size": 1965
@@ -408,10 +408,10 @@
           "size": 612
         },
         "../../../src/routes/meghalaya-viewpoints.tsx": {
-          "size": 456
+          "size": 455
         },
         "../../../src/routes/meghalaya-villages.tsx": {
-          "size": 450
+          "size": 451
         },
         "../../../src/routes/meghalaya-waterfalls.tsx": {
           "size": 460
@@ -447,7 +447,7 @@
           "size": 543
         },
         "../../../src/routes/safety-house-rules.tsx": {
-          "size": 509
+          "size": 491
         },
         "../../../src/routes/shillong-tour-package.tsx": {
           "size": 475
@@ -483,7 +483,7 @@
           "size": 408
         },
         "../../../src/routes/book/index.tsx": {
-          "size": 613
+          "size": 655
         },
         "../../../src/routes/book/campsite.tsx": {
           "size": 470
@@ -498,10 +498,10 @@
           "size": 558
         },
         "../../../src/routes/franchise/index.tsx": {
-          "size": 425
+          "size": 424
         },
         "../../../src/routes/franchise/install.tsx": {
-          "size": 409
+          "size": 410
         },
         "../../../src/routes/franchise/login.tsx": {
           "size": 361
@@ -567,7 +567,7 @@
           "size": 0
         },
         "[unmapped]": {
-          "size": 11538
+          "size": 11546
         },
         "[EOLs]": {
           "size": 26
