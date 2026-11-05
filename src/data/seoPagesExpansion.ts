@@ -162,7 +162,7 @@ const transportPages: SEOPageData[] = [
     ['suv rental shillong', 'suv rental near me', '4x4 rental shillong', 'fortuner rental shillong']
   ),
 
-  mkPage('cheap-car-rental-shillong', 'rentals', 'AutoRental',
+  mkPage('budget-car-rental-shillong', 'rentals', 'AutoRental',
     'Budget-Friendly Car Rental Shillong — From ₹1,200/Day | XTSY', 'Best budget-friendly car rental in Shillong from ₹1,200/day. Hatchbacks, sedans, SUVs. Self-drive & chauffeur options. No hidden charges.',
     'Best Budget-Friendly Car Rental in Shillong', 'Looking for affordable car rental in Shillong? XTSY offers the best rates starting at ₹1,200/day for hatchbacks with no hidden charges. Perfect for budget Meghalaya road trips.',
     [
@@ -202,7 +202,7 @@ const transportPages: SEOPageData[] = [
     [
       { question: 'Can I book a car for a one-way trip?', answer: 'Yes! We offer one-way rentals between Guwahati, Shillong, Cherrapunji, and Dawki. One-way charges apply.' },
     ],
-    ['car-rental-shillong', 'self-drive-car-shillong', 'cheap-car-rental-shillong'],
+    ['car-rental-shillong', 'self-drive-car-shillong', 'budget-car-rental-shillong'],
     ['car booking shillong', 'car hire shillong', 'book car online shillong', 'rent car shillong']
   ),
 
