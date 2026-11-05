@@ -1,5 +1,5 @@
 {
- "checkedAt": "2026-11-04T09:23:30.704Z",
+ "checkedAt": "2026-11-05T09:34:16.504Z",
  "site": "https://xtsy.one",
  "sitemaps": [
   {
@@ -35,7 +35,7 @@
   {
    "sitemap": "https://xtsy.one/sitemap-programmatic.xml",
    "status": 200,
-   "urls": 44
+   "urls": 49
   },
   {
    "sitemap": "https://xtsy.one/sitemap-dining.xml",
@@ -53,17 +53,17 @@
    "urls": 2
   }
  ],
- "urlsChecked": 691,
- "healthy": 689,
+ "urlsChecked": 696,
+ "healthy": 694,
  "withIssues": 2,
  "byIssue": {
   "HTTP 404": 1,
   "HTTP 301": 1
  },
- "medianMs": 50,
- "p95Ms": 297,
- "withStructuredData": 689,
- "withQuickAnswer": 499,
+ "medianMs": 54,
+ "p95Ms": 449,
+ "withStructuredData": 694,
+ "withQuickAnswer": 504,
  "extra": {
   "robots": 200,
   "llms": 200,
