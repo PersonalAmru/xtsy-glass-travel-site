@@ -268,6 +268,11 @@ describe('SEO regression: budget hostel canonical migration', () => {
     expect(sitemap).not.toContain('https://xtsy.one/live-music-restaurant-shillong');
   });
 
+  it('redirects legacy misspelled barbeque dining URLs to the live bistro page', async () => {
+    const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
+    expect(RECOVERY_REDIRECTS['barbeque-restaurant-shillong']).toBe('/tab-bistro');
+  });
+
   it('does not ship the shared rooftop café coming-soon claim', () => {
     const sharedBlock = fs.readFileSync(path.join(ROOT, 'src/components/seo/StayEatExplore.tsx'), 'utf-8');
     const diningPages = fs.readFileSync(path.join(ROOT, 'src/data/seoPagesDiningExpansion.ts'), 'utf-8');
