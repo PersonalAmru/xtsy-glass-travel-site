@@ -174,7 +174,7 @@ describe('SEO regression: budget hostel canonical migration', () => {
   it('redirects legacy hostel slugs to the canonical budget hub', async () => {
     const { RECOVERY_REDIRECTS } = await import('../src/data/seoAffectedSlugs');
     expect(RECOVERY_REDIRECTS['cheap-hostel-shillong']).toBe('/budget-hostels-shillong');
-    expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostels-shillong');
+    expect(RECOVERY_REDIRECTS['cheap-hostel-in-shillong']).toBe('/budget-hostel-in-shillong');
     expect(RECOVERY_REDIRECTS['cheap-hostels-shillong']).toBe('/budget-hostels-shillong');
     expect(RECOVERY_REDIRECTS['budget-hostel-shillong']).toBe('/budget-hostels-shillong');
     expect(RECOVERY_REDIRECTS['remote-work-stay-shillong']).toBe('/work-from-home');
