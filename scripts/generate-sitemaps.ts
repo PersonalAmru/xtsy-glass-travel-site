@@ -110,7 +110,7 @@ function sitemapIndex(sitemaps: string[]): string {
 async function main() {
   // Dynamic import of SEO data (ESM modules with TypeScript)
   const { ALL_SEO_PAGES } = await import('../src/data/seoPages');
-  const { buildDestinationSitemapPaths, destinationPath } = await import('../src/data/neTaxonomy');
+  const { buildDestinationSitemapPaths, destinationPath, EXPEDITION_ROUTES } = await import('../src/data/neTaxonomy');
   const { getDestinationBySlug } = await import('../src/data/meghalayaDestinations');
 
   // Group SEO pages by sitemap category
@@ -146,8 +146,12 @@ async function main() {
   const path = await import('path');
   const outDir = path.resolve(process.cwd(), 'public');
 
-  // 1. Static sitemap
-  const staticUrls = STATIC_ROUTES.map(r =>
+  // 1. Static sitemap + every data-driven expedition detail route
+  const expeditionRoutes = EXPEDITION_ROUTES.flatMap(route =>
+    route.types.map(type => ({ path: `/expeditions/${type}/${route.slug}`, priority: '0.8', changefreq: 'weekly', lastmod: TODAY }))
+  );
+  const allStaticRoutes = [...STATIC_ROUTES, ...expeditionRoutes];
+  const staticUrls = allStaticRoutes.map(r =>
     xmlUrl(`${BASE_URL}${r.path}`, r.lastmod, r.changefreq, r.priority)
   );
   fs.writeFileSync(path.join(outDir, 'sitemap-static.xml'), wrapUrlset(staticUrls));
@@ -224,7 +228,7 @@ async function main() {
   // 5. Regenerate robots.txt — references the canonical sitemap index
   const robots = `# XTSY Travel — robots.txt (auto-generated ${TODAY})
 # Canonical: https://xtsy.one
-# Total indexable URLs: ${STATIC_ROUTES.length + ALL_SEO_PAGES.length}
+# Total indexable URLs: ${allStaticRoutes.length + ALL_SEO_PAGES.length}
 
 # ── Search engines ───────────────────────────────────────────────
 User-agent: Googlebot
