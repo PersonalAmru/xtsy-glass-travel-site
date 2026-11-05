@@ -18,3 +18,8 @@ For new or refreshed page imagery, use only images retrieved through the Pexels 
 - Verify canonical/redirect changes against live behavior.
 - Re-submit sitemap(s) and monitor Search Console/Bing after deployment.
 - Do not claim indexing, ranking, AI citations or booking impact without observed data.
+
+### Sync verification
+
+- 2026-11-05: Added a documentation-only GitHub commit on `main` to test whether the connected Lovable project detects new upstream commits after the organization reconnection.
+- This is a sync diagnostic marker, not an application change or deployment.
