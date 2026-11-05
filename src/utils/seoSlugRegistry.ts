@@ -54,7 +54,7 @@ export const STATIC_ROUTES: ReadonlyArray<string> = [
   '/budget-trip-to-meghalaya',
   '/meghalaya-photo-gallery',
   '/best-hostel-in-shillong',
-  '/cheap-hostels-shillong',
+  '/budget-hostels-shillong',
   '/hotels-in-shillong',
   '/homestays-in-shillong',
   '/luxury-glamping-shillong',
