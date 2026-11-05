@@ -240,7 +240,9 @@ async function main() {
           if (!canonical) f.push({ rule: 'seo:canonical missing', detail: '' });
           if (!seo.ogImage) f.push({ rule: 'seo:og:image missing', detail: '' });
           if ((seo.imgsNoAlt as number) > 0) f.push({ rule: 'seo:images without alt', detail: String(seo.imgsNoAlt) });
-          if (words < 300) f.push({ rule: 'seo:thin (<300 words)', detail: String(words) });
+          // A genuine photo gallery is judged by crawlable, labelled imagery as well as copy length.
+          const isImageRichGallery = /gallery/i.test(url) && imgs.length >= 6 && (seo.imgsNoAlt as number) === 0;
+          if (words < 300 && !isImageRichGallery) f.push({ rule: 'seo:thin (<300 words)', detail: String(words) });
           if (desc) descs.set(desc.toLowerCase(), [...(descs.get(desc.toLowerCase()) ?? []), url]);
           // Facts in title / description too
           factChecks(url, `${title}.\n${desc}.`, f);
