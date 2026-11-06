@@ -7,6 +7,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useRestaurantReviews, type RestaurantReview } from "@/hooks/useRestaurantReviews";
+import { featuredBistroReviews } from "@/data/featuredGoogleReviews";
+
+const FEATURED: RestaurantReview[] = featuredBistroReviews.map((r) => ({
+  id: `google-${r.name}`,
+  name: r.name,
+  rating: r.rating,
+  comment: r.comment,
+  isoDate: r.date,
+  date: r.date,
+  ownerReply: r.ownerReply,
+  localGuide: false,
+  verified: true,
+  photos: [],
+  source: "Google",
+}));
 
 const VISIT_TYPES = ["Dine in", "Takeaway", "Delivery", "Lunch", "Dinner", "Breakfast"];
 
@@ -37,6 +52,11 @@ const ReviewCard = memo(({ r }: { r: RestaurantReview }) => {
           <div className="flex items-center gap-2 mt-0.5">
             <Stars value={r.rating} />
             <span className="text-[11px] text-muted-foreground">{r.date}</span>
+            {r.source === "Google" && (
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground border border-border rounded-full px-1.5 py-px">
+                Google
+              </span>
+            )}
           </div>
           {(r.visitType || r.priceRange || r.localGuide) && (
             <p className="text-[11px] text-muted-foreground mt-0.5">
