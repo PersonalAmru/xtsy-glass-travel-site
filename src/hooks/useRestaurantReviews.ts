@@ -20,6 +20,7 @@ export interface RestaurantReview {
   localGuide: boolean;
   verified: boolean;
   photos: string[];
+  source?: "Google" | "Direct";
 }
 
 export interface ReviewSubmission {
