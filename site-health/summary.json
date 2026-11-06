@@ -1,16 +1,16 @@
 {
- "checkedAt": "2026-11-05T09:34:16.504Z",
+ "checkedAt": "2026-11-06T09:28:28.613Z",
  "site": "https://xtsy.one",
  "sitemaps": [
   {
    "sitemap": "https://xtsy.one/sitemap-static.xml",
    "status": 200,
-   "urls": 45
+   "urls": 59
   },
   {
    "sitemap": "https://xtsy.one/sitemap-hostel.xml",
    "status": 200,
-   "urls": 94
+   "urls": 84
   },
   {
    "sitemap": "https://xtsy.one/sitemap-tour-packages.xml",
@@ -30,22 +30,22 @@
   {
    "sitemap": "https://xtsy.one/sitemap-guides.xml",
    "status": 200,
-   "urls": 140
+   "urls": 134
   },
   {
    "sitemap": "https://xtsy.one/sitemap-programmatic.xml",
    "status": 200,
-   "urls": 49
+   "urls": 57
   },
   {
    "sitemap": "https://xtsy.one/sitemap-dining.xml",
    "status": 200,
-   "urls": 57
+   "urls": 55
   },
   {
    "sitemap": "https://xtsy.one/sitemap-misc.xml",
    "status": 200,
-   "urls": 22
+   "urls": 21
   },
   {
    "sitemap": "https://xtsy.one/sitemap-images.xml",
@@ -53,16 +53,13 @@
    "urls": 2
   }
  ],
- "urlsChecked": 696,
- "healthy": 694,
- "withIssues": 2,
- "byIssue": {
-  "HTTP 404": 1,
-  "HTTP 301": 1
- },
- "medianMs": 54,
- "p95Ms": 449,
- "withStructuredData": 694,
+ "urlsChecked": 699,
+ "healthy": 699,
+ "withIssues": 0,
+ "byIssue": {},
+ "medianMs": 57,
+ "p95Ms": 597,
+ "withStructuredData": 699,
  "withQuickAnswer": 504,
  "extra": {
   "robots": 200,
