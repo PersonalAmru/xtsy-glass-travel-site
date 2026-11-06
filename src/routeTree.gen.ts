@@ -21,6 +21,7 @@ import { Route as BackpackingIndiaRouteImport } from './routes/backpacking-india
 import { Route as BestHostelInShillongRouteImport } from './routes/best-hostel-in-shillong'
 import { Route as BestTimeToVisitMeghalayaRouteImport } from './routes/best-time-to-visit-meghalaya'
 import { Route as BookHostelShillongRouteImport } from './routes/book-hostel-shillong'
+import { Route as BudgetHostelsShillongRouteImport } from './routes/budget-hostels-shillong'
 import { Route as BudgetTripToMeghalayaRouteImport } from './routes/budget-trip-to-meghalaya'
 import { Route as CateringShillongRouteImport } from './routes/catering-shillong'
 import { Route as CheapHostelInShillongRouteImport } from './routes/cheap-hostel-in-shillong'
@@ -154,6 +155,11 @@ const BestTimeToVisitMeghalayaRoute =
 const BookHostelShillongRoute = BookHostelShillongRouteImport.update({
   id: '/book-hostel-shillong',
   path: '/book-hostel-shillong',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BudgetHostelsShillongRoute = BudgetHostelsShillongRouteImport.update({
+  id: '/budget-hostels-shillong',
+  path: '/budget-hostels-shillong',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BudgetTripToMeghalayaRoute = BudgetTripToMeghalayaRouteImport.update({
@@ -543,6 +549,7 @@ export interface FileRoutesByFullPath {
   '/best-hostel-in-shillong': typeof BestHostelInShillongRoute
   '/best-time-to-visit-meghalaya': typeof BestTimeToVisitMeghalayaRoute
   '/book-hostel-shillong': typeof BookHostelShillongRoute
+  '/budget-hostels-shillong': typeof BudgetHostelsShillongRoute
   '/budget-trip-to-meghalaya': typeof BudgetTripToMeghalayaRoute
   '/catering-shillong': typeof CateringShillongRoute
   '/cheap-hostel-in-shillong': typeof CheapHostelInShillongRoute
@@ -629,6 +636,7 @@ export interface FileRoutesByTo {
   '/best-hostel-in-shillong': typeof BestHostelInShillongRoute
   '/best-time-to-visit-meghalaya': typeof BestTimeToVisitMeghalayaRoute
   '/book-hostel-shillong': typeof BookHostelShillongRoute
+  '/budget-hostels-shillong': typeof BudgetHostelsShillongRoute
   '/budget-trip-to-meghalaya': typeof BudgetTripToMeghalayaRoute
   '/catering-shillong': typeof CateringShillongRoute
   '/cheap-hostel-in-shillong': typeof CheapHostelInShillongRoute
@@ -716,6 +724,7 @@ export interface FileRoutesById {
   '/best-hostel-in-shillong': typeof BestHostelInShillongRoute
   '/best-time-to-visit-meghalaya': typeof BestTimeToVisitMeghalayaRoute
   '/book-hostel-shillong': typeof BookHostelShillongRoute
+  '/budget-hostels-shillong': typeof BudgetHostelsShillongRoute
   '/budget-trip-to-meghalaya': typeof BudgetTripToMeghalayaRoute
   '/catering-shillong': typeof CateringShillongRoute
   '/cheap-hostel-in-shillong': typeof CheapHostelInShillongRoute
@@ -804,6 +813,7 @@ export interface FileRouteTypes {
     | '/best-hostel-in-shillong'
     | '/best-time-to-visit-meghalaya'
     | '/book-hostel-shillong'
+    | '/budget-hostels-shillong'
     | '/budget-trip-to-meghalaya'
     | '/catering-shillong'
     | '/cheap-hostel-in-shillong'
@@ -890,6 +900,7 @@ export interface FileRouteTypes {
     | '/best-hostel-in-shillong'
     | '/best-time-to-visit-meghalaya'
     | '/book-hostel-shillong'
+    | '/budget-hostels-shillong'
     | '/budget-trip-to-meghalaya'
     | '/catering-shillong'
     | '/cheap-hostel-in-shillong'
@@ -976,6 +987,7 @@ export interface FileRouteTypes {
     | '/best-hostel-in-shillong'
     | '/best-time-to-visit-meghalaya'
     | '/book-hostel-shillong'
+    | '/budget-hostels-shillong'
     | '/budget-trip-to-meghalaya'
     | '/catering-shillong'
     | '/cheap-hostel-in-shillong'
@@ -1063,6 +1075,7 @@ export interface RootRouteChildren {
   BestHostelInShillongRoute: typeof BestHostelInShillongRoute
   BestTimeToVisitMeghalayaRoute: typeof BestTimeToVisitMeghalayaRoute
   BookHostelShillongRoute: typeof BookHostelShillongRoute
+  BudgetHostelsShillongRoute: typeof BudgetHostelsShillongRoute
   BudgetTripToMeghalayaRoute: typeof BudgetTripToMeghalayaRoute
   CateringShillongRoute: typeof CateringShillongRoute
   CheapHostelInShillongRoute: typeof CheapHostelInShillongRoute
@@ -1221,6 +1234,13 @@ declare module '@tanstack/react-router' {
       path: '/book-hostel-shillong'
       fullPath: '/book-hostel-shillong'
       preLoaderRoute: typeof BookHostelShillongRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/budget-hostels-shillong': {
+      id: '/budget-hostels-shillong'
+      path: '/budget-hostels-shillong'
+      fullPath: '/budget-hostels-shillong'
+      preLoaderRoute: typeof BudgetHostelsShillongRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/budget-trip-to-meghalaya': {
@@ -1743,6 +1763,7 @@ const rootRouteChildren: RootRouteChildren = {
   BestHostelInShillongRoute: BestHostelInShillongRoute,
   BestTimeToVisitMeghalayaRoute: BestTimeToVisitMeghalayaRoute,
   BookHostelShillongRoute: BookHostelShillongRoute,
+  BudgetHostelsShillongRoute: BudgetHostelsShillongRoute,
   BudgetTripToMeghalayaRoute: BudgetTripToMeghalayaRoute,
   CateringShillongRoute: CateringShillongRoute,
   CheapHostelInShillongRoute: CheapHostelInShillongRoute,

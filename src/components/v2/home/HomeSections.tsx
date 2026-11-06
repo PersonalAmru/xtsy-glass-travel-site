@@ -4,7 +4,7 @@
  */
 import { useState } from 'react';
 import { Link } from '@/lib/router-compat';
-import { googleReviews } from '@/data/googleReviews';
+import { featuredHostelReviews } from '@/data/featuredGoogleReviews';
 import { SIGNATURE_PACKAGES, formatPackagePrice } from '@/data/signaturePackages';
 import { IMG, COVERS, first } from '@/data/v2Images';
 import { Eyebrow, LiveDot, Marquee, Photo, SectionHead, SpinningMark } from '../primitives';
@@ -325,10 +325,7 @@ export function ExpeditionsBanner() {
 }
 
 export function Reviews() {
-  const wanted = ['Amal Dixit', 'Amandeep Kaur', 'AnnaLee Serrao'];
-  const picked = wanted
-    .map((n) => googleReviews.find((r) => r.name === n))
-    .filter((r): r is (typeof googleReviews)[number] => Boolean(r && r.rating === 5));
+  const picked = featuredHostelReviews.slice(0, 3);
   return (
     <section className={`${PAD} grid gap-5 pb-20 md:grid-cols-2 lg:grid-cols-4`}>
       <div className="xt-reveal flex flex-col gap-3.5">

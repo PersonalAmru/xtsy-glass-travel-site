@@ -7,6 +7,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useRestaurantReviews, type RestaurantReview } from "@/hooks/useRestaurantReviews";
+import { featuredBistroReviews } from "@/data/featuredGoogleReviews";
+
+const FEATURED: RestaurantReview[] = featuredBistroReviews.map((r) => ({
+  id: `google-${r.name}`,
+  name: r.name,
+  rating: r.rating,
+  comment: r.comment,
+  isoDate: r.date,
+  date: r.date,
+  ownerReply: r.ownerReply,
+  localGuide: false,
+  verified: true,
+  photos: [],
+  source: "Google",
+}));
 
 const VISIT_TYPES = ["Dine in", "Takeaway", "Delivery", "Lunch", "Dinner", "Breakfast"];
 
@@ -37,6 +52,11 @@ const ReviewCard = memo(({ r }: { r: RestaurantReview }) => {
           <div className="flex items-center gap-2 mt-0.5">
             <Stars value={r.rating} />
             <span className="text-[11px] text-muted-foreground">{r.date}</span>
+            {r.source === "Google" && (
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground border border-border rounded-full px-1.5 py-px">
+                Google
+              </span>
+            )}
           </div>
           {(r.visitType || r.priceRange || r.localGuide) && (
             <p className="text-[11px] text-muted-foreground mt-0.5">
@@ -99,7 +119,9 @@ const TabBistroReviews = memo(({ reviews, stats, submitReview, onSubmitted }: Pr
   const [photo, setPhoto] = useState<File | null>(null);
   const [showAll, setShowAll] = useState(false);
 
-  const visible = showAll ? reviews : reviews.slice(0, 6);
+  const featuredNames = new Set(FEATURED.map((f) => f.name));
+  const all = [...FEATURED, ...reviews.filter((r) => !featuredNames.has(r.name))];
+  const visible = showAll ? all : all.slice(0, 6);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -271,7 +293,7 @@ const TabBistroReviews = memo(({ reviews, stats, submitReview, onSubmitted }: Pr
         </form>
       )}
 
-      {reviews.length === 0 ? (
+      {all.length === 0 ? (
         <p className="text-sm text-muted-foreground">Be the first to review TAB Bistro by XTSY.</p>
       ) : (
         <>
@@ -280,10 +302,10 @@ const TabBistroReviews = memo(({ reviews, stats, submitReview, onSubmitted }: Pr
               <ReviewCard key={r.id} r={r} />
             ))}
           </div>
-          {reviews.length > 6 && (
+          {all.length > 6 && (
             <div className="text-center mt-6">
               <Button variant="outline" onClick={() => setShowAll((s) => !s)}>
-                {showAll ? "Show fewer" : `Show all ${reviews.length} reviews`}
+                {showAll ? "Show fewer" : `Show all ${all.length} reviews`}
               </Button>
             </div>
           )}

@@ -75,3 +75,7 @@
 ## Current request 2026-11-03
 - [x] Finish shared tracking validation and stable event-name mappings; verify consent and conversion rules. Pending/missing confirmation evidence cannot become booking_confirmed; legacy conversion actions stay internal. Existing signal hook no longer writes session count without analytics consent.
 - [ ] Verify successful live analytics-only GA4 collection after external GTM corrections: blocked by missing authorized GTM editing access. Existing custom-connector creation was declined; no replacement created, Google Ads and sitemaps unchanged. Website safeguards require publishing.
+
+## Done 2026-11-06
+- [x] Review showcase: fetched real Google reviews from both listings (hostel 253 total at 4.7, bistro 34 at 4.7); curated best five-star reviews verbatim into src/data/featuredGoogleReviews.ts; homepage shows Nupur Kothari, Safique, Asmita Saha under "4.7 on Google from 252 reviews"; /tab-bistro "Diners say" pins Daiamonlang Khardewsaw, Sumar Shylla, Sai Priya with Google labels (live route is BistroV2, not pages/TabBistro). Verified in preview, no page errors. Publish pending.
+- [ ] Open: bistro "Find us"/FAQ hours text (8:45 AM–12 PM, 5–11 PM from tabBistroHours.ts) differs from owner-stated 8:45–11:45 AM and 4:30–11 PM; flagged, awaiting owner decision.
