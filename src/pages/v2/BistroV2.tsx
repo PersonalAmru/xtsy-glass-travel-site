@@ -8,6 +8,7 @@ import { Link } from '@/lib/router-compat';
 import { menuSections, MENU_GST_NOTE } from '@/data/tabBistroMenu';
 import { tabBistroFaqs } from '@/components/tab-bistro/TabBistroFAQ';
 import { useRestaurantReviews } from '@/hooks/useRestaurantReviews';
+import { featuredBistroReviews } from '@/data/featuredGoogleReviews';
 import { buildRestaurantSchema, buildMenuSchema } from '@/data/tabBistroSchema';
 import { IMG, first } from '@/data/v2Images';
 import { PageShell, PageHero, Btn, Section, H2, FaqList, PAD } from '@/components/v2/blocks';
@@ -26,7 +27,20 @@ export default function BistroV2() {
     reviewCount: stats.count || undefined,
     reviews: reviews.map((r) => ({ name: r.name, rating: r.rating, comment: r.comment, date: r.isoDate.slice(0, 10) })),
   });
-  const topReviews = reviews.filter((r) => r.rating >= 4 && r.comment.length > 30).slice(0, 3);
+  // Best Google reviews pin first; approved diner reviews fill the rest.
+  const topReviews = [
+    ...featuredBistroReviews.map((r) => ({
+      key: `google-${r.name}`,
+      name: r.name,
+      rating: r.rating as number,
+      comment: r.comment,
+      date: r.date,
+      tag: 'Google' as string | undefined,
+    })),
+    ...reviews
+      .filter((r) => r.rating >= 4 && r.comment.length > 30 && !featuredBistroReviews.some((f) => f.name === r.name))
+      .map((r) => ({ key: r.id, name: r.name, rating: r.rating, comment: r.comment, date: r.date, tag: undefined as string | undefined })),
+  ].slice(0, 3);
   const reserve = waLink('Hi TAB Bistro! I’d like to reserve a table. Date/time: … People: …', 'tab-bistro');
 
   return (
@@ -163,10 +177,10 @@ export default function BistroV2() {
             <H2 eyebrow="Diners say">{stats.average ? `${stats.average.toFixed(1)} from ${stats.count} diners` : 'What diners say'}</H2>
             <div className="grid gap-5 md:grid-cols-3">
               {topReviews.map((r) => (
-                <figure key={`${r.name}-${r.isoDate}`} className="xt-reveal m-0 flex flex-col gap-3 rounded-3xl bg-white p-7">
+                <figure key={r.key} className="xt-reveal m-0 flex flex-col gap-3 rounded-3xl bg-white p-7">
                   <div aria-label={`${r.rating} out of 5 stars`} className="text-[18px] tracking-[3px] text-xt-crimson">{'★'.repeat(Math.round(r.rating))}</div>
                   <blockquote className="m-0 line-clamp-6 text-[16px] leading-normal">{r.comment}</blockquote>
-                  <figcaption className="mt-auto text-[14px] font-bold text-xt-mute">{r.name} · {r.date}</figcaption>
+                  <figcaption className="mt-auto text-[14px] font-bold text-xt-mute">{r.name} · {r.tag ? `${r.tag} · ${r.date}` : r.date}</figcaption>
                 </figure>
               ))}
             </div>
