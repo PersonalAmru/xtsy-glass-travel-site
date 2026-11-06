@@ -119,7 +119,9 @@ const TabBistroReviews = memo(({ reviews, stats, submitReview, onSubmitted }: Pr
   const [photo, setPhoto] = useState<File | null>(null);
   const [showAll, setShowAll] = useState(false);
 
-  const visible = showAll ? reviews : reviews.slice(0, 6);
+  const featuredNames = new Set(FEATURED.map((f) => f.name));
+  const all = [...FEATURED, ...reviews.filter((r) => !featuredNames.has(r.name))];
+  const visible = showAll ? all : all.slice(0, 6);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -291,7 +293,7 @@ const TabBistroReviews = memo(({ reviews, stats, submitReview, onSubmitted }: Pr
         </form>
       )}
 
-      {reviews.length === 0 ? (
+      {all.length === 0 ? (
         <p className="text-sm text-muted-foreground">Be the first to review TAB Bistro by XTSY.</p>
       ) : (
         <>
@@ -300,10 +302,10 @@ const TabBistroReviews = memo(({ reviews, stats, submitReview, onSubmitted }: Pr
               <ReviewCard key={r.id} r={r} />
             ))}
           </div>
-          {reviews.length > 6 && (
+          {all.length > 6 && (
             <div className="text-center mt-6">
               <Button variant="outline" onClick={() => setShowAll((s) => !s)}>
-                {showAll ? "Show fewer" : `Show all ${reviews.length} reviews`}
+                {showAll ? "Show fewer" : `Show all ${all.length} reviews`}
               </Button>
             </div>
           )}
