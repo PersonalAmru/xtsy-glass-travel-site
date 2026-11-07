@@ -22,8 +22,8 @@
    "11a": 49
   },
   "info:check-out time seen": {
-   "10a": 50,
    "10p": 1,
+   "10a": 50,
    "11a": 1
   }
  },
@@ -31,8 +31,8 @@
   "aeo:no FAQ or question headings": {
    "pages": 4,
    "examples": [
-    "/terms-of-service — ",
     "/privacy-policy — ",
+    "/terms-of-service — ",
     "/expeditions — ",
     "/merch — "
    ]
