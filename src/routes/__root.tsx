@@ -148,11 +148,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preload", as: "font", type: "font/woff2", href: staatlichesLatinExt, crossOrigin: "anonymous" },
       // Legacy Playfair/Josefin fonts load after the page, and only on older pages that use them:
       // see LEGACY_FONTS_SCRIPT.
-      {
-        rel: "icon",
-        type: "image/png",
-        href: "https://storage.googleapis.com/gpt-engineer-file-uploads/1WJsBBRRZpg9MH8fICqqeJ2sC6q1/uploads/1765259352370-with_padding.png",
-      },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       { rel: "apple-touch-icon", href: "/xtsy-favicon.png" },
       { rel: "dns-prefetch", href: "//www.googletagmanager.com" },
       { rel: "dns-prefetch", href: "//checkout.razorpay.com" },
